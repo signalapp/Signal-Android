@@ -26,7 +26,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.util.ThemeUtil
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.StringUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
@@ -46,7 +48,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.MAX_BODY_DISPLAY_LENGTH
@@ -56,13 +57,14 @@ import org.thoughtcrime.securesms.util.ProjectionList
 import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.VibrateUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.hasExtraText
 import org.thoughtcrime.securesms.util.hasNoBubble
+import org.thoughtcrime.securesms.util.isBodyTruncated
 import org.thoughtcrime.securesms.util.isScheduled
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Represents a text-only conversation item.
@@ -177,7 +179,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     binding.body.movementMethod = LongClickMovementMethod.getInstance(context)
 
     if (binding.isIncoming) {
-      binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, if (ThemeUtil.isDarkTheme(context)) R.color.core_grey_60 else R.color.core_grey_20))
+      binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, if (ThemeUtil.isDarkTheme(context)) CoreUiR.color.core_grey_60 else CoreUiR.color.core_grey_20))
     } else {
       binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25))
     }
@@ -249,6 +251,10 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     if (V2Payload.SEARCH_QUERY_UPDATED in payload) {
       presentBody()
+      hasProcessedSupportedPayload = true
+    }
+
+    if (ConversationAdapterBridge.PAYLOAD_PULSE in payload) {
       hasProcessedSupportedPayload = true
     }
 
@@ -347,25 +353,6 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   override fun hasNonSelectableMedia(): Boolean = false
-  override fun showProjectionArea() = Unit
-
-  override fun hideProjectionArea() = Unit
-
-  override fun getGiphyMp4PlayableProjection(coordinateRoot: ViewGroup): Projection {
-    return Projection.relativeToParent(
-      coordinateRoot,
-      binding.bodyWrapper,
-      shapeDelegate.cornersLTR
-    )
-      .translateY(root.translationY)
-      .translateX(binding.bodyWrapper.translationX)
-      .translateX(root.translationX)
-  }
-
-  override fun canPlayContent(): Boolean = false
-
-  override fun shouldProjectContent(): Boolean = false
-
   private fun invalidateFooterDrawable(coordinateRoot: ViewGroup) {
     if (footerDrawable.isSolidColor()) {
       return
@@ -441,14 +428,14 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun linkifyMessageBody(messageBody: Spannable) {
-    V2ConversationItemUtils.linkifyUrlLinks(messageBody, conversationContext.selectedItems.isEmpty(), conversationContext.clickListener::onUrlClicked)
+    V2ConversationItemUtils.linkifyUrlLinks(messageBody, conversationContext.selectedItems.isEmpty(), conversationContext.clickListener::onUrlClicked, conversationMessage.messageRecord.isBodyTruncated())
 
     if (conversationMessage.hasStyleLinks()) {
       val isReleaseNotes = conversationMessage.threadRecipient.isReleaseNotes
       val linkColor = if (isReleaseNotes) {
         themeDelegate.getBodyTextColor(conversationMessage)
       } else {
-        ContextCompat.getColor(getContext(), R.color.signal_accent_primary)
+        ContextCompat.getColor(getContext(), CoreUiR.color.signal_accent_primary)
       }
       val underline = isReleaseNotes
       messageBody.getSpans(0, messageBody.length, PlaceholderURLSpan::class.java).forEach { placeholder ->

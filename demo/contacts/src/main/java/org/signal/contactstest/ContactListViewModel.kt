@@ -36,6 +36,7 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
       if (account != null) {
         val contactList: List<ContactDetails> = SystemContactsRepository.getAllSystemContacts(
           context = application,
+          ownAccountType = BuildConfig.APPLICATION_ID,
           e164Formatter = { number -> PhoneNumberUtils.formatNumberToE164(number, "US") ?: number }
         ).use { it.toList().sortedBy { c -> c.givenName } }
 

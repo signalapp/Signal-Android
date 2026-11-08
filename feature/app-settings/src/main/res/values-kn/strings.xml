@@ -3,7 +3,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್‌ ಲಾಕ್ ಆನ್‌ ಮಾಡುವುದೇ?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್‌ ಲಾಕ್‌ ಆಫ್‌ ಮಾಡುವುದೇ?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal ‌ನೊಂದಿಗೆ ಮತ್ತೆ ನೋಂದಾಯಿಸುವಾಗ ನಿಮ್ಮ Signal Signal ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ನಿಮ್ಮನ್ನು 7 ದಿನಗಳವರೆಗೆ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal ‌ನೊಂದಿಗೆ ಮತ್ತೆ ನೋಂದಾಯಿಸುವಾಗ ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ನಿಮ್ಮನ್ನು 7 ದಿನಗಳವರೆಗೆ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
     <string name="RegistrationLockV2Dialog_turn_on">ಆನ್‌ ಮಾಡಿ</string>
     <string name="RegistrationLockV2Dialog_turn_off">ಆಫ್ ಮಾಡಿ</string>
     <string name="preferences__advanced_pin_settings">ಸುಧಾರಿತ ಪಿನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
@@ -18,7 +18,7 @@
     <string name="preferences_app_protection__pin_reminders">ಪಿನ್ ರಿಮೈಂಡರ್‌ಗಳು</string>
     <string name="preferences_app_protection__turn_off">ಆಫ್ ಮಾಡಿ</string>
     <string name="preferences_app_protection__confirm_pin">ಪಿನ್ ದೃಢೀಕರಿಸಿ</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ದೃಢಪಡಿಸಿ</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ</string>
     <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ಮರುಪಡೆಯಲು ಸಾಧ್ಯವಾಗದ ಕಾರಣ ನೀವು ಅದನ್ನು ನೆನಪಿನಲ್ಲಿಟ್ಟುಕೊಂಡಿದ್ದೀರಿ ಅಥವಾ ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ. ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ನಿಮ್ಮ Signal ಖಾತೆಯನ್ನು ಮರು ನೋಂದಾಯಿಸುವಾಗ ನೀವು ಡೇಟಾವನ್ನು ಕಳೆದುಕೊಳ್ಳಬಹುದು.</string>
     <string name="preferences_app_protection__incorrect_pin_try_again">ತಪ್ಪು ಪಿನ್. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="preferences_app_protection__registration_lock">ನೋಂದಣಿ ಲಾಕ್</string>
@@ -45,155 +45,1132 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">ನಿಮ್ಮ ಖಾತೆ ಡೇಟಾ</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Signal ಲಾಗಿನ್</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">ಖಾತೆ ಮತ್ತು ರಿಕವರಿ</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d ಕೀ</item>
-        <item quantity="other">%1$d ಕೀಗಳು</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">ನಿಮ್ಮ Signal ಲಾಗಿನ್ ಅನ್ನು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಿಕವರ್ ಮಾಡಲು ಮತ್ತು ರಿಸ್ಟೋರ್ ಮಾಡಲು ಬಳಸಲಾಗುತ್ತದೆ. ಈ ಕೀಗಳನ್ನು ನೀವು ವಿಶ್ವಾಸವಿಡುವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ನಲ್ಲಿ ಸುರಕ್ಷಿತವಾಗಿ ಇಡಿ.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">ನಿಮ್ಮ Signal Login ಅನ್ನು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಿಕವರ್ ಮಾಡಲು ಮತ್ತು ರಿಸ್ಟೋರ್ ಮಾಡಲು ಬಳಸಲಾಗುತ್ತದೆ. ಈ ಕೀಗಳನ್ನು ನೀವು ವಿಶ್ವಾಸವಿಡುವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ನಲ್ಲಿ ಸುರಕ್ಷಿತವಾಗಿ ಇಡಿ.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">ಎರಡು-ಅಂಶದ ಅಥೆಂಟಿಕೇಶನ್</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">ಸೆಟ್ ಅಪ್</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">ಹೊಸ ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ Signal ಲಾಗಿನ್ ಅನ್ನು ಬಳಸುವಾಗ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಕ್ಷಿಸಲು ಅಥೆಂಟಿಕೇಶನ್‌ನ ಎರಡನೇ ವಿಧಾನವನ್ನು ಬಳಸಿ.</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">ಒಂದು-ಬಾರಿಯ ದೃಢೀಕರಣ ಕೋಡ್‌ಗಳು</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">ಪಾಸ್‌ಕೀ</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">ನಿಮ್ಮ ಬೆರಳಚ್ಚು, ಮುಖ ಅಥವಾ ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಅನ್ನು ಬಳಸಿ</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">ಪಾಸ್‌ಕೀ</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">ಎರಡು-ಅಂಶದ ವಿಧಾನ</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s ಸೇರಿಸಲಾಗಿದೆ</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">ತಿಳಿದಿಲ್ಲ</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">ಎರಡು-ಅಂಶದ ಅಥೆಂಟಿಕೇಶನ್ ಆಯ್ಕೆಗಳನ್ನು ತೆರೆಯಿರಿ</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">ಮರುಹೆಸರಿಸಿ</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ತೆಗೆದುಹಾಕಬೇಕೇ?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">ನೀವು ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ ಒಂದು ಬಾರಿಯ ದೃಢೀಕರಣ ಕೋಡ್‌ಗಳಿಗಾಗಿ ಈ ಆ್ಯಪ್ ಅನ್ನು ಬಳಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">ಪಾಸ್‌ಕೀ ತೆಗೆದುಹಾಕಬೇಕೇ?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">ನೀವು ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ ಈ ಪಾಸ್‌ಕೀ ಅನ್ನು ಬಳಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ತೆಗೆದುಹಾಕಬೇಕೇ?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">ನೀವು ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ ಈ ವಿಧಾನವನ್ನು ಬಳಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ತೆಗೆದುಹಾಕಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">ಪಾಸ್‌ಕೀ ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">ಪಾಸ್‌ಕೀ ಅನ್ನು ತೆಗೆದುಹಾಕಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">ಈ ಸಾಧನದಲ್ಲಿ ಪಾಸ್‌ಕೀಗಳನ್ನು ಬೆಂಬಲಿಸುವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಅನ್ನು ಸೆಟಪ್ ಮಾಡಿ, ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">ಪಾಸ್‌ಕೀ ಅನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ಸೇರಿಸಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">ಈ ವಿಧಾನವನ್ನು ಸೇರಿಸಲು, ಇದು ನೀವೇ ಎಂದು ದೃಢೀಕರಿಸಿ</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ತೆಗೆದುಹಾಕಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">ಈ ವಿಧಾನವನ್ನು ತೆಗೆದುಹಾಕಲು, ಇದು ನೀವೇ ಎಂದು ದೃಢೀಕರಿಸಿ</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login ಅನ್ನು ವೀಕ್ಷಿಸಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">ನಿಮ್ಮ Signal Login ಅನ್ನು ವೀಕ್ಷಿಸಲು, ಇದು ನೀವೇ ಎಂದು ದೃಢೀಕರಿಸಿ</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">ಇದು ನೀವೇ ಎಂದು ದೃಢೀಕರಿಸಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲು, ಇದು ನೀವೇ ಎಂದು ದೃಢೀಕರಿಸಿ</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">ದೃಢೀಕರಣದ ಅಗತ್ಯವಿದೆ</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">ನೀವು %1$d ಕ್ಕಿಂತ ಹೆಚ್ಚು ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ಗಳನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಮೊದಲಿಗೆ, ಒಂದು ಆ್ಯಪ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">ನೀವು %1$d ಕ್ಕಿಂತ ಹೆಚ್ಚು ಎರಡು-ಹಂತದ ಅಥೆಂಟಿಕೇಶನ್ ವಿಧಾನಗಳನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಮೊದಲಿಗೆ, ಒಂದು ಆ್ಯಪ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">ನಿಮ್ಮ ಎರಡು-ಅಂಶದ ಅಥೆಂಟಿಕೇಶನ್ ವಿಧಾನಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">ಹೊಸ ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ Signal Login ಅನ್ನು ಬಳಸುವಾಗ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಕ್ಷಿಸಲು ಅಥೆಂಟಿಕೇಶನ್‌ನ ಎರಡನೇ ವಿಧಾನವನ್ನು ಬಳಸಿ.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">ನಿಮ್ಮ ಖಾತೆ ಡೇಟಾ</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">ನಿಮ್ಮ Signal ಖಾತೆ ಡೇಟಾದ ವರದಿಯನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ. ಈ ವರದಿ ಯಾವುದೇ ಮೆಸೇಜ್‌ಗಳು ಅಥವಾ ಮೀಡಿಯಾವನ್ನು ಒಳಗೊಂಡಿಲ್ಲ. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">ವರದಿಯನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">TXT ರೂಪದಲ್ಲಿ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">ಸುಲಭವಾಗಿ ಓದಬಹುದಾದ ಟೆಕ್ಸ್ಟ್ ಫೈಲ್</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">JSON ರೂಪದಲ್ಲಿ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">ಯಂತ್ರ ಓದಬಹುದಾದ ಫೈಲ್</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">ರದ್ದುಮಾಡಿ</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">ಓಕೆ</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">ವರದಿಯನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">ಡೇಟಾ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಬೇಕೇ?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">ನಿಮ್ಮ Signal ಖಾತೆ ಡೇಟಾವನ್ನು ನೀವು ನಂಬುವ ಜನರು ಅಥವಾ ಆ್ಯಪ್‌ಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">ವರದಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">ಎಕ್ಸ್‌ಪೋರ್ಟ್‌ನ ವೇಳೆಯಲ್ಲಷ್ಟೇ ನಿಮ್ಮ ವರದಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ Signal ನಿಂದ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಅನ್ನು ಸೆಟಪ್ ಮಾಡಿ</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಅನ್ನು ಸೆಟಪ್ ಮಾಡಲು ಈ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ.</string>
+    <string name="TotpSetupScreen__follow_these_steps">ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಅನ್ನು ಸೆಟಪ್ ಮಾಡಲು ಈ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+    <string name="TotpSetupScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">ಹಂತ 1</string>
+    <string name="TotpSetupScreen__step_1">ಹಂತ 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ವಿಶ್ವಾಸಾರ್ಹ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಅನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ವಿಶ್ವಾಸಾರ್ಹ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಅನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">ಹಂತ 2</string>
+    <string name="TotpSetupScreen__step_2">ಹಂತ 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">ನಿಮ್ಮ Signal ಖಾತೆಯನ್ನು ಸೇರಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡುವ ಮೂಲಕ ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಅನ್ನು ತೆರೆಯಿರಿ.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">ನಿಮ್ಮ Signal ಖಾತೆಯನ್ನು ಸೇರಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡುವ ಮೂಲಕ ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಅನ್ನು ತೆರೆಯಿರಿ.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">ತೆರೆಯಿರಿ</string>
+    <string name="TotpSetupScreen__open">ತೆರೆಯಿರಿ</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">ಅಥವಾ ಅದನ್ನು ಹಸ್ತಚಾಲಿತವಾಗಿ ಸೆಟ್ ಮಾಡಲು ನೀವು ಈ ಕೀ ಅನ್ನು ಕಾಪಿ ಮಾಡಬಹುದು.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">ಅಥವಾ ಅದನ್ನು ಹಸ್ತಚಾಲಿತವಾಗಿ ಸೆಟ್ ಮಾಡಲು ನೀವು ಈ ಕೀ ಅನ್ನು ಕಾಪಿ ಮಾಡಬಹುದು.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">ನಕಲಿಸು</string>
+    <string name="TotpSetupScreen__copy">ನಕಲಿಸು</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">ಯಾವುದೇ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಕಂಡುಬಂದಿಲ್ಲ</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">ಯಾವುದೇ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಕಂಡುಬಂದಿಲ್ಲ</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">ನೀವು %1$d ಕ್ಕಿಂತ ಹೆಚ್ಚು ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ಗಳನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಮೊದಲಿಗೆ, ಒಂದು ಆ್ಯಪ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Signal ಅನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">ಹಂತ 3</string>
+    <string name="TotpSetupScreen__step_3">ಹಂತ 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">ಜನರೇಟ್ ಆಗುವ ಕೋಡ್ ಅನ್ನು ಕಾಪಿ ಮಾಡಿ ಮತ್ತು ಮುಂದುವರಿಯಲು ಇಲ್ಲಿಗೆ ಹಿಂದಿರುಗಿ.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">ಜನರೇಟ್ ಆಗುವ ಕೋಡ್ ಅನ್ನು ಕಾಪಿ ಮಾಡಿ ಮತ್ತು ಮುಂದುವರಿಯಲು ಇಲ್ಲಿಗೆ ಹಿಂದಿರುಗಿ.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">ಮುಂದುವರಿಸಿ</string>
+    <string name="TotpSetupScreen__continue">ಮುಂದುವರಿಸಿ</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">ಪಾಸ್‌ಕೀಗಳು</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">ಪಾಸ್‌ಕೀಗಳ ಮೂಲಕ ನಿಮ್ಮ ಖಾತೆಗೆ ನೀವು ಸುಲಭವಾಗಿ ಸುರಕ್ಷಿತ ಎರಡನೇ ಸ್ವರೂಪದ ಅಥೆಂಟಿಕೇಶನ್ ಅನ್ನು ಸೇರಿಸಬಹುದು. ಪಾಸ್‌ಕೀಗಳು ನಿಮ್ಮ ಸಾಧನದ ಬಯೊಮೆಟ್ರಿಕ್ಸ್ ಅಥವಾ ಹೊಂದಾಣಿಕೆಯಾಗುವ FIDO2 ಭದ್ರತಾ ಕೀ ಅನ್ನು ಬಳಸಬಹುದು.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">ನಿಮ್ಮ ಪಾಸ್‌ಕೀ ಅನ್ನು ಗುರುತಿಸಲು ಅದಕ್ಕೆ ಒಂದು ಸುಲಭವಾದ ಹೆಸರನ್ನು ನೀಡಿ</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">ನಿಮ್ಮ ಪಾಸ್‌ಕೀ ಅನ್ನು ಸಂಗ್ರಹಿಸಲು ನಿಮ್ಮ ಸಾಧನದ ಬಯೊಮೆಟ್ರಿಕ್ಸ್ ಅಥವಾ FIDO2 ಭದ್ರತೆ ಕೀ ಅನ್ನು ಬಳಸಿ</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">ಪಾಸ್‌ಕೀಗಳನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಸೇರಿಸಿ ಅಥವಾ ತೆಗೆದುಹಾಕಿ.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">\"%1$s\" ಸೇರಿಸಲಾಗಿದೆ</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Rename</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">ತೆಗೆದುಹಾಕಿ</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">ಪಾಸ್‌ಕೀ ಸೆಟಪ್ ಮಾಡಿ</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">ಪಾಸ್‌ಕೀ ಅನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">ನೀವು %1$d ಕ್ಕಿಂತ ಹೆಚ್ಚು ಎರಡು-ಹಂತದ ಅಥೆಂಟಿಕೇಶನ್ ವಿಧಾನಗಳನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಮೊದಲಿಗೆ, ಒಂದು ಆ್ಯಪ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು ಪ್ರಯತ್ನಿಸಿ.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">ನಿಮ್ಮ ಕೋಡ್ ನಮೂದಿಸಿ</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">ನಿಮ್ಮ ಕೋಡ್ ನಮೂದಿಸಿ</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ನಿಂದ 6-ಅಂಕಿಯ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">ಕೋಡ್</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ನಿಂದ 6-ಅಂಕಿಯ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">ಮುಗಿದಿದೆ</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">\"%1$s\" ಸೇರಿಸಲಾಗಿದೆ</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Rename</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">ತೆಗೆದುಹಾಕಿ</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">ಮುಂದೆ</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">ತಪ್ಪಾದ ಕೋಡ್. ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ನಲ್ಲಿ ಈಗ ತೋರಿಸಿರುವ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal ಅನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Choose a name</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">ಅಥೆಂಟಿಕೇಟರ್</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">ಹೆಸರು ಆರಿಸಿ</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">ಈ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ಗೆ ಒಂದು ಅನನ್ಯವಾದ ಹೆಸರನ್ನು ಆರಿಸಿ.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">ನಂತರದಲ್ಲಿ ಈ ಆ್ಯಪ್ ಅನ್ನು ಸುಲಭವಾಗಿ ಗುರುತಿಸಲು ಸಹಾಯವಾಗಲು ಈ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ಗೆ ಒಂದು ಅನನ್ಯವಾದ ಹೆಸರನ್ನು ಆರಿಸಿ.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">ಈ ಎರಡು-ಅಂಶದ ವಿಧಾನಕ್ಕೆ ಒಂದು ಅನನ್ಯವಾದ ಹೆಸರನ್ನು ಆರಿಸಿ.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">ಈ ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ನಂತರದಲ್ಲಿ ಗುರುತಿಸುವುದಕ್ಕೆ ಸಹಾಯವಾಗಲು ಅದಕ್ಕೆ ಒಂದು ಅನನ್ಯವಾದ ಹೆಸರನ್ನು ಆರಿಸಿ.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">ಈ ಪಾಸ್‌ಕೀಗೆ ಒಂದು ಅನನ್ಯವಾದ ಹೆಸರನ್ನು ಆರಿಸಿ.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">ಈ ಪಾಸ್‌ಕೀ ಅನ್ನು ನಂತರದಲ್ಲಿ ಗುರುತಿಸುವುದಕ್ಕೆ ಸಹಾಯವಾಗಲು ಅದಕ್ಕೆ ಒಂದು ಅನನ್ಯವಾದ ಹೆಸರನ್ನು ಆರಿಸಿ.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">ಹೆಸರು</string>
+    <string name="TwoFactorNameEntryScreen__name">ಹೆಸರು</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">ಮುಂದೆ</string>
+    <string name="TwoFactorNameEntryScreen__next">ಮುಂದೆ</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಸೆಟಪ್ ಮಾಡಲಾಗಿದೆ</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್ ಮರುಹೆಸರಿಸಲಾಗಿದೆ</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">ಪಾಸ್‌ಕೀ ಸೆಟಪ್</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">ಪಾಸ್‌ಕೀ ಅನ್ನು ಮರುಹೆಸರಿಸಲಾಗಿದೆ</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">ಎರಡು-ಅಂಶ ವಿಧಾನದ ಸೆಟಪ್</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ಮರುಹೆಸರಿಸಲಾಗಿದೆ</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">ಹೆಸರು ಸೇವ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿದರೆ:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
+    <string name="DeleteAccountFragment__delete_account">ಖಾತೆಯನ್ನು ಅಳಿಸಿ</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ನಿಮ್ಮ ಖಾತೆ ಮಾಹಿತಿ ಮತ್ತು ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಅಳಿಸಿ</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">ನಿಮ್ಮ ಎಲ್ಲ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸಿ</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯಲ್ಲಿ %1$s ಅಳಿಸಿ</string>
+    <string name="DeleteAccountFragment__no_country_code">ಯಾವುದೇ ದೇಶದ ಕೋಡ್ ನಿರ್ದಿಷ್ಟಪಡಿಸಿಲ್ಲ</string>
+    <string name="DeleteAccountFragment__no_number">ಯಾವುದೇ ಸಂಖ್ಯೆ ನಿರ್ದಿಷ್ಟಪಡಿಸಿಲ್ಲ</string>
+    <string name="DeleteAccountFragment__the_phone_number">ನೀವು ನಮೂದಿಸಿದ ಫೋನ್ ನಿಮ್ಮ ಖಾತೆಗೆ ಹೋಲಿಕೆಯಾಗುತ್ತಿಲ್ಲ.</string>
+    <string name="DeleteAccountFragment__are_you_sure">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ಇದು ನಿಮ್ಮ Signal ಖಾತೆಯನ್ನು ಅಳಿಸುತ್ತದೆ ಮತ್ತು ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ರಿಸೆಟ್ ಮಾಡುತ್ತದೆ. ಪ್ರಕ್ರಿಯೆ ಮುಗಿದ ನಂತರ ಆ್ಯಪ್ ಮುಚ್ಚುತ್ತದೆ.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">ಸ್ಥಳೀಯ ಡೇಟಾ ಅಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ಸಿಸ್ಟಮ್ ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನೀವು ಮ್ಯಾನ್ಯುವಲ್ ಆಗಿ ತೆರವುಗೊಳಿಸಬಹುದು.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">ಆಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">ಗ್ರೂಪ್‌ಗಳನ್ನು ತೊರೆಯಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">ಖಾತೆಯನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">ನಿಮ್ಮ ಚಂದಾ ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">ನೀವು ಇರುವ ಗ್ರೂಪ್‌ಗಳ ಸಂಖ್ಯೆಯನ್ನು ಅವಲಂಬಿಸಿಕೊಂಡು, ಇದು ಕೆಲವು ನಿಮಿಷಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಬಹುದು</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">ಬಳಕೆದಾರ ಡೇಟಾ ಅಳಿಸಲಾಗುತ್ತಿದೆ ಮತ್ತು ಆ್ಯಪ್ ಮರುಸೆಟ್ಟಿಂಗ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">ಖಾತೆಯನ್ನು ಅಳಿಸಲಾಗಿಲ್ಲ</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">ಅಳಿಸುವಿಕೆ ಪ್ರಕ್ರಿಯೆ ಪೂರ್ಣಗೊಳಿಸಲು ಸಮಸ್ಯೆಯಿತ್ತು. ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">\"%1$s\" ಯೂಸರ್‌ನೇಮ್ ಹೊಂದಿರುವ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸುವುದರಿಂದ:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">ನಿಮ್ಮ \"%1$s\" ಯೂಸರ್‌ನೇಮ್ ಸೇರಿದಂತೆ ನಿಮ್ಮ ಖಾತೆಯ ಮಾಹಿತಿ ಮತ್ತು ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಅಳಿಸಿ</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಪಡಿಸಲಾಗುವುದಿಲ್ಲ</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">ಇದು \"%1$s\" ಯೂಸರ್‌ನೇಮ್ ಹೊಂದಿರುವ ನಿಮ್ಮ Signal ಖಾತೆಯನ್ನು ಅಳಿಸುತ್ತದೆ ಮತ್ತು ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಮರುಹೊಂದಿಸುತ್ತದೆ. ಈ ಪ್ರಕ್ರಿಯೆ ಪೂರ್ಣಗೊಂಡ ಬಳಿಕ ಈ ಆ್ಯಪ್ ಮುಚ್ಚುತ್ತದೆ.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">ಹೌದು, ನನ್ನ ಖಾತೆಯನ್ನು ಅಳಿಸಿ</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">ಇನ್ವೈಟ್ ಫ್ರೆಂಡ್</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">ಹಂಚಿಕೊಳ್ಳಿ</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">ನಿಮ್ಮ ದೇಶವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="RegistrationActivity_phone_number_description">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d ಫೋಲ್ಡರ್</item>
+        <item quantity="other">%1$d ಫೋಲ್ಡರ್ ಗಳು</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">ಚಾಟ್ ಫೋಲ್ಡರ್ ಸೇರಿಸಲಾಗಿದೆ</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">ಫೋಲ್ಡರ್ ಸೇರಿಸಿ ಅಥವಾ ಎಡಿಟ್ ಮಾಡಿ</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">ದೃಢೀಕರಣ ವಿಫಲವಾಗಿದೆ</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">ಚಾಟ್ ಫೋಲ್ಡರ್ ಗಳು</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">ಚಾಟ್ ಇತಿಹಾಸವನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">ನಿಮ್ಮ ಎಲ್ಲಾ ಚಾಟ್‌ಗಳ ಮಶೀನ್-ರೀಡಬಲ್ JSON ಪ್ರತಿಯನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ. ಮಾಯವಾಗುವ ಸಂದೇಶಗಳನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <string name="ChatsSettingsFragment__keyboard">ಕೀಬೋರ್ಡ್‌</string>
+    <string name="ChatsSettingsFragment__send_with_enter">ಎಂಟರ್ ಮೂಲಕ ಕಳುಹಿಸಿ</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">ಸ್ಟಿಕ್ಕರ್‌ಗಳು ಮತ್ತು GIF ಗಳನ್ನು ಸ್ವಯಂಪ್ಲೇ ಮಾಡಿ</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">ಆನ್ ಮಾಡಿದಾಗ, ಸ್ಟಿಕ್ಕರ್‌ಗಳು ಮತ್ತು GIF ಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ಲೇ ಆಗುತ್ತವೆ</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ಚಾಟ್ ಇತಿಹಾಸವನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">ಲಭ್ಯವಿದ್ದರೆ ನಿಮ್ಮ ಅಡ್ರೆಸ್ ಬುಕ್‌ನ ಸಂಪರ್ಕ ಫೋಟೋಗಳಿಗೆ ಆದ್ಯತೆ ನೀಡಿ</string>
+    <string name="preferences__generate_link_previews">ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ರಚಿಸಿ</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ಹೊಸ ಮೆಸೇಜ್ ಬಂದಾಗ, ಆರ್ಕೈವ್ ಆಗಿರುವ ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳು ಆರ್ಕೈವ್ ಆಗಿಯೇ ಇರುತ್ತವೆ.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳನ್ನು ಆರ್ಕೈವ್ ಆಗಿರಿಸಿ</string>
+    <string name="preferences__pref_use_address_book_photos">ಅಡ್ರೆಸ್ ಬುಕ್ ಫೋಟೋಗಳಿಗೆ ಆದ್ಯತೆ ನೀಡಿ</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">ನೀವು ಕಳುಹಿಸುವ ಸಂದೇಶಗಳಿಗಾಗಿ ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ವೆಬ್‌ಸೈಟ್‌ಗಳಿಂದ ನೇರವಾಗಿ ಹಿಂಪಡೆಯಿರಿ.</string>
+    <string name="preferences_advanced__use_system_emoji">ಸಿಸ್ಟಂ ಎಮೋಜಿ ಬಳಸಿ</string>
+    <string name="preferences_chats__chats">ಚಾಟ್‌‌ ಗಳು</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">ಜಾಗರೂಕರಾಗಿರಿ</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">ಜಾಗರೂಕರಾಗಿರಿ!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">ಎಕ್ಸ್‌ಪೋರ್ಟ್ ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">ನಿಮ್ಮ ಸಾಧನದ ಸಂಗ್ರಣೆಯಲ್ಲಿ ನಿಮ್ಮ ಚಾಟ್ ಇತಿಹಾಸವನ್ನು ಸಂಗ್ರಹಿಸಲಾಗುವ ಫೋಲ್ಡರ್ ಅನ್ನು ಆರಿಸಿ.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">ಫೋಲ್ಡರ್ ಆಯ್ಕೆ ಮಾಡಿ</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">ಫೋಲ್ಡರ್‌ ಆಯ್ಕೆಮಾಡಿ</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">ಅಲ್ಲಿ ನೀವು ನಿಮ್ಮ ಚಾಟ್ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಫೈಲ್ ಅನ್ನು ಸಂಗ್ರಹಿಸುತ್ತೀರಿ ಮತ್ತು ಅದನ್ನು ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ. ನಿಮ್ಮ ಸಾಧನದ ಅನುಮತಿಗಳನ್ನು ಅವಲಂಬಿಸಿ, ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿರುವ ಇತರ ಆ್ಯಪ್‌ಗಳು ಅದನ್ನು ಆ್ಯಕ್ಸೆಸ್ ಮಾಡಬಹುದು.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">ಚಾಟ್ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡುವುದು ಪೂರ್ಣವಾಗಿದೆ</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">ಚಾಟ್ ಇತಿಹಾಸವನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಬೇಕೇ?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">ಈ ಫೈಲ್ ಅನ್ನು ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ. ನಿಮ್ಮ ಚಾಟ್ ಇತಿಹಾಸವನ್ನು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸೇವ್ ಮಾಡಲಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನದ ಅನುಮತಿಗಳನ್ನು ಅವಲಂಬಿಸಿ ಇತರ ಆ್ಯಪ್‌ಗಳು ಅದನ್ನು ಆ್ಯಕ್ಸೆಸ್ ಮಾಡಬಹುದು. ಮೀಡಿಯಾದೊಂದಿಗೆ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡುವುದರಿಂದ ಫೈಲ್ ಗಾತ್ರವು ದೊಡ್ಡದಾಗುತ್ತದೆ.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">ಮೀಡಿಯಾದೊಂದಿಗೆ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">ಮೀಡಿಯಾ ಇಲ್ಲದೆ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">ಮೀಡಿಯಾ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">ಅಂತಿಮಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">ಬ್ಯಾಕಪ್ ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">ಬ್ಯಾಕಪ್ ಅನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">ಮೆಸೇಜ್‌ಗಳನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">ಮೆಸೇಜ್‌ಗಳನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ: %2$s ರಲ್ಲಿ %1$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">ಮೀಡಿಯಾ ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">ಅಪ್ಲಿಕೇಶನ್ ನವೀಕರಣಗಳು</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">ಲಕ್ಷಣ</string>
+    <string name="preferences__language">ಭಾಷೆ</string>
+    <string name="preferences__theme">ಥೀಮ್</string>
+    <string name="preferences__system_default">ಸಿಸ್ಟಂ ಡೀಫಾಲ್ಟ್</string>
+    <string name="preferences__light_theme">ತಿಳಿ</string>
+    <string name="preferences__dark_theme">ಗಾಢ</string>
+    <string name="preferences__chat_color_and_wallpaper">ಚಾಟ್ ಬಣ್ಣ ಮತ್ತು ವಾಲ್‌ಪೇಪರ್</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">ಆ್ಯಪ್ ಐಕಾನ್</string>
+    <string name="preferences_chats__message_text_size">ಸಂದೇಶ ಫಾಂಟ್ ಗಾತ್ರ</string>
+    <string name="arrays__small">ಸಣ್ಣ</string>
+    <string name="arrays__normal">ಸಾಧಾರಣ</string>
+    <string name="arrays__large">ದೊಡ್ಡದು</string>
+    <string name="arrays__extra_large">ಹೆಚ್ಚು ದೊಡ್ಡದು</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">ನ್ಯಾವಿಗೇಶನ್ ಬಾರ್ ಗಾತ್ರ</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">ಸಾಧಾರಣ</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">ಚಿಕ್ಕ</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">ಹೊಸ ಭಾಷೆಯ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಅನ್ವಯಿಸಲು ಆ್ಯಪ್ ಮರುಪ್ರಾರಂಭಗೊಳ್ಳುತ್ತದೆ.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">ನನ್ನ ಸಂಖ್ಯೆಯನ್ನು ಯಾರು ನೋಡಬಹುದು</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">ನೀವು ಮೆಸೇಜ್ ಮಾಡುವ ಜನರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳಿಗೆ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ಕಾಣಿಸುತ್ತದೆ.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಅವರು ತಮ್ಮ ಫೋನ್‌ನ ಸಂಪರ್ಕಗಳಲ್ಲಿ ಉಳಿಸದ ಹೊರತು ಯಾರಿಗೂ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ಯಾರಿಗೂ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">ಸಂಖ್ಯೆಯ ಮೂಲಕ ನನ್ನನ್ನು ಯಾರು ಕಂಡುಹಿಡಿಯಬಹುದು</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರುವ ಯಾರಾದರೂ ನೀವು Signal ‌ನಲ್ಲಿರುವುದನ್ನು ನೋಡುತ್ತಾರೆ ಮತ್ತು ನಿಮ್ಮೊಂದಿಗೆ ಚಾಟ್‌ಗಳನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">ನೀವು ಮೆಸೇಜ್ ಕಳುಹಿಸದ ಹೊರತು ಅಥವಾ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಚಾಟ್ ಅನ್ನು ಹೊಂದಿರದ ಹೊರತು ನೀವು Signal ‌ನಲ್ಲಿದ್ದೀರಿ ಎಂದು ಯಾರಿಗೂ ನೋಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ಈ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಬದಲಾಯಿಸಲು, ನನ್ನ ಸಂಖ್ಯೆಯನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂಬುದನ್ನು ಯಾರೂ ಇಲ್ಲ ಎಂಬುದಾಗಿ ಹೊಂದಿಸಿ."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ನಿಮಗೆ ಖಾತ್ರಿಯಿದೆಯೇ?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ಯಾರು ನನ್ನ ನಂಬರನ್ನು ಹುಡುಕಬಹುದು\" ಅನ್ನು \"ಯಾರೂ ಇಲ್ಲ\" ಅಂದು ಸೆಟ್ ಮಾಡಿದರೆ, Signal ನಲ್ಲಿ ನಿಮ್ಮನ್ನು ಹುಡುಕಲು ಜನರಿಗೆ ಇನ್ನೂ ಕಷ್ಟವಾಗುವುದು.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ರದ್ದುಮಾಡಿ</string>
+    <string name="PhoneNumberPrivacy_everyone">ಎಲ್ಲರೂ</string>
+    <string name="PhoneNumberPrivacy_nobody">ಯಾರೂ ಇಲ್ಲ</string>
+    <string name="arrays__images">ಚಿತ್ರಗಳು</string>
+    <string name="arrays__audio">ಆಡಿಯೊ</string>
+    <string name="arrays__video">ವೀಡಿಯೊ</string>
+    <string name="arrays__documents">ದಾಖಲೆಗಳು</string>
+    <string name="preferences__data_and_storage">ಡೇಟಾ ಮತ್ತು ಸ್ಟೊರೇಜ್</string>
+    <string name="preferences_chats__when_using_mobile_data">ಮೊಬೈಲ್ ಡೇಟಾ ಬಳಸುತ್ತಿರುವಾಗ</string>
+    <string name="preferences_chats__when_using_wifi">ವೈಫೈ ಬಳಸುತ್ತಿರುವಾಗ</string>
+    <string name="preferences_chats__when_roaming">ರೋಮಿಂಗ್-ನಲ್ಲಿರುವಾಗ</string>
+    <string name="preferences_chats__media_auto_download">ಮೀಡಿಯಾ ಆಟೋ ಡೌನ್‌ಲೋಡ್</string>
+    <string name="preferences_data_and_storage__manage_storage">ಸ್ಟೊರೇಜ್ ನಿರ್ವಹಿಸಿ</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">ಕಾಲ್‌ಗಳಿಗೆ ಕಡಿಮೆ ಡೇಟಾ ಬಳಸಿ</string>
+    <string name="preferences_data_and_storage__never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">ವೈಫೈ ಮತ್ತು ಮೊಬೈಲ್ ಡೇಟಾ</string>
+    <string name="preferences_data_and_storage__mobile_data_only">ಮೊಬೈಲ್ ಡೇಟಾ ಮಾತ್ರ</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ಕಡಿಮೆ ಡೇಟಾ ಬಳಸುವುದರಿಂದ ಕೆಟ್ಟ ನೆಟ್‌ವರ್ಕ್‌ಗಳಲ್ಲಿ ಕರೆಗಳನ್ನು ಸುಧಾರಿಸಬಹುದು.</string>
+    <string name="preferences_proxy">ಪ್ರಾಕ್ಸಿ</string>
+    <string name="preferences_use_proxy">ಪ್ರಾಕ್ಸಿ ಬಳಸಿ</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟ</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">ಲೆಕ್ಕಾಚಾರ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ಉನ್ನತ ಗುಣಮಟ್ಟದ ಮಾಧ್ಯಮವನ್ನು ಕಳುಹಿಸುವಿಕೆಯು ಹೆಚ್ಚು ಡೇಟಾವನ್ನು ಬಳಸಲಿದೆ.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">ಧ್ವನಿ ಸಂದೇಶಗಳು ಮತ್ತು ಸ್ಟಿಕ್ಕರ್‌ಗಳು (%1$s ಗಿಂತ ಕಡಿಮೆ) ಯಾವಾಗಲೂ ಸ್ವಯಂ-ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತವೆ.</string>
+    <string name="DataAndStorageSettingsFragment__calls">ಕರೆಗಳು</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಸಂಪರ್ಕದಲ್ಲಿರಿ</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">ಹಿನ್ನೆಲೆಯಲ್ಲಿದ್ದುಕೊಂಡು ಸಂಪರ್ಕದಲ್ಲಿರುವುದು ಬ್ಯಾಟರಿ ಬಳಕೆಯನ್ನು ಹೆಚ್ಚಿಸುವ ಸಾಧ್ಯತೆಯಿದೆ. ಬಹುತೇಕ ಸಾಧನಗಳಿಗೆ ಇದು ಅಗತ್ಯವಿಲ್ಲ. ನೀವು ನೋಟಿಫಿಕೇಷನ್ ಸಮಸ್ಯೆಗಳನ್ನು ಎದುರಿಸುತ್ತಿದ್ದರೆ ಮಾತ್ರ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">ಹೆಚ್ಚು</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">ಪ್ರಮಾಣಿತ</string>
+    <string name="preferences_app_protection__screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಬಳಸಿ</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">ನೀವು ಆ್ಯಪ್‌ಗಳನ್ನು ತೊರೆದಾಗ ಅಥವಾ ಬದಲಾಯಿಸಿದಾಗ Signal ಅನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಲು ನಿಮ್ಮ Android ಸಾಧನ ಲಾಕ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ. ಲಾಕ್ ಮಾಡಿದಾಗ, ಅಧಿಸೂಚನೆ ಪ್ರಿವ್ಯೂಗಳು ಮೆಸೇಜ್‌ನ ಕಂಟೆಂಟ್ ಅನ್ನು ತೋರಿಸುವುದಿಲ್ಲ.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಪ್ರಾರಂಭಿಸಿ</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">1 ನಿಮಿಷದ ನಂತರ</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">5 ನಿಮಿಷಗಳ ನಂತರ</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">30 ನಿಮಿಷಗಳ ನಂತರ</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">ಕಸ್ಟಮ್ ಸಮಯ</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಬಳಸಿ</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಆಫ್ ಮಾಡಿ</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">ಸಹಾಯ</string>
+    <string name="HelpSettingsFragment__support_center">ಬೆಂಬಲ ಕೇಂದ್ರ</string>
+    <string name="HelpSettingsFragment__contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
+    <string name="HelpSettingsFragment__version">ಆವೃತ್ತಿ</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
+    <string name="HelpSettingsFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">ಪರವಾನಗಿಗಳು</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">ನಿಯಮಗಳು &amp; ಖಾಸಗಿತನ ನೀತಿ</string>
+    <string name="HelpFragment__copyright_signal_messenger">ಹಕ್ಕುಸ್ವಾಮ್ಯ Signal ಮೆಸೆಂಜರ್</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 ಅಡಿಯಲ್ಲಿ ಪರವಾನಗಿ ಹೊಂದಿದೆ</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal 501c3 ಲಾಭರಹಿತ ಸಂಸ್ಥೆಯಾಗಿದೆ</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">ಆ್ಯಪ್ ಐಕಾನ್‌ಗಳು ಮತ್ತು ಹೆಸರುಗಳು ಹೋಮ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಆ್ಯಪ್ ಡ್ರಾಯರ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">ಅಧಿಸೂಚನೆಗಳು ಯಾವತ್ತೂ ಡೀಫಾಲ್ಟ್ Signal ಐಕಾನ್ ಮತ್ತು ಹೆಸರನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">ಬದಲಿ ಆ್ಯಪ್ ಐಕಾನ್ ಕಾಣಿಸುವಲ್ಲಿ ಗ್ರಾಫಿಕ್ ವಿವರಣೆಯಿರುತ್ತದೆ.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">ಹವಾಮಾನ</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">ಟಿಪ್ಪಣಿಗಳು</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">ಸುದ್ದಿ</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">ಅಲೆಗಳು</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">ಓಕೆ</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">ರದ್ದುಮಾಡಿ</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">ಆ್ಯಪ್ ಐಕಾನ್ ಬದಲಾಯಿಸಿ ಮತ್ತು \"%1$s\" ಎಂಬುದಾಗಿ ಹೆಸರಿಸಿ</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">ಆ್ಯಪ್ ಐಕಾನ್ ಮತ್ತು ಹೆಸರನ್ನು ಬದಲಾಯಿಸಲು Signal ಅನ್ನು ಮುಚ್ಚಬೇಕಾಗುತ್ತದೆ. ಅಧಿಸೂಚನೆಗಳು ಯಾವತ್ತೂ ಡೀಫಾಲ್ಟ್ Signal ಐಕಾನ್ ಮತ್ತು ಹೆಸರನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">ಒಂದು ಆ್ಯಪ್ ಐಕಾನ್ ಮತ್ತು ಹೆಸರು ಆಯ್ಕೆ ಮಾಡಿ, ಅದು ನಿಮ್ಮ ಫೋನ್‌ನ ಹೋಮ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಆ್ಯಪ್ ಡ್ರಾಯರ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ. ಅಧಿಸೂಚನೆಗಳು ಯಾವತ್ತೂ ಡೀಫಾಲ್ಟ್ Signal ಐಕಾನ್ ಮತ್ತು ಹೆಸರನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ. ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">ಲಿಂಕ್ ಅನ್ನು ಹೊಂದಿಸಲಾಗಿಲ್ಲ</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">ಬಣ್ಣ</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">ಮುಗಿದಿದೆ</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">ಪ್ರೊಫೈಲ್ ರಚಿಸಲಾಗಿದೆ</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">ಮುಗಿದಿದೆ</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">ಚಾಟ್ ಲಿಸ್ಟ್‌ನಲ್ಲಿರುವ ಮೆನು ಮೂಲಕ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ನೀವು ಕೈಯಾರೆ ಆನ್ ಅಥವಾ ಆಫ್ ಮಾಡಬಹುದು.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಸ್ವಯಂಚಾಲನೆಗೊಳಿಸಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ವೇಳಾಪಟ್ಟಿ ಸೇರಿಸಿ.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">ನಿಮ್ಮ ವೇಳಾಪಟ್ಟಿ ಪ್ರಕಾರವಾಗಿ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆನ್ ಅಥವಾ ಆಫ್ ಆಗಲಿದೆ.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಪಾಸ್‌ಫ್ರೇಸ್ ಹೊಂದಿಸಿಲ್ಲ!</string>
+    <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ಇದು Signal ಮತ್ತು ಸಂದೇಶ ಅಧಿಸೂಚನೆಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅನ್ಲಾಕ್ ಮಾಡುತ್ತದೆ.</string>
+    <string name="PrivacySettingsFragment__app_security">ಆಪ್ ಸುರಕ್ಷತೆ</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ಇತ್ತೀಚಿನ ಪಟ್ಟಿಯಲ್ಲಿ ಮತ್ತು ಆ್ಯಪ್‌ನ ಒಳಗೆ ಸ್ಕ್ರೀನ್‌ಶಾಟ್‌ಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ</string>
+    <string name="PrivacySettingsFragment__blocked">ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">ಪಾವತಿ ಲಾಕ್ ಉಪಯೋಗಿಸಲು, ಮೊದಲು ನೀವು ನಿಮ್ಮ ಫೋನ್‌ನ ಸೆಟ್ಟಿಂಗ್ಸ್ ನಲ್ಲಿ ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಅಥವಾ ಬೆರಳಚ್ಚು ಐಡಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬೇಕು.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">ಪಾವತಿ ಲಾಕ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d ಸಂಪರ್ಕ ಅಥವಾ ಗುಂಪು</item>
+        <item quantity="other">%1$d ಸಂಪರ್ಕಗಳು ಅಥವಾ ಗುಂಪುಗಳು</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">ಹೊಸ ಚಾಟ್‌ಗಳಿಗೆ ಡೀಫಾಲ್ಟ್ ಟೈಮರ್</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">ಸಿಸ್ಟಮ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಗೆ ನ್ಯಾವಿಗೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
+    <string name="PrivacySettingsFragment__messaging">ಸಂದೇಶ ಕಳುಹಿಸುವಿಕೆ</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">ಹಣ ವರ್ಗಾವಣೆಗೆ ಆಂಡ್ರಾಯ್ಡ್ ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಅಥವಾ ಬೆರಳಚ್ಚು ಬೇಕು</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ನೀವು ಆರಂಭಿಸಿದ ಎಲ್ಲ ಹೊಸ ಚಾಟ್‌ಗಳಿಗೆ ಮಾಯವಾಗುವ ಸಂದೇಶಗಳ ಡೀಫಾಲ್ಟ್ ಟೈಮರ್ ಅನ್ನು ಸೆಟ್ ಮಾಡಿ.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಕಾಲ್‌ಗಳು, ಎಂದಿಗೂ ಕಾಲ್‌ಗಳನ್ನು ರಿಲೇ ಮಾಡಿ ಮತ್ತು ಸೀಲ್ ಮಾಡಿದ ಕಳುಹಿಸುವವರು</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">ಆಫ಼್</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ನಿರ್ದಿಷ್ಟ ಸಮಯದ ಚಟುವಟಿಕೆಯಿಲ್ಲದ ವಿರಾಮದ ನಂತರ Signal ಆಟೋ-ಲಾಕ್</string>
+    <string name="preferences__change_passphrase">ಪಾಸ್‌‌ಫ್ರೇಸ್ ಬದಲಾಯಿಸಿ</string>
+    <string name="preferences__change_your_passphrase">ನಿಮ್ಮ ಪಾಸ್‌‌ಫ್ರೇಸ್ ಬದಲಾಯಿಸಿ</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">ಪಾಸ್‌‌ಫ್ರೇಸ್ ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ಓದುವ ಸ್ವೀಕೃತಿಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದ್ದಲ್ಲಿ ನೀವು ಉಳಿದವರಿಂದ ಓದಿದ ಸ್ವೀಕೃತಿಗಳನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ಟೈಪಿಂಗ್ ಇಂಡಿಕೇಟರ್‌‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದ್ದಲ್ಲಿ, ನೀವು ಇತರರಿಂದ ಟೈಪಿಂಗ್ ಇಂಡಿಕೇಟರ್‌‌ ಗಳನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">ಚಟುವಟಿಕೆಯಿಲ್ಲದ ಟೈಮ್‌ಔಟ್ ವಿರಾಮ</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">ಚಟುವಟಿಕೆಯಿಲ್ಲದ ಟೈಮ್‌ಔಟ್ ಪಾಸ್‌ಫ್ರೇಸ್</string>
+    <string name="preferences__incognito_keyboard">ಇನ್‌ಕಾಗ್ನಿಟೊ ಕೀಬೋರ್ಡ್</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್ ಜೊತೆಯಲ್ಲಿ ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಅಧಿಸೂಚನೆಗಳು</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">ಪಾವತಿ ಲಾಕ್</string>
+    <string name="preferences__read_receipts">ಓದಿರುವ ಸ್ವೀಕೃತಿಗಳು</string>
+    <string name="preferences__request_keyboard_to_disable">ವೈಯಕ್ತಿಕಗೊಳಿಸಿದ ಕಲಿಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಕೀಬೋರ್ಡ್ ವಿನಂತಿಸಿ</string>
+    <string name="preferences__screen_security">ಸ್ಕ್ರೀನ್ ಸುರಕ್ಷತೆ</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">ಈ ಸೆಟ್ಟಿಂಗ್ ಗ್ಯಾರಂಟಿಯಲ್ಲ ಮತ್ತು ನಿಮ್ಮ ಕೀಬೋರ್ಡ್‌ ಇದನ್ನು ನಿರ್ಲಕ್ಷಿಸಬಹುದು.</string>
+    <string name="preferences__typing_indicators">ಟೈಪಿಂಗ್ ಇಂಡಿಕೇಟರ್ ಗಳು</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಯಾರು ನೋಡಬಹುದು ಮತ್ತು ಅದರ ಮೂಲಕ Signal ನಲ್ಲಿ ನಿಮ್ಮನ್ನು ಯಾರು ಸಂಪರ್ಕಿಸಬಹುದು ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">ಪೇಮೆಂಟ್‌ಗಳು</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಅನ್ನು ಬಳಸಲು ಈ ಸಾಧನದಲ್ಲಿPIN, ಪ್ಯಾಟರ್ನ್ ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಸೆಟ್ ಮಾಡಿ.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">ಖಾಸಗಿತನ</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">ಸುಧಾರಿತ</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">ಆನ್‌ ಮಾಡಿ</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">ಈಗಲ್ಲ</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">ಬ್ಯಾಕಪ್ ಸಂಗ್ರಹಣೆ ಮಿತಿ ತಲುಪಿದೆ</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಬ್ಯಾಕಪ್‌ಗಳ ಚಂದಾದಾರರ ಐಡಿಯನ್ನು ಕಾಪಿ ಮಾಡಲಾಗಿದೆ</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">ದಾನಿ ಚಂದಾದಾರರ ಐಡಿಯನ್ನು ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">ಬ್ಯಾಕಪ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">ನಿಮ್ಮ ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">ನಿಮ್ಮ Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳ ಚಂದಾದಾರಿಕೆಯನ್ನು ನವೀಕರಿಸಿ</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">ಖಾಸಗಿತನ</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">ಹಿಂದಕ್ಕೆ ಹೋಗಿ</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ಗಳ ಚಂದಾದಾರಿಕೆಯನ್ನು ರಿಡೀಮ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Signal ಗೆ ದೇಣಿಗೆ ನೀಡಿ</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">ಆಂತರಿಕ ಆದ್ಯತೆಗಳು</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">ಲಿಂಕ್ ಮಾಡಿರುವ ಸಾಧನಗಳು</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">ಅಧಿಸೂಚನೆಗಳು</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">ಪೇಮೆಂಟ್‌ಗಳು</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">ಸ್ಟೋರೀಸ್</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">ಬ್ಯಾಕಪ್‌ಗಳು</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">ನ್ಯಾವಿಗೇಶನ್ ಬಾರ್ ಗಾತ್ರ</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">ಸಾಧಾರಣ</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">ಚಿಕ್ಕ</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">ಹಿಂದಕ್ಕೆ ಹೋಗಿ</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">ಫೋಟೋಗಳು</string>
+    <string name="preferences_storage__videos">ವೀಡಿಯೊಗಳು</string>
+    <string name="preferences_storage__files">ಫೈಲುಗಳು</string>
+    <string name="preferences_storage__audio">ಆಡಿಯೊ</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">ಮೆಸೇಜ್‌ಗಳು</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">ಸ್ಟಿಕ್ಕರ್‌‌ ಗಳು</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">ಇತರೆ</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">ಲೆಕ್ಕಾಚಾರ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <string name="preferences_storage__review_storage">ಸ್ಟೊರೇಜ್ ಪರಿಶೀಲಿಸಿ</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">ಎರಡು-ಅಂಶದ ಅಥೆಂಟಿಕೇಶನ್</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಕೆಳಗಿನ ವಿಧಾನವನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">ಪಾಸ್‌ಕೀ</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">ನಿಮ್ಮ ಸಾಧನದ ಬಯೊಮೆಟ್ರಿಕ್ಸ್ ಅಥವಾ FIDO2 ಪಾಸ್‌ಕೀ ಅನ್ನು ಬಳಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ನಿಂದ ಜನರೇಟ್ ಆಗಿರುವ ಒಂದು ಬಾರಿಯ ಕೋಡ್ ನಮೂದಿಸಿ.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">ಮುಂದುವರಿಯಲು, ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ನಿಂದ 6-ಅಂಕಿಯ ಕೋಡ್ ನಮೂದಿಸಿ.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">ರದ್ದುಮಾಡಿ</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">ತಪ್ಪಾದ ಕೋಡ್. ನಿಮ್ಮ ಅಥೆಂಟಿಕೇಟರ್ ಆ್ಯಪ್‌ನಲ್ಲಿ ಈಗ ತೋರಿಸಿರುವ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Signal ಅನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">ನಿಮ್ಮ ಪಾಸ್‌ಕೀಯಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಬೇರೆ ವಿಧಾನವನ್ನು ಆರಿಸಿ.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">ನಿಮ್ಮ ಹೆಸರು</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">ಮೊದಲ ಹೆಸರು</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">ಕೊನೆಯ ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">ಉಳಿಸಿ</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">ನೆಟ್‌ವರ್ಕ್ ಸಮಸ್ಯೆಯಿಂದ ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿ</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">ಎಂದೆಂದಿಗೂ</string>
+    <string name="preferences_storage__one_year">1 ವರ್ಷ</string>
+    <string name="preferences_storage__six_months">6 ತಿಂಗಳು</string>
+    <string name="preferences_storage__thirty_days">30 ದಿನಗಳು</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಮಯಕ್ಕಿಂತ ಹಳೆಯದಾದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+    <string name="preferences_storage__delete_older_messages">ಹಳೆಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಎಲ್ಲಾ ಮೆಸೇಜ್‌ನ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">ಅಳಿಸಿ</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">ಚಾಟ್ ಉದ್ದದ ಮಿತಿ</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s ಮೆಸೇಜ್</item>
+        <item quantity="other">%1$s ಮೆಸೇಜ್‌ಗಳು</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">ಯಾವುದೂ ಇಲ್ಲ</string>
+    <string name="preferences_storage__custom">ಅಗತ್ಯಾನುಗುಣ</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">ಆಯ್ಕೆ ಮಾಡಲಾದ ಉದ್ದವನ್ನು ಮೀರಿದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">ಇದು ಎಲ್ಲಾ ಚಾಟ್‌ಗಳನ್ನು %1$s ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಮೆಸೇಜ್‌ಗೆ ಶಾಶ್ವತವಾಗಿ ಟ್ರಿಮ್ ಮಾಡುತ್ತದೆ.</item>
+        <item quantity="other">ಇದು ಎಲ್ಲಾ ಚಾಟ್‌ಗಳನ್ನು %1$s ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಮೆಸೇಜ್‌ಗಳಿಗೆ ಶಾಶ್ವತವಾಗಿ ಟ್ರಿಮ್ ಮಾಡುತ್ತದೆ.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">ಬಗ್ಗೆ</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">ನಿಮ್ಮ ಬಗ್ಗೆ ಕೆಲವು ಮಾತುಗಳನ್ನು ಬರೆಯಿರಿ…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">ಮುಕ್ತವಾಗಿ ಮಾತನಾಡಿ</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿದೆ</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">ವಿನಯ ಇರಲಿ</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">ಕಾಫಿ ಪ್ರಿಯರು</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">ಚಾಟ್ ಮಾಡಲು ಮುಕ್ತ</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">ವಿರಾಮ ತೆಗೆದುಕೊಳ್ಳುವುದು</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">ಏನೋ ಹೊಸದರ ಕುರಿತು ಕೆಲಸ ಮಾಡುವುದು</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">ಉಳಿಸಿ</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">ತೆರವುಗೊಳಿಸಿ</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">ಎಮೋಜಿಯನ್ನು ಆರಿಸಿ</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">ನೆಟ್‌ವರ್ಕ್ ಸಮಸ್ಯೆಯಿಂದ ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">ನಿಮ್ಮ ಯೂಸರ್ ನೇಮ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">ಯೂಸರ್ ನೇಮ್</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">ಅಳಿಸಿ</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">ಹಲವಾರು ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ, ದಯವಿಟ್ಟು ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">ಈ ಯೂಸರ್ ನೇಮ್ ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">ಯೂಸರ್ ನೇಮ್ ಗಳು a-Z, 0-9, ಮತ್ತು ಅಡಿಗೆರೆಗಳನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿರಬಹುದು.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ಯೂಸರ್ ನೇಮ್ ಗಳು ಸಂಖ್ಯೆಯಿಂದ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">ಯೂಸರ್ ನೇಮ್ ಅಮಾನ್ಯವಾಗಿದೆ.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ಯೂಸರ್ ನೇಮ್ ಗಳ %1$d ಮತ್ತು %2$d ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">ಜನರು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಬಳಸುವ ಬದಲಾಗಿ ನಿಮ್ಮ ಐಚ್ಛಿಕ ಯೂಸರ್‌ನೇಮ್ ಬಳಸಿಕೊಂಡು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಬಹುದು. ಯೂಸರ್‌ನೇಮ್‌ಗಳನ್ನು ಯಾವಾಗಲೂ ಸಂಖ್ಯೆಗಳ ಸೆಟ್‌ನೊಂದಿಗೆ ಜೋಡಿ ಮಾಡಲಾಗುತ್ತದೆ. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">ಈ ಯೂಸರ್‌ನೇಮ್ ಲಭ್ಯವಿಲ್ಲ, ಇನ್ನೊಂದು ಸಂಖ್ಯೆಯನ್ನು ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">ಅಮಾನ್ಯ ಯೂಸರ್‌ನೇಮ್, ಕನಿಷ್ಠ %1$d ಅಂಕಿಗಳನ್ನು ನಮೂದಿಸಿ.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ಅಮಾನ್ಯ ಯೂಸರ್‌ನೇಮ್, ಗರಿಷ್ಠ %1$d ಅಂಕಿಗಳನ್ನು ನಮೂದಿಸಿ.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">ಈ ಸಂಖ್ಯೆ 00 ಆಗಿರುವಂತಿಲ್ಲ. 1-9 ರ ನಡುವಿನ ಅಂಕಿಯನ್ನು ನಮೂದಿಸಿ</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 ಕ್ಕಿಂತ ಹೆಚ್ಚು ಅಂಕಿಗಳನ್ನು ಹೊಂದಿರುವ ಸಂಖ್ಯೆಗಳು 0 ರಿಂದ ಪ್ರಾರಂಭವಾಗಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ಅನ್ನು ಮರುಪಡೆಯುವುದು, ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ಮರುಹೊಂದಿಸುತ್ತದೆ. ನಿಮಗೆ ಖಾತ್ರಿಯಿದೆಯೇ?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ಬದಲಾಯಿಸುವುದರಿಂದ ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲಿದೆ. ನಿಮಗೆ ಖಾತ್ರಿಯಿದೆಯೇ?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">ಮುಂದುವರಿಸಿ</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">ಉಳಿಸಿ</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮತ್ತು ಅದರಲ್ಲಿ ಮಾಡಿದ ಬದಲಾವಣೆಗಳು ನೀವು ಮೆಸೇಜ್ ಮಾಡುವ ಜನರು, ಸಂಪರ್ಕಗಳು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳಿಗೆ ಕಾಣಿಸಲಿವೆ.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal ಅನ್ನು ನವೀಕರಿಸಿ</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Signal ನ ಈ ಆವೃತ್ತಿಯ ಅವಧಿ ಮುಗಿದಿದೆ. Signal ಬಳಕೆ ಮುಂದುವರಿಸಲು ಈಗಲೇ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">ನವೀಕರಿಸಿ</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">ಸಾಧನವು ನೋಂದಾಯಿತಗೊಂಡಿಲ್ಲ</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">ಈ ಸಾಧನವು ಇನ್ನು ನೋಂದಾಯಿತವಾಗಿರುವುದಿಲ್ಲ. ನಿಮ್ಮ ಖಾತೆಗೆ ಬದಲಾವಣೆಗಳನ್ನು ಮಾಡಲು ಮರು-ನೋಂದಾಯಿಸಿ.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">ಪುನಃ ನೋಂದಾಯಿಸಿ</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ನೆಟ್‌ವರ್ಕ್ ಸಮಸ್ಯೆಯಿಂದ ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">ಯೂಸರ್‌ನೇಮ್ ಅಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">ಯೂಸರ್‌ನೇಮ್ ಅಳಿಸುವುದೇ?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"ಇದು ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ಅನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ. ಇತರರಿಗೆ ಕ್ಲೈಮ್ ಮಾಡಲು %1$s ಲಭ್ಯವಾಗಲಿದೆ. ನಿಮಗೆ ಖಾತ್ರಿಯಿದೆಯೇ?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">ಫೋಟೋ ಎಡಿಟ್ ಮಾಡಿ</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">ನಿಮ್ಮ ಅನನ್ಯ QR ಕೋಡ್ ಅಥವಾ ಲಿಂಕ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಮೂಲಕ ಇತರರು ನಿಮ್ಮೊಂದಿಗೆ ಚಾಟ್ ಆರಂಭಿಸಲು ಅವಕಾಶ ಮಾಡಿಕೊಡಿ.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">ಯೂಸರ್ ನೇಮ್ ರಚಿಸಲಾಗಿದೆ</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">ಯೂಸರ್‌ನೇಮ್ ಅಳಿಸಲಾಗಿದೆ</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">ಜನರು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಬಳಸುವ ಬದಲಾಗಿ ಐಚ್ಛಿಕ ಯೂಸರ್‌ನೇಮ್ ಬಳಸಿಕೊಂಡು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಬಹುದು. ಯೂಸರ್‌ನೇಮ್‌ಗಳು ನೀವು ಸ್ನೇಹಿತರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಅನನ್ಯ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ಹೊಂದಿರುತ್ತವೆ.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್, QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಗೋಚರಿಸುವುದಿಲ್ಲ. ನೀವು ನಂಬುವ ಜನರೊಂದಿಗೆ ಮಾತ್ರ ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್‌ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">ಬಗ್ಗೆ</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">ಅವತಾರ್ ನಿಗದಿಪಡಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR ಕೋಡ್ ಅಥವಾ ಲಿಂಕ್</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">ಯೂಸರ್ ನೇಮ್</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">ಯೂಸರ್‌ನೇಮ್ ಎಡಿಟ್ ಮಾಡಿ</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">ಯೂಸರ್‌ನೇಮ್ ಅಳಿಸಿ</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">ಪ್ರೊಫೈಲ್</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">ಅವತಾರ್ ಹೊಂದಿಸಿ</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">ಬ್ಯಾಡ್ಜ್‌ಗಳು</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">ಅಳಿಸಿ</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">ಮುಚ್ಚಿ</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Signal ಬೆಂಬಲಿಸುವ ಮೂಲಕ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ಗೆ ಬ್ಯಾಡ್ಜ್‌ಗಳನ್ನು ಪಡೆಯಿರಿ.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ಎಂಬುದು ಒಂದು ಲಾಭ ರಹಿತ ಸಂಸ್ಥೆಯಾಗಿದ್ದು, ಜಾಹೀರಾತುದಾರರು ಅಥವಾ ಹೂಡಿಕೆದಾರರನ್ನು ಹೊಂದಿಲ್ಲ, ಕೇವಲ ನಿಮ್ಮಂತಹ ಜನರಿಂದ ಬೆಂಬಲಿತವಾಗಿದೆ.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">ಸಸ್ಟೈನರ್ ಆಗಿರಿ</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">ಬ್ಯಾಡ್ಜ್‌ಗಳು</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">ನನ್ನ ಬ್ಯಾಡ್ಜ್‌ಗಳು</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಬ್ಯಾಡ್ಜ್‌ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">ವೈಶಿಷ್ಟ್ಯಗೊಳಿಸಿದ ಬ್ಯಾಡ್ಜ್</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">ಪ್ರೊಫೈಲ್ ಅಪ್ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">ವೈಶಿಷ್ಟ್ಯಗೊಳಿಸಿದ ಬ್ಯಾಡ್ಜ್</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">ಬ್ಯಾಡ್ಜ್ ಆಯ್ಕೆಮಾಡಿ</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">ಉಳಿಸಿ</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ಪ್ರೊಫೈಲ್ ಅಪ್ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">ಈ ಲಿಂಕ್‌ ಹೊಂದಿರುವ ಯಾರಾದರೂ ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ವೀಕ್ಷಿಸಬಹುದು ಮತ್ತು ನಿಮ್ಮೊಂದಿಗೆ ಚಾಟ್ ಪ್ರಾರಂಭಿಸಬಹುದು. ನೀವು ವಿಶ್ವಾಸ ಹೊಂದಿರುವ ಜನರಿಗೆ ಮಾತ್ರ ಇದನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">ಲಿಂಕ್ ನಕಲಿಸಿ</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">ಹಂಚಿಕೊಳ್ಳಿ</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">ಕೋಡ್</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">ಸ್ಕ್ಯಾನ್</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">ಲಿಂಕ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">Username ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR ಕೋಡ್ ಅನ್ನು ಮರುಹೊಂದಿಸಬೇಕೆ?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">ನಿಮ್ಮ QR ಕೋಡ್ ಅನ್ನು ನೀವು ಮರುಹೊಂದಿಸಿದರೆ, ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಇನ್ನು ಮುಂದೆ ಕಾರ್ಯನಿರ್ವಹಿಸುವುದಿಲ್ಲ.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ಮರುಹೊಂದಿಸಿ</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">ನೀವು ನೆಟ್‌ವರ್ಕ್ ಪ್ರವೇಶವನ್ನು ಹೊಂದಿಲ್ಲ. ನಿಮ್ಮ ಲಿಂಕ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲಾಗಿಲ್ಲ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">ನಿಮ್ಮ ಲಿಂಕ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲು ಪ್ರಯತ್ನಿಸುವಾಗ ನೆಟ್‌ವರ್ಕ್ ದೋಷ ಸಂಭವಿಸಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">ನಿಮ್ಮ ಲಿಂಕ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ಅನಿರೀಕ್ಷಿತ ದೋಷ ಸಂಭವಿಸಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">ನಿಮ್ಮ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲಾಗಿದೆ ಮತ್ತು ಹೊಸ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ರಚಿಸಲಾಗಿದೆ.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">ನಿಮ್ಮ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ನೀವು ನಂಬುವ ಜನರೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ. ಹಂಚಿಕೊಂಡಾಗ ಇತರರು ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ನೋಡಲು ಮತ್ತು ನಿಮ್ಮೊಂದಿಗೆ ಚಾಟ್ ಆರಂಭಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">ಮರುಹೊಂದಿಸಿ</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">ಲಿಂಕ್</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">ಬಣ್ಣ</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">QR ಕೋಡ್ ಅಮಾನ್ಯವಾಗಿತ್ತು.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷ ಕಂಡುಬಂದಿತು. ದಯವಿಟ್ಟು ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR ಕೋಡ್ ಕಂಡುಬರಲಿಲ್ಲ</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal ಕ್ಯುಆರ್ ಕೋಡ್ ಹೊಂದಿರುವ ಮತ್ತೊಂದು ಚಿತ್ರವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">ಯೂಸರ್‌ನೇಮ್ %1$s ಅನ್ನು ಹೊಂದಿರುವ ಬಳಕೆದಾರ ಕಂಡುಬರಲಿಲ್ಲ.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">ನಿಮ್ಮ ಸಂಪರ್ಕದ ಸಾಧನದಲ್ಲಿ QR ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">ಈ ಬಳಕೆದಾರರು ಕಂಡುಬಂದಿಲ್ಲ.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು, Signal ಗೆ ಕ್ಯಾಮರಾ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">ಪ್ರವೇಶ ಅನುಮತಿಸಿ</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">QR ಕೋಡ್‌ಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು Signal ಗೆ ಕ್ಯಾಮರಾ ಆ್ಯಕ್ಸೆಸ್ ಅಗತ್ಯವಿದೆ</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">ಸ್ಟೊರೇಜ್</string>
+    <string name="preferences_storage__storage_usage">ಸ್ಟೊರೇಜ್ ಬಳಕೆ</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal ಸಂಗ್ರಹಣೆ</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal ಸಂಗ್ರಹಣೆಯನ್ನು ಆಪ್ಟಿಮೈಸ್ ಮಾಡಿ</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ಬಳಕೆಯಾಗದ ಮೀಡಿಯಾವನ್ನು ಆಫ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತದೆ, ಆದರೆ ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ನಿಂದ ಯಾವಾಗ ಬೇಕಾದರೂ ಡೌನ್‌ಲೋಡ್ ಮಾಡಬಹುದು.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">ಚಾಟ್ ಮಿತಿಗಳು</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಗೆ ಮಿತಿಗಳನ್ನು ಅನ್ವಯಿಸಿ</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ, ಸಂವಹನ ಉದ್ದದ ಮಿತಿಗಳು ಸಹ ನಿಮ್ಮ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಂದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸುತ್ತವೆ.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಅಳಿಸಿ</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಅಳಿಸುವುದೇ?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ಎಲ್ಲಾ ಮೆಸೇಜ್‌ಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">ಇದು ಈ ಸಾಧನ ಮತ್ತು ಯಾವುದೇ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಂದ ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ನೀವು ಖಚಿತವಾಗಿ ಅಳಿಸಲು ಬಯಸುವಿರಾ?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">ಎಲ್ಲಾ ಸಾಧನಗಳಿಂದ ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಮವನ್ನು ರದ್ದುಪಡಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+    <string name="preferences_storage__delete_all_now">ಎಲ್ಲವನ್ನೂ ಈಗಲೇ ಅಳಿಸಿ</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳ ಪಾವತಿಸಿದ ಶ್ರೇಣಿಯೊಂದಿಗೆ ಮಾತ್ರ ಸಂಗ್ರಹಣೆ ಆಪ್ಟಿಮೈಸೇಶನ್ ಅನ್ನು ಬಳಸಬಹುದು. ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ಗಳ ಚಂದಾದಾರಿಕೆಯು ಇನ್ನೂ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ ಮತ್ತು ಈವರೆಗೂ ಸಕ್ರಿಯವಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">ಮೀಡಿಯಾವನ್ನು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ನಿಂದ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal ಸಂಗ್ರಹಣೆಯನ್ನು ಆಪ್ಟಿಮೈಸ್ ಮಾಡಿ\" ಅನ್ನು ಆನ್ ಮಾಡುವುದರಿಂದ ನಿಮ್ಮ ಸಾಧನದಿಂದ ಹಳೆಯ ಮೀಡಿಯಾವನ್ನು ಆಫ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತದೆ. ನೀವು ಇದನ್ನು ಯಾವಾಗ ಬೇಕಾದರೂ ಡೌನ್‌ಲೋಡ್ ಮಾಡಬಹುದು. ಇದು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ನಿಂದ ಹಳೆಯ ಮೀಡಿಯಾವನ್ನು ಸಹ ತೆಗೆದುಹಾಕುತ್ತದೆ.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">ಆನ್‌ ಮಾಡಿ</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">ಈ ಚಾಟ್ ಅನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ ಕರೆ ಪ್ರಾರಂಭವಾದಾಗ ರಿಂಗ್ ಮಾಡಿ ಅಥವಾ ಸೂಚನೆ ನೀಡಿ.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">ಮ್ಯೂಟ್ ಮಾಡಿರುವ ಚಾಟ್‌ಗಳಲ್ಲಿ ಕರೆ ಪ್ರಾರಂಭವಾದಾಗ ರಿಂಗ್ ಮಾಡಿ ಅಥವಾ ಸೂಚನೆ ನೀಡಿ.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">ಈ ಚಾಟ್ ಅನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದಾಗ ಸೂಚನೆ ನೀಡಿ.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">ಮ್ಯೂಟ್ ಮಾಡಿರುವ ಚಾಟ್‌ಗಳಲ್ಲಿ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದರೆ ಸೂಚನೆ ನೀಡಿ.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">ಈ ಚಾಟ್ ಅನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ ಯಾರಾದರೂ ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗೆ ಉತ್ತರಿಸಿದರೆ ಸೂಚನೆ ನೀಡಿ.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">ಮ್ಯೂಟ್ ಮಾಡಿರುವ ಚಾಟ್‌ಗಳಲ್ಲಿ ಯಾರಾದರೂ ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗೆ ಉತ್ತರಿಸಿದರೆ ಸೂಚನೆ ನೀಡಿ.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">ಕರೆಗಳು</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">ಉಲ್ಲೇಖಗಳು</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">ಪ್ರತಿಕ್ರಿಯೆಗಳು</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">ಪಿಕರ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು, ಅವುಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲು Signal ಗೆ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">ಆನ್‌ ಮಾಡಿ</string>
+    <string name="NotificationsSettingsFragment__calls">ಕರೆಗಳು</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">ಸಂಪರ್ಕದವರು Signal ಗೆ ಸೇರಿದ್ದಾರೆ</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಜನರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳಿಂದ ಮಾತ್ರ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ಒಂದು ಪ್ರೊಫೈಲ್ ರಚಿಸಿ.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">ಫೋನ್ ಸಂಪರ್ಕವು Signal ಗೆ ಸೇರಿದಾಗ ನೋಟಿಫಿಕೇಷನ್ ಅನ್ನು ತೋರಿಸಿ</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">ನೋಟಿಫಿಕೇಷನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಮರುಹೊಂದಿಸಿ</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">ಎಲ್ಲಾ ಚಾಟ್‌ಗಳಿಗೂ ಎಲ್ಲಾ ನೋಟಿಫಿಕೇಷನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗೆ ಮರುಹೊಂದಿಸುವುದೇ?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">ಮರುಹೊಂದಿಸಿ</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">ನಿಮ್ಮ ಚಾಟ್‌ಗಳಿಗಾಗಿನ ಕಸ್ಟಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಸೇರಿದಂತೆ, ನೋಟಿಫಿಕೇಷನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗೆ ಮರುಹೊಂದಿಸಿ</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">ಶಬ್ದಗಳು</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">ಅನಾಮಿಕ ರಿಂಗ್‌ಟೋನ್</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">ಕರೆಗಳು</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">ಉಲ್ಲೇಖಗಳು</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್‌ಗಳು</string>
+    <string name="NotificationsSettingsScreen__notifications">ಅಧಿಸೂಚನೆಗಳು</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">ಪ್ರತಿಕ್ರಿಯೆಗಳು</string>
+    <string name="NotificationsSettingsScreen__silent">ಮೌನ</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">ಓದದಿರುವ ರಿಮೈಂಡರ್‌ಗಳು</string>
+    <string name="arrays__default">ಡೀಫಾಲ್ಟ್</string>
+    <string name="arrays__high">ಹೆಚ್ಚು</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">ಗರಿಷ್ಠ</string>
+    <string name="arrays__name_and_message">ಹೆಸರು ಮತ್ತು ಸಂದೇಶ</string>
+    <string name="arrays__name_only">ಹೆಸರು ಮಾತ್ರ</string>
+    <string name="arrays__no_name_or_message">ಹೆಸರು ಅಥವಾ ಸಂದೇಶವಿಲ್ಲ</string>
+    <string name="preferences__blue">ನೀಲಿ</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">ಕರೆ ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="preferences__change_sound_and_vibration">ಶಬ್ದ ಮತ್ತು ವೈಬ್ರೇಶನ್ ಬದಲಾಯಿಸಿ</string>
+    <string name="preferences__customize">ಕಸ್ಟಮೈಝ್ ಮಾಡಿ</string>
+    <string name="preferences__cyan">ಹಸುರುನೀಲಿ</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">ಡೀಫಾಲ್ಟ್</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="preferences__fast">ತ್ವರಿತ</string>
+    <string name="preferences__five_times">ಐದು ಬಾರಿ</string>
+    <string name="preferences__green">ಹಸಿರು</string>
+    <string name="preferences__led_color">ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ</string>
+    <string name="preferences__magenta">ಕಡುಗೆಂಪು</string>
+    <string name="preferences__never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
+    <string name="preferences__normal">ಸಾಧಾರಣ</string>
+    <string name="preferences__one_time">ಒಂದು ಬಾರಿ</string>
+    <string name="preferences__orange">ಕಿತ್ತಳೆ</string>
+    <string name="preferences__pref_led_blink_title">ಎಲ್‌ಇಡಿ ಮಿನುಗುವ ಪ್ಯಾಟರ್ನ್‌</string>
+    <string name="preferences__red">ಕೆಂಪು</string>
+    <string name="preferences__repeat_alerts">ಪುನರಾವರ್ತಿತ ಅಲರ್ಟ್‌‌ಗಳು</string>
+    <string name="preferences__slow">ನಿಧಾನ</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">ಶಬ್ದ</string>
+    <string name="preferences__ten_times">ಹತ್ತು ಬಾರಿ</string>
+    <string name="preferences__three_times">ಮೂರು ಬಾರಿ</string>
+    <string name="preferences__two_times">ಎರಡು ಬಾರಿ</string>
+    <string name="preferences__vibrate">ವೈಬ್ರೇಟ್ ಮಾಡು</string>
+    <string name="preferences__white">ಬಿಳಿ</string>
+    <string name="preferences_notifications__in_chat_sounds">ಚಾಟ್‌ ನಲ್ಲಿನ ಶಬ್ದಗಳು</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">ನೀವು ಕಳುಹಿಸುವ ಮೆಸೇಜ್‌ಗಳ ಪ್ರತಿಕ್ರಿಯೆಗಳಿಗಾಗಿನ ನೋಟಿಫಿಕೇಷನ್‌ಗಳನ್ನು ತೋರಿಸಿ</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">ಮ್ಯೂಟ್ ಮಾಡಲಾದ ಚಾಟ್‌ಗಳಲ್ಲಿನ ಓದದಿರುವ ಮೆಸೇಜ್‌ಗಳಿದ್ದಾಗ ಸಾಂದರ್ಭಿಕವಾಗಿ ಸೂಚನೆ ನೀಡಿ</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">ಆದ್ಯತೆ</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">ಪ್ರತಿಕ್ರಿಯೆ ನೋಟಿಫಿಕೇಷನ್‌ಗಳು</string>
+    <string name="preferences_notifications__ringtone">ರಿಂಗ್ಟೋನ್</string>
+    <string name="preferences_notifications__show">ತೋರಿಸು</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">ಅಧಿಸೂಚನೆಗಳ ಸಮಸ್ಯೆ ಪರಿಹರಿಸಿ</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">ಸೇರಿಸಿ</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಲಾಗಿದೆ</string>
 </resources>

@@ -5,12 +5,12 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.GroupInsufficientRightsException;
+import org.signal.core.util.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 

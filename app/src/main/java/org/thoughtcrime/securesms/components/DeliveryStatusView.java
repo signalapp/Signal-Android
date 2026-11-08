@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -12,13 +13,15 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 /**
  * View responsible for displaying the delivery status (NONE, PENDING, SENT, DELIVERED, READ) of a given outgoing message.
@@ -37,6 +40,8 @@ public class DeliveryStatusView extends AppCompatImageView {
 
   private RotateAnimation rotationAnimation;
 
+  private int widestIconWidth = -1;
+
   private State state = State.NONE;
 
   public DeliveryStatusView(Context context) {
@@ -52,7 +57,7 @@ public class DeliveryStatusView extends AppCompatImageView {
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.DeliveryStatusView, 0, 0);
-      setTint(typedArray.getColor(R.styleable.DeliveryStatusView_iconColor, getResources().getColor(R.color.core_white)));
+      setTint(typedArray.getColor(R.styleable.DeliveryStatusView_iconColor, getResources().getColor(org.signal.core.ui.R.color.core_white)));
       typedArray.recycle();
     }
 
@@ -136,6 +141,27 @@ public class DeliveryStatusView extends AppCompatImageView {
     clearAnimation();
     setVisibility(View.GONE);
     updateContentDescription();
+  }
+
+  /**
+   * The width to budget for this view while it is visible. The delivered and read icons are wider than the pending and
+   * sent icons, so reserving the widest keeps surrounding layout stable as the status advances.
+   */
+  public int getReservedWidth() {
+    if (getVisibility() != View.VISIBLE) {
+      return getMeasuredWidth();
+    }
+
+    if (widestIconWidth < 0) {
+      widestIconWidth = Math.max(getIconWidth(R.drawable.symbol_messagestatus_delivered_24), getIconWidth(R.drawable.symbol_messagestatus_read_24));
+    }
+
+    return Math.max(getMeasuredWidth(), widestIconWidth + horizontalPadding);
+  }
+
+  private int getIconWidth(@DrawableRes int drawableRes) {
+    Drawable drawable = AppCompatResources.getDrawable(getContext(), drawableRes);
+    return drawable != null ? drawable.getIntrinsicWidth() : 0;
   }
 
   public boolean isPending() {

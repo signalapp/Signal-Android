@@ -14,9 +14,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.whispersystems.signalservice.internal.push.SyncMessage
 

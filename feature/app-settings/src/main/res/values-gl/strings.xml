@@ -48,152 +48,1129 @@
     <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Conta e recuperación</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d clave</item>
-        <item quantity="other">%1$d claves</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
     <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal Login serve para recuperar e restaurar a túa conta. Garda estas claves nun xestor de contrasinais de confianza.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Autenticación de dous factores</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Configurar</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">Aplicación de autenticación</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Códigos de verificación de un uso</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Clave de acceso</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Emprega a túa impresión dixital, o recoñecemento facial ou o bloqueo de pantalla</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Clave de acceso</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Método de autenticación en dous pasos</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Engadida o %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Descoñecido</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Ver as opcións de autenticación en dous pasos</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Renomear</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Eliminar</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Eliminar aplicación de autenticación?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Non poderás usar esta aplicación para os códigos de verificación dun só uso cando inicies sesión.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Eliminar clave de acceso?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Non poderás usar esta clave de acceso cando inicies sesión.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Eliminar método de autenticación en dous pasos?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Non poderás usar este método cando inicies sesión.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Método de autenticación en dous pasos eliminado</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Non foi posible eliminar o método de autenticación en dous pasos. Comproba a túa conexión e inténtao de novo.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Clave de acceso eliminada</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Non foi posible eliminar a clave de acceso. Comproba a túa conexión e inténtao de novo.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Configura neste dispositivo un xestor de contrasinais compatible coas claves de acceso e téntao de novo.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Non foi posible crear unha clave de acceso. Téntao de novo.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Desbloquea o dispositivo para engadir o método de autenticación en dous pasos</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Para engadir este método, tes que confirmar que es ti</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Desbloquea o dispositivo para eliminar o método de autenticación en dous pasos</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Confirma que es ti para eliminar este método</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Desbloquea o dispositivo para ver o teu Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Confirma que es ti para ver o teu Signal Login</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Desbloquea a aplicación para confirmar que es ti</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Para borrar a túa conta, confirma que es ti</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Requírese autenticación</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Non se pode engadir a aplicación de autenticación</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Non podes engadir máis de %1$d aplicacións de autenticación. Tes que eliminar antes unha.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Non podes engadir máis de %1$d métodos de autenticación en dous pasos. Tes que eliminar antes un.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Non se puideron cargar os teus métodos de autenticación en dous pasos. Comproba a túa conexión e inténtao de novo.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Aplicación de autenticación eliminada</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Non se puido eliminar a aplicación de autenticación. Comproba a túa conexión e inténtao de novo.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
     <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Emprega unha segunda forma de autenticación para protexer a túa conta cando uses Signal Login nun novo dispositivo.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Máis información</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Os datos da túa conta</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Exporta un informe da información da túa conta Signal. Este informe non inclúe ningunha mensaxe ou arquivo. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Máis información</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Exportar informe</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Exportar como TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Arquivo de texto de lectura fácil</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Exportar como JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Arquivo lexible por máquina</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Cancelar</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">Aceptar</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Non se puido xerar un informe</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Comproba a túa conexión e inténtao de novo.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Exportar información?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Comparte a información da túa conta de Signal só coas persoas e aplicacións nas que confíes.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Exportar</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Xerando informe…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">O informe só se xera no momento da súa exportación e Signal non o almacena no teu dispositivo.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Configura a aplicación de autenticación</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Sigue estes pasos para configurar a aplicación de autenticación.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Sigue estes pasos para configurar a aplicación de autenticación.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Máis información</string>
+    <string name="TotpSetupScreen__learn_more">Máis información</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Primeiro paso</string>
+    <string name="TotpSetupScreen__step_1">Primeiro paso</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Instala unha aplicación de autenticación de confianza no teu dispositivo.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Instala unha aplicación de autenticación de confianza no teu dispositivo.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Segundo paso</string>
+    <string name="TotpSetupScreen__step_2">Segundo paso</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Abre a aplicación de autenticación premendo o botón de máis abaixo para engadir a túa conta de Signal.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Abre a aplicación de autenticación premendo o botón de máis abaixo para engadir a túa conta de Signal.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Abrir</string>
+    <string name="TotpSetupScreen__open">Abrir</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Ou podes copiar esta clave para configurala de forma manual.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">Ou podes copiar esta clave para configurala de forma manual.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Copiar</string>
+    <string name="TotpSetupScreen__copy">Copiar</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Copiado no portapapeis</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Copiado no portapapeis</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">Non se atopou unha aplicación de autenticación</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Non se atopou unha aplicación de autenticación</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Non podes engadir máis de %1$d aplicacións de autenticación. Tes que eliminar antes unha.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Non é posible conectar con Signal. Comproba a túa conexión e inténtao de novo.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Terceiro paso</string>
+    <string name="TotpSetupScreen__step_3">Terceiro paso</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copia o código que se xerou e volve aquí para continuar.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Copia o código que se xerou e volve aquí para continuar.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Continuar</string>
+    <string name="TotpSetupScreen__continue">Continuar</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">Máis información</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">Claves de acceso</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Coas claves de acceso, podes engadir facilmente unha segunda forma segura de autenticación á túa conta. As claves de acceso poden usar os datos biométricos do teu dispositivo ou unha chave de seguridade FIDO2 compatible.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">Máis información</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Ponlle un nome á túa clave de acceso para recoñecela facilmente</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Usa a biometría do teu dispositivo ou unha chave de seguridade FIDO2 para almacenar a túa clave de acceso</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Podes engadir ou eliminar claves de acceso en calquera momento.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">Engadido «%1$s»</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Rename</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">Eliminar</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">Configurar unha clave de acceso</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">Non foi posible engadir a clave de acceso</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Non podes engadir máis de %1$d métodos de autenticación en dous pasos. Tes que eliminar antes un.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Escribe o teu código</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Escribe o teu código</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Introduce o código de 6 díxitos da aplicación de autenticación.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Código</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Introduce o código de 6 díxitos da aplicación de autenticación.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Feito</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">Aplicación de autenticación</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">Máis información</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">Engadido «%1$s»</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Rename</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">Eliminar</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">Seguinte</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Código incorrecto. Escribe o código que aparece agora mesmo na túa aplicación de autenticación.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Non é posible conectar con Signal. Comproba a túa conexión e inténtao de novo.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Choose a name</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Aplicación de autenticación</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Escolle un nome</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Ponlle un nome único a esta aplicación de autenticación.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Escolle un nome único para esta aplicación de autenticación que che axude a identificala máis adiante.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Escolle un nome único para este método de autenticación en dous pasos.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Escolle un nome único para este método de autenticación en dous pasos que che axude a identificalo máis adiante.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Escolle un nome único para esta clave de acceso.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Escolle un nome único para esta clave de acceso que che axude a identificala máis adiante.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">Nome</string>
+    <string name="TwoFactorNameEntryScreen__name">Nome</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">Seguinte</string>
+    <string name="TwoFactorNameEntryScreen__next">Seguinte</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Aplicación de autenticación configurada</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Cambiouse o nome da aplicación de autenticación</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Clave de acceso configurada</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Clave de acceso renomeada</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Método de autenticación en dous pasos configurado</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Método de autenticación en dous pasos renomeado</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Non se puido gardar o nome. Comproba a túa conexión e inténtao de novo.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Ao eliminar a conta:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Escribe o teu número de teléfono</string>
+    <string name="DeleteAccountFragment__delete_account">Eliminar conta</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminar a información da conta e a foto de perfil</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Eliminar todas as túas mensaxes</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Eliminar %1$s na túa conta de pagamentos</string>
+    <string name="DeleteAccountFragment__no_country_code">Non está indicado o código do país</string>
+    <string name="DeleteAccountFragment__no_number">Non hai número establecido</string>
+    <string name="DeleteAccountFragment__the_phone_number">O número de teléfono escrito non concorda co da túa conta.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Seguro que queres eliminar a túa conta?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Así eliminarás a túa conta en Signal e restablecerás a aplicación. A aplicación pechará ao rematar o proceso.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Fallou a eliminación dos datos locais. Podes eliminalos manualmente nos axustes de aplicacións do dispositivo.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Abrir configuración da aplicación</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Abandonando grupos…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Borrando conta…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Cancelando a túa subscrición…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Dependendo do número de grupos dos que formas parte, este proceso pode tardar uns minutos</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Eliminando a información de usuario e restablecendo a aplicación</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Conta non eliminada</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Erro ao completar o proceso de eliminación. Comproba a túa conexión a Internet e inténtao de novo.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Eliminar a túa conta co nome de usuario «%1$s» terá as seguintes consecuencias:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Borrará a información da túa conta, a foto de perfil e o nome de usuario «%1$s»</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Non se poderá desfacer</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Isto borrará a túa conta de Signal co usuario «%1$s» e restablecerá a aplicación. A aplicación cerrarase cando se complete o proceso.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Si, borrar conta</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Convidar amigos</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Compartir</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Elixe o teu país</string>
+    <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d cartafol</item>
+        <item quantity="other">%1$d cartafois</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Engadir un novo cartafol de conversas</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Engadir ou editar cartafois</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Fallo na autenticación</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Cartafois de conversas</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Exportar historal do chat</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Exporta todos os chats nun ficheiro JSON lexible por máquina. As mensaxes temporais non se exportarán.</string>
+    <string name="ChatsSettingsFragment__keyboard">Teclado</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Enviar coa tecla de retorno</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Reproducir os stickers e os GIF automaticamente</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Ao activarse, os stickers e os GIF reprodúcense automaticamente</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Desbloquea o dispositivo para exportar o historal do chat</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Usa, se están dispoñibles, as fotos dos teus contactos</string>
+    <string name="preferences__generate_link_previews">Crear vista previa de ligazóns</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">As conversas silenciadas que se arquivaron permanecerán así ao recibir unha nova mensaxe.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Manter as conversas silenciadas arquivadas</string>
+    <string name="preferences__pref_use_address_book_photos">Darlles prioridade ás fotos dos contactos</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obter vistas previas das ligazóns directamente desde os sitios web para as mensaxes que envías.</string>
+    <string name="preferences_advanced__use_system_emoji">Utilizar emoticona do sistema</string>
+    <string name="preferences_chats__chats">Conversas</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">TEN COIDADO</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">TEN COIDADO!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Cancelando exportación…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Escolle un cartafol no almacenamento do teu dispositivo para gardar o historal do chat.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Escoller un cartafol</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Escoller cartafol</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">co lugar onde gardas o arquivo de exportación da conversa e non o compartas con ninguén. Outras aplicacións poden ter acceso dependendo dos permisos do teu dispositivo.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Exportación da conversa completada</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Exportar historal da conversa?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">NON compartas este arquivo con ninguén. O teu historial do chat gardarase no teu ordenador e outras aplicacións poden ter acceso dependendo dos permisos do teu dispositivo. Se inclúes o contido multimedia, isto xerará un arquivo máis grande.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Exportar co contido multimedia</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Exportar sen contido multimedia</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Exportando multimedia: %1$d %%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Finalizando…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Preparando copia de seguranza…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Procesando copia de seguranza…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Procesando mensaxes…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Procesando mensaxes: %1$s de %2$s (%3$d %%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Cargando multimedia: %1$d %%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Actualizacións da aplicación</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">Aparencia</string>
+    <string name="preferences__language">Idioma</string>
+    <string name="preferences__theme">Tema</string>
+    <string name="preferences__system_default">Predefinido polo sistema</string>
+    <string name="preferences__light_theme">Claro</string>
+    <string name="preferences__dark_theme">Escuro</string>
+    <string name="preferences__chat_color_and_wallpaper">Cor e fondo da conversa</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Icona da aplicación</string>
+    <string name="preferences_chats__message_text_size">Tamaño da fonte</string>
+    <string name="arrays__small">Pequeno</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Grande</string>
+    <string name="arrays__extra_large">Moi grande</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Tamaño da barra de navegación</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Normal</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Compacto</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">A aplicación reiniciarase para aplicar a nova configuración de idioma.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Número de teléfono</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Quen pode ver o meu número de teléfono</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">O teu número de teléfono será visible para todas as persoas e grupos coas que falas por mensaxe.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Ninguén poderá ver o teu número de teléfono, a non ser que o teñan gardado na súa listaxe de contactos.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">O teu número de teléfono deixará de ser visible.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Quen me pode atopar polo meu número</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Calquera persoa que teña o teu número de teléfono poderá comprobar se estás en Signal e poderá iniciar conversas contigo.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ninguén poderá ver que estás en Signal a menos que lles envíes unha mensaxe ou xa teñas unha conversa con eles.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Para cambiar esta configuración, elixe «Ninguén» en «Quen pode ver o meu número»."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Queres continuar?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Se cambias a configuración de «Quen me pode atopar polo meu número» a «Ninguén», será moito máis difícil que as persoas poidan atoparte en Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancelar</string>
+    <string name="PhoneNumberPrivacy_everyone">Todos</string>
+    <string name="PhoneNumberPrivacy_nobody">Ninguén</string>
+    <string name="arrays__images">Imaxes</string>
+    <string name="arrays__audio">Audio</string>
+    <string name="arrays__video">Vídeo</string>
+    <string name="arrays__documents">Documentos</string>
+    <string name="preferences__data_and_storage">Datos e almacenamento</string>
+    <string name="preferences_chats__when_using_mobile_data">Usando datos móbiles</string>
+    <string name="preferences_chats__when_using_wifi">Usando conexión wifi</string>
+    <string name="preferences_chats__when_roaming">En itinerancia</string>
+    <string name="preferences_chats__media_auto_download">Descarga multimedia automática</string>
+    <string name="preferences_data_and_storage__manage_storage">Administrar almacenamento</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizar menos datos durante as chamadas</string>
+    <string name="preferences_data_and_storage__never">Nunca</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wifi e datos móbiles</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Só datos móbiles</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Usar menos datos pode mellorar as chamadas naquelas redes deficientes.</string>
+    <string name="preferences_proxy">Proxy</string>
+    <string name="preferences_use_proxy">Usar proxy</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Calidade multimedia</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculando…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Calidade dos envíos</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Ao enviar arquivos multimedia con alta calidade usarás máis datos.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">As mensaxes de voz e os stickers (de menos de %1$s) sempre se descargan automaticamente.</string>
+    <string name="DataAndStorageSettingsFragment__calls">Chamadas</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Manter a conexión en segundo plano</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Manter a conexión en segundo plano probablemente aumentará o consumo da batería, e non é necesaria para a maioría dos dispositivos. Actívaa só cando teñas problemas coas notificacións.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Activar</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Alta</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Estándar</string>
+    <string name="preferences_app_protection__screen_lock">Bloqueo da pantalla</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Usar o bloqueo de pantalla</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Será necesario configurar o bloqueo do teu dispositivo Android para desbloquear Signal cando saias ou cambies de aplicación. Ao bloquearse, non se mostrará o contido das mensaxes na vista previa das notificacións.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Activar bloqueo de pantalla</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">Despois de 1 minuto</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">Despois de 5 minutos</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">Despois de 30 minutos</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Personalizar tempo</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Usar o bloqueo de pantalla de Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Desactivar o bloqueo de pantalla de Signal</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">Axuda</string>
+    <string name="HelpSettingsFragment__support_center">Centro de axuda</string>
+    <string name="HelpSettingsFragment__contact_us">Contacto</string>
+    <string name="HelpSettingsFragment__version">Versión</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Copiado ao portapapeis</string>
+    <string name="HelpSettingsFragment__debug_log">Rexistro de depuración</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Licenzas</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos e política de privacidade</string>
+    <string name="HelpFragment__copyright_signal_messenger">Dereitos de autor de Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licenza GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal é unha organización sen ánimo de lucro</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Os nomes e as iconas serán visibles na pantalla de inicio e no caixón de aplicacións.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">As notificacións sempre mostrarán o nome e a icona por defecto de Signal.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Gráfico que ilustra onde será visible a icona substituta da aplicación.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Tempo</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Notas</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Novas</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Ondas</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">Aceptar</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Cancelar</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Cambiar o nome e a icona da aplicación a «%1$s»</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Signal necesitará pecharse para cambiar o nome e a icona da aplicación. As notificacións sempre mostrarán o nome e a icona por defecto de Signal.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Selecciona un nome e icona para a aplicación, que serán visibles na pantalla de inicio e no caixón de aplicacións do teu teléfono. As notificacións sempre mostrarán o nome e a icona por defecto de Signal. Máis información</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Máis información</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Ligazón non configurada</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Cor</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">Feito</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">Perfil creado</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">Feito</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Podes activar ou desactivar o teu perfil manualmente no menú da lista de conversas.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Engade un horario na configuración para automatizar o teu perfil.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">O teu perfil activarase e desactivarase automaticamente seguindo o teu horario.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Aínda non estableciches unha frase de seguranza!</string>
+    <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Desactivar frase de seguranza?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto desbloqueará de xeito permanente Signal e as notificacións de mensaxes.</string>
+    <string name="PrivacySettingsFragment__app_security">Seguranza da aplicación</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquea as capturas na listaxe de recentes e na aplicación</string>
+    <string name="PrivacySettingsFragment__blocked">Bloqueado</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">Para empregar o Bloqueo de pagamento debes activar primeiro o bloqueo de pantalla ou a identificación coa impresión dixital na configuración do teu teléfono.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">Non se pode activar o bloqueo de pagamento</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d contacto ou grupo</item>
+        <item quantity="other">%1$d contactos ou grupos</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Establecer duración das novas conversas</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Erro ao acceder ao sistema de configuración</string>
+    <string name="PrivacySettingsFragment__messaging">Mensaxería</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Necesítase o bloqueo de pantalla de Android ou a impresión dixital para transferir fondos</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Establece a duración das mensaxes temporais nas novas conversas que ti inicies.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Mensaxes e chamadas de Signal, redirección de chamadas e remitente selado</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Desactivado</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloqueo automático de Signal após un período especificado de inactividade</string>
+    <string name="preferences__change_passphrase">Cambiar frase de seguranza</string>
+    <string name="preferences__change_your_passphrase">Cambia a túa frase de seguranza</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">Activar o bloqueo da pantalla cunha frase de seguranza</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se desactivas as confirmacións de lectura, non poderás ver as confirmacións dos demais.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escritura están desactivados, non verás cando outras persoas están a escribir.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">Intervalo de inactividade</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">Tempo de espera da frase de seguranza</string>
+    <string name="preferences__incognito_keyboard">Teclado de incógnito</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea a pantalla e as notificacións cunha frase de seguranza</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">Bloqueo de pagamento</string>
+    <string name="preferences__read_receipts">Confirmacións de lectura</string>
+    <string name="preferences__request_keyboard_to_disable">Pedirlle ao teclado que desactive a aprendizaxe personalizada.</string>
+    <string name="preferences__screen_security">Seguranza da pantalla</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">Este axuste non é garantía ningunha e o teclado podería ignoralo.</string>
+    <string name="preferences__typing_indicators">Indicador de escritura</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Escolle quen pode ver o teu número de teléfono e quen pode contactar contigo en Signal con el.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">Pagamentos</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Para usar o bloqueo de pantalla, configura un PIN, padrón ou contrasinal neste dispositivo.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">Privacidade</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">Mensaxes temporais</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">Avanzado</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">Activar</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">Agora non</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">Máis información</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Alcanzouse o límite de almacenamento da copia de seguranza</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">ID de subscrición de copias de seguranza copiada no portapapeis</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">ID de subscrición de doante copiada no portapapeis</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Non se realizou a copia de seguranza</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">Convida as túas amizades</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renova a túa subscrición ás copias de seguranza seguras de Signal</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">Privacidade</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">Configuración</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">Volver</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Non se puido trocar a túa subscrición de copias de seguranza</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Doar a Signal</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">Preferencias internas</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">Dispositivos vinculados</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">Notificacións</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">Pagamentos</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">Historias</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">Copias de seguranza</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Tamaño da barra de navegación</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Compacto</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">Volver</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">Fotografías</string>
+    <string name="preferences_storage__videos">Vídeos</string>
+    <string name="preferences_storage__files">Ficheiros</string>
+    <string name="preferences_storage__audio">Audio</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Mensaxes</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Stickers</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Outros</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculando…</string>
+    <string name="preferences_storage__review_storage">Revisar o almacenamento</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">Autenticación de dous factores</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Escolle un método para verificar a túa conta.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">Clave de acceso</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Toca para usar os datos biométricos do teu dispositivo ou a túa clave de acceso FIDO2</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">Aplicación de autenticación</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Introduce o código dun só uso xerado pola túa aplicación de autenticación.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">Introduce o código de 6 díxitos da aplicación de autenticación para continuar.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">Cancelar</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">Código incorrecto. Escribe o código que aparece agora mesmo na túa aplicación de autenticación.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Non é posible conectar con Signal. Comproba a túa conexión e inténtao de novo.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Produciuse un erro coa túa clave de acceso. Téntao de novo ou escolle outro método.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">O teu nome</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">Nome</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">Apelido (optativo)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">Gardar</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Erro ao gardar por problemas coa rede. Téntao de novo.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">Manter as mensaxes</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">Para sempre</string>
+    <string name="preferences_storage__one_year">1 ano</string>
+    <string name="preferences_storage__six_months">6 meses</string>
+    <string name="preferences_storage__thirty_days">30 días</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">As mensaxes anteriores á data seleccionada eliminaranse de forma permanente.</string>
+    <string name="preferences_storage__delete_older_messages">Eliminar mensaxes antigas?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Isto eliminará permanentemente todo o historial de mensaxes e multimedia do teu dispositivo que sexan anteriores a %1$s.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">Eliminar</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">Lonxitude máxima da conversa</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s mensaxe</item>
+        <item quantity="other">%1$s mensaxes</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">Ningún</string>
+    <string name="preferences_storage__custom">Personalizar</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">As mensaxes que superen a cantidade seleccionada eliminaranse de forma permanente.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Isto eliminará todas as mensaxes de todas as conversas salvo a mensaxe máis recente.</item>
+        <item quantity="other">Isto eliminará todas as mensaxes de todas as conversas salvo as %1$s mensaxes máis recentes.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">Acerca de</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Escribe unhas palabras acerca de ti…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">Fala libremente</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">Cifrado</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">Sé amable</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">Adoro o café</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">Libre para conversar</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">Tomando un descanso</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">Traballando en algo novo</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">Gardar</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">Borrar</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">Escoller emoticona</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Erro ao gardar por problemas coa rede. Ténteo de novo.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">Elixe un nome de usuario</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">Nome de usuario</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">Eliminar</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">Houbo un fallo na rede.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Levas demasiados intentos, téntao máis tarde.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">Este nome de usuario xa está en uso.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">Os nomes de usuario só poden incluír a-Z, 0-9 e guións baixos.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de usuario non poden comezar por un número.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">Nome de usuario non válido.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Os nomes de usuario deben ter entre %1$d e %2$d caracteres.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">A xente poderá enviarche mensaxes usando o teu nome de usuario opcional en lugar do teu número de teléfono. Os nomes de usuario sempre están emparellados cunha serie de números. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Este nome de usuario non está dispoñible, tenta con outro número.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nome de usuario non válido, insire un mínimo de %1$d díxitos.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nome de usuario non válido, insire un máximo de %1$d díxitos.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Este número non pode ser 00. Insire un número entre 1 e 9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Os números con máis de 2 díxitos non poden comezar por 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Para recuperar o teu nome de usuario restableceranse o teu código QR e ligazón actuais. Queres continuar?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Cambiar o teu nome de usuario restablecerá o teu código QR e ligazón. Queres continuar?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Continuar</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">Gardar</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">Máis información</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O teu perfil e os cambios que realices serán visibles para as persoas coas que falas por mensaxe, os teus contactos e grupos.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Actualizar Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Esta versión de Signal caducou. Actualízaa xa para seguir empregando Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Actualizar</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Dispositivo non rexistrado</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Este dispositivo xa non está rexistrado. Volve rexistralo para poder realizar cambios na túa conta.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Produciuse un fallo ao gardar por problemas coa rede. Ténteo de novo.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Erro ao borrar o nome de usuario. Volver tentar máis tarde.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Borrar nome de usuario?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Isto eliminará o teu nome de usuario e desactivará o teu código QR e a ligazón. «%1$s» estará dispoñible para que outros usuarios poidan utilizalo. Queres continuar?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">Editar foto</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Comparte o teu nome de usuario</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Que os demais inicien a conversa ao compartir o teu código QR ou ligazón únicos.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">Nome de usuario creado</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Nome de usuario borrado</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">A xente poderá enviarche mensaxes usando o teu nome de usuario opcional en lugar do teu número de teléfono. Os nomes de usuario teñen un código QR e unha ligazón únicos que podes compartir coas túas amizades.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">O teu nome de usuario, código QR e ligazón non aparecerán no teu perfil. Comparte o teu nome de usuario só coas persoas nas que confíes.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">Acerca de</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">Erro ao configurar o avatar</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">Código QR ou ligazón</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">Nome de perfil</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">Nome de usuario</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Editar nome de usuario</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Borrar nome de usuario</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">Perfil</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">Establecer avatar</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">Insignias</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">Borrar</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">Pechar</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Consegue insignias para o teu perfil ao apoiar a Signal.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal é unha organización sen ánimo de lucro que non conta con anunciantes ou investidores. Por iso dependemos de persoas coma ti.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">Forma parte do noso plan de doantes</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">Insignias</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">As miñas insignias</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Mostrar insignias no perfil</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">Insignia actual</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Erro ao actualizar o perfil</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Insignia actual</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecciona unha insignia</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">Gardar</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Erro ao actualizar o perfil</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Con esta ligazón calquera persoa poderá ver o teu nome de usuario e comezar a conversar contigo. Compártea só coas persoas nas que confíes.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Copiar ligazón</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Compartir</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">Código</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">Escanear</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">Ligazón copiada</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">Nome de usuario copiado</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Restablecer o código QR?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Se restableces o teu código QR, tanto o código antigo como a ligazón xa non funcionarán.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Restablecer</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Non tes acceso á rede. A túa ligazón non se restableceu. Volver tentar máis tarde.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Ocorreu un erro de rede mentres restableciamos a túa ligazón. Volver tentar máis tarde.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Ocorreu un erro inesperado mentres restableciamos a túa ligazón. Volver tentalo máis tarde.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Restablecéronse o teu código QR e a ligazón, e creáronse uns novos.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">Comparte só o teu código QR e ligazón coas persoas nas que confíes. Ao compartirse, outras persoas poderán ver o teu nome de usuario e comezar unha conversa contigo.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">Restablecer</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Ligazón</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">Compartir</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">Cor</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">O código QR non é correcto.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Houbo un erro de rede. Inténtao de novo.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">Código QR non atopado</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Tenta escanear outra imaxe que conteña un código QR.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">Non se atopou un usuario co nome %1$s.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">Escanear o código QR no dispositivo do teu contacto.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">Non se atopou o usuario.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">Para escanear un código QR, permite que Signal acceda á cámara.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">Permitir acceso</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">Signal necesita acceder á cámara para escanear códigos QR</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">Almacenamento</string>
+    <string name="preferences_storage__storage_usage">Uso do almacenamento</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Almacenamento de Signal</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimización do almacenamento de Signal</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Eliminaranse os arquivos non utilizados, pero sempre poderás descargalos de novo desde a túa copia de seguranza.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Límete da conversa</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Aplicar límites nos dispositivos vinculados</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Ao activarse, estes límites tamén borrarán mensaxes dos teus dispositivos vinculados.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Borrar historial de mensaxes</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Borrar historial de mensaxes?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Isto eliminará permanentemente todo o historial de mensaxes e multimedia do teu dispositivo.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Borrarase todo o historial de mensaxes e arquivos de forma permanente, tanto deste dispositivo como de todos os dispositivos vinculados.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tes a certeza de querer eliminar todo o historial de mensaxes?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Eliminarase todo o historial de mensaxes. Esta acción non se pode desfacer.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Borrarase o historial de mensaxes de forma permanente de todos os dispositivos. Esta acción non se pode desfacer.</string>
+    <string name="preferences_storage__delete_all_now">Borrar todo agora</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Só se pode acceder á optimización de almacenamento co nivel de pago das copias de seguranza seguras de Signal. A túa subscrición ás copias de seguranza aínda está en proceso e non está activa. Inténtao de novo máis tarde.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Os arquivos multimedia eliminaranse da copia de seguranza no dispositivo</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Se activas a «Optimización do almacenamento de Signal», os arquivos multimedia antigos eliminaranse do teu dispositivo, pero podes descargalos de novo en calquera momento. Tamén se eliminarán da copia de seguranza do dispositivo.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Activar</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Recibir unha notificación ou facer soar o teléfono cando se inicie unha chamada nesta conversa silenciada.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Recibir unha notificación ou facer soar o teléfono cando se inicie unha chamada nas conversas silenciadas.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Recibir unha notificación cando te mencionen mentres esta conversa está silenciada.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Recibir unha notificación cando te mencionen en conversas silenciadas.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Recibir unha notificación cando alguén responda á túa mensaxe mentres esta conversa está silenciada.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Recibir unha notificación cando alguén responda ás túas mensaxes en conversas silenciadas.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">Mentres está en modo silencio</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">Chamadas</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">Mencións</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">Respostas</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Erro ao abrir o selector.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Para activar as notificacións, Signal necesita permisos para poder mostralas.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Acender</string>
+    <string name="NotificationsSettingsFragment__calls">Chamadas</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Contacto únese a Signal</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Crear un perfil para recibir notificación só de persoas e grupos que ti elixas.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Mostrar unha notificación cando un dos teus contactos se una a Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Restablecer a configuración das notificacións</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Queres restablecer a configuración das notificacións aos valores predeterminados para todas as conversas?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Restablecer</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Restablecer a configuración das notificacións aos valores predeterminados, incluída a configuración personalizada das conversas</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sons</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Ton de chamada descoñecido</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">Chamadas</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">Mencións</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">Perfís de notificacións</string>
+    <string name="NotificationsSettingsScreen__notifications">Notificacións</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">Respostas</string>
+    <string name="NotificationsSettingsScreen__silent">En silencio</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">Recordatorio sen ler</string>
+    <string name="arrays__default">Por defecto</string>
+    <string name="arrays__high">Alta</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">Máxima</string>
+    <string name="arrays__name_and_message">Nome e mensaxe</string>
+    <string name="arrays__name_only">Só o nome</string>
+    <string name="arrays__no_name_or_message">Nin o nome nin a mensaxe</string>
+    <string name="preferences__blue">Azul</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Notificacións de chamadas</string>
+    <string name="preferences__change_sound_and_vibration">Cambiar son e vibración</string>
+    <string name="preferences__customize">Personalizar</string>
+    <string name="preferences__cyan">Ciano</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Por defecto</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Permitir notificacións</string>
+    <string name="preferences__fast">Rápida</string>
+    <string name="preferences__five_times">Cinco veces</string>
+    <string name="preferences__green">Verde</string>
+    <string name="preferences__led_color">Cor LED</string>
+    <string name="preferences__magenta">Maxenta</string>
+    <string name="preferences__never">Nunca</string>
+    <string name="preferences__normal">Normal</string>
+    <string name="preferences__one_time">Unha vez</string>
+    <string name="preferences__orange">Laranxa</string>
+    <string name="preferences__pref_led_blink_title">Intermitencia do LED</string>
+    <string name="preferences__red">Vermello</string>
+    <string name="preferences__repeat_alerts">Repetir alertas</string>
+    <string name="preferences__slow">Lenta</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">Son</string>
+    <string name="preferences__ten_times">Dez veces</string>
+    <string name="preferences__three_times">Tres veces</string>
+    <string name="preferences__two_times">Dúas veces</string>
+    <string name="preferences__vibrate">Vibrar</string>
+    <string name="preferences__white">Branco</string>
+    <string name="preferences_notifications__in_chat_sounds">Sons durante a conversa</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Mostrar notificacións para as reaccións das mensaxes que envías</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Recibir avisos ocasionais de mensaxes sen ler nas conversas silenciadas</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">Prioridade</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Notificacións de reaccións</string>
+    <string name="preferences_notifications__ringtone">Ton de chamada</string>
+    <string name="preferences_notifications__show">Mostrar</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Solucionar problemas coas notificacións</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">Mentres está en modo silencio</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Engadir</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Permitir notificacións</string>
 </resources>

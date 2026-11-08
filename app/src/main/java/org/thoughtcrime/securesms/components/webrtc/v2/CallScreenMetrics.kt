@@ -50,6 +50,35 @@ class CallScreenMetrics @RememberInComposition constructor(
     medium = 56.dp
   )
 
+  /**
+   * Number of other participants at which the self pip shrinks to the overflow renderer size.
+   */
+  val selfPipShrinkThreshold: Int = forWindowSizeClass(
+    compact = 5,
+    medium = 9
+  )
+
+  /** Inset of the overflow strip from the safe area, along and at the end of the strip. */
+  val overflowStripEdgeInset: Dp = forWindowSizeClass(
+    compact = 16.dp,
+    medium = 24.dp
+  )
+
+  /** Gap between cells in the overflow strip. */
+  val overflowStripItemSpacing: Dp = forWindowSizeClass(
+    compact = 10.dp,
+    medium = 12.dp
+  )
+
+  /**
+   * Extra gap between the grid and a horizontal overflow strip, making up the difference where CallGrid's
+   * vertical outer padding is zero. A vertical strip needs none: horizontal outer padding never is.
+   */
+  val overflowStripGridGap: Dp = forWindowSizeClass(
+    compact = 0.dp,
+    medium = 16.dp
+  )
+
   val overflowInfoIconSize: Dp = forWindowSizeClass(
     compact = 24.dp,
     medium = 28.dp
@@ -111,6 +140,18 @@ class CallScreenMetrics @RememberInComposition constructor(
       compact
     }
   }
+}
+
+/**
+ * Whether the call renders edge to edge: a single remote participant on a compact window, where the grid is
+ * full bleed and the system bars hide with the controls. The grid, call screen and activity must agree.
+ */
+@Composable
+fun rememberIsFullBleedCall(remoteParticipantCount: Int): Boolean {
+  val callGridStrategy = rememberCallGridStrategy()
+  val isCompact = callGridStrategy is CallGridStrategy.SmallPortrait || callGridStrategy is CallGridStrategy.SmallLandscape
+
+  return isCompact && remoteParticipantCount == 1
 }
 
 @Composable

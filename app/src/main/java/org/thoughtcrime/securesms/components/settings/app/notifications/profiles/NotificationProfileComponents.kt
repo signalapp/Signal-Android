@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -23,10 +24,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
@@ -38,17 +41,43 @@ import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageMedium
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
+import org.signal.core.ui.R as CoreUiR
+
+@VisibleForTesting
+object NotificationProfileComponentsTestTags {
+  /** A member's display name, which is user-entered and may wrap mid-word. */
+  const val RECIPIENT_NAME = "notification-profile-recipient-name"
+}
 
 @Composable
 fun NotificationProfileAddMembers(
-  onClick: () -> Unit
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  NotificationProfileCircleIconRow(
+    icon = ImageVector.vectorResource(R.drawable.ic_plus_24),
+    text = stringResource(R.string.AddAllowedMembers__add_people_or_groups),
+    onClick = onClick,
+    modifier = modifier
+  )
+}
+
+/**
+ * A clickable row led by [icon] in a filled circle, sized to line up with the member avatars below it.
+ */
+@Composable
+fun NotificationProfileCircleIconRow(
+  icon: ImageVector,
+  text: String,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Rows.TextRow(
+    modifier = modifier,
     icon = {
       Icon(
-        imageVector = ImageVector.vectorResource(R.drawable.ic_plus_24),
+        imageVector = icon,
         contentDescription = null,
         modifier = Modifier
           .size(40.dp)
@@ -61,7 +90,7 @@ fun NotificationProfileAddMembers(
     },
     text = {
       Text(
-        text = stringResource(R.string.AddAllowedMembers__add_people_or_groups),
+        text = text,
         style = MaterialTheme.typography.bodyLarge
       )
     },
@@ -72,11 +101,12 @@ fun NotificationProfileAddMembers(
 @Composable
 fun NotificationProfileRecipient(
   recipient: Recipient,
-  onRemoveClick: (RecipientId) -> Unit
+  onRemoveClick: (RecipientId) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
-    modifier = Modifier
+    modifier = modifier
       .defaultMinSize(minHeight = 64.dp)
       .horizontalGutters()
   ) {
@@ -106,7 +136,9 @@ fun NotificationProfileRecipient(
       Text(
         text = string,
         inlineContent = map,
-        modifier = Modifier.weight(1f)
+        modifier = Modifier
+          .weight(1f)
+          .testTag(NotificationProfileComponentsTestTags.RECIPIENT_NAME)
       )
     }
 
@@ -116,7 +148,7 @@ fun NotificationProfileRecipient(
       Icon(
         imageVector = ImageVector.vectorResource(R.drawable.ic_minus_circle_20),
         contentDescription = stringResource(R.string.delete),
-        tint = colorResource(R.color.core_grey_45)
+        tint = colorResource(CoreUiR.color.core_grey_45)
       )
     }
   }

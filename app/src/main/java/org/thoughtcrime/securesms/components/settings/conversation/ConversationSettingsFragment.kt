@@ -24,6 +24,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.permissions.Permissions
@@ -64,15 +65,14 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescription
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
-import org.thoughtcrime.securesms.main.MainNavigationChatDetailRouter
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainNavigationEventSink
+import org.thoughtcrime.securesms.main.MainNavigationEvents
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache
 import org.thoughtcrime.securesms.nicknames.NicknameActivity
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.RecipientExporter
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.starred.StarredMessagesActivity
@@ -118,7 +118,7 @@ class ConversationSettingsFragment : ComposeFragment() {
   )
 
   private var transitionCallback: TransitionCallback? = null
-  private var chatRouter: MainNavigationChatDetailRouter? = null
+  private var mainNavigationEventSink: MainNavigationEventSink? = null
 
   /** The avatar view owns the shared element transition out of this screen. */
   private var avatarView: View? = null
@@ -131,7 +131,7 @@ class ConversationSettingsFragment : ComposeFragment() {
   override fun onAttach(context: Context) {
     super.onAttach(context)
     transitionCallback = context as? TransitionCallback
-    chatRouter = context as? MainNavigationChatDetailRouter
+    mainNavigationEventSink = context as? MainNavigationEventSink
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -359,7 +359,7 @@ class ConversationSettingsFragment : ComposeFragment() {
         val builder = ConversationIntents.createBuilderSync(requireContext(), action.recipientId, action.threadId)
         startActivity(builder.withSearchOpen(action.withSearchOpen).build())
 
-        if (action.withSearchOpen && requireActivity() !is MainNavigationChatDetailRouter) {
+        if (action.withSearchOpen && requireActivity() !is MainNavigationEventSink) {
           requireActivity().finish()
         }
       }
@@ -408,7 +408,7 @@ class ConversationSettingsFragment : ComposeFragment() {
         startActivity(StarredMessagesActivity.createIntent(requireContext(), action.threadId))
       }
       is ConversationSettingsAction.ViewContact -> {
-        startActivityForResult(Intent(Intent.ACTION_VIEW, action.recipient.contactUri), REQUEST_CODE_VIEW_CONTACT)
+        startActivityForResult(Intent(Intent.ACTION_VIEW, action.contactUri), REQUEST_CODE_VIEW_CONTACT)
       }
       is ConversationSettingsAction.AddContact -> {
         try {
@@ -454,7 +454,7 @@ class ConversationSettingsFragment : ComposeFragment() {
       }
       is ConversationSettingsAction.OpenGroupConversation -> {
         CommunicationActions.startConversation(requireActivity(), action.recipient, null)
-        if (requireActivity() !is MainNavigationChatDetailRouter) {
+        if (requireActivity() !is MainNavigationEventSink) {
           requireActivity().finish()
         }
       }
@@ -485,7 +485,7 @@ class ConversationSettingsFragment : ComposeFragment() {
         startActivity(ManagePendingAndRequestingMembersActivity.newIntent(requireContext(), action.groupId))
       }
       is ConversationSettingsAction.NavigateToPermissions -> {
-        navController.safeNavigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToPermissionsSettingsFragment(action.groupId))
+        navController.safeNavigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToGroupPermissionsFragment(action.groupId))
       }
       is ConversationSettingsAction.ShowLeaveGroupDialog -> {
         LeaveGroupDialog.handleLeavePushGroup(requireActivity(), action.groupId.requirePush(), null)
@@ -559,10 +559,11 @@ class ConversationSettingsFragment : ComposeFragment() {
   }
 
   private fun goToConversationList() {
-    if (chatRouter != null) {
-      chatRouter?.exitDetailLocation()
+    val eventSink = mainNavigationEventSink
+    if (eventSink != null) {
+      eventSink.onEvent(MainNavigationEvents.ExitDetail)
     } else {
-      startActivity(MainActivity.clearTopAndOpenDetail(requireContext(), MainNavigationDetailLocation.Empty))
+      startActivity(MainActivity.clearTopAndExitDetail(requireContext()))
     }
   }
 

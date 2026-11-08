@@ -36,10 +36,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Fragments
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.orNull
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
@@ -50,10 +52,8 @@ import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.conversation.RecipientSearchBar
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.DisplayMode.Companion.flag
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.KeyboardType
 import java.util.Optional
@@ -83,7 +83,8 @@ fun RecipientPicker(
   listBottomPadding: Dp? = null,
   clipListToPadding: Boolean = ContactSelectionArguments.Defaults.RECYCLER_CHILD_CLIPPING,
   callbacks: RecipientPickerCallbacks,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  belowSearchBar: @Composable () -> Unit = {}
 ) {
   Column(
     modifier = modifier
@@ -113,6 +114,8 @@ fun RecipientPicker(
         .fillMaxWidth()
         .padding(horizontal = 16.dp)
     )
+
+    belowSearchBar()
 
     RecipientSearchResultsList(
       displayModes = displayModes,
@@ -318,7 +321,7 @@ private suspend fun showItemContextMenu(
 
   val actions = buildList {
     val messageItem = ActionItem(
-      iconRes = R.drawable.ic_chat_message_24,
+      iconRes = CoreUiR.drawable.ic_chat_message_24,
       title = context.getString(R.string.NewConversationActivity__message),
       tintRes = CoreUiR.color.signal_colorOnSurface,
       action = { callbacks.onMessage(recipient.id) }

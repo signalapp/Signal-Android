@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <!-- Signal Login beta labeling -->
+    <!-- Tag shown beside the title of Signal Login screens, marking the feature as unfinished. Keep it short. -->
+    <string name="SignalLoginBeta__beta">பீட்டா</string>
+    <!-- Disclaimer shown on Signal Login screens, warning that the feature is still changing. -->
+    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">இது ஒரு பீட்டா அம்சமாகும், இது தொடர்ந்து புதுப்பிக்கப்படும்.</string>
+
     <!-- Signal Login credential card -->
     <!-- Label for the account portion of the Signal Login on the credential card. -->
     <string name="SignalLoginCard__account">பயனர் கணக்கு</string>
@@ -12,13 +18,49 @@
     <!-- Title of the screen that shows the user the full keys that make up their Signal Login. -->
     <string name="SignalLoginViewDetailsScreen__signal_login">Signal Login</string>
     <!-- Content description for the back arrow in the top app bar. -->
-    <string name="SignalLoginViewDetailsScreen__navigate_back">Navigate back</string>
+    <string name="SignalLoginViewDetailsScreen__navigate_back">முந்தைய திரைக்குச் செல்</string>
     <!-- Section header above the account key. -->
-    <string name="SignalLoginViewDetailsScreen__account_key">Account key</string>
+    <string name="SignalLoginKeyDetails__account_id">கணக்கு ID</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">மீட்புக் குறியீடு</string>
+    <string name="SignalLoginKeyDetails__recovery_key">மீட்புக் குறியீடு</string>
+    <!-- Content description for the button that copies the account key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_account_id">கணக்கு IDஐ நகலெடு</string>
+    <!-- Content description for the button that copies the recovery key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_recovery_key">மீட்புக் குறியீட்டை நகலெடு</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">கடவுச்சொல் மேலாளரில் சேமித்திடுக</string>
     <!-- Action button that saves the Signal Login as a PDF. -->
-    <string name="SignalLoginViewDetailsScreen__save_as_pdf">Save as PDF</string>
+    <string name="SignalLoginViewDetailsScreen__save_as_pdf">PDF ஆகச் சேமி</string>
+    <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
+    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">மீட்புக் குறியீட்டை மீட்டமை</string>
+    <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
+    <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginViewDetailsScreen__no_password_manager_available">நீங்கள் கடவுச்சொல் மேலாளரை அமைக்கவில்லை.</string>
+    <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">பாதுகாப்பானது என நீங்கள் நம்பும் கடவுச்சொல் மேலாளரில் மட்டுமே உங்களின் உள்நுழைவுச் சான்றுகளைச் சேமித்து வைக்கவும். உங்களுக்கு எந்தக் கடவுச்சொல் மேலாளர் சரியானது என்பது குறித்து Signal எந்தப் பரிந்துரையும் செய்வதில்லை.</string>
+    <!-- Toast shown when saving the Signal Login PDF fails. -->
+    <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">PDF-ஐச் சேமிக்க முடியவில்லை. மீண்டும் முயலுங்கள்.</string>
+    <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->
+    <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">தேர்ந்தெடுக்கப்பட்ட இடத்தில் PDF-ஐச் சேமிக்க முடியவில்லை.</string>
+
+    <!-- Do not share warning sheet, shown before the user copies or saves their Signal Login -->
+    <!-- Title of the sheet warning the user not to share their Signal Login. -->
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login">உங்களின் Signal Login-ஐப் பகிர வேண்டாம்</string>
+    <!-- Body of the warning sheet. The text inside the <b> tags is shown in bold; keep the tags around the equivalent phrase. -->
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login_with_anyone">உங்களின் Signal Login-ஐ ஒருபோதும் யாருடனும் பகிராதீர்கள். இது அவர்கள் உங்கள் கணக்கைக் கையகப்படுத்த அனுமதிக்கும். உங்கள் கணக்கு ஐடி அல்லது மீட்புக் குறியீட்டைக் கேட்டு <b>Signal ஒருபோதும் உங்களுக்குச் செய்தி அனுப்பாது</b>. Signal போல் ஆள்மாறாட்டம் செய்து வரும் உரையாடலுக்கு ஒருபோதும் பதிலளிக்காதீர்கள்.</string>
+    <!-- Button acknowledging the warning and continuing with the copy or save the user started. -->
+    <string name="DoNotShareLoginBottomSheet__got_it">அறிந்துகொண்டேன்</string>
+    <!-- Button opening a help article with more information about keeping the Signal Login safe. -->
+    <string name="DoNotShareLoginBottomSheet__learn_more">மேலும் அறிக</string>
+
+    <!-- Signal Login PDF -->
+    <!-- Title at the top of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__your_signal_login">உங்களின் Signal Login</string>
+    <!-- Explainer below the title of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">இதனைப் பாதுகாப்பான இடத்தில் சேமித்து வைக்கவும், உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க உங்கள் உள்நுழைவுத் தகவல் தேவை. இதை ஒருபோதும் யாருடனும் பகிர வேண்டாம்.</string>
+    <!-- Section header above the account key in the PDF. -->
+    <string name="SignalLoginPdf__account_id">கணக்கு ID</string>
+    <!-- Section header above the recovery key in the PDF. -->
+    <string name="SignalLoginPdf__recovery_key">மீட்புக் குறியீடு</string>
 </resources>

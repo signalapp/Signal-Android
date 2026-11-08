@@ -18,8 +18,98 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">परवानगी आवश्यक</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">पॅन्सचा आकार बदला</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">डिव्हायडर हलवा</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">सुरू ठेवा वर टॅप करा आणि पुष्टी करण्यासाठी आपल्या फोनचे लॉक प्रविष्ट करा. आपले Signal पिन प्रविष्ट करू नका.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">सुरू ठेवा</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">बंद करा</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">वर नॅव्हिगेट करा</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">आवडीमध्ये समाविष्ट करा</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">आवडीमधून हटवून टाका</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">आवडीमधून हटवून टाकायचा का?</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">तुम्ही पॅक इन्स्टॉल केलेला नसेल, तुमच्याकडे लिंक नसेल, किंवा स्टिकर संदेश नसेल, तर तुम्हाला हे पुन्हा पाठवता येणार नाही किंवा आवडीमध्ये समाविष्ट करता येणार नाही.</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">काढून टाका</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">कुठलेही नाही</string>
+    <string name="preferences_off">बंद</string>
+    <string name="preferences_on">चालू</string>
+    <string name="ExpireTimerSettingsFragment__set">सेट करा</string>
+    <string name="CustomExpireTimerSelectorView__seconds">सेकंद</string>
+    <string name="CustomExpireTimerSelectorView__minutes">मिनिटे</string>
+    <string name="CustomExpireTimerSelectorView__hours">तास</string>
+    <string name="CustomExpireTimerSelectorView__days">दिवस</string>
+    <string name="CustomExpireTimerSelectorView__weeks">आठवडे</string>
+    <!-- expiration -->
+    <string name="expiration_off">बंद</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="one">%1$d सेकंद</item>
+        <item quantity="other">%1$d सेकंद</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$d से</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">%1$dमिनिट</item>
+        <item quantity="other">%1$d मिनिटे</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$d मि</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">%1$d तास</item>
+        <item quantity="other">%1$d तास</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$d ता</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">%1$d दिवस</item>
+        <item quantity="other">%1$d दिवस</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$d दि</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">%1$d आठवडा</item>
+        <item quantity="other">%1$d आठवडे</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$d आ</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">अधिक जाणा</string>
+
+    <string name="SpanUtil__read_more">आणखी वाचा</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">टेक्स्ट इनपुटमध्ये जा</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">घड्याळाच्या स्वरूपात या</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">%1$s काढून टाका</string>
 </resources>

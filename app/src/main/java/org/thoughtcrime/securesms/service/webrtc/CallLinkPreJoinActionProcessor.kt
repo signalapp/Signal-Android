@@ -11,6 +11,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.ServerPublicParams
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.CallException
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.callLinks
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
 import org.thoughtcrime.securesms.util.NetworkUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.IOException
 
 /**

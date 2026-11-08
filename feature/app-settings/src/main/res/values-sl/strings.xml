@@ -48,158 +48,1137 @@
     <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Račun in obnovitev</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d ključ</item>
-        <item quantity="two">%1$d ključa</item>
-        <item quantity="few">%1$d ključi</item>
-        <item quantity="other">%1$d ključev</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Vaša prijava v Signal se uporablja za obnovitev in ponovno vzpostavitev vašega računa. Te ključe varno shranite v zaupanja vrednem upravitelju gesel.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Vaš Signal Login se uporablja za obnovitev in ponovno vzpostavitev vašega računa. Te ključe varno shranite v zaupanja vrednem upravitelju gesel.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Dvostopenjsko preverjanje pristnosti</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Nastavi</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">Aplikacija za preverjanje pristnosti</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="two">%1$d configured</item>
-        <item quantity="few">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="two">%1$d passkeys</item>
-        <item quantity="few">%1$d passkeys</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Enkratne potrditvene kode</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Varnostni ključ</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Uporabite prstni odtis, prepoznavo obraza ali zaklepanje zaslona</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Varnostni ključ</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Metoda dvostopenjskega preverjanja</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Dodana na %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Neznano</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Odprite možnosti dvostopenjskega preverjanja pristnosti</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Preimenuj</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Odstrani</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Želite odstraniti aplikacijo za preverjanje pristnosti?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Ko se prijavite, te aplikacije ne boste mogli uporabljati za enkratne potrditvene kode.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Želite odstraniti varnostni ključ?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Tega varnostnega ključa ne boste mogli več uporabljati za prijavo.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Želite odstraniti metodo dvostopenjskega preverjanja?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Te metode ne boste več mogli uporabljati za prijavo.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Dvostopenjsko preverjanje je bilo odstranjeno</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Dvostopenjskega preverjanja nismo mogli odstraniti. Preverite povezavo in poskusite znova.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Varnostni ključ je bil odstranjen</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Varnostnega ključa nismo mogli odstraniti. Preverite povezavo in poskusite znova.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">V tej napravi nastavite upravitelja gesel, ki podpira varnostne ključe, nato poskusite znova.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Varnostnega ključa ni bilo mogoče ustvariti. Poskusite znova.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Odklenite, da dodate metodo dvostopenjskega preverjanja</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Za dodajanje te metode potrdite, da ste to vi</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Odklenite, da odstranite metodo dvostopenjskega preverjanja</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Če želite odstraniti to metodo, potrdite svojo identiteto</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Odklenite, da si ogledate Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Če si želite ogledati svoj Signal Login, potrdite svojo identiteto</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Odklenite, da potrdite, da ste to vi</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Za izbris računa potrdite, da ste to vi</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Zahtevano je preverjanje pristnosti</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Aplikacije za preverjanje pristnosti ni mogoče dodati</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Ne morete dodati več kot toliko aplikacij za preverjanje pristnosti: %1$d. Najprej jo poskusite odstraniti.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Dodate lahko največ %1$d načina dvostopenjske avtentikacije. Najprej poskusite enega odstraniti.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Načinov dvostopenjskega preverjanja pristnosti ni bilo mogoče naložiti. Preverite povezavo in poskusite znova.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Aplikacija za preverjanje pristnosti je odstranjena</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Aplikacije za preverjanje pristnosti nismo mogli odstraniti. Preverite povezavo in poskusite znova.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
     <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Uporabite dodatno obliko preverjanja pristnosti, da zaščitite svoj račun, ko se v novi napravi prijavite s Signal Login.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Več o tem</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Podatki vašega računa</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Izvozite poročilo podatkov svojega računa Signal. To poročilo ne vključuje nobenih sporočil ali medijev. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Preberite več</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Izvozi poročilo</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Izvozi kot TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Lahko berljiva besedilna datoteka</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Izvozi kot JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Lahko berljiva datoteka za naprave</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Prekliči</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Poročila ni bilo mogoče ustvariti</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Preverite povezavo in poskusite znova.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Želite izvoziti podatke?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Podatke svojega računa Signal delite samo z osebami ali aplikacijami, ki jim zaupate.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Izvozi</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Ustvarjanje poročila …</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Vaše poročilo se ustvari samo v času izvoza in ga Signal ne shrani v vaši napravi.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Nastavite aplikacijo za preverjanje pristnosti</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Sledite tem korakom, da vzpostavite aplikacijo za preverjanje pristnosti.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Sledite tem korakom, da vzpostavite aplikacijo za preverjanje pristnosti.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Več o tem</string>
+    <string name="TotpSetupScreen__learn_more">Več o tem</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">1. korak</string>
+    <string name="TotpSetupScreen__step_1">1. korak</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Namestite zaupanja vredno aplikacijo za preverjanje pristnosti v svojo napravo.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Namestite zaupanja vredno aplikacijo za preverjanje pristnosti v svojo napravo.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">2. korak</string>
+    <string name="TotpSetupScreen__step_2">2. korak</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Odprite svojo aplikacijo za preverjanje pristnosti tako, da tapnete spodnji gumb, in dodajte svoj račun Signal.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Odprite svojo aplikacijo za preverjanje pristnosti tako, da tapnete spodnji gumb, in dodajte svoj račun Signal.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Odpri</string>
+    <string name="TotpSetupScreen__open">Odpri</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Lahko pa ta ključ kopirate in jo ročno vzpostavite.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">Lahko pa ta ključ kopirate in jo ročno vzpostavite.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Kopiraj</string>
+    <string name="TotpSetupScreen__copy">Kopiraj</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Kopirano v odložišče</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Kopirano v odložišče</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">Aplikacije za preverjanje pristnosti ni bilo mogoče najti</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Aplikacije za preverjanje pristnosti ni bilo mogoče najti</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Ne morete dodati več kot toliko aplikacij za preverjanje pristnosti: %1$d. Najprej jo poskusite odstraniti.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Signala ni bilo mogoče doseči. Preverite povezavo in poskusite znova.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">3. korak</string>
+    <string name="TotpSetupScreen__step_3">3. korak</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Kopirajte ustvarjeno kodo in se vrnite sem, da nadaljujete.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Kopirajte ustvarjeno kodo in se vrnite sem, da nadaljujete.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Nadaljuj</string>
+    <string name="TotpSetupScreen__continue">Nadaljuj</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">Več o tem</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">Prijavni ključi</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">S prijavnimi ključi lahko svojemu računu preprosto dodate varno drugo obliko preverjanja pristnosti. Prijavni ključi lahko uporabljajo biometrične podatke vaše naprave ali združljiv varnostni ključ FIDO2.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">Več o tem</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Poimenujte svoj prijavni ključ, da ga boste lažje prepoznali</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Za shranjevanje prijavnega ključa uporabite biometrične podatke svoje naprave ali varnostni ključ FIDO2</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Prijavne ključe lahko kadarkoli dodate ali odstranite.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">Dodan_a uporabnik_ca \"%1$s\"</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Rename</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">Odstrani</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">Nastavi prijavni ključ</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">Ni mogoče dodati varnostnega ključa</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Dodate lahko največ %1$d načina dvostopenjske avtentikacije. Najprej poskusite enega odstraniti.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Vnesite svojo kodo</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Vnesite svojo kodo</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Vnesite 6-mestno kodo iz svoje aplikacije za preverjanje pristnosti.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Koda</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Vnesite 6-mestno kodo iz svoje aplikacije za preverjanje pristnosti.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">OK</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">Aplikacija za preverjanje pristnosti</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">Več o tem</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">Dodan_a uporabnik_ca \"%1$s\"</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Rename</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">Odstrani</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">Naprej</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Napačna koda. Vnesite kodo, prikazano v vaši aplikaciji za preverjanje pristnosti.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signala ni bilo mogoče doseči. Preverite povezavo in poskusite znova.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Choose a name</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Overjevalnik</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Izberite ime</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Izberite edinstveno ime za to aplikacijo za preverjanje pristnosti.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Izberite edinstveno ime za to aplikacijo za preverjanje pristnosti, da jo boste pozneje lažje prepoznali.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Izberite edinstveno ime za to metodo dvostopenjskega preverjanja.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Izberite edinstveno ime za to metodo dvostopenjskega preverjanja, da jo boste pozneje lažje prepoznali.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Izberite edinstveno ime za ta varnostni ključ.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Izberite edinstveno ime za ta varnostni ključ, da ga boste pozneje lažje prepoznali.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">Ime</string>
+    <string name="TwoFactorNameEntryScreen__name">Ime</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">Naprej</string>
+    <string name="TwoFactorNameEntryScreen__next">Naprej</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Aplikacija za preverjanje pristnosti je vzpostavljena</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Aplikacija za preverjanje pristnosti je preimenovana</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Vzpostavitev varnostnega ključa</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Varnostni ključ je preimenovan</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Vzpostavljeno je dvostopenjsko preverjanje</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Metoda dvostopenjskega preverjanja je bila preimenovana</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Ni bilo mogoče shraniti imena. Preverite povezavo in poskusite znova.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Z izbrisom svojega računa boste:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Vnesite svojo telefonsko številko</string>
+    <string name="DeleteAccountFragment__delete_account">Izbrisali račun</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">izbrisali podatke in profilno fotografijo računa</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">izbrisali vsa svoja sporočila</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Izbrisali »%1$s« v plačilnem računu</string>
+    <string name="DeleteAccountFragment__no_country_code">Ni vnesene kode države</string>
+    <string name="DeleteAccountFragment__no_number">Ni vnesene telefonske številke</string>
+    <string name="DeleteAccountFragment__the_phone_number">Vnesena številka se ne ujema s telefonsko številko vašega računa.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Ste prepričani, da želite izbrisati svoj račun?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">S tem boste izbrisali svoj račun Signal in ponastavili aplikacijo. Ko bo proces končan, se bo aplikacija zaprla.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Lokalnih podatkov ni bilo mogoče izbrisati. To lahko storite ročno v sistemskih nastavitvah aplikacije.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Zaženi nastavitve aplikacije</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Zapuščanje skupin …</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Brisanje računa …</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Prekinjanje naročnine …</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">To lahko traja nekaj časa, odvisno od tega, v koliko skupinah ste</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Brisanje uporabniških podatkov in ponastavljanje aplikacije</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Račun ni izbrisan</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Med procesom brisanja je prišlo do težav. Preverite svoje omrežje in poskusite znova.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Izbris računa z uporabniškim imenom »%1$s« bo:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Izbrisal podatke o računu in fotografijo profila, vključno z uporabniškim imenom »%1$s«</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Ta korak je nepovraten</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">To bo izbrisalo vaš račun Signal z uporabniškim imenom »%1$s« in ponastavilo aplikacijo. Aplikacija se bo zaprla, ko bo postopek končan.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Da, izbriši moj račun</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Povabi prijatelje</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Deli</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Izberite svojo državo</string>
+    <string name="RegistrationActivity_phone_number_description">Telefonska številka</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d mapa</item>
+        <item quantity="two">%1$d mapi</item>
+        <item quantity="few">%1$d mape</item>
+        <item quantity="other">%1$d map</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Dodaj mapo klepeta</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Dodaj ali uredi mapo</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Preverjanje pristnosti ni uspelo</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Mape klepetov</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Želite izvoziti zgodovino klepeta?</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Izvozite strojno berljivo kopijo JSON vseh svojih klepetov. Izginjajoča sporočila ne bodo izvožena.</string>
+    <string name="ChatsSettingsFragment__keyboard">Tipkovnica</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Pošlji z enter</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Samodejno predvajaj nalepke in GIF-e</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Ko je ta možnost vklopljena, se nalepke in GIF-i samodejno predvajajo</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Odklenite pred izvozom zgodovine klepeta</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Če so na voljo, imajo prednost fotografije stikov iz vašega imenika</string>
+    <string name="preferences__generate_link_previews">Ustvari predoglede</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Utišani klepeti, ki so arhivirani, bodo ostali arhivirani, ko prispe novo sporočilo.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Ohrani utišane klepete arhivirane</string>
+    <string name="preferences__pref_use_address_book_photos">Prednost imajo fotografije iz imenika</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Za vse spletne strani, ki jih delite, bodo v sporočilu ustvarjene predogledne sličice.</string>
+    <string name="preferences_advanced__use_system_emoji">Sistemski znaki emoji</string>
+    <string name="preferences_chats__chats">Klepeti</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">BODITE PREVIDNI</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">PREVIDNO!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Preklic izvoza …</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">V shrambi svoje naprave izberite mapo, kjer bo shranjena vaša zgodovina klepetov.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Izberi mapo</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Izberite mapo,</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">kjer hranite izvozno datoteko klepeta, in je ne delite z nikomer. Do nje lahko dostopajo druge aplikacije, odvisno od dovoljenj vaše naprave.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Izvoz klepeta je zaključen</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Želite izvoziti zgodovino klepeta?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">Te datoteke NE delite z nikomer. Zgodovina klepetov bo shranjena v napravi, do nje pa lahko dostopajo tudi druge aplikacije, odvisno od dovoljenj vaše naprave. Izvoz z mediji bo ustvaril večjo datoteko.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Izvoz z mediji</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Izvoz brez medijev</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Izvažanje medijev: %1$d %%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Dokončevanje …</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Priprava varnostne kopije …</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Obdelava varnostne kopije …</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Obdelava sporočil …</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Obdelava sporočil: %1$s od %2$s (%3$d %%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Nalaganje medijev: %1$d %%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Posodobitve aplikacije</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">Izgled</string>
+    <string name="preferences__language">Jezik</string>
+    <string name="preferences__theme">Tema</string>
+    <string name="preferences__system_default">Privzeta sistemska</string>
+    <string name="preferences__light_theme">Svetla</string>
+    <string name="preferences__dark_theme">Temna</string>
+    <string name="preferences__chat_color_and_wallpaper">Barva klepeta in ozadja</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Ikona aplikacije</string>
+    <string name="preferences_chats__message_text_size">Velikost črk v sporočilu</string>
+    <string name="arrays__small">Majhne</string>
+    <string name="arrays__normal">Običajne</string>
+    <string name="arrays__large">Velike</string>
+    <string name="arrays__extra_large">Zelo velike</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Velikost navigacijske vrstice</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Običajna</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Kompaktna</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">Aplikacija se bo znova zagnala, da se uporabi nova jezikovna nastavitev.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Telefonska številka</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Kdo lahko vidi mojo številko</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Vaša telefonska številka bo vidna uporabnikom_cam in skupinam, ki jim boste pošiljali sporočila.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Vaša telefonska številka ne bo vidna nikomur, razen če jo ima shranjeno v stikih svojega telefona.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Vaša telefonska številka ne bo vidna nikomur.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Kdo me lahko najde preko telefonske številke</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Vsak, ki ima vašo telefonsko številko, bo videl, da ste na Signalu, in bo lahko začel klepetati z vami.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nihče ne bo mogel videti, da ste na Signalu, razen če mu/ji ne pošljete sporočila ali že klepetate z njim/njo.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Če želite spremeniti to nastavitev, nastavite »Kdo lahko vidi mojo številko« na »Nihče«."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Ste prepričani?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Če nastavite »Kdo me lahko najde po številki« na »Nihče«, vas bodo ljudje težje našli v Signalu.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Prekliči</string>
+    <string name="PhoneNumberPrivacy_everyone">Kdorkoli</string>
+    <string name="PhoneNumberPrivacy_nobody">Nihče</string>
+    <string name="arrays__images">Slike</string>
+    <string name="arrays__audio">Zvok</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Dokumenti</string>
+    <string name="preferences__data_and_storage">Podatki in pomnilnik</string>
+    <string name="preferences_chats__when_using_mobile_data">Ob uporabi mobilnega omrežja</string>
+    <string name="preferences_chats__when_using_wifi">Ob uporabi omrežja Wi-Fi</string>
+    <string name="preferences_chats__when_roaming">Med gostovanjem</string>
+    <string name="preferences_chats__media_auto_download">Samodejen prenos priponk</string>
+    <string name="preferences_data_and_storage__manage_storage">Upravljanje s pomnilnikom</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Porabi manj podatkov za klice</string>
+    <string name="preferences_data_and_storage__never">Nikoli</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi in mobilni podatki</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Samo mobilni podatki</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Poraba manj podatkov pri klicih lahko izboljša zanesljivost klicev v slabih omrežjih.</string>
+    <string name="preferences_proxy">Proksi</string>
+    <string name="preferences_use_proxy">Uporabi proksi</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Kvaliteta medisjkih datotek</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Izračunavanje …</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvaliteta poslanih medijskih datotek</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Pošiljanje medijskih datotek boljše kvalitete porabi več podatkov.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Glasovna sporočila in nalepke (pod %1$s) se vedno samodejno prenesejo.</string>
+    <string name="DataAndStorageSettingsFragment__calls">Klici</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Ostanite povezani v ozadju</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Ostati povezan v ozadju bo verjetno povzročilo večjo porabo baterije. To ni nujno za večino naprav. Omogočite le, če ste imeli težave z obvestili.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Omogoči</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Visoka</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Standardna</string>
+    <string name="preferences_app_protection__screen_lock">Zaklep zaslona</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Uporabi zaklepanje zaslona</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Nastavitve zaklepanja naprave Android bodo zahtevane za odklepanje Signala, ko zapustite ali preklopite aplikacije. Ko je zaklenjeno, predogledi obvestil ne prikazujejo vsebine sporočila.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Začetek zaklepanja zaslona</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">Po 1 minuti</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">Po 5 minutah</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">Po 30 minutah</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Čas po meri</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Uporabi zaklepanje zaslona Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Izklop zaklepanja zaslona Signal</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">Pomoč</string>
+    <string name="HelpSettingsFragment__support_center">Center za podporo</string>
+    <string name="HelpSettingsFragment__contact_us">Kontaktirajte nas</string>
+    <string name="HelpSettingsFragment__version">Različica</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Kopirano v odložišče</string>
+    <string name="HelpSettingsFragment__debug_log">Sistemska zabeležba</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Licence</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Pogoji &amp; politika zasebnosti</string>
+    <string name="HelpFragment__copyright_signal_messenger">Vse pravice Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Pod licenco GNU GPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal je neprofitna organizacija</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Ikone in imena aplikacij so vidne na začetnem zaslonu in v predalu aplikacij.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Obvestila bodo vedno prikazala privzeto ikono in ime Signala.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafika, ki prikazuje, kje bo vidna nadomestna ikona aplikacije.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Vreme</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Beležke</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Novice</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Valovi</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Prekliči</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Spremenite ikono in ime aplikacije v »%1$s«</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Za spremembo ikone in imena aplikacije bo treba Signal zapreti. Obvestila bodo vedno prikazala privzeto ikono in ime Signala.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Izberite ikono in ime aplikacije, ki bosta vidna na začetnem zaslonu in v predalu za aplikacije vašega telefona. Obvestila bodo vedno prikazala privzeto ikono in ime Signala. Preberite več</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Preberite več</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Povezava ni nastavljena</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Barva</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">OK</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">Profil ustvarjen</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">OK</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Svoj profil lahko ročno vklopite ali izklopite prek menija na seznamu klepetov.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Za avtomatizacijo profila dodaj urnik v nastavitvah.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Vaš profil bo avtomatsko vključen oz. izključen, glede na nastavitve.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
+    <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Izključim geslo?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">S tem boste odklenili aplikacijo Signal in obvestila o sporočilih.</string>
+    <string name="PrivacySettingsFragment__app_security">Varnost aplikacije</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Prepreči zajem slike zaslona na seznamu nedavnih sporočil in v aplikaciji</string>
+    <string name="PrivacySettingsFragment__blocked">Blokirano</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">Če želite uporabljati potrjevanje plačila, morate najprej omogočiti zaklepanje zaslona ali ID prstnega odtisa v nastavitvah telefona.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">Omogočanje potrjevanja plačila ni uspelo</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d stik ali skupina</item>
+        <item quantity="two">%1$d stika ali skupini</item>
+        <item quantity="few">%1$d stiki ali skupine</item>
+        <item quantity="other">%1$d stikov ali skupin</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Privzeti odštevalnik za nove klepete</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Navigacija do sistemskih nastavitev ni uspela</string>
+    <string name="PrivacySettingsFragment__messaging">Sporočanje</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Za prenos sredstev zahtevajte zaklepanje zaslona Android ali prstni odtis</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavite privzeti čas poteka sporočil za vse nove klepete, ki jih začnete sami.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Sporočila in klici Signal, posredovanje klicev in zakriti pošiljatelj</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Izklopljeno</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Samodejno zakleni Signal po nastavljenem času neaktivnosti</string>
+    <string name="preferences__change_passphrase">Zamenjaj geslo</string>
+    <string name="preferences__change_your_passphrase">Zamenjava gesla</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">Vklop zaklepanja zaslona z geslom</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Če izklopite poročila o ogledu, tudi sami ne boste obveščeni, ko bo prejemnik_ca prebral_a vaše sporočilo.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Če nimate vklopljenih kazalnikov tipkanja zase, tudi ne morete videti, kdaj vaš_a partner_ka tipka svoje sporočilo.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">Časovni interval za zaklep aplikacije</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">Geslo za zaklep aplikacije</string>
+    <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zaklep zaslona in obvestil z geslom</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">Potrjevanje plačila</string>
+    <string name="preferences__read_receipts">Potrdila o ogledu</string>
+    <string name="preferences__request_keyboard_to_disable">Zahteva tipkovnici za izklop personaliziranega učenja.</string>
+    <string name="preferences__screen_security">Zaščita zaslona</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">Ta nastavitev ne zagotavlja, da bo tipkovnica tudi upoštevala zahtevo.</string>
+    <string name="preferences__typing_indicators">Kazalniki tipkanja</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Izberite, kdo lahko vidi vašo telefonsko številko in kdo vas lahko z njo kontaktira v Signalu.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">Plačila</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Za uporabo zaklepanja zaslona nastavite PIN kodo, vzorec ali geslo v tej napravi.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">Zasebnost</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">Izginjajoča sporočila</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">Napredno</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">Vklopi</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">Ne zdaj</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">Več o tem</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Dosežena omejitev shranjevanja varnostne kopije</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Številka naročnika varnostne kopije je bila prekopirana v odložišče</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Številka naročnika donatorja je bila prekopirana v odložišče</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Varnostne kopije ni bilo mogoče dokončati</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">Povabite svoje prijatelje_ice</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Podaljšajte naročnino na Varne varnostne kopije Signal</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">Zasebnost</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">Nastavitve</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">Nazaj</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Nismo mogli unovčiti vaše naročnine na varnostne kopije</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Podprite Signal</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">Interne nastavitve</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">Povezane naprave</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">Obvestila</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">Plačila</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">Zgodbe</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">Varnostne kopije</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Velikost navigacijske vrstice</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Običajna</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Kompaktna</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">Nazaj</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">Fotografije</string>
+    <string name="preferences_storage__videos">Video</string>
+    <string name="preferences_storage__files">Datoteke</string>
+    <string name="preferences_storage__audio">Zvok</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Sporočila</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Nalepke</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Drugo</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Izračunavanje …</string>
+    <string name="preferences_storage__review_storage">Pregled porabe pomnilnika</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">Dvostopenjsko preverjanje pristnosti</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Za potrditev računa izberite način spodaj.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">Varnostni ključ</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Tapnite za uporabo biometričnih podatkov svoje naprave ali varnostnega ključa FIDO2</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">Aplikacija za preverjanje pristnosti</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Vnesite enkratno kodo iz svoje aplikacije za preverjanje pristnosti.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">Za nadaljevanje vnesite 6-mestno kodo iz aplikacije za preverjanje pristnosti.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">Prekliči</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">Napačna koda. Vnesite kodo, prikazano v vaši aplikaciji za preverjanje pristnosti.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Signala ni bilo mogoče doseči. Preverite povezavo in poskusite znova.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Prišlo je do težave z vašim varnostnim ključem. Poskusite znova ali izberite drugi način.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">Vaše ime</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">Ime</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">Priimek (neobvezno)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">Shrani</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Zaradi težav s povezljivostjo shranjevanje ni uspelo. Poskusite kasneje.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">Hramba sporočil</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">Za vedno</string>
+    <string name="preferences_storage__one_year">1 leto</string>
+    <string name="preferences_storage__six_months">6 mesecev</string>
+    <string name="preferences_storage__thirty_days">30 dni</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Sporočila, starejša od izbranega časa, bodo trajno izbrisana.</string>
+    <string name="preferences_storage__delete_older_messages">Želite izbrisati starejša sporočila?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">S tem boste nepovratno izbrisali celotno zgodovino pogovorov in medijskih datotek, starejših od %1$s, z vaše naprave.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">Izbriši</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">Omejitev dolžine klepeta</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s sporočilo</item>
+        <item quantity="two">%1$s sporočili</item>
+        <item quantity="few">%1$s sporočila</item>
+        <item quantity="other">%1$s sporočil</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">Brez</string>
+    <string name="preferences_storage__custom">Po meri</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Sporočila, ki presegajo izbrano dolžino, bodo trajno izbrisana.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">S tem boste vse klepete trajno obrezali na najnovejše sporočilo.</item>
+        <item quantity="two">S tem boste vse klepete trajno obrezali na %1$s najnovejši sporočili.</item>
+        <item quantity="few">S tem boste vse klepete trajno obrezali na %1$s najnovejša sporočila.</item>
+        <item quantity="other">S tem boste vse klepete trajno obrezali na %1$s najnovejših sporočil.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">Več</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite nekaj besed o sebi …</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">No povej!</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">Nimam besed.</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">Prijaznost, pliz!</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">Za kofetek!</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">Za klepet!</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">Možgani na off</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">Delam na nečem …</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">Shrani</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">Izbriši</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">Izberi emoji</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Zaradi težav s povezljivostjo shranjevanje ni uspelo. Poskusite kasneje.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">Izberite uporabniško ime</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">Uporabniško ime</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">Izbriši</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">Prišlo je do napake na omrežju.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Preveč poskusov, poskusite znova pozneje.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">Uporabniško ime je že zasedeno.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">Uporabniška imena lahko vsebujejo samo znake a-Z, 0-9 in podčrtaje.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uporabniška imena se ne smejo začeti s števikami.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">Uporabniško ime je neveljavno.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uporabniška imena morajo vsebovati od %1$d in%2$d znakov.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">Ljudje vam lahko pošiljajo sporočila z uporabo vašega neobveznega uporabniškega imena namesto telefonske številke. Uporabniškim imenom vedno sledi niz številk. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">To uporabniško ime ni na voljo, poskusite z drugo številko.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Neveljavno uporabniško ime, vnesite najmanj %1$d številki.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Neveljavno uporabniško ime, vnesite največ %1$d številk.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Ta številka ne sme biti 00. Vnesite številko med 1 in 9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Številke z več kot dvema števkama se ne morejo začeti z 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Obnovitev vašega uporabniškega imena bo ponastavila vašo obstoječo QR kodo in povezavo. Ste prepričani?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Če spremenite svoje uporabniško ime, boste ponastavili obstoječo QR kodo in povezavo. Ste prepričani?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Nadaljuj</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">Shrani</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">Več o tem</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Vaš profil in spremembe na njem bodo vidne osebam, ki jim pošiljate sporočila, stikom in skupinam.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Posodobite aplikacijo Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Ta različica aplikacije Signal je potekla. Posodobite zdaj, če želite še naprej uporabljati Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Posodobitev</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Naprava ni registrirana</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Ta naprava ni več registrirana. Ponovno se registrirajte, če želite spreminjati svoj račun.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Ponovna prijava</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Zaradi težav s povezljivostjo shranjevanje ni uspelo. Poskusite kasneje.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Uporabniškega imena ni bilo mogoče izbrisati. Poskusite znova kasneje.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Želite izbrisati uporabniško ime?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"S tem boste odstranili svoje uporabniško ime ter onemogočili QR kodo in povezavo. “%1$s” bo na voljo drugim. Ste prepričani?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">Uredi fotografijo</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Delite svoje uporabniško ime</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Naj drugi začnejo klepet z vami tako, da delite svojo edinstveno QR kodo ali povezavo.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">Uporabniško ime je ustvarjeno</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Uporabniško ime izbrisano</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Ljudje vam lahko pošiljajo sporočila z uporabo vašega neobveznega uporabniškega imena namesto telefonske številke. Uporabniška imena imajo edinstveno QR kodo in povezavo, ki ju lahko delite s prijatelji.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Vaše uporabniško ime, QR koda in povezava niso vidni na vašem profilu. Svoje uporabniško ime delite samo z osebami, ki jim zaupate.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">Več</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">Nastavitev avatarja ni uspela</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR koda ali povezava</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">Ime profila</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">Uporabniško ime</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Uredi uporabniško ime</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Izbriši uporabniško ime</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">Profil</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">Določi avatar</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">Značke</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">Izbriši</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">Zapri</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">S podporo Signalu si pridobite značke za svoj profil.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je neprofitna organizacija brez oglaševalcev in investitorjev, podpirajo pa jo ljudje, kot ste vi.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">Postanite podpornik_ca</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">Značke</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">Moje značke</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Prikaži značke na profilu</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">Izpostavljene značke</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Posodobitev profila ni uspela</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Izpostavljene značke</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Izberi značko</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">Shrani</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Posodobitev profila ni uspela</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Vsakdo s to povezavo si lahko ogleda vaše uporabniško ime in začne klepet z vami. Delite jo samo z ljudmi, ki jim zaupate.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Kopiraj povezavo</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Deli</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">Koda</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">Skeniraj</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">Povezava je kopirana</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">Uporabniško ime je kopirano</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Želite ponastaviti QR kodo?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Če ponastavite svojo QR kodo, vaša obstoječa QR koda in povezava ne bosta več delovali.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Ponastavi</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nimate dostopa do omrežja. Vaša povezava ni bila ponastavljena. Poskusite znova kasneje.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Med poskusom ponastavitve povezave je prišlo do omrežne napake. Poskusite znova kasneje.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Pri poskusu ponastavitve povezave je prišlo do nepričakovane napake. Poskusite znova kasneje.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Vaša QR koda in povezava sta bili ponastavljeni in ustvarjeni sta bili nova QR koda in povezava.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">Svojo QR kodo in povezavo delite samo z osebami, ki jim zaupate. Ko jo delite, bodo drugi lahko videli vaše uporabniško ime in začeli klepet z vami.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">Ponastavi</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Povezava</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">Deli</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">Barva</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">QR koda je bila neveljavna.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Prišlo je do omrežne napake. Prosimo, poskusite znova.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR koda ni bila najdena</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Poskusite skenirati drugo sliko, ki vsebuje Signalovo QR kodo.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">Uporabnika_ce z uporabniškim imenom %1$s ni bilo mogoče najti.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">Skenirajte QR kodo na napravi vašega stika.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">Tega uporabnika ni bilo mogoče najti.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">Za skeniranje QR kode dovolite Signalu dostop do kamere.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">Dovoli dostop</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">Signal potrebuje dostop do kamere za optično branje QR kod</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">Pomnilnik</string>
+    <string name="preferences_storage__storage_usage">Poraba pomnilnika</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Shramba Signal</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizirajte shrambo Signal</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Neuporabljeni mediji bodo preneseni, vendar jih lahko kadarkoli prenesete iz varnostne kopije.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Omejitve klepeta</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Uporaba omejitev za povezane naprave</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Če je omejitev klepeta omogočena, se izbrišejo tudi sporočila iz povezanih naprav.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Izbriši zgodovino sporočil</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Želite izbrisati zgodovino sporočil?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">S tem boste nepovratno izbrisali celotno zgodovino pogovorov in medijskih datotek z vaše naprave.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">S tem boste trajno izbrisali vso zgodovino sporočil in medije iz te naprave in vseh povezanih naprav.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ali ste prepričani, da želite izbrisati celotno zgodovino pogovorov?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Celotna zgodovina vaših pogovorov bo za vedno izbrisana. Ta korak je nepovraten.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Vsa zgodovina sporočil bo trajno odstranjena iz vseh naprav. Ta korak je nepovraten.</string>
+    <string name="preferences_storage__delete_all_now">Izbriši vse zdaj</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimizacijo shranjevanja je mogoče uporabljati samo s plačljivo ravnjo Varne varnostne kopije Signal. Vaša naročnina na varnostno kopiranje je še vedno v obdelavi in še ni aktivna. Poskusite pozneje.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Mediji bodo odstranjeni iz varnostne kopije v vaši napravi</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Z vklopom možnosti »Optimiziraj pomnilnik Signal« bodo stari mediji odstranjeni iz vaše naprave. Kadarkoli je lahko ponovno prenesete. Prav tako bodo stari mediji odstranjeni iz varnostne kopije v vaši napravi.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Vklopi</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Zazvoni ali prikaži obvestilo, ko se začne klic v tem utišanem klepetu.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Zazvoni ali prikaži obvestilo, ko se začne klic v utišanih klepetih.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Obvesti me, ko me nekdo omeni v tem utišanem klepetu.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Obvesti me, ko me nekdo omeni v utišanih klepetih.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Obvesti me, ko nekdo odgovori na moje sporočilo v tem utišanem klepetu.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Obvesti me, ko nekdo odgovori na moje sporočilo v utišanih klepetih.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">Med utišanjem</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">Klici</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">Omembe</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">Odgovori</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Odpiranje izbirnika ni uspelo.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Če želite omogočiti obvestila, potrebuje Signal dovoljenje za njihov prikaz.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Vklopi</string>
+    <string name="NotificationsSettingsFragment__calls">Klici</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Oseba iz imenika se pridruži Signalu</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Ustvarite profil za prejemanje obvestil le od uporabnikov_ic in skupin po vaši izbiri.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Prikaži obvestilo, ko se telefonski stik pridruži Signalu</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Ponastavi nastavitve obvestil</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Želite ponastaviti vse nastavitve obvestil na privzete za vse klepete?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Ponastavi</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Ponastavite nastavitve obvestil na privzete, vključno z nastavitvami po meri za vaše klepete</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Zvoki</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Neznano zvonenje</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">Klici</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">Omembe</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">Profili za obvestila</string>
+    <string name="NotificationsSettingsScreen__notifications">Obvestila</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">Odgovori</string>
+    <string name="NotificationsSettingsScreen__silent">Tiho</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">Opomniki za neprebrana sporočila</string>
+    <string name="arrays__default">Privzeto</string>
+    <string name="arrays__high">Visoka</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">Najvišja</string>
+    <string name="arrays__name_and_message">Pošiljatelja in sporočilo</string>
+    <string name="arrays__name_only">Samo pošiljatelja</string>
+    <string name="arrays__no_name_or_message">Ne pošiljatelja ne sporočila</string>
+    <string name="preferences__blue">Modra</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Obvestila o klicih</string>
+    <string name="preferences__change_sound_and_vibration">Spremenite zvok in vibriranje</string>
+    <string name="preferences__customize">Prilagodi</string>
+    <string name="preferences__cyan">Svetlo modra</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Privzeto</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Vklop obvestil</string>
+    <string name="preferences__fast">Hitro</string>
+    <string name="preferences__five_times">Petkrat</string>
+    <string name="preferences__green">Zelena</string>
+    <string name="preferences__led_color">Barva LED</string>
+    <string name="preferences__magenta">Vijolična</string>
+    <string name="preferences__never">Nikoli</string>
+    <string name="preferences__normal">Normalno</string>
+    <string name="preferences__one_time">Enkrat</string>
+    <string name="preferences__orange">Oranžna</string>
+    <string name="preferences__pref_led_blink_title">Utripanje LED</string>
+    <string name="preferences__red">Rdeča</string>
+    <string name="preferences__repeat_alerts">Ponavljanje alarma</string>
+    <string name="preferences__slow">Počasi</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">Zvok</string>
+    <string name="preferences__ten_times">Desetkrat</string>
+    <string name="preferences__three_times">Trikrat</string>
+    <string name="preferences__two_times">Dvakrat</string>
+    <string name="preferences__vibrate">Vibriranje</string>
+    <string name="preferences__white">Bela</string>
+    <string name="preferences_notifications__in_chat_sounds">Zvoki znotraj klepeta</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Prikaži obvestila o odzivih na poslana sporočila</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Občasno me obvesti o neprebranih sporočilih v utišanih klepetih</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">Pomembnost</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Obvestila o odzivih</string>
+    <string name="preferences_notifications__ringtone">Zvonjenje</string>
+    <string name="preferences_notifications__show">Prikaži</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Odpravljanje težav z obvestili</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">Med utišanjem</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Dodaj</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Dovoljena obvestila</string>
 </resources>

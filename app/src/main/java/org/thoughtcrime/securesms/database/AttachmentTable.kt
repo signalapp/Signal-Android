@@ -27,27 +27,30 @@ import com.bumptech.glide.Glide
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.BackupDebugInfo
 import org.signal.blurhash.BlurHash
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.count
+import org.signal.core.database.delete
+import org.signal.core.database.deleteAll
+import org.signal.core.database.exists
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.backup.MediaId
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.Base64
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.bitmaps.BitmapDecodingException
 import org.signal.core.util.copyTo
-import org.signal.core.util.count
 import org.signal.core.util.crypto.AttachmentSecret
 import org.signal.core.util.crypto.ClassicDecryptingPartInputStream
 import org.signal.core.util.crypto.ModernDecryptingPartInputStream
 import org.signal.core.util.crypto.ModernEncryptingPartOutputStream
-import org.signal.core.util.delete
-import org.signal.core.util.deleteAll
 import org.signal.core.util.drain
-import org.signal.core.util.exists
 import org.signal.core.util.forEach
 import org.signal.core.util.groupBy
 import org.signal.core.util.isNull
@@ -55,6 +58,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
+import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
@@ -68,12 +72,10 @@ import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.requireString
-import org.signal.core.util.select
 import org.signal.core.util.toInt
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.network.api.AttachmentUploadResult
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
@@ -84,9 +86,14 @@ import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_MEDIA_KEY_BATCH_SIZE
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_THUMBNAIL_TRANSFER_STATE
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_TRANSFER_STATE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_HASH_END
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.MESSAGE_ID
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.PREUPLOAD_MESSAGE_ID
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.QUOTE_PENDING_RECONSTRUCTION
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.REMOTE_KEY
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.TRANSFER_PROGRESS_DONE
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
@@ -107,7 +114,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
@@ -120,7 +126,6 @@ import java.security.DigestInputStream
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.UUID
-import kotlin.text.appendLine
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -616,7 +621,7 @@ class AttachmentTable(
     return readableDatabase
       .select(*PROJECTION_WITH_METADATA)
       .from(TABLE_NAME_WITH_METADTA)
-      .where("$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL")
+      .where("$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND $DATA_RANDOM IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL")
       .orderBy("$TABLE_NAME.$ID DESC")
       .run()
       .readToList {
@@ -637,7 +642,7 @@ class AttachmentTable(
       .select(*PROJECTION_WITH_METADATA)
       .from("$TABLE_NAME_WITH_METADTA INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.${MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
       .where(
-        "$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL" +
+        "$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND $DATA_RANDOM IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL" +
           " AND ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0" +
           " AND ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} = 0"
       )
@@ -1492,7 +1497,8 @@ class AttachmentTable(
   /**
    * Returns sum of the file sizes of attachments that are not fully uploaded to the archive CDN.
    *
-   * Should be the same or subset of that returned by [getAttachmentsThatNeedArchiveUpload].
+   * Should be the same or subset of that returned by [getAttachmentsThatNeedArchiveUpload] and
+   * also match query in [areAnyAttachmentsPendingArchiveUpload].
    */
   fun getPendingArchiveUploadBytes(): Long {
     val archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})"
@@ -1508,6 +1514,26 @@ class AttachmentTable(
         """.trimIndent()
       )
       .readToSingleLong()
+  }
+
+  /**
+   * Whether any attachments are not fully uploaded to the archive CDN.
+   *
+   * Matches the rows summed by [getPendingArchiveUploadBytes], but stops at the first hit.
+   */
+  fun areAnyAttachmentsPendingArchiveUpload(): Boolean {
+    val archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})"
+    return readableDatabase
+      .rawQuery(
+        """
+          SELECT EXISTS (
+            SELECT 1
+            FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+            WHERE ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter)}
+          )
+        """.trimIndent()
+      )
+      .readToSingleBoolean()
   }
 
   fun areAnyThumbnailsPendingUpload(): Boolean {
@@ -2083,9 +2109,10 @@ class AttachmentTable(
           values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
           values.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
         } else {
-          // Clear archive cdn and transfer state so it can be re-archived with the new remote key/mediaName
+          // Clear archive cdn and transfer states so the data and thumbnail can be re-archived with the new remote key/mediaName
           values.putNull(ARCHIVE_CDN)
           values.put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.NONE.value)
+          values.put(ARCHIVE_THUMBNAIL_TRANSFER_STATE, ArchiveTransferState.NONE.value)
         }
       } else {
         values.put(DATA_FILE, fileWriteResult.file.absolutePath)
@@ -2271,9 +2298,10 @@ class AttachmentTable(
       DATA_SIZE to uploadResult.dataSize,
       DATA_HASH_END to dataHashEnd,
       UPLOAD_TIMESTAMP to uploadResult.uploadTimestamp,
-      BLUR_HASH to uploadResult.blurHash,
+      BLUR_HASH to (uploadResult.blurHash ?: uploadResult.audioHash),
       ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
-      ARCHIVE_CDN to null
+      ARCHIVE_CDN to null,
+      ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.NONE.value
     )
 
     val dataFilePath = getDataFilePath(id) ?: throw IOException("No data file found for attachment!")
@@ -2728,6 +2756,26 @@ class AttachmentTable(
     return readableDatabase.exists(TABLE_NAME)
       .where("$STICKER_PACK_ID = ?", stickerPackId)
       .run()
+  }
+
+  /**
+   * Returns the most recent fully downloaded attachment for the given sticker, if one exists.
+   */
+  fun getDownloadedStickerAttachment(stickerPackId: String, stickerId: Int): DatabaseAttachment? {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$STICKER_PACK_ID = ? AND $STICKER_ID = ? AND $QUOTE = 0 AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", stickerPackId, stickerId)
+      .orderBy("$ID DESC")
+      .limit(1)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToNext()) {
+          cursor.readAttachment()
+        } else {
+          null
+        }
+      }
   }
 
   fun getUnavailableStickerPacks(): Cursor {
@@ -3185,7 +3233,7 @@ class AttachmentTable(
         put(QUOTE_TARGET_CONTENT_TYPE, attachment.quoteTargetContentType)
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
         put(ATTACHMENT_UUID, attachment.uuid?.toString())
 
         attachment.stickerLocator?.let { sticker ->
@@ -3221,7 +3269,7 @@ class AttachmentTable(
   private fun insertQuoteAttachment(messageId: Long, attachment: Attachment): AttachmentId {
     Log.d(TAG, "[insertQuoteAttachment] Inserting quote attachment for messageId $messageId.")
 
-    val thumbnail = generateQuoteThumbnail(DecryptableUri(attachment.uri!!), attachment.contentType)
+    val thumbnail = generateQuoteThumbnail(DecryptableUri(attachment.uri!!, contentType = attachment.contentType), attachment.contentType)
     if (thumbnail != null) {
       Log.d(TAG, "[insertQuoteAttachment] Successfully generated quote thumbnail for messageId $messageId.")
 
@@ -3249,7 +3297,7 @@ class AttachmentTable(
         put(HEIGHT, attachment.height)
         put(QUOTE, 1)
         put(QUOTE_TARGET_CONTENT_TYPE, attachment.contentType)
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
         put(FILE_NAME, attachment.fileName)
 
         attachment.stickerLocator?.let { sticker ->
@@ -3287,20 +3335,15 @@ class AttachmentTable(
         }
 
         MediaUtil.isVideoType(contentType) -> {
-          val videoThumbnail = MediaUtil.getVideoThumbnail(context, uri.uri)
-          if (videoThumbnail != null) {
-            ImageCompressionUtil.compress(
-              context,
-              MediaUtil.IMAGE_JPEG,
-              MediaUtil.IMAGE_JPEG,
-              uri,
-              QUOTE_THUMBNAIL_DIMEN,
-              QUOTE_THUMBAIL_QUALITY
-            )
-          } else {
-            Log.w(TAG, "[generateQuoteThumbnail] Failed to extract video thumbnail")
-            null
-          }
+          // Loading the video uri through Glide extracts a frame from it.
+          ImageCompressionUtil.compress(
+            context,
+            MediaUtil.IMAGE_JPEG,
+            MediaUtil.IMAGE_JPEG,
+            uri,
+            QUOTE_THUMBNAIL_DIMEN,
+            QUOTE_THUMBAIL_QUALITY
+          )
         }
 
         else -> {
@@ -3361,7 +3404,7 @@ class AttachmentTable(
         put(ARCHIVE_TRANSFER_STATE, if (attachment.archiveCdn != null) ArchiveTransferState.FINISHED.value else ArchiveTransferState.NONE.value)
         put(THUMBNAIL_RESTORE_STATE, if (attachment.archiveCdn != null) ThumbnailRestoreState.NEEDS_RESTORE.value else ThumbnailRestoreState.NONE.value)
         put(ATTACHMENT_UUID, attachment.uuid?.toString())
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
 
         if (plaintextHash != null) {
           put(DATA_HASH_START, plaintextHash)
@@ -4542,7 +4585,7 @@ class AttachmentTable(
         appendLine("Media names with thumbnails count: $mediaNamesWithThumbnailsCount")
         appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
         appendLine("Last snapshot full-size count: $lastSnapshotFullSizeCount")
-        appendLine("Last snapshot thumbnail count : $lastSnapshotFullSizeCount")
+        appendLine("Last snapshot thumbnail count : $lastSnapshotThumbnailCount")
         appendLine("Uploaded attachment bytes: $uploadedAttachmentBytes")
         appendLine("Uploaded thumbnail bytes: $uploadedThumbnailBytes")
         appendLine("Total upload count: $totalUploadCount")
@@ -4570,7 +4613,7 @@ class AttachmentTable(
         appendLine("Total unique data files: $totalUniqueDataFiles")
         appendLine("Total unique media names: $totalUniqueMediaNames")
         appendLine("Last snapshot full-size count: $lastSnapshotFullSizeCount")
-        appendLine("Last snapshot thumbnail count : $lastSnapshotFullSizeCount")
+        appendLine("Last snapshot thumbnail count : $lastSnapshotThumbnailCount")
         appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
 
         if (archiveStatusMediaNameCounts.isNotEmpty()) {

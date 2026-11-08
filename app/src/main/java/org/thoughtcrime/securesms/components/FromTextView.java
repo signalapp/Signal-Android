@@ -10,13 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.ContextUtil;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.DrawableUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.util.SpanUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.SpanUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 public class FromTextView extends SimpleEmojiTextView {
 
@@ -63,7 +63,7 @@ public class FromTextView extends SimpleEmojiTextView {
       builder.append(suffix);
     }
 
-    if (asThread && recipient.getShowVerified()) {
+    if (asThread && recipient.getShowVerified() && !showSelfAsYou) {
       Drawable official = ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_20);
       official.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(20));
 

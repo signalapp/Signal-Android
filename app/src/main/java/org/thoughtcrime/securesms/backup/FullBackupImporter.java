@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.backup;
 
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,9 +12,15 @@ import androidx.annotation.VisibleForTesting;
 
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
-import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.SqlUtil;
+import org.signal.core.database.SqlUtil;
+import org.signal.core.models.recipients.RecipientId;
+import org.signal.core.util.Util;
+import org.signal.core.util.crypto.AttachmentSecret;
+import org.signal.core.util.crypto.ModernEncryptingPartOutputStream;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
+import org.signal.storage.keyvalue.KeyValueDataSet;
+import org.signal.storage.keyvalue.KeyValueDatabase;
 import org.thoughtcrime.securesms.backup.proto.Attachment;
 import org.thoughtcrime.securesms.backup.proto.Avatar;
 import org.thoughtcrime.securesms.backup.proto.BackupFrame;
@@ -24,24 +29,20 @@ import org.thoughtcrime.securesms.backup.proto.KeyValue;
 import org.thoughtcrime.securesms.backup.proto.SharedPreference;
 import org.thoughtcrime.securesms.backup.proto.SqlStatement;
 import org.thoughtcrime.securesms.backup.proto.Sticker;
-import org.signal.core.util.crypto.AttachmentSecret;
-import org.signal.core.util.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.EmojiSearchTable;
-import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.KyberPreKeyTable;
 import org.thoughtcrime.securesms.database.LastResortKeyTupleTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
 import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.SignedPreKeyTable;
 import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BackupUtil;
-import org.signal.core.util.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -140,6 +141,7 @@ public class FullBackupImporter extends FullBackupBase {
         else                            count--;
       }
 
+      deleteOrphanedCalls(db);
       db.setTransactionSuccessful();
       keyValueDatabase.setTransactionSuccessful();
     } finally {
@@ -160,6 +162,23 @@ public class FullBackupImporter extends FullBackupBase {
     }
 
     EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count, 0));
+  }
+
+  /**
+   * Old backups could contain unproperly expired calls so we clear them out now
+   */
+  private static void deleteOrphanedCalls(@NonNull SQLiteDatabase db) {
+    if (!SqlUtil.tableExists(db, CallTable.TABLE_NAME) || !SqlUtil.tableExists(db, MessageTable.TABLE_NAME)) {
+      return;
+    }
+
+    int deleted = db.delete(CallTable.TABLE_NAME,
+                            CallTable.MESSAGE_ID + " NOT NULL AND " + CallTable.MESSAGE_ID + " NOT IN (SELECT " + MessageTable.ID + " FROM " + MessageTable.TABLE_NAME + ")",
+                            null);
+
+    if (deleted > 0) {
+      Log.w(TAG, "Deleted " + deleted + " calls that referenced a message missing from the backup.");
+    }
   }
 
   private static @NonNull InputStream getInputStream(@NonNull Context context, @NonNull Uri uri) throws IOException{

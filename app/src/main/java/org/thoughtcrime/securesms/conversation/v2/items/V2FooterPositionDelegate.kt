@@ -7,12 +7,13 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
 import android.widget.Space
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.ui.view.Stub
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.DeliveryStatusView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.visible
 import kotlin.math.max
@@ -144,7 +145,11 @@ class V2FooterPositionDelegate private constructor(
   }
 
   private fun getFooterWidth(): Int {
-    return footerViews.sumOf { it.measuredWidth + ViewUtil.getLeftMargin(it) + ViewUtil.getRightMargin(it) }
+    return footerViews.sumOf { it.footerWidth() + ViewUtil.getLeftMargin(it) + ViewUtil.getRightMargin(it) }
+  }
+
+  private fun View.footerWidth(): Int {
+    return if (this is DeliveryStatusView) reservedWidth else measuredWidth
   }
 
   private enum class DisplayState {

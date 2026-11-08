@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 9.2.1" type="baseline" client="gradle" dependencies="false" name="AGP (9.2.1)" variant="all" version="9.2.1">
-
-    <issue
-        id="SoonBlockedPrivateApi"
-        message="Reflective access to mAttachInfo will throw an exception when targeting API 35 and above"
-        errorLine1="      Field attachInfoField = View.class.getDeclaredField(&quot;mAttachInfo&quot;);"
-        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/components/KeyboardAwareLinearLayout.java"
-            line="157"
-            column="31"/>
-    </issue>
+<issues format="6" by="lint 9.4.0" type="baseline" client="gradle" dependencies="false" name="AGP (9.4.0)" variant="all" version="9.4.0">
 
     <issue
         id="ThreadConstraint"
@@ -19,7 +8,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/v2/ConversationFragment.kt"
-            line="710"
+            line="786"
             column="5"/>
     </issue>
 
@@ -30,7 +19,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/v2/ConversationFragment.kt"
-            line="1767"
+            line="1850"
             column="5"/>
     </issue>
 
@@ -41,30 +30,8 @@
         errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/v2/ConversationFragment.kt"
-            line="5014"
+            line="5195"
             column="7"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@WorkerThread`, incompatible with earlier code that must run from `@{Main,Ui}Thread`"
-        errorLine1="    setBodyText(messageRecord, searchQuery, isMessageRequestAccepted);"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="432"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@WorkerThread`, incompatible with earlier code that must run from `@{Main,Ui}Thread`"
-        errorLine1="    setStoryReactionLabel(messageRecord);"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="444"
-            column="5"/>
     </issue>
 
     <issue
@@ -74,7 +41,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="588"
+            line="589"
             column="9"/>
     </issue>
 
@@ -85,7 +52,7 @@
         errorLine2="                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="702"
+            line="707"
             column="47"/>
     </issue>
 
@@ -96,7 +63,7 @@
         errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="769"
+            line="785"
             column="7"/>
     </issue>
 
@@ -107,40 +74,7 @@
         errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="770"
-            column="7"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="      bodyText.setOverflowText(null);"
-        errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="1159"
-            column="7"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="      if (hasExtraText(messageRecord)) {"
-        errorLine2="      ^">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="1186"
-            column="7"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="      bodyText.setTextAsync(StringUtil.trim(styledText));"
-        errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="1206"
+            line="786"
             column="7"/>
     </issue>
 
@@ -151,19 +85,8 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="1364"
+            line="1427"
             column="9"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Condition must run from `@WorkerThread`, while branches must run from `@{Main,Ui}Thread`"
-        errorLine1="    } else if (hasNoBubble(messageRecord)) {"
-        errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="1476"
-            column="16"/>
     </issue>
 
     <issue
@@ -173,52 +96,19 @@
         errorLine2="      ^">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="1503"
+            line="1568"
             column="7"/>
     </issue>
 
     <issue
         id="ThreadConstraint"
-        message="Branch must run from `@WorkerThread`, incompatible with the other that must run from `@{Main,Ui}Thread`"
-        errorLine1="    } else if (isGiftMessage(messageRecord)) {"
-        errorLine2="           ^">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="1543"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
         message="Statement must run from `@WorkerThread`, incompatible with earlier code that must run from `@{Main,Ui}Thread`"
-        errorLine1="        if (jobId != null) {"
-        errorLine2="        ^">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="2820"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@WorkerThread`, incompatible with earlier code that must run from `@{Main,Ui}Thread`"
-        errorLine1="        launchMediaPreview(v, slide);"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationItem.java"
-            line="2900"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="  {"
-        errorLine2="  ^">
+        errorLine1="    setSelectedConversations(selectedConversations);"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversationlist/ConversationListItem.java"
-            line="232"
-            column="3"/>
+            line="290"
+            column="5"/>
     </issue>
 
     <issue
@@ -228,7 +118,7 @@
         errorLine2="  ^">
         <location
             file="src/main/java/org/thoughtcrime/securesms/conversation/ConversationUpdateItem.java"
-            line="194"
+            line="196"
             column="3"/>
     </issue>
 
@@ -250,7 +140,7 @@
         errorLine2="                                      ~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/profiles/manage/EditAboutFragment.java"
-            line="122"
+            line="125"
             column="39"/>
     </issue>
 
@@ -261,7 +151,7 @@
         errorLine2="                                                            ~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/profiles/manage/EditAboutFragment.java"
-            line="123"
+            line="126"
             column="61"/>
     </issue>
 
@@ -272,19 +162,8 @@
         errorLine2="      ^">
         <location
             file="src/main/java/org/thoughtcrime/securesms/profiles/manage/EditProfileFragment.kt"
-            line="213"
+            line="216"
             column="7"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="    if (avatarProgress == null &amp;&amp; avatarState.loadingState == EditProfileViewModel.LoadingState.LOADING) {"
-        errorLine2="    ^">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/profiles/manage/EditProfileFragment.kt"
-            line="226"
-            column="5"/>
     </issue>
 
     <issue
@@ -294,7 +173,7 @@
         errorLine2="                                     ~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/profiles/manage/EditProfileNameFragment.java"
-            line="54"
+            line="57"
             column="38"/>
     </issue>
 
@@ -305,7 +184,7 @@
         errorLine2="                                      ~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/profiles/manage/EditProfileNameFragment.java"
-            line="55"
+            line="58"
             column="39"/>
     </issue>
 
@@ -349,7 +228,7 @@
         errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/scribbles/ImageEditorFragment.java"
-            line="218"
+            line="217"
             column="41"/>
     </issue>
 
@@ -360,19 +239,8 @@
         errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/mediapreview/ImageMediaPreviewPageFragment.java"
-            line="53"
+            line="56"
             column="22"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="      text.setTextAsync(body);"
-        errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/longmessage/LongMessageFragment.java"
-            line="134"
-            column="7"/>
     </issue>
 
     <issue
@@ -404,7 +272,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
-            line="126"
+            line="124"
             column="5"/>
     </issue>
 
@@ -415,7 +283,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
-            line="254"
+            line="252"
             column="5"/>
     </issue>
 
@@ -426,41 +294,8 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
-            line="279"
+            line="277"
             column="5"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Call must be from `@WorkerThread`, but super method `Fragment.onViewCreated(…)` is allowing `@{Main,Ui}Thread`"
-        errorLine1="    videoEditorFragment = ensureVideoEditorFragment()"
-        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/mediasend/v2/videos/MediaReviewVideoPageFragment.kt"
-            line="27"
-            column="27"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@WorkerThread`, incompatible with earlier code that must run from `@{Main,Ui}Thread`"
-        errorLine1="    if (initialMedia.isNotEmpty()) {"
-        errorLine2="    ^">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/mediasend/v2/MediaSelectionViewModel.kt"
-            line="105"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="        isJumboji = candidates != null &amp;&amp; candidates.allEmojis &amp;&amp; candidates.size() &lt;= JumboEmoji.MAX_JUMBOJI_COUNT &amp;&amp; (candidates.hasJumboForAll() || JumboEmoji.canDownloadJumbo(context));"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/database/model/MessageRecord.java"
-            line="918"
-            column="9"/>
     </issue>
 
     <issue
@@ -470,18 +305,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/org/thoughtcrime/securesms/PassphraseRequiredActivity.java"
-            line="72"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="    setQuoteText(resolveBody(body, quoteType), slide, originalMissing, storyReaction, quoteTargetContentType);"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/components/QuoteView.java"
-            line="234"
+            line="78"
             column="5"/>
     </issue>
 
@@ -493,50 +317,6 @@
         <location
             file="src/main/java/org/thoughtcrime/securesms/components/QuoteView.java"
             line="273"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="    for (Reaction reaction : reactions) {"
-        errorLine2="    ^">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/reactions/ReactionsConversationView.java"
-            line="133"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="      reaction.setImageEmoji(model.reaction.emoji)"
-        errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/stories/viewer/reply/group/StoryGroupReplyItem.kt"
-            line="273"
-            column="7"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="        presentCaption(caption, largeCaption, largeCaptionOverlay, post)"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/stories/viewer/page/StoryViewerPageFragment.kt"
-            line="449"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@{Main,Ui}Thread`, incompatible with earlier code that must run from `@WorkerThread`"
-        errorLine1="    if (record.hasExtraText()) {"
-        errorLine2="    ^">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/conversation/v2/items/V2ConversationItemTextOnlyViewHolder.kt"
-            line="422"
             column="5"/>
     </issue>
 

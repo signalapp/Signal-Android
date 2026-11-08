@@ -9,6 +9,8 @@ import assertk.assertThat
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import com.bumptech.glide.load.Options
+import com.bumptech.glide.load.engine.GlideException
+import org.junit.Assert.assertThrows
 import org.junit.Test
 import org.signal.glide.common.io.InputStreamFactory
 import java.io.ByteArrayInputStream
@@ -24,7 +26,7 @@ class WebpSanStreamFactoryDecoderTest {
     )
   }
 
-  private val decoder = WebpSanStreamFactoryDecoder()
+  private val decoder = WebpSanStreamFactoryDecoder<Any>()
 
   @Test
   fun `handles - non-webp data is not blocked`() {
@@ -57,6 +59,13 @@ class WebpSanStreamFactoryDecoderTest {
     }
 
     assertThat(decoder.handles(factory, Options())).isTrue()
+  }
+
+  @Test
+  fun `decode - throws GlideException so that Glide aborts the decode path`() {
+    assertThrows(GlideException::class.java) {
+      decoder.decode(VALID_WEBP.asStreamFactory(), 100, 100, Options())
+    }
   }
 
   private fun ByteArray.asStreamFactory(): InputStreamFactory {

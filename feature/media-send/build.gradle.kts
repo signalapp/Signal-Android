@@ -24,6 +24,19 @@ android {
   }
 }
 
+screenshotTests {
+  // Fraction of differing pixels tolerated before a screenshot test fails (0.0001 = 0.01%).
+  imageDifferenceThreshold = 0.0001f
+}
+
+// The screenshot validation task compares every reference image in a single forked JVM, which
+// exhausts the default heap once a module has many previews. Give it more room.
+tasks.withType<Test>().configureEach {
+  if (name.contains("ScreenshotTest")) {
+    maxHeapSize = "4g"
+  }
+}
+
 dependencies {
   lintChecks(project(":lintchecks"))
   ktlintRuleset(libs.ktlint.twitter.compose)
@@ -31,10 +44,10 @@ dependencies {
   // Project dependencies
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
-  implementation(project(":core:models"))
   implementation(project(":lib:image-editor"))
   implementation(project(":lib:glide"))
   implementation(project(":lib:video"))
+  implementation(project(":lib:remote-config"))
   implementation(project(":feature:camera"))
 
   // Compose BOM
@@ -75,6 +88,7 @@ dependencies {
 
   // Testing
   testImplementation(testFixtures(project(":core:ui")))
+  testImplementation(testFixtures(project(":lib:remote-config")))
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockk)
   testImplementation(testLibs.assertk)

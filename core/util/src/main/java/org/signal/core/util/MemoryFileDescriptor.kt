@@ -152,6 +152,9 @@ class MemoryFileDescriptor private constructor(
 
       if (fd < 0) {
         Log.w(TAG, "Failed to create file descriptor: $fd")
+        synchronized(MemoryFileDescriptor::class.java) {
+          sizeOfAllMemoryFileDescriptors -= sizeEstimate
+        }
         throw MemoryFileCreationException()
       }
 

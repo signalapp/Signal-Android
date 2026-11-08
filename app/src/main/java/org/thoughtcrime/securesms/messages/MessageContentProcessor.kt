@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.messages
 
 import android.content.Context
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Util
+import org.signal.core.util.groups.GroupChangeBusyException
+import org.signal.core.util.groups.GroupNotAMemberException
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
@@ -10,6 +13,7 @@ import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
@@ -18,10 +22,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult.UpdateStatus
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob
@@ -43,12 +45,9 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toDecryptionEr
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.SignalTrace
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -372,7 +371,6 @@ open class MessageContentProcessor(private val context: Context) {
     val earlyCacheEntries: List<EarlyMessageCacheEntry>? = AppDependencies
       .earlyMessageCache
       .retrieve(senderRecipient.id, envelope.clientTimestamp!!)
-      .orNull()
 
     if (!processingEarlyContent && earlyCacheEntries != null) {
       log(envelope.clientTimestamp!!, "Found " + earlyCacheEntries.size + " dependent item(s) that were retrieved earlier. Processing.")
@@ -386,7 +384,7 @@ open class MessageContentProcessor(private val context: Context) {
   fun processException(messageState: MessageState, exceptionMetadata: ExceptionMetadata, timestamp: Long) {
     val sender = Recipient.external(exceptionMetadata.sender)
 
-    if (sender == null) {
+    if (sender == null || sender.isUnknown) {
       warn("Failed to create Recipient for identifier: $messageState")
       return
     }
@@ -519,7 +517,6 @@ open class MessageContentProcessor(private val context: Context) {
 
       content.receiptMessage != null -> {
         ReceiptMessageProcessor.process(
-          context,
           senderRecipient,
           envelope,
           content,
@@ -582,7 +579,7 @@ open class MessageContentProcessor(private val context: Context) {
     typingMessage: TypingMessage,
     senderRecipient: Recipient
   ) {
-    if (!TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
+    if (!SignalStore.settings.isTypingIndicatorsEnabled) {
       return
     }
 
@@ -744,7 +741,7 @@ open class MessageContentProcessor(private val context: Context) {
       )
     } else if (archivedSession) {
       warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Could not find an entry in the MSL, but we archived the session, so we're sending a null message to complete the reset.")
-      AppDependencies.jobManager.add(NullMessageSendJob(requester.id))
+      AppDependencies.jobManager.add(NullMessageSendJob.forRetryReceipt(requester.id))
     } else {
       warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Could not find an entry in the MSL. Skipping.")
     }

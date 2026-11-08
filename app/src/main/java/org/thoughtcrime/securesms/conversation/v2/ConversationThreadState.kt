@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.conversation.v2
 import org.signal.paging.ObservablePagedData
 import org.thoughtcrime.securesms.conversation.ConversationData
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
+import org.thoughtcrime.securesms.conversation.v2.data.SharedContactMessages
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
 /**
@@ -16,5 +17,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
  */
 class ConversationThreadState(
   val items: ObservablePagedData<ConversationElementKey, MappingModel<*>>,
-  val meta: ConversationData
+  val meta: ConversationData,
+  val sharedContactMessages: SharedContactMessages = SharedContactMessages()
 )

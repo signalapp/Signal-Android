@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import org.signal.core.util.update
+import org.signal.core.database.update
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import java.util.concurrent.TimeUnit
 

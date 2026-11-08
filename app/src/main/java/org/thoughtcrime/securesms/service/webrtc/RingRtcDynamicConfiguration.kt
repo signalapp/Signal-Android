@@ -2,11 +2,11 @@ package org.thoughtcrime.securesms.service.webrtc
 
 import android.os.Build
 import org.signal.core.util.isNotNullOrBlank
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.AudioConfig
 import org.signal.ringrtc.SvcConfig
 import org.signal.ringrtc.VideoConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceConfig
 import java.io.File
 
@@ -80,6 +80,11 @@ object RingRtcDynamicConfiguration {
   fun getStatsIntervalSecs(): Int? {
     val secs = SignalStore.internal.callingStatsIntervalSecs
     return if (secs != 0) secs else null
+  }
+
+  @JvmStatic
+  fun getMinimumCaptureFps(): Int {
+    return SignalStore.internal.callingMinimumCaptureFps.coerceAtLeast(0)
   }
 
   private fun getSoCInfo(): Pair<String, String> {

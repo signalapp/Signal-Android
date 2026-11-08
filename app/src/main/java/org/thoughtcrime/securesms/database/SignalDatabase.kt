@@ -5,11 +5,14 @@ import android.content.Context
 import androidx.annotation.VisibleForTesting
 import androidx.sqlite.db.SupportSQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.crypto.AttachmentSecret
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
+import org.signal.storage.database.DatabaseSecret
+import org.signal.storage.database.SignalDatabaseOpenHelper
+import org.signal.storage.database.SqlCipherDatabaseHook
+import org.signal.storage.database.SqlCipherErrorHandler
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runInTransaction
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
 import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase
@@ -20,11 +23,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   SQLiteOpenHelper(
     context,
     name,
-    databaseSecret.asString(),
+    databaseSecret.asHex(),
     null,
     SignalDatabaseMigrations.DATABASE_VERSION,
     0,
-    SqlCipherErrorHandler(context, name),
+    SqlCipherErrorHandler(context, name) { db -> messageSearch.rebuildIndex(db) },
     SqlCipherDatabaseHook(),
     true
   ),
@@ -206,9 +209,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   open val signalWritableDatabase: SignalSQLiteDatabase
     get() = SignalSQLiteDatabase(super.writableDatabase)
 
-  override fun getSqlCipherDatabase(): net.zetetic.database.sqlcipher.SQLiteDatabase {
-    return super.writableDatabase
-  }
+  override val sqlCipherDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
+    get() = super.writableDatabase
 
   open fun markCurrent(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.version = SignalDatabaseMigrations.DATABASE_VERSION

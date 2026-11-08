@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
-import org.whispersystems.signalservice.internal.push.PushServiceSocket.RegistrationLockFailure
+import org.whispersystems.signalservice.internal.push.RegistrationLockFailure
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 
 /**

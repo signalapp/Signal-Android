@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.chats.folders
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.paged.ChatType
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Information about chat folders. Used in [ChatFoldersViewModel].

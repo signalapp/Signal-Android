@@ -10,9 +10,9 @@ import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.logging.Log
 import org.signal.network.service.ArchiveCacheStore
+import org.signal.storage.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import kotlin.time.Duration
@@ -86,7 +86,7 @@ object SignalStoreArchiveCacheStore : ArchiveCacheStore {
 
     override fun add(credentials: List<ArchiveServiceCredential>) = store.add(credentials)
 
-    override fun clearOlderThan(startOfDayInSeconds: Long) = store.clearOlderThan(startOfDayInSeconds)
+    override fun clearOlderThan(currentTime: Duration) = store.clearOlderThan(currentTime)
 
     override fun clearAll() = store.clearAll()
 

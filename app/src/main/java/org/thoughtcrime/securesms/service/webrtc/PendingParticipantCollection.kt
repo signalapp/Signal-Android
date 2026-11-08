@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.service.webrtc
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 

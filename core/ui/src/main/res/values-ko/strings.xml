@@ -18,8 +18,93 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">권한 필요</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">창 크기 조절하기</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">구분선 이동하기</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">계속을 탭하고 휴대폰 잠금을 풀어 확인하세요. Signal PIN을 입력하지 마세요.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">계속</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">닫기</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">위로 탐색</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">즐겨찾기에 추가하기</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">즐겨찾기에서 삭제하기</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">즐겨찾기에서 삭제할까요?</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">스티커 팩을 설치하지 않았거나, 링크 또는 스티커 메시지가 없으면 다시 전송하거나 즐겨찾기에 추가할 수 없습니다.</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">삭제</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">없음</string>
+    <string name="preferences_off">꺼짐</string>
+    <string name="preferences_on">켜짐</string>
+    <string name="ExpireTimerSettingsFragment__set">설정</string>
+    <string name="CustomExpireTimerSelectorView__seconds">초</string>
+    <string name="CustomExpireTimerSelectorView__minutes">분</string>
+    <string name="CustomExpireTimerSelectorView__hours">시간</string>
+    <string name="CustomExpireTimerSelectorView__days">일</string>
+    <string name="CustomExpireTimerSelectorView__weeks">주</string>
+    <!-- expiration -->
+    <string name="expiration_off">꺼짐</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="other">%1$d초</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$d초</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="other">%1$d분</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$d분</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="other">%1$d시간</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$d시간</string>
+
+    <plurals name="expiration_days">
+        <item quantity="other">%1$d일</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$d일</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="other">%1$d주</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$d주</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">자세히 알아보기</string>
+
+    <string name="SpanUtil__read_more">더 읽기</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">문자 입력으로 전환하기</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">시계로 전환하기</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">%1$s 님 삭제하기</string>
 </resources>

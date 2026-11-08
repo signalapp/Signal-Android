@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.crypto;
 
 
+import org.signal.core.util.crypto.InvalidCiphertextException;
 import org.conscrypt.Conscrypt;
 import org.junit.Test;
 import org.signal.libsignal.zkgroup.InvalidInputException;

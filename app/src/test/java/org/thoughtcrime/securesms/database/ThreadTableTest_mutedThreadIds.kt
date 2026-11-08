@@ -12,10 +12,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.components.settings.app.notifications.ReminderType
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
+import kotlin.time.Duration.Companion.days
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -31,60 +31,63 @@ class ThreadTableTest_mutedThreadIds {
   fun setUp() {
     contactId = recipients.createRecipient("Alice Android")
     threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(contactId))
+    SignalDatabase.threads.markAsActiveEarly(threadId)
     SignalDatabase.recipients.setMuted(contactId, Long.MAX_VALUE)
   }
 
-  private fun globalDefaults(unreadReminder: Boolean = true, calls: Boolean = false, mentions: Boolean = true, replies: Boolean = true) {
+  private fun globalDefaults(unreadReminder: Boolean = true, mentions: Boolean = true, replies: Boolean = true) {
     every { recipients.signalStore.settings.unreadReminderEnabled } returns unreadReminder
-    every { recipients.signalStore.settings.allowCallsWhileMuted } returns calls
     every { recipients.signalStore.settings.allowMentionsWhileMuted } returns mentions
     every { recipients.signalStore.settings.allowRepliesWhileMuted } returns replies
   }
 
-  private fun isMutedFor(reminderType: ReminderType): Boolean {
-    return threadId in SignalDatabase.threads.getMutedThreadIds(reminderType)
+  private fun isMutedFor(threshold: Long = 0): Boolean {
+    return threadId in SignalDatabase.threads.getMutedThreadIds(threshold)
   }
 
   @Test
   fun `allow-by-default plus system-default recipient setting includes the thread`() {
     globalDefaults(unreadReminder = true)
     SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.SYSTEM_DEFAULT)
-    assertThat(isMutedFor(ReminderType.MESSAGES)).isTrue()
+    SignalDatabase.threads.incrementUnread(threadId, 1, 1)
+    assertThat(isMutedFor()).isTrue()
   }
 
   @Test
   fun `allow-by-default plus an explicit opt-out excludes the thread`() {
     globalDefaults(unreadReminder = true)
     SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.DO_NOT_NOTIFY)
-    assertThat(isMutedFor(ReminderType.MESSAGES)).isFalse()
+    assertThat(isMutedFor()).isFalse()
   }
 
   @Test
   fun `allow-by-default plus an explicit always-allow includes the thread`() {
     globalDefaults(unreadReminder = true)
     SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    assertThat(isMutedFor(ReminderType.MESSAGES)).isTrue()
+    SignalDatabase.threads.incrementUnread(threadId, 1, 1)
+    assertThat(isMutedFor()).isTrue()
   }
 
   @Test
   fun `always-allow-required plus system-default recipient setting excludes the thread`() {
     globalDefaults(unreadReminder = false)
     SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.SYSTEM_DEFAULT)
-    assertThat(isMutedFor(ReminderType.MESSAGES)).isFalse()
+    assertThat(isMutedFor()).isFalse()
   }
 
   @Test
   fun `always-allow-required plus an explicit opt-out excludes the thread`() {
     globalDefaults(unreadReminder = true)
     SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.DO_NOT_NOTIFY)
-    assertThat(isMutedFor(ReminderType.MESSAGES)).isFalse()
+    assertThat(isMutedFor()).isFalse()
   }
 
   @Test
   fun `always-allow-required plus an explicit always-allow includes the thread`() {
     globalDefaults(unreadReminder = false)
     SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    assertThat(isMutedFor(ReminderType.MESSAGES)).isTrue()
+    SignalDatabase.threads.incrementUnread(threadId, 1, 1)
+    assertThat(isMutedFor()).isTrue()
   }
 
   @Test
@@ -92,7 +95,31 @@ class ThreadTableTest_mutedThreadIds {
     globalDefaults(unreadReminder = true)
     SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
     SignalDatabase.recipients.setMuted(contactId, 0L)
-    assertThat(isMutedFor(ReminderType.MESSAGES)).isFalse()
+    assertThat(isMutedFor()).isFalse()
+  }
+
+  @Test
+  fun `a thread reminded within the last three days is excluded`() {
+    globalDefaults(unreadReminder = true)
+    SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
+    SignalDatabase.threads.setUnreadReminderTime(threadId, System.currentTimeMillis())
+    assertThat(isMutedFor(3.days.inWholeMilliseconds)).isFalse()
+  }
+
+  @Test
+  fun `a thread reminded more than three days ago is included again`() {
+    globalDefaults(unreadReminder = true)
+    SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
+    SignalDatabase.threads.setUnreadReminderTime(threadId, System.currentTimeMillis() - 4.days.inWholeMilliseconds)
+    SignalDatabase.threads.incrementUnread(threadId, 1, 1)
+    assertThat(isMutedFor(3.days.inWholeMilliseconds)).isTrue()
+  }
+
+  @Test
+  fun `a thread that does not have any unread is not included`() {
+    globalDefaults(unreadReminder = true)
+    SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
+    assertThat(isMutedFor()).isFalse()
   }
 
   @Test
@@ -100,76 +127,6 @@ class ThreadTableTest_mutedThreadIds {
     globalDefaults(unreadReminder = true)
     SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
     SignalDatabase.threads.setArchived(setOf(threadId), true)
-    assertThat(isMutedFor(ReminderType.MESSAGES)).isFalse()
-  }
-
-  @Test
-  fun `calls, allow-by-default false, require an explicit always-allow for calls specifically`() {
-    globalDefaults(unreadReminder = true, calls = false)
-    SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-
-    SignalDatabase.recipients.setCallNotificationSetting(contactId, RecipientTable.NotificationSetting.SYSTEM_DEFAULT)
-    assertThat(isMutedFor(ReminderType.CALLS)).isFalse()
-
-    SignalDatabase.recipients.setCallNotificationSetting(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    assertThat(isMutedFor(ReminderType.CALLS)).isTrue()
-  }
-
-  @Test
-  fun `calls, allow-by-default true, an explicit opt-out for calls specifically still excludes it`() {
-    globalDefaults(unreadReminder = true, calls = true)
-    SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-
-    SignalDatabase.recipients.setCallNotificationSetting(contactId, RecipientTable.NotificationSetting.DO_NOT_NOTIFY)
-    assertThat(isMutedFor(ReminderType.CALLS)).isFalse()
-
-    SignalDatabase.recipients.setCallNotificationSetting(contactId, RecipientTable.NotificationSetting.SYSTEM_DEFAULT)
-    assertThat(isMutedFor(ReminderType.CALLS)).isTrue()
-  }
-
-  @Test
-  fun `mentions are excluded for a 1-to-1 thread no matter the notification settings`() {
-    globalDefaults(unreadReminder = true, mentions = true)
-    SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    SignalDatabase.recipients.setMentionSetting(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    assertThat(isMutedFor(ReminderType.MENTIONS)).isFalse()
-  }
-
-  @Test
-  fun `mentions in a muted GV2 group thread follow the same allow-by-default vs always-allow rule`() {
-    val group = recipients.createGroup()
-    val groupThreadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(group.recipientId))
-    SignalDatabase.recipients.setMuted(group.recipientId, Long.MAX_VALUE)
-    SignalDatabase.recipients.setUnreadReminder(group.recipientId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    globalDefaults(unreadReminder = true, mentions = false)
-
-    SignalDatabase.recipients.setMentionSetting(group.recipientId, RecipientTable.NotificationSetting.SYSTEM_DEFAULT)
-    assertThat(groupThreadId in SignalDatabase.threads.getMutedThreadIds(ReminderType.MENTIONS)).isFalse()
-
-    SignalDatabase.recipients.setMentionSetting(group.recipientId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    assertThat(groupThreadId in SignalDatabase.threads.getMutedThreadIds(ReminderType.MENTIONS)).isTrue()
-  }
-
-  @Test
-  fun `replies are excluded for a 1-to-1 thread no matter the notification settings`() {
-    globalDefaults(unreadReminder = true, replies = true)
-    SignalDatabase.recipients.setUnreadReminder(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    SignalDatabase.recipients.setReplyNotificationSetting(contactId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    assertThat(isMutedFor(ReminderType.REPLIES)).isFalse()
-  }
-
-  @Test
-  fun `replies in a muted GV2 group thread follow the same allow-by-default vs always-allow rule`() {
-    val group = recipients.createGroup()
-    val groupThreadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(group.recipientId))
-    SignalDatabase.recipients.setMuted(group.recipientId, Long.MAX_VALUE)
-    SignalDatabase.recipients.setUnreadReminder(group.recipientId, RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    globalDefaults(unreadReminder = true, replies = true)
-
-    SignalDatabase.recipients.setReplyNotificationSetting(group.recipientId, RecipientTable.NotificationSetting.DO_NOT_NOTIFY)
-    assertThat(groupThreadId in SignalDatabase.threads.getMutedThreadIds(ReminderType.REPLIES)).isFalse()
-
-    SignalDatabase.recipients.setReplyNotificationSetting(group.recipientId, RecipientTable.NotificationSetting.SYSTEM_DEFAULT)
-    assertThat(groupThreadId in SignalDatabase.threads.getMutedThreadIds(ReminderType.REPLIES)).isTrue()
+    assertThat(isMutedFor()).isFalse()
   }
 }

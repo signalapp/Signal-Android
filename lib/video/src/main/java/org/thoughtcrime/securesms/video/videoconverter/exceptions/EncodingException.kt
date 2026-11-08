@@ -4,7 +4,7 @@
  */
 package org.thoughtcrime.securesms.video.videoconverter.exceptions
 
-class EncodingException : Exception {
+open class EncodingException : Exception {
   /** Whether the input video was HDR content. */
   @JvmField var isHdrInput: Boolean = false
 

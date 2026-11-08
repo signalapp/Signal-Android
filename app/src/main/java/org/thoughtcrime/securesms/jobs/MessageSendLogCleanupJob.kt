@@ -5,11 +5,11 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.concurrent.TimeUnit
 
 /**

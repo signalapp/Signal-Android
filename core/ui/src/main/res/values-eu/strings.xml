@@ -18,8 +18,98 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">Baimena behar da</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">Aldatu panelen tamaina</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">Mugitu zatitzailea</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Sakatu Jarraitu eta desblokeatu telefonoa berresteko. Ez idatzi Signal-eko PINa.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Jarraitu</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">Itxi</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Nabigatu gora</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">Gehitu gogokoetan</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">Kendu gogokoetatik</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">Gogokoetatik kendu nahi duzu?</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Ezin duzu bidali edo gehitu Gogokoetan berriro ez baduzu paketa instalatuta, esteka bat, edo eranskailu-mezu bat.</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">Kendu</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">Bat ere ez</string>
+    <string name="preferences_off">Desaktibatuta</string>
+    <string name="preferences_on">Aktibatuta</string>
+    <string name="ExpireTimerSettingsFragment__set">Ezarri</string>
+    <string name="CustomExpireTimerSelectorView__seconds">segunduak</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minutuak</string>
+    <string name="CustomExpireTimerSelectorView__hours">orduak</string>
+    <string name="CustomExpireTimerSelectorView__days">egunak</string>
+    <string name="CustomExpireTimerSelectorView__weeks">asteak</string>
+    <!-- expiration -->
+    <string name="expiration_off">Desaktibatuta</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="one">segundo %1$d</item>
+        <item quantity="other">%1$d segundu</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$ds</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">minutu %1$d</item>
+        <item quantity="other">%1$d minutu</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$dm</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">Ordu %1$d</item>
+        <item quantity="other">%1$d ordu</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$do</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">Egun %1$d</item>
+        <item quantity="other">%1$d egun</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$de</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">Aste %1$d</item>
+        <item quantity="other">%1$d aste</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$da</string>
+    <string name="expiration_combined">%1$s%2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">Gehiago jakin</string>
+
+    <string name="SpanUtil__read_more">Irakurri gehiago</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">Aldatu hurrengo sarrerara</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">Aldatu erlojura</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">Kendu %1$s</string>
 </resources>

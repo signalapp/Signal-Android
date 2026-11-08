@@ -484,6 +484,7 @@ class InAppPaymentRecurringContextJobTest {
     mockkObject(BackupRepository)
     every { BackupRepository.getBackupTier() } returns MessageBackupTier.PAID.right()
     every { BackupRepository.resetInitializedStateAndAuthCredentials() } returns Unit
+    every { mockSignalStore.backup.backupTier } returns null
 
     val iap = insertInAppPayment(
       type = InAppPaymentType.RECURRING_BACKUP

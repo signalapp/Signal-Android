@@ -23,13 +23,15 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,10 +47,12 @@ public class LinkPreviewView extends FrameLayout {
   private static final int TYPE_CONVERSATION = 0;
   private static final int TYPE_COMPOSE      = 1;
 
+  public static final int NO_MAX_DESCRIPTION_HEIGHT = -1;
+
   private ViewGroup                   container;
   private Stub<OutlinedThumbnailView> thumbnail;
   private TextView                    title;
-  private TextView                    description;
+  private EmojiTextView               description;
   private TextView                    site;
   private View                        divider;
   private View                        closeButton;
@@ -98,7 +102,7 @@ public class LinkPreviewView extends FrameLayout {
       divider.setVisibility(VISIBLE);
       closeButton.setVisibility(VISIBLE);
       title.setMaxLines(2);
-      description.setMaxLines(2);
+      description.bindGestureListener();
 
       closeButton.setOnClickListener(v -> {
         if (closeClickedListener != null) {
@@ -158,6 +162,7 @@ public class LinkPreviewView extends FrameLayout {
     if (showDescription && !Util.isEmpty(linkPreview.getDescription())) {
       description.setText(linkPreview.getDescription());
       description.setVisibility(VISIBLE);
+      description.scrollTo(0, 0);
     } else if (callLinkRootKey != null) {
       description.setText(R.string.LinkPreviewView__use_this_link_to_join_a_signal_call);
       description.setVisibility(VISIBLE);
@@ -209,26 +214,101 @@ public class LinkPreviewView extends FrameLayout {
       thumbnail.setVisibility(GONE);
     }
 
-    boolean thumbnailVisible = (showThumbnail && linkPreview.getThumbnail().isPresent()) || callLinkRootKey != null;
-    alignTitleWithThumbnail(thumbnailVisible);
+    boolean thumbnailVisible     = (showThumbnail && linkPreview.getThumbnail().isPresent()) || callLinkRootKey != null;
+    boolean stackBesideThumbnail = thumbnailVisible && StickerUrl.isValidShareLink(linkPreview.getUrl());
+    alignTitleWithThumbnail(thumbnailVisible, stackBesideThumbnail);
+    alignDetailsWithThumbnail(stackBesideThumbnail);
   }
 
-  private void alignTitleWithThumbnail(boolean thumbnailVisible) {
+  private void alignTitleWithThumbnail(boolean thumbnailVisible, boolean stackBesideThumbnail) {
     ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) title.getLayoutParams();
-    if (thumbnailVisible) {
+    if (stackBesideThumbnail) {
+      params.topToTop           = R.id.linkpreview_thumbnail;
+      params.bottomToBottom     = ConstraintLayout.LayoutParams.UNSET;
+      params.bottomToTop        = R.id.linkpreview_description;
+      params.startToEnd         = R.id.linkpreview_thumbnail;
+      params.startToStart       = ConstraintLayout.LayoutParams.UNSET;
+      params.verticalChainStyle = ConstraintLayout.LayoutParams.CHAIN_PACKED;
+      params.setMarginStart(ViewUtil.dpToPx(8));
+    } else if (thumbnailVisible) {
       params.topToTop       = R.id.linkpreview_thumbnail;
       params.bottomToBottom = R.id.linkpreview_thumbnail;
+      params.bottomToTop    = ConstraintLayout.LayoutParams.UNSET;
       params.startToEnd     = R.id.linkpreview_thumbnail;
       params.startToStart   = ConstraintLayout.LayoutParams.UNSET;
       params.setMarginStart(ViewUtil.dpToPx(8));
     } else {
       params.topToTop       = ConstraintLayout.LayoutParams.PARENT_ID;
       params.bottomToBottom = ConstraintLayout.LayoutParams.UNSET;
+      params.bottomToTop    = ConstraintLayout.LayoutParams.UNSET;
       params.startToEnd     = ConstraintLayout.LayoutParams.UNSET;
       params.startToStart   = ConstraintLayout.LayoutParams.PARENT_ID;
       params.setMarginStart(0);
     }
     title.setLayoutParams(params);
+    title.setMaxLines(stackBesideThumbnail ? 1 : 2);
+  }
+
+  private void alignDetailsWithThumbnail(boolean stackBesideThumbnail) {
+    ConstraintLayout.LayoutParams descriptionParams = (ConstraintLayout.LayoutParams) description.getLayoutParams();
+    ConstraintLayout.LayoutParams siteParams        = (ConstraintLayout.LayoutParams) site.getLayoutParams();
+
+    if (stackBesideThumbnail) {
+      descriptionParams.topToBottom  = R.id.linkpreview_title;
+      descriptionParams.bottomToTop  = R.id.linkpreview_site;
+      descriptionParams.startToEnd   = R.id.linkpreview_thumbnail;
+      descriptionParams.startToStart = ConstraintLayout.LayoutParams.UNSET;
+      descriptionParams.topMargin    = 0;
+      descriptionParams.setMarginStart(ViewUtil.dpToPx(8));
+
+      siteParams.topToBottom    = R.id.linkpreview_description;
+      siteParams.bottomToBottom = R.id.linkpreview_thumbnail;
+      siteParams.startToEnd     = R.id.linkpreview_thumbnail;
+      siteParams.startToStart   = ConstraintLayout.LayoutParams.UNSET;
+      siteParams.setMarginStart(ViewUtil.dpToPx(8));
+    } else {
+      descriptionParams.topToBottom  = R.id.linkpreview_header_barrier;
+      descriptionParams.bottomToTop  = ConstraintLayout.LayoutParams.UNSET;
+      descriptionParams.startToEnd   = ConstraintLayout.LayoutParams.UNSET;
+      descriptionParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+      descriptionParams.topMargin    = ViewUtil.dpToPx(8);
+      descriptionParams.setMarginStart(0);
+
+      siteParams.topToBottom    = R.id.linkpreview_description;
+      siteParams.bottomToBottom = ConstraintLayout.LayoutParams.UNSET;
+      siteParams.startToEnd     = ConstraintLayout.LayoutParams.UNSET;
+      siteParams.startToStart   = ConstraintLayout.LayoutParams.PARENT_ID;
+      siteParams.setMarginStart(0);
+    }
+
+    description.setLayoutParams(descriptionParams);
+    description.setMaxLines(stackBesideThumbnail ? 1 : 15);
+    site.setLayoutParams(siteParams);
+    site.setMaxLines(stackBesideThumbnail ? 1 : 2);
+  }
+
+  public int getDescriptionHeight() {
+    return description.getVisibility() == VISIBLE ? description.getMeasuredHeight() : 0;
+  }
+
+  /**
+   * Limits the description to the given height, scrolling within it, without requesting a layout so it can be called
+   * while the parent is measuring.
+   */
+  public void setMaxDescriptionHeight(int maxHeight) {
+    ViewGroup.LayoutParams params = description.getLayoutParams();
+    int                    height = maxHeight == NO_MAX_DESCRIPTION_HEIGHT ? ViewGroup.LayoutParams.WRAP_CONTENT : Math.max(maxHeight, getMinDescriptionHeight());
+
+    if (params.height != height) {
+      params.height = height;
+      description.forceLayout();
+      container.forceLayout();
+      forceLayout();
+    }
+  }
+
+  private int getMinDescriptionHeight() {
+    return description.getLineHeight() + description.getCompoundPaddingTop() + description.getCompoundPaddingBottom();
   }
 
   public void setCorners(int topStart, int topEnd) {

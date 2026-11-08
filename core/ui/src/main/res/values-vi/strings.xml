@@ -18,8 +18,93 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">Cần quyền</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">Thay đổi kích thước khung</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">Dịch chuyển thanh ngăn</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Nhấn tiếp tục và nhập mã khóa điện thoại của bạn để xác nhận. Không nhập mã PIN Signal của bạn.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Tiếp tục</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">Đóng</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Hướng lên trên</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">Thêm vào Yêu thích</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">Xóa khỏi Yêu thích</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">Xóa khỏi Yêu thích?</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Bạn không thể gửi hoặc thêm lại vào mục Yêu thích trừ khi bạn đã cài đặt gói đó, có đường dẫn hoặc tin nhắn nhãn dán.</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">Xóa</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">Không</string>
+    <string name="preferences_off">Tắt</string>
+    <string name="preferences_on">Bật</string>
+    <string name="ExpireTimerSettingsFragment__set">Đặt</string>
+    <string name="CustomExpireTimerSelectorView__seconds">giây</string>
+    <string name="CustomExpireTimerSelectorView__minutes">phút</string>
+    <string name="CustomExpireTimerSelectorView__hours">giờ</string>
+    <string name="CustomExpireTimerSelectorView__days">ngày</string>
+    <string name="CustomExpireTimerSelectorView__weeks">tuần</string>
+    <!-- expiration -->
+    <string name="expiration_off">Tắt</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="other">%1$d giây</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$dg</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="other">%1$d phút</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$dp</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="other">%1$d giờ</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$dh</string>
+
+    <plurals name="expiration_days">
+        <item quantity="other">%1$d ngày</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$dng</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="other">%1$d tuần</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$dt</string>
+    <string name="expiration_combined">%1$s%2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">Tìm hiểu thêm</string>
+
+    <string name="SpanUtil__read_more">Đọc thêm</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">Chuyển sang nhập văn bản</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">Chuyển sang đồng hồ</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">Gỡ %1$s</string>
 </resources>

@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.billing.BillingProduct
 import org.signal.core.util.billing.BillingPurchaseResult
+import org.signal.core.util.billing.BillingPurchaseState
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
@@ -124,7 +125,13 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
-    val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged
+    // Grabs the purchase token which may need to be linked if we need to rotate the subscription.
+    val linkablePurchaseToken = if (purchase is BillingPurchaseResult.Success && purchase.purchaseState == BillingPurchaseState.PURCHASED) {
+      purchase.purchaseToken
+    } else {
+      null
+    }
+
     val product: BillingProduct? = AppDependencies.billingApi.queryProduct()
 
     if (product == null) {
@@ -161,31 +168,33 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
       checkForFailedOrCanceledSubscriptionState(activeSubscription)
 
-      val isSignalSubscriptionFailedOrCanceled = activeSubscription?.willCancelAtPeriodEnd() == true
+      val isSignalSubscriptionFailedOrCanceled = activeSubscription?.willCancelAtPeriodEnd == true
       if (hasActiveSignalSubscription && !isSignalSubscriptionFailedOrCanceled) {
         checkAndSynchronizeZkCredentialTierWithStoredLocalTier()
       }
 
+      val hasActivePurchase = InAppPaymentsRepository.isPurchaseValidatedByService(purchase)
       val hasActivePaidBackupTier = SignalStore.backup.backupTier == MessageBackupTier.PAID
       val hasValidActiveState = hasActivePaidBackupTier && hasActiveSignalSubscription && hasActivePurchase
       val hasValidInactiveState = !hasActivePaidBackupTier && !hasActiveSignalSubscription && !hasActivePurchase
 
       val purchaseToken = if (hasActivePurchase) {
-        purchase.purchaseToken
+        linkablePurchaseToken
       } else {
         null
       }
 
-      val hasTokenMismatch = purchaseToken?.let { hasLocalDevicePurchaseTokenMismatch(purchaseToken) } == true
-      if (hasActiveSignalSubscription && hasTokenMismatch) {
-        Log.i(TAG, "Encountered token mismatch with an active Signal subscription. Attempting to redeem against latest token.", true)
-        rotateAndRedeem(purchaseToken, product.price)
-        SignalStore.backup.subscriptionStateMismatchDetected = false
+      if (linkablePurchaseToken != null && hasActiveSignalSubscription && hasLocalDevicePurchaseTokenMismatch(linkablePurchaseToken)) {
+        Log.i(TAG, "Encountered token mismatch with an active Signal subscription. Attempting to redeem against latest token. (hasActivePurchase: $hasActivePurchase)", true)
+        val enqueued = redeemAgainstToken(linkablePurchaseToken, product.price, rotateSubscriberId = true)
+        Log.i(TAG, "Token mismatch redemption enqueued: $enqueued. Setting mismatch value to ${!enqueued} and exiting.", true)
+        SignalStore.backup.subscriptionStateMismatchDetected = !enqueued
         return Result.success()
       } else if (purchaseToken != null && hasActiveSignalSubscription && !hasActivePaidBackupTier && !SignalDatabase.inAppPayments.hasPendingBackupRedemption()) {
         Log.i(TAG, "We have an active signal subscription and active purchase, but no entitlement and no pending redemption. Enqueuing a redemption now.")
-        rotateAndRedeem(purchaseToken, product.price)
-        SignalStore.backup.subscriptionStateMismatchDetected = false
+        val enqueued = redeemAgainstToken(purchaseToken, product.price, rotateSubscriberId = false)
+        Log.i(TAG, "Missing-entitlement redemption enqueued: $enqueued. Setting mismatch value to ${!enqueued} and exiting.", true)
+        SignalStore.backup.subscriptionStateMismatchDetected = !enqueued
         return Result.success()
       } else {
         if (hasValidActiveState || hasValidInactiveState) {
@@ -246,10 +255,10 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
    * the "download your data" notifier sheet.
    */
   private fun checkForFailedOrCanceledSubscriptionState(activeSubscription: ActiveSubscription?) {
-    if (activeSubscription?.willCancelAtPeriodEnd() == true && activeSubscription.activeSubscription != null) {
+    if (activeSubscription?.willCancelAtPeriodEnd == true && activeSubscription.activeSubscription != null) {
       Log.i(TAG, "Subscription either has a payment failure or has been canceled.")
 
-      val response = SignalNetwork.account.whoAmI()
+      val response = SignalNetwork.accountApi.whoAmI()
       response.runIfSuccessful { whoAmI ->
         val backupExpiration = whoAmI.entitlements?.backup?.expirationSeconds?.seconds
         if (backupExpiration != null) {
@@ -270,35 +279,49 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     }
   }
 
-  private fun rotateAndRedeem(localDevicePurchaseToken: String, localProductPrice: FiatMoney) {
-    RecurringInAppPaymentRepository.ensureSubscriberIdSync(
-      subscriberType = InAppPaymentSubscriberRecord.Type.BACKUP,
-      isRotation = true,
-      iapSubscriptionId = IAPSubscriptionId.GooglePlayBillingPurchaseToken(localDevicePurchaseToken)
-    )
+  /**
+   * Enqueues a fresh redemption chain against the given purchase token, rotating onto a new subscriber id first when
+   * [rotateSubscriberId] is set. Only rotate when our token differs from the one on the subscriber record, as that id
+   * may belong to another processor; [InAppPaymentPurchaseTokenJob] rotates reactively on a 409 otherwise.
+   *
+   * @return whether the chain was enqueued. Callers should treat false as a still-mismatched state.
+   */
+  private fun redeemAgainstToken(localDevicePurchaseToken: String, localProductPrice: FiatMoney, rotateSubscriberId: Boolean): Boolean {
+    try {
+      RecurringInAppPaymentRepository.ensureSubscriberIdSync(
+        subscriberType = InAppPaymentSubscriberRecord.Type.BACKUP,
+        isRotation = rotateSubscriberId,
+        iapSubscriptionId = IAPSubscriptionId.GooglePlayBillingPurchaseToken(localDevicePurchaseToken)
+      )
 
-    SignalDatabase.inAppPayments.clearCreated()
+      SignalDatabase.inAppPayments.clearCreated()
 
-    val id = SignalDatabase.inAppPayments.insert(
-      type = InAppPaymentType.RECURRING_BACKUP,
-      state = InAppPaymentTable.State.PENDING,
-      subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
-      endOfPeriod = null,
-      inAppPaymentData = InAppPaymentData(
-        badge = null,
-        amount = localProductPrice.toFiatValue(),
-        level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
-        recipientId = Recipient.self().id.serialize(),
-        paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,
-        redemption = InAppPaymentData.RedemptionState(
-          stage = InAppPaymentData.RedemptionState.Stage.INIT
+      val id = SignalDatabase.inAppPayments.insert(
+        type = InAppPaymentType.RECURRING_BACKUP,
+        state = InAppPaymentTable.State.PENDING,
+        subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
+        endOfPeriod = null,
+        inAppPaymentData = InAppPaymentData(
+          badge = null,
+          amount = localProductPrice.toFiatValue(),
+          level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
+          recipientId = Recipient.self().id.serialize(),
+          paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,
+          redemption = InAppPaymentData.RedemptionState(
+            stage = InAppPaymentData.RedemptionState.Stage.INIT
+          )
         )
       )
-    )
 
-    InAppPaymentPurchaseTokenJob.createJobChain(
-      inAppPayment = SignalDatabase.inAppPayments.getById(id)!!
-    ).enqueue()
+      InAppPaymentPurchaseTokenJob.createJobChain(
+        inAppPayment = SignalDatabase.inAppPayments.getById(id)!!
+      ).enqueue()
+
+      return true
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to enqueue a redemption. Will try again later.", e, true)
+      return false
+    }
   }
 
   private fun hasLocalDevicePurchaseTokenMismatch(localDevicePurchaseToken: String): Boolean {

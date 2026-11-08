@@ -23,13 +23,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
@@ -38,6 +39,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
@@ -48,9 +50,11 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.AndroidFragment
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
@@ -70,7 +74,6 @@ import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaConstraints
-import org.signal.mediasend.PreviewMediaInputFactory
 import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.document.DocumentPage
 import org.signal.mediasend.screens.edit.image.BlurFacesBar
@@ -85,11 +88,14 @@ import org.signal.mediasend.screens.edit.image.ImageEditorUndoRedoButtons
 import org.signal.mediasend.screens.edit.image.RotationDial
 import org.signal.mediasend.screens.edit.video.VideoEditorFragment
 import org.signal.mediasend.screens.edit.video.VideoEditorViewModel
+import org.signal.mediasend.screens.edit.video.VideoPlayerCommand
 import org.signal.mediasend.screens.edit.video.VideoSizeHint
-import org.signal.mediasend.screens.edit.video.VideoTrimBar
 import org.signal.mediasend.screens.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBar
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarEvents
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarPreview
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarState
 import org.thoughtcrime.securesms.video.TranscodingConfig
-import org.thoughtcrime.securesms.video.interfaces.MediaInputFactory
 import kotlin.time.Duration.Companion.milliseconds
 
 /** After this, a kind's projection is fixed. */
@@ -100,7 +106,7 @@ internal fun MediaEditScreen(
   state: MediaEditState,
   onEvent: (MediaEditScreenEvents) -> Unit,
   imageControllers: ImageController.Container,
-  mediaInputFactory: MediaInputFactory
+  videoPlayerCommands: Flow<VideoPlayerCommand> = emptyFlow()
 ) {
   val scope = rememberCoroutineScope()
 
@@ -121,6 +127,7 @@ internal fun MediaEditScreen(
   // Read through the latest selection rather than the one captured when the effect below started, since removals and
   // reordering change which media a settled page refers to without restarting it.
   val currentSelectedMedia by rememberUpdatedState(state.selectedMedia)
+  val currentOnEvent by rememberUpdatedState(onEvent)
 
   // Focus belongs to the pager rather than to any one piece of chrome: the thumbnail rail is not composed for
   // documents, and a swipe still has to be reported from there.
@@ -159,6 +166,10 @@ internal fun MediaEditScreen(
     val isSmallWindowBreakpoint = rememberWindowBreakpoint() is WindowBreakpoint.Small
     val videoEditorViewModel = rememberVideoEditorViewModel()
 
+    LaunchedEffect(videoEditorViewModel, videoPlayerCommands) {
+      videoPlayerCommands.collect { videoEditorViewModel.sendCommand(it.uri, it.command) }
+    }
+
     val focusedUri = state.focusedMedia?.uri
     val focusedEditorState = focusedUri?.let { state.editorStateMap[it] }
     val imageController = if (focusedUri != null && focusedEditorState is EditorState.Image) {
@@ -173,7 +184,7 @@ internal fun MediaEditScreen(
       scope.launch { imageController?.onBackPressed() }
     }
 
-    var isVideoInteracting by remember(focusedUri) { mutableStateOf(false) }
+    val isVideoInteracting = state.videoTrimBar.isDragging
     var isAdjustingBrushWidth by remember(focusedUri) { mutableStateOf(false) }
     val isImageEditing = imageController?.isUserInEdit == true
     val isZooming = imageController?.mode == ImageController.Mode.ZOOM
@@ -186,7 +197,11 @@ internal fun MediaEditScreen(
     // A zoomed image gets the screen to itself in the same way a drag does, until a tap asks for the chrome back.
     val isChromeFaded = isDragging || imageController?.isChromeFadedForZoom == true
 
-    val isAtRest = !isImageEditing && !isVideoInteracting
+    // The trim timeline follows the pager rather than focus, so the chrome only matches the focused kind once the pager
+    // has come to rest on it.
+    val isPagerOnFocus = !pagerState.isScrollInProgress && (state.focusedMedia == null || state.selectedMedia.getOrNull(pagerState.settledPage) == state.focusedMedia)
+
+    val isAtRest = !isImageEditing && !isVideoInteracting && isPagerOnFocus
     val isAtRestState by rememberUpdatedState(isAtRest)
     val focusedChromeKind by rememberUpdatedState(focusedEditorState.chromeKind())
     LaunchedEffect(chromeInsets, rootSize) {
@@ -212,11 +227,26 @@ internal fun MediaEditScreen(
         }
     }
 
+    val currentEditorStateMap by rememberUpdatedState(state.editorStateMap)
+
+    fun isTrimmableVideo(page: Int): Boolean {
+      val uri = currentSelectedMedia.getOrNull(page)?.uri ?: return false
+      return currentEditorStateMap[uri] is EditorState.VideoTrim
+    }
+
+    // Follows the swipe rather than focus, so the timeline fades with the finger instead of popping once the pager settles.
+    val trimTimelineUri: Uri? by remember(pagerState) {
+      derivedStateOf {
+        pagerState.videoTimelinePresence(::isTrimmableVideo)?.let { currentSelectedMedia[it.page].uri }
+      }
+    }
+
     val gutter = with(LocalDensity.current) { MediaSendMetrics.MediaProjectionGutter.toPx() }
 
     HorizontalPager(
       state = pagerState,
       modifier = Modifier.fillMaxSize(),
+      key = { state.selectedMedia[it].uri },
       snapPosition = SnapPosition.Center,
       userScrollEnabled = !isInteracting
     ) { index ->
@@ -264,7 +294,7 @@ internal fun MediaEditScreen(
             Box(
               modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.Red)
+                .background(color = Previews.rememberRandomColor(seed = uri))
             )
             return@HorizontalPager
           }
@@ -272,11 +302,29 @@ internal fun MediaEditScreen(
           val media = state.selectedMedia[index]
           var videoEditorFragment by remember(media.uri) { mutableStateOf<VideoEditorFragment?>(null) }
 
+          // Collected per page rather than by the timeline, so a neighbor's position is known before its bar is shown.
+          if (editorState is EditorState.VideoTrim) {
+            LaunchedEffect(videoEditorViewModel, media.uri) {
+              videoEditorViewModel.events(media.uri).collect { event ->
+                if (event is VideoEditorViewModel.Event.ActualPositionChanged) {
+                  currentOnEvent(MediaEditScreenEvents.TrimBarEvent(VideoTrimBarEvents.PlaybackPositionChanged(media.uri, event.positionUs)))
+                }
+              }
+            }
+          }
+
           AndroidFragment<VideoEditorFragment>(
             modifier = Modifier
               .fillMaxSize()
               .padding(pagePadding),
-            arguments = VideoEditorFragment.arguments(media.uri, maxAttachmentSize = 0L, isVideoGif = media.isVideoGif, width = media.width, height = media.height)
+            arguments = VideoEditorFragment.arguments(
+              uri = media.uri,
+              maxAttachmentSize = 0L,
+              isVideoGif = media.isVideoGif,
+              width = media.width,
+              height = media.height,
+              trimData = (editorState as? EditorState.VideoTrim)?.videoTrimData
+            )
           ) { fragment ->
             videoEditorFragment = fragment
           }
@@ -300,7 +348,7 @@ internal fun MediaEditScreen(
             Box(
               modifier = Modifier
                 .fillMaxSize()
-                .background(color = Previews.rememberRandomColor())
+                .background(color = Previews.rememberRandomColor(seed = uri))
             )
           }
         }
@@ -360,15 +408,30 @@ internal fun MediaEditScreen(
         verticalArrangement = spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
       ) {
-        if (focusedEditorState is EditorState.VideoTrim && MediaConstraints.isVideoTranscodeAvailable()) {
+        val timelineUri = trimTimelineUri
+        val timelineEditorState = timelineUri?.let { state.editorStateMap[it] }
+        if (timelineUri != null && timelineEditorState is EditorState.VideoTrim && MediaConstraints.isVideoTranscodeAvailable()) {
+          val isLive = state.videoTrimBar.source == timelineUri
+          val isInteractive = isLive && timelineUri == focusedUri
+
           VideoTrimTimeline(
-            videoUri = focusedUri,
-            editorState = focusedEditorState,
+            videoUri = timelineUri,
+            editorState = timelineEditorState,
+            trimBarState = if (isLive) {
+              state.videoTrimBar
+            } else {
+              timelineEditorState.videoTrimData.toPreviewBarState(state.videoTrimBarPreviews[timelineUri])
+            },
             transcodingTiers = state.videoTranscodingTiers,
-            mediaInputFactory = mediaInputFactory,
-            videoEditorViewModel = videoEditorViewModel,
-            onInteractingChange = { isVideoInteracting = it },
-            onEvent = onEvent
+            // A neighbor's preview bar still measures the strip, so its thumbnails are sized before it becomes the source.
+            onEvent = { event ->
+              if (isInteractive || (event is MediaEditScreenEvents.TrimBarEvent && event.event is VideoTrimBarEvents.StripMeasured)) {
+                onEvent(event)
+              }
+            },
+            modifier = Modifier.graphicsLayer {
+              alpha = pagerState.videoTimelinePresence(::isTrimmableVideo)?.alpha ?: 0f
+            }
           )
         }
 
@@ -558,15 +621,20 @@ private fun MediaToolbar(
   }
 
   MediaEditControl(faded = faded, modifier = modifier) {
+    val isSmall = rememberWindowBreakpoint() is WindowBreakpoint.Small
+
+    // Beyond a phone the toolbar runs down the window's end edge rather than along the bottom, so it has to be held off
+    // of that edge whichever kind of media it is built for.
+    val sideRailPadding = if (isSmall) Modifier else Modifier.padding(end = 24.dp)
+
     when (focusedEditorState) {
       is EditorState.Image -> {
-        val breakpoint = rememberWindowBreakpoint()
-        val modifier = if (breakpoint is WindowBreakpoint.Small) {
+        val toolbarModifier = if (isSmall) {
           Modifier
             .navigationBarsPadding()
             .padding(horizontal = 16.dp)
         } else {
-          Modifier.padding(end = 24.dp)
+          sideRailPadding
         }
 
         imageController?.let {
@@ -575,14 +643,14 @@ private fun MediaToolbar(
             state = state,
             editorState = focusedEditorState,
             onEvent = onEvent,
-            modifier = modifier
+            modifier = toolbarModifier
               .then(if (isTextEditing) Modifier.imePadding() else Modifier),
             enabled = !faded
           )
         }
       }
 
-      else -> MediaEditorToolbar {
+      else -> MediaEditorToolbar(modifier = sideRailPadding) {
         MediaEditorToolbarSharedButtons(
           state = state,
           editorState = focusedEditorState,
@@ -595,62 +663,28 @@ private fun MediaToolbar(
 }
 
 /**
- * Trim/scrub timeline for the focused video, with the resulting duration and estimated upload size beneath it. Drag
- * state is reported through [onInteractingChange] so the rest of the stack can get out of the way, and seeks are
- * translated into player commands rather than screen events.
+ * Trim/scrub timeline for the focused video, with the resulting duration and estimated upload size beneath it. The bar
+ * is driven by the screen's trim bar presenter, which this feeds with the player's position.
  */
 @Composable
 private fun VideoTrimTimeline(
   videoUri: Uri,
   editorState: EditorState.VideoTrim,
+  trimBarState: VideoTrimBarState,
   transcodingTiers: List<TranscodingConfig.QualityTier>,
-  mediaInputFactory: MediaInputFactory,
-  videoEditorViewModel: VideoEditorViewModel,
-  onInteractingChange: (Boolean) -> Unit,
-  onEvent: (MediaEditScreenEvents) -> Unit
+  onEvent: (MediaEditScreenEvents) -> Unit,
+  modifier: Modifier = Modifier
 ) {
-  val playbackPositionUs by produceState(editorState.videoTrimData.startTimeUs, videoUri) {
-    videoEditorViewModel.events(videoUri).collect { event ->
-      if (event is VideoEditorViewModel.Event.ActualPositionChanged) {
-        value = event.positionUs
-      }
-    }
-  }
-
   Column(
     horizontalAlignment = Alignment.End,
-    modifier = Modifier
+    modifier = modifier
       .widthIn(max = MediaSendMetrics.BottomBarMaxWidth)
       .fillMaxWidth()
   ) {
     VideoTrimBar(
-      videoUri = videoUri,
-      mediaInputFactory = mediaInputFactory,
-      videoTrimData = editorState.videoTrimData,
-      maxSelectableDurationUs = editorState.maxDurationUs,
-      playbackPositionUs = playbackPositionUs,
-      onEvent = { event ->
-        when (event) {
-          is MediaEditScreenEvents.VideoTrimChanged -> {
-            onInteractingChange(!event.editingComplete)
-            onEvent(event)
-          }
-
-          is MediaEditScreenEvents.VideoSeek -> {
-            onInteractingChange(!event.editingComplete)
-            videoEditorViewModel.sendCommand(
-              videoUri,
-              if (event.editingComplete) {
-                VideoEditorViewModel.Command.EndPositionDrag(event.positionUs)
-              } else {
-                VideoEditorViewModel.Command.PositionDrag(event.positionUs)
-              }
-            )
-          }
-
-          else -> onEvent(event)
-        }
-      }
+      state = trimBarState,
+      onEvent = { onEvent(MediaEditScreenEvents.TrimBarEvent(it)) },
+      modifier = Modifier.horizontalGutters()
     )
 
     // Gutters to match the bar's, so the hint's end lines up with the end of the timeline.
@@ -662,6 +696,25 @@ private fun VideoTrimTimeline(
         .padding(top = 4.dp)
     )
   }
+}
+
+private fun PagerState.videoTimelinePresence(isVideo: (Int) -> Boolean): VideoTimelinePresence? {
+  return VideoTimelinePresence.at(currentPage + currentPageOffsetFraction, isVideo)
+}
+
+/** The bar as it will look once [preview]'s video is focused, for showing it during the swipe there. */
+private fun VideoTrimData.toPreviewBarState(preview: VideoTrimBarPreview?): VideoTrimBarState {
+  val hasTrim = totalInputDurationUs > 0
+  val durationUs = if (hasTrim) totalInputDurationUs else preview?.durationUs
+  val startUs = if (hasTrim) startTimeUs else 0L
+
+  return VideoTrimBarState(
+    durationUs = durationUs,
+    startUs = startUs,
+    endUs = if (hasTrim) endTimeUs else durationUs ?: 0L,
+    playheadUs = preview?.playheadUs ?: startUs,
+    thumbnails = preview?.thumbnails.orEmpty()
+  )
 }
 
 /** Eases the one correction a page gets when its kind is first measured. */
@@ -697,8 +750,7 @@ private fun MediaEditScreenPreview() {
         editorStateMap = mapOf(selectedMedia.first().uri to EditorState.Image(EditorModel.create(0)))
       ),
       onEvent = {},
-      imageControllers = remember { ImageController.Container() },
-      mediaInputFactory = PreviewMediaInputFactory
+      imageControllers = remember { ImageController.Container() }
     )
   }
 }
@@ -716,8 +768,7 @@ private fun MediaEditScreenVideoPreview() {
         editorStateMap = mapOf(selectedMedia.first().uri to EditorState.VideoTrim(VideoTrimData()))
       ),
       onEvent = {},
-      imageControllers = remember { ImageController.Container() },
-      mediaInputFactory = PreviewMediaInputFactory
+      imageControllers = remember { ImageController.Container() }
     )
   }
 }

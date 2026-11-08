@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.stories.viewer
 
 import android.net.Uri
 import org.signal.blurhash.BlurHash
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 
 data class StoryViewerState(

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.storage
 
+import org.signal.core.database.SqlUtil
 import org.signal.core.models.ServiceId
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.NotificationProfileTables

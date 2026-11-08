@@ -12,8 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.signal.core.ui.R as CoreUiR
 
 /**

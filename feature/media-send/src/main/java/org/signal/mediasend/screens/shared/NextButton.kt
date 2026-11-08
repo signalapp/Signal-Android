@@ -21,10 +21,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.NightPreview
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -54,8 +53,9 @@ internal val NEXT_BUTTON_HEIGHT = NEXT_BUTTON_TOUCH_TARGET + NEXT_COUNT_OVERHANG
  * Moves the flow on to the editor and says how much is waiting there. The count straddles the circle's top edge, which
  * keeps it clear of whatever the button is floating over.
  *
- * The fill is the camera's control background wherever this is used, so the button looks the same over a viewfinder as
- * over the picker's bottom bar. Only the count takes a color from the send itself.
+ * The fill defaults to the theme, which is what the picker's bottom bar wants. The capture screen hands in the camera's
+ * translucent control background instead, so the viewfinder reads through the circle. Only the count takes a color from
+ * the send itself.
  *
  * @param selectedMediaCount How much the editor has waiting for it
  * @param recipientChatColor The color of the one conversation this is headed to, or null for a send with no single
@@ -66,7 +66,9 @@ internal fun NextButton(
   selectedMediaCount: Int,
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
-  recipientChatColor: Color? = null
+  recipientChatColor: Color? = null,
+  containerColor: Color = MaterialTheme.colorScheme.surfaceVariant,
+  contentColor: Color = MaterialTheme.colorScheme.onSurfaceVariant
 ) {
   Box(modifier = modifier.widthIn(min = NEXT_BUTTON_TOUCH_TARGET)) {
     IconButton(
@@ -81,12 +83,12 @@ internal fun NextButton(
         contentAlignment = Alignment.Center,
         modifier = Modifier
           .size(NEXT_BUTTON_CIRCLE_SIZE)
-          .background(colorResource(org.signal.camera.R.color.CameraHud_control_background), shape = CircleShape)
+          .background(color = containerColor, shape = CircleShape)
       ) {
         Icon(
           imageVector = SignalIcons.ArrowEnd.imageVector,
           contentDescription = stringResource(R.string.MediaSelectScreen__next),
-          tint = Color.White,
+          tint = contentColor,
           modifier = Modifier.size(NEXT_BUTTON_ICON_SIZE)
         )
       }
@@ -98,12 +100,12 @@ internal fun NextButton(
         .align(Alignment.TopCenter)
         .heightIn(min = NEXT_COUNT_HEIGHT)
         .widthIn(min = NEXT_COUNT_HEIGHT)
-        .background(color = recipientChatColor ?: MaterialTheme.colorScheme.primaryContainer, shape = CircleShape)
+        .background(color = recipientChatColor ?: MaterialTheme.colorScheme.primary, shape = CircleShape)
         .padding(horizontal = NEXT_COUNT_HORIZONTAL_PADDING)
     ) {
       Text(
         text = selectedMediaCount.toString(),
-        color = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimaryContainer,
+        color = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimary,
         style = MaterialTheme.typography.labelSmall,
         maxLines = 1,
         modifier = Modifier.testTag(TestTags.MEDIA_SEND_MEDIA_COUNT)
@@ -112,7 +114,7 @@ internal fun NextButton(
   }
 }
 
-@NightPreview
+@DayNightPreviews
 @Composable
 private fun NextButtonPreview() {
   Previews.Preview {
@@ -121,7 +123,7 @@ private fun NextButtonPreview() {
 }
 
 /** A count wide enough to push past the circle it straddles, which widens the button. */
-@NightPreview
+@DayNightPreviews
 @Composable
 private fun NextButtonWideCountPreview() {
   Previews.Preview {
@@ -130,7 +132,7 @@ private fun NextButtonWideCountPreview() {
 }
 
 /** A send headed to one conversation, so the count carries that conversation's color. */
-@NightPreview
+@DayNightPreviews
 @Composable
 private fun NextButtonChatColorPreview() {
   Previews.Preview {

@@ -6,13 +6,13 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;

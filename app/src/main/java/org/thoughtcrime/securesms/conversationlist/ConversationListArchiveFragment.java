@@ -33,7 +33,8 @@ import org.signal.core.ui.view.Stub;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.snackbars.SnackbarState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.main.MainNavigationListLocation;
+import org.thoughtcrime.securesms.main.MainListRoute;
+import org.thoughtcrime.securesms.main.MainNavigationEvents;
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 
@@ -77,7 +78,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
       @Override
       public void handleOnBackPressed() {
-        mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS);
+        mainNavigationViewModel.onEvent(new MainNavigationEvents.GoToList(MainListRoute.Chats));
       }
     });
   }

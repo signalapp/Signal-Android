@@ -45,12 +45,14 @@ import androidx.transition.TransitionManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.jetbrains.annotations.NotNull;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.util.UsernameUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.SelectionLimits;
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar;
 import org.thoughtcrime.securesms.contacts.ContactChipViewModel;
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
@@ -72,17 +74,14 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchViewModel;
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.RecipientTable;
-import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameAciFetchResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -222,7 +221,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   public void onStart() {
     super.onStart();
 
-    if (hasContactsPermissions(requireContext()) && !TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
+    if (hasContactsPermissions(requireContext()) && !SignalStore.misc().getHasSuccessfullyRetrievedDirectory()) {
       handleContactPermissionGranted();
     } else {
       requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -441,7 +440,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
                .ifNecessary()
                .onAllGranted(() -> {
                  contactSearchView.setAlpha(0.5f);
-                 if (!TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
+                 if (!SignalStore.misc().getHasSuccessfullyRetrievedDirectory()) {
                    handleContactPermissionGranted();
                  } else {
                    contactSearchViewModel.refresh();

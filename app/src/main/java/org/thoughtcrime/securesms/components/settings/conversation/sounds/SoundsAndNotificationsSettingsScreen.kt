@@ -27,7 +27,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.signal.core.ui.R as CoreUiR
 
 @Composable
 fun SoundsAndNotificationsSettingsScreen(
@@ -52,9 +52,9 @@ fun SoundsAndNotificationsSettingsScreen(
       // Custom notifications
       item {
         val summary = if (state.hasCustomNotificationSettings) {
-          stringResource(R.string.preferences_on)
+          stringResource(CoreUiR.string.preferences_on)
         } else {
-          stringResource(R.string.preferences_off)
+          stringResource(CoreUiR.string.preferences_off)
         }
 
         Rows.TextRow(
@@ -75,7 +75,9 @@ fun SoundsAndNotificationsSettingsScreen(
 
       // Mute
       item {
-        val muteSummary = if (isMuted) {
+        val muteSummary = if (isMuted && state.muteUntil == Long.MAX_VALUE) {
+          stringResource(R.string.ConversationSettingsFragment__conversation_muted_always)
+        } else if (isMuted) {
           formatMuteUntil(state.muteUntil)
         } else {
           stringResource(R.string.SoundsAndNotificationsSettingsFragment__not_muted)
@@ -97,30 +99,27 @@ fun SoundsAndNotificationsSettingsScreen(
         )
       }
 
-      if (RemoteConfig.internalUser || state.hasMentionsSupport) {
-        item {
-          Rows.TextRow(
-            text = stringResource(R.string.SoundsAndNotificationsSettingsFragment__when_muted),
-            label = getMuteSummary(state),
-            icon = ImageVector.vectorResource(R.drawable.symbol_bell_badge_24),
-            onClick = { onEvent(SoundsAndNotificationsEvent.NavigateToMutedNotifications) }
-          )
-        }
+      item {
+        Rows.TextRow(
+          text = stringResource(R.string.SoundsAndNotificationsSettingsFragment__when_muted),
+          label = getMuteSummary(state),
+          icon = ImageVector.vectorResource(R.drawable.symbol_bell_badge_24),
+          onClick = { onEvent(SoundsAndNotificationsEvent.NavigateToMutedNotifications) }
+        )
       }
 
-      if (RemoteConfig.internalUser) {
-        item {
-          Dividers.Default()
-        }
+      item {
+        Dividers.Default()
+      }
 
-        item {
-          Rows.ToggleRow(
-            text = stringResource(R.string.preferences_notifications__unread),
-            label = stringResource(R.string.MutedNotificationsFragment__unread_body),
-            checked = state.unreadReminders == NotificationSetting.ALWAYS_NOTIFY,
-            onCheckChanged = { onEvent(SoundsAndNotificationsEvent.SetUnreadReminder(if (it) NotificationSetting.ALWAYS_NOTIFY else NotificationSetting.DO_NOT_NOTIFY)) }
-          )
-        }
+      item {
+        Rows.ToggleRow(
+          text = stringResource(R.string.preferences_notifications__unread),
+          label = stringResource(R.string.MutedNotificationsFragment__unread_body),
+          icon = ImageVector.vectorResource(R.drawable.symbol_chat_badge_24),
+          checked = state.unreadReminders == NotificationSetting.ALWAYS_NOTIFY,
+          onCheckChanged = { onEvent(SoundsAndNotificationsEvent.SetUnreadReminder(if (it) NotificationSetting.ALWAYS_NOTIFY else NotificationSetting.DO_NOT_NOTIFY)) }
+        )
       }
     }
   }
@@ -140,19 +139,19 @@ fun SoundsAndNotificationsSettingsScreen(
 @Composable
 fun getMuteSummary(state: SoundsAndNotificationsSettingsState): String {
   val body = mutableListOf<String>()
-  if (RemoteConfig.internalUser && state.callNotificationSetting == NotificationSetting.ALWAYS_NOTIFY) {
+  if (state.callNotificationSetting == NotificationSetting.ALWAYS_NOTIFY) {
     body.add(stringResource(R.string.MutedNotificationsFragment__calls))
   }
   if (state.hasMentionsSupport && state.mentionSetting == NotificationSetting.ALWAYS_NOTIFY) {
     body.add(stringResource(R.string.MutedNotificationsFragment__mentions))
   }
-  if (RemoteConfig.internalUser && state.replyNotificationSetting == NotificationSetting.ALWAYS_NOTIFY) {
+  if (state.replyNotificationSetting == NotificationSetting.ALWAYS_NOTIFY) {
     body.add(stringResource(R.string.MutedNotificationsFragment__replies))
   }
   return if (body.isNotEmpty()) {
     body.joinToString(", ")
   } else {
-    stringResource(R.string.preferences__none)
+    stringResource(CoreUiR.string.preferences__none)
   }
 }
 

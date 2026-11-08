@@ -17,17 +17,19 @@ import org.junit.Test
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
+import org.whispersystems.signalservice.internal.storage.protos.OptionalBool
 import java.util.UUID
 
 class ContactRecordProcessorTest {
@@ -54,7 +56,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, normal, false`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -74,7 +76,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, missing ACI and PNI, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -92,7 +94,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, unknown ACI and PNI, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -112,7 +114,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, e164 matches self, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -131,7 +133,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, aci matches self, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -147,9 +149,27 @@ class ContactRecordProcessorTest {
   }
 
   @Test
+  fun `isInvalid, aci is desktop release notes chat, true`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
+
+    val record = buildRecord(
+      record = ContactRecord(
+        aciBinary = ReleaseChannel.DESKTOP_RELEASE_NOTES_ACI.toByteString()
+      )
+    )
+
+    // WHEN
+    val result = subject.isInvalid(record)
+
+    // THEN
+    assertTrue(result)
+  }
+
+  @Test
   fun `isInvalid, pni matches self as pni, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -168,7 +188,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, valid E164, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -187,7 +207,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, invalid E164 (missing +), true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -206,7 +226,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, invalid E164 (contains letters), true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -225,7 +245,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, invalid E164 (no numbers), true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -244,7 +264,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, invalid E164 (too many numbers), true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -263,7 +283,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, invalid E164 (starts with zero), true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val record = buildRecord(
       record = ContactRecord(
@@ -282,7 +302,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, e164MatchesButPnisDont pnpEnabled, keepLocal`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -314,7 +334,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, pnisMatchButE164sDont pnpEnabled, keepLocal`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -346,7 +366,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, e164AndPniChange pnpEnabled, useRemote`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -378,7 +398,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, nickname change, useRemote`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -410,7 +430,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, identityKeys conflict on primary, keepLocal`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -441,7 +461,7 @@ class ContactRecordProcessorTest {
   fun `merge, identityKeys conflict on linked device, useRemote`() {
     // GIVEN
     every { SignalStore.account.isPrimaryDevice } returns false
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -476,10 +496,10 @@ class ContactRecordProcessorTest {
     mockkObject(RetrieveProfileJob.Companion)
     mockkObject(SignalDatabase.Companion)
     every { Recipient.trustedPush(any(), any(), any()) } returns mockk(relaxed = true)
-    every { RetrieveProfileJob.enqueue(any<RecipientId>(), any()) } returns Unit
+    every { RetrieveProfileJob.enqueueToResolveIdentityKeyConflict(any<RecipientId>()) } returns Unit
     every { SignalDatabase.runPostSuccessfulTransaction(any<Runnable>()) } answers { firstArg<Runnable>().run() }
 
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -504,14 +524,153 @@ class ContactRecordProcessorTest {
 
     // THEN the profile fetch can repair this, so we keep our own key rather than deferring
     assertEquals(IDENTITY_KEY_A, result.proto.identityKey)
-    verify { RetrieveProfileJob.enqueue(any<RecipientId>(), any()) }
+    verify { RetrieveProfileJob.enqueueToResolveIdentityKeyConflict(any<RecipientId>()) }
+    assertEquals(setOf(STORAGE_ID_A), subject.identityConflictsPendingRepair)
+  }
+
+  @Test
+  fun `merge, identityKeys conflict with ACI, defersPushingOurRecord`() {
+    // GIVEN
+    mockkObject(Recipient.Companion)
+    mockkObject(RetrieveProfileJob.Companion)
+    mockkObject(SignalDatabase.Companion)
+    every { Recipient.trustedPush(any(), any(), any()) } returns mockk(relaxed = true)
+    every { RetrieveProfileJob.enqueueToResolveIdentityKeyConflict(any<RecipientId>()) } returns Unit
+    every { SignalDatabase.runPostSuccessfulTransaction(any<Runnable>()) } answers { firstArg<Runnable>().run() }
+
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        aciBinary = ACI_B.toByteString(),
+        e164 = E164_B,
+        identityKey = IDENTITY_KEY_A
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        aciBinary = ACI_B.toByteString(),
+        e164 = E164_B,
+        identityKey = IDENTITY_KEY_B
+      )
+    )
+
+    // WHEN
+    val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN we keep our key, but flag our id so the caller holds the write until the fetch resolves
+    assertEquals(IDENTITY_KEY_A, result.proto.identityKey)
+    assertEquals(STORAGE_ID_A, result.id)
+    assertEquals(setOf(STORAGE_ID_A), subject.identityConflictsPendingRepair)
+  }
+
+  @Test
+  fun `merge, identityKeys conflict with ACI, addsToCallersExistingSet`() {
+    // GIVEN
+    mockkObject(Recipient.Companion)
+    mockkObject(RetrieveProfileJob.Companion)
+    mockkObject(SignalDatabase.Companion)
+    every { Recipient.trustedPush(any(), any(), any()) } returns mockk(relaxed = true)
+    every { RetrieveProfileJob.enqueueToResolveIdentityKeyConflict(any<RecipientId>()) } returns Unit
+    every { SignalDatabase.runPostSuccessfulTransaction(any<Runnable>()) } answers { firstArg<Runnable>().run() }
+
+    val callerSet = mutableSetOf(STORAGE_ID_C)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, callerSet)
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        aciBinary = ACI_B.toByteString(),
+        e164 = E164_B,
+        identityKey = IDENTITY_KEY_A
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        aciBinary = ACI_B.toByteString(),
+        e164 = E164_B,
+        identityKey = IDENTITY_KEY_B
+      )
+    )
+
+    // WHEN
+    subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN the caller accumulates across processors, so a pre-existing entry has to survive
+    assertEquals(setOf(STORAGE_ID_C, STORAGE_ID_A), callerSet)
+  }
+
+  @Test
+  fun `merge, identityKeys conflict without ACI, doesNotDefer`() {
+    // GIVEN
+    val callerSet = mutableSetOf(STORAGE_ID_C)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, callerSet)
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        pniBinary = PNI_B.toByteStringWithoutPrefix(),
+        e164 = E164_B,
+        identityKey = IDENTITY_KEY_A
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        pniBinary = PNI_B.toByteStringWithoutPrefix(),
+        e164 = E164_B,
+        identityKey = IDENTITY_KEY_B
+      )
+    )
+
+    // WHEN
+    subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN no profile fetch is possible, so deferring would stall forever
+    assertEquals(setOf(STORAGE_ID_C), callerSet)
+  }
+
+  @Test
+  fun `merge, identityKeys match, doesNotDefer`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        aciBinary = ACI_B.toByteString(),
+        e164 = E164_B,
+        identityKey = IDENTITY_KEY_A
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        aciBinary = ACI_B.toByteString(),
+        e164 = E164_B,
+        identityKey = IDENTITY_KEY_A
+      )
+    )
+
+    // WHEN
+    subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN
+    assertTrue(subject.identityConflictsPendingRepair.isEmpty())
   }
 
   @Test
   fun `merge, identityKeys match on linked device, keepLocal`() {
     // GIVEN
     every { SignalStore.account.isPrimaryDevice } returns false
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -541,7 +700,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, local identityKey missing on primary, useRemote`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -571,7 +730,7 @@ class ContactRecordProcessorTest {
   fun `merge, remote identityKey missing on linked device, keepLocal`() {
     // GIVEN
     every { SignalStore.account.isPrimaryDevice } returns false
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -600,7 +759,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, pniSignatureVerified but no PNI, clearsFlag`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -629,7 +788,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, pniSignatureVerified with PNI, keepsFlag`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -655,6 +814,126 @@ class ContactRecordProcessorTest {
 
     // THEN
     assertTrue(result.proto.pniSignatureVerified)
+  }
+
+  @Test
+  fun `merge, notifyForCallsIfMuted set remotely and locally, useRemote`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        aciBinary = ACI_A.toByteString(),
+        e164 = E164_A,
+        notifyForCallsIfMuted = OptionalBool.DISABLED
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        aciBinary = ACI_A.toByteString(),
+        e164 = E164_A,
+        notifyForCallsIfMuted = OptionalBool.ENABLED
+      )
+    )
+
+    // WHEN
+    val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN
+    assertEquals(OptionalBool.ENABLED, result.proto.notifyForCallsIfMuted)
+  }
+
+  @Test
+  fun `merge, notifyForCallsIfMuted unset remotely, keepLocal`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        aciBinary = ACI_A.toByteString(),
+        e164 = E164_A,
+        notifyForCallsIfMuted = OptionalBool.ENABLED
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        aciBinary = ACI_A.toByteString(),
+        e164 = E164_A,
+        notifyForCallsIfMuted = OptionalBool.UNSET
+      )
+    )
+
+    // WHEN
+    val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN
+    assertEquals(OptionalBool.ENABLED, result.proto.notifyForCallsIfMuted)
+  }
+
+  @Test
+  fun `merge, showUnreadReminders set remotely and locally, useRemote`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        aciBinary = ACI_A.toByteString(),
+        e164 = E164_A,
+        showUnreadReminders = OptionalBool.ENABLED
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        aciBinary = ACI_A.toByteString(),
+        e164 = E164_A,
+        showUnreadReminders = OptionalBool.DISABLED
+      )
+    )
+
+    // WHEN
+    val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN
+    assertEquals(OptionalBool.DISABLED, result.proto.showUnreadReminders)
+  }
+
+  @Test
+  fun `merge, showUnreadReminders unset remotely, keepLocal`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        aciBinary = ACI_A.toByteString(),
+        e164 = E164_A,
+        showUnreadReminders = OptionalBool.DISABLED
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        aciBinary = ACI_A.toByteString(),
+        e164 = E164_A,
+        showUnreadReminders = OptionalBool.UNSET
+      )
+    )
+
+    // WHEN
+    val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN
+    assertEquals(OptionalBool.DISABLED, result.proto.showUnreadReminders)
   }
 
   private fun buildRecord(id: StorageId = STORAGE_ID_A, record: ContactRecord): SignalContactRecord {

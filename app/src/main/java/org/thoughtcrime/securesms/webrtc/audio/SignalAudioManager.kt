@@ -15,6 +15,7 @@ import android.media.SoundPool
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.VisibleForTesting
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.audio.AudioDeviceUpdatedListener
 import org.thoughtcrime.securesms.audio.SignalBluetoothManager
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil
 
 private val TAG = Log.tag(SignalAudioManager::class.java)
@@ -278,6 +278,8 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
 
     /** The device is in MODE_IN_COMMUNICATION and the incoming call may now be accepted. */
     fun onAudioReadyForAccept()
+
+    fun onMicrophoneSilencedChanged(silenced: Boolean)
   }
 }
 

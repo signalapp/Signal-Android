@@ -5,27 +5,34 @@
 
 package org.signal.mediasend.util
 
-import org.signal.mediasend.MediaConstraints
+import android.content.Context
+import org.signal.camera.CameraDependencies
+import org.signal.core.util.Util
 import org.signal.mediasend.MediaSendDependencies
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
-import kotlin.math.floor
-import kotlin.math.min
 
 object VideoUtil {
 
-  /** Recordings that fall back to a RAM-backed file descriptor keep the historical duration cap. */
-  private const val MAX_IN_MEMORY_RECORD_DURATION_SECONDS = 60
+  /** Recordings that fall back to a RAM-backed file descriptor keep the historical duration cap on devices that can least afford the memory. */
+  const val MAX_IN_MEMORY_RECORD_DURATION_SECONDS_LOW_MEMORY = 60
+
+  /** The RAM-backed cap everywhere else. */
+  private const val MAX_IN_MEMORY_RECORD_DURATION_SECONDS = 300
 
   /**
-   * The recording cap for a RAM-backed file descriptor, bounded by how much compressed video fits in
-   * the memory file.
+   * The recording cap for a RAM-backed file descriptor.
    */
-  fun getMemoryBackedMaxRecordDurationSeconds(mediaConstraints: MediaConstraints): Int {
-    val config = VideoConstants.DEFAULT_HIGH
-    val bytesPerSecond = (config.videoBitrateMbps * VideoConstants.MB).toInt() / 8 + (config.audioBitrateKbps * VideoConstants.KB) / 8
-    val duration = floor(mediaConstraints.compressedVideoMaxSize.toFloat() / bytesPerSecond).toInt()
+  fun getMemoryBackedMaxRecordDurationSeconds(context: Context): Int {
+    return if (Util.isLowMemory(context)) MAX_IN_MEMORY_RECORD_DURATION_SECONDS_LOW_MEMORY else MAX_IN_MEMORY_RECORD_DURATION_SECONDS
+  }
 
-    return min(duration, MAX_IN_MEMORY_RECORD_DURATION_SECONDS)
+  /**
+   * How much RAM a memory-backed recording of [durationSeconds] needs, derived from the bitrate the recorder is
+   * actually pinned to rather than a fixed guess.
+   */
+  fun getMemoryBackedRecordSizeBytes(durationSeconds: Int): Long {
+    val bytesPerSecond = (CameraDependencies.getMaxVideoBitrateBps() + VideoConstants.DEFAULT_HIGH.audioBitrateKbps * VideoConstants.KB) / 8
+    return durationSeconds.toLong() * bytesPerSecond
   }
 
   /**

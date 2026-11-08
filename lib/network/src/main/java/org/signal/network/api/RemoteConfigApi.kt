@@ -5,16 +5,15 @@
 
 package org.signal.network.api
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import org.signal.network.NetworkResult
-import org.signal.network.util.JsonUtil
+import kotlinx.serialization.Serializable
+import org.signal.core.util.serialization.SignalJson
+import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.RequestResult
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebsocketResponse
 import org.signal.network.websocket.get
-import org.whispersystems.signalservice.api.fromWebSocketRequest
-import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigResult
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import java.io.IOException
 import java.util.Locale
 
 /**
@@ -22,48 +21,71 @@ import java.util.Locale
  *
  * Configuration values change over time, and the list should be refreshed periodically.
  */
-class RemoteConfigApi(val authWebSocket: SignalWebSocket.AuthenticatedWebSocket, val pushServiceSocket: PushServiceSocket) {
+class RemoteConfigApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) {
 
   /**
-   * Get remote config data from the server.
+   * Get remote config data from the server. If [eTag] is provided and the config hasn't changed since, the result is [RemoteConfigResult.NotModified].
    *
    * GET /v2/config
    * - 200: Success
    * - 304: No changes since the last fetch
    * - 401: Requires authentication
    */
-  fun getRemoteConfig(eTag: String = ""): NetworkResult<RemoteConfigResult> {
-    val headers = if (eTag.isNotEmpty()) mapOf("If-None-Match" to eTag) else mapOf()
+  suspend fun getRemoteConfig(eTag: String? = null): RequestResult<RemoteConfigResult, GetRemoteConfigError> {
+    val headers = if (!eTag.isNullOrEmpty()) mapOf("If-None-Match" to eTag) else emptyMap()
     val request = WebSocketRequestMessage.get("/v2/config", headers = headers)
-    return NetworkResult.fromWebSocketRequest(signalWebSocket = authWebSocket, request = request, webSocketResponseConverter = RemoteConfigResultWebSocketResponseConverter())
+
+    return authWebSocket.requestResult(
+      request = request,
+      isSuccess = { it == 200 || it == 304 },
+      parseSuccess = { response ->
+        if (response.status == 304) {
+          RemoteConfigResult.NotModified(response.serverEpochTimeMilliseconds())
+        } else {
+          val body = SignalJson.decode(RemoteConfigResponse.serializer(), response.body).getOrNull()
+            ?: throw IOException("Unparseable remote config response")
+          body.toResult(response.serverEpochTimeMilliseconds(), response.getHeader("etag"))
+        }
+      },
+      mapError = { response ->
+        when (response.status) {
+          401 -> GetRemoteConfigError.Unauthorized
+          else -> null
+        }
+      }
+    )
   }
 
-  /**
-   * Custom converter for [RemoteConfigResult] as it needs the value of the timestamp header to construct the
-   * complete result, not just the JSON body.
-   */
-  private class RemoteConfigResultWebSocketResponseConverter : NetworkResult.WebSocketResponseConverter<RemoteConfigResult> {
-    override fun convert(response: WebsocketResponse): NetworkResult<RemoteConfigResult> {
-      return if (response.status < 200 || response.status > 299) {
-        response.toStatusCodeError()
-      } else {
-        val remoteConfigResponse = JsonUtil.fromJson(response.body, RemoteConfigResponse::class.java)
-        val transformed = remoteConfigResponse.config.map { it.key to (it.value.lowercase(Locale.getDefault()).toBooleanStrictOrNull() ?: it.value) }.toMap()
+  private fun WebsocketResponse.serverEpochTimeMilliseconds(): Long {
+    return getHeader(SignalWebSocket.SERVER_DELIVERED_TIMESTAMP_HEADER)?.toLongOrNull() ?: System.currentTimeMillis()
+  }
 
-        NetworkResult.Success(
-          RemoteConfigResult(
-            config = transformed,
-            serverEpochTimeMilliseconds = response.getHeader(SignalWebSocket.SERVER_DELIVERED_TIMESTAMP_HEADER).toLongOrNull() ?: System.currentTimeMillis(),
-            eTag = response.headers["etag"]
-          )
-        )
-      }
+  @Serializable
+  private class RemoteConfigResponse(
+    val config: Map<String, String> = emptyMap()
+  ) {
+    fun toResult(serverEpochTimeMilliseconds: Long, eTag: String?): RemoteConfigResult.Updated {
+      return RemoteConfigResult.Updated(
+        config = config.mapValues { (_, value) -> value.lowercase(Locale.getDefault()).toBooleanStrictOrNull() ?: value },
+        serverEpochTimeMilliseconds = serverEpochTimeMilliseconds,
+        eTag = eTag
+      )
     }
   }
-}
 
-private data class RemoteConfigResponse(
-  @JsonProperty
-  val config: Map<String, String> = emptyMap(),
-  var serverEpochTime: Long = 0
-)
+  sealed interface RemoteConfigResult {
+    val serverEpochTimeMilliseconds: Long
+
+    data class Updated(
+      val config: Map<String, Any>,
+      override val serverEpochTimeMilliseconds: Long,
+      val eTag: String?
+    ) : RemoteConfigResult
+
+    data class NotModified(override val serverEpochTimeMilliseconds: Long) : RemoteConfigResult
+  }
+
+  sealed interface GetRemoteConfigError : BadRequestError {
+    data object Unauthorized : GetRemoteConfigError
+  }
+}

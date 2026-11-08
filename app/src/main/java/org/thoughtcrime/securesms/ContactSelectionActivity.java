@@ -26,6 +26,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.ContactFilterView;
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
 import org.thoughtcrime.securesms.contacts.paged.ChatType;
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;

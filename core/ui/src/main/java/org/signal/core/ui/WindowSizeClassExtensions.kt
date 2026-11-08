@@ -126,25 +126,16 @@ val WindowBreakpoint.assumedFormFactor: FormFactor
   }
 
 @Composable
-fun Resources.rememberIsSplitPane(
-  forceSplitPane: Boolean = CoreUiDependencies.forceSplitPane
-): Boolean {
-  return remember(this, forceSplitPane) {
-    isSplitPane(forceSplitPane)
+fun Resources.rememberIsSplitPane(): Boolean {
+  return remember(this) {
+    isSplitPane()
   }
 }
 
 /**
  * Determines whether the UI should display in split-pane mode based on available screen space.
  */
-@JvmOverloads
-fun Resources.isSplitPane(
-  forceSplitPane: Boolean = CoreUiDependencies.forceSplitPane
-): Boolean {
-  if (forceSplitPane) {
-    return true
-  }
-
+fun Resources.isSplitPane(): Boolean {
   return when (val breakpoint = getWindowBreakpoint()) {
     is WindowBreakpoint.Small -> false
     is WindowBreakpoint.Medium -> true

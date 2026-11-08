@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.annotation.VisibleForTesting
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
@@ -17,7 +16,6 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.SerialDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.database.AttachmentId
@@ -25,44 +23,26 @@ import org.signal.core.models.media.Media
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
-import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.PartUriParser
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class MediaPreviewViewModel : ViewModel() {
 
   companion object {
     private val TAG = Log.tag(MediaPreviewViewModel::class)
-
-    /**
-     * The attachment window is rebuilt underneath a user who may have paged away, or had items shift under them, since
-     * the query was dispatched. Resolving against [oldState] — which is the latest state, not the one the query was
-     * anchored to — keeps whatever is on screen on screen instead of snapping the pager back to a stale page.
-     *
-     * [queryPosition] is the position the query itself landed on, used when the previously-visible attachment is not in
-     * the new window, which includes the first load, where there is nothing on screen to preserve.
-     */
-    @VisibleForTesting
-    fun resolvePosition(oldState: MediaPreviewState, records: List<MediaTable.MediaRecord>, queryPosition: Int): Int {
-      val visibleAttachmentId = oldState.mediaRecords.getOrNull(oldState.position)?.attachment?.attachmentId ?: return queryPosition
-      return records.indexOfFirst { it.attachment?.attachmentId == visibleAttachmentId }.takeIf { it >= 0 } ?: queryPosition
-    }
   }
 
   private val store = RxStore(MediaPreviewState())
   private val disposables = CompositeDisposable()
-
-  /** Only the newest refetch is worth keeping, so starting one cancels the last and stale windows never land. */
-  private val refetchDisposable = SerialDisposable().also { disposables += it }
   private val repository: MediaPreviewRepository = MediaPreviewRepository()
 
   val state: Flowable<MediaPreviewState> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
@@ -88,84 +68,36 @@ class MediaPreviewViewModel : ViewModel() {
     return currentPosition in store.state.mediaRecords.indices && store.state.mediaRecords[currentPosition].toMedia()?.uri == initialMediaUri
   }
 
-  /**
-   * Publishes the tapped attachment on its own, ahead of [fetchAttachments], so the full-resolution decode is not
-   * gated on the whole-thread gallery query. Everything the record needs beyond the attachment row itself is
-   * already in [args].
-   *
-   * Only ever applies to a fresh load: the [MediaPreviewState.LoadState.INIT] check is re-run inside the state
-   * update so a single-item result can never replace an already-loaded window, whether because the full query won
-   * the race or because [refetchAttachments] is rebuilding it underneath a browsing user.
-   */
-  fun fetchInitialAttachment(args: MediaIntentFactory.MediaPreviewArgs) {
-    if (store.state.loadState != MediaPreviewState.LoadState.INIT) {
-      return
-    }
-
-    disposables += repository.getInitialAttachment(PartAuthority.requireAttachmentId(args.initialMediaUri)).subscribe { attachment ->
-      store.update { oldState ->
-        if (oldState.loadState != MediaPreviewState.LoadState.INIT) {
-          return@update oldState
-        }
-
-        val record = MediaTable.MediaRecord(
-          attachment = attachment,
-          recipientId = args.fromRecipientId,
-          threadRecipientId = args.threadRecipientId,
-          threadId = args.threadId,
-          messageId = args.messageId,
-          date = args.date,
-          isOutgoing = args.outgoing
-        )
-
-        oldState.copy(
-          position = 0,
-          mediaRecords = listOf(record),
-          loadState = MediaPreviewState.LoadState.DATA_LOADED
-        )
-      }
-    }
-  }
-
   fun fetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
-    if (store.state.loadState != MediaPreviewState.LoadState.INIT && !forceRefresh) {
-      return
-    }
-
-    val subscription = repository.getAttachments(context, startingAttachmentId, threadId, sorting).subscribe { result ->
-      store.update { oldState ->
-        val albums = result.records.fold(mutableMapOf()) { acc: MutableMap<Long, MutableList<Media>>, mediaRecord: MediaTable.MediaRecord ->
-          val attachment = mediaRecord.attachment
-          if (attachment != null) {
-            val convertedMedia = mediaRecord.toMedia() ?: return@fold acc
-            acc.getOrPut(attachment.mmsId) { mutableListOf() }.add(convertedMedia)
+    if (store.state.loadState == MediaPreviewState.LoadState.INIT || forceRefresh) {
+      disposables += repository.getAttachments(context, startingAttachmentId, threadId, sorting).subscribe { result ->
+        store.update { oldState ->
+          val albums = result.records.fold(mutableMapOf()) { acc: MutableMap<Long, MutableList<Media>>, mediaRecord: MediaTable.MediaRecord ->
+            val attachment = mediaRecord.attachment
+            if (attachment != null) {
+              val convertedMedia = mediaRecord.toMedia() ?: return@fold acc
+              acc.getOrPut(attachment.mmsId) { mutableListOf() }.add(convertedMedia)
+            }
+            acc
           }
-          acc
+          if (oldState.leftIsRecent) {
+            oldState.copy(
+              position = result.initialPosition,
+              mediaRecords = result.records,
+              albums = albums,
+              loadState = MediaPreviewState.LoadState.DATA_LOADED
+            )
+          } else {
+            oldState.copy(
+              position = result.records.size - result.initialPosition - 1,
+              mediaRecords = result.records.reversed(),
+              albums = albums.mapValues { it.value.reversed() },
+              loadState = MediaPreviewState.LoadState.DATA_LOADED
+            )
+          }
         }
-        // Never downgrade a MEDIA_READY state: the initial attachment may already have finished decoding.
-        val loadState = if (oldState.loadState == MediaPreviewState.LoadState.MEDIA_READY) {
-          MediaPreviewState.LoadState.MEDIA_READY
-        } else {
-          MediaPreviewState.LoadState.DATA_LOADED
-        }
-
-        val records = if (oldState.leftIsRecent) result.records else result.records.reversed()
-        val queryPosition = if (oldState.leftIsRecent) result.initialPosition else result.records.size - result.initialPosition - 1
-
-        oldState.copy(
-          position = resolvePosition(oldState, records, queryPosition),
-          mediaRecords = records,
-          albums = if (oldState.leftIsRecent) albums else albums.mapValues { it.value.reversed() },
-          loadState = loadState
-        )
+        fetchMessageBodies(context, result.records)
       }
-      fetchMessageBodies(context, result.records)
-    }
-
-    if (forceRefresh) {
-      refetchDisposable.set(subscription)
-    } else {
-      disposables += subscription
     }
   }
 

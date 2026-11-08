@@ -17,6 +17,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -29,7 +30,11 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
 import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
@@ -40,16 +45,21 @@ import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
 import org.signal.registration.KeyMaterial
 import org.signal.registration.PendingRestoreOption
 import org.signal.registration.PreExistingRegistrationData
+import org.signal.registration.RegisteredAccountData
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.VerificationCodeRequest
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldEvents
+import java.util.UUID
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class VerificationCodeViewModelTest {
+
+  private val testAci = ACI.from(UUID.fromString("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"))
 
   private val testDispatcher = StandardTestDispatcher()
 
@@ -189,101 +199,148 @@ class VerificationCodeViewModelTest {
     assertThat(emittedStates.last().snackbars).isEqualTo(VerificationCodeState.Snackbars())
   }
 
-  // ==================== applyEvent: SMS Auto-Fill Tests ====================
+  // ==================== Code Entry Tests ====================
 
   @Test
-  fun `CodeAutoFilled stores the code in autoFillCode`() = runTest {
-    val initialState = VerificationCodeState()
+  fun `the code field state is mirrored into screen state`() = runTest(testDispatcher) {
+    backgroundScope.launch { viewModel.state.collect {} }
+    advanceUntilIdle()
 
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.CodeAutoFilled("123456"),
-      stateEmitter
-    )
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("123")))
+    advanceUntilIdle()
 
-    assertThat(emittedStates.last().autoFillCode).isEqualTo("123456")
+    assertThat(viewModel.state.value.codeEntry.code).isEqualTo("123")
+    coVerify(exactly = 0) { mockRepository.submitVerificationCode(any(), any()) }
   }
 
   @Test
-  fun `DigitChanged with pasted hyphenated text populates all digits and submits`() = runTest {
-    val sessionMetadata = createSessionMetadata()
-    val initialState = VerificationCodeState(
-      sessionMetadata = sessionMetadata,
-      e164 = "+15551234567"
-    )
+  fun `completing the code in the code field submits it`() = runTest(testDispatcher) {
+    val sessionMetadata = givenIncorrectCodeSubmission()
 
-    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
-      RequestResult.NonSuccess(
-        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
-      )
+    backgroundScope.launch { viewModel.state.collect {} }
+    advanceUntilIdle()
 
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(0, "123-456"),
-      stateEmitter
-    )
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("123456")))
+    advanceUntilIdle()
 
-    coVerify { mockRepository.submitVerificationCode(sessionMetadata.id, "123456") }
-    assertThat(emittedStates.first().digits).isEqualTo(listOf("1", "2", "3", "4", "5", "6"))
-    assertThat(emittedStates.first().isSubmittingCode).isTrue()
+    coVerify(exactly = 1) { mockRepository.submitVerificationCode(sessionMetadata.id, "123456") }
   }
 
   @Test
-  fun `DigitChanged with a pasted plain code populates all digits and submits`() = runTest {
-    val sessionMetadata = createSessionMetadata()
-    val initialState = VerificationCodeState(
-      sessionMetadata = sessionMetadata,
-      e164 = "+15551234567"
-    )
+  fun `an incorrect code clears the code field`() = runTest(testDispatcher) {
+    givenIncorrectCodeSubmission()
 
-    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
-      RequestResult.NonSuccess(
-        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
-      )
+    backgroundScope.launch { viewModel.state.collect {} }
+    advanceUntilIdle()
 
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(0, "123456"),
-      stateEmitter
-    )
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("123456")))
+    advanceUntilIdle()
 
-    coVerify { mockRepository.submitVerificationCode(sessionMetadata.id, "123456") }
-    assertThat(emittedStates.first().digits).isEqualTo(listOf("1", "2", "3", "4", "5", "6"))
-    assertThat(emittedStates.first().isSubmittingCode).isTrue()
+    assertThat(viewModel.state.value.codeEntry.code).isEqualTo("")
+    assertThat(viewModel.state.value.codeEntry.pendingOverwrite).isEqualTo("")
+    assertThat(viewModel.state.value.snackbars.incorrectVerificationCode).isTrue()
   }
 
   @Test
-  fun `DigitChanged with pasted text of the wrong length is ignored`() = runTest {
+  fun `CodeEntered while already submitting is ignored`() = runTest {
     val initialState = VerificationCodeState(
       sessionMetadata = createSessionMetadata(),
-      e164 = "+15551234567"
+      e164 = "+15551234567",
+      isSubmittingCode = true
     )
 
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(0, "12-345"),
-      stateEmitter
-    )
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
     coVerify(exactly = 0) { mockRepository.submitVerificationCode(any(), any()) }
-    assertThat(emittedStates.last().digits).isEqualTo(listOf("", "", "", "", "", ""))
+  }
+
+  // ==================== SMS Auto-Fill Tests ====================
+
+  @Test
+  fun `CodeAutoFilled fills the code field and submits the code`() = runTest(testDispatcher) {
+    val sessionMetadata = givenIncorrectCodeSubmission()
+
+    backgroundScope.launch { viewModel.state.collect {} }
+    advanceUntilIdle()
+
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeAutoFilled("123456"))
+    advanceUntilIdle()
+
+    coVerify(exactly = 1) { mockRepository.submitVerificationCode(sessionMetadata.id, "123456") }
   }
 
   @Test
-  fun `ConsumeAutoFillCode clears autoFillCode`() = runTest {
-    val initialState = VerificationCodeState(autoFillCode = "123456")
+  fun `CodeAutoFilled places the code in the code field while it is submitted`() = runTest(testDispatcher) {
+    givenIncorrectCodeSubmission()
+    coEvery { mockRepository.submitVerificationCode(any(), any()) } coAnswers { awaitCancellation() }
 
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.ConsumeAutoFillCode,
-      stateEmitter
-    )
+    backgroundScope.launch { viewModel.state.collect {} }
+    advanceUntilIdle()
 
-    assertThat(emittedStates.last().autoFillCode).isNull()
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeAutoFilled("123456"))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.codeEntry.code).isEqualTo("123456")
+    assertThat(viewModel.state.value.codeEntry.pendingOverwrite).isEqualTo("123456")
+    assertThat(viewModel.state.value.isSubmittingCode).isTrue()
   }
 
   @Test
-  fun `codes from the SMS retriever flow are pushed into the state`() = runTest(testDispatcher) {
+  fun `CodeAutoFilled replaces a partially typed code`() = runTest(testDispatcher) {
+    val sessionMetadata = givenIncorrectCodeSubmission()
+
+    backgroundScope.launch { viewModel.state.collect {} }
+    advanceUntilIdle()
+
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("98")))
+    advanceUntilIdle()
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeAutoFilled("123456"))
+    advanceUntilIdle()
+
+    coVerify(exactly = 1) { mockRepository.submitVerificationCode(sessionMetadata.id, "123456") }
+    coVerify(exactly = 0) { mockRepository.submitVerificationCode(any(), "98") }
+  }
+
+  @Test
+  fun `CodeAutoFilled with a code longer than the field is ignored`() = runTest(testDispatcher) {
+    givenIncorrectCodeSubmission()
+
+    backgroundScope.launch { viewModel.state.collect {} }
+    advanceUntilIdle()
+
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeAutoFilled("12345678"))
+    advanceUntilIdle()
+
+    coVerify(exactly = 0) { mockRepository.submitVerificationCode(any(), any()) }
+    assertThat(viewModel.state.value.codeEntry.code).isEqualTo("")
+    assertThat(viewModel.state.value.codeEntry.pendingOverwrite).isNull()
+  }
+
+  @Test
+  fun `CodeAutoFilled with a code shorter than the field is ignored`() = runTest(testDispatcher) {
+    givenIncorrectCodeSubmission()
+
+    backgroundScope.launch { viewModel.state.collect {} }
+    advanceUntilIdle()
+
+    viewModel.onEvent(VerificationCodeScreenEvents.CodeAutoFilled("123"))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.codeEntry.code).isEqualTo("")
+    assertThat(viewModel.state.value.codeEntry.pendingOverwrite).isNull()
+  }
+
+  @Test
+  fun `CodeAutoFilled while submitting is ignored`() = runTest(testDispatcher) {
+    viewModel.applyEvent(VerificationCodeState(isSubmittingCode = true), VerificationCodeScreenEvents.CodeAutoFilled("123456"), stateEmitter)
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.codeEntry.pendingOverwrite).isNull()
+  }
+
+  @Test
+  fun `codes from the SMS retriever flow are submitted`() = runTest(testDispatcher) {
+    val sessionMetadata = givenIncorrectCodeSubmission()
     val smsCodes = MutableSharedFlow<String>(extraBufferCapacity = 1)
     val vm = VerificationCodeViewModel(mockRepository, parentState, parentEventEmitter, smsCodes)
 
@@ -293,191 +350,7 @@ class VerificationCodeViewModelTest {
     smsCodes.emit("123456")
     advanceUntilIdle()
 
-    assertThat(vm.state.value.autoFillCode).isEqualTo("123456")
-  }
-
-  @Test
-  fun `DigitChanged with a full code dispatched through the event channel submits it in a single pass`() = runTest(testDispatcher) {
-    val sessionMetadata = createSessionMetadata()
-    parentState.value = RegistrationFlowState(
-      sessionMetadata = sessionMetadata,
-      sessionE164 = "+15551234567"
-    )
-
-    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
-      RequestResult.NonSuccess(
-        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
-      )
-
-    backgroundScope.launch { viewModel.state.collect {} }
-    advanceUntilIdle()
-
-    viewModel.onEvent(VerificationCodeScreenEvents.DigitChanged(0, "123456"))
-    advanceUntilIdle()
-
-    coVerify { mockRepository.submitVerificationCode(sessionMetadata.id, "123456") }
-  }
-
-  // ==================== applyEvent: DigitChanged Tests ====================
-
-  @Test
-  fun `DigitChanged records the value at the given index`() = runTest {
-    val initialState = VerificationCodeState()
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(2, "7"),
-      stateEmitter
-    )
-
-    assertThat(emittedStates.last().digits).isEqualTo(listOf("", "", "7", "", "", ""))
-  }
-
-  @Test
-  fun `DigitChanged advances the focused digit index`() = runTest {
-    val initialState = VerificationCodeState()
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(2, "7"),
-      stateEmitter
-    )
-
-    assertThat(emittedStates.last().focusedDigitIndex).isEqualTo(3)
-  }
-
-  @Test
-  fun `DigitChanged with an empty value moves the focused digit index back`() = runTest {
-    val initialState = VerificationCodeState(digits = listOf("1", "2", "3", "", "", ""))
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(2, ""),
-      stateEmitter
-    )
-
-    assertThat(emittedStates.last().focusedDigitIndex).isEqualTo(1)
-  }
-
-  @Test
-  fun `DigitChanged with an out-of-bounds index throws`() = runTest {
-    var threw = false
-    try {
-      viewModel.applyEvent(
-        VerificationCodeState(),
-        VerificationCodeScreenEvents.DigitChanged(9, "7"),
-        stateEmitter
-      )
-    } catch (e: IllegalStateException) {
-      threw = true
-    }
-
-    assertThat(threw).isTrue()
-  }
-
-  @Test
-  fun `DigitChanged completing the code submits it`() = runTest {
-    val sessionMetadata = createSessionMetadata()
-    val initialState = VerificationCodeState(
-      sessionMetadata = sessionMetadata,
-      e164 = "+15551234567",
-      digits = listOf("1", "2", "3", "4", "5", "")
-    )
-
-    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
-      RequestResult.NonSuccess(
-        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
-      )
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(5, "6"),
-      stateEmitter
-    )
-
-    coVerify { mockRepository.submitVerificationCode(sessionMetadata.id, "123456") }
-    assertThat(emittedStates.first().isSubmittingCode).isTrue()
-    assertThat(emittedStates.last().isSubmittingCode).isEqualTo(false)
-  }
-
-  @Test
-  fun `DigitChanged does not submit until the code is complete`() = runTest {
-    val initialState = VerificationCodeState(
-      sessionMetadata = createSessionMetadata(),
-      e164 = "+15551234567",
-      digits = listOf("1", "2", "3", "4", "", "")
-    )
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(4, "5"),
-      stateEmitter
-    )
-
-    coVerify(exactly = 0) { mockRepository.submitVerificationCode(any(), any()) }
-    assertThat(emittedStates.last().isSubmittingCode).isEqualTo(false)
-  }
-
-  @Test
-  fun `an incorrect code clears the entered digits`() = runTest {
-    val initialState = VerificationCodeState(
-      sessionMetadata = createSessionMetadata(),
-      e164 = "+15551234567",
-      digits = listOf("1", "2", "3", "4", "5", "")
-    )
-
-    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
-      RequestResult.NonSuccess(
-        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
-      )
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(5, "6"),
-      stateEmitter
-    )
-
-    assertThat(emittedStates.last().digits).isEqualTo(listOf("", "", "", "", "", ""))
-    assertThat(emittedStates.last().snackbars.incorrectVerificationCode).isTrue()
-  }
-
-  @Test
-  fun `DigitChanged with an empty value clears the digit at the index`() = runTest {
-    val initialState = VerificationCodeState(digits = listOf("1", "2", "3", "", "", ""))
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(2, ""),
-      stateEmitter
-    )
-
-    assertThat(emittedStates.last().digits).isEqualTo(listOf("1", "2", "", "", "", ""))
-  }
-
-  @Test
-  fun `DigitChanged with an empty value shifts the following digits left`() = runTest {
-    val initialState = VerificationCodeState(digits = listOf("1", "2", "3", "4", "5", "6"))
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(2, ""),
-      stateEmitter
-    )
-
-    assertThat(emittedStates.last().digits).isEqualTo(listOf("1", "2", "4", "5", "6", ""))
-  }
-
-  @Test
-  fun `DigitChanged with an empty value on an empty field clears the previous digit`() = runTest {
-    val initialState = VerificationCodeState(digits = listOf("1", "2", "", "", "", ""))
-
-    viewModel.applyEvent(
-      initialState,
-      VerificationCodeScreenEvents.DigitChanged(2, ""),
-      stateEmitter
-    )
-
-    assertThat(emittedStates.last().digits).isEqualTo(listOf("1", "", "", "", "", ""))
+    coVerify(exactly = 1) { mockRepository.submitVerificationCode(sessionMetadata.id, "123456") }
   }
 
   // ==================== applyEvent: WrongNumber Tests ====================
@@ -551,8 +424,8 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
-      RequestResult.Success(registerResponse to keyMaterial)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
@@ -581,8 +454,8 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
-      RequestResult.Success(registerResponse to keyMaterial)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
@@ -607,8 +480,8 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
-      RequestResult.Success(registerResponse to keyMaterial)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
@@ -633,8 +506,8 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
-      RequestResult.Success(registerResponse to keyMaterial)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
@@ -642,6 +515,61 @@ class VerificationCodeViewModelTest {
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.PinEntryForSvrRestore>()
+  }
+
+  @Test
+  fun `CodeEntered re-registering the same number passes the pre-existing key material to the repository`() = runTest {
+    val preExisting = createPreExistingRegistrationData(e164 = "+15551234567")
+    parentState.value = parentState.value.copy(preExistingRegistrationData = preExisting)
+
+    val sessionMetadata = createSessionMetadata(verified = true)
+    val initialState = VerificationCodeState(
+      sessionMetadata = sessionMetadata,
+      e164 = "+15551234567"
+    )
+
+    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
+      RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(createRegisterAccountResponse(reregistration = true), mockk<KeyMaterial>(relaxed = true), testAci))
+
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
+
+    coVerify {
+      mockRepository.registerAccountWithSession(
+        e164 = "+15551234567",
+        sessionId = sessionMetadata.id,
+        skipDeviceTransfer = true,
+        preExistingRegistrationData = preExisting
+      )
+    }
+  }
+
+  @Test
+  fun `CodeEntered registering a different number than the pre-existing one does not pass the pre-existing key material`() = runTest {
+    parentState.value = parentState.value.copy(preExistingRegistrationData = createPreExistingRegistrationData(e164 = "+15557654321"))
+
+    val sessionMetadata = createSessionMetadata(verified = true)
+    val initialState = VerificationCodeState(
+      sessionMetadata = sessionMetadata,
+      e164 = "+15551234567"
+    )
+
+    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
+      RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(createRegisterAccountResponse(reregistration = true), mockk<KeyMaterial>(relaxed = true), testAci))
+
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
+
+    coVerify {
+      mockRepository.registerAccountWithSession(
+        e164 = "+15551234567",
+        sessionId = sessionMetadata.id,
+        skipDeviceTransfer = true,
+        preExistingRegistrationData = null
+      )
+    }
   }
 
   @Test
@@ -700,8 +628,8 @@ class VerificationCodeViewModelTest {
       RequestResult.NonSuccess(
         SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(verifiedSession)
       )
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
-      RequestResult.Success(registerResponse to keyMaterial)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
@@ -808,7 +736,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.DeviceTransferPossible
       )
@@ -830,7 +758,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.RateLimited(30.seconds)
       )
@@ -855,7 +783,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.InvalidRequest("Bad request")
       )
@@ -880,7 +808,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
@@ -905,7 +833,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.RetryableNetworkError(java.io.IOException("Network error"))
 
     viewModel.applyEvent(
@@ -928,7 +856,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.ApplicationError(RuntimeException("Unexpected"))
 
     viewModel.applyEvent(
@@ -1410,4 +1338,27 @@ class VerificationCodeViewModelTest {
     entitlements = null,
     reregistration = reregistration
   )
+
+  private fun createPreExistingRegistrationData(e164: String) = PreExistingRegistrationData(
+    e164 = e164,
+    aci = testAci,
+    pni = PNI.from(UUID.randomUUID()),
+    servicePassword = "service-password",
+    aep = AccountEntropyPool.generate(),
+    registrationLockEnabled = false,
+    unrestrictedUnidentifiedAccess = false,
+    aciIdentityKeyPair = IdentityKeyPair.generate(),
+    pniIdentityKeyPair = IdentityKeyPair.generate()
+  )
+
+  private fun givenIncorrectCodeSubmission(): SessionMetadata {
+    val sessionMetadata = createSessionMetadata()
+    parentState.value = RegistrationFlowState(
+      sessionMetadata = sessionMetadata,
+      sessionE164 = "+15551234567"
+    )
+    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
+      RequestResult.NonSuccess(SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code"))
+    return sessionMetadata
+  }
 }

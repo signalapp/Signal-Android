@@ -24,19 +24,21 @@ import org.signal.archive.proto.SimpleChatUpdate
 import org.signal.archive.proto.StandardMessage
 import org.signal.archive.proto.Sticker
 import org.signal.archive.proto.ViewOnceMessage
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.update
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.JsonUtils
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.asList
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
@@ -78,7 +80,7 @@ import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
 import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.MessageUtil
@@ -97,7 +99,8 @@ import org.signal.archive.proto.GiftBadge as BackupGiftBadge
 class ChatItemArchiveImporter(
   private val db: SQLiteDatabase,
   private val importState: ImportState,
-  private val batchSize: Int
+  private val batchSize: Int,
+  private val clock: () -> Long = System::currentTimeMillis
 ) {
   companion object {
     private val TAG = Log.tag(ChatItemArchiveImporter::class.java)
@@ -169,6 +172,11 @@ class ChatItemArchiveImporter(
    * If this item causes the buffer to hit the batch size, then a batch of items will actually be inserted.
    */
   fun import(chatItem: ChatItem) {
+    if (chatItem.isExpired(clock())) {
+      Log.w(TAG, ImportSkips.messageExpired(chatItem.dateSent))
+      return
+    }
+
     val fromLocalRecipientId: RecipientId? = importState.remoteToLocalRecipientId[chatItem.authorId]
     if (fromLocalRecipientId == null) {
       Log.w(TAG, ImportSkips.fromRecipientNotFound(chatItem.dateSent))
@@ -279,6 +287,13 @@ class ChatItemArchiveImporter(
         Log.w(TAG, "Failed to insert message with timestamp ${message.contentValues.get(MessageTable.DATE_SENT)}. Must skip.", e)
       }
     }
+  }
+
+  private fun ChatItem.isExpired(now: Long): Boolean {
+    val expireStartDate = this.expireStartDate?.takeIf { it > 0 } ?: return false
+    val expiresInMs = this.expiresInMs?.takeIf { it > 0 } ?: return false
+    val expiresAt = expireStartDate + expiresInMs
+    return expiresAt <= now
   }
 
   private fun ChatItem.toMessageInsert(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): MessageInsert {
@@ -438,7 +453,10 @@ class ChatItemArchiveImporter(
               address.country
             )
           },
-          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true)
+          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true),
+          ServiceId.ACI.parseOrNull(backupContact.aci)?.takeIf { it.isValid }?.toString(),
+          backupContact.nickname.toLocal(),
+          backupContact.note.nullIfBlank()
         )
       }
 
@@ -924,7 +942,7 @@ class ChatItemArchiveImporter(
       }
       learnedProfileChange != null -> {
         typeFlags = MessageTypes.PROFILE_CHANGE_TYPE
-        val profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = learnedProfileChange.e164?.toString(), username = learnedProfileChange.username))
+        val profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = learnedProfileChange.e164?.toString(), username = learnedProfileChange.username, sharedName = learnedProfileChange.sharedName))
         val messageExtras = MessageExtras(profileChangeDetails = profileChangeDetails).encode()
         put(MessageTable.MESSAGE_EXTRAS, messageExtras)
       }
@@ -1301,6 +1319,14 @@ class ChatItemArchiveImporter(
     return Contact.Name(this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName, this?.nickname)
   }
 
+  private fun ContactAttachment.SignalNickname?.toLocal(): Contact.SignalNickname? {
+    if (this == null) {
+      return null
+    }
+
+    return Contact.SignalNickname(given, family).takeUnless { it.isEmpty }
+  }
+
   private fun ContactAttachment.Phone.Type?.toLocal(): Contact.Phone.Type {
     return when (this) {
       ContactAttachment.Phone.Type.HOME -> Contact.Phone.Type.HOME
@@ -1343,7 +1369,7 @@ class ChatItemArchiveImporter(
         val aci = ServiceId.ACI.parseOrNull(it.mentionAci!!)
 
         if (aci != null && !aci.isUnknown) {
-          val id = RecipientId.from(aci)
+          val id = RecipientIds.from(aci)
           Mention(id, it.start!!, it.length!!)
         } else {
           null

@@ -31,12 +31,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipantId
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 private val BAR_WIDTH = 3.dp
 private val BAR_PADDING = 3.dp

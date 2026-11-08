@@ -27,6 +27,7 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.github.chrisbanes.photoview.PhotoView;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.WindowUtil;
 

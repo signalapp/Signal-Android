@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import java.util.stream.Collectors;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.events.WebRtcViewModel.State;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;

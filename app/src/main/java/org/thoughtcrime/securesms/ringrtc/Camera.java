@@ -12,9 +12,11 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CameraControl;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
+import org.thoughtcrime.securesms.service.webrtc.RingRtcDynamicConfiguration;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Capturer;
 import org.webrtc.Camera2Enumerator;
+import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraEnumerator;
 import org.webrtc.CameraVideoCapturer;
 import org.webrtc.CapturerObserver;
@@ -209,6 +211,10 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
   private void startCapture() {
     Log.i(TAG, "startCapture()");
     try {
+      int minimumCaptureFps = RingRtcDynamicConfiguration.getMinimumCaptureFps();
+      CameraEnumerationAndroid.setMinimumFramerateFps(minimumCaptureFps);
+      Log.i(TAG, "startCapture(): minimum capture fps: " + (minimumCaptureFps > 0 ? String.valueOf(minimumCaptureFps) : "default"));
+
       capturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
       capturing = true;
     } catch (Exception e) {

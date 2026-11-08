@@ -8,16 +8,21 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.systemBarsIgnoringVisibility
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -51,9 +56,13 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.signal.core.ui.R as CoreUiR
 
+/** Default inset of the pip from the safe area. The overflow strip's inset replaces it when on screen. */
+internal val PipMargin = 24.dp
+
 /**
  * Small moveable local video renderer that displays the user's video in a draggable and expandable view.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MoveableLocalVideoRenderer(
   localParticipant: CallParticipant,
@@ -62,25 +71,31 @@ fun MoveableLocalVideoRenderer(
   onClick: () -> Unit,
   onToggleCameraDirectionClick: () -> Unit,
   onFocusLocalParticipantClick: () -> Unit,
+  isVideoLandscape: Boolean = rememberIsLocalVideoLandscape(localParticipant),
+  margin: Dp = PipMargin,
   modifier: Modifier = Modifier
 ) {
   val size = rememberSelfPipSize(localRenderState)
   val isFocused = localRenderState == WebRtcLocalRenderState.FOCUSED
 
-  val localAspectRatio = rememberParticipantAspectRatio(localParticipant.videoSink)
-  val configurationLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
-  val isVideoLandscape = localAspectRatio?.let { it > 1f } ?: configurationLandscape
+  // GONE, LARGE and LARGE_NO_VIDEO report a zero size: not a pip at all. Animating to that zero would
+  // slide the pip toward the corner as it shrank, so hold the last real size and fade.
+  val isPipVisible = size != DpSize.Zero
+  var lastVisibleSize by remember { mutableStateOf(size) }
+  if (isPipVisible && size != DpSize.Unspecified) {
+    lastVisibleSize = size
+  }
 
   BoxWithConstraints(
     modifier = Modifier
       .fillMaxSize()
       .then(modifier)
-      .statusBarsPadding()
+      .windowInsetsPadding(WindowInsets.systemBarsIgnoringVisibility)
       .displayCutoutPadding()
   ) {
-    val focusedSize = remember(maxWidth, maxHeight, isVideoLandscape) {
-      val desiredWidth = maxWidth - 32.dp
-      val desiredHeight = maxHeight - 32.dp
+    val focusedSize = remember(maxWidth, maxHeight, isVideoLandscape, margin) {
+      val desiredWidth = maxWidth - margin * 2
+      val desiredHeight = maxHeight - margin * 2
 
       val aspectRatio = if (isVideoLandscape) {
         16f / 9f
@@ -98,7 +113,7 @@ fun MoveableLocalVideoRenderer(
       }
     }
 
-    val targetSize = if (isFocused) focusedSize else size.rotateForVideoOrientation(isVideoLandscape)
+    val targetSize = if (isFocused) focusedSize else lastVisibleSize.rotateForVideoOrientation(isVideoLandscape)
 
     val state = remember { PictureInPictureState(initialContentSize = targetSize) }
     state.animateTo(targetSize)
@@ -113,65 +128,72 @@ fun MoveableLocalVideoRenderer(
     val clip by animateClip(localRenderState)
     val showFocusButton = localRenderState == WebRtcLocalRenderState.EXPANDED || isFocused
 
-    PictureInPicture(
-      state = state,
-      isFocused = isFocused,
-      modifier = Modifier
-        .padding(16.dp)
-        .fillMaxSize()
+    AnimatedVisibility(
+      visible = isPipVisible,
+      enter = fadeIn(),
+      exit = fadeOut(),
+      modifier = Modifier.fillMaxSize()
     ) {
-      SelfPipContent(
-        participant = localParticipant,
-        selfPipMode = selfPipMode,
-        isMoreThanOneCameraAvailable = localParticipant.cameraState.cameraCount > 1,
-        onSwitchCameraClick = onToggleCameraDirectionClick,
+      PictureInPicture(
+        state = state,
+        isFocused = isFocused,
         modifier = Modifier
+          .padding(margin)
           .fillMaxSize()
-          .dropShadow(
-            shape = RoundedCornerShape(clip),
-            shadow = Shadow(
-              radius = 32.dp,
-              color = Color.Black.copy(alpha = 0.12f),
-              offset = DpOffset(x = 0.dp, y = 4.dp)
-            )
-          )
-          .dropShadow(
-            shape = RoundedCornerShape(clip),
-            shadow = Shadow(
-              radius = 12.dp,
-              color = Color.Black.copy(alpha = 0.32f),
-              offset = androidx.compose.ui.unit.DpOffset(x = 0.dp, y = 4.dp)
-            )
-          )
-          .clip(RoundedCornerShape(clip))
-          .clickable(onClick = onClick)
-      )
-
-      AnimatedVisibility(
-        visible = showFocusButton,
-        modifier = Modifier
-          .align(Alignment.TopEnd)
-          .padding(8.dp)
-          .size(48.dp)
       ) {
-        IconButton(
-          onClick = onFocusLocalParticipantClick,
+        SelfPipContent(
+          participant = localParticipant,
+          selfPipMode = selfPipMode,
+          isMoreThanOneCameraAvailable = localParticipant.cameraState.cameraCount > 1,
+          onSwitchCameraClick = onToggleCameraDirectionClick,
           modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape)
-        ) {
-          Icon(
-            imageVector = ImageVector.vectorResource(
-              if (isFocused) R.drawable.symbol_minimize_24 else CoreUiR.drawable.symbol_maximize_24
-            ),
-            tint = MaterialTheme.colorScheme.onSecondaryContainer,
-            contentDescription = stringResource(
-              if (isFocused) {
-                R.string.MoveableLocalVideoRenderer__shrink_local_video
-              } else {
-                R.string.MoveableLocalVideoRenderer__expand_local_video
-              }
+            .fillMaxSize()
+            .dropShadow(
+              shape = RoundedCornerShape(clip),
+              shadow = Shadow(
+                radius = 32.dp,
+                color = Color.Black.copy(alpha = 0.12f),
+                offset = DpOffset(x = 0.dp, y = 4.dp)
+              )
             )
-          )
+            .dropShadow(
+              shape = RoundedCornerShape(clip),
+              shadow = Shadow(
+                radius = 12.dp,
+                color = Color.Black.copy(alpha = 0.32f),
+                offset = androidx.compose.ui.unit.DpOffset(x = 0.dp, y = 4.dp)
+              )
+            )
+            .clip(RoundedCornerShape(clip))
+            .clickable(onClick = onClick)
+        )
+
+        AnimatedVisibility(
+          visible = showFocusButton,
+          modifier = Modifier
+            .align(Alignment.TopEnd)
+            .padding(8.dp)
+            .size(48.dp)
+        ) {
+          IconButton(
+            onClick = onFocusLocalParticipantClick,
+            modifier = Modifier
+              .background(color = MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape)
+          ) {
+            Icon(
+              imageVector = ImageVector.vectorResource(
+                if (isFocused) R.drawable.symbol_minimize_24 else CoreUiR.drawable.symbol_maximize_24
+              ),
+              tint = MaterialTheme.colorScheme.onSecondaryContainer,
+              contentDescription = stringResource(
+                if (isFocused) {
+                  R.string.MoveableLocalVideoRenderer__shrink_local_video
+                } else {
+                  R.string.MoveableLocalVideoRenderer__expand_local_video
+                }
+              )
+            )
+          }
         }
       }
     }
@@ -240,6 +262,18 @@ private fun MoveableLocalVideoRendererPreview() {
   }
 }
 
+/**
+ * Whether the local video is landscape, falling back to device orientation until the first frame arrives.
+ * Hoisted so callers share one result: this attaches a dimension sink to the video track.
+ */
+@Composable
+fun rememberIsLocalVideoLandscape(localParticipant: CallParticipant): Boolean {
+  val localAspectRatio = rememberParticipantAspectRatio(localParticipant.videoSink)
+  val configurationLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+  return localAspectRatio?.let { it > 1f } ?: configurationLandscape
+}
+
 @Composable
 fun rememberSelfPipSize(
   localRenderState: WebRtcLocalRenderState
@@ -266,7 +300,7 @@ fun rememberSelfPipSize(
  *
  * @param isVideoLandscape Whether the video is in landscape orientation (width > height)
  */
-private fun DpSize.rotateForVideoOrientation(isVideoLandscape: Boolean): DpSize {
+internal fun DpSize.rotateForVideoOrientation(isVideoLandscape: Boolean): DpSize {
   return if (isVideoLandscape) {
     DpSize(this.height, this.width)
   } else {

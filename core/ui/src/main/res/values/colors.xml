@@ -6,4 +6,13 @@
          sheet out edge-to-edge and pads it for the navigation bar itself. -->
     <color name="signal_bottom_sheet_navigation_bar">@color/signal_colorSurface1</color>
 
+    <color name="signal_accent_primary">@color/core_ultramarine</color>
+    <color name="signal_inverse_primary">@color/core_black</color>
+
+    <color name="green_500">#4CAF50</color>
+    <color name="red_500">#F44336</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="yellow_500">#FFEB3B</color>
+    <color name="cyan_500">#00BCD4</color>
+    <color name="pink_500">#E91E63</color>
 </resources>

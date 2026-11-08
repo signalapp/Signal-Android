@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.stories.settings.create
 
 import androidx.navigation.fragment.findNavController
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.DistributionListId
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.select.BaseStoryRecipientSelectionFragment
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 

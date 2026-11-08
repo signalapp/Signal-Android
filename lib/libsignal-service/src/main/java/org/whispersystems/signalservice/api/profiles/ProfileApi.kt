@@ -16,6 +16,7 @@ import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequestContext
 import org.signal.network.NetworkResult
+import org.signal.network.crypto.SealedSenderAccess
 import org.signal.network.util.JsonUtil
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebsocketResponse
@@ -23,7 +24,6 @@ import org.signal.network.websocket.get
 import org.signal.network.websocket.put
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket

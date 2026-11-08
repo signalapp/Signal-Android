@@ -48,152 +48,1129 @@
     <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">கணக்கு &amp; மீட்பு</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$dகுறியீடு</item>
-        <item quantity="other">%1$dகுறியீடுகள்</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
     <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">உங்களின் கணக்கை மீட்டெடுக்கவும் மீட்டமைக்கவும் Signal Login பயன்படுத்தப்படுகிறது. நீங்கள் நம்பும் கடவுச்சொல் மேலாளரில் இந்தக் குறியீடுகளைப் பாதுகாப்பாகச் சேமித்து வைக்கவும்.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">இரு படிநிலை அங்கீகரிப்பு</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">அமைக்கவும்</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">அங்கீகரிப்புச் செயலி</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">ஒருமுறை பயன்படுத்தும் சரிபார்ப்புக் குறியீடுகள்</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">கடவுக்குறியீடு</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">உங்கள் கைரேகை, முகம் அல்லது திரைப் பூட்டைப் பயன்படுத்தவும்</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">கடவுக்குறியீடு</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">இரு-படி அங்கீகாரம்</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · சேர்க்கப்பட்டது %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">முன் தெரிந்திராத</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">இரு-படி அங்கீகார விருப்பங்களைத் திற</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">மறுபெயரிடுக</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">அகற்று</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">அங்கீகரிப்புச் செயலியை அகற்றவா?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">நீங்கள் உள்நுழையும்போது ஒருமுறை சரிபார்ப்புக் குறியீடுகளுக்காக இந்தச் செயலியைப் பயன்படுத்த முடியாது.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">கடவுக்குறியீட்டை அகற்றவா?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">நீங்கள் உள்நுழையும்போது இந்தக் கடவுக்குறியீட்டைப் பயன்படுத்த முடியாது.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">இரு-படி அங்கீகார முறையை அகற்றவா?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">நீங்கள் உள்நுழையும்போது இந்த முறையைப் பயன்படுத்த முடியாது.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">இரு-படி அங்கீகார முறை அகற்றப்பட்டது</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">இரு-படி அங்கீகார முறையை அகற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">கடவுக்குறியீடு அகற்றப்பட்டது</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">கடவுக்குறியீட்டை அகற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">இந்தச் சாதனத்தில் கடவுக்குறியீடுகளை ஆதரிக்கும் கடவுச்சொல் மேலாளரை அமைத்துவிட்டு, மீண்டும் முயலவும்.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">கடவுக்குறியீட்டை உருவாக்க முடியவில்லை. மீண்டும் முயலவும்.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">இரு-படி அங்கீகார முறையைச் சேர்க்க, திறக்கவும்</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">இந்த முறையைச் சேர்க்க, இது நீங்கள் தான் என்பதை உறுதிப்படுத்தவும்</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">இரு-படி அங்கீகார முறையை அகற்ற, தடைநீக்கவும்</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">இந்த முறையை அகற்ற, இது நீங்கள் தான் என்பதை உறுதிப்படுத்தவும்</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Loginஐப் பார்க்க, தடைநீக்கவும்</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">உங்களின் Signal Loginஐக் காண, இது நீங்கள் தான் என்பதை உறுதிப்படுத்தவும்</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">உங்களின் அடையாளத்தை உறுதிப்படுத்த தடைநீக்கவும்</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">உங்கள் கணக்கை நீக்க, உங்களின் அடையாளத்தை உறுதிப்படுத்துங்கள்</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">அனுமதி தேவை</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">அங்கீகரிப்புச் செயலியைச் சேர்க்க முடியவில்லை</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">%1$d அங்கீகரிப்புச் செயலிகளுக்கு மேல் உங்களால் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">உங்களால் %1$d-க்கும் மேற்பட்ட இரு-படி அங்கீகார முறையைச் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">உங்களின் இரு-படி அங்கீகார முறைகளை ஏற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">அங்கீகரிப்புச் செயலி அகற்றப்பட்டது</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">அங்கீகரிப்புச் செயலியை அகற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
     <string name="AccountSettingsFragment__use_a_second_form_of_authentication">புதிய சாதனத்தில் உங்கள் Signal Login-ஐப் பயன்படுத்தும்போது, உங்கள் கணக்கைப் பாதுகாக்க இரண்டாவது அங்கீகார முறையைப் பயன்படுத்தவும்.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">மேலும் அறிக</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">உங்கள் கணக்குத் தரவு</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">உங்கள் Signal கணக்குத் தரவின் அறிக்கையை ஏற்றுமதி செய்க. இந்த அறிக்கையில் செய்திகள் அல்லது ஊடகம் எதுவும் இல்லை. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">மேலும் அறிக</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">அறிக்கையை ஏற்றுமதி செய்க</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">TXT ஆக ஏற்றுமதி செய்க</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">எளிதாகப் படிக்கக்கூடிய உரை கோப்பு</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">JSON ஆக ஏற்றுமதி செய்க</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">இயந்திரம் படிக்கக்கூடிய கோப்பு</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">ரத்துசெய்</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">சரி</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">அறிக்கையை உருவாக்க முடியவில்லை</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">தரவை ஏற்றுமதி செய்ய வேண்டுமா?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">உங்கள் Signal கணக்குத் தரவை நீங்கள் நம்பும் நபர்கள் அல்லது ஆப்ஸ்களுடன் மட்டும் பகிரவும்.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">ஏற்றுமதி செய்க</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">அறிக்கையை உருவாக்குகிறது…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">உங்கள் அறிக்கை ஏற்றுமதியின் போது மட்டுமே உருவாக்கப்படும் மற்றும் உங்கள் டிவைஸில் Signal மூலம் சேமிக்கப்படாது.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">உங்கள் அங்கீகரிப்புச் செயலியை அமைக்கவும்</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">உங்களது அங்கீகரிப்புச் செயலியை அமைக்க, இந்தப் படிகளைப் பின்பற்றவும்.</string>
+    <string name="TotpSetupScreen__follow_these_steps">உங்களது அங்கீகரிப்புச் செயலியை அமைக்க, இந்தப் படிகளைப் பின்பற்றவும்.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">மேலும் அறிக</string>
+    <string name="TotpSetupScreen__learn_more">மேலும் அறிக</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">படி 1</string>
+    <string name="TotpSetupScreen__step_1">படி 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">உங்கள் சாதனத்தில் நம்பகமான அங்கீகரிப்புச் செயலியை நிறுவவும்.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">உங்கள் சாதனத்தில் நம்பகமான அங்கீகரிப்புச் செயலியை நிறுவவும்.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">படி 2</string>
+    <string name="TotpSetupScreen__step_2">படி 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">உங்கள் சிக்னல் கணக்கைச் சேர்க்க, கீழுள்ள பட்டனைத் தட்டி உங்களது அங்கீகரிப்புச் செயலியைத் திறக்கவும்.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">உங்கள் சிக்னல் கணக்கைச் சேர்க்க, கீழுள்ள பட்டனைத் தட்டி உங்களது அங்கீகரிப்புச் செயலியைத் திறக்கவும்.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">திற</string>
+    <string name="TotpSetupScreen__open">திற</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">அல்லது, நீங்களே கைமுறையாக அமைப்பதற்கு இந்தக் குறியீட்டை நகலெடுக்கலாம்.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">அல்லது, நீங்களே கைமுறையாக அமைப்பதற்கு இந்தக் குறியீட்டை நகலெடுக்கலாம்.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">நகல்</string>
+    <string name="TotpSetupScreen__copy">நகல்</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">அங்கீகரிப்புச் செயலி எதுவும் கிடைக்கவில்லை</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">அங்கீகரிப்புச் செயலி எதுவும் கிடைக்கவில்லை</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">%1$d அங்கீகரிப்புச் செயலிகளுக்கு மேல் உங்களால் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Signal-ஐத் தொடர்புகொள்ள முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">படி 3</string>
+    <string name="TotpSetupScreen__step_3">படி 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">உருவாக்கப்படும் குறியீட்டை நகலெடுத்துவிட்டு, தொடர இங்கே திரும்பவும்.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">உருவாக்கப்படும் குறியீட்டை நகலெடுத்துவிட்டு, தொடர இங்கே திரும்பவும்.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">தொடர்</string>
+    <string name="TotpSetupScreen__continue">தொடர்</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">மேலும் அறிக</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">கடவுக்குறியீடுகள்</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">கடவுக்குறியீடுகள் மூலம் உங்கள் கணக்கில் பாதுகாப்பான இரண்டாவது அங்கீகார முறையை எளிதாகச் சேர்க்கலாம். கடவுக்குறியீடுகள் உங்கள் சாதனத்தின் பயோமெட்ரிக்ஸை அல்லது இணக்கமான FIDO2 பாதுகாப்புக் குறியீட்டைப் பயன்படுத்தும்.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">மேலும் அறிக</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">உங்கள் கடவுக்குறியீட்டை அடையாளம் காண அதற்கு ஒரு பெயரைச் சூட்டவும்</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">உங்கள் கடவுக்குறியீட்டைச் சேமிக்க, உங்கள் சாதனத்தின் பயோமெட்ரிக்ஸை அல்லது FIDO2 பாதுகாப்புக் குறியீட்டைப் பயன்படுத்தவும்</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">எப்போது வேண்டுமானாலும் கடவுக்குறியீடுகளைச் சேர்க்கலாம் அல்லது அகற்றலாம்.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">சேர்க்கப்பட்டது \"%1$s\"</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Rename</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">அகற்று</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">கடவுக்குறியீட்டை அமைக்கவும்</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">கடவுக்குறியீட்டைச் சேர்க்க முடியவில்லை</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">உங்களால் %1$d-க்கும் மேற்பட்ட இரு-படி அங்கீகார முறையைச் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">உங்கள் குறியீட்டை உள்ளிடவும்</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">உங்கள் குறியீட்டை உள்ளிடவும்</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">உங்கள் அங்கீகரிப்புச் செயலியில் உள்ள 6 இலக்கக் குறியீட்டை உள்ளிடவும்.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">குறியீடு</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">உங்கள் அங்கீகரிப்புச் செயலியில் உள்ள 6 இலக்கக் குறியீட்டை உள்ளிடவும்.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">முடிந்தது</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">அங்கீகரிப்புச் செயலி</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">மேலும் அறிக</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">சேர்க்கப்பட்டது \"%1$s\"</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Rename</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">அகற்று</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">அடுத்தது</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">தவறான குறியீடு. உங்கள் அங்கீகரிப்புச் செயலியில் இப்போது காட்டப்படும் குறியீட்டை உள்ளிடவும்.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal-ஐத் தொடர்புகொள்ள முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Choose a name</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">அங்கீகரிப்பு</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">பெயரைத் தேர்வுசெய்யவும்</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">இந்த அங்கீகரிப்புச் செயலிக்குத் தனித்துவமான பெயரைத் தேர்வுசெய்யவும்.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">இந்த அங்கீகரிப்புச் செயலியைப் பின்னர் எளிதாக அடையாளம் காண, இதற்குத் தனித்துவமான ஒரு பெயரைத் தேர்வுசெய்யவும்.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">இந்த இரு-படி அங்கீகார முறைக்குத் தனித்துவமான பெயர் ஒன்றைத் தேர்வுசெய்யவும்.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">இந்த இரு-படி அங்கீகார முறையைப் பிறகு அடையாளம் காண உதவும் வகையில் இதற்குத் தனித்துவமான பெயர் ஒன்றைத் தேர்வுசெய்யவும்.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">இந்தக் கடவுக்குறியீட்டிற்குத் தனித்துவமான பெயர் ஒன்றைத் தேர்வுசெய்யவும்.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">இந்தக் கடவுக்குறியீட்டைப் பிறகு அடையாளம் காண உதவும் வகையில் இதற்குத் தனித்துவமான பெயர் ஒன்றைத் தேர்வுசெய்யவும்.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">பெயர்</string>
+    <string name="TwoFactorNameEntryScreen__name">பெயர்</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">அடுத்தது</string>
+    <string name="TwoFactorNameEntryScreen__next">அடுத்தது</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">அங்கீகரிப்புச் செயலி அமைக்கப்பட்டது</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">அங்கீகரிப்புச் செயலிக்கு மறுபெயரிடப்பட்டது</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">கடவுக்குறியீடு அமைக்கப்பட்டது</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">கடவுக்குறியீடு மறுபெயரிடப்பட்டது</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">இரு-படி அங்கீகார முறை அமைக்கப்பட்டது</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">இரு-படி அங்கீகார முறைக்கு மறுபெயரிடப்பட்டது</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">பெயரைச் சேமிக்க முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் கணக்கை நீக்குவதால்:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
+    <string name="DeleteAccountFragment__delete_account">கணக்கை நீக்கு</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">உங்கள் கணக்குத் தகவல் மற்றும் புரொஃபைல் ஃபோட்டோவை நீக்கவும்</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">உங்கள் அனைத்து மெசேஜ்களையும் நீக்குக</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">உங்கள் பேமெண்ட் கணக்கில் %1$sஐ நீக்கு</string>
+    <string name="DeleteAccountFragment__no_country_code">இல்லை நாட்டின் குறியீடு குறிப்பிடப்பட்டுள்ளது</string>
+    <string name="DeleteAccountFragment__no_number">இல்லை எண் குறிப்பிடப்பட்டுள்ளது</string>
+    <string name="DeleteAccountFragment__the_phone_number">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
+    <string name="DeleteAccountFragment__are_you_sure">உங்கள் கணக்கை நிச்சயமாக நீக்க வேண்டுமா?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">இது உங்களது Signal கணக்கை நீக்கி செயலியை மீட்டமைக்கும். செயல்பாடு நிறைவடைந்ததும் செயலி மூடப்படும்.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">உள்ளே சேமிக்கப்பட்டிருக்கும் தரவை நீக்க முடியவில்லை. சிஸ்டம் அப்ளிகேஷன் செட்டிங்ஸில் அதை நீங்கள் நேரடியாக அழிக்கலாம்.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">பயன்பாட்டு அமைப்புகளை தொடங்கு</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">குழுக்களை விட்டு வெளியேறுகிறது…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">கணக்கை நீக்குகிறது…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">உங்கள் சந்தாவை ரத்துசெய்கிறது…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">நீங்கள் இருக்கும் குழுக்களின் எண்ணிக்கையைப் பொறுத்து, இது சில நிமிடங்கள் எடுக்கலாம்</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">பயனர் தரவை நீக்குகிறது மற்றும் ஆப்பை மீட்டமைக்கிறது</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">கணக்கு நீக்கப்படவில்லை</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">நீக்குதல் செயல்முறையை முடிப்பதில் சிக்கல் ஏற்பட்டது. உங்கள் நெட்வர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">\"%1$s\" என்ற பயனர்பெயர் கொண்ட உங்கள் கணக்கை நீக்குவது:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">உங்களின் \"%1$s\" பயனர்பெயர் உட்பட, உங்களின் கணக்குத் தகவல் மற்றும் புரொஃபைல் படத்தை நீக்கவும்</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">இந்தச் செயலைச் செயல்தவிர்க்க முடியாது</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">இது \"%1$s\" என்ற பயனர்பெயர் கொண்ட உங்களது Signal கணக்கை நீக்கி செயலியை மீட்டமைக்கும். செயல்பாடு நிறைவடைந்ததும் செயலி மூடப்படும். இந்தச் செயல்முறை முடிந்ததும் செயலி மூடப்படும்.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">ஆம், எனது கணக்கை நீக்கு</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">நண்பர்களை அழை</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">பகிர்</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
+    <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d கோப்புறை</item>
+        <item quantity="other">%1$d கோப்புறைகள்</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">சாட் கோப்புறையைச் சேர்</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">கோப்புறைகளைச் சேர்க்கவும் அல்லது திருத்தவும்</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">அங்கீகரிப்புத் தோல்வியடைந்தது</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">சாட் கோப்புறைகள்</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">சாட் வரலாற்றை ஏற்றுமதி செய்க</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">உங்கள் அனைத்து சாட்களையும் கணினி படிக்கக்கூடிய \'JSON\' நகலாக ஏற்றுமதி செய்க. மறைந்து போகும் மெசேஜ்கள் ஏற்றுமதி செய்யப்படாது.</string>
+    <string name="ChatsSettingsFragment__keyboard">விசைப்பலகை</string>
+    <string name="ChatsSettingsFragment__send_with_enter">உள்ளிடுக மூலம் அனுப்புக</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">ஸ்டிக்கர்கள் மற்றும் GIFகளைத் தானாக இயக்கு</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">ஆன் செய்யப்பட்டிருக்கும்போது, ஸ்டிக்கர்களும் GIFகளும் தானாக இயங்கும்</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">அரட்டை வரலாற்றை ஏற்றுமதி செய்யத் தடைநீக்கவும்</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">முகவரிப் புத்தகத்தில் தொடர்புகளின் படங்கள் இருந்தால், அவற்றுக்கு முன்னுரிமை கொடுக்கவும்</string>
+    <string name="preferences__generate_link_previews">இணைப்பு மாதிரிக்காட்சிகளை உருவாக்கவும்</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">புதிய மெசேஜ் வரும்போது ஒலியடக்கிய காப்பகப்படுத்தப்பட்ட சாட்கள் காப்பகப்படுத்தப்பட்டதாகவே இருக்கும்.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">ஒலியடக்கிய சாட்களைக் காப்பகப்படுத்துக</string>
+    <string name="preferences__pref_use_address_book_photos">முகவரிப் புத்தகப் படங்களுக்கு முன்னுரிமை கொடுக்கவும்</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">நீங்கள் அனுப்பும் செய்திகளுக்கு வலைத்தளங்களிலிருந்து இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கவும்.</string>
+    <string name="preferences_advanced__use_system_emoji">கணினி ஈமோஜியைப் பயன்படுத்தவும்</string>
+    <string name="preferences_chats__chats">சாட்ஸ்</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">கவனமாக இருங்கள்</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">கவனமாக இருங்கள்!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">ஏற்றுமதியை ரத்துசெய்கிறது…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">உங்கள் அரட்டை வரலாறு சேமிக்கப்பட வேண்டிய கோப்புறையை உங்கள் சாதனத்தின் சேமிப்பகத்தில் தேர்ந்தெடுக்கவும்.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">கோப்புறையைத் தேர்வு செய்க</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">கோப்புறையைத் தேர்வுசெய்க</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">உங்கள் அரட்டை ஏற்றுமதி கோப்பை எங்கு சேமிக்கிறீர்கள் என்பதிலும், அதை யாருடனும் பகிர வேண்டாம் என்பதிலும் இவ்வாறு இருங்கள். உங்கள் சாதனத்தின் அனுமதிகளைப் பொறுத்து, உங்கள் சாதனத்தில் உள்ள பிற செயலிகள் அதை அணுகக்கூடும்.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">அரட்டை ஏற்றுமதி முடிந்தது</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">சாட் வரலாற்றை ஏற்றுமதி செய்யவா?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">இந்தக் கோப்பினை யாருடனும் பகிர வேண்டாம். உங்கள் அரட்டை வரலாறு உங்கள் சாதனத்தில் சேமிக்கப்படும், மேலும் உங்கள் சாதனத்தின் அனுமதிகளைப் பொறுத்து பிற செயலிகள் அதை அணுகக்கூடும். ஊடகத்துடன் ஏற்றுமதி செய்வது கோப்பின் அளவை அதிகரிக்கும்.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">ஊடகத்துடன் ஏற்றுமதி செய்க</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">ஊடகம் இல்லாமல் ஏற்றுமதி செய்க</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">ஊடகம் ஏற்றுமதி செய்யப்படுகிறது: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">இறுதி செய்யப்படுகிறது…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">காப்புப்பிரதிக்குத் தயாராகிறது…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">காப்புப்பிரதியைச் செயலாக்குகிறது…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">மெசேஜ்கள் செயலாக்கப்படுகின்றன…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">மெசேஜ்கள் செயலாக்கப்படுகின்றன: %2$s-இல் %1$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">ஊடகம் பதிவேற்றப்படுகிறது: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">பயன்பாடு புதுப்பிப்புகள்</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">தோற்றம்</string>
+    <string name="preferences__language">மொழி</string>
+    <string name="preferences__theme">நிறவடிவமைப்பு</string>
+    <string name="preferences__system_default">கருவி இயல்புநிலை</string>
+    <string name="preferences__light_theme">ஒளி</string>
+    <string name="preferences__dark_theme">இருட்டு</string>
+    <string name="preferences__chat_color_and_wallpaper">சாட் கலர் &amp; வால்பேப்பர்</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">செயலி ஐகான்</string>
+    <string name="preferences_chats__message_text_size">செய்தி எழுத்துரு அளவு</string>
+    <string name="arrays__small">சிறிய</string>
+    <string name="arrays__normal">சாதாரணமாக</string>
+    <string name="arrays__large">பெரிய</string>
+    <string name="arrays__extra_large">கூடுதல் பெரியது</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">வழிசெலுத்தல் பார் அளவு</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">சாதாரண அளவு</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">பொருந்திய அளவு</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">புதிய மொழி அமைப்பைப் பயன்படுத்த, செயலி மறுதொடக்கம் செய்யப்படும்.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">தொலைபேசி எண்</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">எனது எண்ணை யார் பார்க்கலாம்</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">நீங்கள் மெசேஜ் அனுப்பும் அனைத்து நபர்களுக்கும் குழுக்களுக்கும் உங்கள் தொலைபேசி எண் புலனாகும்.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">உங்கள்தொலைபேசி எண்ணை அவர்கள் ஃபோனின் தொடர்புகளில் சேமித்து வைத்திருக்கும் வரை, அது யாருக்கும் காட்டப்படாது.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">உங்கள் தொலைபேசி எண் யாருக்கும் காட்டப்படாது.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">எண் மூலம் என்னை யார் கண்டுபிடிக்க முடியும்</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">உங்கள் தொலைபேசி எண்ணை வைத்திருக்கும் எவரும் நீங்கள் சிக்னலை பயன்படுத்திக் கொண்டிருப்பதை அறிவார்கள், மேலும் உங்களுடன் அவர்கள் சாட் செய்யத் தொடங்கலாம்.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">நீங்கள் அவர்களுக்கு மெசேஜ் அனுப்பாத வரை அல்லது அவர்களுடன் ஏற்கனவே சாட் செய்யாத வரை, நீங்கள் சிக்னலை பயன்படுத்திக் கொண்டிருப்பதை யாராலும் பார்க்க முடியாது.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"இந்த அமைப்பை மாற்ற, எனது எண்ணை யார் பார்க்கலாம் என்னும் ஆப்ஷனில் யாரும் இல்லை என மாற்றி அமைக்கவும்."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">நீங்கள் உறுதியாக உள்ளீர்களா?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ஃபோன் எண் மூலம் என்னை யார் கண்டுப்பிடிக்க முடியும்\" என்பதை \"யாரும் இல்லை\" என அமைப்பது உங்களை சிக்னலில் கண்டறிவதை மற்றவர்களுக்கு கடினமாக்கும்.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ரத்துசெய்</string>
+    <string name="PhoneNumberPrivacy_everyone">எல்லோரும்</string>
+    <string name="PhoneNumberPrivacy_nobody">ஒருவருமில்லை</string>
+    <string name="arrays__images">புகைப்படங்கள்</string>
+    <string name="arrays__audio">ஒலி</string>
+    <string name="arrays__video">காணொளி</string>
+    <string name="arrays__documents">ஆவணங்கள்</string>
+    <string name="preferences__data_and_storage">தரவு மற்றும் சேமிப்பு</string>
+    <string name="preferences_chats__when_using_mobile_data">மொபைல் தரவைப் பயன்படுத்தும் போது</string>
+    <string name="preferences_chats__when_using_wifi">வைஃபை பயன்படுத்தும் போது</string>
+    <string name="preferences_chats__when_roaming">ரோமிங் செய்யும் போது</string>
+    <string name="preferences_chats__media_auto_download">மீடியா தானாக பதிவிறக்கம்</string>
+    <string name="preferences_data_and_storage__manage_storage">சேமிப்பிடத்தை நிர்வகிக்கவும்</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">அழைப்புகளுக்கு குறைந்த தரவைப் பயன்படும்</string>
+    <string name="preferences_data_and_storage__never">ஒருபோதுமில்லை</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">வைஃபை மற்றும் மொபைல் தரவு</string>
+    <string name="preferences_data_and_storage__mobile_data_only">மொபைல் தரவு மட்டும்</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">குறைந்த தரவைப் பயன்படுத்துவது மோசமான நெட்வொர்க்குகளில் அழைப்புகளை மேம்படுத்தலாம்.</string>
+    <string name="preferences_proxy">பதிலி</string>
+    <string name="preferences_use_proxy">பதிலியைப் பயன்படுத்து.</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">மீடியா தரம்</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">கணக்கிடுகிறது…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">அனுப்பிய மீடியா தரம்</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">உயர்தரத்தை அனுப்புகிறது ஊடகம் அதிக தரவைப் பயன்படுத்தும்.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">வாய்ஸ் மெசேஜ்கள் மற்றும் ஸ்டிக்கர்கள் (%1$s அளவின் கீழ் உள்ளவை) எப்போதும் தானாகவே பதிவிறக்கப்படுகின்றன.</string>
+    <string name="DataAndStorageSettingsFragment__calls">அழைப்புகள்</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">பின்னணியில் இணைந்திரு</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">பின்னணியில் இணைந்திருப்பதால் பேட்டரி நுகர்வு அதிகரிக்கும். பெரும்பாலான சாதனங்களுக்கு இவ்வாறு செயல்பட வேண்டியதில்லை. அறிவிப்புச் சிக்கல்களைச் சந்தித்தால் மட்டுமே இதைச் செயல்படுத்துங்கள்.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">செயல்படுத்து</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">உயர்</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">தரநிலை</string>
+    <string name="preferences_app_protection__screen_lock">திரை பூட்டு</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">திரைப் பூட்டைப் பயன்படுத்தவும்</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">நீங்கள் வெளியேறும்போது அல்லது செயலிகளை மாற்றும்போது சிக்னலைத் திறக்க உங்கள் ஆண்ட்ராய்டு டிவைஸ் பூட்டு அமைப்புகள் தேவைப்படும். பூட்டப்பட்டிருக்கும்போது, அறிவிப்பு முன்னோட்டங்கள் மெசேஜ் உள்ளடக்கத்தைக் காட்டாது.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">திரைப் பூட்டைத் துவங்கு</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">1 நிமிடத்திற்குப் பின்</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">5 நிமிடங்களுக்குப் பின்</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">30 நிமிடங்களுக்குப் பின்</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">விருப்ப நேரம்</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">சிக்னல் திரைப் பூட்டைப் பயன்படுத்துக</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">சிக்னல் திரைப் பூட்டை ஆஃப் செய்</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">உதவி</string>
+    <string name="HelpSettingsFragment__support_center">ஆதரவு மையம்</string>
+    <string name="HelpSettingsFragment__contact_us">எங்களை தொடர்பு கொள்ள</string>
+    <string name="HelpSettingsFragment__version">பதிப்பு</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+    <string name="HelpSettingsFragment__debug_log">பிழைத்திருத்த பதிவு</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">உரிமங்கள்</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
+    <string name="HelpFragment__copyright_signal_messenger">பதிப்புரிமை Signal தூதர்</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 இன் கீழ் உரிமம் பெற்றது</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">சிக்னல் ஓர் இலாப நோக்கற்ற அமைப்பாகும்.</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">செயலி ஐகான்கள் மற்றும் பெயர்கள் முகப்புத் திரை மற்றும் செயலி டிராயரில் தெரிகிறது.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">அறிவிப்புகள் எப்போதும் இயல்புநிலை Signal ஐகானையும் பெயரையும் காண்பிக்கும்.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">மாற்று செயலி ஐகான் எங்கு தெரியும் என்பதை கிராஃபிக் விளக்குகிறது.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">வானிலை</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">குறிப்புகள்</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">செய்தி</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">அலைகள்</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">சரி</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">ரத்துசெய்</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">செயலி ஐகானையும் பெயரையும் \"%1$s\" என மாற்றவும்</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">செயலியின் ஐகானையும் பெயரையும் மாற்ற Signal மூடப்பட வேண்டும். அறிவிப்புகள் எப்போதும் இயல்புநிலை Signal ஐகானையும் பெயரையும் காண்பிக்கும்.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">செயலி ஐகானையும் பெயரையும் தேர்ந்தெடுக்கவும், இது உங்கள் மொபைலின் முகப்புத் திரை மற்றும் ஆப் டிராயரில் தெரியும். அறிவிப்புகள் எப்போதும் இயல்புநிலை Signal ஐகானையும் பெயரையும் காண்பிக்கும். மேலும் அறிக</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">மேலும் அறிக</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">இணைப்பு அமைக்கப்படவில்லை</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">நிறம்</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">முடிந்தது</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">சுயவிவரம் உருவாக்கப்பட்டது</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">முடிந்தது</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">சாட் பட்டியலில் உள்ள மெனு மூலம் உங்கள் சுயவிவரத்தை கைமுறையாக இயக்கலாம் அல்லது முடக்கலாம்.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">உங்கள் சுயவிவரத்தை தானியக்கமாக்க அமைப்புகளில் ஒரு கால அட்டவணையைச் சேர்க்கவும்.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">உங்கள் அட்டவணையின்படி உங்கள் சுயவிவரம் தானாகவே ஆன் மற்றும் ஆஃப் செய்யப்படும்.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">நீங்கள் இன்னும் ஒரு கடவுச்சொல்லை அமைக்கவில்லை!</string>
+    <string name="ApplicationPreferencesActivity_disable">முடக்கு</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">கடவுச்சொல்லை முடக்கு?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">இது நிரந்தரமாக Signal செய்தி அறிவிப்புகளைத் திறக்கும்.</string>
+    <string name="PrivacySettingsFragment__app_security">பயன்பாட்டு பாதுகாப்பு</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">சமீபத்தியவை பட்டியல் மற்றும் செயலிக்கு உள்ளே ஸ்கிரீன்ஷாட் எடுப்பதைத் தடுக்கவும்</string>
+    <string name="PrivacySettingsFragment__blocked">தடைசெய்யப்பட்டார்</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">கட்டண பூட்டைப் பயன்படுத்த, முதலில் உங்கள் மொபைலின் அமைப்புகளில் திரைப் பூட்டு அல்லது கைரேகை ஐ.டி.-யை இயக்க வேண்டும்.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">கட்டண பூட்டைச் செயல்படுத்த முடியவில்லை</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$dதொடர்பு அல்லது குழு</item>
+        <item quantity="other">%1$dதொடர்புகள் அல்லது குழுக்கள்</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">புதிய சாட்களுக்கு இயல்புநிலை டைமர்</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">சிஸ்டம் அமைப்புகளுக்குச் செல்ல முடியவில்லை</string>
+    <string name="PrivacySettingsFragment__messaging">செய்தி அனுப்புதல்</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">நிதியை மாற்ற ஆண்ட்ராய்டு திரைப் பூட்டு அல்லது கைரேகை தேவை</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">நீங்கள் தொடங்கும் அனைத்து புதிய சாட்களுக்கும் இயல்புநிலை மறைந்து போகும் மெசேஜ்கள் டைமரை அமைக்கவும்.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal செய்திகள் மற்றும் அழைப்புகள், எப்போதும் ரிலே அழைப்புகள் மற்றும் சீல் அனுப்பியவர்</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">ஆஃப்</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">செயலற்ற ஒரு குறிப்பிட்ட நேர இடைவெளிக்குப் பிறகு தானாக Signal ஐ பூட்டு</string>
+    <string name="preferences__change_passphrase">கடவுச்சொல்லை மாற்று</string>
+    <string name="preferences__change_your_passphrase">உன்னுடய கடவுச்சொல்லை மாற்று</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">கடவுச்சொல் திரை பூட்டை இயக்கவும்</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">வாசிப்பு ரசீதுகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து வாசிப்பு ரசீதுகளை நீங்கள் காண முடியாது.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">தட்டச்சு குறிகாட்டிகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து தட்டச்சு குறிகாட்டிகளை நீங்கள் பார்க்க முடியாது.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">செயலற்ற காலக்கெடு இடைவெளி</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">செயலற்ற நேரம் முடிந்தது கடவுச்சொல்</string>
+    <string name="preferences__incognito_keyboard">மறைநிலை விசைப்பலகை</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">கடவுச்சொல் மூலம் திரை மற்றும் அறிவிப்புகளைப் பூட்டு</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">கட்டண பூட்டு</string>
+    <string name="preferences__read_receipts">ரசீதுகளைப் படியுங்கள்</string>
+    <string name="preferences__request_keyboard_to_disable">கோரிக்கை விசைப்பலகை க்கு முடக்கு தனிப்பயனாக்கப்பட்ட கற்றல்.</string>
+    <string name="preferences__screen_security">திரை பாதுகாப்பு</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">இந்த அமைப்பு ஒரு உத்தரவாதம் அல்ல, உங்களுடையது விசைப்பலகை அதை புறக்கணிக்கலாம்.</string>
+    <string name="preferences__typing_indicators">தட்டச்சு குறிகாட்டிகள்</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">உங்கள் தொலைபேசி எண்ணை யார் பார்க்கலாம் மற்றும் யார் உங்களை சிக்னலில் தொடர்பு கொள்ளலாம் என்பதைத் தேர்வுசெய்யவும்.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">பணம் செலுத்தல்</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">இந்தச் டிவைஸில் திரைப் பூட்டைப் பயன்படுத்த, பின், வடிவம் அல்லது கடவுச்சொல்லை அமைக்கவும்.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">தனியுரிமை</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">மேம்பட்ட</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">இயக்கவும்</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">இப்போது வேண்டாம்</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">மேலும் அறிக</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">காப்புப்பிரதி சேமிப்பகத்தின் வரம்பு அடையப்பட்டது</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">காப்புப்பிரதிகள் சந்தாதாரர் ஐ.டி கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">நன்கொடை சந்தாதாரர் ஐ.டி கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">பேக்கப்பை நிறைவு செய்ய முடியவில்லை</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">நண்பர்களை அழைக்கவும்</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">உங்கள் சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளின் சந்தாவை புதுப்பிக்கவும்</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">தனியுரிமை</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">அமைப்புகள்</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">திரும்பிச் செல்லுங்கள்</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">உங்களின் காப்புப்பிரதிகளின் சந்தாவை மீட்டெடுக்க முடியவில்லை</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Signalக்கு நன்கொடை அளிக்கவும்</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">உள்ளக விருப்பத்தேர்வுகள்</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">அறிவிப்புகள்</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">பணம் செலுத்தல்</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">ஸ்டோரீஸ்</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">காப்புப் பிரதிகள்</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">வழிசெலுத்தல் பார் அளவு</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">சாதாரண அளவு</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">பொருந்திய அளவு</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">திரும்பிச் செல்லுங்கள்</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">புகைப்படம்</string>
+    <string name="preferences_storage__videos">காணொளி</string>
+    <string name="preferences_storage__files">கோப்பு</string>
+    <string name="preferences_storage__audio">ஒலி</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">மெசேஜ்கள்</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">ஒட்டிப்படங்கள்</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">மற்றவை</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">கணக்கிடுகிறது…</string>
+    <string name="preferences_storage__review_storage">விமர்சனம் சேமிப்பு</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">இரு படிநிலை அங்கீகரிப்பு</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">அங்கீகரிப்புச் செயலியை அகற்ற முடியவில்லை.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">கடவுக்குறியீடு</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">உங்கள் சாதனத்தின் பயோமெட்ரிக்ஸ் அல்லது FIDO2 கடவுக்குறியீட்டைப் பயன்படுத்த, தட்டவும்</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">அங்கீகரிப்புச் செயலி</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">உங்கள் அங்கீகரிப்புச் செயலியில் உருவாக்கப்பட்ட ஒருமுறைப் பயன்படுத்தும் குறியீட்டை உள்ளிடவும்.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">தொடர, உங்கள் அங்கீகாரிப்புச் செயலியில் உள்ள 6 இலக்கக் குறியீட்டை உள்ளிடவும்.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">ரத்துசெய்</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">தவறான குறியீடு. உங்கள் அங்கீகரிப்புச் செயலியில் இப்போது காட்டப்படும் குறியீட்டை உள்ளிடவும்.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Signal-ஐத் தொடர்புகொள்ள முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">உங்கள் கடவுக்குறியீட்டில் ஏதோ தவறு ஏற்பட்டுள்ளது. மீண்டும் முயலவும் அல்லது வேறொரு முறையைத் தேர்வுசெய்யவும்.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">உங்கள் பெயர்</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">முதல் பெயர்</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">குடும்பப் பெயர் (விரும்பினால்)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">சேமி</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">இணையப் பிரச்சினகளால் சேமிக்க முடியவில்ல. சற்று நேரம் பொறுத்து முயற்சிக்கவும்.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">செய்திகள் வைப்பு</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">என்றென்றும்</string>
+    <string name="preferences_storage__one_year">1 வருடம்</string>
+    <string name="preferences_storage__six_months">6 மாதங்கள்</string>
+    <string name="preferences_storage__thirty_days">30 நாட்கள்</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">தேர்ந்தெடுக்கப்பட்ட நேரத்தை விடப் பழைய மெசேஜ்கள் நிரந்தரமாக நீக்கப்படும்.</string>
+    <string name="preferences_storage__delete_older_messages">பழைய மெசேஜ்களை நீக்க வேண்டுமா?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் டிவைஸில் இருந்து %1$s ஐ விட பழையதாக உள்ள அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">நீக்கு</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">சாட்டின் நீள அளவு</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s மெசேஜ்</item>
+        <item quantity="other">%1$s மெசேஜ்கள்</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">எதுவும் இல்லை</string>
+    <string name="preferences_storage__custom">விருப்பத்திர்க்கேர்ப்ப</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">தேர்ந்தெடுக்கப்பட்ட அளவுக்கு அதிகமான மெசேஜ்கள் நிரந்தரமாக நீக்கப்படும்.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">இது அனைத்து சாட்களையும் மிக சமீபத்திய மெசேஜுக்கு நிரந்தரமாக குறைக்கும்.</item>
+        <item quantity="other">இது அனைத்து சாட்களையும் %1$s மிக சமீபத்திய மெசேஜ்களுக்கு நிரந்தரமாக குறைக்கும்.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">பற்றி</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">சுதந்திரமாக பேசுவோம்</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">மறைகுறியாக்கப்பட்ட</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">கனிவான நபராக இருப்போம்</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">காபி காதலன்</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">சாட் செய்ய நேரம் இருக்கிறது</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">ஓய்வெடுத்து கொண்டிருக்கிறேன்</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">ஒரு புதிய விஷயத்தில் ஈடுபட்டுள்ளேன்</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">சேமி</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">அழி</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">எமோஜியைத் தேர்ந்தெடு</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">இணையப் பிரச்சினகளால் சேமிக்க முடியவில்ல. சற்று நேரம் பொறுத்து முயற்சிக்கவும்.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">உங்கள் பயனர் பெயரைத் தேர்வு செய்யவும்</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">பயனர் பெயர்</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">நீக்கு</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">பல முயற்சிகள் எடுக்கப்பட்டுவிட்டன, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர் பெயர் எடுக்கப்பட்டது.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">பயனர் பெயர்களில் அ - ஃ, a–Z, 0–9 மற்றும் அடிக்கோடிட்டுக் காட்டலாம்.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர் பெயர் எண்ணுடன் தொடங்க முடியாது.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">பயனர் பெயர் தவறானது.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர் பெயர்கள் %1$d மற்றும் %2$d எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">பயனர்கள், தொலைபேசி எண்ணிற்குப் பதிலாக உங்களின் விருப்பப் பயனர்பெயரைப் பயன்படுத்தி உங்களுக்குச் செய்தி அனுப்பலாம். பயனர் பெயர்கள் எப்போதும் எண்களின் தொகுப்புடன் இணைக்கப்படும். %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">இந்த பயனர் பெயர் கிடைக்கப்பெறவில்லை, வேறு எண்ணை முயலவும்.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">தவறான பயனர் பெயர், குறைந்தபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">தவறான பயனர் பெயர், அதிகபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">இந்த எண் 00 ஆக இருக்கக் கூடாது. 1–9 க்கு இடையேயுள்ள ஒரு எண்ணை உள்ளிடவும்</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 இலக்கங்களுக்கு மேல் உள்ள எண்கள் 0 இல் தொடங்கக் கூடாது</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">உங்கள் பயனர் பெயரை மீட்டமைப்பது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். நீங்கள் உறுதியாக உள்ளீர்களா?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">உங்கள் பயனர் பெயரை மாற்றுவது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். நீங்கள் உறுதியாக உள்ளீர்களா?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">தொடர்க</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">சேமி</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">மேலும் அறிக</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">உங்கள் ப்ரொஃபைல் மற்றும் அதில் செய்த மாற்றங்கள் நீங்கள் செய்தி அனுப்புபவர்களுக்கு, தொடர்புகளுக்கு மற்றும் குழுக்களுக்குத் தெரிய வரும்.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal லைப் புதுப்பிக்கவும்</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">சிக்னலின் இந்தப் பதிப்பு காலாவதியானது. தொடர்ந்து Signalஐப் பயன்படுத்த, இப்போதே புதுப்பிக்கவும்.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">புதுப்பிக்கப்பட்டது</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">டிவைஸ் பதிவு செய்யப்படவில்லை</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">இந்தச் சாதனம் இனி பதிவுசெய்யப்பட்டிருக்காது. உங்கள் கணக்கில் மாற்றங்களைச் செய்ய மீண்டும் பதிவு செய்யவும்.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">மறு பதிவு</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">இணையப் பிரச்சினகளால் சேமிக்க முடியவில்ல. சற்று நேரம் பொறுத்து முயற்சிக்கவும்.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">பயனர் பெயரை நீக்க முடியவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">பயனர் பெயரை நீக்க வேண்டுமா?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"இது உங்கள் பயனர் பெயரை அகற்றி, உங்கள் QR குறியீடு மற்றும் இணைப்பை முடக்கும். %1$s மற்றவர்கள் கிளைம் செய்வதற்குக் கிடைக்கப்பெறும். உறுதியாக உள்ளீர்களா?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">படத்தை திருத்த</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">உங்கள் பயனர் பெயரைப் பகிரவும்</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">உங்களின் தனிப்பட்ட QR குறியீடு அல்லது இணைப்பை பகிர்வதன் மூலம் மற்றவர்கள் உங்களுடன் சாட் செய்யத் தொடங்க அனுமதிக்கவும்.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">பயனர் பெயர் உருவாக்கப்பட்டது</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">பயனர் பெயர் நீக்கப்பட்டது</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">பயனர்கள் தொலைபேசி எண்ணிற்குப் பதிலாக உங்களின் விருப்பப் பயனர்பெயரைப் பயன்படுத்தி உங்களுக்குச் செய்தி அனுப்பலாம். பயனர்பெயர்களில் தனித்துவமான QR குறியீடும் நண்பர்களுடன் நீங்கள் பகிரக்கூடிய இணைப்பும் இருக்கும்.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">உங்கள் பயனர் பெயர், QR குறியீடு மற்றும் இணைப்பு ஆகியவை உங்கள் ப்ரொஃபைலில் தெரியாது. உங்களுக்கு நம்பிக்கையானர்வர்களுடன் மட்டும் உங்கள் பயனர் பெயரைப் பகிரவும்.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">பற்றி</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">சித்தரிப்பு அமைப்பதில் தோல்வி</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR குறியீடு அல்லது இணைப்பு</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">ப்ரொஃபைல் பெயர்</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">பயனர் பெயர்</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">பயனர் பெயரை திருத்தவும்</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">பயனர் பெயரை அழிக்கவும்</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">விவரம்</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">சின்னம் அமைக்கவும்</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">பேட்ஜ்கள்</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">நீக்கு</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">நெருக்கமான</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Signalஐ ஆதரித்து உங்கள் சுயவிவரத்திற்கான பேட்ஜ்களைப் பெறுங்கள்.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">சிக்னல் என்பது உங்களைப் போன்றவர்களால் மட்டுமே ஆதரிக்கப்படும், விளம்பரதாரர்கள் அல்லது முதலீட்டாளர்கள் இல்லாத ஒரு இலாப நோக்கமற்ற நிறுவனமாகும்.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">ஒரு காப்பாளராக மாறவும்</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">பேட்ஜ்கள்</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">எனது பேட்ஜ்கள்</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">சுயவிவரத்தில் பேட்ஜ்களை வெளியிடலாம்</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">சிறப்பு பேட்ஜ்</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">சுயவிவரத்தைப் புதுப்பிக்க இயலவில்லை</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">சிறப்பு பேட்ஜ்</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">பேட்ஜைத் தேர்ந்தெடுக்கவும்</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">சேமி</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">சுயவிவரத்தைப் புதுப்பிக்க இயலவில்லை</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">இந்த இணைப்பைக் கொண்டுள்ள எவரும் உங்கள் பயனர் பெயரைப் பார்த்து உங்களுடன் சாட் செய்யத் தொடங்கலாம். நீங்கள் நம்பும் நபர்களுடன் மட்டும் பகிரவும்.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">இணைப்பை நகலெடுக்கவும்</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">பகிர்</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">குறியீடு</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">ஸ்கேன்</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">இணைப்பு நகலெடுக்கப்பட்டது</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">பயனர் பெயர் நகலெடுக்கப்பட்டது</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR குறியீட்டை மீட்டமைக்க வேண்டுமா?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">உங்கள் QR குறியீட்டை மீட்டமைத்தால், உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பு இனி ஒருபோதும் வேலை செய்யாது.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">மீட்டமை</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">உங்களிடம் நெட்வர்க் அணுகல் இல்லை. உங்கள் இணைப்பு மீட்டமைக்கப்படவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">உங்கள் இணைப்பை மீட்டமைக்க முயலும்போது நெட்வர்க் பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயலவும்.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">உங்கள் இணைப்பை மீட்டமைக்க முயலும்போது எதிர்பாராத பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயலவும்.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">உங்கள் QR குறியீடு மற்றும் இணைப்பு மீட்டமைக்கப்பட்டு புதிய QR குறியீடு மற்றும் இணைப்பு உருவாக்கப்பட்டுள்ளது.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">உங்கள் QR குறியீடு மற்றும் இணைப்பை நீங்கள் நம்பும் நபர்களுடன் மட்டும் பகிரவும். பகிரப்படும் போது மற்றவர்கள் உங்கள் பயனர் பெயரைப் பார்த்து உங்களுடன் சாட் செய்ய முடியும்.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">மீட்டமைக்க</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">இணைப்பு</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">பகிர்</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">நிறம்</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">QR குறியீடு தவறானது.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">நெட்வொர்க் பிழை ஏற்பட்டது. மீண்டும் முயலவும்.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR குறியீடு கிடைக்கவில்லை</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">சிக்னல் QR குறியீடு உள்ள மற்றொரு படத்தை ஸ்கேன் செய்ய முயற்சிக்கவும்.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">%1$s என்ற பயனர் பெயரைக் கொண்ட ஒரு பயனரைக் கண்டறிய முடியவில்லை.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">உங்கள் தொடர்பு டிவைஸில் QR குறியீட்டை ஸ்கேன் செய்யுங்கள்.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">இந்த பயனரைக் கண்டறிய முடியவில்லை.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">QR குறியீட்டை ஸ்கேன் செய்ய, கேமராவை அணுக சிக்னலை அனுமதிக்கவும்.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">அணுகலை அனுமதிக்கவும்</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">QR குறியீடுகளை ஸ்கேன் செய்ய சிக்னலுக்கு கேமரா அணுகல் தேவை</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">சேமிப்பு</string>
+    <string name="preferences_storage__storage_usage">சேமிப்பக பயன்பாடு</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">சிக்னல் சேமிப்பகம்</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">சிக்னல் சேமிப்பகத்தை உகந்ததாக்குக</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">பயன்படுத்தப்படாத மீடியா ஆஃப்லோட் செய்யப்படும், ஆனால் அவற்றை எப்போது வேண்டுமானாலும் உங்கள் காப்புப்பிரதியிலிருந்து பதிவிறக்கம் செய்யலாம்.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">சாட் வரம்புகள்</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">இணைக்கப்பட்ட சாதனங்களுக்கு வரம்புகளைப் பயன்படுத்துக</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">செயல்படுத்தப்பட்டால், சாட் வரம்புகள் உங்கள் இணைக்கப்பட்ட சாதனங்களிலிருந்து மெசேஜ்களையும் அழிக்கும்.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">மெசேஜ் வரலாற்றை நீக்கு</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">மெசேஜ் வரலாற்றை நீக்குவதா?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">இது உங்கள் டிவைஸில் இருந்து அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">இந்தச் சாதனத்திலிருந்தும் இணைக்கப்பட்ட அனைத்து சாதனத்திலிருந்தும் எல்லா மெசேஜ் வரலாற்றையும் மீடியாவையும் இது நிரந்தரமாக அழிக்கும்.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">அனைத்து மெசேஜ் வரலாற்றையும் நீக்க விரும்புகிறீர்களா?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">அனைத்து மெசேஜ் வரலாறும் நிரந்தரமாக அகற்றப்படும். இந்த செயலைச் செயல்தவிர்க்க முடியாது.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">எல்லா மெசேஜ் வரலாறும் அனைத்து சாதனங்களிலிருந்தும் நிரந்தரமாக அகற்றப்படும். இந்தச் செயலைச் செயல்தவிர்க்க முடியாது.</string>
+    <string name="preferences_storage__delete_all_now">அனைத்தையும் இப்போது நீக்கு</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">சிக்லின் பாதுகாப்பான காப்புப் பிரதிகளின் கட்டண அடுக்குடன் மட்டுமே சேமிப்பக உகந்ததாக்கலைப் பயன்படுத்த முடியும். உங்கள் காப்புப் பிரதி சந்தா இன்னும் செயலாக்கத்தில் உள்ளது ஆனால் இன்னும் செயல்படத் தொடங்கவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">சாதனத்திலுள்ள காப்புப்பிரதியிலிருந்து ஊடகம் அகற்றப்படும்</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"சிக்னல் சேமிப்பகத்தை மேம்படுத்து\" என்ற அம்சத்தை ஆன் செய்வது உங்கள் சாதனத்திலிருந்து பழைய ஊடகத்தை அகற்றும். நீங்கள் எப்போது வேண்டுமானாலும் அதை மீண்டும் பதிவிறக்கலாம். இது சாதனத்திலுள்ள காப்புப்பிரதியிலிருந்தும் பழைய ஊடகத்தை அகற்றும்.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">இயக்கு</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">இந்த அரட்டை ஒலியடக்கப்பட்டிருக்கும்போது, அழைப்பு வந்தால் ரிங் செய்யும் அல்லது அறிவிக்கும்.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">ஒலியடக்கப்பட்டிருக்கும் அரட்டைகளில், அழைப்பு வந்தால் ரிங் செய்யும் அல்லது அறிவிக்கும்.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">இந்த அரட்டை ஒலியடக்கப்பட்டிருக்கும்போது, யாராவது உங்களைக் குறிப்பிட்டால் அறிவிக்கும்.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">ஒலியடக்கப்பட்டிருக்கும் அரட்டைகளில், யாராவது உங்களைக் குறிப்பிட்டால் அறிவிக்கும்.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">இந்த அரட்டை ஒலியடக்கப்பட்டிருக்கும்போது, உங்கள் செய்திக்கு யாராவது பதிலளித்தால் அறிவிக்கும்.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">ஒலியடக்கப்பட்டிருக்கும் அரட்டைகளில், உங்கள் செய்திக்கு யாராவது பதிலளித்தால் அறிவிக்கும்.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">ஒலியடக்கப்பட்டிருக்கும்போது</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">அழைப்புகள்</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">பெயர் குறிப்பிடுவது</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">பதில்கள்</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">பிக்கரைத் திறக்க முடியவில்லை.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">அறிவிப்புகளை இயக்க, Signalக்கு அவற்றைக் காண்பிக்க அனுமதி தேவை.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">இயக்கு</string>
+    <string name="NotificationsSettingsFragment__calls">அழைப்புகள்</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">தொடர்பு இணைகிறது Signal</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">நீங்கள் தேர்ந்தெடுக்கும் நபர்கள் மற்றும் குழுக்களிடமிருந்து மட்டும் அறிவிப்புகளைப் பெற சுயவிவரத்தை உருவாக்கவும்.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">பேசி தொடர்பிலுள்ள ஒருவர் சிக்னலில் இணையும்போது அறிவிப்பைக் காட்டும்</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">அறிவிப்பு அமைப்புகளை மீட்டமை</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">அனைத்து அரட்டைகளுக்கான அறிவிப்பு அமைப்புகளையும் இயல்புநிலைக்கு மீட்டமைக்கவா?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">மீட்டமை</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">உங்கள் அரட்டைகள் பிரத்தியேக அமைப்புகள் உட்பட, அறிவிப்பு அமைப்புகளை இயல்புநிலைக்கு மீட்டமைக்கும்</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">ஒலிகள்</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">தெரியவில்லை ரிங்டோன்</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">அழைப்புகள்</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">பெயர் குறிப்பிடுவது</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">அறிவிப்பு சுயவிவரங்கள்</string>
+    <string name="NotificationsSettingsScreen__notifications">அறிவிப்புகள்</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">பதில்கள்</string>
+    <string name="NotificationsSettingsScreen__silent">அமைதி</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">படிக்காதவைக்கான நினைவூட்டல்கள்</string>
+    <string name="arrays__default">இயல்புநிலை</string>
+    <string name="arrays__high">உயர்</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">மேக்ஸ்</string>
+    <string name="arrays__name_and_message">பெயரும் செய்தியும்</string>
+    <string name="arrays__name_only">பெயர் மட்டும்</string>
+    <string name="arrays__no_name_or_message">பெயர் அல்லது செய்தி இல்லை</string>
+    <string name="preferences__blue">நீலம்</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">அழைப்பு அறிவிப்புகள்</string>
+    <string name="preferences__change_sound_and_vibration">ஒலி மற்றும் அதிர்வை மாற்றவும்</string>
+    <string name="preferences__customize">தனிப்பயனாக்கவும்</string>
+    <string name="preferences__cyan">சியான்</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">இயல்புநிலை</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">அறிவிப்புகளை இயக்கவும்</string>
+    <string name="preferences__fast">வேகமாக</string>
+    <string name="preferences__five_times">ஐந்து முறை</string>
+    <string name="preferences__green">பச்சை</string>
+    <string name="preferences__led_color">LED நிறம்</string>
+    <string name="preferences__magenta">கருநீலம்</string>
+    <string name="preferences__never">ஒருபோதுமில்லை</string>
+    <string name="preferences__normal">சாதாரணமாக</string>
+    <string name="preferences__one_time">ஒரு முறை</string>
+    <string name="preferences__orange">ஆரஞ்சு</string>
+    <string name="preferences__pref_led_blink_title">LED மிளிரும் முறை</string>
+    <string name="preferences__red">சிவப்பு</string>
+    <string name="preferences__repeat_alerts">பலமுறை எச்சரிக்கைகள்</string>
+    <string name="preferences__slow">மெதுவாக</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">ஒலி</string>
+    <string name="preferences__ten_times">பத்து முறை</string>
+    <string name="preferences__three_times">மூன்று முறை</string>
+    <string name="preferences__two_times">இரண்டு முறை</string>
+    <string name="preferences__vibrate">அதிர்வு</string>
+    <string name="preferences__white">வெள்ளை</string>
+    <string name="preferences_notifications__in_chat_sounds">உள்-சாட் ஒலிகள்</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">நீங்கள் அனுப்பும் செய்திகளுக்கான எதிர்வினைகளுக்கு அறிவிப்புகளைக் காட்டும்</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">ஒலியடக்கப்பட்ட அரட்டைகளில் படிக்கப்படாத செய்திகள் இருந்தால் எப்போதாவது அறிவிக்கப்படும்</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">முன்னுரிமை</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">எதிர்வினை அறிவிப்புகள்</string>
+    <string name="preferences_notifications__ringtone">ரிங்டோன்</string>
+    <string name="preferences_notifications__show">காட்டு</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">அறிவிப்புகளை சரிசெய்தல்</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">ஒலியடக்கப்பட்டிருக்கும்போது</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">சேர்க்கவும்</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">அனுமதிக்கப்பட்ட அறிவிப்புகள்</string>
 </resources>

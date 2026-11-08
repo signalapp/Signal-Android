@@ -34,7 +34,7 @@ import org.signal.core.util.DisplayMetricsUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.util.Collections;
@@ -78,7 +78,7 @@ public class ChatWallpaperFragment extends Fragment {
     scrollView.setClipToPadding(false);
     SystemWindowInsetsSetter.attach(scrollView, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
 
-    toolbar.setTitle(R.string.preferences__chat_color_and_wallpaper);
+    toolbar.setTitle(org.signal.appsettings.R.string.preferences__chat_color_and_wallpaper);
     toolbar.setNavigationOnClickListener(nav -> {
       if (!Navigation.findNavController(nav).popBackStack()) {
         requireActivity().finish();

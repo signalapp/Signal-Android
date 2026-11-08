@@ -7,6 +7,7 @@ package org.signal.core.util
 
 import org.signal.core.util.stream.LimitedInputStream
 import java.io.ByteArrayOutputStream
+import java.io.EOFException
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -14,12 +15,21 @@ import kotlin.jvm.Throws
 import kotlin.math.min
 
 /**
- * Reads a 32-bit variable-length integer from the stream.
+ * Reads a 32-bit variable-length integer from the stream, or returns -1 if the stream is already at its end.
  *
  * The format uses one byte for each 7 bits of the integer, with the most significant bit (MSB) of each byte indicating whether more bytes need to be read.
  * If the MSB is 0, it indicates the final byte. The actual integer value is constructed from the remaining 7 bits of each byte.
  */
 fun InputStream.readVarInt32(): Int {
+  return readVarInt32OrNull() ?: -1
+}
+
+/**
+ * Reads a 32-bit variable-length integer from the stream, or returns null if the stream is already at its end.
+ * Throws an [EOFException] if the stream ends partway through the varint.
+ */
+@Throws(IOException::class)
+fun InputStream.readVarInt32OrNull(): Int? {
   var result = 0
 
   // We read 7 bits of the integer at a time, up to the full size of an integer (32 bits).
@@ -28,7 +38,10 @@ fun InputStream.readVarInt32(): Int {
     // I believe it's an int just so it can return -1 when the stream ends.
     val byte: Int = read()
     if (byte < 0) {
-      return -1
+      if (shift == 0) {
+        return null
+      }
+      throw EOFException("Stream ended partway through a varint")
     }
 
     val lowestSevenBits = byte and 0x7F

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.stories.viewer.reply.group
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.conversation.colors.NameColor
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 data class StoryGroupReplyState(
   val threadId: Long = 0L,

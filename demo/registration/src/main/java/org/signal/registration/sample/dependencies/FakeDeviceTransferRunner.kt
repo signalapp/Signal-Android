@@ -12,7 +12,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.eventbus.EventBus
 import org.signal.devicetransfer.NewDeviceRestoreStatus
 import org.signal.devicetransfer.TransferStatus
 
@@ -29,7 +29,7 @@ object FakeDeviceTransferRunner {
   fun start() {
     stop()
     job = scope.launch {
-      val bus = EventBus.getDefault()
+      val bus = EventBus.default
 
       delay(500)
       bus.postSticky(TransferStatus.startingUp())

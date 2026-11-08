@@ -25,11 +25,13 @@ import okhttp3.Response
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SleepTimer
 import org.signal.core.util.UsernameUtil
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.devicetransfer.DeviceToDeviceTransferService
 import org.signal.libsignal.net.Network
@@ -44,8 +46,13 @@ import org.signal.libsignal.zkgroup.ServerSecretParams
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
+import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
+import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
 import org.signal.libsignal.zkgroup.receipts.ServerZkReceiptOperations
 import org.signal.network.NetworkResult
 import org.signal.network.api.LinkDeviceApi
@@ -56,8 +63,10 @@ import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetLoginConfigurationError
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginConfiguration
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
@@ -80,6 +89,7 @@ import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.ProvisioningMessage
+import org.signal.registration.ReceiptCredentialResult
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.signal.registration.sample.MainActivity
 import org.signal.registration.sample.fcm.FcmUtil
@@ -92,6 +102,7 @@ import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2
+import org.whispersystems.signalservice.api.util.Usernames
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory
@@ -103,11 +114,11 @@ import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection
 import java.io.Closeable
 import java.io.IOException
+import java.security.SecureRandom
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.Locale
 import java.util.UUID
-import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -129,7 +140,12 @@ class DemoNetworkController(
     const val DEVICE_TRANSFER_NOTIFICATION_CHANNEL_ID = "device_transfer"
     private const val DEVICE_TRANSFER_NOTIFICATION_ID = 4321
     private const val USER_AGENT = "Signal-Android-Registration-Sample"
-    private const val LOGIN_PURCHASE_RECEIPT_LEVEL = 1L
+
+    /** The receipt level a Signal Login purchase is worth, per the service's subscription configuration. */
+    private const val LOGIN_PURCHASE_RECEIPT_LEVEL = 300L
+
+    /** The Google Play product a Signal Login is sold as. */
+    private const val LOGIN_PURCHASE_PLAY_PRODUCT_ID = "signup"
   }
 
   private val json = Json { ignoreUnknownKeys = true }
@@ -201,26 +217,34 @@ class DemoNetworkController(
   }
 
   override suspend fun registerAccount(
-    e164: String,
+    e164: String?,
     password: String,
     sessionId: String?,
     recoveryPassword: String?,
+    receiptCredentialPresentation: ReceiptCredentialPresentation?,
     attributes: AccountAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?,
-    skipDeviceTransfer: Boolean
+    skipDeviceTransfer: Boolean,
+    aci: ACI?,
+    totp: Int?,
+    webAuthnResponse: String?
   ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
     return registrationApi.registerAccount(
       e164 = e164,
       password = password,
       sessionId = sessionId,
       recoveryPassword = recoveryPassword,
+      receiptCredentialPresentation = receiptCredentialPresentation,
       attributes = attributes,
       aciPreKeys = aciPreKeys,
       pniPreKeys = pniPreKeys,
       fcmToken = fcmToken,
-      skipDeviceTransfer = skipDeviceTransfer
+      skipDeviceTransfer = skipDeviceTransfer,
+      aci = aci,
+      totp = totp,
+      webAuthnResponse = webAuthnResponse
     )
   }
 
@@ -229,6 +253,11 @@ class DemoNetworkController(
    * credential is issued by throwaway server params, so it is internally consistent but will not verify against the
    * real server's public params.
    */
+  override suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError> {
+    Log.i(TAG, "[getLoginConfiguration] Returning a locally-defined Signal Login configuration.")
+    return RequestResult.Success(LoginConfiguration(level = LOGIN_PURCHASE_RECEIPT_LEVEL, playProductId = LOGIN_PURCHASE_PLAY_PRODUCT_ID))
+  }
+
   override suspend fun createLoginPurchaseReceiptCredential(
     purchaseIdentifier: String,
     receiptCredentialRequest: ReceiptCredentialRequest,
@@ -242,28 +271,27 @@ class DemoNetworkController(
     return RequestResult.Success(CreateLoginReceiptCredentialResult.Issued(response))
   }
 
-  /** The endpoint is not deployed yet, so the demo fabricates the account the service would have created. */
-  override suspend fun registerAccountWithoutPhoneNumber(
-    password: String,
-    receiptCredentialPresentation: ReceiptCredentialPresentation,
-    attributes: AccountAttributes,
-    aciPreKeys: PreKeyCollection,
-    fcmToken: String?,
-    skipDeviceTransfer: Boolean
-  ): RequestResult<RegisterAccountResponse, RegistrationApiV2.RegisterAccountWithoutPhoneNumberError> {
-    Log.i(TAG, "[registerAccountWithoutPhoneNumber] Returning a fabricated numberless account.")
+  override fun createReceiptCredentialRequestContext(): ReceiptCredentialRequestContext {
+    val receiptSerial = ReceiptSerial(Util.getSecretBytes(ReceiptSerial.SIZE))
+    return ClientZkReceiptOperations(demoReceiptServerSecretParams.publicParams).createReceiptCredentialRequestContext(SecureRandom(), receiptSerial)
+  }
 
-    return RequestResult.Success(
-      RegisterAccountResponse(
-        aci = UUID.randomUUID().toString(),
-        usernameHash = null,
-        usernameLinkHandle = null,
-        storageCapable = true,
-        entitlements = null,
-        authCredentialSalt = Base64.encodeWithPadding(Random.nextBytes(16)),
-        reregistration = false
-      )
-    )
+  override fun receiveReceiptCredential(requestContext: ReceiptCredentialRequestContext, response: ReceiptCredentialResponse): ReceiptCredentialResult<ReceiptCredential> {
+    return try {
+      ReceiptCredentialResult.Success(ClientZkReceiptOperations(demoReceiptServerSecretParams.publicParams).receiveReceiptCredential(requestContext, response))
+    } catch (e: VerificationFailedException) {
+      Log.w(TAG, "Could not verify the issued receipt credential.", e)
+      ReceiptCredentialResult.VerificationFailed
+    }
+  }
+
+  override fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialResult<ReceiptCredentialPresentation> {
+    return try {
+      ReceiptCredentialResult.Success(ClientZkReceiptOperations(demoReceiptServerSecretParams.publicParams).createReceiptCredentialPresentation(receiptCredential))
+    } catch (e: VerificationFailedException) {
+      Log.w(TAG, "Could not verify the receipt credential while building its presentation.", e)
+      ReceiptCredentialResult.VerificationFailed
+    }
   }
 
   override suspend fun getFcmToken(): String? {
@@ -342,7 +370,8 @@ class DemoNetworkController(
                 ephemeralBackupKey = msg.ephemeralBackupKey,
                 accountEntropyPool = msg.accountEntropyPool,
                 mediaRootBackupKey = msg.mediaRootBackupKey,
-                readReceipts = msg.readReceipts
+                readReceipts = msg.readReceipts,
+                authCredentialSalt = msg.authCredentialSalt
               )
             )
           )
@@ -518,14 +547,30 @@ class DemoNetworkController(
 
         if (result is SecondaryProvisioningCipher.ProvisioningDecryptResult.Success) {
           val msg = result.message
+          val aci = ACI.parseOrNull(msg.aci)
+
+          if (aci == null) {
+            Log.w(TAG, "[startProvisioning] Provisioning message was missing a valid ACI")
+            trySend(ProvisioningEvent.Error(IOException("Provisioning message was missing a valid ACI")))
+            return@start
+          }
+
+          val pniPublicKey = msg.pniIdentityKeyPublic
+          val pniPrivateKey = msg.pniIdentityKeyPrivate
+
           trySend(
             ProvisioningEvent.MessageReceived(
               ProvisioningMessage(
                 accountEntropyPool = msg.accountEntropyPool,
-                e164 = msg.e164,
+                aci = aci,
+                e164 = msg.e164?.takeIf { it.isNotEmpty() },
                 pin = msg.pin,
                 aciIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.aciIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.aciIdentityKeyPrivate.toByteArray())),
-                pniIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.pniIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.pniIdentityKeyPrivate.toByteArray())),
+                pniIdentityKeyPair = if (pniPublicKey != null && pniPublicKey.size > 0 && pniPrivateKey != null && pniPrivateKey.size > 0) {
+                  IdentityKeyPair(IdentityKey(pniPublicKey.toByteArray()), ECPrivateKey(pniPrivateKey.toByteArray()))
+                } else {
+                  null
+                },
                 platform = when (msg.platform) {
                   RegistrationProvisionMessage.Platform.ANDROID -> NetworkController.ProvisioningMessage.Platform.ANDROID
                   RegistrationProvisionMessage.Platform.IOS -> NetworkController.ProvisioningMessage.Platform.IOS
@@ -957,7 +1002,7 @@ class DemoNetworkController(
     RequestResult.Success(Unit)
   }
 
-  override suspend fun reserveUsername(nickname: String): RequestResult<Username, ReserveUsernameError> = withContext(Dispatchers.IO) {
+  override suspend fun reserveUsername(nickname: String, discriminator: String?): RequestResult<Username, ReserveUsernameError> = withContext(Dispatchers.IO) {
     val aci = RegistrationPreferences.aci
     val password = RegistrationPreferences.servicePassword
 
@@ -967,7 +1012,11 @@ class DemoNetworkController(
     }
 
     val candidates: List<Username> = try {
-      Username.candidatesFrom(nickname, UsernameUtil.MIN_NICKNAME_LENGTH, UsernameUtil.MAX_NICKNAME_LENGTH)
+      if (discriminator == null) {
+        Username.candidatesFrom(nickname, UsernameUtil.MIN_NICKNAME_LENGTH, UsernameUtil.MAX_NICKNAME_LENGTH)
+      } else {
+        listOf(Username("$nickname${Usernames.DELIMITER}$discriminator"))
+      }
     } catch (e: BaseUsernameException) {
       Log.w(TAG, "[reserveUsername] Failed to generate candidates.", e)
       return@withContext RequestResult.NonSuccess(ReserveUsernameError.NicknameInvalid)

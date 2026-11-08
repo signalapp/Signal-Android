@@ -1,0 +1,34 @@
+package org.signal.storage.keyvalue
+
+class LabsValues(store: KeyValueStore, private val isInternalUser: () -> Boolean) : SignalStoreValues(store) {
+  companion object {
+    const val INDIVIDUAL_CHAT_PLAINTEXT_EXPORT: String = "labs.individual_chat_plaintext_export"
+    const val STORY_ARCHIVE: String = "labs.story_archive"
+    const val INCOGNITO: String = "labs.incognito"
+    const val BETTER_SEARCH: String = "labs.better_search"
+    const val STARRED_MESSAGES: String = "labs.starred_messages"
+    const val MUTE_BREAKTHROUGH_NOTIFICATIONS: String = "labs.mute_breakthrough_notifications"
+    const val IMPROVED_MESSAGE_DELETION: String = "labs.improved_message_deletion"
+  }
+
+  public override fun onFirstEverAppLaunch() = Unit
+
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
+
+  var individualChatPlaintextExport by booleanValue(INDIVIDUAL_CHAT_PLAINTEXT_EXPORT, true).falseForExternalUsers()
+
+  var storyArchive by booleanValue(STORY_ARCHIVE, true).falseForExternalUsers()
+
+  var incognito by booleanValue(INCOGNITO, true).falseForExternalUsers()
+
+  var betterSearch by booleanValue(BETTER_SEARCH, true).falseForExternalUsers()
+
+  var starredMessages by booleanValue(STARRED_MESSAGES, true).falseForExternalUsers()
+
+  var improvedMessageDeletion by booleanValue(IMPROVED_MESSAGE_DELETION, true).falseForExternalUsers()
+
+  private fun SignalStoreValueDelegate<Boolean>.falseForExternalUsers(): SignalStoreValueDelegate<Boolean> {
+    return this.map { actualValue -> isInternalUser() && actualValue }
+  }
+}

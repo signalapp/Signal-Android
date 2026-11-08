@@ -40,13 +40,16 @@ import org.signal.camera.R
 import org.signal.camera.test.TestTags
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.R as CoreUiR
 
 private object ZoomBarColors {
   /** The selected level, on the bar's own background. */
-  val SelectedLevelHorizontal = Color(0x33FFFFFF)
+  val SelectedLevelHorizontal: Color
+    @Composable get() = colorResource(CoreUiR.color.signal_dark_colorTransparent3)
 
   /** The selected level, on the viewfinder itself, where there is no bar behind it. */
-  val SelectedLevelVertical = Color(0xCC333333)
+  val SelectedLevelVertical: Color
+    @Composable get() = colorResource(R.color.CameraHud_control_background)
 }
 
 private object ZoomBarDimensions {
@@ -173,7 +176,7 @@ private fun ZoomLevels(
       // Only the text rotates: the level keeps its place on the bar and its tap target.
       Text(
         text = level.label,
-        color = Color.White,
+        color = colorResource(R.color.CameraHud_control_foreground),
         fontSize = 14.sp,
         fontWeight = FontWeight.Medium,
         textAlign = TextAlign.Center,

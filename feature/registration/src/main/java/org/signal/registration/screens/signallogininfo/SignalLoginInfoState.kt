@@ -17,26 +17,31 @@ import org.signal.core.util.censor
  */
 data class SignalLoginInfoState(
   val aci: ServiceId.ACI? = null,
-  val recoveryKey: AccountEntropyPool? = null,
+  val aep: AccountEntropyPool? = null,
   val isPasswordManagerAvailable: Boolean = false,
+  val isGooglePasswordManagerDefault: Boolean = false,
   val showSpinner: Boolean = false,
+  /** Whether the sheet that double-checks the login really made it into the password manager is up. */
+  val showConfirmSavedSheet: Boolean = false,
+  /** Whether an interrupted save has already been retried once, so a second interruption is treated as a failure. */
+  val didRetrySave: Boolean = false,
   val dialogs: Dialogs = Dialogs()
 ) {
-  /** Full account identifier, as it should be displayed to the user. */
-  val accountDisplay: String
-    get() = aci?.toString()?.uppercase().orEmpty()
+  /** The account ID in the form it is shown in and stored in a password manager under. */
+  val passwordManagerAccountId: String?
+    get() = aci?.toString()?.uppercase()
 
-  /** Full recovery key, as it should be displayed to the user. */
-  val recoveryDisplay: String
-    get() = recoveryKey?.displayValue.orEmpty()
+  /** The recovery key in the form it is shown in and stored in a password manager as. */
+  val passwordManagerRecoveryKey: String?
+    get() = aep?.displayValue
 
-  override fun toString(): String = "SignalLoginInfoState(aci=${aci?.logString()}, recoveryKey=${recoveryKey?.value?.censor()}, " +
-    "isPasswordManagerAvailable=$isPasswordManagerAvailable, showSpinner=$showSpinner, dialogs=$dialogs)"
+  override fun toString(): String = "SignalLoginInfoState(aci=${aci?.logString()}, aep=${aep?.value?.censor()}, " +
+    "isPasswordManagerAvailable=$isPasswordManagerAvailable, isGooglePasswordManagerDefault=$isGooglePasswordManagerDefault, showSpinner=$showSpinner, showConfirmSavedSheet=$showConfirmSavedSheet, didRetrySave=$didRetrySave, dialogs=$dialogs)"
 
   data class Dialogs(
-    /** Shows the full, unmasked credentials. */
-    val credentialDetails: Boolean = false,
     val saveFailed: Boolean = false,
-    val unknownError: Boolean = false
+    val saveNotConfirmed: Boolean = false,
+    val unknownError: Boolean = false,
+    val saveToPasswordManagerConfirmation: Boolean = false
   )
 }

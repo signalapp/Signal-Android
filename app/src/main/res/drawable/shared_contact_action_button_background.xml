@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pill behind the shared contact card's action. Radius is large enough to stay fully rounded at
+     any single line height. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="44dp" />
+    <solid android:color="@color/shared_contact_item_button_color" />
+</shape>

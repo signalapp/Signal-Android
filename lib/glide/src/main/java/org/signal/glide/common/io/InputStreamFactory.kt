@@ -18,7 +18,7 @@ interface InputStreamFactory {
   companion object {
     @JvmStatic
     @JvmOverloads
-    fun build(uri: Uri, thumbnailTimeUs: Long = 0): InputStreamFactory = SignalGlideDependencies.getUriInputStreamFactory(uri, thumbnailTimeUs)
+    fun build(uri: Uri, thumbnailTimeUs: Long = 0, contentType: String? = null): InputStreamFactory = SignalGlideDependencies.getUriInputStreamFactory(uri, thumbnailTimeUs, contentType)
 
     @JvmStatic
     fun build(file: File): InputStreamFactory = FileInputStreamFactory(file)

@@ -18,8 +18,98 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">Уруксат талап кылынат</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">Сыдырманын өлчөмүн өзгөртүү</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">Бөлгүчтү жылдырыңыз</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Улантуу дегенди басып, түзмөгүңүздүн кодун киргизиңиз. Signal\'дын PIN кодун эмес.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Улантуу</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">Жабуу</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Өйдө чабыттоо</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">Тандалгандарга кошуу</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">Тандалгандардан өчүрүү</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">Тандалгандардан өчүрөсүзбү?</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Эгер сизде топтом орнотулбаса, шилтеме же стикер билдирүүсү болбосо, аны жөнөтө же Тандалгандарга кайра кошо албайсыз.</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">Алып салуу</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">Эч бир</string>
+    <string name="preferences_off">Өчүк</string>
+    <string name="preferences_on">Күйүк</string>
+    <string name="ExpireTimerSettingsFragment__set">Орнотуу</string>
+    <string name="CustomExpireTimerSelectorView__seconds">секунда</string>
+    <string name="CustomExpireTimerSelectorView__minutes">мүнөт</string>
+    <string name="CustomExpireTimerSelectorView__hours">саат</string>
+    <string name="CustomExpireTimerSelectorView__days">күн</string>
+    <string name="CustomExpireTimerSelectorView__weeks">жума</string>
+    <!-- expiration -->
+    <string name="expiration_off">Өчүк</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="one">%1$d секунд</item>
+        <item quantity="other">%1$d секунд</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$dсек</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">%1$d мүнөт</item>
+        <item quantity="other">%1$d мүнөт</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$dмүн</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">%1$d саат</item>
+        <item quantity="other">%1$d саат</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$dс</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">%1$d күн</item>
+        <item quantity="other">%1$d күн</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$dк</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">%1$d апта</item>
+        <item quantity="other">%1$d апта</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$dа</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">Кененирээк маалымат</string>
+
+    <string name="SpanUtil__read_more">Дагы</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">Текст киргизүү</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">Саатка өтүү</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">%1$s алып салуу</string>
 </resources>

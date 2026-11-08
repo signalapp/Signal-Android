@@ -9,8 +9,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 /**

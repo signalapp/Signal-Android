@@ -6,7 +6,7 @@
 package org.signal.registration.sample.dependencies
 
 import android.content.Context
-import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.devicetransfer.NewDeviceRestoreStatus
 import org.signal.devicetransfer.ServerTask
@@ -26,7 +26,7 @@ class DemoDeviceTransferServerTask(private val passphrase: String) : ServerTask 
   }
 
   override fun run(context: Context, inputStream: InputStream) {
-    val bus = EventBus.getDefault()
+    val bus = EventBus.default
     Log.i(TAG, "Reading incoming backup stream with ${passphrase.length}-char passphrase")
 
     val reader: DemoBackupStreamReader = try {

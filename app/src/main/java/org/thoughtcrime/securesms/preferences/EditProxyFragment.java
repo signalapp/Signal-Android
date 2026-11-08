@@ -28,11 +28,10 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
-import org.signal.network.config.SignalProxy;
 
 import java.util.Optional;
 
@@ -87,7 +86,7 @@ public class EditProxyFragment extends Fragment {
       }
     });
 
-    this.proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
+    this.proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxyHost()).orElse(""));
     this.proxySwitch.setChecked(SignalStore.proxy().isProxyEnabled());
 
     initViewModel();
@@ -145,7 +144,7 @@ public class EditProxyFragment extends Fragment {
   }
 
   private void presentProxyState(@NonNull WebSocketConnectionState proxyState) {
-    if (SignalStore.proxy().getProxy() != null) {
+    if (SignalStore.proxy().getProxyHost() != null) {
       switch (proxyState) {
         case DISCONNECTED:
         case DISCONNECTING:
@@ -173,7 +172,7 @@ public class EditProxyFragment extends Fragment {
     switch (event) {
       case PROXY_SUCCESS:
         proxyStatus.setVisibility(View.VISIBLE);
-        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
+        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxyHost()).orElse(""));
         new MaterialAlertDialogBuilder(requireContext())
            .setTitle(R.string.preferences_success)
            .setMessage(R.string.preferences_you_are_connected_to_the_proxy)
@@ -185,7 +184,7 @@ public class EditProxyFragment extends Fragment {
         break;
       case PROXY_FAILURE:
         proxyStatus.setVisibility(View.INVISIBLE);
-        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
+        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxyHost()).orElse(""));
         ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(proxyText);
         new MaterialAlertDialogBuilder(requireContext())
            .setTitle(R.string.preferences_failed_to_connect)

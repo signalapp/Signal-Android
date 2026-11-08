@@ -11,6 +11,8 @@ import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils
+import java.util.Locale
+import org.signal.registration.screens.countrycode.CountryUtils as RegistrationCountryUtils
 
 /**
  * State for driving find by number/username screen.
@@ -25,19 +27,26 @@ data class FindByState(
   val query: String = ""
 ) {
   companion object {
+    private const val DEFAULT_REGION_CODE = "US"
+
     fun startingState(self: Recipient, mode: FindByMode): FindByState {
-      val countryCode: Int = try {
-        PhoneNumberUtil.getInstance()
-          .parse(self.e164.orNull(), null)
-          .countryCode
-      } catch (e: NumberParseException) {
-        -1
-      }
+      val regionCode: String = selfRegionCode(self)
+        ?: RegistrationCountryUtils.localeToRegionCode(Locale.getDefault())
+        ?: DEFAULT_REGION_CODE
 
       val state = FindByState(mode = mode)
       return state.copy(
-        selectedCountry = state.supportedCountries.firstOrNull { it.countryCode == countryCode } ?: state.supportedCountries.first()
+        selectedCountry = state.supportedCountries.firstOrNull { it.regionCode == regionCode } ?: state.supportedCountries.first()
       )
+    }
+
+    private fun selfRegionCode(self: Recipient): String? {
+      return try {
+        PhoneNumberUtil.getInstance()
+          .getRegionCodeForNumber(PhoneNumberUtil.getInstance().parse(self.e164.orNull(), null))
+      } catch (e: NumberParseException) {
+        null
+      }
     }
   }
 }

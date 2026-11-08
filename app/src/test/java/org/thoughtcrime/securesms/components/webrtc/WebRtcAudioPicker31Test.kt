@@ -23,10 +23,10 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat
 
 @RunWith(RobolectricTestRunner::class)

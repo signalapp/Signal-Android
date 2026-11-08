@@ -95,7 +95,7 @@ class MediaOverviewContextMenu(
     val uri = attachment.uri ?: return null
     return ActionItem(
       iconRes = CoreUiR.drawable.symbol_share_android_24,
-      title = fragment.getString(R.string.InviteActivity_share)
+      title = fragment.getString(R.string.MediaPreviewFragment_share)
     ) {
       val publicUri = PartAuthority.getAttachmentPublicUri(uri)
       val mimeType = Intent.normalizeMimeType(attachment.contentType)
@@ -129,7 +129,7 @@ class MediaOverviewContextMenu(
 
     return ActionItem(
       iconRes = CoreUiR.drawable.symbol_share_android_24,
-      title = fragment.getString(R.string.InviteActivity_share)
+      title = fragment.getString(R.string.MediaPreviewFragment_share)
     ) {
       val shareIntent = ShareCompat.IntentBuilder(fragment.requireActivity())
         .setText(url)

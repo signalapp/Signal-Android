@@ -8,9 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagedDataSource;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
@@ -23,8 +25,7 @@ import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.RemoteConfig;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.SignalTrace;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
           } else {
             description = MessageRecord.getGv2ChangeDescription(AppDependencies.getApplication(), record.getBody(), null);
           }
-          needsResolve.addAll(description.getMentioned().stream().map(RecipientId::from).collect(Collectors.toList()));
+          needsResolve.addAll(description.getMentioned().stream().map(RecipientIds::from).collect(Collectors.toList()));
         }
       }
     }

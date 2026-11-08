@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <!-- Signal Login beta labeling -->
+    <!-- Tag shown beside the title of Signal Login screens, marking the feature as unfinished. Keep it short. -->
+    <string name="SignalLoginBeta__beta">BÉITE</string>
+    <!-- Disclaimer shown on Signal Login screens, warning that the feature is still changing. -->
+    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">Is gné Bhéite é seo a ndéanfar nuashonrú air ar bhonn leanúnach.</string>
+
     <!-- Signal Login credential card -->
     <!-- Label for the account portion of the Signal Login on the credential card. -->
     <string name="SignalLoginCard__account">Cuntas</string>
@@ -10,15 +16,51 @@
 
     <!-- Signal Login view details screen -->
     <!-- Title of the screen that shows the user the full keys that make up their Signal Login. -->
-    <string name="SignalLoginViewDetailsScreen__signal_login">Logáil Isteach Signal</string>
+    <string name="SignalLoginViewDetailsScreen__signal_login">Signal Login</string>
     <!-- Content description for the back arrow in the top app bar. -->
-    <string name="SignalLoginViewDetailsScreen__navigate_back">Navigate back</string>
+    <string name="SignalLoginViewDetailsScreen__navigate_back">Déan nascleanúint siar</string>
     <!-- Section header above the account key. -->
-    <string name="SignalLoginViewDetailsScreen__account_key">Account key</string>
+    <string name="SignalLoginKeyDetails__account_id">ID an chuntais</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">Eochair athshlánaithe</string>
+    <string name="SignalLoginKeyDetails__recovery_key">Eochair athshlánaithe</string>
+    <!-- Content description for the button that copies the account key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_account_id">Cóipeáil aitheantas an chuntais</string>
+    <!-- Content description for the button that copies the recovery key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_recovery_key">Cóipeáil an eochair athshlánaithe</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">Sábháil chuig an mbainisteoir pasfhocal</string>
     <!-- Action button that saves the Signal Login as a PDF. -->
-    <string name="SignalLoginViewDetailsScreen__save_as_pdf">Save as PDF</string>
+    <string name="SignalLoginViewDetailsScreen__save_as_pdf">Sábháil mar PDF</string>
+    <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
+    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">Athshocraigh an eochair athshlánaithe</string>
+    <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
+    <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginViewDetailsScreen__no_password_manager_available">Níl bainisteoir pasfhocal socraithe agat.</string>
+    <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Ná stóráil d\'fhaisnéis aitheantais ach i mbainisteoir pasfhocal a bhfuil muinín agat as a shláine. Ní thugann Signal moladh ar bhainisteoir pasfhocal atá ceart duit.</string>
+    <!-- Toast shown when saving the Signal Login PDF fails. -->
+    <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Ní féidir an PDF a shábháil. Triail arís.</string>
+    <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->
+    <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">Ní féidir an PDF a shábháil chuig an suíomh roghnaithe.</string>
+
+    <!-- Do not share warning sheet, shown before the user copies or saves their Signal Login -->
+    <!-- Title of the sheet warning the user not to share their Signal Login. -->
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login">Ná comhroinn do Signal Login</string>
+    <!-- Body of the warning sheet. The text inside the <b> tags is shown in bold; keep the tags around the equivalent phrase. -->
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login_with_anyone">Ná comhroinn do Signal Login le duine ar bith. Óir beidh an duine sin in ann teacht i gceannas ar do chuntas. <b>Ní sheolfaidh Signal teachtaireacht chugat choíche</b> chun ID do chuntais nó d\'eochair athshlánaithe a iarraidh ort. Ná freagair comhrá choíche a ligeann gur Signal atá ann.</string>
+    <!-- Button acknowledging the warning and continuing with the copy or save the user started. -->
+    <string name="DoNotShareLoginBottomSheet__got_it">Tuigim</string>
+    <!-- Button opening a help article with more information about keeping the Signal Login safe. -->
+    <string name="DoNotShareLoginBottomSheet__learn_more">Tuilleadh faisnéise</string>
+
+    <!-- Signal Login PDF -->
+    <!-- Title at the top of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__your_signal_login">Signal Login agat</string>
+    <!-- Explainer below the title of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">Stóráil in áit shábháilte é; éilítear d\'fhaisnéis logáil isteach le do chuntas agus do shonraí a athshlánú. Ná comhroinn le duine ar bith choíche é. Ná comhroinn le duine ar bith choíche é.</string>
+    <!-- Section header above the account key in the PDF. -->
+    <string name="SignalLoginPdf__account_id">ID an chuntais</string>
+    <!-- Section header above the recovery key in the PDF. -->
+    <string name="SignalLoginPdf__recovery_key">Eochair athshlánaithe</string>
 </resources>

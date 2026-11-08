@@ -7,6 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.models.ServiceId;
+import org.signal.core.models.recipients.RecipientId;
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.GroupInsufficientRightsException;
+import org.signal.core.util.groups.GroupNotAMemberException;
+import org.signal.core.util.groups.MembershipNotSuitableForV2Exception;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
@@ -21,7 +27,6 @@ import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult;
 import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
 
 import java.io.IOException;
@@ -125,7 +130,9 @@ public final class GroupManager {
       return;
     }
 
-    leaveGroup(context, groupId.requireV2(), true);
+    boolean sendToMembers = Recipient.externalGroupExact(groupId).resolve().isProfileSharing();
+
+    leaveGroup(context, groupId.requireV2(), sendToMembers);
   }
 
   @WorkerThread

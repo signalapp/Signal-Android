@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.mms
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.internal.push.DataMessage
 

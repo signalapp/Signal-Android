@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import androidx.sqlite.db.SupportSQLiteDatabase
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.mms.IncomingMessage
-import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.Optional
 import java.util.UUID
 

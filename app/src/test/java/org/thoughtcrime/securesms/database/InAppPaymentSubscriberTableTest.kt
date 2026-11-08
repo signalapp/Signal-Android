@@ -12,8 +12,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.core.util.count
-import org.signal.core.util.deleteAll
+import org.signal.core.database.count
+import org.signal.core.database.deleteAll
 import org.signal.core.util.readToSingleInt
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord

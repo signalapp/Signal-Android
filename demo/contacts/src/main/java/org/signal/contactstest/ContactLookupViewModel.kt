@@ -36,6 +36,7 @@ class ContactLookupViewModel(application: Application) : AndroidViewModel(applic
       if (account != null) {
         val contactList: List<ContactDetails> = SystemContactsRepository.getContactDetailsByQueries(
           context = getApplication(),
+          ownAccountType = BuildConfig.APPLICATION_ID,
           queries = listOf(lookup),
           e164Formatter = { number -> PhoneNumberUtils.formatNumberToE164(number, "US") ?: number }
         ).use { it.toList() }

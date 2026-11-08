@@ -18,17 +18,21 @@ import org.signal.core.util.MapUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.TranslationDetection;
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupUpsellBottomSheet;
 import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.app.account.signallogin.verify.SignalLoginVerifyActivity;
+import org.thoughtcrime.securesms.components.settings.app.account.twofactor.verify.TwoFactorVerifyActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
+import org.thoughtcrime.securesms.keyvalue.PinValuesUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
@@ -46,9 +50,7 @@ import org.signal.core.util.ByteUnit;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Environment;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
@@ -131,10 +133,12 @@ public final class Megaphones {
       // Specifically putting backup reminders here, above PIN reminders
       put(Event.BACKUP_LOW_STORAGE_UPSELL, shouldShowBackupLowStorageUpsell(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60), TimeUnit.DAYS.toMillis(120)) : NEVER);
       put(Event.BACKUP_MEDIA_SIZE_UPSELL, shouldShowBackupMediaSizeUpsell() ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60), TimeUnit.DAYS.toMillis(120)) : NEVER);
-      put(Event.BACKUP_MESSAGE_COUNT_UPSELL, shouldShowBackupMessageCountUpsell(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
+      put(Event.BACKUP_MESSAGE_COUNT_UPSELL, shouldShowBackupMessageCountUpsell() ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
       put(Event.BACKUPS_GENERIC_UPSELL, shouldShowGenericBackupsMegaphone(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
       put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
-      put(Event.USE_NEW_ON_DEVICE_BACKUPS, shouldShowUseNewOnDeviceBackupsMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(14)) : NEVER);
+      put(Event.TWO_FACTOR_REMINDER, new TwoFactorReminderSchedule());
+      put(Event.SIGNAL_LOGIN_REMINDER, new SignalLoginReminderSchedule());
+      put(Event.USE_NEW_ON_DEVICE_BACKUPS, shouldShowUseNewOnDeviceBackupsMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
 
       // The Great Wall of PIN Reminder -- megaphones below this may not be seen by users who never do reminders
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
@@ -203,6 +207,10 @@ public final class Megaphones {
         return buildBackupLowStorageUpsellMegaphone();
       case VERIFY_BACKUP_KEY:
         return buildVerifyBackupKeyMegaphone();
+      case TWO_FACTOR_REMINDER:
+        return buildTwoFactorReminderMegaphone();
+      case SIGNAL_LOGIN_REMINDER:
+        return buildSignalLoginReminderMegaphone();
       case USE_NEW_ON_DEVICE_BACKUPS:
         return buildUseNewOnDeviceBackupsMegaphone();
       case INACTIVE_PRIMARY:
@@ -271,22 +279,22 @@ public final class Megaphones {
             public void onReminderDismissed(boolean includedFailure) {
               Log.i(TAG, "[PinReminder] onReminderDismissed(" + includedFailure + ")");
 
-              SignalStore.pin().onEntrySkip(includedFailure);
+              PinValuesUtil.onEntrySkip(SignalStore.pin(), includedFailure);
               controller.onMegaphoneSnooze(Event.PIN_REMINDER);
-              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getSkipReminderString(SignalStore.pin().getCurrentInterval())));
+              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getSkipReminderString(SignalStore.pin().getNextReminderInterval())));
             }
 
             @Override
             public void onReminderCompleted(@NonNull String pin, boolean includedFailure) {
               Log.i(TAG, "[PinReminder] onReminderCompleted(" + includedFailure + ")");
               if (includedFailure) {
-                SignalStore.pin().onEntrySuccessWithWrongGuess(pin);
+                PinValuesUtil.onEntrySuccessWithWrongGuess(SignalStore.pin(), pin);
               } else {
-                SignalStore.pin().onEntrySuccess(pin);
+                PinValuesUtil.onEntrySuccess(SignalStore.pin(), pin);
               }
 
               controller.onMegaphoneSnooze(Event.PIN_REMINDER);
-              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pin().getCurrentInterval())));
+              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pin().getNextReminderInterval())));
             }
           });
         })
@@ -410,10 +418,10 @@ public final class Megaphones {
   @SuppressLint("InlinedApi")
   private static Megaphone buildBackupPermissionMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.BACKUP_SCHEDULE_PERMISSION, Megaphone.Style.BASIC)
-        .setTitle(R.string.BackupSchedulePermissionMegaphone__cant_back_up_chats)
-        .setImage(R.drawable.ic_cant_backup_megaphone)
-        .setBody(R.string.BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up)
-        .setActionButton(R.string.BackupSchedulePermissionMegaphone__back_up_chats, (megaphone, controller) -> {
+        .setTitle(R.string.BackupSchedulePermissionMegaphone__improve_backup_reliability)
+        .setImage(R.drawable.ic_improve_backup_reliability_megaphone)
+        .setBody(R.string.BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups)
+        .setActionButton(R.string.BackupSchedulePermissionMegaphone__allow, (megaphone, controller) -> {
           controller.onMegaphoneDialogFragmentRequested(new ReenableBackupsDialogFragment());
         })
         .setSecondaryButton(R.string.BackupSchedulePermissionMegaphone__not_now, (megaphone, controller) -> {
@@ -514,19 +522,56 @@ public final class Megaphones {
     return builder.build();
   }
 
+  public static @NonNull Megaphone buildTwoFactorReminderMegaphone() {
+    Megaphone.Builder builder = new Megaphone.Builder(Event.TWO_FACTOR_REMINDER, Megaphone.Style.BASIC)
+        .setImage(R.drawable.megaphone_two_factor)
+        .setTitle(R.string.TwoFactorReminderMegaphone__verify_your_two_factor_method)
+        .setBody(R.string.TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify)
+        .setActionButton(R.string.TwoFactorReminderMegaphone__verify, (megaphone, controller) -> {
+          Intent intent = TwoFactorVerifyActivity.createIntent(controller.getMegaphoneActivity());
+
+          controller.onMegaphoneNavigationRequested(intent, TwoFactorVerifyActivity.REQUEST_CODE);
+        });
+
+    if (!SignalStore.uiHints().hasSnoozedTwoFactorReminder()) {
+      builder.setSecondaryButton(R.string.TwoFactorReminderMegaphone__not_now, (megaphone, controller) -> {
+        SignalStore.uiHints().setHasSnoozedTwoFactorReminder(true);
+        controller.onMegaphoneSnooze(Event.TWO_FACTOR_REMINDER);
+      });
+    }
+
+    return builder.build();
+  }
+
+  public static @NonNull Megaphone buildSignalLoginReminderMegaphone() {
+    Megaphone.Builder builder = new Megaphone.Builder(Event.SIGNAL_LOGIN_REMINDER, Megaphone.Style.BASIC)
+        .setImage(org.signal.registration.R.drawable.image_signal_login_ring)
+        .setTitle(R.string.SignalLoginReminderMegaphone__verify_your_signal_login)
+        .setBody(R.string.SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify)
+        .setActionButton(R.string.SignalLoginReminderMegaphone__verify, (megaphone, controller) -> {
+          Intent intent = SignalLoginVerifyActivity.createIntent(controller.getMegaphoneActivity());
+
+          controller.onMegaphoneNavigationRequested(intent, SignalLoginVerifyActivity.REQUEST_CODE);
+        });
+
+    if (!SignalStore.uiHints().hasSnoozedSignalLoginReminder()) {
+      builder.setSecondaryButton(R.string.SignalLoginReminderMegaphone__not_now, (megaphone, controller) -> {
+        SignalStore.uiHints().setHasSnoozedSignalLoginReminder(true);
+        controller.onMegaphoneSnooze(Event.SIGNAL_LOGIN_REMINDER);
+      });
+    }
+
+    return builder.build();
+  }
+
   public static @NonNull Megaphone buildUseNewOnDeviceBackupsMegaphone() {
-    return new Megaphone.Builder(Event.USE_NEW_ON_DEVICE_BACKUPS, Megaphone.Style.BASIC)
-        .setImage(R.drawable.backups_megaphone_image)
-        .setTitle(R.string.UseNewOnDeviceBackups__title)
-        .setBody(R.string.UseNewOnDeviceBackups__body)
-        .setActionButton(R.string.UseNewOnDeviceBackups__upgrade, (megaphone, controller) -> {
+    return new Megaphone.Builder(Event.USE_NEW_ON_DEVICE_BACKUPS, Megaphone.Style.FULLSCREEN)
+        .setOnVisibleListener((megaphone, controller) -> {
+          Log.i(TAG, "Prompting the user to upgrade their on-device backups.");
+
           Intent intent = AppSettingsActivity.upgradeLocalBackups(controller.getMegaphoneActivity());
 
-          controller.onMegaphoneNavigationRequested(intent);
-          controller.onMegaphoneSnooze(Event.USE_NEW_ON_DEVICE_BACKUPS);
-        })
-        .setSecondaryButton(R.string.UseNewOnDeviceBackups__not_now, (megaphone, controller) -> {
-          controller.onMegaphoneSnooze(Event.USE_NEW_ON_DEVICE_BACKUPS);
+          controller.onMegaphoneNavigationRequested(intent, AppSettingsActivity.REQUEST_CODE_UPGRADE_LOCAL_BACKUPS);
         })
         .build();
   }
@@ -549,7 +594,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {
-    return SignalStore.account().isPrimaryDevice() && SignalStore.onboarding().hasOnboarding(context);
+    return SignalStore.account().isPrimaryDevice() && SignalStore.onboarding().hasOnboarding();
   }
 
   private static boolean shouldShowNewLinkedDeviceMegaphone() {
@@ -567,7 +612,7 @@ public final class Megaphones {
                          !NotificationChannels.getInstance().isMessagesChannelGroupEnabled() ||
                          !NotificationChannels.getInstance().areNotificationsEnabled();
     if (shouldShow) {
-      Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale(context);
+      Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale();
       if (!new TranslationDetection(context, locale)
           .textExistsInUsersLanguage(R.string.NotificationsMegaphone_turn_on_notifications,
                                      R.string.NotificationsMegaphone_never_miss_a_message,
@@ -629,7 +674,7 @@ public final class Megaphones {
       return false;
     }
 
-    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice()) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().isUnauthorizedReceived() || SignalStore.account().isLinkedDevice()) {
       return false;
     }
 
@@ -637,7 +682,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowUseNewOnDeviceBackupsMegaphone() {
-    return SignalStore.account().isPrimaryDevice() && Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled() && (RemoteConfig.upgradeBackupsMegaphone() || RemoteConfig.internalUser());
+    return SignalStore.account().isPrimaryDevice() && Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled() && RemoteConfig.upgradeToNewLocalBackupsMegaphone();
   }
 
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {
@@ -672,8 +717,8 @@ public final class Megaphones {
     return System.currentTimeMillis() - lastSeenDonatePrompt;
   }
 
-  private static boolean shouldShowBackupMessageCountUpsell(@NonNull Context context) {
-    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice()) {
+  private static boolean shouldShowBackupMessageCountUpsell() {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().isUnauthorizedReceived() || SignalStore.account().isLinkedDevice()) {
       return false;
     }
 
@@ -697,7 +742,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowBackupLowStorageUpsell(@NonNull Context context) {
-    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice() || !Environment.Backups.supportsGooglePlayBilling()) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().isUnauthorizedReceived() || SignalStore.account().isLinkedDevice() || !Environment.Backups.supportsGooglePlayBilling()) {
       return false;
     }
 
@@ -782,7 +827,9 @@ public final class Megaphones {
     BACKUP_LOW_STORAGE_UPSELL("backup_storage_upsell"),
     VERIFY_BACKUP_KEY("verify_backup_key"),
     USE_NEW_ON_DEVICE_BACKUPS("use_new_on_device_backups"),
-    INACTIVE_PRIMARY("inactive_primary");
+    INACTIVE_PRIMARY("inactive_primary"),
+    TWO_FACTOR_REMINDER("two_factor_reminder"),
+    SIGNAL_LOGIN_REMINDER("signal_login_reminder");
 
     private final String key;
 

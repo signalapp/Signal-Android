@@ -27,4 +27,16 @@ sealed class EnterAepEvents {
 
   /** User dismissed the different-account warning dialog without restoring. */
   data object DismissDifferentAccountDialog : EnterAepEvents()
+
+  /** User chose to try another way after entering an incorrect key. */
+  data object TryAnotherWay : EnterAepEvents()
+
+  /** User wants to read the recovery key support article. */
+  data object RecoveryKeyHelp : EnterAepEvents()
+
+  /** User confirmed they want to verify their number over SMS instead of using their recovery key. */
+  data object ConfirmVerifyWithSms : EnterAepEvents()
+
+  /** User dismissed the verify-with-SMS dialog. */
+  data object DismissVerifyWithSmsDialog : EnterAepEvents()
 }

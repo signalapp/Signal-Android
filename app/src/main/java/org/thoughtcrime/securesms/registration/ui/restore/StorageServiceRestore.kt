@@ -35,6 +35,7 @@ object StorageServiceRestore {
       val stopwatch = Stopwatch("storage-service-restore")
 
       SignalStore.storageService.needsAccountRestore = false
+      SignalStore.onboarding.clearAll()
 
       AppDependencies.jobManager.runJobBlocking(StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN.milliseconds)
       stopwatch.split("account-restore")

@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.signal.core.ui.R as CoreUiR
 
 private val LARGE_ICON_SIZE = 40.dp
 
@@ -111,9 +112,9 @@ fun RecipientRow(
 private fun LargeIconRowPreview() {
   Previews.Preview {
     Column {
-      LargeIconRow(text = "Add members", icon = R.drawable.ic_plus_24, onClick = {})
-      LargeIconRow(text = "See all", icon = R.drawable.ic_chevron_down_icon_20, onClick = {})
-      LargeIconRow(text = "Add to a group", icon = R.drawable.ic_plus_24, enabled = false, onClick = {})
+      LargeIconRow(text = "Add members", icon = CoreUiR.drawable.symbol_plus_24, onClick = {})
+      LargeIconRow(text = "See all", icon = R.drawable.symbol_chevron_down_24, onClick = {})
+      LargeIconRow(text = "Add to a group", icon = CoreUiR.drawable.symbol_plus_24, enabled = false, onClick = {})
     }
   }
 }

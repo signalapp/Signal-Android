@@ -23,6 +23,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Covers which archive CDN ends up in the pointer we download from. A restore that reaches for the wrong CDN gets a 404, and

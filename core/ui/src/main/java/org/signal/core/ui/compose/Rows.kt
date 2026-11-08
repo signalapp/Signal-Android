@@ -66,6 +66,7 @@ object Rows {
     modifier: Modifier = Modifier,
     label: String? = null,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
+    textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
     enabled: Boolean = true,
     icon: ImageVector
   ) {
@@ -83,6 +84,7 @@ object Rows {
         text = text,
         label = label,
         textColor = textColor,
+        textStyle = textStyle,
         enabled = enabled,
         modifier = Modifier.padding(end = 16.dp)
       )
@@ -146,6 +148,10 @@ object Rows {
     }
   }
 
+  /**
+   * @param requireConfirmation Whether the dialog's choice only takes effect once the user confirms it, rather than as
+   *                            soon as they tap it.
+   */
   @Composable
   fun RadioListRow(
     text: String,
@@ -153,7 +159,9 @@ object Rows {
     values: Array<String>,
     selectedValue: String,
     onSelected: (String) -> Unit,
-    enabled: Boolean = true
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    requireConfirmation: Boolean = false
   ) {
     RadioListRow(
       text = { selectedIndex ->
@@ -173,10 +181,16 @@ object Rows {
       values = values,
       selectedValue = selectedValue,
       onSelected = onSelected,
-      enabled = enabled
+      modifier = modifier,
+      enabled = enabled,
+      requireConfirmation = requireConfirmation
     )
   }
 
+  /**
+   * @param requireConfirmation Whether the dialog's choice only takes effect once the user confirms it, rather than as
+   *                            soon as they tap it.
+   */
   @Composable
   fun RadioListRow(
     text: @Composable RowScope.(Int) -> Unit,
@@ -185,7 +199,9 @@ object Rows {
     values: Array<String>,
     selectedValue: String,
     onSelected: (String) -> Unit,
-    enabled: Boolean = true
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    requireConfirmation: Boolean = false
   ) {
     val selectedIndex = values.indexOf(selectedValue)
     var displayDialog by remember { mutableStateOf(false) }
@@ -196,20 +212,33 @@ object Rows {
       onClick = {
         displayDialog = true
       },
-      modifier = Modifier.alpha(if (enabled) 1f else DISABLED_ALPHA)
+      modifier = modifier.alpha(if (enabled) 1f else DISABLED_ALPHA)
     )
 
     if (displayDialog) {
-      Dialogs.RadioListDialog(
-        onDismissRequest = { displayDialog = false },
-        labels = labels,
-        values = values,
-        selectedIndex = selectedIndex,
-        title = dialogTitle,
-        onSelected = {
-          onSelected(values[it])
-        }
-      )
+      if (requireConfirmation) {
+        Dialogs.RadioListConfirmationDialog(
+          onDismissRequest = { displayDialog = false },
+          labels = labels,
+          values = values,
+          selectedIndex = selectedIndex,
+          title = dialogTitle,
+          onConfirm = {
+            onSelected(values[it])
+          }
+        )
+      } else {
+        Dialogs.RadioListDialog(
+          onDismissRequest = { displayDialog = false },
+          labels = labels,
+          values = values,
+          selectedIndex = selectedIndex,
+          title = dialogTitle,
+          onSelected = {
+            onSelected(values[it])
+          }
+        )
+      }
     }
   }
 
@@ -220,11 +249,13 @@ object Rows {
     values: Array<String>,
     selection: Array<String>,
     noSelectionLabel: String,
+    modifier: Modifier = Modifier,
     onSelectionChanged: (Array<String>) -> Unit
   ) {
     var displayDialog by remember { mutableStateOf(false) }
 
     TextRow(
+      modifier = modifier,
       text = text,
       label = if (selection.isNotEmpty()) {
         selection.joinToString(", ") {

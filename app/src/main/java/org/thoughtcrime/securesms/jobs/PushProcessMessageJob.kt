@@ -3,20 +3,22 @@ package org.thoughtcrime.securesms.jobs
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
+import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.messages.BatchCache
 import org.thoughtcrime.securesms.messages.MessageContentProcessor
 import org.thoughtcrime.securesms.messages.MessageDecryptor
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -27,6 +29,7 @@ import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.util.Util
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.seconds
 import org.whispersystems.signalservice.api.crypto.protos.EnvelopeMetadata as EnvelopeMetadataProto
 
 class PushProcessMessageJob private constructor(
@@ -71,6 +74,14 @@ class PushProcessMessageJob private constructor(
       e is GroupChangeBusyException
   }
 
+  override fun getNextRunAttemptBackoff(pastAttemptCount: Int, exception: Exception): Long {
+    return if (exception is GroupChangeBusyException) {
+      BackoffUtil.exponentialBackoff(pastAttemptCount, GROUP_BUSY_MAX_BACKOFF.inWholeMilliseconds)
+    } else {
+      super.getNextRunAttemptBackoff(pastAttemptCount, exception)
+    }
+  }
+
   override fun onFailure() = Unit
 
   class Factory : Job.Factory<PushProcessMessageJob?> {
@@ -104,6 +115,8 @@ class PushProcessMessageJob private constructor(
 
     private val TAG = Log.tag(PushProcessMessageJob::class.java)
 
+    private val GROUP_BUSY_MAX_BACKOFF = 10.seconds
+
     /**
      * Cache to keep track of empty 1:1 processing queues. Once a 1:1 queue is empty
      * we no longer enqueue jobs on it and instead process inline. This is not
@@ -131,14 +144,14 @@ class PushProcessMessageJob private constructor(
             requireNetwork = true
           }
         }
-        getQueueName(RecipientId.from(groupId))
+        getQueueName(RecipientIds.from(groupId))
       } else if (result.content.syncMessage != null &&
         result.content.syncMessage!!.sent != null &&
         Util.anyNotNull(result.content.syncMessage!!.sent!!.destinationServiceId, result.content.syncMessage!!.sent!!.destinationServiceIdBinary)
       ) {
-        getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage!!.sent!!.destinationServiceId, result.content.syncMessage!!.sent!!.destinationServiceIdBinary)))
+        getQueueName(RecipientIds.from(ServiceId.parseOrThrow(result.content.syncMessage!!.sent!!.destinationServiceId, result.content.syncMessage!!.sent!!.destinationServiceIdBinary)))
       } else {
-        getQueueName(RecipientId.from(result.metadata.sourceServiceId))
+        getQueueName(RecipientIds.from(result.metadata.sourceServiceId))
       }
 
       return if (requireNetwork || !isQueueEmpty(queueName = queueName, cache = if (groupId != null) batchCache.groupQueueEmptyCache else empty1to1QueueCache)) {

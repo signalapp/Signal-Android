@@ -35,10 +35,12 @@ message ArchiveUploadProgressState {
         Recipient = 2;
         Thread = 3;
         Call = 4;
-        Sticker = 5;
+        InstalledStickerPack = 5;
         Message = 6;
         NotificationProfile = 7;
         ChatFolder = 8;
+        HiddenStickerPack = 9;
+        FavoriteStickerList = 10;
     }
 
     State state = 1;
@@ -76,11 +78,13 @@ message LocalBackupCreationProgress {
         RECIPIENT = 3;
         THREAD = 4;
         CALL = 5;
-        STICKER = 6;
+        INSTALLED_STICKER_PACK = 6;
         NOTIFICATION_PROFILE = 7;
         CHAT_FOLDER = 8;
         MESSAGE = 9;
         FINALIZING = 10;
+        HIDDEN_STICKER_PACK = 11;
+        FAVORITE_STICKER_LIST = 12;
     }
 
     oneof state {
@@ -107,12 +111,4 @@ message BackupDownloadNotifierState {
 
 message IssueNotifyTimes {
     map<string, uint64> lastNotifyTimeByName = 1;
-}
-
-message StorageSyncLoopState {
-    repeated sint32 recentFingerprints = 1;
-    uint32 contentLevel                = 2;
-    uint64 contentLevelAsOf            = 3;
-    uint32 rateLevel                   = 4;
-    uint64 rateLevelAsOf               = 5;
 }

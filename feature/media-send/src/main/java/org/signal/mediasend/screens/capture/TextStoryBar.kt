@@ -28,6 +28,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.mediasend.R
+import org.signal.camera.R as CameraR
 
 @Composable
 fun TextStoryHorizontalBar(
@@ -37,7 +38,7 @@ fun TextStoryHorizontalBar(
 ) {
   Row(
     modifier = modifier.background(
-      color = colorResource(R.color.MediaSend_controls_color),
+      color = colorResource(CameraR.color.CameraHud_control_background),
       shape = RoundedCornerShape(50)
     )
   ) {
@@ -54,7 +55,7 @@ fun TextStoryVerticalBar(
 ) {
   Column(
     modifier = modifier.background(
-      color = colorResource(R.color.MediaSend_controls_color),
+      color = colorResource(CameraR.color.CameraHud_control_background),
       shape = RoundedCornerShape(50)
     )
   ) {

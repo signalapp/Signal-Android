@@ -12,15 +12,19 @@ import com.bumptech.glide.load.DecodeFormat
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.signal.qr.QrProcessor
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
+import java.util.Optional
 
 /**
  * A collection of functions to help with scanning QR codes for usernames.
  */
 object UsernameQrScanRepository {
+
+  private val TAG = Log.tag(UsernameQrScanRepository::class)
 
   /**
    * Given a URL, will attempt to lookup the username, coercing it to a standard set of [QrScanResult]s.
@@ -34,6 +38,10 @@ object UsernameQrScanRepository {
           is UsernameRepository.UsernameLinkConversionResult.NotFound -> QrScanResult.NotFound(result.username?.toString())
           is UsernameRepository.UsernameLinkConversionResult.NetworkError -> QrScanResult.NetworkError
         }
+      }
+      .onErrorReturn { throwable ->
+        Log.w(TAG, "Failed to lookup the username link.", throwable)
+        QrScanResult.NetworkError
       }
       .subscribeOn(Schedulers.io())
   }
@@ -50,6 +58,10 @@ object UsernameQrScanRepository {
 
     return Single.fromFuture(loadBitmap)
       .map { QrProcessor().getScannedData(it).toOptional() }
+      .onErrorReturn { throwable ->
+        Log.w(TAG, "Failed to load or scan the selected image.", throwable)
+        Optional.empty()
+      }
       .flatMap {
         if (it.isPresent) {
           lookupUsernameUrl(it.get())

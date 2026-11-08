@@ -9,8 +9,8 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.core.os.bundleOf
 import kotlinx.parcelize.Parcelize
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.getParcelableCompat
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
 
 /**

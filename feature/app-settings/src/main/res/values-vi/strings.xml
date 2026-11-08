@@ -48,149 +48,1125 @@
     <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Tài khoản &amp; khôi phục</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="other">%1$d mã khóa</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Thông tin đăng nhập Signal của bạn được sử dụng để khôi phục và phục hồi tài khoản của bạn. Lưu trữ an toàn các mã khóa này trong một công cụ quản lý mật khẩu mà bạn tin tưởng.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal Login được sử dụng để khôi phục và phục hồi tài khoản của bạn. Lưu trữ an toàn các mã khóa này trong một công cụ quản lý mật khẩu mà bạn tin tưởng.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Xác thực hai yếu tố</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Thiết Lập</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">Ứng dụng xác thực</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Sử dụng phương thức xác thực thứ hai để bảo vệ tài khoản khi đăng nhập Signal trên thiết bị mới.</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Mã xác minh một lần</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Khóa đăng nhập</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Sử dụng vân tay, khuôn mặt hoặc khóa màn hình</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Khóa đăng nhập</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Phương thức xác thực hai yếu tố</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Đã thêm %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Không rõ</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Mở các tùy chọn xác thực hai yếu tố</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Đổi tên</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Xóa</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Xóa ứng dụng xác thực?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Bạn sẽ không thể sử dụng ứng dụng này để lấy mã xác minh dùng một lần khi đăng nhập.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Xóa khóa truy cập?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Bạn sẽ không thể sử dụng khóa truy cập này để đăng nhập.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Xóa phương thức xác thực hai yếu tố?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Bạn sẽ không thể sử dụng phương thức này để đăng nhập.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Đã xóa phương thức xác thực hai yếu tố</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Không thể xóa phương thức xác thực hai yếu tố. Kiểm tra kết nối của bạn và thử lại.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Đã xóa khóa truy cập</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Không thể xóa khóa truy cập. Kiểm tra kết nối của bạn và thử lại.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Thiết lập một công cụ quản lý mật khẩu hỗ trợ khóa truy cập trên thiết bị này, sau đó thử lại.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Không thể tạo khóa truy cập. Thử lại.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Mở khóa để thêm phương thức xác thực hai yếu tố</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Để thêm phương thức này, hãy xác nhận danh tính</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Mở khóa để xóa phương thức xác thực hai yếu tố</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Để xóa phương thức này, hãy xác nhận danh tính</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Mở khóa để xem Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Để xem thông tin Signal Login của bạn, hãy xác nhận danh tính</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Mở khóa để xác nhận đúng là bạn</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Để xóa tài khoản của bạn, hãy xác nhận đúng là bạn</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Yêu cầu xác thực</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Không thể thêm ứng dụng xác thực</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Bạn không thể thêm nhiều hơn %1$d ứng dụng xác thực. Hãy thử xóa một ứng dụng xác thực trước.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Bạn không thể thêm nhiều hơn %1$d phương thức xác thực hai yếu tố. Hãy thử xóa một phương thức trước.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Không thể tải các phương thức xác thực hai yếu tố của bạn. Kiểm tra kết nối của bạn và thử lại.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Đã xóa ứng dụng xác thực</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Không thể xóa ứng dụng xác thực. Kiểm tra kết nối của bạn và thử lại.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Sử dụng phương thức xác thực thứ hai để bảo vệ tài khoản khi sử dụng Signal Login trên thiết bị mới.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Tìm hiểu thêm</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Dữ liệu tài khoản của bạn</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Xuất một báo cáo về dữ liệu tài khoản Signal của bạn. Báo cáo này không bao gồm nội dung tin nhắn hay tệp đa phương tiện nào. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Tìm hiểu thêm</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Xuất báo cáo</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Xuất định dạng TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Tệp văn bản dễ đọc</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Xuất định dạng JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Tệp dành cho thiết bị</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Hủy</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Không thể tạo báo cáo</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Kiểm tra kết nối của bạn và thử lại.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Bạn muốn xuất dữ liệu?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Chỉ chia sẻ dữ liệu tài khoản Signal của bạn với người hoặc ứng dụng bạn tin tưởng.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Xuất</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Đang tạo báo cáo…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Báo cáo của bạn chỉ được tạo ra tại thời điểm bạn chọn xuất báo cáo và không được lưu bởi Signal trên thiết bị của bạn.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Thiết lập ứng dụng xác thực của bạn</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Làm theo các bước sau để thiết lập ứng dụng xác thực của bạn.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Làm theo các bước sau để thiết lập ứng dụng xác thực của bạn.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Tìm hiểu thêm</string>
+    <string name="TotpSetupScreen__learn_more">Tìm hiểu thêm</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Bước 1</string>
+    <string name="TotpSetupScreen__step_1">Bước 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Cài đặt một ứng dụng xác thực đáng tin cậy trên thiết bị của bạn.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Cài đặt một ứng dụng xác thực đáng tin cậy trên thiết bị của bạn.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Bước 2</string>
+    <string name="TotpSetupScreen__step_2">Bước 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Mở ứng dụng xác thực của bạn bằng cách nhấn vào nút bên dưới để thêm tài khoản Signal của bạn.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Mở ứng dụng xác thực của bạn bằng cách nhấn vào nút bên dưới để thêm tài khoản Signal của bạn.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Mở</string>
+    <string name="TotpSetupScreen__open">Mở</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Hoặc bạn có thể sao chép mã khóa này để thiết lập thủ công.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">Hoặc bạn có thể sao chép mã khóa này để thiết lập thủ công.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Sao chép</string>
+    <string name="TotpSetupScreen__copy">Sao chép</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Đã sao chép vào clipboard</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Đã sao chép vào clipboard</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">Không tìm thấy ứng dụng xác thực nào</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Không tìm thấy ứng dụng xác thực nào</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Bạn không thể thêm nhiều hơn %1$d ứng dụng xác thực. Hãy thử xóa một ứng dụng xác thực trước.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Không thể kết nối với Signal. Kiểm tra kết nối của bạn và thử lại.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Bước 3</string>
+    <string name="TotpSetupScreen__step_3">Bước 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Sao chép mã được tạo và quay lại đây để tiếp tục.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Sao chép mã được tạo và quay lại đây để tiếp tục.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Tiếp tục</string>
+    <string name="TotpSetupScreen__continue">Tiếp tục</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">Tìm hiểu thêm</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">Khóa đăng nhập</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Với khóa đăng nhập, bạn có thể dễ dàng thêm một hình thức xác thực thứ hai bảo mật cho tài khoản của mình. Khóa đăng nhập có thể sử dụng thông tin xác thực sinh trắc học của thiết bị hoặc khóa bảo mật FIDO2 tương thích.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">Tìm hiểu thêm</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Hãy đặt cho khóa đăng nhập của bạn tên dễ nhớ để nhận biết</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Sử dụng thông tin xác thực sinh trắc học của thiết bị hoặc khóa bảo mật FIDO2</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Bạn có thể thêm hoặc xóa khóa đăng nhập bất cứ lúc nào.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">Đã thêm \"%1$s\"</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Đổi tên</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">Xóa</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">Thiết lập khóa đăng nhập</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">Không thể thêm mã khóa truy cập</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Bạn không thể thêm nhiều hơn %1$d phương thức xác thực hai yếu tố. Hãy thử xóa một phương thức trước.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Nhập mã của bạn</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Nhập mã của bạn</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Nhập mã gồm 6 chữ số từ ứng dụng xác thực của bạn.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Mã</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Nhập mã gồm 6 chữ số từ ứng dụng xác thực của bạn.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Xong</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">Ứng dụng xác thực</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">Tìm hiểu thêm</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">Đã thêm \"%1$s\"</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Đổi tên</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">Xóa</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">Tiếp</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Mã không đúng. Nhập mã hiện đang hiển thị trong ứng dụng xác thực của bạn.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Không thể kết nối với Signal. Kiểm tra kết nối của bạn và thử lại.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Choose a name</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Ứng dụng xác thực</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Chọn tên</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Chọn một tên riêng biệt cho ứng dụng xác thực này.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Hãy chọn tên riêng biệt cho ứng dụng xác thực này để giúp bạn nhận biết sau này.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Chọn một tên riêng cho phương thức xác thực hai yếu tố này.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Chọn một tên riêng cho phương thức xác thực hai yếu tố này để dễ nhận biết sau này.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Chọn một tên riêng cho khóa truy cập này.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Chọn một tên riêng cho khóa truy cập này để dễ nhận biết sau này.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">Tên</string>
+    <string name="TwoFactorNameEntryScreen__name">Tên</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">Tiếp</string>
+    <string name="TwoFactorNameEntryScreen__next">Tiếp</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Đã thiết lập ứng dụng xác thực</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Đã đổi tên ứng dụng xác thực</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Đã thiết lập khóa truy cập</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Đã đổi tên khóa truy cập</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Đã thiết lập phương thức xác thực hai yếu tố</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Đã đổi tên phương thức xác thực hai yếu tố</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Không thể lưu tên. Kiểm tra kết nối của bạn và thử lại.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Việc xóa tài khoản của bạn sẽ:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Nhập số điện thoại của bạn</string>
+    <string name="DeleteAccountFragment__delete_account">Xóa tài khoản</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Xóa thông tin tài khoản của bạn và ảnh đại diện</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Xóa tất cả tin nhắn của bạn</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Xóa %1$s trong tài khoản thanh toán của bạn</string>
+    <string name="DeleteAccountFragment__no_country_code">Mã quốc gia không xác định</string>
+    <string name="DeleteAccountFragment__no_number">Số không xác định</string>
+    <string name="DeleteAccountFragment__the_phone_number">Số điện thoại bạn nhập vào không khớp với số của tài khoản của bạn.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Bạn có chắc muốn Xóa tài khoản?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Thao tác này sẽ xóa tài khoản Signal của bạn và cài đặt lại ứng dụng. Ứng dụng sẽ đóng sau khi quá trình hoàn tất.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Không thể Xóa dữ liệu cục bộ. Bạn có thể tự Xóa trong cài đặt hệ thống ứng dụng.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Mở Cài đặt Ứng dụng</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Đang rời nhóm…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Đang xóa tài khoản…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Đang hủy gói ủng hộ…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Tùy thuộc vào số lượng nhóm bạn tham gia, quá trình này có thể mất vài phút</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Xóa dữ liệu người dùng và đặt lại ứng dụng</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Tài khoản Không Bị xóa</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Đã xảy ra sự cố khi hoàn tất quá trình xóa. Kiểm tra kết nối mạng của bạn và thử lại.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Việc xóa tài khoản có tên người dùng \"%1$s\" sẽ:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Xóa thông tin tài khoản và ảnh hồ sơ của bạn, bao gồm cả tên người dùng \"%1$s\"</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Hành động này không thể hoàn tác</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Thao tác này sẽ xóa tài khoản Signal của bạn với tên người dùng \"%1$s\" và đặt lại ứng dụng. Ứng dụng sẽ đóng sau khi quá trình hoàn tất.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Có, hãy xóa tài khoản của tôi</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Mời bạn bè</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Chia sẻ</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
+    <string name="RegistrationActivity_phone_number_description">Số điện thoại</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="other">%1$d thư mục</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Thêm thư mục trò chuyện</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Thêm hoặc chỉnh sửa thư mục</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Xác thực không thành công</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Thư mục trò chuyện</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Xuất lịch sử trò chuyện</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Xuất định dạng JSON máy có thể đọc được của tất cả các cuộc trò chuyện của bạn. Tin nhắn tự xóa sẽ không được xuất.</string>
+    <string name="ChatsSettingsFragment__keyboard">Bàn phím</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Gửi với nút enter</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Tự động phát nhãn dán và ảnh GIF</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Khi bật, nhãn dán và ảnh GIF sẽ tự động phát</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Mở khóa để xuất lịch sử trò chuyện</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Ưu tiên sử dụng ảnh liên hệ từ danh bạ của bạn nếu có</string>
+    <string name="preferences__generate_link_previews">Tạo xem trước liên kết</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Các cuộc trò chuyện đã tắt tiếng vẫn sẽ ở trong mục lưu trữ khi có tin nhắn mới được gửi đến.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Giữ cuộc trò chuyện đã tắt tiếng trong mục lưu trữ</string>
+    <string name="preferences__pref_use_address_book_photos">Ưu tiên ảnh trong danh bạ</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Thêm xem trước liên kết trang web vào những tin nhắn bạn gửi.</string>
+    <string name="preferences_advanced__use_system_emoji">Sử dụng biểu tượng cảm xúc hệ thống</string>
+    <string name="preferences_chats__chats">Trò chuyện</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">HÃY CẨN THẬN</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">HÃY CẨN THẬN!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Đang hủy xuất…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Chọn một thư mục trong thiết bị của bạn, nơi lịch sử trò chuyện sẽ được lưu.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Chọn thư mục</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Chọn thư mục</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">khi chọn nơi lưu tập tin xuất cuộc trò chuyện và không chia sẻ nó với bất kỳ ai. Các ứng dụng khác trên thiết bị của bạn có thể truy cập tập tin đó tùy thuộc vào quyền của thiết bị của bạn.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Xuất cuộc trò chuyện thành công</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Xuất lịch sử trò chuyện?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">KHÔNG chia sẻ tập tin này với bất kỳ ai. Lịch sử trò chuyện của bạn sẽ được lưu vào thiết bị của bạn và các ứng dụng khác có thể truy cập nó tùy vào quyền của thiết bị. Khi xuất cùng tập tin đa phương tiện, kích thước tập tin sẽ lớn hơn.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Xuất có đa phương tiện</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Xuất không có đa phương tiện</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Đang xuất đa phương tiện: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Đang hoàn tất…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Đang chuẩn bị bản sao lưu…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Đang xử lý bản sao lưu…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Đang xử lý tin nhắn…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Đang xử lý tin nhắn: %1$s/%2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Đang tải đa phương tiện lên: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Cập nhật ứng dụng</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">Diện mạo</string>
+    <string name="preferences__language">Ngôn ngữ</string>
+    <string name="preferences__theme">Chủ đề</string>
+    <string name="preferences__system_default">Theo hệ điều hành</string>
+    <string name="preferences__light_theme">Sáng</string>
+    <string name="preferences__dark_theme">Tối</string>
+    <string name="preferences__chat_color_and_wallpaper">Màu cuộc trò chuyện &amp; hình nền</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Biểu tượng ứng dụng</string>
+    <string name="preferences_chats__message_text_size">Cỡ chữ tin nhắn</string>
+    <string name="arrays__small">Nhỏ</string>
+    <string name="arrays__normal">Vừa</string>
+    <string name="arrays__large">Lớn</string>
+    <string name="arrays__extra_large">Rất lớn</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Kích cỡ thanh điều hướng</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Bình thường</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Gọn</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">Ứng dụng sẽ khởi động lại để áp dụng cài đặt ngôn ngữ mới.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Số điện thoại</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Ai Có Thể Thấy Số Điện Thoại Của Tôi</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Số điện thoại của bạn sẽ được hiển thị với những người và nhóm bạn nhắn tin.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Số điện thoại của bạn sẽ không hiển thị với bất kỳ ai trừ trường hợp người đó đã lưu số của bạn trong danh bạ trên máy họ.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Số điện thoại của bạn sẽ không hiển thị với bất kỳ ai.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Ai Có Thể Tìm Tôi Bằng Số Điện Thoại</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Bất kỳ ai có số điện thoại của bạn sẽ thấy bạn trên Signal và có thể bắt đầu trò chuyện với bạn.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Sẽ không có ai nhìn thấy số điện thoại của bạn trên Signal, trừ khi bạn nhắn tin với người đó hoặc đã có một cuộc trò chuyện với người đó.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Để đổi cài đặt này, đặt mục “Ai có thể thấy số của tôi” thành “Không ai cả”."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Bạn có chắc không?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Thiết lập tùy chọn “Ai có thể tìm thấy tôi bằng số điện thoại” thành “Không ai” sẽ khiến mọi người khó tìm được bạn hơn trên Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Hủy</string>
+    <string name="PhoneNumberPrivacy_everyone">Bất cứ ai</string>
+    <string name="PhoneNumberPrivacy_nobody">Không ai</string>
+    <string name="arrays__images">Hình ảnh</string>
+    <string name="arrays__audio">Âm thanh</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Tài liệu</string>
+    <string name="preferences__data_and_storage">Dữ liệu và lưu trữ</string>
+    <string name="preferences_chats__when_using_mobile_data">Khi dùng dữ liệu di động</string>
+    <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
+    <string name="preferences_chats__when_roaming">Khi chuyển vùng quốc tế</string>
+    <string name="preferences_chats__media_auto_download">Tự động tải đa phương tiện</string>
+    <string name="preferences_data_and_storage__manage_storage">Quản lí bộ nhớ</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Sử dụng ít lưu lượng data hơn khi gọi</string>
+    <string name="preferences_data_and_storage__never">Không bao giờ</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi và dữ liệu di động</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Chỉ dữ liệu di động</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Sử dụng ít lưu lượng data có thể cải thiện chất lượng cuộc gọi trong môi trường mạng kém.</string>
+    <string name="preferences_proxy">Proxy</string>
+    <string name="preferences_use_proxy">Sử dụng proxy</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Chất lượng tập tin đa phương tiện</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Đang tính toán…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Chất lượng tập tin đa phương tiện đã gửi</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Việc gửi tập tin đa phương tiện chất lượng cao sẽ tốn nhiều lưu lượng hơn.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Tin nhắn thoại và nhãn dán (dưới %1$s) luôn được tự động tải xuống.</string>
+    <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Duy trì kết nối ở chế độ nền</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Việc duy trì kết nối khi ứng dụng chạy ngầm có thể dẫn đến việc tiêu hao pin nhiều hơn. Điều này không cần thiết đối với hầu hết thiết bị. Chỉ bật tùy chọn này nếu bạn đang gặp vấn đề về thông báo.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Bật</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Cao</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Tiêu chuẩn</string>
+    <string name="preferences_app_protection__screen_lock">Khoá màn hình</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Sử dụng khóa màn hình</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Thiết lập khóa thiết bị Android của bạn sẽ được yêu cầu để mở khóa Signal khi bạn rời khỏi hoặc chuyển đổi ứng dụng. Khi đã khóa, phần xem trước thông báo sẽ không hiển thị nội dung tin nhắn.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Bắt đầu khóa màn hình</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">Sau 1 phút</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">Sau 5 phút</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">Sau 30 phút</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Thời gian tuỳ chỉnh</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Sử dụng khóa màn hình Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Tắt khóa màn hình Signal</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">Hỗ trợ</string>
+    <string name="HelpSettingsFragment__support_center">Trung tâm hỗ trợ</string>
+    <string name="HelpSettingsFragment__contact_us">Liên hệ với chúng tôi</string>
+    <string name="HelpSettingsFragment__version">Phiên bản</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Đã sao chép vào clipboard</string>
+    <string name="HelpSettingsFragment__debug_log">Nhật ký gỡ lỗi</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Các loại giấy phép</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Điều khoản &amp; Quyền riêng tư</string>
+    <string name="HelpFragment__copyright_signal_messenger">Bản quyền Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Được cấp phép GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal là một tổ chức phi lợi nhuận</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Các biểu tượng và tên ứng dụng được hiển thị trên màn hình chính và ngăn ứng dụng.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Thông báo sẽ luôn hiển thị tên và biểu tượng Signal mặc định.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Đồ họa minh họa nơi hiển thị biểu tượng ứng dụng thay thế.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Thời tiết</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Ghi chú</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Tin tức</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Ngọn sóng</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Hủy</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Thay đổi tên và biểu tượng ứng dụng thành \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Cần phải đóng Signal để thay đổi tên và biểu tượng ứng dụng. Thông báo sẽ luôn hiển thị tên và biểu tượng Signal mặc định.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Chọn một biểu tượng và tên ứng dụng, chúng sẽ được hiển thị trên màn hình chính và ngăn ứng dụng của điện thoại. Thông báo sẽ luôn hiển thị tên và biểu tượng Signal mặc định. Tìm hiểu thêm</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Tìm hiểu thêm</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Chưa đặt đường dẫn</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Màu</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">Xong</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">Cấu hình đã tạo</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">Xong</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Bạn có thể bật hoặc tắt cấu hình của mình theo cách thủ công thông qua menu trên danh sách trò chuyện.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Thêm lịch trình trong cài đặt để tự động hóa cấu hình của bạn.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Hồ sơ của bạn sẽ tự động bật và tắt theo lịch trình của bạn.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập mật khẩu!</string>
+    <string name="ApplicationPreferencesActivity_disable">Tắt</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Tắt mật khẩu?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Thao tác này sẽ vĩnh viễn mở khóa Signal và thông báo tin nhắn.</string>
+    <string name="PrivacySettingsFragment__app_security">Bảo mật ứng dụng</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Chặn chụp màn hình trong danh sách gần đây và bên trong ứng dụng</string>
+    <string name="PrivacySettingsFragment__blocked">Đã chặn</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">Để sử dụng Khóa Thanh toán, trước tiên bạn cần bật khóa màn hình hoặc tạo vân tay xác minh người dùng trong phần cài đặt của điện thoại.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">Không thể bật khóa thanh toán</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="other">%1$d liên hệ hoặc nhóm</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Đồng hồ mặc định cho tất cả cuộc trò chuyện mới</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Điều hướng đến phần cài đặt hệ thống không thành công</string>
+    <string name="PrivacySettingsFragment__messaging">Nhắn tin</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Yêu cầu có khóa màn hình hoặc vân tay trên Android để chuyển khoản thanh toán</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Đặt đồng hồ tin nhắn biến mất mặc định cho tất cả các cuộc trò chuyện mới bắt đầu bởi bạn.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Tin nhắn và cuộc gọi Signal, luôn luôn chuyển tiếp cuộc gọi, và người gửi được niêm phong</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Tắt</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Signal sau một khoảng thời gian không hoạt động định trước</string>
+    <string name="preferences__change_passphrase">Đổi mật khẩu</string>
+    <string name="preferences__change_your_passphrase">Đổi mật khẩu</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">Bật khoá màn hình bằng mật khẩu</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nếu thông báo đã xem bị tắt, bạn sẽ không thể biết người kia đã xem tin nhắn hay chưa.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nếu thông báo đang nhập bị tắt, bạn sẽ không thể biết người kia có đang nhập tin nhắn hay không.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">Khoảng thời gian khoá ứng dụng khi không hoạt động</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">Mật khẩu khoá ứng dụng khi không hoạt động</string>
+    <string name="preferences__incognito_keyboard">Bàn phím ẩn danh</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Khoá màn hình và thông báo bằng mật khẩu</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">Khóa thanh toán</string>
+    <string name="preferences__read_receipts">Thông báo đã xem</string>
+    <string name="preferences__request_keyboard_to_disable">Yêu cầu bàn phím tắt học tập cá nhân hoá.</string>
+    <string name="preferences__screen_security">An ninh màn hình</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">Cài đặt này không phải là đảm bảo, và bàn phím của bạn có thể bỏ qua nó.</string>
+    <string name="preferences__typing_indicators">Thông báo đang nhập</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Chọn người có thể thấy số điện thoại của bạn và người có thể liên hệ với bạn trên Signal với số đó.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">Thanh toán</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Để sử dụng khóa màn hình, đặt một mã PIN, mã khóa dạng vẽ hình hoặc mật khẩu trên thiết bị này.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">Riêng tư</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">Tin nhắn tự hủy</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">Nâng cao</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">Bật</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">Để sau</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">Tìm hiểu thêm</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Đã đạt giới hạn dung lượng sao lưu</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Đã sao chép id người đăng ký gói sao lưu vào clipboard</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Đã sao chép id nhà ủng hộ vào clipboard</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Không thể hoàn tất sao lưu</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">Mời bạn bè của mình</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Gia hạn gói đăng ký Sao lưu bảo mật Signal</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">Riêng tư</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">Cài đặt</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">Quay lại</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Không thể nhận gói đăng ký sao lưu của bạn</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Ủng hộ Signal</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">Tùy chỉnh nội bộ</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">Các thiết bị đã liên kết</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">Thông báo</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">Thanh toán</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">Các Story</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">Sao lưu</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Kích cỡ thanh điều hướng</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Bình thường</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Gọn</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">Quay lại</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">Ảnh</string>
+    <string name="preferences_storage__videos">Video</string>
+    <string name="preferences_storage__files">Tệp</string>
+    <string name="preferences_storage__audio">Âm thanh</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Tin nhắn</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Nhãn dán</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Khác</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Đang tính toán…</string>
+    <string name="preferences_storage__review_storage">Kiểm tra bộ nhớ</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">Xác thực hai yếu tố</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Chọn một phương thức dưới đây để xác minh tài khoản của bạn.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">Khóa đăng nhập</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Nhấn để sử dụng thông tin sinh trắc học trên thiết bị của bạn hoặc khóa truy cập FIDO2</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">Ứng dụng xác thực</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Nhập mã dùng một lần được tạo bởi ứng dụng xác thực của bạn.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">Để tiếp tục, nhập mã gồm 6 chữ số từ ứng dụng xác thực của bạn.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">Hủy</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">Mã không đúng. Nhập mã hiện đang hiển thị trong ứng dụng xác thực của bạn.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Không thể kết nối với Signal. Kiểm tra kết nối của bạn và thử lại.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Đã xảy ra lỗi với khóa truy cập của bạn. Vui lòng thử lại hoặc chọn phương thức khác.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">Tên của bạn</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">Tên</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">Họ (không bắt buộc)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">Lưu</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Không thể lưu do lỗi mạng. Hãy thử lại sau.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">Giữ tin nhắn</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">Vĩnh viễn</string>
+    <string name="preferences_storage__one_year">1 năm</string>
+    <string name="preferences_storage__six_months">6 tháng</string>
+    <string name="preferences_storage__thirty_days">30 ngày</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Tin nhắn cũ hơn thời gian đã chọn sẽ được xóa vĩnh viễn.</string>
+    <string name="preferences_storage__delete_older_messages">Xóa tin nhắn cũ?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Thao tác này sẽ xóa tất cả lịch sử tin nhắn và đa phương tiện quá %1$s trước khỏi máy bạn.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">Xóa</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">Số lượng tin nhắn tối đa trong một cuộc trò chuyện</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="other">%1$s tin nhắn</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">Không</string>
+    <string name="preferences_storage__custom">Tùy chỉnh</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Tin nhắn vượt quá độ dài đã chọn sẽ được xóa vĩnh viễn.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">Thao tác này sẽ xóa vĩnh viễn lịch sử cuộc trò chuyện đến %1$s tin nhắn gần đây nhất.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">Thông tin</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Viết một vài từ về bản thân mình…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">Nói chuyện tự do</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">Đã được mã hóa</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">Mở lòng tốt</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">Nghiện cà phê</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">Rảnh để trò chuyện</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">Đang nghỉ ngơi</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">Đang làm một dự án mới</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">Lưu</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">Xoá</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">Chọn emoji</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Không thể lưu do lỗi mạng. Hãy thử lại sau.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">Chọn tên người dùng của bạn</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">Tên người dùng</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">Xóa</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">Lỗi mạng.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Vượt quá số lần thử, vui lòng thử lại sau.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">Tên người dùng này đã được sử dụng.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">Tên người dùng chỉ có thể chứa a–Z, 0–9 và dấu gạch dưới.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Tên người dùng không thể bắt đầu bằng một chữ số.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">Tên người dùng không hợp lệ.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Tên người dùng phải nằm trong khoảng từ %1$d đến %2$d ký tự.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">Mọi người có thể nhắn tin cho bạn bằng tên người dùng (không bắt buộc) thay vì số điện thoại. Tên người dùng luôn được ghép với một dãy số. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Tên người dùng này không khả dụng, thử một số khác.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Tên người dùng không hợp lệ, nhập tối thiểu %1$d số.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Tên người dùng không hợp lệ, nhập tối đa %1$d số.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Số này không thể là 00. Nhập một ký tự trong khoảng 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Số với nhiều hơn 2 chữ số không thể bắt đầu với số 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Khôi phục lại tên người dùng sẽ đặt lại mã QR và đường dẫn hiện tại của bạn. Bạn có chắc không?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Thay đổi tên người dùng sẽ đặt lại mã QR và đường dẫn hiện tại của bạn. Bạn có chắc không?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Tiếp tục</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">Lưu</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">Tìm hiểu thêm</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Hồ sơ và các thay đổi trên hồ sơ của bạn sẽ chỉ hiển thị với những người bạn nhắn tin, với các liên hệ, và các nhóm.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Cập nhật Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Phiên bản này của Signal đã hết hạn. Cập nhật ngay để tiếp tục sử dụng Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Cập nhật</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Thiết bị không được đăng ký</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Thiết bị này không còn được đăng ký. Đăng ký lại để thực hiện các thay đổi với tài khoản của bạn.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Đăng ký lại</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Không thể lưu do lỗi mạng. Hãy thử lại sau.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Không thể xóa tên người dùng. Thử lại sau.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Xóa tên người dùng?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Thao tác này sẽ xóa tên người dùng của bạn, đồng thời vô hiệu hóa mã QR và đường dẫn của bạn. %1$s sẽ có thể được sử dụng bởi thành viên khác. Bạn có chắc không?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">Tùy chỉnh ảnh</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Chia sẻ tên người dùng của bạn</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Cho phép người khác bắt đầu một cuộc trò chuyện với bạn bằng cách chia sẻ mã QR hoặc đường dẫn riêng của bạn.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">Đã tạo tên người dùng</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Tên người dùng đã xóa</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Mọi người có thể nhắn tin cho bạn bằng tên người dùng tùy chọn thay vì số điện thoại. Tên người dùng có mã QR và đường dẫn riêng để bạn chia sẻ với bạn bè.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Tên người dùng, mã QR và đường dẫn không hiển thị trên hồ sơ của bạn. Chỉ chia sẻ tên người dùng với người bạn tin tưởng.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">Thông tin</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">Không thể đặt ảnh đại diện</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">Mã QR hoặc Đường Dẫn</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">Tên hồ sơ</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">Tên người dùng</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Sửa tên người dùng</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Xóa tên người dùng</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">Hồ sơ</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">Đặt ảnh đại diện</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">Huy hiệu</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">Xóa</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">Đóng</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hỗ trợ cho Signal.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cáo cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bởi hàng triệu người dùng như bạn mà thôi.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">Trở thành Nhà Ủng hộ</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">Huy hiệu</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">Huy hiệu của tôi</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Hiển thị huy hiệu trên hồ sơ cá nhân</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">Huy hiệu mặc định</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Không thể cập nhật hồ sơ cá nhân</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Huy hiệu mặc định</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Chọn một huy hiệu</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">Lưu</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Không thể cập nhật hồ sơ cá nhân</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Bất kỳ ai có đường dẫn này có thể xem tên người dùng của bạn và bắt đầu trò chuyện với bạn. Chỉ chia sẻ đường dẫn với người bạn tin tưởng.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Sao chép đường dẫn</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Chia sẻ</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">Mã</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">Quét</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">Đã sao chép liên kết</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">Đã sao chép tên người dùng</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Đặt lại mã QR?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Nếu đặt lại mã QR, mã QR và đường dẫn hiện tại của bạn sẽ không còn hiệu lực nữa.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Đặt lại</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Bạn không có quyền truy cập mạng. Đường dẫn của bạn chưa được đặt lại. Thử lại sau.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Có lỗi kết nối mạng khi đang tiến hành đặt lại đường dẫn. Thử lại sau.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Có lỗi xảy ra khi đang tiến hành đặt lại đường dẫn. Thử lại sau.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Mã QR và đường dẫn của bạn đã được đặt lại, một mã QR và đường dẫn mới đã được tạo.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">Chỉ chia sẻ mã QR và đường dẫn của bạn với người bạn tin tưởng. Khi được chia sẻ, mọi người sẽ có thể thấy tên người dùng và bắt đầu cuộc trò chuyện với bạn.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">Đặt lại</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Đường dẫn</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">Chia sẻ</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">Màu</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">Mã QR không hợp lệ.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Lỗi mạng. Xin hãy thử lại.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">Không tìm thấy mã QR</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Thử quét một ảnh khác có chứa mã QR của Signal.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">Không thể tìm thấy người dùng có tên người dùng %1$s.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">Quét Mã QR trên thiết bị của liên hệ của bạn.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">Không thể tìm thấy người dùng này.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">Để quét mã QR, hãy cho phép Signal truy cập camera của bạn.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">Cho phép Truy cập</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">Signal cần quyền truy cập camera của bạn để quét mã QR</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">Lưu trữ</string>
+    <string name="preferences_storage__storage_usage">Quản lí bộ nhớ</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Dung lượng của Signal</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Tối ưu hóa dung lượng của Signal</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Tập tin đa phương tiện không được sử dụng sẽ được gỡ bỏ, nhưng có thể được tải xuống từ bản sao lưu của bạn bất kỳ lúc nào.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Giới hạn của cuộc trò chuyện</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Áp dụng giới hạn cho các thiết bị đã liên kết</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Khi được bật, giới hạn của cuộc trò chuyện cũng sẽ xóa tin nhắn trên các thiết bị đã liên kết của bạn.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Xóa lịch sử tin nhắn</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Xóa lịch sử tin nhắn?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Thao tác này sẽ xóa vĩnh viễn tất cả lịch sử tin nhắn và đa phương tiện khỏi máy bạn.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Thao tác này sẽ xóa vĩnh viễn tất cả lịch sử tin nhắn và tệp đa phương tiện trên thiết bị này và bất kỳ thiết bị đã liên kết nào.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Bạn có muốn xóa tất cả lịch sử tin nhắn?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tất cả lịch sử tin nhắn sẽ được xóa vĩnh viễn. Thao tác này không thể được hoàn tác.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Tất cả lịch sử tin nhắn sẽ được xóa vĩnh viễn trên tất cả thiết bị. Hành động này không thể hoàn tác.</string>
+    <string name="preferences_storage__delete_all_now">Xóa tất cả</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Tối ưu hóa lưu trữ là tính năng của gói trả phí Sao lưu bảo mật Signal. Gói đăng ký sao lưu của bạn vẫn đang được xử lý và hiện chưa sẵn sàng. Vui lòng thử lại sau.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Tập tin đa phương tiện sẽ bị xóa khỏi bản sao lưu trên thiết bị của bạn</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Việc bật tùy chọn \"Tối ưu hóa dung lượng của Signal\" sẽ giúp gỡ các tập tin đa phương tiện cũ khỏi thiết bị của bạn. Bạn có thể tải xuống lại bất cứ lúc nào. Tùy chọn này cũng sẽ xóa các tập tin đa phương tiện cũ khỏi bản sao lưu trên thiết bị của bạn.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Bật</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Đổ chuông hoặc gửi thông báo khi có cuộc gọi bắt đầu trong lúc cuộc trò chuyện này đang bị tắt tiếng.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Đổ chuông hoặc gửi thông báo khi có cuộc gọi bắt đầu trong các cuộc trò chuyện đã tắt tiếng.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Thông báo khi bạn được nhắc đến trong lúc cuộc trò chuyện này đang bị tắt tiếng.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Thông báo khi bạn được nhắc đến trong các cuộc trò chuyện đã tắt tiếng.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Thông báo khi có người trả lời tin nhắn của bạn trong khi cuộc trò chuyện này đang bị tắt tiếng.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Thông báo khi có người trả lời tin nhắn của bạn trong các cuộc trò chuyện đã tắt tiếng.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">Khi đang tắt tiếng</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">Cuộc gọi</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">Nhắc tên</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">Câu trả lời</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Không mở được bộ chọn.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Để bật thông báo, Signal cần có quyền để hiển thị thông báo.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Bật</string>
+    <string name="NotificationsSettingsFragment__calls">Cuộc gọi</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Liên hệ tham gia Signal</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Tạo cấu hình để chỉ nhận thông báo từ những người và nhóm bạn chọn.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Hiển thị thông báo khi một liên hệ trong danh bạ điện thoại tham gia Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Đặt lại cài đặt thông báo</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Đặt lại tất cả cài đặt thông báo về mặc định cho mọi cuộc trò chuyện?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Đặt lại</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Khôi phục cài đặt thông báo về mặc định, bao gồm cả các cài đặt tùy chỉnh cho các cuộc trò chuyện của bạn</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Âm thanh</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Không rõ nhạc chuông</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">Cuộc gọi</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">Nhắc tên</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">Cấu hình thông báo</string>
+    <string name="NotificationsSettingsScreen__notifications">Thông báo</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">Câu trả lời</string>
+    <string name="NotificationsSettingsScreen__silent">Im lặng</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">Lời nhắc chưa đọc</string>
+    <string name="arrays__default">Mặc định</string>
+    <string name="arrays__high">Cao</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">Cao nhất</string>
+    <string name="arrays__name_and_message">Tên và tin nhắn</string>
+    <string name="arrays__name_only">Chỉ tên</string>
+    <string name="arrays__no_name_or_message">Không tên hay tin nhắn</string>
+    <string name="preferences__blue">Xanh lam</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Thông báo cuộc gọi</string>
+    <string name="preferences__change_sound_and_vibration">Thay đổi âm thanh và rung</string>
+    <string name="preferences__customize">Tùy chỉnh</string>
+    <string name="preferences__cyan">Xanh lơ</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Mặc định</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Bật thông báo</string>
+    <string name="preferences__fast">Nhanh</string>
+    <string name="preferences__five_times">Năm lần</string>
+    <string name="preferences__green">Xanh lục</string>
+    <string name="preferences__led_color">Màu LED</string>
+    <string name="preferences__magenta">Hồng đậm</string>
+    <string name="preferences__never">Không bao giờ</string>
+    <string name="preferences__normal">Bình thường</string>
+    <string name="preferences__one_time">Một lần</string>
+    <string name="preferences__orange">Cam</string>
+    <string name="preferences__pref_led_blink_title">Tần suất nháy LED</string>
+    <string name="preferences__red">Đỏ</string>
+    <string name="preferences__repeat_alerts">Lặp lại cảnh báo</string>
+    <string name="preferences__slow">Chậm</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">Âm thanh</string>
+    <string name="preferences__ten_times">Mười lần</string>
+    <string name="preferences__three_times">Ba lần</string>
+    <string name="preferences__two_times">Hai lần</string>
+    <string name="preferences__vibrate">Rung</string>
+    <string name="preferences__white">Trắng</string>
+    <string name="preferences_notifications__in_chat_sounds">Âm thanh khi đang trò chuyện</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Hiển thị thông báo về các cảm xúc được bày tỏ với tin nhắn bạn gửi</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Thỉnh thoảng thông báo khi có tin nhắn chưa đọc trong các cuộc trò chuyện đã tắt tiếng</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">Mức ưu tiên</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Thông báo về bày tỏ cảm xúc</string>
+    <string name="preferences_notifications__ringtone">Nhạc chuông</string>
+    <string name="preferences_notifications__show">Hiện</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Khắc phục sự cố thông báo</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">Khi đang tắt tiếng</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Thêm</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Các thông báo được phép</string>
 </resources>

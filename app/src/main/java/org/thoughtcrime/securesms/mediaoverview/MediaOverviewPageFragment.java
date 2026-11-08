@@ -58,7 +58,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -361,7 +361,6 @@ public final class MediaOverviewPageFragment extends LoggingFragment
           mediaRecord.getAttachment().size,
           mediaRecord.getAttachment().caption,
           null,
-          true,
           true,
           threadId == MediaTable.ALL_THREADS,
           true,

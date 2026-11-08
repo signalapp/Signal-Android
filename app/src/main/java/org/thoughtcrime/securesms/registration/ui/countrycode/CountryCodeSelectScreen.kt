@@ -57,6 +57,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Screen that allows someone to search and select a country code from a supported list of countries.
@@ -79,7 +80,7 @@ fun CountryCodeSelectScreen(
         },
         onNavigationClick = onDismissed,
         navigationIcon = SignalIcons.X.imageVector,
-        navigationContentDescription = stringResource(R.string.Material3SearchToolbar__close)
+        navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description)
       )
     }
   ) { padding ->

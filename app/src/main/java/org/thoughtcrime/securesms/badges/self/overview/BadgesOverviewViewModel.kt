@@ -1,101 +1,100 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.badges.self.overview
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.subjects.PublishSubject
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.appsettings.badges.BadgesOverviewEvent
+import org.signal.appsettings.badges.BadgesOverviewState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
+import org.signal.core.models.badges.Badge
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.badges.BadgeRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.InternetConnectionObserver
-import org.thoughtcrime.securesms.util.livedata.Store
-import java.util.Optional
 
-private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
-
+/**
+ * Drives the list of the user's badges and the settings for showing them on their profile.
+ */
 class BadgesOverviewViewModel(
-  private val badgeRepository: BadgeRepository
-) : ViewModel() {
-  private val store = Store(BadgesOverviewState())
-  private val eventSubject = PublishSubject.create<BadgesOverviewEvent>()
-
-  val state: LiveData<BadgesOverviewState> = store.stateLiveData
-  val events: Observable<BadgesOverviewEvent> = eventSubject.observeOn(AndroidSchedulers.mainThread())
-
-  val disposables = CompositeDisposable()
-
-  init {
-    store.update(Recipient.live(Recipient.self().id).liveDataResolved) { recipient, state ->
-      state.copy(
-        stage = if (state.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else state.stage,
-        allUnlockedBadges = recipient.badges,
-        displayBadgesOnProfile = SignalStore.inAppPayments.getDisplayBadgesOnProfile(),
-        featuredBadge = recipient.featuredBadge
-      )
-    }
-
-    disposables += InternetConnectionObserver.observe()
-      .distinctUntilChanged()
-      .subscribeBy { isConnected ->
-        store.update { it.copy(hasInternet = isConnected) }
-      }
-
-    disposables += Single.zip(
-      RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION),
-      RecurringInAppPaymentRepository.getSubscriptions()
-    ) { active, all ->
-      if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd() == true) {
-        Optional.ofNullable<String>(all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id)
-      } else {
-        Optional.empty()
-      }
-    }.subscribeBy(
-      onSuccess = { badgeId ->
-        store.update { it.copy(fadedBadgeId = badgeId.orElse(null)) }
-      },
-      onError = { throwable ->
-        Log.w(TAG, "Could not retrieve data from server", throwable)
-      }
-    )
-  }
-
-  fun setDisplayBadgesOnProfile(displayBadgesOnProfile: Boolean) {
-    store.update { it.copy(stage = BadgesOverviewState.Stage.UPDATING_BADGE_DISPLAY_STATE) }
-    disposables += badgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile)
-      .subscribe(
-        {
-          store.update { it.copy(stage = BadgesOverviewState.Stage.READY) }
-        },
-        { error ->
-          Log.e(TAG, "Failed to update visibility.", error)
-          store.update { it.copy(stage = BadgesOverviewState.Stage.READY) }
-          eventSubject.onNext(BadgesOverviewEvent.FAILED_TO_UPDATE_PROFILE)
-        }
-      )
-  }
-
-  override fun onCleared() {
-    disposables.clear()
-  }
-
-  class Factory(
-    private val badgeRepository: BadgeRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository)))
-    }
-  }
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<BadgesOverviewEvent>(TAG) {
 
   companion object {
-    private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
+    private val TAG = Log.tag(BadgesOverviewViewModel::class)
+  }
+
+  private val _state = MutableStateFlow(BadgesOverviewState())
+
+  val state: StateFlow<BadgesOverviewState> = _state.asStateFlow()
+
+  init {
+    viewModelScope.launch {
+      BadgesOverviewRepository.observeSelf().collect { self ->
+        _state.update {
+          it.copy(
+            stage = if (it.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else it.stage,
+            badges = self.badges,
+            featuredBadge = self.featuredBadge,
+            displayBadgesOnProfile = BadgesOverviewRepository.getDisplayBadgesOnProfile(),
+            hasUnexpiredBadges = self.badges.any { badge -> badge.expirationTimestamp > System.currentTimeMillis() }
+          )
+        }
+      }
+    }
+
+    viewModelScope.launch {
+      BadgesOverviewRepository.observeInternetConnection().collect { isConnected ->
+        _state.update { it.copy(hasInternet = isConnected) }
+      }
+    }
+
+    viewModelScope.launch {
+      val fadedBadgeId = BadgesOverviewRepository.getFadedBadgeId()
+      _state.update { it.copy(fadedBadgeId = fadedBadgeId) }
+    }
+  }
+
+  override suspend fun processEvent(event: BadgesOverviewEvent) {
+    when (event) {
+      BadgesOverviewEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      is BadgesOverviewEvent.BadgeClicked -> onBadgeClicked(event.badge)
+      is BadgesOverviewEvent.DisplayBadgesOnProfileToggled -> setDisplayBadgesOnProfile(event.enabled)
+      BadgesOverviewEvent.FeaturedBadgeClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DonationsRoute.Featured)
+      BadgesOverviewEvent.BadgeSheetDismissed -> _state.update { it.copy(viewedBadge = null) }
+      BadgesOverviewEvent.ExpiredBadgeSheetDismissed -> _state.update { it.copy(expiredBadge = null) }
+      BadgesOverviewEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = BadgesOverviewState.Snackbar.None) }
+    }
+  }
+
+  private fun onBadgeClicked(badge: Badge) {
+    if (badge.isExpired() || badge.id == _state.value.fadedBadgeId) {
+      _state.update { it.copy(expiredBadge = badge) }
+    } else {
+      _state.update { it.copy(viewedBadge = badge) }
+    }
+  }
+
+  /** Saved off the event queue, so the user can still leave the screen while the service is slow to answer. */
+  private fun setDisplayBadgesOnProfile(enabled: Boolean) {
+    _state.update { it.copy(stage = BadgesOverviewState.Stage.UPDATING_BADGE_DISPLAY_STATE) }
+
+    viewModelScope.launch {
+      val saved = BadgesOverviewRepository.setDisplayBadgesOnProfile(enabled)
+      _state.update {
+        it.copy(
+          stage = BadgesOverviewState.Stage.READY,
+          snackbar = if (saved) it.snackbar else BadgesOverviewState.Snackbar.FailedToUpdateProfile
+        )
+      }
+    }
   }
 }

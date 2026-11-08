@@ -44,7 +44,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.logging.LoggingFragment
+import org.signal.core.ui.util.SpanUtil
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.Debouncer
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
@@ -70,7 +73,6 @@ import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageL
 import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.FullscreenHelper
@@ -78,8 +80,6 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
-import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -96,7 +96,6 @@ class MediaPreviewFragment :
     requireActivity()
   })
   private val debouncer = Debouncer(2, TimeUnit.SECONDS)
-  private val refetchDebouncer = Debouncer(REFETCH_DEBOUNCE_MS)
   private val args: MediaIntentFactory.MediaPreviewArgs by lazy { MediaIntentFactory.requireArguments(requireArguments()) }
 
   private lateinit var pagerAdapter: MediaPreviewAdapter
@@ -164,13 +163,8 @@ class MediaPreviewFragment :
     val startingAttachmentId = PartAuthority.requireAttachmentId(args.initialMediaUri)
     val threadId = args.threadId
     val appContext = requireContext().applicationContext
-    viewModel.fetchInitialAttachment(args)
     viewModel.fetchAttachments(appContext, startingAttachmentId, threadId, sorting)
-    // A single attachment's insert/upload/archive lifecycle notifies many times over a couple of seconds, and each
-    // notification would otherwise re-run the whole gallery query.
-    val dbObserver = DatabaseObserver.Observer {
-      refetchDebouncer.publish { viewModel.refetchAttachments(appContext, startingAttachmentId, threadId, sorting) }
-    }
+    val dbObserver = DatabaseObserver.Observer { viewModel.refetchAttachments(appContext, startingAttachmentId, threadId, sorting) }
     AppDependencies.databaseObserver.registerAttachmentUpdatedObserver(dbObserver)
     this.dbChangeObserver = dbObserver
   }
@@ -235,43 +229,26 @@ class MediaPreviewFragment :
     }
     when (currentState.loadState) {
       MediaPreviewState.LoadState.DATA_LOADED -> bindDataLoadedState(currentState)
-      MediaPreviewState.LoadState.MEDIA_READY -> {
-        // The full attachment window can arrive after the initially-opened media has already decoded.
-        if (syncPagerItems(currentState)) {
-          bindMediaReadyState(currentState)
-        }
-      }
+      MediaPreviewState.LoadState.MEDIA_READY -> bindMediaReadyState(currentState)
       else -> Unit
     }
   }
 
-  /**
-   * Pushes the current record set into the pager. Both calls are self-guarded, so this is a no-op unless the
-   * backing items or the selected position actually changed.
-   */
-  private fun syncPagerItems(currentState: MediaPreviewState): Boolean {
+  private fun bindDataLoadedState(currentState: MediaPreviewState) {
     val currentPosition = currentState.position
+
     val backingItems = currentState.mediaRecords.mapNotNull { it.attachment }
     if (backingItems.isEmpty() || currentPosition < 0) {
       onMediaNotAvailable()
-      return false
+      return
     }
-
     pagerAdapter.updateBackingItems(backingItems)
 
     if (binding.mediaPager.currentItem != currentPosition) {
       binding.mediaPager.setCurrentItem(currentPosition, false)
     }
 
-    return true
-  }
-
-  private fun bindDataLoadedState(currentState: MediaPreviewState) {
-    if (!syncPagerItems(currentState)) {
-      return
-    }
-
-    val currentItem: MediaTable.MediaRecord = currentState.mediaRecords[currentState.position]
+    val currentItem: MediaTable.MediaRecord = currentState.mediaRecords[currentPosition]
     bindTextViews(currentItem, currentState.showThread, currentState.messageBodies)
     bindMenuItems(currentItem)
   }
@@ -621,7 +598,6 @@ class MediaPreviewFragment :
 
   override fun onDestroy() {
     super.onDestroy()
-    refetchDebouncer.clear()
     val observer = dbChangeObserver
     if (observer != null) {
       AppDependencies.databaseObserver.unregisterObserver(observer)
@@ -789,7 +765,6 @@ class MediaPreviewFragment :
   companion object {
     private const val EXPANDED_CAPTION_HEIGHT_FALLBACK_DP = 400
     private const val EXPANDED_CAPTION_HEIGHT_PERCENT: Float = 0.7F
-    private const val REFETCH_DEBOUNCE_MS = 250L
 
     private val TAG = Log.tag(MediaPreviewFragment::class.java)
 

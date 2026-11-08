@@ -21,9 +21,9 @@ import android.os.Bundle;
 
 import java.util.stream.Collectors;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
 import java.util.List;

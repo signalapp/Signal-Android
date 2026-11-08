@@ -18,8 +18,93 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">アクセス許可が必要です</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">ペインのサイズ変更</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">ディバイダーの移動</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">［Continue］をタップし、スマートフォンの解錠コードを入力して確認します。Signal PINを入力しないようにしてください。</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">続行</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">閉じる</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">上へ</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">お気に入りに追加</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">お気に入りから削除</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">お気に入りから削除しますか？</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">パックをインストールしているか、リンクまたはステッカーメッセージがないと、送信したり再度お気に入りに追加したりすることはできません。</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">削除</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">なし</string>
+    <string name="preferences_off">オフ</string>
+    <string name="preferences_on">オン</string>
+    <string name="ExpireTimerSettingsFragment__set">設定する</string>
+    <string name="CustomExpireTimerSelectorView__seconds">秒</string>
+    <string name="CustomExpireTimerSelectorView__minutes">分</string>
+    <string name="CustomExpireTimerSelectorView__hours">時間</string>
+    <string name="CustomExpireTimerSelectorView__days">日</string>
+    <string name="CustomExpireTimerSelectorView__weeks">週間</string>
+    <!-- expiration -->
+    <string name="expiration_off">オフ</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="other">%1$d秒</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$d秒</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="other">%1$d分</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$d分</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="other">%1$d時間</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$d時間</string>
+
+    <plurals name="expiration_days">
+        <item quantity="other">%1$d日</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$d日</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="other">%1$d週間</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$d週</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">詳しく見る</string>
+
+    <string name="SpanUtil__read_more">続きを読む</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">テキスト入力に切り替える</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">時計に切り替える</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">%1$sを削除</string>
 </resources>

@@ -17,10 +17,22 @@ import org.signal.libsignal.net.AuthAccountsService
 import org.signal.libsignal.net.AuthDevicesService
 import org.signal.libsignal.net.AuthUsernamesService
 import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.ConfirmTotpKeyError
+import org.signal.libsignal.net.ConfirmedMfaKey
+import org.signal.libsignal.net.FinishWebAuthnRegistrationError
+import org.signal.libsignal.net.GenerateTotpKeyError
+import org.signal.libsignal.net.MfaKeyNotFoundException
+import org.signal.libsignal.net.MfaMetadata
+import org.signal.libsignal.net.MfaNotVerifiedException
+import org.signal.libsignal.net.MfaVerificationCredential
+import org.signal.libsignal.net.PendingTotpKey
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.StartMfaVerificationResponse
+import org.signal.libsignal.net.StartWebAuthnRegistrationError
 import org.signal.libsignal.net.SvrKey
 import org.signal.libsignal.net.UsernameNotAvailableException
 import org.signal.libsignal.net.UsernameNotSetException
+import org.signal.libsignal.net.WebAuthnCreateParameters
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.kem.KEMPublicKey
 import org.signal.libsignal.usernames.BaseUsernameException
@@ -181,6 +193,130 @@ class AccountApiV2(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
   suspend fun setRegistrationRecoveryPassword(masterKey: MasterKey): RequestResult<Unit, Nothing> {
     return authWebSocket.runCatchingWithChatConnection { connection ->
       AuthAccountsService(connection).setRegistrationRecoveryPassword(SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * Generates and stores a new pending TOTP key for the account, replacing any pending key already there. The key
+   * doesn't take effect, or show up in [listMfaKeys], until [confirmTotpKey] proves the caller kept a copy of it,
+   * which must happen within 24 hours. This is the only time the key material is ever handed out.
+   *
+   * A [TooManyTotpKeysException][org.signal.libsignal.net.TooManyTotpKeysException] or
+   * [TooManyMfaKeysException][org.signal.libsignal.net.TooManyMfaKeysException] means the account is at its limit,
+   * and a key has to be removed before another can be added.
+   */
+  suspend fun generateTotpKey(): RequestResult<PendingTotpKey, GenerateTotpKeyError> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).generateTotpKey()
+    }
+  }
+
+  /**
+   * Confirms the pending TOTP key by proving a one-time password can be derived from it, and attaches [metadata] to
+   * it, returning the id the service assigned. The metadata is encrypted under a key derived from [masterKey], so the
+   * service never sees it.
+   *
+   * A [MfaNotVerifiedException] means the
+   * password was wrong, the clocks are too far apart, or there was no pending key -- the service can't tell us which.
+   */
+  suspend fun confirmTotpKey(oneTimePassword: Int, metadata: MfaMetadata, masterKey: MasterKey): RequestResult<Int, ConfirmTotpKeyError> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).confirmTotpKey(oneTimePassword = oneTimePassword, metadata = metadata, svrKey = SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * Starts a WebAuthn registration ceremony, returning the parameters an authenticator needs to create a passkey for
+   * the account. Nothing is added to the account until [finishWebAuthnRegistration] reports the ceremony's outcome, so
+   * an abandoned ceremony leaves the account's keys alone.
+   *
+   * A [TooManyMfaKeysException][org.signal.libsignal.net.TooManyMfaKeysException] means the account is at its limit,
+   * and a key has to be removed before another can be added.
+   */
+  suspend fun startWebAuthnRegistration(): RequestResult<WebAuthnCreateParameters, StartWebAuthnRegistrationError> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).startWebAuthnRegistration()
+    }
+  }
+
+  /**
+   * Finishes the ceremony [startWebAuthnRegistration] began, adding the passkey to the account and returning the id the
+   * service assigned it. [metadata] is encrypted under a key derived from [masterKey], so the service never sees it.
+   *
+   * A [WebAuthnRegistrationUnsuccessfulException][org.signal.libsignal.net.WebAuthnRegistrationUnsuccessfulException]
+   * means the service could not verify the ceremony's response, and a
+   * [TooManyMfaKeysException][org.signal.libsignal.net.TooManyMfaKeysException] means the account filled up while the
+   * ceremony was running.
+   *
+   * @param attestationObject The attestation object from the ceremony, serialized per the WebAuthn spec.
+   * @param collectedClientDataJson The collected client data, as the exact JSON that was hashed for the authenticator.
+   */
+  suspend fun finishWebAuthnRegistration(
+    attestationObject: ByteArray,
+    collectedClientDataJson: String,
+    metadata: MfaMetadata,
+    masterKey: MasterKey
+  ): RequestResult<Int, FinishWebAuthnRegistrationError> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).finishWebAuthnRegistration(
+        attestationObject = attestationObject,
+        collectedClientDataJson = collectedClientDataJson,
+        metadata = metadata,
+        svrKey = SvrKey(masterKey.serialize())
+      )
+    }
+  }
+
+  /**
+   * The confirmed MFA keys on the account. Key material is never returned, only metadata and parameters. A key whose
+   * metadata can't be decrypted under [masterKey] comes back with null metadata rather than being dropped.
+   */
+  suspend fun listMfaKeys(masterKey: MasterKey): RequestResult<List<ConfirmedMfaKey>, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).listMfaKeys(SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * Replaces the metadata attached to a confirmed MFA key, encrypted under a key derived from [masterKey].
+   */
+  suspend fun setMfaKeyMetadata(keyId: Int, metadata: MfaMetadata, masterKey: MasterKey): RequestResult<Unit, MfaKeyNotFoundException> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).setMfaKeyMetadata(keyId = keyId, metadata = metadata, svrKey = SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * Removes an MFA key, which also succeeds when there's no key with that id, so retries look the same as the
+   * first try.
+   */
+  suspend fun removeMfaKey(keyId: Int): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).removeMfaKey(keyId)
+    }
+  }
+
+  /**
+   * Starts a check that the user still holds one of the account's MFA keys, returning which kinds of key the account
+   * has and, for passkeys, the challenge an assertion has to sign. Both can be absent when the account has no keys this
+   * build understands. The check is completed with [finishMfaVerification].
+   */
+  suspend fun startMfaVerification(): RequestResult<StartMfaVerificationResponse, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).startMfaVerification()
+    }
+  }
+
+  /**
+   * Finishes the check [startMfaVerification] began by handing the service a one-time password or a passkey assertion.
+   * Nothing on the account changes either way.
+   *
+   * A [MfaNotVerifiedException] means the service couldn't verify the credential, whether because the code was wrong,
+   * the challenge expired, or the assertion didn't check out.
+   */
+  suspend fun finishMfaVerification(credential: MfaVerificationCredential): RequestResult<Unit, MfaNotVerifiedException> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).finishMfaVerification(credential)
     }
   }
 

@@ -6,10 +6,10 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import okio.ByteString
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecimalValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.FiatValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation

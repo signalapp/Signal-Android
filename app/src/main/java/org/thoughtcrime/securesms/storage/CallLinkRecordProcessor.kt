@@ -6,12 +6,12 @@
 package org.thoughtcrime.securesms.storage
 
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.StorageId

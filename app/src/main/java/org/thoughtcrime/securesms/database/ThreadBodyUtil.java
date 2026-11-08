@@ -112,6 +112,10 @@ public final class ThreadBodyUtil {
     return format(EmojiStrings.POLL, context.getString(R.string.Poll__poll_end, record.getFromRecipient().getDisplayName(context), record.getMessageExtras().pollTerminate.question), null).body;
   }
 
+  public static CharSequence getFormattedBodyForReply(@NonNull Context context, @NonNull CharSequence body) {
+    return context.getString(R.string.MessageNotifier_replied_to_you, body);
+  }
+
   private static @NonNull String getGiftSummary(@NonNull Context context, @NonNull MessageRecord messageRecord) {
     if (messageRecord.isOutgoing()) {
       return context.getString(R.string.ThreadRecord__you_donated_for_s, messageRecord.getToRecipient().getShortDisplayName(context));

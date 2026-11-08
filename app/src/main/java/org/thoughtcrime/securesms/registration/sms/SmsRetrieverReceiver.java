@@ -19,7 +19,7 @@ import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.Status;
 
-import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.service.VerificationCodeParser;
 

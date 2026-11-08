@@ -16,13 +16,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.TaskStackBuilder;
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.models.recipients.RecipientId;
+import org.signal.core.ui.permissions.Permissions;
+import org.signal.core.ui.view.DialogExtensionsKt;
 import org.signal.core.util.LinkActions;
 import org.signal.core.util.LinkActions.OpenUrlError;
 import org.signal.core.util.Util;
@@ -44,12 +48,10 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinUpdateRequiredBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
-import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameLinkConversionResult;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallData;
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -57,6 +59,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
 
 import io.reactivex.rxjava3.core.Single;
+import kotlin.Pair;
 import kotlin.Unit;
 
 import java.io.IOException;
@@ -83,18 +86,15 @@ public class CommunicationActions {
   }
 
   private static void startVoiceCall(@NonNull CallContext callContext, @NonNull Recipient recipient, @NonNull OnUserAlreadyInAnotherCall onUserAlreadyInAnotherCall) {
-    if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
-      Toast.makeText(callContext.getContext(),
-                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
-                     Toast.LENGTH_SHORT)
-           .show();
-      return;
-    }
-
     if (recipient.isRegistered()) {
       AppDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
+          if (!callContext.isAvailable()) {
+            Log.w(TAG, "Call context is no longer available, ignoring voice call.");
+            return;
+          }
+
           if (resultCode == 1) {
             ActiveCallData activeCallData = ActiveCallData.fromBundle(resultData);
             if (Objects.equals(activeCallData.getRecipientId(), recipient.getId())) {
@@ -103,16 +103,21 @@ public class CommunicationActions {
               onUserAlreadyInAnotherCall.onUserAlreadyInAnotherCall();
             }
           } else {
-            new MaterialAlertDialogBuilder(callContext.getContext())
+            if (showToastIfPstnLineBusy(callContext)) {
+              return;
+            }
+
+            MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(callContext.getContext())
                 .setMessage(R.string.CommunicationActions_start_voice_call)
                 .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(callContext, recipient, false, false))
                 .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
-                .setCancelable(true)
-                .show();
+                .setCancelable(true);
+
+            showDialogBoundToCallContext(callContext, dialogBuilder);
           }
         }
       });
-    } else {
+    } else if (!showToastIfPstnLineBusy(callContext)) {
       startInsecureCall(callContext, recipient);
     }
   }
@@ -132,17 +137,14 @@ public class CommunicationActions {
   }
 
   private static void startVideoCall(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean fromCallLink, @NonNull OnUserAlreadyInAnotherCall onUserAlreadyInAnotherCall) {
-    if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
-      Toast.makeText(callContext.getContext(),
-                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
-                     Toast.LENGTH_SHORT)
-           .show();
-      return;
-    }
-
     AppDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
       @Override
       protected void onReceiveResult(int resultCode, Bundle resultData) {
+        if (!callContext.isAvailable()) {
+          Log.w(TAG, "Call context is no longer available, ignoring video call.");
+          return;
+        }
+
         if (resultCode == 1) {
           ActiveCallData activeCallData = ActiveCallData.fromBundle(resultData);
           if (Objects.equals(activeCallData.getRecipientId(), recipient.getId())) {
@@ -150,22 +152,20 @@ public class CommunicationActions {
           } else {
             onUserAlreadyInAnotherCall.onUserAlreadyInAnotherCall();
           }
-        } else {
+        } else if (!showToastIfPstnLineBusy(callContext)) {
           startCallInternal(callContext, recipient, true, fromCallLink);
         }
       }
     });
   }
 
+  /**
+   * The conversation opens in MainActivity, which is the task root. Its intent already carries
+   * CLEAR_TOP | NEW_TASK | SINGLE_TOP, so it reaches a running instance through onNewIntent and finishes
+   * whatever sits above it. Synthesizing a back stack under it instead would mean FLAG_ACTIVITY_CLEAR_TASK
+   * and a torn-down task, losing everything the window was holding.
+   */
   public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
-    startConversation(context, recipient, text, null);
-  }
-
-  public static void startConversation(@NonNull  Context          context,
-                                       @NonNull  Recipient        recipient,
-                                       @Nullable String           text,
-                                       @Nullable TaskStackBuilder backStack)
-  {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
@@ -179,13 +179,7 @@ public class CommunicationActions {
           builder.withDraftText(text);
         }
 
-        Intent intent = builder.build();
-        if (backStack != null) {
-          backStack.addNextIntent(intent);
-          backStack.startActivities();
-        } else {
-          context.startActivity(intent);
-        }
+        context.startActivity(builder.build());
       }
     }.execute();
   }
@@ -199,37 +193,20 @@ public class CommunicationActions {
   }
 
   public static void startInsecureCall(@NonNull CallContext callContext, @NonNull Recipient recipient) {
-    new MaterialAlertDialogBuilder(callContext.getContext())
-                   .setTitle(R.string.CommunicationActions_insecure_call)
-                   .setMessage(R.string.CommunicationActions_carrier_charges_may_apply)
-                   .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> {
-                     d.dismiss();
-                     startInsecureCallInternal(callContext, recipient);
-                   })
-                   .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
-                   .show();
+    MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(callContext.getContext())
+        .setTitle(R.string.CommunicationActions_insecure_call)
+        .setMessage(R.string.CommunicationActions_carrier_charges_may_apply)
+        .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> {
+          d.dismiss();
+          startInsecureCallInternal(callContext, recipient);
+        })
+        .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss());
+
+    showDialogBoundToCallContext(callContext, dialogBuilder);
   }
 
-  public static @NonNull Intent createIntentToShareTextViaShareSheet(@NonNull String text) {
-    Intent intent = new Intent(Intent.ACTION_SEND);
-    intent.setType("text/plain");
-    intent.putExtra(Intent.EXTRA_TEXT, text);
-
-    return intent;
-  }
-
-  public static @NonNull Intent createIntentToComposeSmsThroughDefaultApp(@NonNull Recipient recipient, @Nullable String text) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + recipient.requireSmsAddress()));
-    if (text != null) {
-      intent.putExtra("sms_body", text);
-    }
-
-    return intent;
-  }
-
-  public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
-    Intent intent = createIntentToComposeSmsThroughDefaultApp(recipient, text);
-    context.startActivity(intent);
+  private static void showDialogBoundToCallContext(@NonNull CallContext callContext, @NonNull MaterialAlertDialogBuilder builder) {
+    DialogExtensionsKt.dismissOnDestroy(builder.show(), callContext.getLifecycle());
   }
 
   public static void openBrowserLink(@NonNull Context context, @NonNull String link) {
@@ -244,13 +221,24 @@ public class CommunicationActions {
   }
 
   public static void openEmail(@NonNull Context context, @NonNull String address, @Nullable String subject, @Nullable String body) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO);
-    intent.setData(Uri.parse("mailto:"));
-    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{ address });
-    intent.putExtra(Intent.EXTRA_SUBJECT, Util.emptyIfNull(subject));
-    intent.putExtra(Intent.EXTRA_TEXT, Util.emptyIfNull(body));
+    context.startActivity(Intent.createChooser(buildEmailIntent(address, subject, body), context.getString(R.string.CommunicationActions_send_email)));
+  }
 
-    context.startActivity(Intent.createChooser(intent, context.getString(R.string.CommunicationActions_send_email)));
+  @VisibleForTesting
+  static @NonNull Intent buildEmailIntent(@NonNull String address, @Nullable String subject, @Nullable String body) {
+    subject = Util.emptyIfNull(subject);
+    body    = Util.emptyIfNull(body);
+
+    Uri.Builder query = new Uri.Builder();
+    if (!subject.isEmpty()) query.appendQueryParameter("subject", subject);
+    if (!body.isEmpty())    query.appendQueryParameter("body", body);
+
+    Uri mailto = Uri.parse("mailto:" + Uri.encode(address, "@+") + query.build());
+
+    return new Intent(Intent.ACTION_SENDTO, mailto)
+        .putExtra(Intent.EXTRA_EMAIL, new String[]{ address })
+        .putExtra(Intent.EXTRA_SUBJECT, subject)
+        .putExtra(Intent.EXTRA_TEXT, body);
   }
 
   /**
@@ -287,13 +275,19 @@ public class CommunicationActions {
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
       GroupRecord group = SignalDatabase.groups().getGroup(groupId).orElse(null);
 
-      return group != null && (group.isMember() || group.isTerminated()) ? Recipient.resolved(group.getRecipientId())
-                                                                         : null;
+      if (group != null && (group.isMember() || group.isTerminated())) {
+        boolean isPendingMember = group.isPendingMember(Recipient.self());
+        return new Pair<>(Recipient.resolved(group.getRecipientId()), isPendingMember);
+      } else {
+        return null;
+      }
     },
-    recipient -> {
-      if (recipient != null) {
-        CommunicationActions.startConversation(activity, recipient, null);
-        Toast.makeText(activity, R.string.GroupJoinBottomSheetDialogFragment_you_are_already_a_member, Toast.LENGTH_SHORT).show();
+    result -> {
+      if (result != null) {
+        CommunicationActions.startConversation(activity, result.getFirst(), null);
+        if (!result.getSecond()) {
+          Toast.makeText(activity, R.string.GroupJoinBottomSheetDialogFragment_you_are_already_a_member, Toast.LENGTH_SHORT).show();
+        }
       } else {
         GroupJoinBottomSheetDialogFragment.show(activity.getSupportFragmentManager(), groupInviteLinkUrl);
       }
@@ -389,12 +383,18 @@ public class CommunicationActions {
 
       return SignalDatabase.recipients().getByCallLinkRoomId(roomId).map(Recipient::resolved);
     }, callLinkRecipient -> {
+      if (!callContext.isAvailable()) {
+        Log.w(TAG, "Call context is no longer available, ignoring call link.");
+        return;
+      }
+
       if (callLinkRecipient.isEmpty()) {
-        new MaterialAlertDialogBuilder(callContext.getContext())
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(callContext.getContext())
             .setTitle(R.string.CommunicationActions_cant_join_call)
             .setMessage(R.string.CommunicationActions_this_call_link_is_no_longer_valid)
-            .setPositiveButton(android.R.string.ok, null)
-            .show();
+            .setPositiveButton(android.R.string.ok, null);
+
+        showDialogBoundToCallContext(callContext, dialogBuilder);
       } else {
         startVideoCall(callContext, callLinkRecipient.get(), true, onUserAlreadyInAnotherCall);
       }
@@ -411,6 +411,20 @@ public class CommunicationActions {
                               callContext.getContext().getString(R.string.ConversationActivity_calls_not_supported),
                               callContext.getContext().getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
     }
+  }
+
+  /**
+   * With telecom enabled our own calls also mark the line busy, so only check after confirming Signal has no active call.
+   */
+  private static boolean showToastIfPstnLineBusy(@NonNull CallContext callContext) {
+    if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
+      Toast.makeText(callContext.getContext(),
+                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
+                     Toast.LENGTH_SHORT)
+           .show();
+      return true;
+    }
+    return false;
   }
 
   private static void startCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean isVideo, boolean fromCallLink) {
@@ -520,6 +534,8 @@ public class CommunicationActions {
     void startActivity(@NonNull Intent intent);
     @NonNull Context getContext();
     @NonNull FragmentManager getFragmentManager();
+    @NonNull Lifecycle getLifecycle();
+    boolean isAvailable();
   }
 
   private static class ActivityCallContext implements CallContext {
@@ -548,6 +564,16 @@ public class CommunicationActions {
     public @NonNull FragmentManager getFragmentManager() {
       return activity.getSupportFragmentManager();
     }
+
+    @Override
+    public @NonNull Lifecycle getLifecycle() {
+      return activity.getLifecycle();
+    }
+
+    @Override
+    public boolean isAvailable() {
+      return !activity.isFinishing() && !activity.isDestroyed();
+    }
   }
 
   private static class FragmentCallContext implements CallContext {
@@ -575,6 +601,16 @@ public class CommunicationActions {
     @Override
     public @NonNull FragmentManager getFragmentManager() {
       return fragment.getParentFragmentManager();
+    }
+
+    @Override
+    public @NonNull Lifecycle getLifecycle() {
+      return fragment.getLifecycle();
+    }
+
+    @Override
+    public boolean isAvailable() {
+      return fragment.isAdded() && !fragment.isRemoving();
     }
   }
 

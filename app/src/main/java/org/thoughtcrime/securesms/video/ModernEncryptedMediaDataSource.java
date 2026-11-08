@@ -36,9 +36,6 @@ final class ModernEncryptedMediaDataSource extends InputStreamMediaDataSource {
   }
 
   @Override
-  public void close() {}
-
-  @Override
   public long getSize() {
     return length;
   }

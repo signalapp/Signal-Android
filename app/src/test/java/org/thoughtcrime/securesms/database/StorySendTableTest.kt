@@ -19,10 +19,10 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.util.UUID

@@ -58,6 +58,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.ui.biometrics.BiometricDeviceAuthentication
+import org.signal.core.ui.biometrics.BiometricDeviceLockContract
+import org.signal.core.ui.biometrics.DevicePinAuthEducationSheet
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -68,14 +71,11 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
-import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.core.ui.R as CoreUiR
@@ -107,8 +107,7 @@ class LinkDeviceFragment : ComposeFragment() {
       }
     }
 
-    val promptInfo = BiometricPrompt.PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+    val promptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
       .setTitle(requireContext().getString(R.string.LinkDeviceFragment__unlock_to_link))
       .setConfirmationRequired(true)
       .build()
@@ -196,7 +195,7 @@ class LinkDeviceFragment : ComposeFragment() {
       title = stringResource(id = R.string.preferences__linked_devices),
       onNavigationClick = { navController.popOrFinish() },
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding: PaddingValues ->
       DeviceListScreen(
         state = state,
@@ -328,7 +327,7 @@ fun DeviceListScreen(
               onPositive = onSyncFailureContactSupport,
               neutral = stringResource(R.string.LinkDeviceFragment__learn_more),
               onNeutral = onSyncFailureLearnMore,
-              negative = stringResource(R.string.LinkDeviceFragment__continue),
+              negative = stringResource(CoreUiR.string.LinkDeviceFragment__continue),
               onNegative = onSyncFailureIgnored
             )
           }
@@ -415,7 +414,7 @@ fun DeviceListScreen(
       modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 4.dp)
     )
     ClickableText(
-      text = AnnotatedString(stringResource(id = R.string.LearnMoreTextView_learn_more)),
+      text = AnnotatedString(stringResource(id = CoreUiR.string.LearnMoreTextView_learn_more)),
       style = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.primary)
     ) {
       onLearnMoreClicked()

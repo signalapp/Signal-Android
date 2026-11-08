@@ -10,17 +10,24 @@ import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
+import assertk.assertions.isNotEqualTo
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import okio.ByteString.Companion.toByteString
 import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
+import org.signal.core.util.billing.OneTimePurchaseApi
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController.GetBackupInfoError
 import org.signal.registration.NetworkController.GetBackupInfoResponse
@@ -30,7 +37,9 @@ import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.fakes.FakeNetworkController
 import org.signal.registration.fakes.FakeStorageController
 import org.signal.registration.fakes.SystemOutLogger
+import org.signal.registration.proto.AccountData
 import java.io.IOException
+import java.util.UUID
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -42,6 +51,7 @@ class RegistrationRepositoryTest {
   private lateinit var networkController: FakeNetworkController
   private lateinit var storageController: FakeStorageController
   private lateinit var repository: RegistrationRepository
+  private lateinit var numberlessRepository: RegistrationRepository
 
   private val aep = AccountEntropyPool.generate()
   private val masterKey = aep.deriveMasterKey()
@@ -57,7 +67,16 @@ class RegistrationRepositoryTest {
       context = mockk<Context>(relaxed = true),
       networkController = networkController,
       storageController = storageController,
-      isLinkAndSyncAvailable = false
+      isLinkAndSyncAvailable = false,
+      signalLoginPurchaseApi = OneTimePurchaseApi.Empty
+    )
+    numberlessRepository = RegistrationRepository(
+      context = mockk<Context>(relaxed = true),
+      networkController = networkController,
+      storageController = storageController,
+      isLinkAndSyncAvailable = false,
+      isPhoneNumberlessRegistrationAvailable = true,
+      signalLoginPurchaseApi = OneTimePurchaseApi.Empty
     )
   }
 
@@ -189,5 +208,188 @@ class RegistrationRepositoryTest {
     assertThat(result).isInstanceOf(RequestResult.NonSuccess::class)
     assertThat(storageController.committedData).isNull()
     assertThat(storageController.readInProgressRegistrationData().pin).isEmpty()
+  }
+
+  // ==================== registerAccountWithoutPhoneNumber / reRegisterAccountWithoutPhoneNumber ====================
+
+  @Test
+  fun `reRegisterAccountWithoutPhoneNumber sends PNI key material when recovering an account by ACI`() = runTest {
+    networkController.onRegisterAccount = { RequestResult.Success(networkController.registerAccountResponse(e164 = null)) }
+
+    val result = numberlessRepository.reRegisterAccountWithoutPhoneNumber(
+      aci = ACI.from(UUID.randomUUID()),
+      recoveryPassword = masterKey.deriveRegistrationRecoveryPassword(),
+      aep = aep
+    )
+
+    assertThat(result).isInstanceOf(RequestResult.Success::class)
+
+    val pniPreKeys = networkController.lastRegisterAccountRequest?.pniPreKeys
+    assertThat(pniPreKeys).isNotNull()
+    assertThat(networkController.lastRegisterAccountRequest?.pniRegistrationId).isNotNull()
+    assertThat(pniPreKeys!!.identityKey.publicKey.verifySignature(pniPreKeys.signedPreKey.keyPair.publicKey.serialize(), pniPreKeys.signedPreKey.signature)).isTrue()
+    assertThat(pniPreKeys.identityKey.publicKey.verifySignature(pniPreKeys.lastResortKyberPreKey.keyPair.publicKey.serialize(), pniPreKeys.lastResortKyberPreKey.signature)).isTrue()
+  }
+
+  @Test
+  fun `reRegisterAccountWithoutPhoneNumber does not keep the PNI key material it sends when recovering an account by ACI`() = runTest {
+    networkController.onRegisterAccount = { RequestResult.Success(networkController.registerAccountResponse(e164 = null)) }
+
+    numberlessRepository.reRegisterAccountWithoutPhoneNumber(
+      aci = ACI.from(UUID.randomUUID()),
+      recoveryPassword = masterKey.deriveRegistrationRecoveryPassword(),
+      aep = aep
+    )
+
+    val accountData = storageController.committedData?.accountData
+    assertThat(accountData).isNotNull()
+    assertThat(accountData!!.pniIdentityKeyPair.size).isEqualTo(0)
+    assertThat(accountData.pniRegistrationId).isEqualTo(0)
+  }
+
+  @Test
+  fun `reRegisterAccountWithoutPhoneNumber keeps the PNI key material it sends when the reclaimed account has a phone number`() = runTest {
+    networkController.onRegisterAccount = { RequestResult.Success(networkController.registerAccountResponse(e164 = "+15551234567")) }
+
+    numberlessRepository.reRegisterAccountWithoutPhoneNumber(
+      aci = ACI.from(UUID.randomUUID()),
+      recoveryPassword = masterKey.deriveRegistrationRecoveryPassword(),
+      aep = aep
+    )
+
+    val sentPniPreKeys = networkController.lastRegisterAccountRequest!!.pniPreKeys!!
+    val accountData = storageController.committedData?.accountData
+    assertThat(accountData).isNotNull()
+    assertThat(IdentityKeyPair(accountData!!.pniIdentityKeyPair.toByteArray()).publicKey).isEqualTo(sentPniPreKeys.identityKey)
+    assertThat(accountData.pniRegistrationId).isEqualTo(networkController.lastRegisterAccountRequest!!.pniRegistrationId)
+  }
+
+  @Test
+  fun `reRegisterAccountWithoutPhoneNumber clears PNI key material left behind by an abandoned attempt`() = runTest {
+    networkController.onRegisterAccount = { RequestResult.Success(networkController.registerAccountResponse(e164 = null)) }
+    storageController.updateInProgressRegistrationData {
+      accountData = AccountData(
+        pniIdentityKeyPair = IdentityKeyPair.generate().serialize().toByteString(),
+        pniSignedPreKey = "abandoned-signed-pre-key".toByteArray().toByteString(),
+        pniLastResortKyberPreKey = "abandoned-kyber-pre-key".toByteArray().toByteString(),
+        pniRegistrationId = 1234
+      )
+    }
+
+    numberlessRepository.reRegisterAccountWithoutPhoneNumber(
+      aci = ACI.from(UUID.randomUUID()),
+      recoveryPassword = masterKey.deriveRegistrationRecoveryPassword(),
+      aep = aep
+    )
+
+    val accountData = storageController.committedData?.accountData
+    assertThat(accountData).isNotNull()
+    assertThat(accountData!!.pniIdentityKeyPair.size).isEqualTo(0)
+    assertThat(accountData.pniSignedPreKey.size).isEqualTo(0)
+    assertThat(accountData.pniLastResortKyberPreKey.size).isEqualTo(0)
+    assertThat(accountData.pniRegistrationId).isEqualTo(0)
+  }
+
+  @Test
+  fun `registerAccountWithoutPhoneNumber does not send PNI key material when creating a brand new account`() = runTest {
+    networkController.onRegisterAccount = { RequestResult.Success(networkController.registerAccountResponse(e164 = null)) }
+
+    val result = numberlessRepository.registerAccountWithoutPhoneNumber(receiptCredentialPresentation = mockk(relaxed = true))
+
+    assertThat(result).isInstanceOf(RequestResult.Success::class)
+    assertThat(networkController.lastRegisterAccountRequest?.pniPreKeys).isNull()
+    assertThat(networkController.lastRegisterAccountRequest?.pniRegistrationId).isNull()
+  }
+
+  // ==================== registerAsLinkedDevice ====================
+
+  @Test
+  fun `registerAsLinkedDevice advertises the optional phone number capability when the primary has no phone number`() = runTest {
+    networkController.onRegisterAsLinkedDevice = { RequestResult.NonSuccess(RegisterAsLinkedDeviceError.MissingCapability) }
+
+    numberlessRepository.registerAsLinkedDevice(linkProvisioningMessage(phoneNumberData = null), "Device")
+
+    assertThat(networkController.lastRegisterAsLinkedDeviceAttributes?.capabilities?.optionalPhoneNumber).isEqualTo(true)
+  }
+
+  @Test
+  fun `registerAsLinkedDevice does not advertise the optional phone number capability when the primary has a phone number`() = runTest {
+    networkController.onRegisterAsLinkedDevice = { RequestResult.NonSuccess(RegisterAsLinkedDeviceError.MissingCapability) }
+
+    val phoneNumberData = NetworkController.LinkDeviceProvisioningMessage.PhoneNumberData(
+      e164 = "+15551234567",
+      pni = PNI.from(UUID.randomUUID()).toString(),
+      pniIdentityKeyPair = IdentityKeyPair.generate()
+    )
+    numberlessRepository.registerAsLinkedDevice(linkProvisioningMessage(phoneNumberData = phoneNumberData), "Device")
+
+    assertThat(networkController.lastRegisterAsLinkedDeviceAttributes?.capabilities?.optionalPhoneNumber).isEqualTo(false)
+  }
+
+  // ==================== registerAccountWithSession ====================
+
+  @Test
+  fun `registerAccountWithSession re-uses the pre-existing key material when re-registering`() = runTest {
+    networkController.onRegisterAccount = { request -> RequestResult.Success(networkController.registerAccountResponse(request.e164, reregistration = true)) }
+    val preExisting = preExistingRegistrationData("+15551234567")
+
+    val result = repository.registerAccountWithSession(
+      e164 = "+15551234567",
+      sessionId = "session-id",
+      preExistingRegistrationData = preExisting
+    )
+
+    assertThat(result).isInstanceOf(RequestResult.Success::class)
+    assertThat((result as RequestResult.Success).result.keyMaterial.accountEntropyPool.value).isEqualTo(preExisting.aep.value)
+
+    val committed = storageController.committedData
+    assertThat(committed).isNotNull()
+    assertThat(committed!!.accountEntropyPool).isEqualTo(preExisting.aep.value)
+
+    val accountData = committed.accountData
+    assertThat(accountData).isNotNull()
+    assertThat(accountData!!.aciIdentityKeyPair).isEqualTo(preExisting.aciIdentityKeyPair.serialize().toByteString())
+    assertThat(accountData.pniIdentityKeyPair).isEqualTo(preExisting.pniIdentityKeyPair.serialize().toByteString())
+  }
+
+  @Test
+  fun `registerAccountWithSession generates fresh key material when there is no pre-existing registration`() = runTest {
+    networkController.onRegisterAccount = { request -> RequestResult.Success(networkController.registerAccountResponse(request.e164)) }
+
+    repository.registerAccountWithSession(e164 = "+15551234567", sessionId = "session-id")
+
+    val committed = storageController.committedData
+    assertThat(committed).isNotNull()
+    assertThat(committed!!.accountEntropyPool.isNotEmpty()).isTrue()
+    assertThat(committed.accountEntropyPool).isNotEqualTo(aep.value)
+  }
+
+  private fun linkProvisioningMessage(phoneNumberData: NetworkController.LinkDeviceProvisioningMessage.PhoneNumberData?): NetworkController.LinkDeviceProvisioningMessage {
+    return NetworkController.LinkDeviceProvisioningMessage(
+      provisioningCode = "code",
+      aci = ACI.from(UUID.randomUUID()).toString(),
+      aciIdentityKeyPair = IdentityKeyPair.generate(),
+      phoneNumberData = phoneNumberData,
+      profileKey = ByteArray(32),
+      ephemeralBackupKey = null,
+      accountEntropyPool = aep.value,
+      mediaRootBackupKey = null,
+      readReceipts = null,
+      authCredentialSalt = null
+    )
+  }
+
+  private fun preExistingRegistrationData(e164: String): PreExistingRegistrationData {
+    return PreExistingRegistrationData(
+      e164 = e164,
+      aci = ACI.from(UUID.randomUUID()),
+      pni = PNI.from(UUID.randomUUID()),
+      servicePassword = "service-password",
+      aep = AccountEntropyPool.generate(),
+      registrationLockEnabled = false,
+      unrestrictedUnidentifiedAccess = false,
+      aciIdentityKeyPair = IdentityKeyPair.generate(),
+      pniIdentityKeyPair = IdentityKeyPair.generate()
+    )
   }
 }

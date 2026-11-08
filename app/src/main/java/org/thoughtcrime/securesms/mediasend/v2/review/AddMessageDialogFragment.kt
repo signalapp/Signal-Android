@@ -1,38 +1,38 @@
 package org.thoughtcrime.securesms.mediasend.v2.review
 
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.ContextThemeWrapper
-import android.view.KeyEvent
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.view.ViewCompat
+import androidx.core.view.doOnLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.ui.view.Stub
+import org.signal.core.ui.viewModel
 import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.EditTextUtil
 import org.signal.core.util.getParcelableCompat
 import org.signal.mediasend.MediaSendFlowHudCommand
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.warning.guardAgainstRecoveryKeyPaste
-import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
+import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardView
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery.NoQuery
@@ -42,16 +42,9 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewMod
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
 import org.thoughtcrime.securesms.databinding.V2MediaAddMessageDialogFragmentBinding
-import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEventViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MessageUtil
-import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.visible
 
 class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_add_message_dialog_fragment) {
@@ -59,10 +52,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   private val viewModel: AddMessageViewModel by viewModel {
     AddMessageViewModel(initialMessage = requireArguments().getCharSequence(ARG_INITIAL_TEXT, null))
   }
-
-  private val commandViewModel: EmojiKeyboardEventViewModel by activityViewModels()
-
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by activityViewModels()
 
   private lateinit var mentionsViewModel: MentionsPickerViewModel
 
@@ -73,21 +62,26 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     binding.content.addAMessageInput.setMentionValidator(null)
   })
 
-  private lateinit var emojiDrawerStub: Stub<MediaKeyboard>
+  private lateinit var emojiDrawerStub: Stub<EmojiKeyboardView>
   private lateinit var inlineQueryResultsController: InlineQueryResultsController
 
   private var requestedEmojiDrawer: Boolean = false
+  private var startWithEmojiKeyboard: Boolean = false
   private var displayingRecoveryKeyWarning: Boolean = false
 
   private var recipient: Recipient? = null
 
   private val disposables = CompositeDisposable()
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-    val themeWrapper = ContextThemeWrapper(inflater.context, R.style.TextSecure_DarkTheme)
-    val themedInflater = LayoutInflater.from(themeWrapper)
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    startWithEmojiKeyboard = savedInstanceState == null && requireArguments().getBoolean(ARG_INITIAL_EMOJI_TOGGLE)
 
-    return super.onCreateView(themedInflater, container, savedInstanceState)
+    val dialog = super.onCreateDialog(savedInstanceState)
+    if (startWithEmojiKeyboard) {
+      dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+    }
+
+    return dialog
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -119,14 +113,10 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     )
 
     binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }
-    if (requireArguments().getBoolean(ARG_INITIAL_EMOJI_TOGGLE) && view is KeyboardAwareLinearLayout) {
-      view.addOnKeyboardShownListener(EmojiLaunchListener(view))
-    }
 
     binding.hud.setOnClickListener { dismissAllowingStateLoss() }
 
     binding.content.viewOnceToggle.setOnClickListener {
-      viewModel.message = null
       viewModel.isViewOnce = true
 
       dismissAllowingStateLoss()
@@ -142,19 +132,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
       }
     }
 
-    viewLifecycleOwner.lifecycleScope.launch {
-      repeatOnLifecycle(state = Lifecycle.State.RESUMED) {
-        commandViewModel.events.collect {
-          when (it) {
-            EmojiKeyboardEvent.CloseEmojiSearch -> closeEmojiSearch()
-            is EmojiKeyboardEvent.EmojiInsert -> onEmojiSelected(it.emoji)
-            is EmojiKeyboardEvent.EmojiKeyEvent -> onKeyEvent(it.keyEvent)
-            EmojiKeyboardEvent.OpenEmojiSearch -> openEmojiSearch()
-          }
-        }
-      }
-    }
-
     binding.content.viewOnceToggle.visible = requireArguments().getBoolean(ARG_VIEW_ONCE_AVAILABLE, false)
     initializeMentions()
   }
@@ -163,7 +140,13 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     super.onResume()
 
     requestedEmojiDrawer = false
-    ViewUtil.focusAndShowKeyboard(binding.content.addAMessageInput)
+    if (startWithEmojiKeyboard) {
+      startWithEmojiKeyboard = false
+      binding.content.addAMessageInput.requestFocus()
+      binding.hud.doOnLayout { onEmojiToggleClicked() }
+    } else {
+      ViewUtil.focusAndShowKeyboard(binding.content.addAMessageInput)
+    }
   }
 
   override fun onDismiss(dialog: DialogInterface) {
@@ -187,7 +170,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   override fun onKeyboardShown() {
     super.onKeyboardShown()
     if (emojiDrawerStub.resolved() && emojiDrawerStub.get().isShowing) {
-      if (emojiDrawerStub.get().isEmojiSearchMode) {
+      if (emojiDrawerStub.get().isSearching) {
         binding.content.emojiToggle.setToIme()
       } else {
         emojiDrawerStub.get().hide(true)
@@ -285,8 +268,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
   private fun onEmojiToggleClicked() {
     if (!emojiDrawerStub.resolved()) {
-      keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
-      emojiDrawerStub.get().setFragmentManager(childFragmentManager)
+      emojiDrawerStub.get().attachTo(binding.content.addAMessageInput)
       binding.content.emojiToggle.attach(emojiDrawerStub.get())
     }
 
@@ -296,33 +278,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     } else {
       requestedEmojiDrawer = true
       binding.hud.show(binding.content.addAMessageInput, emojiDrawerStub.get())
-    }
-  }
-
-  private fun openEmojiSearch() {
-    if (emojiDrawerStub.resolved()) {
-      emojiDrawerStub.get().onOpenEmojiSearch()
-    }
-  }
-
-  private fun closeEmojiSearch() {
-    if (emojiDrawerStub.resolved()) {
-      emojiDrawerStub.get().onCloseEmojiSearch()
-    }
-  }
-
-  private fun onEmojiSelected(emoji: String?) {
-    binding.content.addAMessageInput.insertEmoji(emoji)
-  }
-
-  private fun onKeyEvent(keyEvent: KeyEvent?) {
-    binding.content.addAMessageInput.dispatchKeyEvent(keyEvent)
-  }
-
-  private inner class EmojiLaunchListener(private val layout: KeyboardAwareLinearLayout) : KeyboardAwareLinearLayout.OnKeyboardShownListener {
-    override fun onKeyboardShown() {
-      layout.removeOnKeyboardShownListener(this)
-      onEmojiToggleClicked()
     }
   }
 

@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.payments.State;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.payments.Money;

@@ -5,7 +5,9 @@ import androidx.annotation.NonNull;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupExtensions;
+import org.whispersystems.signalservice.api.groupsv2.GroupChangeField;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -35,6 +37,17 @@ public final class GroupV2UpdateMessageUtil {
     return false;
   }
 
+  public static boolean isSelfLeave(@NonNull MessageGroupContext groupContext, @NonNull ACI selfAci) {
+    if (isGroupV2(groupContext) && isUpdate(groupContext)) {
+      DecryptedGroupChange decryptedGroupChange = groupContext.requireGroupV2Properties()
+                                                              .getChange();
+
+      return decryptedGroupChange.deleteMembers.contains(selfAci.toByteString());
+    }
+
+    return false;
+  }
+
   private static boolean changeEditorOnlyWasRemoved(@NonNull DecryptedGroupChange decryptedGroupChange) {
     return decryptedGroupChange.deleteMembers.size() == 1 &&
            decryptedGroupChange.deleteMembers.get(0).equals(decryptedGroupChange.editorServiceIdBytes);
@@ -45,6 +58,17 @@ public final class GroupV2UpdateMessageUtil {
                                                                      .deleteMembers(Collections.emptyList())
                                                                      .build();
     return DecryptedGroupExtensions.getChangedFields(withoutDeletedMembers).isEmpty();
+  }
+
+  public static boolean isJustATimerChange(@NonNull MessageGroupContext groupContext) {
+    if (isGroupV2(groupContext) && isUpdate(groupContext)) {
+      DecryptedGroupChange decryptedGroupChange = groupContext.requireGroupV2Properties()
+                                                              .getChange();
+
+      return DecryptedGroupExtensions.getChangedFields(decryptedGroupChange).equals(Collections.singleton(GroupChangeField.TIMER));
+    }
+
+    return false;
   }
 
   public static boolean isJoinRequestCancel(@NonNull MessageGroupContext groupContext) {

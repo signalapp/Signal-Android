@@ -32,17 +32,21 @@ fun Window.initializeScreenshotSecurity() {
  * windows are not covered by the activity-level call in BaseActivity, so every non-floating dialog must opt
  * in itself.
  *
+ * In a DialogFragment, call this from onGetLayoutInflater after super, not from onCreateDialog. It creates the
+ * decor view, and doing that before DialogFragment requests FEATURE_NO_TITLE crashes on API 23.
+ *
  * Bar icon appearance (`windowLightStatusBar` / `windowLightNavigationBar`) is left to the window's theme,
  * which stays honored under edge-to-edge.
+ *
+ * The bar colors are cleared on every API level, including 35+. The platform only forces them transparent
+ * for windows it treats as edge-to-edge enforced, and that is not reliable for dialog windows, which
+ * otherwise keep the theme's `android:statusBarColor` (`?attr/colorPrimaryDark`) and paint a colored bar over
+ * our content. androidx.activity's own API 35 path clears both for the same reason; where the platform really
+ * does enforce edge-to-edge the setters are simply no-ops.
  */
 @Suppress("DEPRECATION")
 fun Window.enableEdgeToEdge() {
   WindowCompat.setDecorFitsSystemWindows(this, false)
-
-  if (Build.VERSION.SDK_INT >= 35) {
-    // Edge-to-edge is enforced, which forces the bars transparent and makes both setters no-ops.
-    return
-  }
 
   statusBarColor = Color.TRANSPARENT
   navigationBarColor = when {

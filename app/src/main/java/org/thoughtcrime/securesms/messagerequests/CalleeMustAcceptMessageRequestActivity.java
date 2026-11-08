@@ -17,10 +17,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 import java.util.concurrent.TimeUnit;

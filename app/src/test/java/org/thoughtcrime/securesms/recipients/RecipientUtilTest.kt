@@ -11,6 +11,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -194,6 +195,58 @@ class RecipientUtilTest {
 
     // WHEN
     val result = RecipientUtil.isMessageRequestAccepted(recipient)
+
+    // THEN
+    assertTrue(result)
+  }
+
+  @Test
+  fun givenNonZeroOutgoingSecureMessageCountAndRecipientIsHidden_whenIsCallRequestAccepted_thenIExpectFalse() {
+    // GIVEN
+    every { recipient.isHidden } returns true
+    every { mockMessageTable.getOutgoingSecureMessageCount(any()) } returns 1
+
+    // WHEN
+    val result = RecipientUtil.isCallRequestAccepted(recipient)
+
+    // THEN
+    assertFalse(result)
+  }
+
+  @Test
+  fun givenNonZeroOutgoingSecureMessageCountAndRecipientIsNotHidden_whenIsCallRequestAccepted_thenIExpectTrue() {
+    // GIVEN
+    every { recipient.isHidden } returns false
+    every { mockMessageTable.getOutgoingSecureMessageCount(any()) } returns 1
+
+    // WHEN
+    val result = RecipientUtil.isCallRequestAccepted(recipient)
+
+    // THEN
+    assertTrue(result)
+  }
+
+  @Test
+  fun givenRecipientIsHiddenAndProfileSharing_whenIsCallRequestAccepted_thenIExpectTrue() {
+    // GIVEN
+    every { recipient.isHidden } returns true
+    every { recipient.isProfileSharing } returns true
+
+    // WHEN
+    val result = RecipientUtil.isCallRequestAccepted(recipient)
+
+    // THEN
+    assertTrue(result)
+  }
+
+  @Test
+  fun givenRecipientIsHiddenAndSystemContact_whenIsCallRequestAccepted_thenIExpectTrue() {
+    // GIVEN
+    every { recipient.isHidden } returns true
+    every { recipient.isSystemContact } returns true
+
+    // WHEN
+    val result = RecipientUtil.isCallRequestAccepted(recipient)
 
     // THEN
     assertTrue(result)

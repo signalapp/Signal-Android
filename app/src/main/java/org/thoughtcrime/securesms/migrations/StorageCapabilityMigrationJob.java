@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * This does a couple things:

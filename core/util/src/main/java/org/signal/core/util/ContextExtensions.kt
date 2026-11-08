@@ -11,11 +11,19 @@ import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.pm.ApplicationInfo
 import android.graphics.drawable.Drawable
 import android.provider.Settings
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.FragmentActivity
+
+/**
+ * Whether the installed app is marked debuggable in its manifest. Unlike a module's `BuildConfig.DEBUG`, this reflects the
+ * app as a whole, so it's usable from any module.
+ */
+val Context.isDebuggableBuild: Boolean
+  get() = (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
 
 fun Context.getDownloadManager(): DownloadManager {
   return this.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager

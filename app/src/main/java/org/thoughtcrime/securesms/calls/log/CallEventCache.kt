@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import java.util.concurrent.Executor
 import kotlin.math.abs
@@ -67,13 +67,21 @@ class CallEventCache(
         return emptyList()
       }
 
+      // Only the newest call per group is kept up to date; compute it before filtering so filtered views can't promote an older row.
+      val newestGroupCallRowIds = hashSetOf<Long>()
+      val groupPeersSeen = hashSetOf<Long>()
+      for (record in records) {
+        if (record.type == Type.GROUP_CALL.code && groupPeersSeen.add(record.peer)) {
+          newestGroupCallRowIds += record.rowId
+        }
+      }
+
       val output = mutableListOf<CallLogRow.Call>()
-      val groupCallStateMap = mutableMapOf<Long, CallLogRow.GroupCallState>()
       val canUserBeginCallMap = mutableMapOf<Long, CallLogRow.CanStartCall>()
       val callLinksSeen = hashSetOf<Long>()
 
       while (recordIterator.hasNext()) {
-        val log = recordIterator.readNextCallLog(filterState, groupCallStateMap, canUserBeginCallMap, callLinksSeen)
+        val log = recordIterator.readNextCallLog(filterState, newestGroupCallRowIds, canUserBeginCallMap, callLinksSeen)
         if (log != null) {
           output += log
         }
@@ -86,7 +94,7 @@ class CallEventCache(
 
     private fun ListIterator<CacheRecord>.readNextCallLog(
       filterState: FilterState,
-      groupCallStateMap: MutableMap<Long, CallLogRow.GroupCallState>,
+      newestGroupCallRowIds: Set<Long>,
       canUserBeginCallMap: MutableMap<Long, CallLogRow.CanStartCall>,
       callLinksSeen: MutableSet<Long>
     ): CallLogRow.Call? {
@@ -109,7 +117,7 @@ class CallEventCache(
         }
       }
 
-      return createParentCallLogRow(parent, children, filterState, groupCallStateMap, canUserBeginCallMap, isActiveCallLinkRow)
+      return createParentCallLogRow(parent, children, filterState, newestGroupCallRowIds, canUserBeginCallMap, isActiveCallLinkRow)
     }
 
     private fun readDataFromDatabase(): List<CacheRecord> {
@@ -134,7 +142,7 @@ class CallEventCache(
     }
 
     private fun isMissedGroupCall(call: CacheRecord): Boolean {
-      return call.event == CallTable.Event.GENERIC_GROUP_CALL.code && !call.didLocalUserJoin && !call.isGroupCallActive
+      return call.type == Type.GROUP_CALL.code && call.event == CallTable.Event.GENERIC_GROUP_CALL.code && !call.didLocalUserJoin && !call.isGroupCallActive
     }
 
     private fun isWithinTimeout(parent: CacheRecord, child: CacheRecord): Boolean {
@@ -166,7 +174,7 @@ class CallEventCache(
       parent: CacheRecord,
       children: Set<Long>,
       filterState: FilterState,
-      groupCallStateCache: MutableMap<Long, CallLogRow.GroupCallState>,
+      newestGroupCallRowIds: Set<Long>,
       canUserBeginCallMap: MutableMap<Long, CallLogRow.CanStartCall>,
       isActiveCallLinkRow: Boolean
     ): CallLogRow.Call {
@@ -187,8 +195,8 @@ class CallEventCache(
         ),
         date = parent.timestamp,
         peer = peer,
-        groupCallState = if (peer.isGroup) {
-          groupCallStateCache.getOrPut(parent.peer) { getGroupCallState(parent.body) }
+        groupCallState = if (peer.isGroup && parent.rowId in newestGroupCallRowIds) {
+          getGroupCallState(parent.body)
         } else {
           CallLogRow.GroupCallState.NONE
         },

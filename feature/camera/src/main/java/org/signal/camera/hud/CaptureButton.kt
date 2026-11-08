@@ -44,17 +44,25 @@ import androidx.compose.ui.input.pointer.PointerEventTimeoutCancellationExceptio
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
+import org.signal.camera.R
 import org.signal.camera.test.TestTags
+import kotlin.math.abs
 
 private object CaptureButtonColors {
-  val Background = Color(0xCC333333)
-  val CaptureFill = Color.White
-  val Record = Color(0xFFD92F20)
+  val Background: Color
+    @Composable get() = colorResource(R.color.CameraHud_control_background)
+
+  val CaptureFill: Color
+    @Composable get() = colorResource(R.color.CameraHud_control_foreground)
+
+  val Record: Color
+    @Composable get() = colorResource(R.color.CameraHud_control_red_background)
 }
 
 /** Every measurement the button is drawn from, so there is one place to change any of them. */
@@ -132,7 +140,7 @@ private val LockDragSpec = spring<Dp>(dampingRatio = Spring.DampingRatioMediumBo
 private data class CaptureButtonInnerShape(val size: Dp, val cornerRadius: Dp, val color: Color)
 
 private val CaptureButtonState.innerShape: CaptureButtonInnerShape
-  get() = when (this) {
+  @Composable get() = when (this) {
     CaptureButtonState.PHOTO -> CaptureButtonInnerShape(
       size = CaptureButtonDimensions.IdleSize,
       cornerRadius = CaptureButtonDimensions.IdleSize / 2,
@@ -318,12 +326,15 @@ fun CaptureButton(
                 break
               }
 
-              // A drag is only headed for the lock once it has carried past the slop; below that it still belongs to
-              // the zoom, so a vertical drag that wanders a pixel sideways does not silently lose it. Being over the
-              // lock finishes the morph however far short the travel counts, so what the button shows agrees with what
+              // A drag is only headed for the lock once it has carried past the slop, and has gone further toward the
+              // lock than across the way to it. Otherwise it still belongs to the zoom, so a thumb that arcs sideways on
+              // its way up does not freeze the zoom and then jump it when the arc comes back. Being over the lock
+              // finishes the morph however far short the travel counts, so what the button shows agrees with what
               // letting go would do.
-              val lockTravel = currentLockOffset.fractionTraveled(pointer.position - down.position)
-              val isHeadedForLock = overLock || lockTravel * currentLockOffset.getDistance() > lockDragSlop
+              val drag = pointer.position - down.position
+              val lockTravel = currentLockOffset.fractionTraveled(drag)
+              val distanceTowardLock = lockTravel * currentLockOffset.getDistance()
+              val isHeadedForLock = overLock || (distanceTowardLock > lockDragSlop && distanceTowardLock >= currentLockOffset.distanceAcross(drag))
 
               lockProgress = when {
                 overLock -> 1f
@@ -404,6 +415,13 @@ private fun Offset.fractionTraveled(drag: Offset): Float {
   val distanceSquared = x * x + y * y
 
   return if (distanceSquared > 0f) ((drag.x * x + drag.y * y) / distanceSquared).coerceIn(0f, 1f) else 0f
+}
+
+/** How far a [drag] has carried across the way to this offset, to either side. Zero for [Offset.Zero]. */
+private fun Offset.distanceAcross(drag: Offset): Float {
+  val distance = getDistance()
+
+  return if (distance > 0f) abs(x * drag.y - y * drag.x) / distance else 0f
 }
 
 /**

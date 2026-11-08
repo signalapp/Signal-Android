@@ -26,7 +26,7 @@ import androidx.fragment.app.FragmentManager
 import kotlinx.collections.immutable.persistentHashMapOf
 import kotlinx.coroutines.flow.filter
 import org.signal.core.ui.compose.LocalFragmentManager
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.compose.MappingEntryProvider
 
 /**

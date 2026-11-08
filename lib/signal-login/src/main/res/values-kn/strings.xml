@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <!-- Signal Login beta labeling -->
+    <!-- Tag shown beside the title of Signal Login screens, marking the feature as unfinished. Keep it short. -->
+    <string name="SignalLoginBeta__beta">ಬೀಟಾ</string>
+    <!-- Disclaimer shown on Signal Login screens, warning that the feature is still changing. -->
+    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">ಇದು ಬೀಟಾ ಫೀಚರ್ ಆಗಿದ್ದು, ಅದನ್ನು ನಿರಂತರವಾಗಿ ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
+
     <!-- Signal Login credential card -->
     <!-- Label for the account portion of the Signal Login on the credential card. -->
     <string name="SignalLoginCard__account">ಖಾತೆ</string>
@@ -10,15 +16,51 @@
 
     <!-- Signal Login view details screen -->
     <!-- Title of the screen that shows the user the full keys that make up their Signal Login. -->
-    <string name="SignalLoginViewDetailsScreen__signal_login">Signal ಲಾಗಿನ್</string>
+    <string name="SignalLoginViewDetailsScreen__signal_login">Signal Login</string>
     <!-- Content description for the back arrow in the top app bar. -->
-    <string name="SignalLoginViewDetailsScreen__navigate_back">Navigate back</string>
+    <string name="SignalLoginViewDetailsScreen__navigate_back">ಹಿಂದಕ್ಕೆ ನ್ಯಾವಿಗೇಟ್ ಮಾಡಿ</string>
     <!-- Section header above the account key. -->
-    <string name="SignalLoginViewDetailsScreen__account_key">Account key</string>
+    <string name="SignalLoginKeyDetails__account_id">ಖಾತೆ ID</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">ರಿಕವರಿ ಕೀ</string>
+    <string name="SignalLoginKeyDetails__recovery_key">ರಿಕವರಿ ಕೀ</string>
+    <!-- Content description for the button that copies the account key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_account_id">ಖಾತೆ ID ಅನ್ನು ಕಾಪಿ ಮಾಡಿ</string>
+    <!-- Content description for the button that copies the recovery key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_recovery_key">ರಿಕವರಿ ಕೀ ಅನ್ನು ಕಾಪಿ ಮಾಡಿ</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ಗೆ ಸೇವ್ ಮಾಡಿ</string>
     <!-- Action button that saves the Signal Login as a PDF. -->
-    <string name="SignalLoginViewDetailsScreen__save_as_pdf">Save as PDF</string>
+    <string name="SignalLoginViewDetailsScreen__save_as_pdf">PDF ರೂಪದಲ್ಲಿ ಸೇವ್ ಮಾಡಿ</string>
+    <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
+    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">ರಿಕವರಿ ಕೀ ಮರುಹೊಂದಿಸಿ</string>
+    <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
+    <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginViewDetailsScreen__no_password_manager_available">ನಿಮ್ಮಲ್ಲಿ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಸೆಟಪ್ ಇಲ್ಲ.</string>
+    <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">ಸುರಕ್ಷಿತ ಎಂದು ನೀವು ನಂಬುವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ನಲ್ಲಿ ಮಾತ್ರ ನಿಮ್ಮ ರುಜುವಾತುಗಳನ್ನು ಸಂಗ್ರಹಿಸಿ. ನಿಮಗೆ ಯಾವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಸೂಕ್ತ ಎಂಬುದರ ಕುರಿತು Signal ಶಿಫಾರಸು ಮಾಡುವುದಿಲ್ಲ.</string>
+    <!-- Toast shown when saving the Signal Login PDF fails. -->
+    <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">PDF ಸೇವ್ ಮಾಡಲು ಆಗಲಿಲ್ಲ. ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->
+    <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">ಆಯ್ಕೆಮಾಡಿರುವ ಸ್ಥಳಕ್ಕೆ PDF ಸೇವ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
+
+    <!-- Do not share warning sheet, shown before the user copies or saves their Signal Login -->
+    <!-- Title of the sheet warning the user not to share their Signal Login. -->
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login">ನಿಮ್ಮ Signal Login ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಬೇಡಿ</string>
+    <!-- Body of the warning sheet. The text inside the <b> tags is shown in bold; keep the tags around the equivalent phrase. -->
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login_with_anyone">ನಿಮ್ಮ Signal Login ಅನ್ನು ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ. ಇದು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅವರ ನಿಯಂತ್ರಣಕ್ಕೆ ತೆಗೆದುಕೊಳ್ಳಲು ಅವಕಾಶ ನೀಡುತ್ತದೆ. ನಿಮ್ಮ ಖಾತೆ ID ಅಥವಾ ರಿಕವರಿ ಕೀಗಾಗಿ <b>Signal ಎಂದಿಗೂ ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡುವುದಿಲ್ಲ</b>. Signal ಎಂದು ಸೋಗುಹಾಕುವ ಚಾಟ್‌ಗೆ ಎಂದಿಗೂ ಪ್ರತಿಕ್ರಿಯಿಸಬೇಡಿ.</string>
+    <!-- Button acknowledging the warning and continuing with the copy or save the user started. -->
+    <string name="DoNotShareLoginBottomSheet__got_it">ಅರ್ಥವಾಯಿತು</string>
+    <!-- Button opening a help article with more information about keeping the Signal Login safe. -->
+    <string name="DoNotShareLoginBottomSheet__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+
+    <!-- Signal Login PDF -->
+    <!-- Title at the top of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__your_signal_login">ನಿಮ್ಮ Signal Login</string>
+    <!-- Explainer below the title of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">ಇದನ್ನು ಸುರಕ್ಷಿತ ಸ್ಥಳದಲ್ಲಿ ರಕ್ಷಿಸಿ, ನಿಮ್ಮ ಖಾತೆ ಮತ್ತು ಡೇಟಾವನ್ನು ರಿಕವರ್ ಮಾಡಲು ನಿಮ್ಮ ಲಾಗಿನ್ ಮಾಹಿತಿ ಅಗತ್ಯವಿದೆ. ಇದನ್ನು ಎಂದಿಗೂ ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.</string>
+    <!-- Section header above the account key in the PDF. -->
+    <string name="SignalLoginPdf__account_id">ಖಾತೆ ID</string>
+    <!-- Section header above the recovery key in the PDF. -->
+    <string name="SignalLoginPdf__recovery_key">ರಿಕವರಿ ಕೀ</string>
 </resources>

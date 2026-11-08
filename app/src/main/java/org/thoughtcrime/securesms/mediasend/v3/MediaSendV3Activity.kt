@@ -5,23 +5,22 @@
 
 package org.thoughtcrime.securesms.mediasend.v3
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Parcelable
 import android.text.TextUtils
 import android.view.Gravity
-import android.view.KeyEvent
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
@@ -30,11 +29,11 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.getWindowBreakpoint
-import org.signal.emoji.EmojiEventListener
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendFlowHudCommand
 import org.signal.mediasend.MediaSendFlowViewModel
@@ -51,22 +50,19 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.ReenableScheduledMessagesDialogFragment
 import org.thoughtcrime.securesms.conversation.ScheduleMessageDialogCallback
 import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSheet
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEventViewModel
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.QuickRestoreInfoDialog
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageDialogFragment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationFragment
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
-import org.thoughtcrime.securesms.scribbles.StickerSelectActivityContract
+import org.thoughtcrime.securesms.stickers.search.ImageEditorStickerSearch
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
+import org.thoughtcrime.securesms.util.WindowUtil
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -76,21 +72,14 @@ class MediaSendV3Activity :
   PassphraseRequiredActivity(),
   SafetyNumberBottomSheet.Callbacks,
   TextStoryPostCreationFragment.Callback,
-  EmojiKeyboardPageFragment.Callback,
-  EmojiEventListener,
-  EmojiSearchFragment.Callback,
   ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
   ScheduleMessageDialogCallback {
+
+  private val theme = DynamicNoActionBarTheme()
 
   private val contractArgs: MediaSendFlowActivityContract.Args by lazy { MediaSendFlowActivityContract.Args.fromIntent(intent) }
 
   private val viewModel: MediaSendFlowViewModel by viewModels { MediaSendFlowViewModel.Factory(args = contractArgs) }
-
-  private val addMessageCommandViewModel: EmojiKeyboardEventViewModel by viewModels()
-
-  private val stickerLauncher = registerForActivityResult(StickerSelectActivityContract()) { result ->
-    viewModel.onStickerSelected(result?.toRenderer())
-  }
 
   override val textStoryDestinations: Set<ContactSearchKey.RecipientSearchKey>
     get() = destinations().toSet()
@@ -101,12 +90,9 @@ class MediaSendV3Activity :
   override val textStoryDraftText: CharSequence?
     get() = if (contractArgs.asTextStory) contractArgs.initialMessage else null
 
-  override fun attachBaseContext(newBase: Context) {
-    delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
-    super.attachBaseContext(newBase)
-  }
-
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    theme.onCreate(this)
+
     if (resources.getWindowBreakpoint() !is WindowBreakpoint.Small) {
       requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
@@ -116,10 +102,12 @@ class MediaSendV3Activity :
     }
 
     supportFragmentManager.setFragmentResultListener(AddMessageDialogFragment.REQUEST_KEY, this) { _, bundle ->
+      // Set the message first either way: turning view-once on holds it aside rather than dropping it, so what was
+      // typed before reaching for the toggle comes back if view-once is turned off again.
+      viewModel.setMessage(bundle.getCharSequence(AddMessageDialogFragment.RESULT_MESSAGE, null))
+
       if (bundle.getBoolean(AddMessageDialogFragment.RESULT_INCREMENT_VIEW_ONCE_STATE)) {
         viewModel.toggleViewOnce()
-      } else {
-        viewModel.setMessage(bundle.getCharSequence(AddMessageDialogFragment.RESULT_MESSAGE, null))
       }
     }
 
@@ -134,6 +122,7 @@ class MediaSendV3Activity :
 
       CompositionLocalProvider(
         LocalAddAMessageRowTextField provides { message, modifier ->
+          val textColor = MaterialTheme.colorScheme.onSurfaceVariant.toArgb()
           AndroidView(
             factory = {
               EmojiTextView(it).apply {
@@ -145,6 +134,7 @@ class MediaSendV3Activity :
             },
             update = { view ->
               view.text = message
+              view.setTextColor(textColor)
             },
             modifier = modifier
           )
@@ -181,6 +171,9 @@ class MediaSendV3Activity :
               modifier = Modifier.fillMaxSize()
             )
           },
+          stickerSelectSlot = { onStickerSelected ->
+            ImageEditorStickerSearch(onResult = { onStickerSelected(it?.toRenderer()) })
+          },
           onExternalHudCommand = {
             when (it) {
               is MediaSendFlowHudCommand.ShowAddAMessageDialog -> {
@@ -192,8 +185,6 @@ class MediaSendV3Activity :
                   }
                 )
               }
-
-              is MediaSendFlowHudCommand.SelectSticker -> stickerLauncher.launch(Unit)
 
               is MediaSendFlowHudCommand.PickScheduledSendTime -> {
                 ScheduleMessageTimePickerBottomSheet.showSchedule(supportFragmentManager)
@@ -246,6 +237,11 @@ class MediaSendV3Activity :
     }
   }
 
+  override fun onResume() {
+    super.onResume()
+    theme.onResume(this)
+  }
+
   override fun onSentWithoutResult() {
     setResult(RESULT_OK, Intent())
     finish()
@@ -271,6 +267,14 @@ class MediaSendV3Activity :
         WindowManager.LayoutParams.ROTATION_ANIMATION_ROTATE
       }
     }
+
+    if (isOnCaptureScreen) {
+      WindowUtil.clearLightStatusBar(window)
+      WindowUtil.clearLightNavigationBar(window)
+    } else {
+      WindowUtil.setLightStatusBarFromTheme(this)
+      WindowUtil.setLightNavigationBarFromTheme(this)
+    }
   }
 
   override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
@@ -280,22 +284,6 @@ class MediaSendV3Activity :
   override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() = error("Unsupported, we do not hand in a message id.")
 
   override fun onCanceled() = Unit
-
-  override fun openEmojiSearch() {
-    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.OpenEmojiSearch)
-  }
-
-  override fun closeEmojiSearch() {
-    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.CloseEmojiSearch)
-  }
-
-  override fun onEmojiSelected(emoji: String?) {
-    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.EmojiInsert(emoji))
-  }
-
-  override fun onKeyEvent(keyEvent: KeyEvent?) {
-    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.EmojiKeyEvent(keyEvent))
-  }
 
   override fun onScheduleSend(scheduledTime: Long) {
     viewModel.onScheduledSendTimeSelected(scheduledTime)

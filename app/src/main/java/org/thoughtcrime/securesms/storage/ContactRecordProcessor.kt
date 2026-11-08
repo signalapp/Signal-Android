@@ -4,6 +4,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.isEmpty
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
@@ -16,7 +17,7 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.storage.StorageSyncModels.localToRemoteRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.StorageId
@@ -31,12 +32,15 @@ import java.util.regex.Pattern
 /**
  * Record processor for [SignalContactRecord].
  * Handles merging and updating our local store when processing remote contact storage records.
+ *
+ * @param identityConflictsPendingRepair Populated with storage ids where the only difference is identity key
  */
 class ContactRecordProcessor(
   private val selfAci: ACI?,
   private val selfPni: PNI?,
   private val selfE164: String?,
-  private val recipientTable: RecipientTable
+  private val recipientTable: RecipientTable,
+  val identityConflictsPendingRepair: MutableSet<StorageId>
 ) : DefaultStorageRecordProcessor<SignalContactRecord>() {
 
   companion object {
@@ -51,11 +55,12 @@ class ContactRecordProcessor(
 
   private var rotateProfileKeyOnBlock = true
 
-  constructor() : this(
+  constructor(identityConflictsPendingRepair: MutableSet<StorageId>) : this(
     selfAci = SignalStore.account.aci,
     selfPni = SignalStore.account.pni,
     selfE164 = SignalStore.account.e164,
-    recipientTable = SignalDatabase.recipients
+    recipientTable = SignalDatabase.recipients,
+    identityConflictsPendingRepair = identityConflictsPendingRepair
   )
 
   /**
@@ -109,6 +114,9 @@ class ContactRecordProcessor(
       (selfE164 != null && remote.proto.e164.isNotBlank() && remote.proto.e164 == selfE164)
     ) {
       Log.w(TAG, "Found a ContactRecord for ourselves -- marking as invalid.")
+      return true
+    } else if (remote.proto.signalAci == ReleaseChannel.DESKTOP_RELEASE_NOTES_ACI) {
+      Log.w(TAG, "Found a ContactRecord for Desktop's release notes chat -- marking as invalid.")
       return true
     } else if (remote.proto.e164.isNotBlank() && !isValidE164(remote.proto.e164)) {
       Log.w(TAG, "Found a record with an invalid E164. Marking as invalid.")
@@ -232,7 +240,7 @@ class ContactRecordProcessor(
       if (conflictAci != null) {
         Log.w(TAG, "Identity keys conflict for $conflictAci. Enqueueing a profile fetch.")
         SignalDatabase.runPostSuccessfulTransaction {
-          RetrieveProfileJob.enqueue(Recipient.trustedPush(conflictAci, mergedPni, mergedE164).id, true)
+          RetrieveProfileJob.enqueueToResolveIdentityKeyConflict(Recipient.trustedPush(conflictAci, mergedPni, mergedE164).id)
         }
       } else {
         Log.w(TAG, "Identity keys conflict for $localPni. No ACI, so no profile fetch is possible.")
@@ -268,7 +276,10 @@ class ContactRecordProcessor(
       nickname = remote.proto.nickname
       pniSignatureVerified = (remote.proto.pniSignatureVerified || local.proto.pniSignatureVerified) && mergedPni?.isValid == true
       note = remote.proto.note.nullIfBlank() ?: ""
+      sharedName = remote.proto.sharedName
       avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
+      notifyForCallsIfMuted = StorageSyncHelper.getOptionalBool(remote.proto.notifyForCallsIfMuted, local.proto.notifyForCallsIfMuted)
+      showUnreadReminders = StorageSyncHelper.getOptionalBool(remote.proto.showUnreadReminders, local.proto.showUnreadReminders)
     }.build().toSignalContactRecord(StorageId.forContact(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)
@@ -277,6 +288,9 @@ class ContactRecordProcessor(
     return if (matchesRemote) {
       remote
     } else if (matchesLocal) {
+      if (identityKeysExistsAndConflict && conflictAci != null) {
+        identityConflictsPendingRepair += local.id
+      }
       local
     } else {
       merged

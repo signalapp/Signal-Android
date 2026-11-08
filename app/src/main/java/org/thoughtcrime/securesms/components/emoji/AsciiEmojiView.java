@@ -10,7 +10,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import org.thoughtcrime.securesms.R;
+import org.signal.core.ui.R;
 
 public class AsciiEmojiView extends View {
 

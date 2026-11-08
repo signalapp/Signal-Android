@@ -11,6 +11,7 @@ import org.signal.donations.PaymentSource
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
+import org.signal.libsignal.net.RequestResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.toPayment
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.protos.InAppPaymentSetupJobData
+import org.whispersystems.signalservice.api.successOrThrow
 
 /**
  *  Handles setup of recurring Stripe transactions.
@@ -86,7 +88,10 @@ class InAppPaymentStripeRecurringSetupJob private constructor(
     )
 
     info("Requesting status and payment method id from stripe service.")
-    val statusAndPaymentMethodId = StripeRepository.getStatusAndPaymentMethodId(intentAccessor, paymentMethodId)
+    val statusAndPaymentMethodId = when (val result = StripeRepository.getStatusAndPaymentMethodId(intentAccessor, paymentMethodId)) {
+      is RequestResult.RetryableNetworkError -> return awaitAuthorization(inAppPayment.id, intentAccessor, result.networkError)
+      else -> result.successOrThrow()
+    }
 
     if (!statusAndPaymentMethodId.status.canProceed()) {
       warning("Cannot proceed with status ${statusAndPaymentMethodId.status}.")

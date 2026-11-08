@@ -11,7 +11,11 @@ import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.badges.Badge
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.fonts.SignalSymbols
+import org.signal.core.ui.util.SpanUtil
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.UsernameUtil.isValidUsernameForSearch
 import org.signal.core.util.Util
@@ -23,7 +27,6 @@ import org.signal.core.util.requireDrawable
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.GroupRecordContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
@@ -52,10 +55,7 @@ import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.external
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.util.OptionalUtil
@@ -131,6 +131,11 @@ class Recipient(
   val phoneNumberSharing: PhoneNumberSharingState = PhoneNumberSharingState.UNKNOWN,
   val nickname: ProfileName = ProfileName.EMPTY,
   val note: String? = null,
+  /**
+   * A name supplied by a third party through a shared contact card, for someone we would otherwise
+   * have no name for. Deliberately ranks below [profileName], so a real profile always wins.
+   */
+  val sharedName: ProfileName = ProfileName.EMPTY,
   val keyTransparencyData: ByteArray? = null
 ) {
 
@@ -346,11 +351,11 @@ class Recipient(
 
   /** Whether calls should break through mute for this recipient. */
   val callNotificationSetting: NotificationSetting
-    get() = if (RemoteConfig.internalUser) NotificationSetting.resolve(callNotificationSettingValue, SignalStore.settings.allowCallsWhileMuted) else NotificationSetting.ALWAYS_NOTIFY
+    get() = NotificationSetting.resolve(callNotificationSettingValue, SignalStore.settings.allowCallsWhileMuted)
 
   /** Whether replies should break through mute for this recipient. */
   val replyNotificationSetting: NotificationSetting
-    get() = if (groupIdValue == null) NotificationSetting.DO_NOT_NOTIFY else if (RemoteConfig.internalUser) NotificationSetting.resolve(replyNotificationSettingValue, SignalStore.settings.allowRepliesWhileMuted) else mentionSetting
+    get() = if (groupIdValue == null) NotificationSetting.DO_NOT_NOTIFY else NotificationSetting.resolve(replyNotificationSettingValue, SignalStore.settings.allowRepliesWhileMuted)
 
   /** Whether this conversation's unread content should be included in the periodic unread reminder */
   val unreadReminderSetting: NotificationSetting
@@ -555,7 +560,8 @@ class Recipient(
     return getGroupName(context).isNotNullOrBlank() ||
       nickname.toString().isNotNullOrBlank() ||
       systemContactName.isNotNullOrBlank() ||
-      profileName.toString().isNotNullOrBlank()
+      profileName.toString().isNotNullOrBlank() ||
+      sharedName.toString().isNotNullOrBlank()
   }
 
   fun isMatch(query: String): Boolean {
@@ -571,6 +577,8 @@ class Recipient(
       systemProfileName.givenName,
       profileName.toString(),
       profileName.givenName,
+      sharedName.toString(),
+      sharedName.givenName,
       username.orElse("")
     ).firstOrNull { it.isNotNullOrBlank() }?.lowercase()
 
@@ -591,12 +599,28 @@ class Recipient(
     return BidiUtil.isolateBidi(name)
   }
 
-  fun hasNonUsernameDisplayName(context: Context): Boolean {
-    return getNameFromLocalData(context).isNotNullOrBlank()
+  /** The first name we have for this person, ranking our own nickname for them below their real names. */
+  val sharedContactName: ProfileName?
+    get() = listOf(systemProfileName, profileName, sharedName, nickname).firstOrNull { !it.isEmpty }
+
+  val hasUsernameOrSharedName: Boolean
+    get() = username.isPresent || !sharedName.isEmpty
+
+  /** Excludes shared name and username. */
+  fun hasPersistentDisplayName(context: Context): Boolean {
+    return getNameFromLocalData(context, includeSharedName = false).isNotNullOrBlank()
+  }
+
+  /** Excludes the e164 and email, which a shared name outranks for display. */
+  fun hasDisplayNameOutrankingSharedName(): Boolean {
+    return nickname.toString().isNotBlank() ||
+      systemContactName.isNotNullOrBlank() ||
+      systemProfileName.toString().isNotBlank() ||
+      profileName.toString().isNotBlank()
   }
 
   /** A full-length display name for this user, ignoring the username. */
-  private fun getNameFromLocalData(context: Context): String? {
+  private fun getNameFromLocalData(context: Context, includeSharedName: Boolean = true): String? {
     var name = getGroupName(context)
 
     if (name.isNullOrBlank()) {
@@ -609,6 +633,10 @@ class Recipient(
 
     if (name.isBlank()) {
       name = profileName.toString()
+    }
+
+    if (name.isBlank() && includeSharedName) {
+      name = sharedName.toString()
     }
 
     if (name.isBlank() && e164Value.isNotNullOrBlank()) {
@@ -667,6 +695,8 @@ class Recipient(
       systemProfileName.toString(),
       profileName.givenName,
       profileName.toString(),
+      sharedName.givenName,
+      sharedName.toString(),
       username.orElse(null),
       getDisplayName(context)
     ).firstOrNull { it.isNotNullOrBlank() }
@@ -744,6 +774,8 @@ class Recipient(
       FallbackAvatar.forTextOrDefault(systemContactName, avatarColor)
     } else if (!profileName.isEmpty) {
       FallbackAvatar.forTextOrDefault(profileName.toString(), avatarColor)
+    } else if (!sharedName.isEmpty) {
+      FallbackAvatar.forTextOrDefault(sharedName.toString(), avatarColor)
     } else {
       FallbackAvatar.Resource.Person(avatarColor)
     }
@@ -902,6 +934,7 @@ class Recipient(
       phoneNumberSharing == other.phoneNumberSharing &&
       nickname == other.nickname &&
       note == other.note &&
+      sharedName == other.sharedName &&
       keyTransparencyData.contentEquals(other.keyTransparencyData)
   }
 
@@ -1026,7 +1059,7 @@ class Recipient(
         throw AssertionError()
       }
 
-      val recipientId = RecipientId.from(SignalServiceAddress(serviceId, e164))
+      val recipientId = RecipientIds.from(SignalServiceAddress(serviceId, e164))
       val resolved = resolved(recipientId)
 
       if (resolved.id != recipientId) {
@@ -1117,12 +1150,12 @@ class Recipient(
     @JvmStatic
     @WorkerThread
     fun externalPossiblyMigratedGroup(groupId: GroupId): Recipient {
-      val id = RecipientId.from(groupId)
+      val id = RecipientIds.from(groupId)
       return try {
         resolved(id)
       } catch (ex: MissingRecipientException) {
         Log.w(TAG, "Could not find recipient ($id) for group $groupId. Clearing RecipientId cache and trying again.", ex)
-        RecipientId.clearCache()
+        RecipientIds.clearCache()
         resolved(SignalDatabase.recipients.getOrInsertFromPossiblyMigratedGroupId(groupId))
       }
     }

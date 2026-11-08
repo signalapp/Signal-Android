@@ -365,6 +365,24 @@ final class VideoTrackConverter {
         }
     }
 
+    /**
+     * Forces the release of the codecs, which can help if they ever get wedged.
+     */
+    void forceRelease() {
+        Log.w(TAG, "Forcibly releasing video codecs");
+        try {
+            mVideoEncoder.release();
+        } catch (Exception e) {
+            Log.w(TAG, "error while force releasing mVideoEncoder", e);
+        }
+        try {
+            mVideoDecoder.release();
+        } catch (Exception e) {
+            Log.w(TAG, "error while force releasing mVideoDecoder", e);
+        }
+        Log.w(TAG, "Force release complete");
+    }
+
     void release() throws Exception {
         Exception exception = null;
         try {
@@ -675,8 +693,7 @@ final class VideoTrackConverter {
      */
     private static boolean isToneMapEffective(final @NonNull MediaCodec decoder, final @NonNull String codecName) {
         // Software codecs never perform HDR→SDR tone-mapping.
-        String lower = codecName.toLowerCase(java.util.Locale.ROOT);
-        if (lower.startsWith("omx.google.") || lower.startsWith("c2.android.")) {
+        if (MediaCodecCompat.isSoftwareCodec(codecName)) {
             Log.w(TAG, "Video decoder: software codec " + codecName + " cannot perform HDR tone-mapping");
             return false;
         }

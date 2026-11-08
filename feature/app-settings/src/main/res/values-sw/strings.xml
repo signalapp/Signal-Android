@@ -45,155 +45,1132 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Data za akaunti yako</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Maelezo ya Kuingia Signal</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Akaunti na urejeshaji</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">Ufunguo %1$d</item>
-        <item quantity="other">Funguo %1$d</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Maelezo yako ya Kuingia Signal yanatumika kurudisha na kurejesha akaunti yako. Hifadhi fungo hizi kwa njia salama katika kidhibiti cha manenosiri unachokiamini.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal Login yako inatumika kurudisha na kurejesha akaunti yako. Hifadhi funguo hizi kwa njia salama katika kidhibiti cha manenosiri unachokiamini.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Uthibitishaji wa hatua mbili</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Weka mipangilio</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">Programu ya kithibitishaji</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Tumia aina ya pili ya uthibitishaji ili kulinda akaunti yako unapotumia Maelekezo yako ya Kuingia Signal kwenye kifaa kipya.</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Code za uthibitishaji wa mara moja</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Passkey</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Tumia alama ya kidole, uso au kipengele cha kufunga skrini</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Passkey</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Njia ya uthibitishaji wa hatua mbili</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Ameweka %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Isiyojulikana</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Fungua chaguo zako za uthibitishaji wa hatua mbili</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Badilisha jina</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Ondoa</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Ungependa kuondoa programu ya uthibitishaji?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Hutaweza kutumia programu hii kwa codes za uthibitishaji wa mara moja utakapoingia katika akaunti.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Ondoa ufunguo wa siri?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Hutaweza kutumia ufunguo huu ukiingia katika akaunti.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Ondoa njia ya uthibitishaji wa hatua mbili?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Hutaweza kutumia njia hii ukiwa unaingia katika akaunti.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Umeondoa njia ya uthibitishaji wa hatua mbili</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Imeshindwa kuondoa njia ya uthibitishaji wa hatua mbili. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Umeondoa ufunguo wa siri</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Imeshindwa kuondoa ufunguo wa siri. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Weka kidhibiti cha manenosiri kinachotumia funguo za siri kwenye kifaa hiki, kisha jaribu again.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Imeshindwa kubuni ufunguo wa siri. Jaribu tena.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Fungua ili uweke njia ya uthibitishaji wa hatua mbili</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Ili uweke njia hii, thibitisha kuwa ni wewe</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Fungua ili uondoe mbinu ya hatua mbili</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Ili uondoe mbinu hii, thibitisha kuwa ni wewe</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Fungua ili utazame maelezo ya Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Ili kutazama maelezo yako ya Signal Login, thibitisha kuwa ni wewe</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Fungua ili uthibitishe kuwa ni wewe</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Ili kufuta akaunti yako, thibitisha kuwa ni wewe</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Uthibitishaji unahitajika</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Haiwezi kuweka programu ya uthibitishaji</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Huwezi kuweka zaidi ya programu za uthibitishaji %1$d. Jaribu kuondoa moja kwanza.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Huwezi kuweka zaidi ya njia %1$d za uthibitishaji wa hatua mbili. Jaribu kuondoa njia moja kwanza.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Imeshindwa kupakia mbinu zako za uthibitishaji wa hatua mbili. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Programu ya uthibitishaji imeondolewa</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Imeshindwa kuondoa programu za uthibitishaji. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Tumia aina ya pili ya uthibitishaji ili kulinda akaunti yako unapotumia Signal Login yako kwenye kifaa kipya.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Jifunze zaidi</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Data za akaunti yako</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Hamisha ripoti ya data zako za akaunti ya Signal. Ripoti hii haijumuishi jumbe au media zozote. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Jifunze zaidi</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Hamisha ripoti</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Hamisha kama TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Faili la maandishi yaliyo rahisi-kusoma</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Hamisha kama JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Faili linaloweza kusomwa na mashine</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Ghairi</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">Sawa</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Imeshindwa kutengeneza ripoti</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Hamisha data?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Shiriki data za akaunti yako ya Signal na watu au programu unazoziamini.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Hamisha</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Inatengeneza ripoti…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Ripoti yako inatengenezwa muda tu inapohamishwa na haihifadhiwi na Signal kwenye kifaa chako.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Weka mipangilio yako ya programu ya uthibitishaji</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Fuata hatua hizi ili uweke programu yako ya kithibitishaji.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Fuata hatua hizi ili uweke programu yako ya kithibitishaji.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Jifunze zaidi</string>
+    <string name="TotpSetupScreen__learn_more">Jifunze zaidi</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Hatua ya 1</string>
+    <string name="TotpSetupScreen__step_1">Hatua ya 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Weka programu ya kithibitishaji kwenye kifaa chako.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Weka programu ya kithibitishaji kwenye kifaa chako.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Hatua ya 2</string>
+    <string name="TotpSetupScreen__step_2">Hatua ya 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Fungua programu yako ya kithibitishaji kwa kugusa kitufe hapo chini ili uweke akaunti yako ya Signal.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Fungua programu yako ya kithibitishaji kwa kugusa kitufe hapo chini ili uweke akaunti yako ya Signal.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Fungua</string>
+    <string name="TotpSetupScreen__open">Fungua</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Au unaweza kunakili ufunguo huu ili uweke mwenyewe mipangilio.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">Au unaweza kunakili ufunguo huu ili uweke mwenyewe mipangilio.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Nakili</string>
+    <string name="TotpSetupScreen__copy">Nakili</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Imenakiliwa kwenye bodi ya kunakili</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Imenakiliwa kwenye bodi ya kunakili</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">Programu ya kithibitishaji haijapatikana</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Programu ya kithibitishaji haijapatikana</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Huwezi kuweka zaidi ya programu za uthibitishaji %1$d. Jaribu kuondoa moja kwanza.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Imeshindwa kufikia Signal. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Hatua ya 3</string>
+    <string name="TotpSetupScreen__step_3">Hatua ya 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Nakili code iliyotayarishwa kisha rudi hapa ili uendelee.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Nakili code iliyotayarishwa kisha rudi hapa ili uendelee.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Endelea</string>
+    <string name="TotpSetupScreen__continue">Endelea</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">Jifunze zaidi</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">Passkeys</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Ukiwa na passkey, unaweza kuweka mbinu ya pili iliyo salama ya uthibitishaji wa akaunti yako. Passkeys hutumia biometriki ya kifaa chako na ufunguo wa usalama wa FIDO2.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">Jifunze zaidi</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Ipatie passkey jina la utani ili uweze kuutambua</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Tumia biometriki ya kifaa chako na ufunguo wa usalama wa FIDO2 kuhifadhi passkey</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Weka au ondoa passkeys wakati wowote.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">Umemwongeza \"%1$s\"</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Rename</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">Ondoa</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">Weka passkey</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">Imeshindwa kuweka ufunguo wa siri</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Huwezi kuweka zaidi ya njia %1$d za uthibitishaji wa hatua mbili. Jaribu kuondoa njia moja kwanza.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Weka code yako</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Weka code yako</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Weka code ya tarakimu 6 kutoka kwenye programu yako ya kithibitishaji.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Msimbo</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Weka code ya tarakimu 6 kutoka kwenye programu yako ya kithibitishaji.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Imekamilika</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">Programu ya kithibitishaji</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">Jifunze zaidi</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">Umemwongeza \"%1$s\"</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Rename</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">Ondoa</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">Ifuatayo</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Code si sahihi. Weka code inayoonekana kwenye programu yako ya uthibitishaji sasa.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Imeshindwa kufikia Signal. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Choose a name</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Kithibitishaji</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Chagua jina</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Chagua jina la kipekee kwa programu hii ya uthibitishaji.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Chagua jina la kipekee kwa programu hii ya uthibitishaji ikusaidie kuitambua baadae.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Chagua jina la kipekee la njia hii ya uthibitishaji wa hatua mbili.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Chagua jina la kipekee la njia hii ya uthibitishaji wa hatua mbili ili likusaidie kuitambua baadae.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Chagua jina la kipekee la ufunguo huu wa siri.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Chagua jina la kipekee la ufunguo huu wa siri likusaidie kuitambua baadae.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">Jina</string>
+    <string name="TwoFactorNameEntryScreen__name">Jina</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">Ifuatayo</string>
+    <string name="TwoFactorNameEntryScreen__next">Ifuatayo</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Umeweka mipangilio ya programu ya uthibitishaji</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Umebadili jina la programu ya uthibitishaji</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Umeweka ufunguo wa siri</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Umebadili jina la ufunguo wa siri</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Umeweka njia ya uthibitishaji wa hatua mbili</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Umebadili jina la njia ya uthibitishaji wa hatua mbili</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Imeshindwa kuhifadhi jina. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Kufuta akaunti yako kutasababisha:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Weka nambari yako ya simu</string>
+    <string name="DeleteAccountFragment__delete_account">Futa akaunti</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Futa maelezo ya akaunti yako na picha ya wasifu</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Futa jumbe zako zote</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Futa %1$s katika akaunti yako ya malipo</string>
+    <string name="DeleteAccountFragment__no_country_code">Hakuna nambari ya kuthibitisha ya nchi</string>
+    <string name="DeleteAccountFragment__no_number">Hakuna nambari iliyochaguliwa</string>
+    <string name="DeleteAccountFragment__the_phone_number">Nambari ya simu uliyoweka hailingani na iliyo katika akaunti yako.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Una uhakika ungetaka kufuta akaunti yako?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hatua hii itafuta akaunti yako ya Signal na kuweka upya programu. Programu itafungwa baada ya mchakato huu kukamilika.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Imeshindikana kufuta data ya ndani ya kifaa. Unaweza kuifuta wewe mwenyewe katika mipangilio ya matumizi ya mfumo.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Zindua Mipangilio ya Programu</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Unaondolewa kwa vikundi…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Akaunti inafutwa…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Kughairisha usajili wako…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Kutegemea nambari ya vikundi ulivyomo, hii inaweza kuchukua dakika chache</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Kufuta data ya mtumiaji na kupanga upya programu</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Akaunti Haijafutwa</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Kulikuwa na tatizo kukamilisha mchakato wa kufuta. Angalia muunganisho wa mtandao wako kisha ujaribu tena.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Kufuta akaunti yako iliyo na jina la mtumiaji la \"%1$s\"kuta:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Futa maelezo ya akaunti yako na picha ya wasifu ikiwa ni pamoja na jina lako la mtumiaji la \"%1$s\"</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Kitendo hiki hakitenduliwi</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Hii itafuta akaunti yako ya Signal iliyo na jina la mtumiaji la \"%1$s\" na kuweka upya mipangilio ya programu. Programu hii itafunga baada ya mchakato huu kukamilika.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Ndio, futa akaunti yangu</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Alika marafiki</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Shiriki</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Chagua nchi yako</string>
+    <string name="RegistrationActivity_phone_number_description">Nambari ya simu</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">Folda %1$d</item>
+        <item quantity="other">Folda %1$d</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Weka folda la gumzo</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Ongeza au hariri folda</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Imeshindwa kuthibitisha</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Folda la magumzo</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Hamisha historia ya gumzo</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Hamisha nakala ya JSON inayoweza kuchakatwa na kompyuta ya magumzo yako yote. Jumbe za kutoweka hazitahamishwa.</string>
+    <string name="ChatsSettingsFragment__keyboard">Kibodi</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Tuma kwa kubofya enter</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Vibandiko na GIFs zinazocheza kiotomatiki</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Vikiwashwa, vibandiko na GIFs vitacheza kiotomatiki</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Fungua ili uhamishe historia ya gumzo</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Unapendelea picha za wawasiliani kutoka kwenye kitabu chako cha anwani kama kinapatikana</string>
+    <string name="preferences__generate_link_previews">Onyesha uhakiki wa viungo</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Magumzo yaliyonyamazishwa yamehifadhiwa na yatabaki yamehifadhiwa pale arafa mpya itakapoingia.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Weka Magumzo Yaliyonyamazishwa Kwenye Hifadhi</string>
+    <string name="preferences__pref_use_address_book_photos">Unapendelea picha za vitabu za wawasiliani</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Chukua hakiki za viungo moja kwa moja kutoka kwenye tovuti kwa ujumbe unaotuma.</string>
+    <string name="preferences_advanced__use_system_emoji">Tumia emoji ya mfumo</string>
+    <string name="preferences_chats__chats">Gumzo</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">KUWA MAKINI</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">KUWA MAKINI!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Inasitisha uhamishaji…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Chagua folda katika hifadhi ya kifaa chako ambapo historia yako ya gumzo itarejeshwa.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Chagua folda</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Chagua folda</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">mahali unapohifadhi faili zako za gumzo zilizohamishwa na usimtumie mtu yeyote. Programu zingine zinaweza kuzifikia kulingana na ruhusa za kifaa chako.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Uhamishaji wa gumzo umekamilika</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Hamisha historia ya gumzo?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">USISHIRIKI faili hii na mtu yeyote. Historia yako ya gumzo itahifadhiwa kwenye kifaa chako na programu zingine zinaweza kuifikia kulingana na ruhusa za kifaa chako. Kuhamisha pamoja na picha na video kutasababisha faili kuwa kubwa zaidi.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Hamisha pamoja na picha na video</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Hamisha bila picha na video</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Inahamisha picha na video: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Inamalizia…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Inaanda kuhifadhi nakala…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Inachakata hifadhi nakala…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Inachakata jumbe…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Inachakata jumbe: %1$s kati ya %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Inapakia picha na video: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Sasisho za programu</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">Muonekano</string>
+    <string name="preferences__language">Lugha</string>
+    <string name="preferences__theme">mandhari</string>
+    <string name="preferences__system_default">Chaguo-msingi la mfumo</string>
+    <string name="preferences__light_theme">Mwanga</string>
+    <string name="preferences__dark_theme">Giza</string>
+    <string name="preferences__chat_color_and_wallpaper">Rangi ya gumzo na ya picha ya mandhari</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Ikoni ya programu</string>
+    <string name="preferences_chats__message_text_size">ukubwa wa maandishi ya ujumbe</string>
+    <string name="arrays__small">Ndogo</string>
+    <string name="arrays__normal">Kawaida</string>
+    <string name="arrays__large">Kubwa</string>
+    <string name="arrays__extra_large">Kubwa zaidi</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Ukubwa wa sehemu ya viungo muhimu</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Kawaida</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Ndogo</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">Programu itazima kisha ianze upya ili uweze kutumia mipangilio mipya ya lugha.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Nambari ya simu</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Anayeweza kuona nambari yangu</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Nambari yako ya simu itaonekana na watu wote na vikundi unavyowatumia ujumbe.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Nambari yako ya simu haitaonekana na yeyote isipokuwa tu kama wameihifadhi kwenye orodha ya wawasiliani kwenye simu zao.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Nambari yako ya simu haitaonekana na yeyote.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Yule anayeweza kunipata kupitia nambari yangu</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Mtu yeyote mwenye nambari yako ya simu ataona kuwa upo Signal na anaweza kuanza gumzo na wewe.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Hakuna atakayeweza kuona kuwa upo Signal isipokuwa utakapowatumia ujumbe au tayari una gumzo nao.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Ili kubadili mpangilio huu, badili Nani anayeona nambari yangu kuwa Hakuna Yeyote."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Una uhakika?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Mipangilio ya \"Nani anayeweza kunipata kupitia nambari\" kwenda \"Hakuna\" itafanya iwe ngumu kwa watu kukupata kwenye Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Ghairi</string>
+    <string name="PhoneNumberPrivacy_everyone">Kila mtu</string>
+    <string name="PhoneNumberPrivacy_nobody">Hakuna mtu</string>
+    <string name="arrays__images">picha</string>
+    <string name="arrays__audio">Sauti</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Nyaraka</string>
+    <string name="preferences__data_and_storage">Data na hifadhi</string>
+    <string name="preferences_chats__when_using_mobile_data">Wakati unatumia mtandao wa simu</string>
+    <string name="preferences_chats__when_using_wifi">Wakati unatumia WiFi</string>
+    <string name="preferences_chats__when_roaming">Wakati unarandaranda</string>
+    <string name="preferences_chats__media_auto_download">Media kupakua kiotomatiki</string>
+    <string name="preferences_data_and_storage__manage_storage">Dhibiti hifadhi</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Tumia kiasi kidogo cha data kupiga simu</string>
+    <string name="preferences_data_and_storage__never">Kamwe</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi na mtandao wa simu</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Mtandao wa simu tu</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Kutumia kiasi kidogo cha data kunaweza kuboresha mazungumzo ya simu katika mitandao isiyo thabiti.</string>
+    <string name="preferences_proxy">Kipengele mbadala</string>
+    <string name="preferences_use_proxy">Tumia kipengele mbadala</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Ubora wa Media</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Inahesabu…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Ubora wa media iliyotumwa</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Kutuma media za ubora wa juu kutatumia data zaidi.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Jumbe za sauti na vibandiko (chini ya %1$s) huwa zinapakuliwa kiotomatiki.</string>
+    <string name="DataAndStorageSettingsFragment__calls">Simu</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Endelea kuwasiliana chinichini</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Kuendelea kuwasiliana chinichini huenda ikasababisha ongezeko la matumizi ya chaji. Hii si muhimu kwa vifaa vingi. Washa tu ikiwa unapitia hitilafu za arifa.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Washa</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Juu</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Kiwango</string>
+    <string name="preferences_app_protection__screen_lock">Kifunga skrini</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Tumia kipengele cha screen lock</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Mipangilio ya ufungaji ya kifaa chako cha Android itahitajika ili kufungua Signal unapoondoka au kuhama programu. Inapofungwa, hakikisho ya arifa haitaonyesha maudhui ya ujumbe.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Washa screen lock</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">Baada ya dakika 1</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">Baada ya dakika 5</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">Baada ya dakika 30</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Muda maalum</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Tumia screen lock ya Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Zima screen lock ya Signal</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">Msaada</string>
+    <string name="HelpSettingsFragment__support_center">Kituo cha usaidizi</string>
+    <string name="HelpSettingsFragment__contact_us">Wasiliana nasi</string>
+    <string name="HelpSettingsFragment__version">Toleo</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Imenakiliwa kwenye bodi ya kunakili</string>
+    <string name="HelpSettingsFragment__debug_log">Faili la rekebisho</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Leseni</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vigezo &amp;amp: Sera ya Faragha</string>
+    <string name="HelpFragment__copyright_signal_messenger">Signal Messenger yenye Hakimiliki</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Imepewa leseni chini ya GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal ni shirika lilisilo la faida</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Ikoni na majina ya programu yanaonekana kwenye skrini ya kwanza na mfuko wa programu.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Arifa mara zote zitaonyesha ikoni na jina la Signal kama chaguomsingi.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Picha kuonyesha mahali ikoni ya programu mbadala itaonekana.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Hali ya hewa</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Maelezo</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Habari</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Mawimbi</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">Sawa</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Ghairi</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Badili ikoni na jina la programu kuwa \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Signal itahitaji kuzimwa ili kubadili ikoni na jina la programu. Arifa mara zote zitaonyesha ikoni na jina la Signal kama chaguomsingi.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Chagua ikoni na jina la programu, ambavyo vitaonekana kwenye skrini ya kwanza na mfuko wa programu. Arifa mara zote zitaonyesha ikoni na jina la Signal kama chaguomsingi. Jifunze zaidi</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Jifunze zaidi</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Kiungo hakijawekwa</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Rangi</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">Imekamilika</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">Wasifu umetengenezwa</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">Imekamilika</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Unaweza kuzima au kuwasha wasifu wako kupitia kwa menyu iliyopo kwenye orodha ya gumzo.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Ongeza ratiba kwenye mipangilio ili wasifu wako uwe wa kiotomatiki.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Wasifu wako utawashwa na kuzimwa kiotomatiki kulingana na ratiba yako.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bado haujaweka neno la siri!</string>
+    <string name="ApplicationPreferencesActivity_disable">Lemaza</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Lemaza ufafanuzi?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hii itafungua kabisa Signal na arifu za ujumbe.</string>
+    <string name="PrivacySettingsFragment__app_security">Usalama wa programu</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zuia screenshots katika orodha ya rekodi na ndani ya programu</string>
+    <string name="PrivacySettingsFragment__blocked">Zuiliwa</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">Ili kutumia Payment Lock, ni lazima kwanza uwezeshe screen lock au utambulisho kwa alama za vidole kwenye mipangilio yako ya simu.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">Imeshindwa kuwezesha lock ya malipo</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">Muwasiliani au kikundi %1$d</item>
+        <item quantity="other">Wawasiliani au vikundi %1$d</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Kipima muda chaguo-msingi cha gumzo mpya</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Imeshindwa kwenda kwenye mipangilio ya mfumo</string>
+    <string name="PrivacySettingsFragment__messaging">Kutuma ujumbe</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Inahitaji Android screen lock au alama za vidole ili kuhamisha fedha.</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Weka kipima muda cha ujumbe unaotoweka kwa gumzo zote mpya zilizoanzishwa na wewe.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Ujumbe na simu za Signal, elekeza simu kila wakati, na kutumia huduma ya kuficha ujumbe</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Zima</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Funga Signal kiotomatiki baada ya muda fulani usio na utendaji</string>
+    <string name="preferences__change_passphrase">Badili Nenosiri</string>
+    <string name="preferences__change_your_passphrase">Badili Nenosiri lako</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">Wezesha Nenosiri la kufunga skriini</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ikiwa jumbe zilizosomwa zimemalemezwa, hutaweza kuona jumbe zilizosomwa kutoka kwa wengine</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ikiwa viashiria vya kucharaza vimelemazwa, hutaweza kuona viashiria vya kucharaza kutoka kwa wengine.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">Kipindi cha uishaji muda</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">Nenosiri la uishaji muda</string>
+    <string name="preferences__incognito_keyboard">Baobonye isiyotambulika</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Funga skriini na arifa pamoja na Nenosiri</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">Payment lock</string>
+    <string name="preferences__read_receipts">Jumbe zilizosomwa</string>
+    <string name="preferences__request_keyboard_to_disable">Omba kiibodi ili uzime kipengele cha kujifunza inavyokufaa.</string>
+    <string name="preferences__screen_security">usalama wa skrini</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">Mpangilio huu sio hakikisho, na kibodi yako inaweza kuipuuza.</string>
+    <string name="preferences__typing_indicators">Viashiria vya kucharaza</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Chagua nani anayeweza kuona nambari yako ya simu na kuwasiliana nawe kwenye Signal kwa kuitumia.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">Malipo</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Ili utumie screen lock weka PIN, muundo au nenosiri kwenye kifaa hiki.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">Faragha</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">Jumbe zinazotoweka</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">ya juu</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">Washa</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">Sio kwa Sasa</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">Jifunze zaidi</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Nafasi ya hifadhi nakala imejaa</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Imenakili kitambulisho cha uhifadhi nakala kwenye clipboard</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Imenakili kitambulisho cha mfadhili kwenye clipboard</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Imeshindwa kumaliza nakala</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">Waalike marafiki zako</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Sasisha usajili wako wa Hifadhi Nakala ya Signal iliyo Salama</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">Faragha</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">Mipangilio</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">Rudi nyuma</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Imeshindwa kuanzisha usajili wako wa nakala</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Changia Signal</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">Mapendeleo ya Ndani</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">Vifaa vilivyounganishwa</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">Arifa</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">Malipo</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">Stori</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">Nakalahifadhi</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Ukubwa wa sehemu ya viungo muhimu</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Kawaida</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Ndogo</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">Rudi nyuma</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">Picha</string>
+    <string name="preferences_storage__videos">Video</string>
+    <string name="preferences_storage__files">Faili</string>
+    <string name="preferences_storage__audio">Sauti</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Jumbe</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Kibandiko</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">ingine</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Inahesabu…</string>
+    <string name="preferences_storage__review_storage">Pitia tena hifadhi</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">Uthibitishaji wa hatua mbili</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Chagua njia hapa chini ili uthibitishe akaunti yako.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">Passkey</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Gusa ili utumie taarifa za kibayometriki za kifaa chako au passkey ya FIDO2</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">Programu ya kithibitishaji</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Weka code ya mara moja iliyotayarishwa na programu yako ya uthibitishaji.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">Ili uendelee weka code ya tarakimu 6 kutoka kwenye programu yako ya kithibitishaji.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">Ghairi</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">Code si sahihi. Weka code inayoonekana kwenye programu yako ya uthibitishaji sasa.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Imeshindwa kufikia Signal. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Hitilafu fulani imetokea kwenye ufunguo wako wa siri. Tafadhali jaribu tena au chagua njia nyingine.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">jina lako</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">Jina la kwanza</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">Jina la mwisho (la hiari)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">Hifadhi</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Haijahifadhi kutokana na hitilafu ya mtandao. Jaribu tena baadaye.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">Hifadhi ujumbe</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">Daima</string>
+    <string name="preferences_storage__one_year">Mwaka 1</string>
+    <string name="preferences_storage__six_months">Miezi 6</string>
+    <string name="preferences_storage__thirty_days">Siku 30</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Jumbe za zamani kuliko muda uliochaguliwa zitafutwa kabisa.</string>
+    <string name="preferences_storage__delete_older_messages">Ungependa kufuta jumbe za awali?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Hii itafuta kabisa historia yote ya jumbe na media za zaidi ya %1$s kwenye kifaa chako.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">Futa</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">Kikomo cha urefu wa gumzo</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">Ujumbe %1$s</item>
+        <item quantity="other">Jumbe %1$s</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">Hakuna</string>
+    <string name="preferences_storage__custom">Maalum</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Jumbe zinazozidi urefu uliochaguliwa zitafutwa kabisa.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Hii itapunguza kabisa magumzo yote na kubakisha jumbe za hivi karibuni.</item>
+        <item quantity="other">Hii itapunguza kabisa magumzo yote na kubakisha jumbe %1$s za hivi karibuni.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">Kuhusu</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Andika maneno machache kujihusu…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">Ongea bila vikwazo</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">Imesimbwa</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">Kuwa mkarimu</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">Mpenda kahawa</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">Ninapatikana kupiga gumzo</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">Nimeenda mapumziko kidogo</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">Napangia mambo mapya</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">Hifadhi</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">Futa</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">Chagua emoji</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Haijahifadhi kutokana na hitilafu ya mtandao. Jaribu tena baadaye.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">Chagua jina lako la mtumiaji</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">Jina la mtumiaji</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">Futa</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">Imekumbana na hitilafu ya mtandao.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Umefanya majaribio mengi, tafadhali jaribu tena baadae.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">Jina hili la mtumiaji limechukuliwa.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">Majina ya watumiaji yanaweza kujumuisha tu herufi za A hadi Z, nambari za 0 hadi 9, na vistari-chini.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Majina ya watumiaji hayawezi kuanza kwa nambari.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">Jina la mtumiaji si halali.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Majina ya watumiaji lazima yawe kati ya vibambo %1$dna %2$d.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">Watu wanaweza kukutumia ujumbe kupitia jina lako la mtumiaji la hiari badala ya namba ya simu. Majina ya watumiaji huwa yana seti ya tarakimu. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Jina hili la mtumiaji halipo, jaribu nambari nyingine.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Jina la mtumiaji lisilo sahihi, weka tarakimu zisizopungua %1$d.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Jina la mtumiaji lisilo sahihi, weka tarakimu zisizozidi %1$d.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Nambari hii haiwezi kuwa 00. Ingiza tarakimu kati ya 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Nambari zenye tarakimu zaidi ya mbili haziwezi kuanza na 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Kurejesha jina lako la mtumiaji kutaweka upya mipangilio ya code ya QR na kiungo kilichopo. Una uhakika?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Kubadili jina lako la mtumiaji kutaweka upya mipangilio ya msimbo na kiungo cha QR kilichopo. Una uhakika?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Endelea</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">Hifadhi</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">Jifunze zaidi</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Wasifu wako na mabadiliko yake yataonwa na watu unaowatumia jumbe, wawasiliani na vikundi.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Sasisha Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Toleo hili la Signal limekwisha muda wake. Sasisha sasa ili kuendelea kutumia Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Sasisha</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Kifaa hakijasajiliwa</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Kifaa hiki hakijasajiliwa tena. Sajili upya ili kufanya mabadiliko kwenye akaunti yako.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Sajili tena</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Haijahifadhi kutokana na hitilafu ya mtandao. Jaribu tena baadaye.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Imeshindikana kufuta jina la mtumiaji. Jaribu tena baadaye.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Futa jina la mtumiaji?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Hii italiondoa jina lako la mtumiaji na kuzima msimbo na kiungo chako cha QR. %1$s itapatikana ili wengine waidai. Una uhakika?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">Hariri picha</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Shiriki jina lako la mtumiaji</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Waruhusu wengine waanzishe gumzo nawe kwa kushiriki msimbo au kiungo chako cha kipekee cha QR.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">Jina la mtumiaji limeundwa</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Jina la mtumiaji limefutwa</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Watu wanaweza kukutumia ujumbe kupitia jina lako la mtumiaji la hiari badala ya namba ya simu. Majina ya watumiaji yana QR code ya kipekee na unaweza kuwatumia marafiki.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Jina lako la mtumiaji, code yako ya QR na kiungo havionekani kwenye wasifu wako. Shiriki jina lako la mtumiaji na watu unaowaamini tu.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">Kuhusu</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">Umbo halijawekwa</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">Msimbo au kiungo cha QR</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">Jina la wasifu</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">Jina la mtumiaji</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Hariri jina la mtumiaji</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Futa jina la mtumiaji</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">Wasifa</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">Weka umbo</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">Beji</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">Futa</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">Funga</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Pata beji za wasifu wako kwa kuiunga mkono Signal.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ni bila faida, bila matangazo au wawekezaji, inawezeshwa na watu kama wewe.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">Kuwa Mfadhili</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">Beji</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">Beji zangu</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Onyesha beji kwenye wasifu</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">Beji inayoangaziwa</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Imeshindwa kusasisha wasifu wako</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Beji inayoangaziwa</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Chagua beji</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">Hifadhi</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Imeshindwa kusasisha wasifu</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Yeyote aliye na kiungo hiki anaweza kuona jina lako la mtumiaji na kuanza mazungumzo nawe. Ishiriki tu na watu unaowaamini.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Nakili kiungo</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Shiriki</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">Msimbo</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">Skani</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">Kiungo kimenakiliwa</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">Jina la mtumiaji limenakiliwa</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Weka upya msimbo wa QR?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Ukiweka upya mipangilio ya msimbo wa QR, msimbo wa QR uliopo na kiungo havitafanya kazi tena.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Weka upya mipangilio</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Hauna ufikiaji wa mtandao. Kiungo chako hakikuwekwa upya. Jaribu tena baadaye.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Hitilafu ya kimtandao imetokea wakati wa kuweka upya kiungo chako. Jaribu tena baadaye.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Hitilafu isiyotarajiwa imetokea tukijaribu kuweka upya mipangilio ya kiungo chako. Jaribu tena baadaye.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Code yako ya QR na kiungo imewekwa upya na code mpya ya QR na kiungo imeundwa.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">Shiriki msimbo wako wa QR na kiungo na watu unaowaamini pekee. Unaposhiriki wengine wataweza kuona jina lako la mtumiaji na kuanza gumzo nawe.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">Seti upya tena</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Kiungo</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">Shiriki</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">Rangi</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">Msimbo wa QR si sahihi.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Hitilafu ya mtandao imetokea. Tafadhali jaribu tena.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">Code ya QR haijapatikana</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Jaribu kuskani picha nyingine yenye code ya QR ya Signal.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">Mtumiaji mwenye jina la mtumiaji %1$s hapatikani.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">Skani msimbo wa QR uliopo kwenye kifaa cha mwasiliani wako.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">Mtumiaji huyu hajapatikana.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">Ili kuskani QR code, iruhusu Signal ifikie kamera.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">Ruhusu Ufikiaji</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">Signal inahitaji kufikia kamera ili kuskani QR codes</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">Hifadhi</string>
+    <string name="preferences_storage__storage_usage">Matumizi ya hifadhi</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Hifadhi ya Signal</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Boresha hifadhi ya Signal</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Picha na video ambazo hazijatumika zitahamishwa, lakini zinaweza kupakuliwa kutoka kwenye hifadhi nakala yako wakati wowote.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Kiwango cha gumzo</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Weka ukomo wa vifaa vilivyounganishwa</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Itakapowashwa, ukomo wa gumzo pia utafuta jumbe kutoka kwenye vifaa vyako vilivyounganishwa.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Futa historia ya ujumbe</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Futa historia ya jumbe?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Hii itafuta daima historia yote ya jumbe na media kwenye kifaa chako.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Hii itafuta kabisa historia ya jumbe na video kutoka kwenye kifaa hiki na vifaa vyovyote vilivyounganishwa.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Una uhakika ungetaka kufuta historia yote ya jumbe?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Historia yote ya jumbe itaondolewa kabisa. Kitendo hiki hakiwezi kutenguliwa.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Historia ya jumbe zote itaondolewa kwenye vifaa vyote. Kitendo hiki hakitenguliwi.</string>
+    <string name="preferences_storage__delete_all_now">Futa zote sasa</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Uboreshaji wa hifadhi unaweza tu kutumika kwa kiwango cha kulipia cha Hifadhi Nakala ya Signal iliyo Salama. Usajili wako wa nakala ya hifadhi bado unachakata na haujaanza kutumika. Tafadhali jaribu tena baadae.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Picha na video zitaondolewa kwenye hifadhi ya nakala ya kwenye kifaa chako</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Ukiwasha kipengele cha \"Boresha hifadhi ya Signal\" utahamisha picha na video za zamani kutoka kwenye kifaa chako. Unaweza kupakua tena wakati wowote. Pia itatoa picha na video za zamani kutoka kwenye hifadhi ya nakala ya kwenye kifaa chako.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Washa</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Piga simu au toa arifa pale simu inapopigwa wakati gumzo hili limezimwa sauti.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Piga simu au toa arifa simu inapopigwa katika gumzo lililozimwa sauti.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Toa taarifa unapotajwa wakati gumzo hili limezimwa.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Toa taarifa unapotajwa kwenye gumzo lililozimwa.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Toa taarifa mtu anapojibu jumbe zako wakati gumzo hili limezimwa.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Toa taarifa mtu anapojibu jumbe zako katika gumzo lililozimwa.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">Ikiwa imezimwa sauti</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">Simu</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">Kutajwa</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">Majibu</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Haiwezekani kufungua picker.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Ili kuruhusu arifa, Signal inahitaji ruhusa ili kuzionyesha.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Washa</string>
+    <string name="NotificationsSettingsFragment__calls">Simu</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Mwasiliano amejiunga na Signal</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Tengeneza wasifu ili kupata arifa kutoka kwa watu na vikundi unavyovichagua.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Onyesha arifa mwasiliani kwa simu yako akijiunga na Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Weka upya mipangilio ya arifa</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Ungependa kuweka upya mipangilio yote aria iwe chaguo kwa magumzo yote?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Weka upya mipangilio</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Weka upya mipangilio ya arifa iwe chaguomsingi, ikiwa ni pamoja na mipangilio maalum ya magumzo yako</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sauti</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Mlio wa simu haujulikani</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">Simu</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">Kutajwa</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">Arifa za Wasifu</string>
+    <string name="NotificationsSettingsScreen__notifications">Arifa</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">Majibu</string>
+    <string name="NotificationsSettingsScreen__silent">Kimya</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">Vikumbusho ambavyo havijasomwa</string>
+    <string name="arrays__default">Chaguo msingi</string>
+    <string name="arrays__high">Juu</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">Upeo</string>
+    <string name="arrays__name_and_message">Jina na ujumbe</string>
+    <string name="arrays__name_only">Jina tu</string>
+    <string name="arrays__no_name_or_message">Hakuna jina wala ujumbe</string>
+    <string name="preferences__blue">Buluu</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Arifa za simu</string>
+    <string name="preferences__change_sound_and_vibration">Badili sauti na mtetemo</string>
+    <string name="preferences__customize">Maalum</string>
+    <string name="preferences__cyan">Cyan</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Chaguo msingi</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Wezesha arifa</string>
+    <string name="preferences__fast">Haraka</string>
+    <string name="preferences__five_times">Mara tano</string>
+    <string name="preferences__green">Kijani</string>
+    <string name="preferences__led_color">Rangi za LED</string>
+    <string name="preferences__magenta">Magenta</string>
+    <string name="preferences__never">Kamwe</string>
+    <string name="preferences__normal">Kawaida</string>
+    <string name="preferences__one_time">Mara moja</string>
+    <string name="preferences__orange">Njano</string>
+    <string name="preferences__pref_led_blink_title">Mfano wa LED blink</string>
+    <string name="preferences__red">Nyekundu</string>
+    <string name="preferences__repeat_alerts">Rudia arifu</string>
+    <string name="preferences__slow">Polepole</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">Sauti</string>
+    <string name="preferences__ten_times">Mara kumi</string>
+    <string name="preferences__three_times">Mara tatu</string>
+    <string name="preferences__two_times">Mara mbili</string>
+    <string name="preferences__vibrate">Tetemeka</string>
+    <string name="preferences__white">Nyeupe</string>
+    <string name="preferences_notifications__in_chat_sounds">Sauti za gumzo</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Onyesha arifa za majibu ya jumbe unazotuma</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Mara moja moja toa arifa panapokuwa na jumbe ambazo hazijasomwa katika magumzo yaliyozimwa sauti</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">Kipaumbele</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Arifa za majibu</string>
+    <string name="preferences_notifications__ringtone">Mlio wa simu</string>
+    <string name="preferences_notifications__show">Onyesha</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Arifa za utatuzi</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">Ikiwa imezimwa sauti</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Ongeza</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Arifa zinazoruhusiwa</string>
 </resources>

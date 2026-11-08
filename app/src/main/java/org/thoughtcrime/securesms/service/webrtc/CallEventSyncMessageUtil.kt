@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.service.webrtc
 
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallEvent
 

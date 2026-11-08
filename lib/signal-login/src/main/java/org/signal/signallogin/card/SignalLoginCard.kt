@@ -44,9 +44,9 @@ import org.signal.signallogin.fonts.MonoTypeface
 import java.util.UUID
 
 /** Aspect ratio of the credential card artwork, so it scales with the available width. */
-private const val CARD_ASPECT_RATIO = 363f / 220f
+private const val CARD_ASPECT_RATIO = 360f / 220f
 
-private val CARD_MAX_WIDTH = 363.dp
+private val CARD_MAX_WIDTH = 360.dp
 
 /** Number of masking dots shown in front of the revealed suffix of each credential. */
 private const val MASK_DOT_COUNT = 4

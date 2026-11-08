@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.pin
 
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.signal.remoteconfig.RemoteConfig
 
 object Svr3Migration {
 

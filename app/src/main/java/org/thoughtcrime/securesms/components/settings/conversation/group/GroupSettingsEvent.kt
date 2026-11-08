@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.group
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.uicomponents.recentmediarail.RecentMediaRailAction
 import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
 import org.signal.uicomponents.recentmediarail.RecentMediaRailState
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.ConversationS
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallEntry
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.memberlabel.StyledMemberLabel
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Reminder that these events are logged, so don't include anything sensitive in the toString.

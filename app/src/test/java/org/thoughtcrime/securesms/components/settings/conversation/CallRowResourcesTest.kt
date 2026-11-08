@@ -7,9 +7,9 @@ package org.thoughtcrime.securesms.components.settings.conversation
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.CallTable
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class CallRowResourcesTest {
 

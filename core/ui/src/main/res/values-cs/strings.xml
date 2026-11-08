@@ -18,8 +18,108 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">Vyžadováno oprávnění</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">Změnit velikost panelů</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">Posunout rozdělovník</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Klepněte, abyste mohli pokračovat, a potvrďte zadáním zámku telefonu. Nezadávejte Signal PIN.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Pokračovat</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">Zavřít</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Přejděte nahoru</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">Přidat do Oblíbených</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">Odebrat z Oblíbených</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">Odebrat z Oblíbených?</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Bez nainstalovaného balíčku, odkazu nebo zprávy s touto nálepkou ji nebude možné poslat nebo znovu přidat do Oblíbených.</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">Odstranit</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">Nic</string>
+    <string name="preferences_off">Vyp.</string>
+    <string name="preferences_on">Zap.</string>
+    <string name="ExpireTimerSettingsFragment__set">Nastavit</string>
+    <string name="CustomExpireTimerSelectorView__seconds">vteřiny</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minuty</string>
+    <string name="CustomExpireTimerSelectorView__hours">hodiny</string>
+    <string name="CustomExpireTimerSelectorView__days">dny</string>
+    <string name="CustomExpireTimerSelectorView__weeks">týdny</string>
+    <!-- expiration -->
+    <string name="expiration_off">Vyp.</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="one">%1$d vteřina</item>
+        <item quantity="few">%1$d vteřiny</item>
+        <item quantity="many">%1$d vteřin</item>
+        <item quantity="other">%1$d vteřin</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$ds</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="few">%1$d minuty</item>
+        <item quantity="many">%1$d minut</item>
+        <item quantity="other">%1$d minut</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$dm</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">%1$d hodina</item>
+        <item quantity="few">%1$d hodiny</item>
+        <item quantity="many">%1$d hodin</item>
+        <item quantity="other">%1$d hodin</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$dh</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">%1$d den</item>
+        <item quantity="few">%1$d dny</item>
+        <item quantity="many">%1$d dnů</item>
+        <item quantity="other">%1$d dnů</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$dd</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">%1$d týden</item>
+        <item quantity="few">%1$d týdny</item>
+        <item quantity="many">%1$d týdnů</item>
+        <item quantity="other">%1$d týdnů</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$dt</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">Zjistit více</string>
+
+    <string name="SpanUtil__read_more">Číst dále</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">Přepnout na zadávání textu</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">Přepnout na hodiny</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">Odstranit %1$s</string>
 </resources>

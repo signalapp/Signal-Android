@@ -55,9 +55,9 @@ internal fun DrawModeColorBar(
     ) {
       Icon(
         imageVector = if (imageEditorController.mode == ImageController.Mode.DRAW) {
-          SignalIcons.BrushHighlighter.imageVector
+          SignalIcons.BrushPen.imageVector
         } else {
-          SignalIcons.Draw.imageVector
+          SignalIcons.BrushHighlighter.imageVector
         },
         contentDescription = stringResource(
           if (imageEditorController.mode == ImageController.Mode.DRAW) {

@@ -1,7 +1,5 @@
 package org.signal.registration.screens.shared
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +12,7 @@ import org.signal.registration.ContactSupportController
  */
 class ContactSupportViewModel(
   private val controller: ContactSupportController
-) : EventDrivenViewModel<ContactSupportEvents>(TAG) {
+) : EventDrivenViewModel<ContactSupportEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(ContactSupportViewModel::class)
@@ -38,11 +36,5 @@ class ContactSupportViewModel(
       Log.w(TAG, "Failed to upload a debug log. Continuing without one.")
     }
     _state.value = ContactSupportState(sendEmail = true, debugLogUrl = debugLogUrl)
-  }
-
-  class Factory(private val controller: ContactSupportController) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ContactSupportViewModel(controller)) as T
-    }
   }
 }

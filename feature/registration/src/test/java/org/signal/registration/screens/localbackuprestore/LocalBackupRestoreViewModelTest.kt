@@ -21,6 +21,7 @@ import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -80,7 +81,7 @@ class LocalBackupRestoreViewModelTest {
   ): LocalBackupRestoreViewModel {
     return LocalBackupRestoreViewModel(
       repository = mockRepository,
-      parentState = flowOf(parentState),
+      parentState = MutableStateFlow(parentState),
       parentEventEmitter = parentEventEmitter,
       isPreRegistration = isPreRegistration,
       resultBus = resultBus,
@@ -397,6 +398,28 @@ class LocalBackupRestoreViewModelTest {
 
     coVerify { mockRepository.persistRestoredBackupState("1234", null) }
     coVerify { mockRepository.setRestoreDecision(RestoreDecision.COMPLETED) }
+    coVerify { mockRepository.restoreAccountRecord(any()) }
+    assertThat(emittedParentEvents).contains(RegistrationFlowEvent.RegistrationComplete)
+  }
+
+  @Test
+  fun `restore without a PIN for a phone-numberless account completes registration, since it has no PIN`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(
+      isPreRegistration = false,
+      parentState = RegistrationFlowState(storageCapable = true, isPhoneNumberlessAccount = true)
+    )
+    val backupInfo = LocalBackupInfo(
+      type = LocalBackupInfo.BackupType.V1,
+      date = LocalDateTime.now(),
+      name = "backup.backup",
+      uri = mockk()
+    )
+    val initialState = LocalBackupRestoreState(backupInfo = backupInfo, selectedFolderUri = mockk())
+
+    every { mockRepository.restoreV1Backup(any(), any(), any()) } returns flowOf(LocalBackupRestoreProgress.Complete(restoredSvrPin = null, restoredProfileKey = null))
+
+    viewModel.applyEvent(initialState, LocalBackupRestoreEvents.PassphraseSubmitted("passphrase"), stateEmitter)
+
     coVerify { mockRepository.restoreAccountRecord(any()) }
     assertThat(emittedParentEvents).contains(RegistrationFlowEvent.RegistrationComplete)
   }

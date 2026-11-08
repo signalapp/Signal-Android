@@ -12,9 +12,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.visible
 

@@ -19,7 +19,9 @@ class StreamFactoryGifDecoder(
   private val streamGifDecoder: StreamGifDecoder
 ) : ResourceDecoder<InputStreamFactory, GifDrawable> {
 
-  override fun handles(source: InputStreamFactory, options: Options): Boolean = true
+  override fun handles(source: InputStreamFactory, options: Options): Boolean {
+    return source.create().use { streamGifDecoder.handles(it, options) }
+  }
 
   override fun decode(
     source: InputStreamFactory,

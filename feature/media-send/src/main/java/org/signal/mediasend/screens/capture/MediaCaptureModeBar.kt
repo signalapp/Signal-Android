@@ -55,9 +55,9 @@ import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.PhonePortraitNightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.mediasend.R
 import org.signal.mediasend.test.TestTags
 import kotlin.math.roundToInt
+import org.signal.camera.R as CameraR
 
 private val MODE_BAR_SHAPE = RoundedCornerShape(percent = 50)
 
@@ -109,7 +109,7 @@ internal fun MediaCaptureModeBar(
 
   Layout(
     content = {
-      Box(modifier = Modifier.background(color = colorResource(R.color.MediaSend_controls_color), shape = MODE_BAR_SHAPE))
+      Box(modifier = Modifier.background(color = colorResource(CameraR.color.CameraHud_control_background), shape = MODE_BAR_SHAPE))
 
       Box(
         modifier = Modifier

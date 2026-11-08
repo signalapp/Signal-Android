@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.individual
 
+import android.net.Uri
 import androidx.compose.ui.unit.IntRect
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -30,12 +31,13 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.core.models.badges.Badge
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsAction
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsKind
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsRepository
@@ -48,7 +50,6 @@ import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.GroupChangeResult
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.signal.core.util.Result as CoreResult
 
@@ -344,14 +345,17 @@ class IndividualSettingsViewModelTest {
   }
 
   @Test
-  fun `contact rows carry the recipient`() = runTest(testDispatcher) {
+  fun `contact rows carry the resolved contact uri and the recipient`() = runTest(testDispatcher) {
+    val contactUri = mockk<Uri>()
+    coEvery { repository.getSystemContactUri(any()) } returns contactUri
+
     val viewModel = createViewModel()
     val actions = collectActions(viewModel)
 
     viewModel.onEvent(IndividualSettingsEvent.ContactDetailsClicked)
     viewModel.onEvent(IndividualSettingsEvent.AddAsContactClicked)
 
-    assertEquals(ConversationSettingsAction.ViewContact::class, actions[0]::class)
+    assertEquals(ConversationSettingsAction.ViewContact(contactUri), actions[0])
     assertEquals(ConversationSettingsAction.AddContact::class, actions[1]::class)
   }
 

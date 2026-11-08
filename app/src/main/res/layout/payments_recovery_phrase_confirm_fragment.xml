@@ -18,6 +18,7 @@
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
     <ScrollView
+        android:id="@+id/payments_recovery_phrase_confirm_fragment_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">

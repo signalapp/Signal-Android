@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.signal.core.util.concurrent.LifecycleDisposable;
+import org.signal.uicomponents.zooming.ZoomingImageView;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public final class ImageMediaPreviewPageFragment extends MediaPreviewPageFragment {

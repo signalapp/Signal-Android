@@ -19,11 +19,9 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.logging.Scrubber;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.debuglogsviewer.DebugLogsViewer;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -83,6 +81,9 @@ public class SubmitDebugLogRepository {
     add(new LogSectionPin());
     if (Build.VERSION.SDK_INT >= 28) {
       add(new LogSectionPower());
+    }
+    if (Build.VERSION.SDK_INT >= 30) {
+      add(new LogSectionProcessExits());
     }
     add(new LogSectionBattery());
     add(new LogSectionNotifications());
@@ -320,12 +321,10 @@ public class SubmitDebugLogRepository {
 
   @WorkerThread
   private @NonNull String uploadContent(@NonNull String contentType, @NonNull RequestBody requestBody) throws IOException {
-    OkHttpClient client = new OkHttpClient.Builder()
-        .addInterceptor(new StandardUserAgentInterceptor())
-        .dns(SignalServiceNetworkAccess.DNS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(30, TimeUnit.SECONDS)
-        .build();
+    OkHttpClient client = AppDependencies.getOkHttpClient().newBuilder()
+                                             .readTimeout(30, TimeUnit.SECONDS)
+                                             .writeTimeout(30, TimeUnit.SECONDS)
+                                             .build();
 
     try (Response response = client.newCall(new Request.Builder().url(API_ENDPOINT).get().build()).execute()) {
       ResponseBody body = response.body();

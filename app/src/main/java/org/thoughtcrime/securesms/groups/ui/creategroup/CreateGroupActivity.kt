@@ -44,18 +44,18 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.SelectedContact
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.NavTarget
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.UserMessage
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity
 import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
-import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode
@@ -160,9 +160,8 @@ private fun CreateGroupScreenUi(
     stringResource(R.string.CreateGroupActivity__select_members)
   }
 
-  RecipientPickerScaffold(
+  Scaffolds.TitlePane(
     title = title,
-    forceSplitPane = uiState.forceSplitPane,
     onNavigateUpClick = callbacks::onBackPressed,
     topAppBarActions = {},
     snackbarHostState = remember { SnackbarHostState() },
@@ -285,7 +284,6 @@ private fun CreateGroupScreenPreview() {
   Previews.Preview {
     CreateGroupScreenUi(
       uiState = CreateGroupUiState(
-        forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
       callbacks = CreateGroupUiCallbacks.Empty

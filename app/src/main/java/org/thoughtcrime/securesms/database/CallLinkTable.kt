@@ -4,11 +4,15 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.delete
+import org.signal.core.database.insertInto
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.Serializer
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.delete
-import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleInt
@@ -19,9 +23,6 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.signal.ringrtc.CallLinkRootKey
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.calls.log.CallLogRow
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState

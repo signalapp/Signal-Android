@@ -17,7 +17,8 @@ import org.signal.core.util.logging.Log
  * to avoid gotcha's around threading and race conditions.
  */
 abstract class EventDrivenViewModel<E : Any>(
-  private val tag: String
+  private val tag: String,
+  private val shouldLogEvents: Boolean = false
 ) : ViewModel() {
 
   private val eventChannel = Channel<E>(Channel.UNLIMITED)
@@ -25,7 +26,9 @@ abstract class EventDrivenViewModel<E : Any>(
   init {
     viewModelScope.launch {
       for (event in eventChannel) {
-        Log.d(tag, "[Event] $event")
+        if (shouldLogEvents) {
+          Log.d(tag, "[Event] $event")
+        }
         processEvent(event)
       }
     }

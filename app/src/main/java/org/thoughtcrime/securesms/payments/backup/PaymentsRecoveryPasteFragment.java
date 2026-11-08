@@ -3,17 +3,20 @@ package org.thoughtcrime.securesms.payments.backup;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
@@ -29,6 +32,10 @@ public class PaymentsRecoveryPasteFragment extends Fragment {
     Toolbar  toolbar = view.findViewById(R.id.payments_recovery_paste_fragment_toolbar);
     EditText input   = view.findViewById(R.id.payments_recovery_paste_fragment_phrase);
     View     next    = view.findViewById(R.id.payments_recovery_paste_fragment_next);
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime());
 
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 

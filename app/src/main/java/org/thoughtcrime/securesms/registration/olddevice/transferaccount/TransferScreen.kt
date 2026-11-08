@@ -42,12 +42,12 @@ import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.fonts.SignalSymbols
 import org.signal.core.ui.fonts.SignalSymbols.SignalSymbol
+import org.signal.core.ui.util.SpanUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceState
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.SpanUtil
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -126,6 +126,14 @@ fun TransferAccountScreen(
       QuickRegistrationRepository.TransferAccountResult.FAILED -> {
         Dialogs.SimpleMessageDialog(
           message = stringResource(R.string.RegistrationActivity_unable_to_connect_to_service),
+          dismiss = stringResource(android.R.string.ok),
+          onDismiss = { emitter(TransferScreenEvents.ErrorDialogDismissed) }
+        )
+      }
+
+      QuickRegistrationRepository.TransferAccountResult.NEW_DEVICE_OUTDATED -> {
+        Dialogs.SimpleMessageDialog(
+          message = stringResource(R.string.TransferAccount_the_device_you_are_transferring_to_is_out_of_date),
           dismiss = stringResource(android.R.string.ok),
           onDismiss = { emitter(TransferScreenEvents.ErrorDialogDismissed) }
         )

@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log.w
 import org.signal.network.config.SignalProxy
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.enableProxy
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -67,7 +68,7 @@ object SignalProxyUtil {
   @JvmStatic
   fun disableAndClearProxy() {
     disableProxy()
-    SignalStore.proxy.proxy = null
+    SignalStore.proxy.clearProxy()
   }
 
   /**

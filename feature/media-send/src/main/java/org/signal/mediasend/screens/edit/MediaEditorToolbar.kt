@@ -26,13 +26,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.copied.androidx.compose.material3.IconButtonColors
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.mediasend.EditorState
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.test.TestTags
 
 @Composable
@@ -161,8 +161,15 @@ internal fun MediaEditorToolbarSharedButtons(
   }
 }
 
+/**
+ * Gifs are exempt along with documents: an image/gif is never re-encoded on send, and the mp4s we treat as gifs are
+ * already sized by whoever handed them to us, so a quality choice there is a control that does nothing.
+ */
 private fun isQualityVisible(state: MediaEditState, editorState: EditorState): Boolean {
-  return !state.isStory && editorState !is EditorState.Document
+  return !state.isStory &&
+    editorState !is EditorState.Document &&
+    editorState !is EditorState.Gif &&
+    editorState !is EditorState.VideoGif
 }
 
 private fun isSaveVisible(editorState: EditorState): Boolean {

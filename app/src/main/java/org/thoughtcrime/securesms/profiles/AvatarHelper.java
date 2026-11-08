@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.ByteUnit;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.crypto.AttachmentSecret;
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
 import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 

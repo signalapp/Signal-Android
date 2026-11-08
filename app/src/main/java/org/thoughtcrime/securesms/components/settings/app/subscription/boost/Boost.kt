@@ -16,14 +16,14 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.animation.doOnEnd
 import androidx.core.text.isDigitsOnly
 import com.google.android.material.button.MaterialButton
+import org.signal.core.models.badges.Badge
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -230,6 +230,8 @@ data class Boost(
       private const val MAX_INTEGRAL_DIGITS = 10
     }
 
+    private var isModifying = false
+
     val separator = DecimalFormatSymbols.getInstance().decimalSeparator
     val separatorCount = min(1, currency.defaultFractionDigits)
     val symbol: String = currency.getSymbol(Locale.getDefault())
@@ -285,7 +287,7 @@ data class Boost(
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) = Unit
 
     override fun afterTextChanged(s: Editable?) {
-      if (s.isNullOrEmpty()) return
+      if (s.isNullOrEmpty() || isModifying) return
 
       val hasSymbol = s.startsWith(symbol) || s.endsWith(symbol)
       if (hasSymbol && symbolPattern.matchEntire(s.toString()) != null) {
@@ -344,6 +346,7 @@ data class Boost(
     }
 
     private fun modifyEditable(modification: () -> Unit) {
+      isModifying = true
       text?.removeTextChangedListener(this)
       text?.keyListener = null
 
@@ -351,6 +354,7 @@ data class Boost(
 
       text?.addTextChangedListener(this)
       text?.keyListener = this
+      isModifying = false
     }
   }
 

@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.backup;
 
 
 import android.content.ActivityNotFoundException;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -28,16 +26,15 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.restore.restorelocalbackup.PassphraseAsYouTypeFormatter;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 public class BackupDialog {
 
   private static final String TAG = Log.tag(BackupDialog.class);
+
 
   public static void showEnableBackupDialog(@NonNull Context context,
                                             @Nullable Intent backupDirectorySelectionIntent,
@@ -74,8 +71,8 @@ public class BackupDialog {
                    .takePersistableUriPermission(backupDirectoryUri, takeFlags);
           }
 
-          BackupPassphrase.set(context, Util.join(password, " "));
-          TextSecurePreferences.setNextBackupTime(context, 0);
+          SignalStore.backup().setV1BackupPassphrase(Util.join(password, " "));
+          SignalStore.settings().setLocalBackupNextTime(0);
           SignalStore.settings().setBackupEnabled(true);
           LocalBackupListener.schedule(context);
 
@@ -103,7 +100,7 @@ public class BackupDialog {
     textView.setOnClickListener(v -> checkBox.toggle());
 
     dialog.findViewById(R.id.number_table).setOnClickListener(v -> {
-      ((ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", Util.join(password, " ")));
+      Util.copyToClipboardSensitive(context, Util.join(password, " "));
       Toast.makeText(context, R.string.BackupDialog_copied_to_clipboard, Toast.LENGTH_LONG).show();
     });
 
@@ -179,7 +176,7 @@ public class BackupDialog {
 
     positiveButton.setOnClickListener(v -> {
                                         String passphrase = prompt.getText().toString();
-                                        if (passphrase.equals(BackupPassphrase.get(context))) {
+                                        if (passphrase.equals(SignalStore.backup().getV1BackupPassphrase())) {
                                           Toast.makeText(context, R.string.BackupDialog_you_successfully_entered_your_backup_passphrase, Toast.LENGTH_SHORT).show();
                                           dialog.dismiss();
                                         } else {

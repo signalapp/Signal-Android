@@ -4,16 +4,20 @@ import android.content.Context
 import android.database.Cursor
 import androidx.annotation.Discouraged
 import androidx.core.content.contentValuesOf
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.count
+import org.signal.core.database.delete
+import org.signal.core.database.deleteAll
+import org.signal.core.database.exists
+import org.signal.core.database.insertInto
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.IntSerializer
 import org.signal.core.util.Serializer
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.count
-import org.signal.core.util.delete
-import org.signal.core.util.deleteAll
-import org.signal.core.util.exists
 import org.signal.core.util.flatten
-import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.readToMap
@@ -23,11 +27,8 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
-import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.toSingleLine
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.signal.ringrtc.CallId
 import org.signal.ringrtc.CallManager.RingUpdate
 import org.thoughtcrime.securesms.database.CallTable.Companion.TIMESTAMP
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.CallLinkUpdateSendJob
 import org.thoughtcrime.securesms.jobs.CallSyncEventJob
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallEvent
 import java.util.UUID
@@ -193,27 +193,6 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .readToSingleLong()
   }
 
-  /**
-   * Returns the number of unread calls and up to three distinct callers from eligible [threadIds].
-   */
-  fun getUnreadCallsForReminderNotification(threadIds: List<Long>): Pair<Int, List<RecipientId>> {
-    val peerIds = readableDatabase
-      .select("$TABLE_NAME.$PEER")
-      .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
-      .where(
-        """
-          ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} IN (${threadIds.joinToString(",")}) AND
-          $TABLE_NAME.$READ = ${ReadState.serialize(ReadState.UNREAD)} AND 
-          ($TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED)} OR $TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED_NOTIFICATION_PROFILE)})
-        """
-      )
-      .orderBy("$TABLE_NAME.$TIMESTAMP DESC")
-      .run()
-      .readToList { cursor -> RecipientId.from(cursor.requireLong(PEER)) }
-
-    return peerIds.size to peerIds.distinct().take(3)
-  }
-
   fun insertOneToOneCall(callId: Long, timestamp: Long, peer: RecipientId, type: Type, direction: Direction, event: Event, fromSync: Boolean = false) {
     val messageType: Long = Call.getMessageType(type, direction, event)
 
@@ -239,8 +218,32 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     Log.i(TAG, "Inserted call: $callId type: $type direction: $direction event:$event")
   }
 
-  fun updateOneToOneCall(callId: Long, event: Event): Call? {
+  fun updateOneToOneCall(callId: Long, event: Event): OneToOneCallUpdate {
     return writableDatabase.withinTransaction {
+      val existingCall = readableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .where("$CALL_ID = ?", callId)
+        .run()
+        .readToSingleObject(Call.Deserializer)
+
+      if (existingCall == null) {
+        return@withinTransaction OneToOneCallUpdate.NotFound
+      }
+
+      if (existingCall.event == event) {
+        Log.i(TAG, "Call $callId is already $event, leaving event as is")
+        if (existingCall.messageId != null) {
+          SignalDatabase.messages.updateOneToOneCallLog(existingCall.messageId, existingCall.messageType)
+        }
+        return@withinTransaction OneToOneCallUpdate.Success(existingCall)
+      }
+
+      if (!canUpdateOneToOneCall(existingCall.event, event)) {
+        Log.i(TAG, "Call $callId is ${existingCall.event} (possibly on a linked device), not updating event to $event")
+        return@withinTransaction OneToOneCallUpdate.Rejected(existingCall)
+      }
+
       writableDatabase
         .update(TABLE_NAME)
         .values(
@@ -250,27 +253,30 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         .where("$CALL_ID = ?", callId)
         .run()
 
-      val call = readableDatabase
-        .select()
-        .from(TABLE_NAME)
-        .where("$CALL_ID = ?", callId)
-        .run()
-        .readToSingleObject(Call.Deserializer)
+      val call = existingCall.copy(event = event, read = false)
+      Log.i(TAG, "Updated call: $callId event: $event")
 
-      if (call != null) {
-        Log.i(TAG, "Updated call: $callId event: $event")
-
-        if (call.messageId == null) {
-          Log.w(TAG, "Call does not have an associated message id! No message to update.")
-        } else {
-          SignalDatabase.messages.updateOneToOneCallLog(call.messageId, call.messageType)
-        }
-
-        AppDependencies.messageNotifier.updateNotification(context)
-        AppDependencies.databaseObserver.notifyCallUpdateObservers()
+      if (call.messageId == null) {
+        Log.w(TAG, "Call does not have an associated message id! No message to update.")
+      } else {
+        SignalDatabase.messages.updateOneToOneCallLog(call.messageId, call.messageType)
       }
 
-      call
+      AppDependencies.messageNotifier.updateNotification(context)
+      AppDependencies.databaseObserver.notifyCallUpdateObservers()
+
+      OneToOneCallUpdate.Success(call)
+    }
+  }
+
+  /**
+   * Whether a 1:1 call may move from [current] to [next].
+   */
+  private fun canUpdateOneToOneCall(current: Event, next: Event): Boolean {
+    return when {
+      current == Event.DELETE -> false
+      current == Event.ACCEPTED -> next == Event.DELETE
+      else -> true
     }
   }
 
@@ -1422,6 +1428,17 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     Log.d(TAG, "Deleted recipient: $deletedPeer $deletedRinger")
   }
 
+  sealed interface OneToOneCallUpdate {
+    /** No call with the given id exists. */
+    data object NotFound : OneToOneCallUpdate
+
+    /** The call is now in the requested state. */
+    data class Success(val call: Call) : OneToOneCallUpdate
+
+    /** The call may not move to the requested state and was left as is. */
+    data class Rejected(val call: Call) : OneToOneCallUpdate
+  }
+
   /**
    * @param isGroupCallActive - Whether the group call currently contains users. Only valid for group calls.
    * @param didLocalUserJoin   - Determines whether the local user joined this call. Only valid for group calls.
@@ -1446,7 +1463,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     companion object Deserializer : Serializer<Call, Cursor> {
 
       private fun isDisplayedAsMissedCallInUi(call: Call): Boolean {
-        return call.direction == Direction.INCOMING && (call.event in Event.DISPLAY_AS_MISSED_CALL || (call.event == Event.GENERIC_GROUP_CALL && !call.didLocalUserJoin && !call.isGroupCallActive))
+        return call.direction == Direction.INCOMING && (call.event in Event.DISPLAY_AS_MISSED_CALL || (call.type == Type.GROUP_CALL && call.event == Event.GENERIC_GROUP_CALL && !call.didLocalUserJoin && !call.isGroupCallActive))
       }
 
       fun getMessageType(type: Type, direction: Direction, event: Event): Long {

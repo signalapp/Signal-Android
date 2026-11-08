@@ -21,6 +21,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
@@ -28,6 +29,7 @@ import org.signal.libsignal.protocol.logging.SignalProtocolLogger
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.GroupChangeResponse
 import org.signal.storageservice.storage.protos.groups.Member
@@ -41,10 +43,8 @@ import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations

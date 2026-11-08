@@ -153,8 +153,8 @@ public final class WifiDirect {
       retrySync(manager::clearServiceRequests, "clear service requests", SAFE_FOR_LONG_AWAIT_TIMEOUT);
       retrySync(manager::stopPeerDiscovery, "stop peer discovery", SAFE_FOR_LONG_AWAIT_TIMEOUT);
       retrySync(manager::clearLocalServices, "clear local services", SAFE_FOR_LONG_AWAIT_TIMEOUT);
+      retrySync(manager::removeGroup, "remove group", SAFE_FOR_LONG_AWAIT_TIMEOUT, 1);
       if (Build.VERSION.SDK_INT < 27) {
-        retrySync(manager::removeGroup, "remove group", SAFE_FOR_LONG_AWAIT_TIMEOUT);
         channel = null;
       }
       manager = null;
@@ -198,6 +198,13 @@ public final class WifiDirect {
     if (!addLocalServiceListener.successful() || !discoverPeersListener.successful()) {
       throw new WifiDirectUnavailableException(Reason.SERVICE_START);
     }
+  }
+
+  @SuppressLint("MissingPermission")
+  synchronized void refreshPeerDiscovery() throws WifiDirectUnavailableException {
+    ensureInitialized();
+
+    retryAsync(manager::discoverPeers, "refresh discover peers");
   }
 
   /**
@@ -308,8 +315,10 @@ public final class WifiDirect {
   }
 
   private synchronized void retrySync(@NonNull ManagerRetry retryFunction, @NonNull String message, long awaitTimeout) {
-    int tries = 3;
+    retrySync(retryFunction, message, awaitTimeout, 3);
+  }
 
+  private synchronized void retrySync(@NonNull ManagerRetry retryFunction, @NonNull String message, long awaitTimeout, int tries) {
     while ((tries--) > 0) {
       if (isNotInitialized()) {
         return;
@@ -320,7 +329,9 @@ public final class WifiDirect {
       if (listener.successful() || listener.failureReason == SyncActionListener.FAILURE_TIMEOUT) {
         return;
       }
-      ThreadUtil.sleep(TimeUnit.SECONDS.toMillis(1));
+      if (tries > 0) {
+        ThreadUtil.sleep(TimeUnit.SECONDS.toMillis(1));
+      }
     }
   }
 

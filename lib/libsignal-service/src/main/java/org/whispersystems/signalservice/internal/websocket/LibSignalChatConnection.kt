@@ -21,6 +21,7 @@ import org.signal.libsignal.net.AuthenticatedChatConnection
 import org.signal.libsignal.net.ChatConnection
 import org.signal.libsignal.net.ChatConnectionListener
 import org.signal.libsignal.net.ChatServiceException
+import org.signal.libsignal.net.ConnectedElsewhereException
 import org.signal.libsignal.net.ConnectionInvalidatedException
 import org.signal.libsignal.net.DeviceDeregisteredException
 import org.signal.libsignal.net.Network
@@ -214,6 +215,7 @@ class LibSignalChatConnection(
             Log.w(TAG, "$name [sendRequest] Failure:", throwable)
             val downstreamThrowable = when (throwable) {
               is ConnectionInvalidatedException -> NonSuccessfulResponseCodeException(4401)
+              is ConnectedElsewhereException -> NonSuccessfulResponseCodeException(4409)
               // The clients of WebSocketConnection are often sensitive to the exact type of exception returned.
               // This is the exception that OkHttpWebSocketConnection throws in the closest scenario to this, when
               //   the connection fails before the request completes.
@@ -257,7 +259,7 @@ class LibSignalChatConnection(
         WebSocketConnectionState.CONNECTING -> {
           chatConnection = connection
           chatConnection?.start()
-          Log.i(TAG, "$name Connected")
+          Log.i(TAG, "$name Connected (direct: ${connection.info().isDirect})")
           state.onNext(WebSocketConnectionState.CONNECTED)
 
           pendingCallbacks.forEach { pending ->
@@ -322,6 +324,10 @@ class LibSignalChatConnection(
       }
       pendingCallbacks.clear()
     }
+  }
+
+  override fun isConnectedDirectly(): Boolean {
+    return chatConnection?.info()?.isDirect == true
   }
 
   override fun isDead(): Boolean {
@@ -428,6 +434,8 @@ class LibSignalChatConnection(
       throw e
     } catch (_: ConnectionInvalidatedException) {
       throw NonSuccessfulResponseCodeException(4401)
+    } catch (_: ConnectedElsewhereException) {
+      throw NonSuccessfulResponseCodeException(4409)
     } catch (e: Throwable) {
       Log.w(TAG, "$name [sendRequestSuspend] Failure:", e)
       throw SocketException("Failed to get response for request").apply { initCause(e) }

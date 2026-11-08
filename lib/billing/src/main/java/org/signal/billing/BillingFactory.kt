@@ -5,11 +5,13 @@
 
 package org.signal.billing
 
+import android.content.Context
 import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.billing.BillingDependencies
+import org.signal.core.util.billing.OneTimePurchaseApi
 
 /**
- * Play billing factory. Returns empty implementation if message backups are not enabled.
+ * Play billing factory. Returns empty implementations when Google Play billing is unavailable.
  */
 object BillingFactory {
   @JvmStatic
@@ -18,6 +20,20 @@ object BillingFactory {
       BillingApiImpl(billingDependencies)
     } else {
       BillingApi.Empty
+    }
+  }
+
+  /**
+   * Creates an api for buying consumable products.
+   *
+   * Google Play only reports a purchase to the client that launched it, so this must not be alive at the same time as
+   * another client handling the same product.
+   */
+  fun createOneTimePurchaseApi(context: Context, isAvailable: Boolean): OneTimePurchaseApi {
+    return if (isAvailable) {
+      OneTimePurchaseApiImpl(context)
+    } else {
+      OneTimePurchaseApi.Empty
     }
   }
 }

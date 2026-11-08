@@ -18,19 +18,20 @@ import com.bumptech.glide.load.resource.gif.StreamGifDecoder;
 
 import org.signal.apng.ApngDecoder;
 import org.signal.blurhash.BlurHash;
+import org.signal.core.models.badges.Badge;
 import org.signal.core.util.crypto.AttachmentSecret;
 import org.signal.core.util.crypto.AttachmentSecretProvider;
+import org.signal.glide.badges.BadgeLoader;
 import org.signal.glide.blurhash.BlurHashModelLoader;
 import org.signal.glide.blurhash.BlurHashResourceDecoder;
 import org.signal.glide.common.io.InputStreamFactory;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.glide.decryptableuri.DecryptableUriStreamLoader;
-import org.thoughtcrime.securesms.badges.load.BadgeLoader;
 import org.thoughtcrime.securesms.badges.load.GiftBadgeModel;
-import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoLoader;
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.glide.cache.ApngDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.cache.ApngInputStreamFactoryResourceDecoder;
@@ -44,6 +45,7 @@ import org.thoughtcrime.securesms.glide.cache.EncryptedGifDrawableResourceEncode
 import org.thoughtcrime.securesms.glide.cache.InputStreamFactoryBitmapDecoder;
 import org.thoughtcrime.securesms.glide.cache.StreamBitmapDecoder;
 import org.thoughtcrime.securesms.glide.cache.StreamFactoryGifDecoder;
+import org.thoughtcrime.securesms.glide.cache.WebpSanByteBufferDecoder;
 import org.thoughtcrime.securesms.glide.cache.WebpSanDecoder;
 import org.thoughtcrime.securesms.glide.cache.WebpSanStreamFactoryDecoder;
 import org.thoughtcrime.securesms.mms.RegisterGlideComponents;
@@ -55,6 +57,7 @@ import org.thoughtcrime.securesms.util.ConversationShortcutPhoto;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 
 /**
  * The core logic for {@link SignalGlideModule}. This is a separate class because it uses
@@ -69,9 +72,14 @@ public class SignalGlideComponents implements RegisterGlideComponents {
 
     registry.prepend(File.class, File.class, UnitModelLoader.Factory.getInstance());
 
-    WebpSanStreamFactoryDecoder webpSanStreamFactoryDecoder = new WebpSanStreamFactoryDecoder();
-    registry.prepend(InputStream.class, Bitmap.class, new WebpSanDecoder());
+    WebpSanStreamFactoryDecoder<Bitmap> webpSanStreamFactoryDecoder = new WebpSanStreamFactoryDecoder<>();
+    registry.prepend(InputStream.class, Bitmap.class, new WebpSanDecoder<>());
     registry.prepend(InputStreamFactory.class, Bitmap.class, webpSanStreamFactoryDecoder);
+
+    // Need to use these bucket labels to not break GIF loading
+    registry.prepend(Registry.BUCKET_BITMAP_DRAWABLE, InputStream.class, BitmapDrawable.class, new WebpSanDecoder<>());
+    registry.prepend(Registry.BUCKET_BITMAP, ByteBuffer.class, Bitmap.class, new WebpSanByteBufferDecoder<>());
+    registry.prepend(Registry.BUCKET_BITMAP_DRAWABLE, ByteBuffer.class, BitmapDrawable.class, new WebpSanByteBufferDecoder<>());
 
     registry.prepend(InputStream.class, new EncryptedCacheEncoder(secret, glide.getArrayPool()));
 
@@ -105,7 +113,7 @@ public class SignalGlideComponents implements RegisterGlideComponents {
     registry.append(ChunkedImageUrl.class, InputStream.class, new ChunkedImageUrlLoader.Factory());
     registry.append(StickerRemoteUri.class, InputStream.class, new StickerRemoteUriLoader.Factory());
     registry.append(BlurHash.class, BlurHash.class, new BlurHashModelLoader.Factory());
-    registry.append(Badge.class, InputStream.class, BadgeLoader.createFactory());
+    registry.append(Badge.class, InputStream.class, new BadgeLoader.Factory(AppDependencies.getSignalOkHttpClient()));
     registry.append(GiftBadgeModel.class, InputStream.class, GiftBadgeModel.createFactory());
     registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
   }

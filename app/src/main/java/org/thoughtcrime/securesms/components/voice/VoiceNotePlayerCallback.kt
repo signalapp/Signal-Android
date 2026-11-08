@@ -209,7 +209,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
       }
 
       player.playWhenReady = false
-      player.setAudioAttributes(attributes, newStreamType == AudioManager.STREAM_MUSIC)
+      player.setAudioAttributes(attributes, false)
       if (newStreamType == AudioManager.STREAM_VOICE_CALL) {
         player.playWhenReady = true
       } else {

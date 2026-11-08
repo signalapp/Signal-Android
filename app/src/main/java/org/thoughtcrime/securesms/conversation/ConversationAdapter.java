@@ -37,10 +37,10 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import androidx.media3.common.MediaItem;
 
 import com.bumptech.glide.RequestManager;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationItem;
@@ -50,16 +50,12 @@ import org.thoughtcrime.securesms.conversation.colors.ColorizerV1;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.signal.core.ui.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -456,7 +452,7 @@ public class ConversationAdapter
       viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.transparent_black_80));
     } else {
       viewHolder.clearBackground();
-      viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.core_grey_45));
+      viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(org.signal.core.ui.R.color.core_grey_45));
     }
   }
 
@@ -683,48 +679,13 @@ public class ConversationAdapter
     notifyItemRangeChanged(0, getItemCount(), PAYLOAD_TIMESTAMP);
   }
 
-  final static class ConversationViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable, Colorizable {
+  final static class ConversationViewHolder extends RecyclerView.ViewHolder implements Colorizable {
     public ConversationViewHolder(final @NonNull View itemView) {
       super(itemView);
     }
 
     public BindableConversationItem getBindable() {
       return (BindableConversationItem) itemView;
-    }
-
-    @Override
-    public void showProjectionArea() {
-      getBindable().showProjectionArea();
-    }
-
-    @Override
-    public void hideProjectionArea() {
-      getBindable().hideProjectionArea();
-    }
-
-    @Override
-    public @Nullable MediaItem getMediaItem() {
-      return getBindable().getMediaItem();
-    }
-
-    @Override
-    public @Nullable GiphyMp4PlaybackPolicyEnforcer getPlaybackPolicyEnforcer() {
-      return getBindable().getPlaybackPolicyEnforcer();
-    }
-
-    @Override
-    public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
-      return getBindable().getGiphyMp4PlayableProjection(recyclerView);
-    }
-
-    @Override
-    public boolean canPlayContent() {
-      return getBindable().canPlayContent();
-    }
-
-    @Override
-    public boolean shouldProjectContent() {
-      return getBindable().shouldProjectContent();
     }
 
     @Override

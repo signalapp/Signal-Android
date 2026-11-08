@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /**
  * This contains higher level information that would have traditionally been directly

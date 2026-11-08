@@ -20,11 +20,14 @@ object CameraXUtil {
   private val TAG = Log.tag(CameraXUtil::class.java)
 
   private const val VIDEO_DEBUG_LABEL = "video-capture"
-  private const val VIDEO_SIZE = 10L * 1024 * 1024
 
+  /**
+   * Creates a RAM-backed video file descriptor, reserving [sizeEstimateBytes] against the memory the device
+   * can spare.
+   */
   @Throws(MemoryFileDescriptor.MemoryFileException::class)
-  fun createMemoryVideoFileDescriptor(context: Context): MemoryFileDescriptor {
-    return MemoryFileDescriptor.newMemoryFileDescriptor(context, VIDEO_DEBUG_LABEL, VIDEO_SIZE)
+  fun createMemoryVideoFileDescriptor(context: Context, sizeEstimateBytes: Long): MemoryFileDescriptor {
+    return MemoryFileDescriptor.newMemoryFileDescriptor(context, VIDEO_DEBUG_LABEL, sizeEstimateBytes)
   }
 
   /**
@@ -74,8 +77,9 @@ object CameraXUtil {
 
         try {
           hwLevel = cameraManager.getCameraCharacteristics(cameraId).get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL)
-        } catch (_: NullPointerException) {
-          // redmi device crash, assume lowest
+        } catch (e: RuntimeException) {
+          // Some OEM camera implementations throw here, assume lowest
+          Log.w(TAG, "Failed to get camera characteristics for $cameraId", e)
         }
 
         if (hwLevel == null || hwLevel == CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY) {

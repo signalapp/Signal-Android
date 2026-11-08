@@ -18,12 +18,12 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
 import org.thoughtcrime.securesms.banner.ui.compose.Importance
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class ServiceOutageBanner(val context: Context) : Banner<Unit>() {
 
   override val enabled: Boolean
-    get() = TextSecurePreferences.getServiceOutage(context)
+    get() = SignalStore.misc.serviceOutage
 
   override val dataFlow: Flow<Unit> = flowOf(Unit)
 

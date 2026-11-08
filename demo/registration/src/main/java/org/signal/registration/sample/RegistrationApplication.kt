@@ -45,6 +45,9 @@ class RegistrationApplication : Application() {
     // Staging SVR2 mrEnclave value
     private const val SVR2_MRENCLAVE = "97f151f6ed078edbbfd72fa9cae694dcc08353f1f5e8d9ccd79a971b10ffc535"
 
+    /** The demo app isn't listed in the relying party's asset links, so passkey ceremonies fail here by design. */
+    private const val WEBAUTHN_RP_ID = "login.signal.org"
+
     lateinit var serviceConfiguration: SignalServiceConfiguration
       private set
   }
@@ -70,6 +73,7 @@ class RegistrationApplication : Application() {
       RegistrationDependencies(
         networkController = networkController,
         storageController = storageController,
+        webAuthnRelyingPartyId = WEBAUTHN_RP_ID,
         sensitiveLogger = LogLogger,
         debugLogCallback = {},
         proxyConfigCallback = { context ->
@@ -89,7 +93,9 @@ class RegistrationApplication : Application() {
           }
         },
         isLinkAndSyncAvailable = true,
-        isPhoneNumberlessRegistrationAvailable = true
+        isPhoneNumberlessRegistrationAvailable = true,
+        // The demo app is not published to the Play Store, so it can never complete a real purchase.
+        isGooglePlayBillingAvailable = false
       )
     )
 
@@ -99,7 +105,6 @@ class RegistrationApplication : Application() {
         override fun providePackageId(): String = BuildConfig.APPLICATION_ID
         override fun provideIsIncognitoKeyboardEnabled(): Boolean = false
         override fun provideIsScreenSecurityEnabled(): Boolean = false
-        override fun provideForceSplitPane(): Boolean = false
       }
     )
   }
@@ -149,7 +154,6 @@ class RegistrationApplication : Application() {
       networkInterceptors = emptyList(),
       dns = Optional.empty(),
       signalProxy = Optional.empty(),
-      systemHttpProxy = Optional.empty(),
       zkGroupServerPublicParams = Base64.decode("ABSY21VckQcbSXVNCGRYJcfWHiAMZmpTtTELcDmxgdFbtp/bWsSxZdMKzfCp8rvIs8ocCU3B37fT3r4Mi5qAemeGeR2X+/YmOGR5ofui7tD5mDQfstAI9i+4WpMtIe8KC3wU5w3Inq3uNWVmoGtpKndsNfwJrCg0Hd9zmObhypUnSkfYn2ooMOOnBpfdanRtrvetZUayDMSC5iSRcXKpdlukrpzzsCIvEwjwQlJYVPOQPj4V0F4UXXBdHSLK05uoPBCQG8G9rYIGedYsClJXnbrgGYG3eMTG5hnx4X4ntARBgELuMWWUEEfSK0mjXg+/2lPmWcTZWR9nkqgQQP0tbzuiPm74H2wMO4u1Wafe+UwyIlIT9L7KLS19Aw8r4sPrXZSSsOZ6s7M1+rTJN0bI5CKY2PX29y5Ok3jSWufIKcgKOnWoP67d5b2du2ZVJjpjfibNIHbT/cegy/sBLoFwtHogVYUewANUAXIaMPyCLRArsKhfJ5wBtTminG/PAvuBdJ70Z/bXVPf8TVsR292zQ65xwvWTejROW6AZX6aqucUjlENAErBme1YHmOSpU6tr6doJ66dPzVAWIanmO/5mgjNEDeK7DDqQdB1xd03HT2Qs2TxY3kCK8aAb/0iM0HQiXjxZ9HIgYhbtvGEnDKW5ILSUydqH/KBhW4Pb0jZWnqN/YgbWDKeJxnDbYcUob5ZY5Lt5ZCMKuaGUvCJRrCtuugSMaqjowCGRempsDdJEt+cMaalhZ6gczklJB/IbdwENW9KeVFPoFNFzhxWUIS5ML9riVYhAtE6JE5jX0xiHNVIIPthb458cfA8daR0nYfYAUKogQArm0iBezOO+mPk5vCNWI+wwkyFCqNDXz/qxl1gAntuCJtSfq9OC3NkdhQlgYQ=="),
       genericServerPublicParams = Base64.decode("AHILOIrFPXX9laLbalbA9+L1CXpSbM/bTJXZGZiuyK1JaI6dK5FHHWL6tWxmHKYAZTSYmElmJ5z2A5YcirjO/yfoemE03FItyaf8W1fE4p14hzb5qnrmfXUSiAIVrhaXVwIwSzH6RL/+EO8jFIjJ/YfExfJ8aBl48CKHgu1+A6kWynhttonvWWx6h7924mIzW0Czj2ROuh4LwQyZypex4GuOPW8sgIT21KNZaafgg+KbV7XM1x1tF3XA17B4uGUaDbDw2O+nR1+U5p6qHPzmJ7ggFjSN6Utu+35dS1sS0P9N"),
       backupServerPublicParams = Base64.decode("AHYrGb9IfugAAJiPKp+mdXUx+OL9zBolPYHYQz6GI1gWjpEu5me3zVNSvmYY4zWboZHif+HG1sDHSuvwFd0QszSwuSF4X4kRP3fJREdTZ5MCR0n55zUppTwfHRW2S4sdQ0JGz7YDQIJCufYSKh0pGNEHL6hv79Agrdnr4momr3oXdnkpVBIp3HWAQ6IbXQVSG18X36GaicI1vdT0UFmTwU2KTneluC2eyL9c5ff8PcmiS+YcLzh0OKYQXB5ZfQ06d6DiINvDQLy75zcfUOniLAj0lGJiHxGczin/RXisKSR8"),

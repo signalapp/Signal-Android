@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobmanager.JobMigrator
 import org.thoughtcrime.securesms.jobmanager.JobTracker
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.util.concurrent.CountDownLatch
 import kotlin.random.Random
 
@@ -90,7 +90,7 @@ class JobManagerPerformanceTests {
       .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
       .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
       .setJobStorage(FastJobStorage(getInstance(context)))
-      .setJobMigrator(JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
+      .setJobMigrator(JobMigrator(SignalStore.misc.jobManagerVersion, JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
       .build()
 
     return JobManager(context, config)

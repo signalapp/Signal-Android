@@ -1,0 +1,208 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.allowedmembers
+
+import assertk.assertThat
+import assertk.assertions.containsExactly
+import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
+import io.mockk.Runs
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.core.models.recipients.RecipientId
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfileEdits
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
+import java.util.UUID
+
+@OptIn(ExperimentalCoroutinesApi::class)
+class AddAllowedMembersViewModelTest {
+
+  companion object {
+    private const val PROFILE_ID = 4L
+    private val ALICE = RecipientId.from(10L)
+    private val BOB = RecipientId.from(11L)
+  }
+
+  private val testDispatcher = UnconfinedTestDispatcher()
+
+  @get:Rule
+  val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
+
+  private val profiles = MutableSharedFlow<AddAllowedMembersRepository.ProfileAndMembers>()
+  private val alice = recipient(ALICE)
+  private val profile = NotificationProfile(
+    id = PROFILE_ID,
+    name = "Work",
+    emoji = "",
+    createdAt = 0L,
+    schedule = NotificationProfileSchedule(id = PROFILE_ID),
+    allowedMembers = setOf(ALICE, BOB),
+    notificationProfileId = NotificationProfileId(UUID(0L, PROFILE_ID))
+  )
+
+  @Before
+  fun setUp() {
+    Dispatchers.setMain(testDispatcher)
+    mockkObject(AddAllowedMembersRepository)
+    mockkObject(NotificationProfileEdits)
+
+    every { AddAllowedMembersRepository.observeProfile(PROFILE_ID) } returns profiles
+    coEvery { NotificationProfileEdits.removeMember(PROFILE_ID, any()) } returns alice
+    coEvery { NotificationProfileEdits.addMember(PROFILE_ID, any()) } just Runs
+    coEvery { NotificationProfileEdits.setAllowAllCalls(PROFILE_ID, any()) } just Runs
+    coEvery { NotificationProfileEdits.setAllowAllMentions(PROFILE_ID, any()) } just Runs
+  }
+
+  @After
+  fun tearDown() {
+    unmockkObject(AddAllowedMembersRepository)
+    unmockkObject(NotificationProfileEdits)
+    Dispatchers.resetMain()
+  }
+
+  @Test
+  fun `the profile is unknown until the repository emits`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    assertThat(viewModel.state.value).isEqualTo(AddAllowedMembersState())
+  }
+
+  @Test
+  fun `each emission replaces the profile and its members`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    profiles.emit(AddAllowedMembersRepository.ProfileAndMembers(profile, listOf(alice)))
+
+    assertThat(viewModel.state.value.profile).isEqualTo(profile)
+    assertThat(viewModel.state.value.members).containsExactly(alice)
+  }
+
+  @Test
+  fun `a failure reading the profile leaves the screen empty`() = runTest(testDispatcher) {
+    every { AddAllowedMembersRepository.observeProfile(PROFILE_ID) } returns flow { throw IllegalStateException("missing") }
+
+    val viewModel = createViewModel()
+
+    assertThat(viewModel.state.value).isEqualTo(AddAllowedMembersState())
+  }
+
+  @Test
+  fun `RemoveMemberClicked removes the member and confirms with a snackbar`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AddAllowedMembersEvent.RemoveMemberClicked(ALICE))
+
+    coVerify(exactly = 1) { NotificationProfileEdits.removeMember(PROFILE_ID, ALICE) }
+    assertThat(viewModel.state.value.snackbar).isEqualTo(AddAllowedMembersState.Snackbar.MemberRemoved(alice))
+  }
+
+  @Test
+  fun `UndoRemoveMemberClicked adds the member back`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AddAllowedMembersEvent.UndoRemoveMemberClicked(ALICE))
+
+    coVerify(exactly = 1) { NotificationProfileEdits.addMember(PROFILE_ID, ALICE) }
+  }
+
+  @Test
+  fun `SnackbarDismissed clears the snackbar`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AddAllowedMembersEvent.RemoveMemberClicked(ALICE))
+    viewModel.onEvent(AddAllowedMembersEvent.SnackbarDismissed)
+
+    assertThat(viewModel.state.value.snackbar).isEqualTo(AddAllowedMembersState.Snackbar.None)
+  }
+
+  @Test
+  fun `AllowAllCallsToggled saves the new value`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AddAllowedMembersEvent.AllowAllCallsToggled(false))
+
+    coVerify(exactly = 1) { NotificationProfileEdits.setAllowAllCalls(PROFILE_ID, false) }
+  }
+
+  @Test
+  fun `NotifyForAllMentionsToggled saves the new value`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AddAllowedMembersEvent.NotifyForAllMentionsToggled(true))
+
+    coVerify(exactly = 1) { NotificationProfileEdits.setAllowAllMentions(PROFILE_ID, true) }
+  }
+
+  @Test
+  fun `AddMembersClicked opens the picker with the current members selected`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    profiles.emit(AddAllowedMembersRepository.ProfileAndMembers(profile, listOf(alice)))
+    viewModel.onEvent(AddAllowedMembersEvent.AddMembersClicked)
+
+    assertThat(navigationEvents).containsExactly(
+      AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.SelectRecipients(PROFILE_ID, listOf(ALICE, BOB)))
+    )
+  }
+
+  @Test
+  fun `AddMembersClicked before the profile loads does nothing`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AddAllowedMembersEvent.AddMembersClicked)
+
+    assertThat(navigationEvents).isEmpty()
+  }
+
+  @Test
+  fun `NextClicked continues to the schedule`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AddAllowedMembersEvent.NextClicked)
+
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditSchedule(PROFILE_ID, createMode = true)))
+  }
+
+  @Test
+  fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AddAllowedMembersEvent.NavigateBackClicked)
+
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
+  }
+
+  private fun createViewModel(): AddAllowedMembersViewModel = AddAllowedMembersViewModel(PROFILE_ID, parentEventEmitter = { navigationEvents += it })
+
+  private fun recipient(id: RecipientId): Recipient {
+    return mockk<Recipient> { every { this@mockk.id } returns id }
+  }
+}

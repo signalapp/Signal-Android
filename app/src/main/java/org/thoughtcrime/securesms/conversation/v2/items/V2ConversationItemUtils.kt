@@ -27,8 +27,14 @@ object V2ConversationItemUtils {
     return hasOnlyThumbnail(context) && isDisplayBodyEmpty(context)
   }
 
+  /**
+   * Detects links in [messageBody] and replaces them with clickable, long-press-copyable spans.
+   *
+   * @param isBodyTruncated True if [messageBody] is only a prefix of the full message text (i.e. the rest lives in a text slide).
+   */
   @JvmStatic
-  fun linkifyUrlLinks(messageBody: Spannable, shouldLinkifyAllLinks: Boolean, urlClickHandler: UrlClickHandler) {
+  @JvmOverloads
+  fun linkifyUrlLinks(messageBody: Spannable, shouldLinkifyAllLinks: Boolean, urlClickHandler: UrlClickHandler, isBodyTruncated: Boolean = false) {
     if (!shouldLinkifyAllLinks) {
       return
     }
@@ -41,6 +47,11 @@ object V2ConversationItemUtils {
       val start = messageBody.getSpanStart(urlSpan)
       val end = messageBody.getSpanEnd(urlSpan)
       messageBody.removeSpan(urlSpan)
+
+      if (isBodyTruncated && (end until messageBody.length).none { Character.isWhitespace(messageBody[it]) }) {
+        return@forEach
+      }
+
       if (LinkUtil.isLegalUrl(url)) {
         messageBody.setSpan(InterceptableLongClickCopyLinkSpan(url, urlClickHandler), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
       }

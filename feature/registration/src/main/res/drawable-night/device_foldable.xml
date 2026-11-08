@@ -1,11 +1,9 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
-    xmlns:tools="http://schemas.android.com/tools"
     android:width="320dp"
     android:height="320dp"
     android:viewportWidth="320"
-    android:viewportHeight="320"
-    tools:ignore="VectorRaster">
+    android:viewportHeight="320">
     <path
         android:fillColor="#FF191C23"
         android:strokeColor="#FF767676"

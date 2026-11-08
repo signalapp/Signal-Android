@@ -23,6 +23,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
@@ -200,6 +201,17 @@ class MediaCaptureViewModelTest {
   }
 
   @Test
+  fun `when the flow turns multi-capture on, then the screen's copy of it follows`() = runTest {
+    val parentState = MutableStateFlow(MediaSendFlowState())
+    val viewModel = createViewModel(parentState)
+
+    parentState.value = MediaSendFlowState(isMultiCaptureEnabled = true)
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.isMultiCaptureEnabled).isTrue()
+  }
+
+  @Test
   fun `when navigation moves to the text story editor, then the screen follows`() = runTest {
     val viewModel = createViewModel()
 
@@ -364,6 +376,7 @@ class MediaCaptureViewModelTest {
       MediaCaptureScreenEvents.NextClicked to MediaSendFlowEvent.NavigateToEdit,
       camera(CameraXScreenEvents.GalleryClicked) to MediaSendFlowEvent.NavigateToFolders,
       camera(CameraXScreenEvents.CameraCloseClicked) to MediaSendFlowEvent.CloseRequested,
+      camera(CameraXScreenEvents.MultiCaptureToggled) to MediaSendFlowEvent.ToggleMultiCapture,
       camera(CameraXScreenEvents.QrCodeFound("sgnl://example")) to MediaSendFlowEvent.QrCodeScanned("sgnl://example"),
       camera(CameraXScreenEvents.VideoCaptureError) to snackbar(R.string.MediaSendViewModel__error_recording_video)
     )
@@ -385,6 +398,26 @@ class MediaCaptureViewModelTest {
     onCameraEvent(CameraXScreenEvents.ImageCaptured(data = byteArrayOf(1, 2, 3), width = 100, height = 200))
 
     assertThat(parentEvents).containsExactly(MediaSendFlowEvent.MediaCaptured(MEDIA))
+  }
+
+  @Test
+  fun `Given a burst of captures, when the first is slower to write out, then they still reach the flow in order`() = runTest {
+    val second = MEDIA.copy(uri = "content://capture/2".toUri())
+    coEvery { repository.writeCapturedImage(any(), any(), any()) } coAnswers {
+      if (firstArg<ByteArray>()[0] == 1.toByte()) {
+        delay(1_000)
+        MEDIA
+      } else {
+        second
+      }
+    }
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(camera(CameraXScreenEvents.ImageCaptured(data = byteArrayOf(1), width = 100, height = 200)))
+    viewModel.onEvent(camera(CameraXScreenEvents.ImageCaptured(data = byteArrayOf(2), width = 100, height = 200)))
+    advanceUntilIdle()
+
+    assertThat(parentEvents).containsExactly(MediaSendFlowEvent.MediaCaptured(MEDIA), MediaSendFlowEvent.MediaCaptured(second))
   }
 
   @Test

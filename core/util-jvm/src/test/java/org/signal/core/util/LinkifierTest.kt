@@ -108,6 +108,17 @@ class LinkifierTest(private val case: Case) {
       Case("semicolon in url path is preserved", "https://example.com/pricewatch/compare/2290176;2126182/", listOf(web("https://example.com/pricewatch/compare/2290176;2126182/"))),
       Case("semicolon in url query is preserved", "Go to https://example.com/search?a=1;b=2", listOf(web("https://example.com/search?a=1;b=2"))),
 
+      // ----- apostrophes -----
+      Case("apostrophe in url path is preserved", "https://en.wikipedia.org/wiki/Occam's_razor", listOf(web("https://en.wikipedia.org/wiki/Occam's_razor"))),
+      Case("apostrophe in url path is preserved mid-sentence", "see https://en.wikipedia.org/wiki/Occam's_razor for more", listOf(web("https://en.wikipedia.org/wiki/Occam's_razor"))),
+      Case("apostrophe in bare domain path is preserved", "en.wikipedia.org/wiki/Occam's_razor", listOf(web("en.wikipedia.org/wiki/Occam's_razor", url = "http://en.wikipedia.org/wiki/Occam's_razor"))),
+      Case("apostrophe in url query is preserved", "https://example.com/search?q=Occam's", listOf(web("https://example.com/search?q=Occam's"))),
+      Case("trailing apostrophe is trimmed", "https://example.com/foo' end", listOf(web("https://example.com/foo"))),
+      Case("single-quoted url does not include the quotes", "'https://signal.org'", listOf(web("https://signal.org"))),
+      Case("possessive after schemed host is not part of the url", "https://signal.org's blog is good", listOf(web("https://signal.org"))),
+      Case("possessive after bare domain is not part of the url", "signal.org's blog is good", listOf(web("signal.org", url = "http://signal.org"))),
+      Case("possessive after www domain is not part of the url", "www.signal.org's blog is good", listOf(web("www.signal.org", url = "http://www.signal.org"))),
+
       // ----- bracket / paren handling -----
       Case("trailing closing paren without opener is trimmed", "(see https://signal.org)", listOf(web("https://signal.org"))),
       Case("trailing closing paren with matching opener inside is preserved", "https://en.wikipedia.org/wiki/Foo_(bar) and more", listOf(web("https://en.wikipedia.org/wiki/Foo_(bar)"))),

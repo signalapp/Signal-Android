@@ -10,13 +10,13 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.UnpinMessageJob
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * View model for the pinned messages bottom sheet

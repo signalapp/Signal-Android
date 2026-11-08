@@ -11,10 +11,10 @@ import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * A specialized [ConstraintLayout] that sets guidelines based on the window insets provided
@@ -148,6 +148,20 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     windowInsetsListeners.remove(listener)
   }
 
+  /**
+   * A guideline's begin and end measure from the left and right edges in either direction, while the views constrained
+   * to these two use start and end. In RTL that inverts the span, collapsing every view sized by it.
+   */
+  private fun applyHorizontalGuidelines(isLtr: Boolean, parentStart: Int, parentEnd: Int) {
+    if (isLtr) {
+      parentStartGuideline?.setGuidelineBegin(parentStart)
+      parentEndGuideline?.setGuidelineEnd(parentEnd)
+    } else {
+      parentStartGuideline?.setGuidelineEnd(parentStart)
+      parentEndGuideline?.setGuidelineBegin(parentEnd)
+    }
+  }
+
   private fun applyInsets(windowInsets: Insets, keyboardInsets: Insets) {
     val isLtr = ViewUtil.isLtr(this)
 
@@ -166,8 +180,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     if (!statusBarShrinking) {
       statusBarGuideline?.setGuidelineBegin(statusBar)
       navigationBarGuideline?.setGuidelineEnd(navigationBar)
-      parentStartGuideline?.setGuidelineBegin(parentStart)
-      parentEndGuideline?.setGuidelineEnd(parentEnd)
+      applyHorizontalGuidelines(isLtr, parentStart, parentEnd)
 
       windowInsetsListeners.forEach {
         it.onApplyWindowInsets(statusBar, navigationBar, parentStart, parentEnd)

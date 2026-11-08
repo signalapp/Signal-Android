@@ -26,8 +26,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,8 +51,8 @@ import org.signal.core.ui.isWidthCompact
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.events.CallParticipant
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import kotlin.math.max
 
@@ -253,10 +251,10 @@ private fun TopWithCenteredContentLayout(
 private fun CallLinkInfoCard(
   modifier: Modifier = Modifier
 ) {
-  val isPhoneNumberSharingEnabled: Boolean by if (LocalInspectionMode.current) {
-    remember { mutableStateOf(false) }
+  val isPhoneNumberSharingEnabled: Boolean = if (LocalInspectionMode.current) {
+    false
   } else {
-    rememberRecipientField(Recipient.self()) { phoneNumberSharing.enabled }
+    remember { SignalStore.phoneNumberPrivacy.isPhoneNumberSharingEnabled }
   }
 
   val text = if (isPhoneNumberSharingEnabled) {

@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations
 
+import org.signal.core.database.select
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
-import org.signal.core.util.select
 import org.thoughtcrime.securesms.database.ChatFolderTables
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.SignalDatabase

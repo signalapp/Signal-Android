@@ -21,7 +21,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.core.util.deleteAll
+import org.signal.core.database.deleteAll
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase

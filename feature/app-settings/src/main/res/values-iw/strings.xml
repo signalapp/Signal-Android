@@ -45,161 +45,1140 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">נתוני החשבון שלך</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">מפתח Signal</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">חשבון ושחזור</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">מפתח %1$d</item>
-        <item quantity="two">%1$d מפתחות</item>
-        <item quantity="many">%1$d מפתחות</item>
-        <item quantity="other">%1$d מפתחות</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">מפתח Signal שלך משמש לשחזור החשבון שלך. יש לתעד את המפתחות האלה במקום בטוח, במנהל סיסמאות אמין.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal Login שלך משמש לשחזור החשבון שלך. יש לתעד את המפתחות האלה במקום בטוח, במנהל סיסמאות אמין.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">אימות דוֿ-שלבי</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">הגדרה</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">אפליקציית אימות דו-שלבי</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="two">%1$d configured</item>
-        <item quantity="many">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="two">%1$d passkeys</item>
-        <item quantity="many">%1$d passkeys</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">שימוש באמצעי אימות נוסף כדי להגן על החשבון שלך במהלך השימוש במפתח Signal במכשיר חדש.</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">קודי אימות חד–פעמיים</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">מפתח גישה</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">שימוש בטביעת האצבע, הפנים, או מסך הנעילה של הטלפון</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">מפתח גישה</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">אמצעי אימות דו–שלבי</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · נוספה %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">בלתי ידוע</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">פתיחת אפשרויות של אמצעי אימות דו–שלבי</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">שינוי שם</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">הסרה</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">להסיר אפליקציית אימות?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">לא תהיה לך אפשרות להשתמש באפליקציה הזו לקודי אימות חד–פעמיים בעת ההתחברות.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">להסיר מפתח גישה?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">לא תהיה לך אפשרות להשתמש במפתח הגישה הזה בעת ההתחברות.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">להסיר אמצעי אימות דו–שלבי?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">לא תהיה לך אפשרות להשתמש באמצעי הזה בעת ההתחברות.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">אמצעי אימות דו–שלבי הוסר</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">לא הצלחנו להסיר את אמצעי האימות הדו–שלבי. יש לבדוק את החיבור שלך ולנסות שוב.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">מפתח גישה הוסר</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">לא הצלחנו להסיר את מפתח הגישה. יש לבדוק את החיבור שלך ולנסות שוב.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">יש להגדיר מנהל סיסמאות שתומך במפתחות גישה במכשיר הזה, ואז לנסות שוב.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">לא הצלחנו ליצור מפתח גישה. יש לנסות שוב</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">יש לפתוח את הנעילה להוספת אמצעי האימות הדו–שלבי</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">כדי להוסיף את האמצעי הזה, יש לאשר שמדובר בך</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">יש לפתוח את הנעילה כדי להסיר את אמצעי האימות הדו–שלבי</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">להסרת אמצעי האימות הזה, יש לאשר שמדובר בך</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">יש לפתוח את הנעילה כדי לראות את Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">להצגת Signal Login שלך, יש לאשר שמדובר בך</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">יש לבטל את הנעילה כדי לאשר שמדובר בך</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">כדי למחוק את החשבון שלך, צריך לאשר שמדובר בך</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">נדרש אימות</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">לא ניתן להוסיף אפליקציית אימות</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">לא ניתן להוסיף יותר מ–%1$d אפליקציות אימות. יש לנסות להסיר אחת קודם.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">אי אפשר להוסיף יותר מ–%1$d אמצעי אימות דו–שלבי. יש לנסות להסיר אחד קודם.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">לא הצלחנו לטעון את אמצעי האימות הדו–שלביים שלך. יש לבדוק את החיבור שלך ולנסות שוב.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">אפליקציית אימות הוסרה</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">לא הצלחנו להסיר את אפליקציית האימות. יש לבדוק את החיבור שלך ולנסות שוב.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">שימוש באמצעי אימות נוסף כדי להגן על החשבון שלך במהלך השימוש ב–Signal Login במכשיר חדש.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">למידע נוסף</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">נתוני החשבון שלך</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">אפשר לייצא דוח של נתוני חשבון Signal שלך. הדוח הזה לא כולל הודעות או מדיה. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">למידע נוסף</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">יצוא דוח</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">יצוא כקובץ TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">קובץ טקסט קל לקריאה</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">יצוא כקובץ JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">קובץ שניתן לקריאה על ידי מכונה</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">ביטול</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">אישור</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">הפקת דוח נכשלה</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">כדאי לבדוק את החיבור שלך ולנסות שוב.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">לייצא נתונים?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">כדאי לשתף את נתוני חשבון Signal שלך רק עם אנשים או אפליקציות שבוטחים בהם.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">יצוא</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">מפיקים דוח…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">הדוח שלך נוצר רק בזמן הייצוא ואינו מאוחסן על ידי Signal במכשיר שלך.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">הגדרת אפליקציית האימות שלך</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">יש לבצע את השלבים הבאים כדי להגדיר אפליקציית אימות דו-שלבי:</string>
+    <string name="TotpSetupScreen__follow_these_steps">יש לבצע את השלבים הבאים כדי להגדיר אפליקציית אימות דו-שלבי:</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">למידע נוסף</string>
+    <string name="TotpSetupScreen__learn_more">למידע נוסף</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">שלב 1</string>
+    <string name="TotpSetupScreen__step_1">שלב 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">להתקין אפליקציה אמינה של אימות דו-שלבי במכשיר שלך.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">להתקין אפליקציה אמינה של אימות דו-שלבי במכשיר שלך.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">שלב 2</string>
+    <string name="TotpSetupScreen__step_2">שלב 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">לפתוח את אפליקציית האימות באמצעות לחיצה על הכפתור שלמטה כדי להוסיף את חשבון Signal שלך.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">לפתוח את אפליקציית האימות באמצעות לחיצה על הכפתור שלמטה כדי להוסיף את חשבון Signal שלך.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">פתיחה</string>
+    <string name="TotpSetupScreen__open">פתיחה</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">אפשר גם להעתיק את הקישור הזה כדי להגדיר באופן ידני.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">אפשר גם להעתיק את הקישור הזה כדי להגדיר באופן ידני.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">העתק</string>
+    <string name="TotpSetupScreen__copy">העתק</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">הועתק ללוח</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">הועתק ללוח</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">לא נמצאה אפליקציית אימות</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">לא נמצאה אפליקציית אימות</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">לא ניתן להוסיף יותר מ–%1$d אפליקציות אימות. יש לנסות להסיר אחת קודם.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">לא הצלחנו לגשת אל Signal. יש לבדוק את החיבור שלך ולנסות שוב.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">שלב 3</string>
+    <string name="TotpSetupScreen__step_3">שלב 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">להעתיק את הקוד שנוצר ולחזור לכאן כדי להמשיך.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">להעתיק את הקוד שנוצר ולחזור לכאן כדי להמשיך.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">המשך</string>
+    <string name="TotpSetupScreen__continue">המשך</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">למידע נוסף</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">מפתחות גישה</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">עם מפתחות גישה אפשר להוסיף בקלות שיטת אימות נוספת לחשבון שלך. מפתחות גישה יכולים לעשות שימוש באימות הביומטרי של המכשיר שלך או במפתח אבטחה תואם מסוג FIDO2.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">למידע נוסף</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">לתת למפתח הגישה שלך שם קל לזיהוי</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">להשתמש באימות הביומטרי של המכשיר או במפתח תואם מסוג FIDO2 כדי לאחסן את מפתח הגישה</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">להוסיף או להסיר מפתחות גישה בכל עת.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">\"%1$s\" התווסף/ה</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">שינוי שם</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">הסרה</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">הגדרת מפתח גישה</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">לא ניתן להוסיף מפתח גישה</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">אי אפשר להוסיף יותר מ–%1$d אמצעי אימות דו–שלבי. יש לנסות להסיר אחד קודם.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">הזנת הקוד שלך</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">הזנת הקוד שלך</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">יש להזין קוד בן 6 ספרות מאפליקציית האימות שלך.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">קוד</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">יש להזין קוד בן 6 ספרות מאפליקציית האימות שלך.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">סיום</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">אפליקציית אימות דו-שלבי</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">למידע נוסף</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">\"%1$s\" התווסף/ה</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">שינוי שם</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">הסרה</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">הבא</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">קוד שגוי. יש להזין את הקוד שמופיע באפליקציית האימות שלך כעת.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">לא הצלחנו לגשת אל Signal. יש לבדוק את החיבור שלך ולנסות שוב.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">בחר שם</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">אפליקציית אימות</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">בחר שם</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">בחירת שם ייחודי לאפליקציית האימות הזו.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">בחירת שם ייחודי לאפליקציית האימות הזו שיעזור לך לזהות אותה בהמשך.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">יש לבחור שם ייחודי לאמצעי האימות הדו–שלבי.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">יש לבחור שם ייחודי לאמצעי האימות הדו–שלבי כדי לעזור לך לזהות אותו בהמשך.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">יש לבחור שם ייחודי למפתח הגישה.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">יש לבחור שם ייחודי למפתח הגישה כדי לעזור לך לזהות אותו בהמשך.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">שם</string>
+    <string name="TwoFactorNameEntryScreen__name">שם</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">הבא</string>
+    <string name="TwoFactorNameEntryScreen__next">הבא</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">אפליקציית אימות הוגדרה</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">שונה שם אפליקציית האימות</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">מפתח גישה הוגדר</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">שונה שם מפתח גישה</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">אמצעי אימות דו–שלבי הוגדר</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">שונה שם אמצעי אימות דו–שלבי</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">לא הצלחנו לשמור את השם. יש לבדוק את החיבור שלך ולנסות שוב.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">מחיקת החשבון שלך:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">הכנס את מספר הטלפון שלך</string>
+    <string name="DeleteAccountFragment__delete_account">מחיקת חשבון</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">תמחק את מידע החשבון שלך ותמונת הפרופיל שלך</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">תמחק את כל ההודעות שלך</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">מחיקת %1$s בחשבון התשלומים שלך</string>
+    <string name="DeleteAccountFragment__no_country_code">קוד מדינה לא צויין</string>
+    <string name="DeleteAccountFragment__no_number">מספר לא צויין</string>
+    <string name="DeleteAccountFragment__the_phone_number">מספר הטלפון שהכנסת אינו תואם אל מספר הטלפון של החשבון שלך.</string>
+    <string name="DeleteAccountFragment__are_you_sure">בטוח שבא לך למחוק את החשבון שלך?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">זה ימחק את חשבון Signal שלך ויאפס את האפליקציה. האפליקציה תיסגר לאחר שהתהליך יושלם.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">מחיקת נתונים מקומיים נכשלה. אפשר לנקות אותם באופן ידני בהגדרות היישום של המערכת.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">פתח הגדרות יישום</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">עוזב קבוצות…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">מוחק חשבון…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">מבטלים את המנוי שלך…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">תלוי במספר הקבוצות שאתה נמצא בהן, זה עשוי לקחת מספר דקות</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">מוחק נתוני משתמש ומאפס את היישום</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">חשבון לא נמחק</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">הייתה בעיה בהשלמת תהליך המחיקה. בדוק את חיבור הרשת שלך ונסה שוב.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">מחיקת החשבון שלך עם שם המשתמש ״%1$s״:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">תמחק את מידע החשבון שלך ותמונת הפרופיל שלך, כולל שם המשתמש ״%1$s״</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">פעולה זו לא ניתנת לביטול</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">זה ימחק את חשבון Signal שלך עם שם המשתמש ״%1$s״ ויאפס את האפליקציה. האפליקציה תיסגר לאחר השלמת התהליך.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">כן, תמחקו את החשבון שלי</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">הזמנת חברים</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">שתף</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">בחר את מדינתך</string>
+    <string name="RegistrationActivity_phone_number_description">מספר טלפון</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">תיקיה %1$d</item>
+        <item quantity="two">%1$d תיקיות</item>
+        <item quantity="many">%1$d תיקיות</item>
+        <item quantity="other">%1$d תיקיות</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">הוספת תיקיית צ׳אטים</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">הוספת או עריכת תיקיות</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">אימות נכשל</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">תיקיות צ׳אטים</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">ייצוא היסטוריית צ׳אט</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">יצוא עותק JSON של כל הצ׳אטים שניתן לקריאה על ידי מכונה. הודעות נעלמות לא ייכללו בייצוא.</string>
+    <string name="ChatsSettingsFragment__keyboard">מקלדת</string>
+    <string name="ChatsSettingsFragment__send_with_enter">שליחה עם enter</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">הפעלה אוטומטית של סטיקרים וקובצי GIF</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">כשהאפשרות הזו מופעלת, סטיקרים וקובצי GIF יופעלו אוטומטית</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">יש לבטל את הנעילה לפני יצוא היסטוריית הצ׳אטים</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">העדפת תמונות אנשי קשר מפנקס הכתובות אם הן זמינות</string>
+    <string name="preferences__generate_link_previews">חולל תצוגות מקדימות של קישורים</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">צ׳אטים מושתקים שמאוחסנים בארכיון יישארו בארכיון כשהודעה חדשה מגיעה.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">השארת צ׳אטים מושתקים בארכיון</string>
+    <string name="preferences__pref_use_address_book_photos">העדפת תמונות מפנקס הכתובות</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">אחזר תצוגות מקדימות של קישורים ישירות מאתרים עבור הודעות שאתה שולח.</string>
+    <string name="preferences_advanced__use_system_emoji">השתמש באימוג’י של מערכת</string>
+    <string name="preferences_chats__chats">צ׳אטים</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">זהירות</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">זהירות!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">יצוא בביטול…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">יש לבחור תיקייה באחסון המכשיר שלך שבה תאוחסן היסטוריית הצ׳אטים שלך.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">בחירת תיקיה</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">בחר תיקייה</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">חשוב לשמור את קובץ הייצוא של הצ׳אטים במקום מאובטח ולא לשתף אותו עם אף אחד. אפליקציות אחרות במכשיר שלך יכולות לגשת אליו בהתאם להרשאות המכשיר.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">יצוא צ׳אטים הושלם</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">לייצא היסטוריית צ\'אט?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">אין לשתף את הקובץ הזה עם אנשים אחרים. היסטוריית הצ׳אטים שלך תישמר במכשיר שלך ואפליקציות אחרות יוכלו לגשת אליה בהתאם להרשאות המכשיר שלך. יצוא עם מדיה יגרום לנפח קובץ גדול יותר.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">יצוא עם מדיה</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">יצוא בלי מדיה</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">מדיה בייצוא: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">מסיימים…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">הגיבוי בהכנה…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">הגיבוי בעיבוד…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">הודעות בעיבוד…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">הודעות בעיבוד: %1$s מתוך %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">מדיה בהעלאה: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">עדכוני יישום</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">מראה</string>
+    <string name="preferences__language">שפה</string>
+    <string name="preferences__theme">ערכת נושא</string>
+    <string name="preferences__system_default">ברירת מחדל</string>
+    <string name="preferences__light_theme">בהירה</string>
+    <string name="preferences__dark_theme">כהה</string>
+    <string name="preferences__chat_color_and_wallpaper">צבע צ׳אט ורקע</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">סמל האפליקציה</string>
+    <string name="preferences_chats__message_text_size">גודל גופן הודעה</string>
+    <string name="arrays__small">קטן</string>
+    <string name="arrays__normal">רגיל</string>
+    <string name="arrays__large">גדול</string>
+    <string name="arrays__extra_large">גדול מאוד</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">גודל סרגל ניווט</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">רגיל</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">קטן</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">האפליקציה תופעל מחדש כדי להחיל את הגדרת השפה החדשה.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">מספר טלפון</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">מי יכול לראות את המספר שלי</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">מספר הטלפון שלך יהיה גלוי לכל האנשים והקבוצות ששלחת להם הודעה.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">מספר הטלפון שלך לא יהיה גלוי לאף אחד אלא אם כן המספר שמור ברשימת אנשי הקשר שלו או שלה.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">מספר הטלפון שלך לא יהיה גלוי לאף אחד.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">מי יכול למצוא אותי לפי המספר שלי</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">כל מי שיש להם את מספר הטלפון שלך יראו אותך ב–Signal ויוכלו להתחיל איתך צ׳אט.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">אנשים לא יוכלו לראות אותך ב–Signal אלא אם שלחת להם הודעה או שיש לך צ\'אט קיים איתם.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"כדי לשנות את ההגדרה הזו, יש להגדיר את ׳מי יכול לראות את המספר שלי׳ כ׳אף אחד׳."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">להמשיך?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">להגדיר את ״מי יכול למצוא אותי לפי המספר שלי״ כ״אף אחד״ יקשה על אנשים למצוא אותך ב–Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ביטול</string>
+    <string name="PhoneNumberPrivacy_everyone">כולם</string>
+    <string name="PhoneNumberPrivacy_nobody">אף אחד</string>
+    <string name="arrays__images">תמונות</string>
+    <string name="arrays__audio">שמע</string>
+    <string name="arrays__video">סרטון</string>
+    <string name="arrays__documents">מסמכים</string>
+    <string name="preferences__data_and_storage">נתונים ואחסון</string>
+    <string name="preferences_chats__when_using_mobile_data">בעת שימוש בנתונים ניידים</string>
+    <string name="preferences_chats__when_using_wifi">בעת שימוש ב־Wi-Fi</string>
+    <string name="preferences_chats__when_roaming">בעת נדידה</string>
+    <string name="preferences_chats__media_auto_download">הורדה אוטומטית של מדיה</string>
+    <string name="preferences_data_and_storage__manage_storage">נהל אחסון</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">השתמש בפחות נתונים עבור שיחות</string>
+    <string name="preferences_data_and_storage__never">אף פעם</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi ונתונים סלולריים</string>
+    <string name="preferences_data_and_storage__mobile_data_only">נתונים סלולריים בלבד</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">שימוש בפחות נתונים עשוי לשפר שיחות על רשתות גרועות.</string>
+    <string name="preferences_proxy">יפוי כוח</string>
+    <string name="preferences_use_proxy">השתמש ביפוי כוח</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">איכות מדיה</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">מתבצע חישוב…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">הגדר איכות מדיה</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">שליחת מדיה באיכות גבוהה תשתמש ביותר נתונים.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">הודעות קוליות וסטיקרים (מתחת לנפח של %1$s) תמיד יורדו באופן אוטומטי.</string>
+    <string name="DataAndStorageSettingsFragment__calls">שיחות</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">להישאר במצב מחובר ברקע</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">הישארות במצב מחובר כשהאפליקציה פועלת ברקע עלולה לגרום לצריכת סוללה מוגברת. זה לא הכרחי עבור רוב המכשירים. יש להפעיל אפשרות זו רק אם נתקלת בבעיות בקבלת התראות.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">הפעלה</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">גבוה</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">תקנית</string>
+    <string name="preferences_app_protection__screen_lock">נעילת מסך</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">שימוש בנעילת מסך</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">הגדרות הנעילה של מכשיר Android שלך יידרשו כדי לבטל את הנעילה של Signal בעת יציאה או מעבר בין אפליקציות. במצב נעול, התראות תצוגה מקדימה לא יציגו את תוכן ההודעה.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">הפעלת נעילת מסך</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">אחרי דקה 1</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">אחרי 5 דקות</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">אחרי 30 דקות</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">זמן מותאם אישית</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">שימוש בנעילת מסך של Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">כיבוי נעילת המסך של Signal</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">עזרה</string>
+    <string name="HelpSettingsFragment__support_center">מרכז תמיכה</string>
+    <string name="HelpSettingsFragment__contact_us">צור קשר</string>
+    <string name="HelpSettingsFragment__version">גרסה</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">הועתק ללוח</string>
+    <string name="HelpSettingsFragment__debug_log">יומן תקלים</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">רישיונות</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">תנאים ומדיניות פרטיות</string>
+    <string name="HelpFragment__copyright_signal_messenger">זכויות יוצרים Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">ברישיון תחת GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal היא עמותה ללא מטרות רווח.</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">סמלי ושמות אפליקציות גלויים במסך הבית ובמגירת האפליקציות.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">התראות יציגו תמיד את סמל ושם ברירת המחדל של Signal.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">גרפיקה שממחישה איפה סמל האפליקציה החלופי יהיה גלוי.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">מזג אוויר</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">פתקים</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">חדשות</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">גלים</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">אישור</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">ביטול</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">שינוי סמל ושם אפליקציה ל״%1$s״</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">צריך לסגור את Signal כדי לשנות את סמל ושם האפליקציה. התראות יציגו תמיד את סמל ושם ברירת המחדל של Signal.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">בוחרים שם וסמל אפליקציה שיהיו גלויים במסך הבית ובמגירת האפליקציות של הטלפון שלך. התראות יציגו תמיד את סמל ושם ברירת המחדל של Signal. למידע נוסף</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">למידע נוסף</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">לינק לא הוגדר</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">צבע</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">סיום</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">פרופיל נוצר</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">סיים</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">אפשר להפעיל או לכבות את הפרופיל שלך באופן ידני באמצעות התפריט ברשימת הצ׳אטים.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">הוסף תזמון בהגדרות כדי למכן את הפרופיל שלך.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">הפרופיל שלך יופעל ויכובה באופן אוטומטי בהתאם לתזמון שלך.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדין לא הגדרת משפט־סיסמה!</string>
+    <string name="ApplicationPreferencesActivity_disable">השבת</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">להשבית משפט־סיסמה?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">זה ישחרר נעילה של Signal והתראות הודעה באופן קבוע.</string>
+    <string name="PrivacySettingsFragment__app_security">אבטחת יישום</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">חסימת צילומי מסך ברשימת השיחות האחרונות ובתוך האפליקציה</string>
+    <string name="PrivacySettingsFragment__blocked">חסום/ה</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">כדי להשתמש בנעילת אבטחה לתשלום, צריך קודם לאפשר נעילת מסך או זיהוי באמצעות טביעת אצבע בהגדרות הטלפון שלך.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">לא ניתן לאפשר נעילת אבטחה לתשלום</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">איש קשר או קבוצה %1$d</item>
+        <item quantity="two">%1$d אנשי קשר או קבוצות</item>
+        <item quantity="many">%1$d אנשי קשר או קבוצות</item>
+        <item quantity="other">%1$d אנשי קשר או קבוצות</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">קוצב זמן ברירת מחדל עבור צ׳אטים חדשים</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">הניווט להגדרות המערכת נכשל.</string>
+    <string name="PrivacySettingsFragment__messaging">תכתובת</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">אפשר לדרוש נעילת מסך או טביעת אצבע ב-Android כדי להעביר כספים</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">אפשר להגדיר קוצב זמן ברירת מחדל של הודעות נעלמות עבור כל הצ\'אטים החדשים שהותחלו על ידך.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">הודעות ושיחות של Signal, ממסר שיחות תמיד, ושולח אטום</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">כבויה</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">נעל באופן אוטומטי את Signal לאחר מרווח זמן מסוים של אי־פעילות</string>
+    <string name="preferences__change_passphrase">שנה משפט־סיסמה</string>
+    <string name="preferences__change_your_passphrase">שנה את משפט־הסיסמה שלך</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">אפשר נעילת מסך עם משפט־סיסמה</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">מרווח פסק זמן אי־פעילות</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">משפט־סיסמה לאחר פסק זמן של אי־פעילות</string>
+    <string name="preferences__incognito_keyboard">מקלדת סמויה</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">נעל מסך והתראות באמצעות משפט־סיסמה</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">נעילת אבטחה לתשלום</string>
+    <string name="preferences__read_receipts">אישורי קריאה</string>
+    <string name="preferences__request_keyboard_to_disable">בקש מהמקלדת להשבית למידה מותאמת אישית.</string>
+    <string name="preferences__screen_security">אבטחת מסך</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">הגדרה זו אינה מובטחת, והמקלדת שלך עשויה להתעלם ממנה.</string>
+    <string name="preferences__typing_indicators">מחווני הקלדה</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">אפשר לבחור מי יוכל לראות את מספר הטלפון שלך ומי יוכל ליצור איתך קשר באמצעותו ב–Signal.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">תשלומים</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">כדי להשתמש בנעילת מסך יש להגדיר PIN, קו ביטול נעילה, או סיסמה במכשיר זה.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">פרטיות</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">הודעות נעלמות</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">מתקדם</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">הפעלה</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">לא עכשיו</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">למידע נוסף</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">הגעת למגבלת אחסון הגיבוי</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">מזהה המנוי של הגיבויים הועתק ללוח</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">מזהה המנוי של התורמ/ת הועתק ללוח</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">לא היה ניתן להשלים את הגיבוי</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">הזמן את חבריך</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">חידוש מנוי הגיבויים המאובטחים שלך ב–Signal</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">פרטיות</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">הגדרות</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">חזור</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">לא ניתן היה לממש את מנוי הגיבויים שלך</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">ביצוע תרומה ל–Signal</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">העדפות פנימיות</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">מכשירים מקושרים</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">התראות</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">תשלומים</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">סטוריז</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">גיבויים</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">גודל סרגל ניווט</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">רגיל</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">קטן</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">חזור</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">תמונות</string>
+    <string name="preferences_storage__videos">סרטונים</string>
+    <string name="preferences_storage__files">קבצים</string>
+    <string name="preferences_storage__audio">שמע</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">הודעות</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">מדבקות</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">אחר</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">מתבצע חישוב…</string>
+    <string name="preferences_storage__review_storage">סקור אחסון</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">אימות דוֿ-שלבי</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">יש לבחור אמצעי אימות למטה כדי לאמת את החשבון שלך.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">מפתח גישה</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">יש ללחוץ כדי להשתמש באימות הביומטרי של המכשיר שלך או במפתח גישה מסוג FIDO2</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">אפליקציית אימות דו-שלבי</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">יש להזין קוד חד–פעמי שנוצר על ידי אפליקציית האימות שלך.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">כדי להמשיך, יש להזין קוד בן 6 ספרות מאפליקציית האימות שלך.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">ביטול</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">קוד שגוי. יש להזין את הקוד שמופיע באפליקציית האימות שלך כעת.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">לא הצלחנו לגשת אל Signal. כדאי לבדוק את החיבור שלך ולנסות שוב.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">משהו השתבש עם מפתח הגישה שלך. יש לנסות שוב או לבחור אמצעי אחר.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">שמך</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">שם פרטי</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">שם משפחה (רשותי)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">שמירה</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">נכשל בשמירה עקב סוגיות רשת. נסה שוב מאוחר יותר.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">שמור הודעות</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">לנצח</string>
+    <string name="preferences_storage__one_year">שנה 1</string>
+    <string name="preferences_storage__six_months">6 חודשים</string>
+    <string name="preferences_storage__thirty_days">30 ימים</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">הודעות ישנות יותר מטווח הזמן שנבחר יימחקו לצמיתות.</string>
+    <string name="preferences_storage__delete_older_messages">למחוק הודעות ישנות יותר?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">זה ימחק לצמיתות את כל היסטוריית ההודעות והמדיה מהמכשיר שלך שישנים יותר מ%1$s.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">מחיקה</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">מגבלת אורך צ׳אט</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">הודעה %1$s</item>
+        <item quantity="two">%1$s הודעות</item>
+        <item quantity="many">%1$s הודעות</item>
+        <item quantity="other">%1$s הודעות</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">אין</string>
+    <string name="preferences_storage__custom">מותאם אישית</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">הודעות החורגות מהאורך שנבחר יימחקו לצמיתות.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">זה יקצץ לצמיתות את כל הצ׳אטים שלך להודעה האחרונה בלבד.</item>
+        <item quantity="two">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
+        <item quantity="many">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
+        <item quantity="other">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">אודות</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">כתוב כמה מילים על עצמך…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">דבר בחופשיות</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">מוצפן</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">תהיו אדיבים</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">אוהב קפה</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">פנוי/ה לצ\'אט</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">לוקח הפסקה</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">עובד על משהו חדש</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">שמירה</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">נקה</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">בחירת אימוג׳י</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">נכשל בשמירה עקב סוגיות רשת. נסה שוב מאוחר יותר.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">בחירת שם המשתמש שלך</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">שם משתמש</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">מחיקה</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">נעשו יותר מדי ניסיונות, יש לנסות שוב מאוחר יותר.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">שם משתמש זה תפוס.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">שמות משתמש יכולים להכיל רק a–Z, 0–9, וקווים תחתונים.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">שם משתמש לא חוקי.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">אנשים יכולים לשלוח לך הודעה באמצעות שם המשתמש האופציונלי שלך במקום מספר טלפון. שמות משתמש תמיד מוצמדים לסט של מספרים. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">שם המשתמש הזה לא זמין, כדאי לנסות מספר אחר.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">שם משתמש לא חוקי, יש להזין לפחות %1$d ספרות.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">שם משתמש לא חוקי, יש להזין עד %1$d ספרות.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">המספר הזה לא יכול להיות 00. יש להזין ספרה בין 9–1</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">מספרים עם יותר מ–2 ספרות לא יכולים להתחיל ב–0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">שחזור שם המשתמש שלך יאפס את קוד ה–QR והלינק הקיימים שלך. להמשיך?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">שינוי שם המשתמש שלך יאפס את קוד ה–QR והלינק הקיימים שלך. להמשיך?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">המשך</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">שמירה</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">למידע נוסף</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">הפרופיל שלך והשינויים בו יהיו גלויים לאנשים שיקבלו ממך הודעות, ולאנשי הקשר והקבוצות שלך.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">עדכן את Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">גרסה זו של Signal כבר לא בתוקף. אפשר לעדכן עכשיו כדי להמשיך להשתמש ב–Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">עדכן</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">המכשיר לא רשום</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">המכשיר הזה כבר לא רשום. צריך לרשום אותו מחדש כדי לבצע שינויים בחשבון שלך.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">רשום מחדש</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">נכשל בשמירה עקב סוגיות רשת. נסה שוב מאוחר יותר.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">לא הצלחנו למחוק שם משתמש. יש לנסות שוב מאוחר יותר.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">למחוק שם משתמש?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"זה יסיר את שם המשתמש שלך ויבטל את קוד ה–QR והלינק שלך. ״%1$s״ יהיה זמין לאחרים. להמשיך?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">ערוך תמונה</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">שיתוף שם המשתמש שלך</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">מאפשרים לאחרים להתחיל איתך צ׳אט באמצעות שיתוף קוד ה–QR או הלינק הייחודיים שלך.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">שם משתמש נוצר</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">שם המשתמש נמחק</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">אנשים יכולים לשלוח לך הודעה באמצעות שם משתמש אופציונלי במקום מספר טלפון. לכל שם משתמש יש קוד QR ולינק ייחודיים שאפשר לשתף עם חברים.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">שם המשתמש, קוד ה–QR והלינק שלך לא גלויים בפרופיל שלך. כדאי לשתף את שם המשתמש שלך רק עם אנשים שבוטחים בהם.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">אודות</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">נכשל בהגדרת יצגן</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">קוד QR או לינק</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">שם פרופיל</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">שם משתמש</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">עריכת שם משתמש</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">מחיקת שם משתמש</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">פרופיל</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">הגדר יצגן</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">תגים</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">מחיקה</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">סגור</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">משיגים תגים עבור הפרופיל שלך באמצעות תמיכה ב–Signal.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal הוא ארגון ללא מטרות רווח בלי מפרסמים או משקיעים, שנתמך רק ע״י אנשים כמוך.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">הפוך אל מחזיק</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">תגים</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">התגים שלי</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">הצגת תגים בפרופיל שלי</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">תג פרופיל</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">נכשל בעדכון פרופיל</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">תג פרופיל</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">בחירת תג</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">שמירה</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">נכשל בעדכון פרופיל</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">כל מי שיש לו את הלינק הזה יוכל לראות את שם המשתמש שלך ולהתחיל איתך צ׳אט. חשוב לשתף רק עם אנשים שבוטחים בהם.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">העתקת קישור</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">שתף</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">קוד</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">סריקה</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">לינק הועתק</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">שם משתמש הועתק</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">לאפס קוד QR?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">איפוס קוד ה–QR שלך יגרום לכך שקוד ה–QR והלינק הקיימים שלך לא יפעלו יותר.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">איפוס</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">אין לך גישה לרשת. הלינק שלך לא אופס. יש לנסות שוב מאוחר יותר.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">שגיאת רשת התרחשה בעת הניסיון לאפס את הלינק שלך. יש לנסות שוב מאוחר יותר.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">שגיאה בלתי צפויה התרחשה בעת הניסיון לאפס את הלינק שלך. יש לנסות שוב מאוחר יותר.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">קוד ה–QR והלינק שלך אופסו ונוצרו קוד QR ולינק חדשים.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">כדאי לשתף את קוד ה–QR שלך רק עם אנשים שבוטחים בהם. כשמשתפים, אחרים יכולים לראות את שם המשתמש שלך ולהתחיל איתך צ׳אט.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">אפס</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">לינק</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">שתף</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">צבע</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">קוד QR לא תקף.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">הייתה שגיאת רשת. יש לנסות שוב.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">קוד QR לא נמצא</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">יש לנסות לסרוק תמונה אחרת שמכילה קוד QR של Signal.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">לא נמצא.ה משתמש.ת עם שם המשתמש %1$s.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">אפשר לסרוק את קוד ה–QR במכשיר של איש הקשר שלך.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">לא הצלחנו למצוא את המשתמש.ת.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">כדי לסרוק קוד QR, צריך לתת ל–Signal גישה למצלמה שלך.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">התר גישה</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">Signal צריכה גישה למצלמה שלך כדי לסרוק קודי QR</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">אחסון</string>
+    <string name="preferences_storage__storage_usage">שימוש באחסון</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">אחסון Signal</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">אופטימיזציה של אחסון Signal</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">מדיה שאינה בשימוש תוסר, אך ניתן להוריד אותה מהגיבוי שלך בכל עת.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">מגבלות אורך צ׳אט</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">החלת מגבלות על מכשירים מקושרים</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">כשאפשרות זו מופעלת, מגבלות הצ׳אט ימחקו הודעות גם מהמכשירים המקושרים שלך.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">מחיקת היסטוריית הודעות</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">למחוק היסטוריית הודעות?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">זה ימחק לצמיתות את כל היסטוריית ההודעות והמדיה מהמכשיר שלך.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">זה ימחק לצמיתות את כל היסטוריית ההודעות והמדיה מהמכשיר הזה ומכל מכשיר מקושר.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">בטוח שבא לך למחוק את כל היסטוריית ההודעות?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">כל היסטוריית ההודעות תימחק לצמיתות. פעולה זו אינה ניתנת לביטול.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">כל היסטוריית ההודעות תוסר לצמיתות מכל המכשירים. פעולה זו לא ניתנת לביטול.</string>
+    <string name="preferences_storage__delete_all_now">למחוק הכל עכשיו</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">ניתן להשתמש באופטימיזציה של אחסון רק עם התכנית בתשלום של הגיבויים המאובטחים של Signal. מנוי הגיבויים שלך נמצא בעיבוד ואינו פעיל עדיין. נא לנסות שוב מאוחר יותר.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">מדיה תוסר מהגיבוי שבמכשיר שלך</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">הפעלת ״אופטימיזציה של אחסון Signal״ תנקה מדיה ישנה מהמכשיר שלך. אפשר להוריד אותה שוב בכל עת. זה גם יסיר מדיה ישנה מהגיבוי שבמכשיר שלך.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">הפעלה</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">צלצול או התראה כשמתחילה שיחה בזמן שהצ׳אט הזה מושתק.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">צלצול או התראה כשמתחילה שיחה בצ׳אטים מושתקים.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">התראה כשהוזכרת בזמן שהצ׳אט הזה מושתק.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">התראה כשהוזכרת בצ׳אטים מושתקים.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">התראה כשמשיבים להודעות שלך בזמן שהצ׳אט הזה מושתק.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">התראה כשמשיבים להודעות שלך בצ׳אטים מושתקים.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">כאשר הצליל מושתק</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">שיחות</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">אזכורים</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">תשובות</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">נכשל בפתיחת בורר.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">כדי לאפשר התראות, Signal צריכה הרשאה להציג אותן.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">הפעלה</string>
+    <string name="NotificationsSettingsFragment__calls">שיחות</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">איש קשר מצטרף אל Signal</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">צור פרופיל כדי לקבל התראות רק מהאנשים ומהקבוצות שאתה בוחר.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">הצגת התראה בעת הצטרפות אנשי קשר מהטלפון אל Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">איפוס הגדרות ההתראות</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">לאפס את כל הגדרות ההתראות לברירת המחדל עבור כל הצ׳אטים?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">איפוס</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">איפוס הגדרות ההתראות לברירת המחדל, כולל הגדרות מותאמות אישית עבור הצ׳אטים שלך</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">צלילים</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">צלצול בלתי ידוע</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">שיחות</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">אזכורים</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">פרופילי התראות</string>
+    <string name="NotificationsSettingsScreen__notifications">התראות</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">תשובות</string>
+    <string name="NotificationsSettingsScreen__silent">שקט</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">תזכורות על הודעות שלא נקראו</string>
+    <string name="arrays__default">ברירת מחדל</string>
+    <string name="arrays__high">גבוה</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">מרבי</string>
+    <string name="arrays__name_and_message">שם והודעה</string>
+    <string name="arrays__name_only">שם בלבד</string>
+    <string name="arrays__no_name_or_message">ללא שם או הודעה</string>
+    <string name="preferences__blue">כחול</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">התראות שיחה</string>
+    <string name="preferences__change_sound_and_vibration">שנה צליל ורטט</string>
+    <string name="preferences__customize">התאם אישית</string>
+    <string name="preferences__cyan">ציאן</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">ברירת מחדל</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">אפשר התראות</string>
+    <string name="preferences__fast">מהיר</string>
+    <string name="preferences__five_times">חמש פעמים</string>
+    <string name="preferences__green">ירוק</string>
+    <string name="preferences__led_color">צבע LED</string>
+    <string name="preferences__magenta">מג\'נטה</string>
+    <string name="preferences__never">אף פעם</string>
+    <string name="preferences__normal">רגיל</string>
+    <string name="preferences__one_time">פעם אחת</string>
+    <string name="preferences__orange">כתום</string>
+    <string name="preferences__pref_led_blink_title">תבנית הבהוב LED</string>
+    <string name="preferences__red">אדום</string>
+    <string name="preferences__repeat_alerts">חזור על התרעות</string>
+    <string name="preferences__slow">איטי</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">קול</string>
+    <string name="preferences__ten_times">עשר פעמים</string>
+    <string name="preferences__three_times">שלוש פעמים</string>
+    <string name="preferences__two_times">פעמיים</string>
+    <string name="preferences__vibrate">הרטט</string>
+    <string name="preferences__white">לבן</string>
+    <string name="preferences_notifications__in_chat_sounds">צלילים בתוך צ׳אט</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">הצגת התראות על תגובות להודעות ששלחת</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">התראות מזדמנות על הודעות שלא נקראו בצ׳אטים מושתקים</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">עדיפות</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">התראות על תגובות</string>
+    <string name="preferences_notifications__ringtone">צלצול</string>
+    <string name="preferences_notifications__show">הראה</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">פתרון תקלות של התראות</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">כאשר הצליל מושתק</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">הוסף</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">התראות מותרות</string>
 </resources>

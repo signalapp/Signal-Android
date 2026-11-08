@@ -160,6 +160,9 @@ fun MainScreen(
                 is StandardCameraHudEvents.AudioPermissionRequired -> {
                   // Doesn't need to be handled
                 }
+                is StandardCameraHudEvents.ToggleMultiCapture -> {
+                  // Doesn't need to be handled
+                }
               }
             }
           )

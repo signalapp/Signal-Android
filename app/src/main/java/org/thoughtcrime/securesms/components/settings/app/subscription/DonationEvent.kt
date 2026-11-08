@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 
 /**
  * Events that can arise from use of the donations apis.

@@ -5,6 +5,7 @@ import androidx.annotation.OptIn
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.audio.AudioSink
 import androidx.media3.exoplayer.audio.DefaultAudioSink
+import androidx.media3.exoplayer.audio.ForwardingAudioSink
 import org.signal.core.util.logging.Log
 import java.nio.ByteBuffer
 
@@ -18,11 +19,11 @@ class RetryableInitAudioSink(
   context: Context,
   enableFloatOutput: Boolean,
   enableAudioTrackPlaybackParams: Boolean,
-  val delegate: AudioSink = DefaultAudioSink.Builder(context)
+  private val delegate: AudioSink = DefaultAudioSink.Builder(context)
     .setEnableFloatOutput(enableFloatOutput)
     .setEnableAudioTrackPlaybackParams(enableAudioTrackPlaybackParams)
     .build()
-) : AudioSink by delegate {
+) : ForwardingAudioSink(delegate) {
 
   private var retriesLeft = INITIAL_RETRY_COUNT
 

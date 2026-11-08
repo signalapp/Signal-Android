@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.testing
 
 import org.json.JSONObject
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.signal.remoteconfig.RemoteConfig
 import kotlin.reflect.KProperty0
 import kotlin.reflect.jvm.isAccessible
 

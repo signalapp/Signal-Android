@@ -45,155 +45,1132 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Аккаунтыңыз туралы дерек</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Signal логині</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Аккаунт және қалпына келтіру</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d кілт</item>
-        <item quantity="other">%1$d кілт</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Аккаунтыңызды қалпына келтіру үшін Signal логиніңіз қолданылады. Бұл кілттерді өзіңіз сенім білдіретін құпия сөз менеджерінде сақтап қойыңыз.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Аккаунтыңызды қалпына келтіру үшін Signal Login тіркелу деректеріңіз қолданылады. Бұл кілттерді өзіңіз сенетін құпия сөз менеджерінде сақтап қойыңыз.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Екі факторлы аутентификация</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Параметрлерді реттеу</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">Аутентификатор қолданбасы</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Жаңа құрылғыда Signal логинін пайдаланғанда, аккаунтыңызды қорғау үшін аутентификацияның екінші формасын пайдаланыңыз.</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Бір реттік растау кодтары</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Кіру кілті</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Саусақ ізін, бетті немесе экран құлпын пайдаланыңыз</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Кіру кілті</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Екі факторлы әдіс</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s қосты</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Белгісіз</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Екі факторлы аутентификация опцияларын ашу</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Атын өзгерту</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Өшіру</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Аутентификатор қолданбасын жою керек пе?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Аккаунтыңызға кіргенде бір реттік верификация кодтарын енгізу үшін, осы қолданбаны пайдалана алмайсыз.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Кіру кілтін жою керек пе?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Аккаунтыңызға кірген кезде, бұл кіру кілтін пайдалана алмай қаласыз.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Екі факторлы әдісті жою керек пе?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Аккаунтыңызға кірген кезде, бұл әдісті пайдалана алмай қаласыз.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Екі факторлы әдіс жойылды</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Екі факторлы әдісті жою мүмкін болмады. Байланысты тексеріп, әрекетті қайталаңыз.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Кіру кілті өшірілді</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Кіру кілтін жою мүмкін болмады. Байланысты тексеріп, әрекетті қайталаңыз.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Осы құрылғыда кіру кілттеріне қолдау көрсететін құпия сөз менеджерінің параметрлерін орнатыңыз, содан кейін қайталап көріңіз.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Кіру кілтін жасау мүмкін болмады. Әрекетті қайталап көріңіз.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Екі факторлы әдісті қосу үшін құлыпты ашыңыз</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Бұл әдісті қосу үшін жеке басыңызды растаңыз</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Екі факторлы аутентификация әдісін өшіру үшін құлыпты ашыңыз</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Бұл әдісті жою үшін, оны жояйын деп жатқан өзіңіз екенін растаңыз</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login-ді көру үшін құлыпты ашу</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Signal Login-ді көру үшін оны ашайын деп жатқан өзіңіз екенін растаңыз</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Жеке басыңызды растау үшін құлыпты ашыңыз</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Аккаунтыңызды жою үшін жеке басыңызды растаңыз</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Аутентификация керек</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Аутентификатор қолданбасын қосу мүмкін емес</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Ең көбі %1$d аутентификатор қолданбасын қоса аласыз. Алдымен біреуін жойып көріңіз.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Ең көбі %1$d екі факторлы аутентификация әдісін қоса аласыз. Алдымен біреуін өшіріп көріңіз.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Екі факторлы аутентификация әдістерін жүктеу мүмкін болмады. Байланысты тексеріп, әрекетті қайталаңыз.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Аутентификатор қолданбасы жойылды</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Аутентификатор қолданбасын жою мүмкін болмады. Байланысты тексеріп, әрекетті қайталаңыз.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Жаңа құрылғыда Signal Login тіркелу деректерін пайдаланғанда, аккаунтыңызды қорғау үшін аутентификацияның екінші формасын пайдаланыңыз.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Толық ақпарат</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Аккаунтыңыз туралы дерек</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Signal аккаунтыңыз туралы деректердің есебін экспорттаңыз. Бұл есепке ешқандай хат немесе мультимедиа кірмейді. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Толық ақпарат</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Есепті экспорттау</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">TXT форматында экспорттау</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Оңай оқылатын мәтін файлы</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">JSON форматында экспорттау</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Құрылғы оқи алатын файл</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Бас тарту</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Есепті жасау мүмкін болмады</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Байланысты тексеріп, қайталап көріңіз.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Деректерді экспорттау керек пе?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Signal аккаунтыңыздың деректерін тек сенімді адамдармен немесе қолданбалармен бөлісіңіз.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Экспорттау</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Есеп жасалуда…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Есебіңіз экспортталып жатқанда ғана жасалады және Signal оны құрылғыңызда сақтамайды.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Аутентификатор қолданбасын реттеу</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Аутентификатор қолданбасының параметрлерін реттеу үшін осы қадамдарды орындаңыз.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Аутентификатор қолданбасының параметрлерін реттеу үшін осы қадамдарды орындаңыз.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Толық ақпарат</string>
+    <string name="TotpSetupScreen__learn_more">Толық ақпарат</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">1-қадам</string>
+    <string name="TotpSetupScreen__step_1">1-қадам</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Құрылғыңызда сенімді аутентификатор қолданбасын орнатыңыз.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Құрылғыңызда сенімді аутентификатор қолданбасын орнатыңыз.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">2-қадам</string>
+    <string name="TotpSetupScreen__step_2">2-қадам</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Төмендегі түймені басу арқылы аутентификатор қолданбасын ашып, Signal аккаунтын қосыңыз.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Төмендегі түймені басу арқылы аутентификатор қолданбасын ашып, Signal аккаунтын қосыңыз.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Ашу</string>
+    <string name="TotpSetupScreen__open">Ашу</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Болмаса осы кілтті көшіріп, қолмен реттеуге болады.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">Болмаса осы кілтті көшіріп, қолмен реттеуге болады.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Көшірме жасау</string>
+    <string name="TotpSetupScreen__copy">Көшірме жасау</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Буферге көшірілді</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Буферге көшірілді</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">Аутентификатор қолданбасы табылмады</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Аутентификатор қолданбасы табылмады</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Ең көбі %1$d аутентификатор қолданбасын қоса аласыз. Алдымен біреуін жойып көріңіз.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Signal-мен байланыс орнату мүмкін болмады. Байланысты тексеріп, әрекетті қайталаңыз.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">3-қадам</string>
+    <string name="TotpSetupScreen__step_3">3-қадам</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Жасалған кодты көшіріп, жалғастыру үшін осы жерге оралыңыз.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Жасалған кодты көшіріп, жалғастыру үшін осы жерге оралыңыз.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Жалғастыру</string>
+    <string name="TotpSetupScreen__continue">Жалғастыру</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">Толық ақпарат</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">Кіру кілттері</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Кіру кілттерінің көмегімен аутентификацияның қауіпсіз екінші формасын аккаунтыңызға оңай қоса аласыз. Кіру кілттері құрылғыңыздың биометриялық деректерін немесе үйлесімді FIDO2 қауіпсіздік кілтін пайдалана алады.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">Толық ақпарат</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Кіру кілтіңізге өзіңізге ыңғайлы бір ат қойыңыз</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Кіру кілтіңізді сақтау үшін құрылғыңыздың биометриялық деректерін немесе FIDO2 қауіпсіздік кілтін пайдаланыңыз</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Кіру кілттерін кез келген уақытта қосуға немесе жоюға болады.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">\"%1$s\" қосылды</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Rename</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">Өшіру</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">Кіру кілтін реттеу</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">Кіру кілтін қосу мүмкін емес</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Ең көбі %1$d екі факторлы аутентификация әдісін қоса аласыз. Алдымен біреуін өшіріп көріңіз.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Кодыңызды енгізіңіз</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Кодыңызды енгізіңіз</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Аутентификатор қолданбасындағы 6 цифрлық кодты енгізіңіз.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Код</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Аутентификатор қолданбасындағы 6 цифрлық кодты енгізіңіз.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Дайын</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">Аутентификатор қолданбасы</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">Толық ақпарат</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">\"%1$s\" қосылды</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Rename</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">Өшіру</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">Келесі</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Код дұрыс емес. Дәл қазір аутентификатор қолданбаңызда көрсетіліп тұрған кодты енгізіңіз.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal-мен байланыс орнату мүмкін болмады. Байланысты тексеріп, әрекетті қайталаңыз.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Choose a name</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Аутентификатор</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Атауын таңдаңыз</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Осы аутентификатор қолданбасы үшін бірегей атау таңдаңыз.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Кейінірек оны оңай анықтай алуыңыз үшін, осы аутентификатор қолданбасы үшін бірегей атау таңдаңыз.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Осы екі факторлы әдіс үшін бірегей атау таңдаңыз.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Кейінірек оны оңай анықтай алуыңыз үшін, осы екі факторлы әдіс үшін бірегей атау таңдаңыз.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Осы кіру кілті үшін бірегей атау таңдаңыз.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Кейінірек оны оңай анықтай алуыңыз үшін, осы кіру кілті үшін бірегей атау таңдаңыз.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">Name</string>
+    <string name="TwoFactorNameEntryScreen__name">Name</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">Келесі</string>
+    <string name="TwoFactorNameEntryScreen__next">Келесі</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Аутентификатор қолданбасын реттеу</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Аутентификатор қолданбасының аты өзгертілді</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Кіру кілті параметрлерін реттеу</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Кіру кілтінің атауы өзгертілді</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Екі факторлы әдіс параметрлерін реттеу</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Екі факторлы әдістің атауы өзгертілді</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Атын сақтау мүмкін болмады. Байланысты тексеріп, әрекетті қайталаңыз.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Аккаунтыңызды жойсаңыз:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Телефон нөмірін енгізу</string>
+    <string name="DeleteAccountFragment__delete_account">Аккаунтты жою</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Аккаунт туралы ақпаратты және профиль фотосуретін жою</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Барлық хатыңызды жою</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Төлемдер шотынан %1$s жою</string>
+    <string name="DeleteAccountFragment__no_country_code">Ел коды көрсетілмеген</string>
+    <string name="DeleteAccountFragment__no_number">Нөмір көрсетілмеген</string>
+    <string name="DeleteAccountFragment__the_phone_number">Сіз енгізген телефон нөмірі аккаунтыңыздағы нөмірмен бірдей емес.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Аккаунтыңызды шынымен жойғыңыз келе ме?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Бұл функция Signal аккаунтыңызды жойып, қолданбаны қалпына келтіреді. Процесс аяқталған соң, қолданба жабылады.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Жергілікті дерек жойылмады. Оны жүйенің қолданба параметрлерінен қолмен жоя аласыз.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Қолданба параметрлерін іске қосу</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Топтардан шығып жатырсыз…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Аккаунт жойылуда…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Жазылымыңыздан бас тартылуда…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Қанша топтың мүшесі болғаныңызға байланысты оған бірнеше минут кетуі мүмкін</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Пайдаланушы дерегі жойылуда және қолданба бастапқы күйге қайтарылуда</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Аккаунт жойылмады</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Жою процесін аяқтау кезінде қиындық туындады. Желі байланысын тексеріп, қайталап көріңіз.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">\"%1$s\" деген аккаунтыңызды жойсаңыз:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Аккаунтыңыз туралы ақпаратты және профиль фотосуретін, оның ішінде \"%1$s\" деген пайдаланушы атын жойыңыз</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Бұл әрекетті қайтару мүмкін емес</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Бұл әрекет \"%1$s\" деген Signal аккаунтыңызды жойып, қолданбаны қалпына келтіреді. Бұл процесс аяқталған соң, қолданба жабылады.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Иә, аккаунтымды жою керек</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Достарды шақыру</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Бөлісу</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Еліңізді таңдау</string>
+    <string name="RegistrationActivity_phone_number_description">Телефон нөмірі</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d қалта</item>
+        <item quantity="other">%1$d қалта</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Чат қалтасын қосу</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Қалталарды қосу немесе өзгерту</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Аутентификация орындалмады</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Чат қалталары</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Чат тарихын экспорттау</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Барлық чатыңыздың құрылғы оқи алатын JSON көшірмесін экспорттаңыз. Жойылатын хабарлар экспортталмайды.</string>
+    <string name="ChatsSettingsFragment__keyboard">Пернетақта</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Enter пернесімен жіберу</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Стикерлерді және GIF файлдарын автоматты ойнату</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Қосылған кезде, стикерлер мен GIF файлдары автоматты түрде ойнайды</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Чат тарихын экспорттау үшін құлыпты ашыңыз</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Бар болса, мекенжайлар кітабындағы контактілердің фотосуреттерін қолданғым келеді</string>
+    <string name="preferences__generate_link_previews">Сілтеменің шағын көріністерін жасау</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Мұрағаттағы дыбысы өшірілген чаттарға жаңа хат келгенде олар мұрағатта қала береді.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Дыбысы өшірілген чаттарды мұрағатта қалдыру</string>
+    <string name="preferences__pref_use_address_book_photos">Мекенжайлар кітабындағы фотосуреттерді қолданғым келеді</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Жіберетін хаттарыңыз үшін сілтеменің шағын көріністерін тікелей веб-сайттардан алыңыз.</string>
+    <string name="preferences_advanced__use_system_emoji">Жүйенің эмодзиін пайдалану</string>
+    <string name="preferences_chats__chats">Чаттар</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">АБАЙ БОЛЫҢЫЗ</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">АБАЙ БОЛЫҢЫЗ!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Экспорттаудан бас тартылып жатыр…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Құрылғы жадындағы қалтаны таңдап, чат тарихын сонда сақтаңыз.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Қалта таңдаңыз</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Choose folder</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">Чаттың экспортталған файлын сақтаған жеріңізді ешкімге айтпаңыз. Құрылғыңыздағы басқа қолданбалар оны құрылғыңыздың рұқсаттарына қарай пайдалана алады.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Чатты экспорттау аяқталды</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Чат тарихын экспорттау керек пе?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">Бұл файлды ешкіммен БӨЛІСПЕҢІЗ. Чат тарихы құрылғыңызға сақталады және оны басқа қолданбалар құрылғыңыздың рұқсаттарына қарай пайдалана алады. Мультимедиамен экспорттағанда, файл өлшемі үлкенірек болуы мүмкін.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Мультимедиамен экспорттау</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Мультимедиасыз экспорттау</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Мультимедиа экспортталып жатыр: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Аяқталып жатыр…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Сақтық көшірме дайындалып жатыр…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Сақтық көшірме жасалып жатыр…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Хабарлар өңделіп жатыр…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Хабарлар өңделіп жатыр: %1$s/%2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Мультимедиа жүктеп салынып жатыр: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Қолданба жаңартулары</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">Сыртқы көрінісі</string>
+    <string name="preferences__language">Тіл</string>
+    <string name="preferences__theme">Тақырып</string>
+    <string name="preferences__system_default">Жүйенің әдепкі параметрі</string>
+    <string name="preferences__light_theme">Жарық</string>
+    <string name="preferences__dark_theme">Күңгірт</string>
+    <string name="preferences__chat_color_and_wallpaper">Чат түсі және тұсқағазы</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Қолданба белгішесі</string>
+    <string name="preferences_chats__message_text_size">Хатта қолданылған қаріп өлшемі</string>
+    <string name="arrays__small">Шағын</string>
+    <string name="arrays__normal">Қалыпты</string>
+    <string name="arrays__large">Үлкен</string>
+    <string name="arrays__extra_large">Тым үлкен</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Навигация жолағының өлшемі</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Қалыпты</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Шағын</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">Жаңа тіл параметрін қолдану үшін қолданба өшіріліп, қайта қосылады.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Телефон нөмірі</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Менің нөмірімді кім көре алады?</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Телефон нөміріңіз адамдарға және топтарға көрініп тұрады.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Телефондағы контактілеріне сақтамаса, телефон нөміріңіз ешкімге көрсетілмейді.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Телефон нөміріңіз ешкімге көрінбейді.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Мені нөмірім арқылы кім таба алады?</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Телефон нөміріңізді білетін кез келген адам сіздің Signal қолданбасын пайдаланатыныңызды біле алады және сізбен чат аша алады.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Сіз біреуге хат жазбайынша немесе біреумен ортақ чатыңыз болмайынша, сіздің Signal қолданбасын пайдаланатыныңызды ешкім көре алмайды.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Бұл параметрді өзгерту үшін \"Менің нөмірімді кім көре алады\" деген бөлімде \"Ешкім\" опциясын таңдаңыз."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Сенімдісіз бе?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"Менің нөмірімді кім таба алады\" параметрін \"Ешкім\" деп орнатсаңыз, адамдардың сізді Signal қолданбасында табуы қиындай түседі.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Бас тарту</string>
+    <string name="PhoneNumberPrivacy_everyone">Барлығы</string>
+    <string name="PhoneNumberPrivacy_nobody">Ешкім</string>
+    <string name="arrays__images">Суреттер</string>
+    <string name="arrays__audio">Дыбыс</string>
+    <string name="arrays__video">Бейнефайл</string>
+    <string name="arrays__documents">Құжаттар</string>
+    <string name="preferences__data_and_storage">Деректер және жад</string>
+    <string name="preferences_chats__when_using_mobile_data">Мобильдік интернетті пайдаланғанда</string>
+    <string name="preferences_chats__when_using_wifi">Wi-Fi-ды пайдаланғанда</string>
+    <string name="preferences_chats__when_roaming">Роуминг кезінде</string>
+    <string name="preferences_chats__media_auto_download">Мультимедианы автоматты түрде жүктеп алу</string>
+    <string name="preferences_data_and_storage__manage_storage">Жадты басқару</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Қоңыраулар үшін азырақ дерек қолдану</string>
+    <string name="preferences_data_and_storage__never">Ешқашан</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi және мобильдік интернет</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Мобильдік интернет қана</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Трафикті аз қолдану желілер әлсіз болғанда қоңыраулар сапасын жақсартуға көмектеседі.</string>
+    <string name="preferences_proxy">Прокси</string>
+    <string name="preferences_use_proxy">Прокси пайдалану</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Мультимедиа сапасы</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Есептеліп жатыр…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Жіберілген мультимедиа сапасы</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Жоғары сапалы мультимедианы жібергенде, трафик көбірек қолданылады.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Дауыстық хабарлар мен стикерлер (максимум %1$s) үнемі автоматты түрде жүктеп алынады.</string>
+    <string name="DataAndStorageSettingsFragment__calls">Қоңыраулар</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Фондық режимде байланыста болыңыз</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Фондық режимде байланыста болсаңыз, батарея заряды көп шығындалуы мүмкін. Көп құрылғы үшін мұның қажеті жоқ. Оны хабарландыруларға қатысты мәселелер туындап жатқан жағдайда ғана іске қосыңыз.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Іске қосу</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Жоғары</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Стандарт</string>
+    <string name="preferences_app_protection__screen_lock">Экран құлпы</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Экран құлпын пайдалану</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Шыққанда немесе қолданбаларды ауыстырғанда, Signal құлпын ашу үшін Android құрылғыңыздың құлпын ашу параметрлері керек болады. Құлыпталып тұрғанда, хабарландырулардың алдын ала көрінісі хаттың контентін көрсетпейді.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Бастапқы экран құлпы</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">1 минуттан кейін</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">5 минуттан кейін</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">30 минуттан кейін</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Реттелмелі уақыт</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal экран құлпын пайдалану</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal экран құлпын өшіру</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">Анықтама</string>
+    <string name="HelpSettingsFragment__support_center">Қолдау көрсету орталығы</string>
+    <string name="HelpSettingsFragment__contact_us">Байланыс мәліметі</string>
+    <string name="HelpSettingsFragment__version">Нұсқа</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Буферге көшірілді</string>
+    <string name="HelpSettingsFragment__debug_log">Ақауларды түзету журналы</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Лицензиялар</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Шарттар және Құпиялық саясаты</string>
+    <string name="HelpFragment__copyright_signal_messenger">Авторлық құқығы қорғалған Signal мессенджері</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 лицензиясымен жұмыс істейді</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal – коммерциялық емес жоба</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Қолданба белгішелері мен аттары басты экранда және қолданба панелінде көрініп тұрады.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Хабарландыруларда міндетті түрде әдепкі Signal белгішесі мен аты көрсетіледі.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Ауыстырылатын қолданба белгішесі қай жерде тұратынын көрсететін график.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Ауа райы</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Ескертпелер</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Жаңалықтар</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Толқындар</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Бас тарту</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Қолданба белгішесі мен атын \"%1$s\" деп өзгерту</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Қолданбаның белгішесі мен атын өзгерту үшін Signal-дың жабылуына тура келеді. Хабарландыруларда міндетті түрде әдепкі Signal белгішесі мен аты көрсетіледі.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Қолданбаның белгішесі мен атын таңдаңыз, олар телефоныңыздың басты экранында және қолданбалар панелінде көрсетіледі. Хабарландыруларда міндетті түрде әдепкі Signal белгішесі мен аты көрсетіледі. Толық ақпарат</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Толық ақпарат</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Сілтеме орнатылмады</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Түс</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">Дайын</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">Профиль жасалды</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">Дайын</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Чат тізімінде мәзір арқылы профиліңізді қосуыңызға немесе өшіруіңізге болады.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Профиліңізді автоматтандыру үшін параметрлерде кесте қосыңыз.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Профиліңіз кестеңізге қарай автоматты түрде қосылады және өшеді.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сіз әлі құпия сөйлемді орнатқан жоқсыз!</string>
+    <string name="ApplicationPreferencesActivity_disable">Өшіру</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Құпия сөйлемді өшіру керек пе?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ол Signal-дың және хабарландырулардың біржола құлпын ашады.</string>
+    <string name="PrivacySettingsFragment__app_security">Қолданба қауіпсіздігі</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Соңғылар тізімінде және қолданбаның ішінде скиншоттарды блоктау</string>
+    <string name="PrivacySettingsFragment__blocked">Блокталған</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">Төлем құлпын пайдалану үшін алдымен телефоныңыздың параметрлерінен экран құлпын немесе саусақ ізі идентификациясын қосуыңыз керек.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">Төлем құлпын қосу мүмкін емес</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d контакт немесе топ</item>
+        <item quantity="other">%1$d контакт немесе топ</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Жаңа чаттарға арналған әдепкі таймер</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Жүйе параметрлеріне кіру мүмкін болмады</string>
+    <string name="PrivacySettingsFragment__messaging">Хат алмасу</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Қаражат аудару үшін Android экран құлпын ашу немесе саусақ ізін енгізу керек</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Сіз бастаған барлық жаңа чат үшін әдепкі бойынша жоғалып кететін хат таймерін орнатыңыз.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal хаттары мен қоңыраулары, үнемі ретрансляциялық қоңыраулар және қорғалған жіберуші</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Өшіру</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Белгілі бір уақыт әрекетсіздіктен кейін Signal-ды автоматты түрде құлыптау</string>
+    <string name="preferences__change_passphrase">Құпия сөйлемді өзгерту</string>
+    <string name="preferences__change_your_passphrase">Құпия сөйлеміңізді өзгертіңіз</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">Құпия сөйлеммен экранды құлыптау функциясын қосу</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Оқылғандығын растау функциясы өшіп тұрса, басқалардың хатыңызды оқыған-оқымағанын біле алмайсыз.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Теру индикаторлары өшіп тұрса, басқалардың теріп жатқан-жатпағанын біле алмайсыз.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">Әрекетсіздік уақытының интервалы</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">Әрекетсіздік уақытының құпия сөйлемі</string>
+    <string name="preferences__incognito_keyboard">Инкогнито пернетақта</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Құпия сөйлеммен экранды және хабарландыруларды құлыптау</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">Төлем құлпы</string>
+    <string name="preferences__read_receipts">Оқылғандығын растау</string>
+    <string name="preferences__request_keyboard_to_disable">Жекелендірілген үйрену функциясын өшіру үшін пернетақтаны сұраңыз.</string>
+    <string name="preferences__screen_security">Экран қауіпсіздігі</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">Бұл параметр кепілдік емес және пернетақтаңыз оны елемеуі мүмкін.</string>
+    <string name="preferences__typing_indicators">Теру индикаторлары</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Телефон нөміріңізді кім көре алатынын және Signal-да сізге кім жаза алатынын таңдаңыз.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">Төлемдер</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Экран құлпын пайдалану үшін осы құрылғыда PIN-код, өрнек немесе құпиясөз орнатыңыз.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">Құпиялық</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">Disappearing messages</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">Озық</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">Іске қосу</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">Қазір емес</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">Толық ақпарат</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Сақтық көшірме жады белгіленген шекке жетті</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Резервтік көшірмелер жазылушысының идентификаторы буферге көшірілді</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Донор жазылушы идентификаторы буферге көшірілді</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Резервтік көшірмелеуді аяқтау мүмкін болмады</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">Достарыңызды шақырыңыз</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signal қауіпсіз сақтық көшірме жазылымыңызды жаңартыңыз</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">Құпиялық</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">Параметрлер</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">Қайту</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Сақтық көшірме жазылымы белсендірілмеді</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Signal-ды демеу</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">Ішкі параметрлер</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">Байланыстырылған құрылғылар</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">Хабарландырулар</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">Төлемдер</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">Стористер</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">Резервтік көшірмелер</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Навигация жолағының өлшемі</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Қалыпты</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Шағын</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">Қайту</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">Фотосуреттер</string>
+    <string name="preferences_storage__videos">Видеолар</string>
+    <string name="preferences_storage__files">Файлдар</string>
+    <string name="preferences_storage__audio">Дыбыс</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Хаттар</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Жапсырмалар</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Басқа</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Есептеліп жатыр…</string>
+    <string name="preferences_storage__review_storage">Жадты тексеру</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">Екі факторлы аутентификация</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Аккаунтыңызды растау үшін төмендегі аккаунтты таңдаңыз.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">Кіру кілті</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Құрылғыңыздың биометриялық деректерін немесе FIDO2 кіру кілтін пайдалану үшін түртіңіз</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">Аутентификатор қолданбасы</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Аутентификатор қолданбасы көрсетіп тұрған бір реттік кодты енгізіңіз.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">Жалғастыру үшін аутентификатор қолданбасындағы 6 цифрлы кодты енгізіңіз.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">Бас тарту</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">Код дұрыс емес. Дәл қазір аутентификатор қолданбаңызда көрсетіліп тұрған кодты енгізіңіз.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Signal-мен байланыс орнату мүмкін болмады. Байланысты тексеріп, қайталап көріңіз.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Кіру кілтіңізде бірдеңе дұрыс болмады. Қайталап көріңіз немесе басқа әдіс таңдаңыз.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">Атыңыз</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">Аты</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">Тегі (міндетті емес)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">Сақтау</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Желі ақауларына байланысты сақтау мүмкін болмады. Кейінірек қайталап көріңіз.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">Хаттарды сақтау</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">Біржола</string>
+    <string name="preferences_storage__one_year">1 жыл</string>
+    <string name="preferences_storage__six_months">6 ай</string>
+    <string name="preferences_storage__thirty_days">30 күн</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Таңдалған уақыттан ескі хаттар біржола жойылады.</string>
+    <string name="preferences_storage__delete_older_messages">Ескі хаттарды жою керек пе?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Бұл функция құрылғыңыздағы хаттар тарихын түгелдей және %1$s күнінен ескі мультимедиалық файлдарды біржола жойып тастайды.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">Жою</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">Чат ұзақтығына қойылатын лимит</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s хат</item>
+        <item quantity="other">%1$s хат</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">Ешқайсы</string>
+    <string name="preferences_storage__custom">Реттелмелі</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Таңдалған ұзындықтан асып кеткен хаттар біржола жойылады.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Бұл функция чаттың барлығын ең соңғы %1$s хатқа дейін біржола қысқартып тастайды.</item>
+        <item quantity="other">Бұл функция чаттың барлығын ең соңғы %1$s хатқа дейін біржола қысқартып тастайды.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">Мағлұмат</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Өзіңіз туралы бірер сөз жазыңыз…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">Еркін сөйлесіңіз</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">Шифрланған</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">Сыпайы болыңыз</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">Кофені жақсы көретін адам</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">Чат арқылы сөйлесуге дайын</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">Үзіліс</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">Жаңа жобамен жұмыс істеп жатырмын</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">Сақтау</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">Тазалау</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">Эмоджиді таңдау</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Желі ақауларына байланысты сақтау мүмкін болмады. Кейінірек қайталап көріңіз.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">Пайдаланушы атын таңдау</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">Пайдаланушы аты</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">Жою</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">Желі қатесі анықталды.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Тым көп рет қате дерек енгіздіңіз, біраздан кейін қайталап көріңіз.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">Бұл пайдаланушы аты бос емес.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">Пайдаланушы аттарында a–Z, 0–9 және астыңғы сызықтар бола алады.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Пайдаланушы аттары саннан басталмауы керек.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">Пайдаланушы аты дұрыс емес.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Пайдаланушы аттары %1$d және %2$d таңба аралығында болуы керек.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">Телефон нөміріңіздің орнына, адамдар қосымша пайдаланушы атыңыздың көмегімен хабар жаза алады. Пайдаланушы аттары міндетті түрде сандар жинағымен жұптасады. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Бұл пайдаланушы аты қолжетімді емес, басқа нөмірді қолданып көріңіз.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Пайдаланушы аты дұрыс емес, кемінде %1$d сан енгізіңіз.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Пайдаланушы аты дұрыс емес, ең көбі %1$d сан енгізіңіз.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Бұл нөмір 00 болмауы керек. 1 және 9 аралығындағы санды енгізіңіз</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 цифрдан көп сандар 0-ден басталмауы керек</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Пайдаланушы атыңызды қалпына келтірсеңіз, бұрынғы QR кодыңыз бен сілтемеңіз де қайта орнатылады. Сенімдісіз бе?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Пайдаланушы атын өзгертсеңіз, ескі QR кодыңыз бен сілтемеңіз қалпына келтіріледі. Сенімдісіз бе?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Жалғастыру</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">Сақтау</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">Толық ақпарат</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профиліңіз және оған енгізілген өзгерістер сіз хат жазған адамдарға, контактілерге және топтарға көрінетін болады.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal-ды жаңарту</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Signal-дың жаңа нұсқасы шықты. Signal-ды бұрынғыдай қолдана алуыңыз үшін, оны жаңартыңыз.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Жаңарту</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Құрылғы тіркелмеген</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Бұл құрылғы бұдан былай тіркелмеген. Аккаунтыңызға өзгерістер енгізу үшін қайта тіркеңіз.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Қайтадан тіркелу</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Желі ақауларына байланысты сақтау мүмкін болмады. Кейінірек қайталап көріңіз.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Пайдаланушы аты жойылмады. Кейінірек қайталап көріңіз.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Пайдаланушы атын жою керек пе?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Бұл пайдаланушы атыңызды жояды және QR кодыңыз бен сілтемені өшіреді. “%1$s” басқалар үшін қолжетімді болады. Сенімдісіз бе?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">Фотосуретті өзгерту</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Пайдаланушы атыңызды бөлісу</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Бірегей QR кодын немесе сілтемені бөлісу арқылы басқалардың сізбен чатты бастауына мүмкіндік беріңіз.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">Пайдаланушы аты жасалды</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Пайдаланушы аты жойылды</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Телефон нөміріңіздің орнына, адамдар қосымша пайдаланушы атыңыздың көмегімен хабар жаза алады. Пайдаланушы аттарында бірегей QR коды және сілтеме бар, оларды достарыңызға жібере аласыз.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Профиліңізде пайдаланушы атыңыз, QR кодыңыз және сілтемеңіз көрсетілмейді. Пайдаланушы атыңызды сенімді адамдарға ғана беріңіз.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">Мағлұмат</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">Аватар орнатылмады</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR коды немесе сілтеме</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">Профиль атауы</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">Пайдаланушы аты</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Пайдаланушы атын өзгерту</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Пайдаланушы атын жою</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">Профиль</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">Аватар орнату</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">Таңбалар</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">Жою</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">Close</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Signal-ға қолдау көрсету арқылы профиліңізге таңбалар алыңыз.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal – сіз сияқты адамдардың арқасында жұмыс істеп тұрған жарнама берушілері немесе инвесторлары жоқ коммерциялық емес жоба.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">Демеуші болу</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">Таңбалар</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">Менің таңбаларым</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Профильдегі таңбаларды көрсету</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">Таңдаулы таңба</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Профиль жаңартылмады</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Таңдаулы таңба</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Таңбаны таңдау</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">Сақтау</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Профиль жаңартылмады</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Осы сілтеме арқылы кез келген адам сіздің пайдаланушы атыңызды көре алады және сізбен чат арқылы сөйлесе алады. Оны тек сенімді адамдармен бөлісіңіз.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Сілтемені көшіру</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Бөлісу</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">Код</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">Сканерлеу</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">Сілтеме көшірілді</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">Пайдаланушы аты көшірілді</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR кодын қалпына келтіру керек пе?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Егер QR кодын қалпына келтірсеңіз, ескі QR коды мен сілтеме жарамсыз болып қалады.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Қалпына келтіру</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Желіге кіретін рұқсатыңыз жоқ. Сілтемеңіз қалпына келтірілмеді. Кейінірек қайталап көріңіз.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Сілтемені қалпына келтіріп жатқанда желі қатесі пайда болды. Кейінірек қайталап көріңіз.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Сілтемені қалпына келтіру кезінде күтпеген қате шықты. Кейінірек қайталап көріңіз.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">QR кодыңыз бен сілтемеңіз қалпына келтірілді және жаңа QR коды мен сілтеме жасалды.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">QR кодын және сілтемені тек сенімді адамдармен бөлісіңіз. Оларды бөліскен соң, оны алған адамдар пайдаланушы атыңызды көре алады және сізге чат арқылы жаза алады.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">Бастапқы күйге қайтару</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Сілтеме</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">Бөлісу</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">Түс</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">Бұл QR коды жарамсыз.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Желі қатесі пайда болды. Қайталап көріңіз.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR коды табылмады</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal-дың QR коды бар басқа суретті сканерлеп көріңіз.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">%1$s деген пайдаланушы табылмады.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">Контакт құрылғысындағы QR кодты сканерлеңіз.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">Бұл пайдаланушыны табу мүмкін болмады.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">QR кодты сканерлеу үшін Signal қолданбасына камераны пайдалануға рұқсат керек.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">Пайдалануға рұқсат беру</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">QR кодтарды сканерлеу үшін Signal қолданбасына камераны пайдалануға рұқсат керек</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">Жад</string>
+    <string name="preferences_storage__storage_usage">Жад қолданысы</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal жады</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal жадын оңтайландыру</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Қолданылмаған мультимедиа алып тасталады, бірақ оны резервтік көшірмеден кез келген уақытта жүктеп алуға болады.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Чат лимиттері</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Байланыстырылған құрылғыларға лимиттер қолдану</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Іске қосылып тұрғанда, чат лимиттері де байланыстырылған құрылғылардан хаттарды жояды.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Хаттар тарихын жою</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Хаттар тарихын жою керек пе?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Бұл функция құрылғыңыздағы хаттар тарихын және мультимедианы біржола жойып тастайды.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Бұл функция осы құрылғыдан және қандай да бір байланыстырылған құрылғылардан барлық хаттар тарихын және мультимедианы жояды.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Хаттар тарихын шынымен де түгелдей жойып тастағыңыз келе ме?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Хаттар тарихы түгелдей біржола өшіп қалады. Өшіріп тастасаңыз, оны қайтарып ала алмайсыз.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Хаттар тарихы барлық құрылғыдан түгелдей біржола өшіп қалады. Өшіріп тастасаңыз, оны қайтарып ала алмайсыз.</string>
+    <string name="preferences_storage__delete_all_now">Барлығын қазір жою</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Жадты оңтайландыру үшін Signal қауіпсіз сақтық көшірмелерінің ақылы деңгейі керек. Сақтық көшірмелер жазылымы әлі өңделіп жатыр және әзірге белсенді емес. Кейінірек қайталап көріңіз.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Мультимедиа құрылғыдағы сақтық көшірмеден жойылады</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal жадын оңтайландыру\" функциясын қосып қойсаңыз, құрылғыңыздағы ескі мультимедиа жүктеп шығарылады. Оны кез келген уақытта жүктеп ала аласыз. Сондай-ақ құрылғыңыздағы сақтық көшірмеден ескі мультимедиа жойылып кетеді.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Іске қосу</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Бұл чат дыбыссыз режимде тұрғанда, қоңырау шалынса, шырылдайды немесе хабарландыру жіберіледі.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Дыбыссыз режимдегі чаттарда қоңырау басталғанда, шырылдайды немесе хабарландыру жіберіледі.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Бұл чат дыбыссыз режимде тұрғанда, сізді біреу атап өтсе, хабарландыру жіберіледі.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Дыбыссыз режимдегі чаттарда біреу сізді атап өтсе, хабарландыру жіберіледі.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Бұл чат дыбыссыз режимде тұрғанда, хабарыңызға біреу жауап берсе, хабарландыру жіберіледі.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Дыбыссыз режимдегі чаттарда біреу хабарыңызға жауап берсе, хабарландыру жіберіледі.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">Дыбысы өшірулі тұрғанда</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">Қоңыраулар</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">Атап өтулер</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">Жауаптар</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Таңдағышты ашу мүмкін болмады.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Хабарландыруларды қосу үшін Signal-дың оларды көрсететін рұқсаты болуы керек.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Іске қосу</string>
+    <string name="NotificationsSettingsFragment__calls">Қоңыраулар</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Signal-ға контакт қосылады</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Өзіңіз таңдаған адамдар мен топтардан ғана хабарландыру алу үшін профиль жасаңыз.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Телефондағы контакт Signal-ға қосылғанда хабарландыру көрсету</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Хабарландыру параметрлерін қайта орнату</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Барлық чат үшін хабарландыруларды әдепкі параметрлерге қайтару керек пе?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Қалпына келтіру</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Хабарландырудың әдепкі параметрлерін, соның ішінде чаттарыңызға арналған арнаулы параметрлерді қайта орнатыңыз</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Дыбыстар</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Белгісіз рингтон</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">Қоңыраулар</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">Атап өтулер</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">Хабарландыру профильдері</string>
+    <string name="NotificationsSettingsScreen__notifications">Хабарландырулар</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">Жауаптар</string>
+    <string name="NotificationsSettingsScreen__silent">Дыбыссыз</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">Оқылмаған еске салғыштар</string>
+    <string name="arrays__default">Әдепкі параметр</string>
+    <string name="arrays__high">Жоғары</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">Макс.</string>
+    <string name="arrays__name_and_message">Аты және хат</string>
+    <string name="arrays__name_only">Аты ғана</string>
+    <string name="arrays__no_name_or_message">Аты немесе хаты жоқ</string>
+    <string name="preferences__blue">Көк</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Қоңырау туралы хабарландырулар</string>
+    <string name="preferences__change_sound_and_vibration">Дауыс пен дірілді өзгерту</string>
+    <string name="preferences__customize">Бейімдеу</string>
+    <string name="preferences__cyan">Көкшіл жасыл</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Әдепкі параметр</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Хабарландыруларды қосу</string>
+    <string name="preferences__fast">Жылдам</string>
+    <string name="preferences__five_times">Бес рет</string>
+    <string name="preferences__green">Жасыл</string>
+    <string name="preferences__led_color">LED түсі</string>
+    <string name="preferences__magenta">Фуксин</string>
+    <string name="preferences__never">Ешқашан</string>
+    <string name="preferences__normal">Қалыпты</string>
+    <string name="preferences__one_time">Бір рет</string>
+    <string name="preferences__orange">Қызғылт-сары</string>
+    <string name="preferences__pref_led_blink_title">LED жыпылықтау үлгісі</string>
+    <string name="preferences__red">Қызыл</string>
+    <string name="preferences__repeat_alerts">Ескертулерді қайталау</string>
+    <string name="preferences__slow">Баяу</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">Дауыс</string>
+    <string name="preferences__ten_times">Он рет</string>
+    <string name="preferences__three_times">Үш рет</string>
+    <string name="preferences__two_times">Екі рет</string>
+    <string name="preferences__vibrate">Діріл</string>
+    <string name="preferences__white">Ақ</string>
+    <string name="preferences_notifications__in_chat_sounds">Чаттағы дауыстар</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Өзіңіз жіберген хабарларға берілген реакциялар туралы хабарландыруларды көрсету</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Дауысы өшірілген чаттарда оқылмаған хабарлар бар екенін анда-санда хабарлау</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">Басымдық</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Реакация туралы хабарландырулар</string>
+    <string name="preferences_notifications__ringtone">Рингтон</string>
+    <string name="preferences_notifications__show">Көрсету</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Ақауларды түзету хабарландырулары</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">Дыбысы өшірулі тұрғанда</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Қосу</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Рұқсат етілген хабарландырулар</string>
 </resources>

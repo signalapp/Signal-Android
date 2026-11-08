@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
 import androidx.annotation.VisibleForTesting
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.json.JSONArray
 import org.json.JSONException
@@ -44,6 +45,7 @@ import org.signal.archive.proto.ThreadMergeChatUpdate
 import org.signal.archive.proto.ViewOnceMessage
 import org.signal.core.models.ServiceId
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
@@ -70,6 +72,8 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.signal.core.util.toByteArray
+import org.signal.libsignal.zkgroup.InvalidInputException
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ExportOddities
@@ -106,7 +110,6 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.polls.PollRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.mb
 import java.io.Closeable
@@ -125,8 +128,8 @@ private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
 private val MAX_INLINED_BODY_SIZE = 128.kibiBytes.bytes.toInt()
 private val MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER = 2.kibiBytes.bytes.toInt()
 private val MAX_INLINED_QUOTE_BODY_SIZE = 2.kibiBytes.bytes.toInt()
-private const val MAX_POLL_QUESTION_CHARACTER_LENGTH = 200
-private const val MAX_POLL_CHARACTER_LENGTH = 100
+private const val MAX_POLL_QUESTION_GRAPHEME_LENGTH = 200
+private const val MAX_POLL_OPTION_GRAPHEME_LENGTH = 100
 private const val MAX_POLL_OPTIONS = 10
 
 /**
@@ -437,11 +440,11 @@ class ChatItemArchiveExporter(
 
         extraData.pollsById[record.id] != null -> {
           val poll = extraData.pollsById[record.id]!!
-          if (poll.question.isEmpty() || poll.question.length > MAX_POLL_QUESTION_CHARACTER_LENGTH) {
+          if (!poll.hasValidQuestionForExport()) {
             Log.w(TAG, ExportSkips.invalidPollQuestion(record.dateSent))
             continue
           }
-          if (poll.pollOptions.isEmpty() || poll.pollOptions.size > MAX_POLL_OPTIONS || poll.pollOptions.any { it.text.isEmpty() || it.text.length > MAX_POLL_CHARACTER_LENGTH }) {
+          if (!poll.hasValidOptionsForExport()) {
             Log.w(TAG, ExportSkips.invalidPollOption(record.dateSent))
             continue
           }
@@ -619,6 +622,16 @@ class ChatItemArchiveExporter(
   }
 }
 
+@VisibleForTesting
+internal fun PollRecord.hasValidQuestionForExport(): Boolean {
+  return question.isNotEmpty() && StringUtil.getGraphemeCount(question) <= MAX_POLL_QUESTION_GRAPHEME_LENGTH
+}
+
+@VisibleForTesting
+internal fun PollRecord.hasValidOptionsForExport(): Boolean {
+  return pollOptions.isNotEmpty() && pollOptions.size <= MAX_POLL_OPTIONS && pollOptions.all { it.text.isNotEmpty() && StringUtil.getGraphemeCount(it.text) <= MAX_POLL_OPTION_GRAPHEME_LENGTH }
+}
+
 private fun simpleUpdate(type: SimpleChatUpdate.Type): ChatUpdateMessage {
   return ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = type))
 }
@@ -744,8 +757,9 @@ private fun BackupMessageRecord.toRemoteProfileChangeUpdate(): ChatUpdateMessage
   } else if (profileChangeDetails?.learnedProfileName != null) {
     val e164 = profileChangeDetails.learnedProfileName.e164?.e164ToLong()
     val username = profileChangeDetails.learnedProfileName.username
-    if (e164 != null || username.isNotNullOrBlank()) {
-      ChatUpdateMessage(learnedProfileChange = LearnedProfileChatUpdate(e164 = e164, username = username))
+    val sharedName = profileChangeDetails.learnedProfileName.sharedName
+    if (e164 != null || username.isNotNullOrBlank() || sharedName.isNotNullOrBlank()) {
+      ChatUpdateMessage(learnedProfileChange = LearnedProfileChatUpdate(e164 = e164, username = username, sharedName = sharedName))
     } else {
       Log.w(TAG, ExportSkips.emptyLearnedProfileChange(this.dateSent))
       null
@@ -1087,9 +1101,23 @@ private fun BackupMessageRecord.toRemoteContactMessage(reactionRecords: List<Rea
           postcode = address.postalCode ?: "",
           country = address.country ?: ""
         ).takeUnless { it.street.isBlank() && it.pobox.isBlank() && it.neighborhood.isBlank() && it.city.isBlank() && it.region.isBlank() && it.postcode.isBlank() && it.country.isBlank() }
-      }
+      },
+      aci = ServiceId.ACI.parseOrNull(sharedContact.aci)?.takeIf { it.isValid }?.toByteString() ?: ByteString.EMPTY,
+      nickname = sharedContact.nickname.toRemote(),
+      note = sharedContact.note ?: ""
     ),
     reactions = reactionRecords.toRemote(exportState)
+  )
+}
+
+private fun Contact.SignalNickname?.toRemote(): ContactAttachment.SignalNickname? {
+  if (this == null || this.isEmpty) {
+    return null
+  }
+
+  return ContactAttachment.SignalNickname(
+    given = this.given ?: "",
+    family = this.family ?: ""
   )
 }
 
@@ -1302,15 +1330,42 @@ private fun BackupMessageRecord.toRemoteGiftBadgeUpdate(): BackupGiftBadge? {
     return null
   }
 
-  return BackupGiftBadge(
-    receiptCredentialPresentation = giftBadge.redemptionToken,
-    state = when (giftBadge.redemptionState) {
-      GiftBadge.RedemptionState.REDEEMED -> BackupGiftBadge.State.REDEEMED
-      GiftBadge.RedemptionState.FAILED -> BackupGiftBadge.State.FAILED
-      GiftBadge.RedemptionState.PENDING -> BackupGiftBadge.State.UNOPENED
-      GiftBadge.RedemptionState.STARTED -> BackupGiftBadge.State.OPENED
+  val backupGiftBadge = giftBadge.toBackupGiftBadgeOrNull()
+  if (backupGiftBadge == null) {
+    Log.w(TAG, ExportSkips.invalidGiftBadgeReceiptCredentialPresentation(this.dateSent))
+  }
+
+  return backupGiftBadge
+}
+
+/**
+ * Returns null if the redemption token is not a valid [ReceiptCredentialPresentation]. Failed gift badges are exported
+ * with an empty presentation, as required by the backup spec.
+ */
+@VisibleForTesting
+internal fun GiftBadge.toBackupGiftBadgeOrNull(): BackupGiftBadge? {
+  val state = when (redemptionState) {
+    GiftBadge.RedemptionState.REDEEMED -> {
+      BackupGiftBadge.State.REDEEMED
     }
-  )
+    GiftBadge.RedemptionState.PENDING -> {
+      BackupGiftBadge.State.UNOPENED
+    }
+    GiftBadge.RedemptionState.STARTED -> {
+      BackupGiftBadge.State.OPENED
+    }
+    GiftBadge.RedemptionState.FAILED -> {
+      return BackupGiftBadge(receiptCredentialPresentation = ByteString.EMPTY, state = BackupGiftBadge.State.FAILED)
+    }
+  }
+
+  try {
+    ReceiptCredentialPresentation(redemptionToken.toByteArray())
+  } catch (e: InvalidInputException) {
+    return null
+  }
+
+  return BackupGiftBadge(receiptCredentialPresentation = redemptionToken, state = state)
 }
 
 private fun PollRecord.toRemotePollMessage(reactionRecords: List<ReactionRecord>?, exportState: ExportState): Poll {

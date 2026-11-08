@@ -92,10 +92,17 @@ object Previews {
     }
   }
 
+  /**
+   * A stand-in color for content that cannot be loaded in a preview, like an image off the network.
+   *
+   * The [seed] -- a URI, a name, an index -- is what keeps the color varied between items but stable from one render to
+   * the next.
+   */
   @Composable
-  fun rememberRandomColor(): Color {
-    return remember {
-      Color(Random.nextFloat(), Random.nextFloat(), Random.nextFloat(), 1f)
+  fun rememberRandomColor(seed: Any): Color {
+    return remember(seed) {
+      val random = Random(seed.toString().hashCode())
+      Color(random.nextFloat(), random.nextFloat(), random.nextFloat(), 1f)
     }
   }
 }

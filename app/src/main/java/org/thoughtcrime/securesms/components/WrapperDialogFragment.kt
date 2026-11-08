@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.components
 
-import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
@@ -43,9 +43,9 @@ abstract class WrapperDialogFragment : DialogFragment(R.layout.fragment_containe
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
   }
 
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    return super.onCreateDialog(savedInstanceState).apply {
-      window?.enableEdgeToEdge()
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return super.onGetLayoutInflater(savedInstanceState).also {
+      dialog?.window?.enableEdgeToEdge()
     }
   }
 

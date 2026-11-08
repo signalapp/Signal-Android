@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- MediaViewerScreen -->
+  <!-- Toolbar title for media you sent -->
+  <string name="MediaViewerScreen__you">Anda</string>
+  <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
+  <string name="MediaViewerScreen__you_to_s">Anda ke %1$s</string>
+  <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
+  <string name="MediaViewerScreen__s_to_s">%1$s hingga %2$s</string>
+  <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
+  <string name="MediaViewerScreen__s_to_you">%1$s ke Anda</string>
+  <!-- Toolbar title for media in your own note-to-self chat -->
+  <string name="MediaViewerScreen__note_to_self">Catatan Pribadi</string>
+  <!-- Toolbar subtitle when previewing a draft attachment that has not been sent yet -->
+  <string name="MediaViewerScreen__draft">Draf</string>
+  <!-- Overflow menu item that opens the media editor -->
+  <string name="MediaViewerScreen__edit">Edit</string>
+  <!-- Overflow menu item that saves the media to the device -->
+  <string name="MediaViewerScreen__save">Simpan</string>
+  <!-- Overflow menu item that deletes the media -->
+  <string name="MediaViewerScreen__delete">Hapus</string>
+  <!-- Button in the note-to-self delete confirmation dialog that deletes the media -->
+  <string name="MediaViewerScreen__delete_dialog_delete">Hapus</string>
+  <!-- Title of the dialog confirming deletion of a media message -->
+  <string name="MediaViewerScreen__media_delete_confirmation_title">Hapus pesan?</string>
+  <!-- Body of the dialog confirming deletion of a media message -->
+  <string name="MediaViewerScreen__media_delete_confirmation_message">Ini akan menghapus pesan secara permanen.</string>
+  <!-- Delete dialog button that deletes the media only on this device -->
+  <string name="MediaViewerScreen__delete_for_me">Hapus untuk saya</string>
+  <!-- Delete dialog button that deletes the media for all members of the chat -->
+  <string name="MediaViewerScreen__delete_for_everyone">Hapus untuk semua</string>
+  <!-- Generic dialog cancel button -->
+  <string name="MediaViewerScreen__cancel">Batal</string>
+  <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
+  <string name="MediaViewerScreen__read_more">… Baca selengkapnya</string>
+  <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
+  <string name="MediaViewerScreen__cant_save_media">Tidak bisa menyimpan media</string>
+  <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
+  <string name="MediaViewerScreen__media_offloaded_message">Media ini sudah tidak tersimpan di perangkat ini. Anda dapat mengubah pengaturan penyimpanan dan mengunduh ulang media ini melalui koneksi Wi-Fi tanpa batas kuota.</string>
+  <!-- Button on the offloaded-media dialog that opens storage settings -->
+  <string name="MediaViewerScreen__view_storage_settings">Lihat pengaturan penyimpanan</string>
+  <!-- Generic dialog confirmation button -->
+  <string name="MediaViewerScreen__ok">Oke</string>
+  <!-- Content description of the toolbar back button -->
+  <string name="MediaViewerScreen__navigate_back">Kembali</string>
+  <!-- Content description of the toolbar overflow menu button -->
+  <string name="MediaViewerScreen__more_options">Opsi lainnya</string>
+  <!-- Content description of the share button -->
+  <string name="MediaViewerScreen__share">Bagikan</string>
+  <!-- Content description of the forward button -->
+  <string name="MediaViewerScreen__forward">Teruskan</string>
+  <!-- Content description of the video play button -->
+  <string name="MediaViewerScreen__play">Putar</string>
+  <!-- Content description of the video pause button -->
+  <string name="MediaViewerScreen__pause">Jeda</string>
+  <!-- Content description of the video rewind button -->
+  <string name="MediaViewerScreen__rewind">Mundur</string>
+  <!-- Content description of the video fast-forward button -->
+  <string name="MediaViewerScreen__fast_forward">Maju-cepat</string>
+  <!-- Content description of a thumbnail in the album rail at the bottom of the screen -->
+  <string name="MediaViewerScreen__album_rail_thumbnail">Thumbnail media</string>
+  <!-- Time left in the playing video, shown at the end of the seek bar. %1$s is the remaining time, e.g. 0:38. The leading minus sign marks it as a countdown. -->
+  <string name="MediaViewerScreen__remaining_time">−%1$s</string>
+</resources>

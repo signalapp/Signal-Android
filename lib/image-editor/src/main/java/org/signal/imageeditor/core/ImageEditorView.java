@@ -473,13 +473,13 @@ public final class ImageEditorView extends FrameLayout {
 
       elementInverseMatrix = model.findElementInverseMatrix(selected, viewMatrix);
       if (elementInverseMatrix != null) {
-        return ThumbDragEditSession.startDrag(selected, elementInverseMatrix, thumbContainerRelativeMatrix, thumb.getControlPoint(), point);
+        return ThumbDragEditSession.startDrag(selected, elementInverseMatrix, thumbContainerRelativeMatrix, thumb.getControlPoint(), point, () -> {});
       } else {
         return null;
       }
     }
 
-    return ElementDragEditSession.startDrag(selected, inverse, point);
+    return ElementDragEditSession.startDrag(selected, inverse, point, () -> {});
   }
 
   @NonNull

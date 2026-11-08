@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.Optional
 import androidx.core.app.Person as PersonCompat
 import org.signal.core.ui.R as CoreUiR
@@ -64,6 +63,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setDeleteIntent(deleteIntent: PendingIntent?)
   abstract fun setSortKey(sortKey: String)
   abstract fun setOnlyAlertOnce(onlyAlertOnce: Boolean)
+  abstract fun setSilent(silent: Boolean)
   abstract fun setGroupSummary(isGroupSummary: Boolean)
   abstract fun setSubText(subText: String)
   abstract fun setPriority(priority: Int)
@@ -176,7 +176,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     if (ledColor != "none") {
       var blinkPattern = SignalStore.settings.messageLedBlinkPattern
       if (blinkPattern == "custom") {
-        blinkPattern = TextSecurePreferences.getNotificationLedPatternCustom(context)
+        blinkPattern = SignalStore.settings.messageLedBlinkPatternCustom
       }
       val (onTime: Int, offTime: Int) = blinkPattern.parseBlinkPattern()
       setLights(Color.parseColor(ledColor), onTime, offTime)
@@ -209,7 +209,11 @@ sealed class NotificationBuilder(protected val context: Context) {
     override fun addActions(replyMethod: ReplyMethod, conversation: NotificationConversation) {
       val extender: NotificationCompat.WearableExtender = NotificationCompat.WearableExtender()
 
-      addMarkAsReadActionActual(conversation)
+      val markAsReadAction: NotificationCompat.Action? = buildMarkAsReadAction(conversation)
+      if (markAsReadAction != null) {
+        builder.addAction(markAsReadAction)
+        extender.addAction(markAsReadAction)
+      }
 
       if (conversation.mostRecentNotification.canReply(context)) {
         val quickReply: PendingIntent? = conversation.getQuickReplyIntent(context)
@@ -232,7 +236,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         builder.addAction(replyAction)
 
         if (remoteReply != null) {
-          val wearableReplyAction = NotificationCompat.Action.Builder(R.drawable.symbol_reply_24, actionName, remoteReply)
+          val wearableReplyAction = NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_reply_24, actionName, remoteReply)
             .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
             .build()
 
@@ -244,17 +248,19 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun addMarkAsReadActionActual(conversation: NotificationConversation) {
-      val markAsRead: PendingIntent? = conversation.getMarkAsReadIntent(context)
-      if (markAsRead != null) {
-        val markAsReadAction: NotificationCompat.Action =
-          NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
-            .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_MARK_AS_READ)
-            .setShowsUserInterface(false)
-            .build()
+      val markAsReadAction: NotificationCompat.Action = buildMarkAsReadAction(conversation) ?: return
 
-        builder.addAction(markAsReadAction)
-        builder.extend(NotificationCompat.WearableExtender().addAction(markAsReadAction))
-      }
+      builder.addAction(markAsReadAction)
+      builder.extend(NotificationCompat.WearableExtender().addAction(markAsReadAction))
+    }
+
+    private fun buildMarkAsReadAction(conversation: NotificationConversation): NotificationCompat.Action? {
+      val markAsRead: PendingIntent = conversation.getMarkAsReadIntent(context) ?: return null
+
+      return NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
+        .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_MARK_AS_READ)
+        .setShowsUserInterface(false)
+        .build()
     }
 
     override fun addMarkAsReadActionActual(state: NotificationState) {
@@ -478,6 +484,10 @@ sealed class NotificationBuilder(protected val context: Context) {
 
     override fun setOnlyAlertOnce(onlyAlertOnce: Boolean) {
       builder.setOnlyAlertOnce(onlyAlertOnce)
+    }
+
+    override fun setSilent(silent: Boolean) {
+      builder.setSilent(silent)
     }
 
     override fun setPriority(priority: Int) {

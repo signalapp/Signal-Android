@@ -12,6 +12,7 @@ compose-screenshot = "0.0.1-alpha15"
 compose-screenshot = { id = "com.android.compose.screenshot", version.ref = "compose-screenshot" }
 
 [libraries]
+compose-screenshot-plugin = { module = "com.android.compose.screenshot:com.android.compose.screenshot.gradle.plugin", version.ref = "compose-screenshot" }
 compose-screenshot-validation-api = { module = "com.android.tools.screenshot:screenshot-validation-api", version.ref = "compose-screenshot" }
 junit-junit = "junit:junit:4.13.2"
 androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test" }

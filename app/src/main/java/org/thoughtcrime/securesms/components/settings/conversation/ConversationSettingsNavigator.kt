@@ -6,8 +6,9 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
 import androidx.fragment.app.FragmentActivity
-import org.thoughtcrime.securesms.main.MainNavigationChatDetailRouter
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainDetailRoute
+import org.thoughtcrime.securesms.main.MainNavigationEventSink
+import org.thoughtcrime.securesms.main.MainNavigationEvents
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
@@ -19,8 +20,8 @@ object ConversationSettingsNavigator {
     activity: FragmentActivity,
     recipient: Recipient
   ) {
-    if (activity is MainNavigationChatDetailRouter) {
-      activity.goToChatDetail(MainNavigationDetailLocation.Chats.ConversationSettings(recipient.id))
+    if (activity is MainNavigationEventSink) {
+      activity.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Chats.ConversationSettings(recipient.id)))
       return
     }
 

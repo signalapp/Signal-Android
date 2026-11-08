@@ -23,13 +23,14 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.withContext
+import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
-import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.throttleLatest
 import org.signal.donations.InAppPaymentType
 import org.signal.network.NetworkResult
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
@@ -50,8 +51,6 @@ import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -72,7 +71,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       backupState = BackupStateObserver.getNonIOBackupState(),
       backupsEnabled = SignalStore.backup.areBackupsEnabled,
       canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
-      canViewBackupKey = !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
+      canViewBackupKey = !SignalStore.account.isUnauthorizedReceived,
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
       canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
       canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
@@ -152,31 +151,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         }
     }
 
-    viewModelScope.launch(Dispatchers.Default) {
-      var optimizedRemainingBytes = 0L
-      while (isActive) {
-        if (ArchiveRestoreProgress.state.let { it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED }) {
-          Log.d(TAG, "Backup is being restored. Collecting updates.")
-          ArchiveRestoreProgress
-            .stateFlow
-            .takeWhile { it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED }
-            .onEach { latest -> _restoreState.update { BackupRestoreState.Restoring(latest) } }
-            .collect()
-        } else if (
-          !SignalStore.backup.optimizeStorage &&
-          SignalStore.backup.userManuallySkippedMediaRestore &&
-          SignalDatabase.attachments.getOptimizedMediaAttachmentSize().also { optimizedRemainingBytes = it } > 0
-        ) {
-          _restoreState.update { BackupRestoreState.Ready(optimizedRemainingBytes.bytes.toUnitString()) }
-        } else if (SignalStore.backup.totalRestorableAttachmentSize > 0L) {
-          _restoreState.update { BackupRestoreState.Ready(SignalStore.backup.totalRestorableAttachmentSize.bytes.toUnitString()) }
-        } else {
-          _restoreState.update { BackupRestoreState.None }
-        }
-
-        delay(1.seconds)
-      }
-    }
+    observeRestoreState()
 
     viewModelScope.launch {
       var previous: ArchiveUploadProgressState.State? = null
@@ -229,6 +204,36 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     viewModelScope.launch(Dispatchers.IO) {
       BackupRepository.refreshBackupFileTimestamp()
     }
+
+    observeRestoreState()
+  }
+
+  private fun observeRestoreState() {
+    viewModelScope.launch(Dispatchers.Default) {
+      var optimizedRemainingBytes = 0L
+      while (isActive) {
+        if (ArchiveRestoreProgress.state.let { it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED }) {
+          Log.d(TAG, "Backup is being restored. Collecting updates.")
+          ArchiveRestoreProgress
+            .stateFlow
+            .takeWhile { it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED }
+            .onEach { latest -> _restoreState.update { BackupRestoreState.Restoring(latest) } }
+            .collect()
+        } else if (
+          !SignalStore.backup.optimizeStorage &&
+          SignalStore.backup.userManuallySkippedMediaRestore &&
+          SignalDatabase.attachments.getOptimizedMediaAttachmentSize().also { optimizedRemainingBytes = it } > 0
+        ) {
+          _restoreState.update { BackupRestoreState.Ready(optimizedRemainingBytes.bytes.toUnitString()) }
+        } else if (SignalStore.backup.totalRestorableAttachmentSize > 0L) {
+          _restoreState.update { BackupRestoreState.Ready(SignalStore.backup.totalRestorableAttachmentSize.bytes.toUnitString()) }
+        } else {
+          _restoreState.update { BackupRestoreState.None }
+        }
+
+        delay(1.seconds)
+      }
+    }
   }
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
@@ -275,18 +280,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun getKeyRotationLimit() {
-    viewModelScope.launch(SignalDispatchers.IO) {
-      val canRotateKey = AppDependencies.archiveService
-        .getKeyRotationLimit()
-        .fold(
-          ifRight = { it.hasPermitsRemaining!! },
-          ifLeft = { error ->
-            Log.w(TAG, "Error while getting rotation limit: ${error::class.simpleName}. Default to allowing key rotations.")
-            true
-          }
-        )
-
-      if (!canRotateKey) {
+    viewModelScope.launch {
+      if (!BackupRepository.canRotateBackupKey()) {
         requestDialog(RemoteBackupsSettingsState.Dialog.KEY_ROTATION_LIMIT_REACHED)
       }
     }
@@ -352,12 +347,14 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {
-    try {
-      Log.i(TAG, "Performing a state refresh.")
-      performStateRefresh(lastPurchase)
-    } catch (e: Exception) {
-      Log.w(TAG, "State refresh failed", e)
-      throw e
+    withContext(Dispatchers.IO) {
+      try {
+        Log.i(TAG, "Performing a state refresh.")
+        performStateRefresh(lastPurchase)
+      } catch (e: Exception) {
+        Log.w(TAG, "State refresh failed", e)
+        throw e
+      }
     }
   }
 
@@ -375,7 +372,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
         _state.update {
           it.copy(
-            totalAllowedStorageSpace = estimatedSize.toUnitString()
+            totalAllowedStorageSpace = remoteStorageAllowance.toUnitString(unitSystem = ByteSize.UnitSystem.IEC)
           )
         }
       } else {

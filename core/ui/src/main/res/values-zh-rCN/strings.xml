@@ -18,8 +18,93 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">所需权限</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">调整窗格大小</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">移动分隔线</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">点击继续并输入您手机的屏幕锁定密码。请勿输入您的 Signal 密码。</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">继续</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">关闭</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">向上导航</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">添加到收藏夹</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">从收藏夹中移除</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">要从收藏夹中移除吗？</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">除非您已安装该贴纸包，或有包含该贴纸包的链接或消息，否则您无法重新发送该贴纸包，也无法将其添加到收藏夹中。</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">移除</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">无</string>
+    <string name="preferences_off">关闭</string>
+    <string name="preferences_on">开启</string>
+    <string name="ExpireTimerSettingsFragment__set">设置</string>
+    <string name="CustomExpireTimerSelectorView__seconds">秒</string>
+    <string name="CustomExpireTimerSelectorView__minutes">分钟</string>
+    <string name="CustomExpireTimerSelectorView__hours">小时</string>
+    <string name="CustomExpireTimerSelectorView__days">天</string>
+    <string name="CustomExpireTimerSelectorView__weeks">周</string>
+    <!-- expiration -->
+    <string name="expiration_off">关闭</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="other">%1$d 秒</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$d 秒</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="other">%1$d 分钟</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$d 分钟</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="other">%1$d 小时</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$d 小时</string>
+
+    <plurals name="expiration_days">
+        <item quantity="other">%1$d 天</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$d 天</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="other">%1$d 周</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$d 周</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">了解更多</string>
+
+    <string name="SpanUtil__read_more">阅读全文</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">切换为文本输入</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">切换为时钟</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">移除%1$s</string>
 </resources>

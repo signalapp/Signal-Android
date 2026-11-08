@@ -15,6 +15,7 @@ import org.signal.donations.StripeIntentAccessor
 import org.signal.donations.json.StripeIntentStatus
 import org.signal.donations.json.StripePaymentIntent
 import org.signal.donations.json.StripeSetupIntent
+import org.signal.libsignal.net.RequestResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -26,12 +27,17 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.util.Environment
+import org.whispersystems.signalservice.api.successOrThrow
 import org.whispersystems.signalservice.internal.ServiceResponse
 import kotlin.concurrent.withLock
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Responsible for checking payment state after an external launch, such as for iDEAL
@@ -43,7 +49,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .setMaxAttempts(Parameters.UNLIMITED)
-      .setLifespan(1.days.inWholeMilliseconds)
+      .setLifespan(LIFESPAN.inWholeMilliseconds)
       .setMaxInstancesForFactory(1)
       .build()
   )
@@ -51,6 +57,9 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
   companion object {
     private val TAG = Log.tag(InAppPaymentAuthCheckJob::class.java)
     const val KEY = "InAppPaymentAuthCheckJob"
+
+    private val LIFESPAN = 1.days
+    private val AUTHORIZATION_TIMEOUT = 15.minutes
 
     @JvmStatic
     fun enqueueIfNeeded() {
@@ -66,7 +75,14 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
   override fun getFactoryKey(): String = KEY
 
-  override fun onFailure() = Unit
+  override fun onFailure() {
+    SignalDatabase.inAppPayments.getAllWaitingForAuth()
+      .filter { it.data.waitForAuth?.checkedVerification == true && it.isOlderThan(LIFESPAN) }
+      .forEach {
+        Log.w(TAG, "InAppPayment::${it.id.serialize()} still unresolved after $LIFESPAN. Marking as failed.", true)
+        markFailed(it, null)
+      }
+  }
 
   override fun onRun() {
     migrateLegacyData()
@@ -92,6 +108,16 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
         CheckResult.Retry -> {
           markChecked(payment)
           hasRetry = true
+        }
+
+        CheckResult.AwaitingAuthorization -> {
+          if (payment.isAwaitingAuthorizationLongerThan(AUTHORIZATION_TIMEOUT)) {
+            Log.w(TAG, "InAppPayment::${payment.id.serialize()} was not authorized within $AUTHORIZATION_TIMEOUT. Marking as failed.", true)
+            markFailed(payment, null)
+          } else {
+            markChecked(payment)
+            hasRetry = true
+          }
         }
 
         is CheckResult.Success -> Unit
@@ -129,13 +155,20 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.d(TAG, "Downloading payment intent.")
-    val stripeIntentData: StripePaymentIntent = stripeApi.getPaymentIntent(
+    val stripeIntentDataResult = stripeApi.getPaymentIntent(
       StripeIntentAccessor(
         objectType = StripeIntentAccessor.ObjectType.PAYMENT_INTENT,
         intentId = inAppPayment.data.waitForAuth.stripeIntentId,
         intentClientSecret = inAppPayment.data.waitForAuth.stripeClientSecret
       )
     )
+
+    if (stripeIntentDataResult is RequestResult.RetryableNetworkError) {
+      Log.w(TAG, "Network error while downloading payment intent.", stripeIntentDataResult.networkError, true)
+      return CheckResult.Retry
+    }
+
+    val stripeIntentData: StripePaymentIntent = stripeIntentDataResult.successOrThrow()
 
     val checkIntentStatusResult = checkIntentStatus(stripeIntentData.status)
     if (checkIntentStatusResult !is CheckResult.Success) {
@@ -168,13 +201,20 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.d(TAG, "Downloading setup intent.")
-    val stripeSetupIntent: StripeSetupIntent = stripeApi.getSetupIntent(
+    val stripeSetupIntentResult = stripeApi.getSetupIntent(
       StripeIntentAccessor(
         objectType = StripeIntentAccessor.ObjectType.SETUP_INTENT,
         intentId = inAppPayment.data.waitForAuth.stripeIntentId,
         intentClientSecret = inAppPayment.data.waitForAuth.stripeClientSecret
       )
     )
+
+    if (stripeSetupIntentResult is RequestResult.RetryableNetworkError) {
+      Log.w(TAG, "Network error while downloading setup intent.", stripeSetupIntentResult.networkError, true)
+      return CheckResult.Retry
+    }
+
+    val stripeSetupIntent: StripeSetupIntent = stripeSetupIntentResult.successOrThrow()
 
     val checkIntentStatusResult = checkIntentStatus(stripeSetupIntent.status)
     if (checkIntentStatusResult !is CheckResult.Success) {
@@ -210,9 +250,9 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
     Log.i(TAG, "Setting default payment method...", true)
     val setPaymentMethodResponse = if (inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
-      AppDependencies.donationsService.setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
+      SignalNetwork.donationsService.setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
     } else {
-      AppDependencies.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethodId)
+      SignalNetwork.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethodId)
     }
 
     when (val result = checkResult(setPaymentMethodResponse)) {
@@ -233,7 +273,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
       val updateOperation: LevelUpdateOperation = RecurringInAppPaymentRepository.getOrCreateLevelUpdateOperation(TAG, level)
       Log.d(TAG, "Attempting to set user subscription level to $level", true)
 
-      val updateLevelResponse = AppDependencies.donationsService.updateSubscriptionLevel(
+      val updateLevelResponse = SignalNetwork.donationsService.updateSubscriptionLevel(
         subscriber.subscriberId,
         level,
         subscriber.currency!!.currencyCode,
@@ -253,6 +293,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
       if (updateLevelResponse.status in listOf(200, 204)) {
         Log.d(TAG, "Successfully set user subscription to level $level with response code ${updateLevelResponse.status}", true)
+        RecurringInAppPaymentRepository.onSubscriptionLevelSet(subscriber.type)
         SignalDatabase.inAppPayments.update(
           inAppPayment = inAppPayment.copy(
             state = InAppPaymentTable.State.PENDING,
@@ -297,8 +338,8 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
   private fun checkIntentStatus(stripeIntentStatus: StripeIntentStatus?): CheckResult<Unit> {
     when (stripeIntentStatus) {
-      null, StripeIntentStatus.SUCCEEDED -> {
-        Log.i(TAG, "Stripe intent is in the SUCCEEDED state, we can proceed.", true)
+      null, StripeIntentStatus.SUCCEEDED, StripeIntentStatus.PROCESSING -> {
+        Log.i(TAG, "Stripe intent is in the $stripeIntentStatus state, we can proceed.", true)
         return CheckResult.Success(Unit)
       }
 
@@ -313,8 +354,8 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
       }
 
       else -> {
-        Log.i(TAG, "Stripe intent is still processing, retry later", true)
-        return CheckResult.Retry
+        Log.i(TAG, "Stripe intent is in the $stripeIntentStatus state, still awaiting authorization.", true)
+        return CheckResult.AwaitingAuthorization
       }
     }
   }
@@ -338,6 +379,18 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
         )
       )
     )
+  }
+
+  private fun InAppPaymentTable.InAppPayment.isOlderThan(duration: Duration): Boolean {
+    return insertedAt <= System.currentTimeMillis().milliseconds - duration
+  }
+
+  /**
+   * Payments that entered WAITING_FOR_AUTHORIZATION before [InAppPaymentData.WaitingForAuthorizationState.enteredAt] existed fall back to [insertedAt].
+   */
+  private fun InAppPaymentTable.InAppPayment.isAwaitingAuthorizationLongerThan(duration: Duration): Boolean {
+    val enteredAt = data.waitForAuth?.enteredAt?.takeIf { it > 0 }?.milliseconds ?: insertedAt
+    return enteredAt <= System.currentTimeMillis().milliseconds - duration
   }
 
   private fun markChecked(inAppPayment: InAppPaymentTable.InAppPayment) {
@@ -366,6 +419,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     data class Success<T>(val data: T) : CheckResult<T>
     data class Failure(val errorData: String? = null) : CheckResult<Nothing>
     object Retry : CheckResult<Nothing>
+    object AwaitingAuthorization : CheckResult<Nothing>
   }
 
   class Factory : Job.Factory<InAppPaymentAuthCheckJob> {

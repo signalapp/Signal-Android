@@ -8,7 +8,6 @@ package org.signal.core.util
 import android.content.ContentUris
 import android.net.Uri
 import androidx.core.net.toUri
-import org.signal.core.models.database.AttachmentId
 
 /**
  * Builds and parses the content uris served by the application, so that models outside of the app
@@ -43,13 +42,13 @@ object PartAuthorityUris {
     get() = uris.authority
 
   @JvmStatic
-  fun getAttachmentDataUri(attachmentId: AttachmentId): Uri {
-    return ContentUris.withAppendedId(uris.part, attachmentId.id)
+  fun getAttachmentDataUri(attachmentId: Long): Uri {
+    return ContentUris.withAppendedId(uris.part, attachmentId)
   }
 
   @JvmStatic
-  fun getAttachmentThumbnailUri(attachmentId: AttachmentId): Uri {
-    return ContentUris.withAppendedId(uris.partThumbnail, attachmentId.id)
+  fun getAttachmentThumbnailUri(attachmentId: Long): Uri {
+    return ContentUris.withAppendedId(uris.partThumbnail, attachmentId)
   }
 
   @JvmStatic

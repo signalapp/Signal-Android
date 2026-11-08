@@ -7,6 +7,7 @@ package org.signal.registration.screens.verificationcode
 
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -14,6 +15,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.core.app.ApplicationProvider
+import assertk.assertThat
+import assertk.assertions.contains
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,6 +25,9 @@ import org.robolectric.annotation.Config
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.registration.test.TestTags
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldEvents
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldState
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldTestTags
 
 /**
  * Tests for VerificationCodeScreen that validate event emissions and UI behavior.
@@ -54,7 +60,7 @@ class VerificationCodeScreenTest {
   }
 
   @Test
-  fun `screen displays all six digit fields`() {
+  fun `screen displays the code field`() {
     // Given
     composeTestRule.setContent {
       SignalTheme {
@@ -66,12 +72,7 @@ class VerificationCodeScreenTest {
     }
 
     // Then
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_0).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_1).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_2).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_3).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_4).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_5).fetchSemanticsNode()
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).assertIsDisplayed()
   }
 
   @Test
@@ -144,7 +145,7 @@ class VerificationCodeScreenTest {
   }
 
   @Test
-  fun `entering a digit emits DigitChanged for that field`() {
+  fun `typing forwards code field events`() {
     // Given
     val emittedEvents = mutableListOf<VerificationCodeScreenEvents>()
 
@@ -158,87 +159,52 @@ class VerificationCodeScreenTest {
     }
 
     // When
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_0).performTextInput("1")
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_1).performTextInput("2")
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).performTextInput("1")
     composeTestRule.waitForIdle()
 
     // Then
-    val digitChanges = emittedEvents.filterIsInstance<VerificationCodeScreenEvents.DigitChanged>()
-    assert(digitChanges.contains(VerificationCodeScreenEvents.DigitChanged(0, "1"))) {
-      "Expected DigitChanged(0, 1) but got $digitChanges"
-    }
-    assert(digitChanges.contains(VerificationCodeScreenEvents.DigitChanged(1, "2"))) {
-      "Expected DigitChanged(1, 2) but got $digitChanges"
-    }
+    assertThat(emittedEvents).contains(VerificationCodeScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("1")))
   }
 
   @Test
-  fun `screen renders the digits from state`() {
+  fun `the code field is disabled while submitting`() {
     // Given
     composeTestRule.setContent {
       SignalTheme {
         VerificationCodeScreen(
-          state = VerificationCodeState(digits = listOf("1", "2", "3", "4", "5", "6")),
+          state = VerificationCodeState(isSubmittingCode = true),
           onEvent = {}
         )
       }
     }
 
     // Then
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_0).assertTextEquals("1")
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_5).assertTextEquals("6")
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).assertIsNotEnabled()
   }
 
   @Test
-  fun `pasting into a field emits DigitChanged with the raw text`() {
+  fun `an auto-filled code is placed in the code field`() {
     // Given
     val emittedEvents = mutableListOf<VerificationCodeScreenEvents>()
 
     composeTestRule.setContent {
       SignalTheme {
         VerificationCodeScreen(
-          state = VerificationCodeState(),
+          state = VerificationCodeState(codeEntry = CodeEntryFieldState(code = "123456", pendingOverwrite = "123456")),
           onEvent = { emittedEvents.add(it) }
         )
       }
     }
 
-    // When - paste the entire code, including the hyphen, into the first field
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_0).performTextInput("123-456")
-
+    // When
+    composeTestRule.waitUntil(timeoutMillis = 5_000) {
+      emittedEvents.contains(VerificationCodeScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.OverwriteApplied))
+    }
     composeTestRule.waitForIdle()
 
     // Then
-    val digitChanges = emittedEvents.filterIsInstance<VerificationCodeScreenEvents.DigitChanged>()
-    assert(digitChanges.contains(VerificationCodeScreenEvents.DigitChanged(0, "123-456"))) {
-      "Expected DigitChanged(0, 123-456) but got $digitChanges"
-    }
-  }
-
-  @Test
-  fun `autoFillCode emits a single DigitChanged with the full code`() {
-    // Given
-    val emittedEvents = mutableListOf<VerificationCodeScreenEvents>()
-
-    composeTestRule.setContent {
-      SignalTheme {
-        VerificationCodeScreen(
-          state = VerificationCodeState(autoFillCode = "123456"),
-          onEvent = { emittedEvents.add(it) }
-        )
-      }
-    }
-
-    // When - the auto-fill effect populates the fields
-    composeTestRule.waitUntil(timeoutMillis = 5_000) {
-      emittedEvents.any { it is VerificationCodeScreenEvents.DigitChanged }
-    }
-
-    // Then - a single event carries the whole code, rather than a burst of per-digit events
-    val digitChanges = emittedEvents.filterIsInstance<VerificationCodeScreenEvents.DigitChanged>()
-    assert(digitChanges == listOf(VerificationCodeScreenEvents.DigitChanged(0, "123456"))) {
-      "Expected a single DigitChanged(0, 123456) but got $digitChanges"
-    }
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0), useUnmergedTree = true).assertTextEquals("1")
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(5), useUnmergedTree = true).assertTextEquals("6")
   }
 
   @Test

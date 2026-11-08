@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/message_bubble_bottom_padding"
         android:orientation="vertical">
 
         <LinearLayout
@@ -17,41 +18,75 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/contact_avatar"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="12dp"
+                tools:srcCompat="@tools:sample/avatars"/>
 
-            <LinearLayout
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/contact_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                style="@style/Signal.Text.Body"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                tools:text="Peter Parker" />
 
-                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                    android:id="@+id/contact_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    style="@style/Signal.Text.Body"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="16sp"
-                    tools:text="Peter Parker"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/contact_disclosure"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/symbol_chevron_right_24" />
 
-                <TextView
-                    android:id="@+id/contact_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Signal.Text.Caption"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textColor="@color/grey_600"
-                    tools:text="(610) 555-5555"/>
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/contact_action_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/contact_action_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shared_contact_action_button_background"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                style="@style/Signal.Text.LabelMedium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Message" />
+
+            <TextView
+                android:id="@+id/contact_add_to_group_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/shared_contact_action_button_spacing"
+                android:background="@drawable/shared_contact_action_button_background"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                style="@style/Signal.Text.LabelMedium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/SharedContactView_add_to_group"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
         </LinearLayout>
 
@@ -61,27 +96,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:elevation="9dp"
             android:orientation="horizontal"
             app:footer_mode="outgoing" />
-
-        <TextView
-            android:id="@+id/contact_action_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/message_bubble_bottom_padding"
-            android:gravity="center"
-            android:padding="10dp"
-            style="@style/Signal.Text.Preview"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@color/core_ultramarine"
-            android:background="@color/shared_contact_item_button_color"
-            android:foreground="?attr/selectableItemBackground"
-            tools:text="Add to Contacts"/>
 
     </LinearLayout>
 

@@ -24,7 +24,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.ui.compose.SignalIcons;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
+import org.thoughtcrime.securesms.registration.ui.RegistrationIntents;
 
 import java.util.Objects;
 
@@ -63,7 +63,7 @@ public class Dialogs {
         .setMessage(R.string.ReregisterSignalDialog__message)
         .setNegativeButton(R.string.ReregisterSignalDialog__cancel_action, null)
         .setPositiveButton(R.string.ReregisterSignalDialog__reregister_action, (d, w) -> {
-          context.startActivity(RegistrationActivity.newIntentForReRegistration(context));
+          context.startActivity(RegistrationIntents.newIntentForReRegistration(context));
         })
         .show();
   }

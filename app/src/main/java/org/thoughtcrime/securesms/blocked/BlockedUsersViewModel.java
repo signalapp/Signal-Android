@@ -5,14 +5,16 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.models.recipients.RecipientId;
+import org.thoughtcrime.securesms.database.RxDatabaseObserver;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;
@@ -20,14 +22,20 @@ import io.reactivex.rxjava3.subjects.Subject;
 public class BlockedUsersViewModel extends ViewModel {
 
   private final BlockedUsersRepository   repository;
-  private final Subject<List<Recipient>> recipients = BehaviorSubject.create();
-  private final Subject<Event>           events     = PublishSubject.create();
+  private final Subject<List<Recipient>> recipients  = BehaviorSubject.create();
+  private final Subject<Event>           events      = PublishSubject.create();
+  private final CompositeDisposable      disposables = new CompositeDisposable();
 
   private BlockedUsersViewModel(@NonNull BlockedUsersRepository repository) {
     this.repository  = repository;
 
-    loadRecipients();
+    disposables.add(RxDatabaseObserver.getBlockedUsers().subscribe(unused -> loadRecipients()));
    }
+
+  @Override
+  protected void onCleared() {
+    disposables.clear();
+  }
 
   public Observable<List<Recipient>> getRecipients() {
     return recipients.observeOn(AndroidSchedulers.mainThread());

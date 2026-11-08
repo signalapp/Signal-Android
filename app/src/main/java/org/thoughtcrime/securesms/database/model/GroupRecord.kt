@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database.model
 
 import androidx.annotation.WorkerThread
+import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.local.EnabledState
@@ -10,7 +11,6 @@ import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.util.Optional

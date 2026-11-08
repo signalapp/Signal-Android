@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
+import org.whispersystems.signalservice.internal.storage.protos.OptionalBool
 import java.util.Random
 
 class GroupV2RecordProcessorTest {
@@ -34,6 +35,22 @@ class GroupV2RecordProcessorTest {
       val proto = GroupV2Record.Builder()
         .masterKey(MASTER_KEY)
         .verifiedNameHash(verifiedNameHash?.toByteString() ?: ByteString.EMPTY)
+        .build()
+      return SignalGroupV2Record(StorageId.forGroupV2(randomKey()), proto)
+    }
+
+    private fun record(
+      notifyForCallsIfMuted: OptionalBool = OptionalBool.UNSET,
+      notifyForMentionsIfMuted: OptionalBool = OptionalBool.UNSET,
+      notifyForRepliesIfMuted: OptionalBool = OptionalBool.UNSET,
+      showUnreadReminders: OptionalBool = OptionalBool.UNSET
+    ): SignalGroupV2Record {
+      val proto = GroupV2Record.Builder()
+        .masterKey(MASTER_KEY)
+        .notifyForCallsIfMuted(notifyForCallsIfMuted)
+        .notifyForMentionsIfMuted(notifyForMentionsIfMuted)
+        .notifyForRepliesIfMuted(notifyForRepliesIfMuted)
+        .showUnreadReminders(showUnreadReminders)
         .build()
       return SignalGroupV2Record(StorageId.forGroupV2(randomKey()), proto)
     }
@@ -119,5 +136,85 @@ class GroupV2RecordProcessorTest {
     val merged = processor.merge(remote, local, keyGenerator())
 
     assertEquals(remote.id, merged.id)
+  }
+
+  @Test
+  fun `merge, notifyForCallsIfMuted set remotely and locally, useRemote`() {
+    val local = record(notifyForCallsIfMuted = OptionalBool.DISABLED)
+    val remote = record(notifyForCallsIfMuted = OptionalBool.ENABLED)
+
+    val merged = processor.merge(remote, local, keyGenerator())
+
+    assertEquals(OptionalBool.ENABLED, merged.proto.notifyForCallsIfMuted)
+  }
+
+  @Test
+  fun `merge, notifyForCallsIfMuted unset remotely, keepLocal`() {
+    val local = record(notifyForCallsIfMuted = OptionalBool.ENABLED)
+    val remote = record(notifyForCallsIfMuted = OptionalBool.UNSET)
+
+    val merged = processor.merge(remote, local, keyGenerator())
+
+    assertEquals(OptionalBool.ENABLED, merged.proto.notifyForCallsIfMuted)
+  }
+
+  @Test
+  fun `merge, notifyForMentionsIfMuted set remotely and locally, useRemote`() {
+    val local = record(notifyForMentionsIfMuted = OptionalBool.ENABLED)
+    val remote = record(notifyForMentionsIfMuted = OptionalBool.DISABLED)
+
+    val merged = processor.merge(remote, local, keyGenerator())
+
+    assertEquals(OptionalBool.DISABLED, merged.proto.notifyForMentionsIfMuted)
+  }
+
+  @Test
+  fun `merge, notifyForMentionsIfMuted unset remotely, keepLocal`() {
+    val local = record(notifyForMentionsIfMuted = OptionalBool.DISABLED)
+    val remote = record(notifyForMentionsIfMuted = OptionalBool.UNSET)
+
+    val merged = processor.merge(remote, local, keyGenerator())
+
+    assertEquals(OptionalBool.DISABLED, merged.proto.notifyForMentionsIfMuted)
+  }
+
+  @Test
+  fun `merge, notifyForRepliesIfMuted set remotely and locally, useRemote`() {
+    val local = record(notifyForRepliesIfMuted = OptionalBool.DISABLED)
+    val remote = record(notifyForRepliesIfMuted = OptionalBool.ENABLED)
+
+    val merged = processor.merge(remote, local, keyGenerator())
+
+    assertEquals(OptionalBool.ENABLED, merged.proto.notifyForRepliesIfMuted)
+  }
+
+  @Test
+  fun `merge, notifyForRepliesIfMuted unset remotely, keepLocal`() {
+    val local = record(notifyForRepliesIfMuted = OptionalBool.ENABLED)
+    val remote = record(notifyForRepliesIfMuted = OptionalBool.UNSET)
+
+    val merged = processor.merge(remote, local, keyGenerator())
+
+    assertEquals(OptionalBool.ENABLED, merged.proto.notifyForRepliesIfMuted)
+  }
+
+  @Test
+  fun `merge, showUnreadReminders set remotely and locally, useRemote`() {
+    val local = record(showUnreadReminders = OptionalBool.ENABLED)
+    val remote = record(showUnreadReminders = OptionalBool.DISABLED)
+
+    val merged = processor.merge(remote, local, keyGenerator())
+
+    assertEquals(OptionalBool.DISABLED, merged.proto.showUnreadReminders)
+  }
+
+  @Test
+  fun `merge, showUnreadReminders unset remotely, keepLocal`() {
+    val local = record(showUnreadReminders = OptionalBool.DISABLED)
+    val remote = record(showUnreadReminders = OptionalBool.UNSET)
+
+    val merged = processor.merge(remote, local, keyGenerator())
+
+    assertEquals(OptionalBool.DISABLED, merged.proto.showUnreadReminders)
   }
 }

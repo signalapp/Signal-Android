@@ -6,12 +6,12 @@ import assertk.assertions.each
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createRemote
 import org.thoughtcrime.securesms.events.CallParticipantId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class ParticipantCollectionTest {
   private val testSubject = ParticipantCollection(3)

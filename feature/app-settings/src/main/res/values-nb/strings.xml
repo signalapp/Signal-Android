@@ -45,155 +45,1132 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Dine brukerdata</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Signal-innlogging</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Konto og gjenoppretting</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d kode</item>
-        <item quantity="other">%1$d koder</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal-innloggingen brukes til å gjenopprette kontoen din. Lagre disse kodene trygt i et passordverktøy du stoler på.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal Login kan brukes til å gjenopprette kontoen din. Lagre disse kodene trygt i et passordverktøy du stoler på.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Tofaktorautentisering</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Konfigurer</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">Autentiseringsapp</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Bruk en sekundær autentiseringsmetode for å beskytte kontoen din når du bruker Signal-innloggingen din på en ny enhet.</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Engangskoder</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Passnøkkel</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Bruk fingeravtrykket, ansiktet eller skjermlåsen din.</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Passnøkkel</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Metode for tofaktorautentisering</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Lagt til %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Ukjent</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Åpne meny for tofaktorautentisering</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Gi nytt navn</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Fjern</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Vil du fjerne autentiseringsappen?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Du kan ikke bruke denne appen for engangskoder når du logger inn.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Vil du slette passnøkkelen?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Hvis du gjør dette, kan du ikke bruke passnøkkelen når du logger inn.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Vil du fjerne autentiseringsmetoden?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Hvis du gjør dette, kan du ikke bruke denne metoden for tofaktorautentisering når du logger inn.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Autentiseringsmetoden ble fjernet</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Metoden for tofaktorautentisering kunne ikke fjernes. Sjekk internettilkoblingen, og prøv på nytt.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Passnøkkelen ble fjernet</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Passnøkkelen kunne ikke fjernes. Sjekk internettilkoblingen, og prøv på nytt.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Last ned et passordverktøy som støtter passnøkler på enheten, og prøv på nytt.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Kunne ikke lage passnøkkelen. Prøv på nytt.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Lås opp for å legge til en autentiseringsmetode</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Bekreft at du er deg for å legge til denne metoden</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Lås opp for å fjerne tofaktormetoden</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Bekreft identiteten din for å fjerne metoden</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Lås opp for å se Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Bekreft identiteten din for å se din Signal Login</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Lås opp for å bekrefte identiteten din</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Bekreft identiteten din for å slette kontoen</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Autentisering kreves</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Autentiseringsappen kan ikke legges til</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Du kan legge til maks %1$d autentiseringsapper. Fjern en app for å legge til en ny.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Du kan legge til maks %1$d autentiseringsmetoder. Fjern en for å legge til en ny.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Vi kunne ikke laste inn tofaktorautentiseringsmetodene. Sjekk internettilkoblingen, og prøv på nytt.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Autentiseringsappen ble fjernet</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Kunne ikke fjerne autentiseringsappen. Sjekk internettilkoblingen, og prøv på nytt.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Bruk en sekundær autentiseringsmetode for å beskytte kontoen din når du bruker din Signal Login på en ny enhet.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Les mer</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Dine brukerdata</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Eksporter en rapport med brukerdataene dine fra Signal. Rapporten inneholder ikke meldinger og medier. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Finn ut mer</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Eksporter rapport</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Eksporter som TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Lettlest tekstfil</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Eksporter som JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Maskinlesbar fil</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Avbryt</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Kunne ikke opprette rapport</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Sjekk internettilkoblingen, og prøv på nytt.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Vil du eksportere data?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Ikke del brukerdataene dine fra Signal med personer og apper som du ikke stoler på.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Eksporter</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Oppretter rapport …</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Rapporten opprettes kun når den eksporteres, og den lagres ikke i Signal-appen eller på enheten din.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Konfigurer autentiseringsappen</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Følg denne veiledningen for å konfigurere autentiseringsappen din.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Følg denne veiledningen for å konfigurere autentiseringsappen din.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Les mer</string>
+    <string name="TotpSetupScreen__learn_more">Les mer</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Trinn 1</string>
+    <string name="TotpSetupScreen__step_1">Trinn 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Last ned en pålitelig autentiseringsapp på enheten din.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Last ned en pålitelig autentiseringsapp på enheten din.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Trinn 2</string>
+    <string name="TotpSetupScreen__step_2">Trinn 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Åpne autentiseringsappen via knappen nedenfor og koble den til Signal-kontoen din.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Åpne autentiseringsappen via knappen nedenfor og koble den til Signal-kontoen din.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Åpne</string>
+    <string name="TotpSetupScreen__open">Åpne</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">eller kopier denne koden for å konfigurere appen manuelt.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">eller kopier denne koden for å konfigurere appen manuelt.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Kopier</string>
+    <string name="TotpSetupScreen__copy">Kopier</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Kopiert til utklippstavlen</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Kopiert til utklippstavlen</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">Fant ingen autentiseringsapp</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Fant ingen autentiseringsapp</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Du kan legge til maks %1$d autentiseringsapper. Fjern en app for å legge til en ny.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Kunne ikke nå Signal. Sjekk internettilkoblingen, og prøv på nytt.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Trinn 3</string>
+    <string name="TotpSetupScreen__step_3">Trinn 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Kopier koden som genereres, og kom tilbake hit for å gå videre.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Kopier koden som genereres, og kom tilbake hit for å gå videre.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Fortsett</string>
+    <string name="TotpSetupScreen__continue">Fortsett</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">Les mer</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">Passnøkler</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Med passnøkler kan du enkelt legge til en ekstra autentiseringsmetode i kontoen din. Passnøklene kan bruke biometrien på enheten din eller en kompatibel FIDO2-sikkerhetsnøkkel.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">Finn ut mer</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Gi passnøkkelen et enkelt navn for å finne den igjen</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Bruk biometri på enheten din eller en FIDO2-sikkerhetsnøkkel for å lagre passnøkkelen din</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Du kan legge til og fjerne passnøkler når du vil.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">La til \"%1$s\"</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Gi nytt navn</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">Fjern</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">Konfigurer en passnøkkel</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">Kunne ikke legge til passnøkkelen</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Du kan legge til maks %1$d autentiseringsmetoder. Fjern en for å legge til en ny.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Angi koden din</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Angi koden din</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Skriv inn den sekssifrede koden fra autentiseringsappen din.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Kode</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Skriv inn den sekssifrede koden fra autentiseringsappen din.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Ferdig</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">Autentiseringsapp</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">Les mer</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">La til \"%1$s\"</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Gi nytt navn</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">Fjern</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">Neste</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Feil kode. Skriv inn koden fra autentiseringsappen din.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Kunne ikke nå Signal. Sjekk internettilkoblingen, og prøv på nytt.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Velg et navn</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Autentiseringsapp</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Velg et navn</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Gi autentiseringsappen et unikt navn.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Gi autentiseringsappen et unikt navn for å finne den igjen senere.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Gi metoden for tofaktorautentisering et unikt navn.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Gi metoden for tofaktorautentisering et unikt navn for å finne den igjen senere.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Gi passnøkkelen et unikt navn.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Gi passnøkkelen et unikt navn for å finne den igjen senere.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">Navn</string>
+    <string name="TwoFactorNameEntryScreen__name">Navn</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">Neste</string>
+    <string name="TwoFactorNameEntryScreen__next">Neste</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Autentiseringsappen ble konfigurert</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Navnet på autentiseringsappen ble endret</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passnøkkelen ble konfigurert</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passnøkkelen fikk et nytt navn</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Autentiseringsmetoden ble konfigurert</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Metoden for tofaktorautentisering fikk et nytt navn</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Kunne ikke lagre navnet. Sjekk internettilkoblingen, og prøv på nytt.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Sletting av kontoen din vil</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Skriv inn telefonnummeret ditt</string>
+    <string name="DeleteAccountFragment__delete_account">Slett kontoen</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">slette kontoinformasjonen din og profilbildet ditt</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">slette alle meldingene dine</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Slett %1$s fra betalingskontoen</string>
+    <string name="DeleteAccountFragment__no_country_code">Ingen landskode angitt</string>
+    <string name="DeleteAccountFragment__no_number">Ikke noe nummer angitt</string>
+    <string name="DeleteAccountFragment__the_phone_number">Telefonnummeret du tastet inn, stemmer ikke med kontoen din sitt.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Er du sikker på at du vil slette kontoen din?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette sletter Signal-kontoen din og tilbakestiller applikasjonen. Appen lukkes etter at prosessen er fullført.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikke slette lokale data. Du kan manuelt slette dem i innstillingene for systemprogrammet.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Åpne Appinnstillinger</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Forlater gruppene …</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Sletter kontoen …</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Avslutter abonnementet …</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Dette kan ta et par minutter, avhengig av hvor mange grupper du er med i.</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Sletter brukerdata og nullstiller appen</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Kontoen ble ikke slettet</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Det oppsto et problem under slettingen. Sjekk internettilkoblingen, og prøv på nytt.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Sletting av kontoen med brukernavnet «%1$s» vil</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">slette kontoopplysningene og profilbildene dine, inkludert brukernavnet «%1$s»</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">handlingen kan ikke angres</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Dette sletter Signal-kontoen med brukernavnet «%1$s» og tilbakestiller applikasjonen. Appen lukkes når prosessen er fullført.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Ja, slett kontoen</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Inviter venner</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Del</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Velg land</string>
+    <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d mappe</item>
+        <item quantity="other">%1$d mapper</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Legg til en samtalemappe</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Legg til eller rediger mapper</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Autentisering mislyktes</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Samtalemapper</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Eksporter samtalelogg</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Eksporter en maskinlesbar JSON-fil som inneholder alle samtalene dine. Tidsbegrensede meldinger kan ikke eksporteres.</string>
+    <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Send med Enter-knappen</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Spill av klistremerker og GIF-er automatisk</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Klistremerker og GIF-er spilles av automatisk når dette er aktivert.</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Lås opp for å eksportere samtaleloggen</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Bruk bildene fra kontaktlisten din, hvis tilgjengelig.</string>
+    <string name="preferences__generate_link_previews">Forhåndsvis nettsteder</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arkiverte samtaler med deaktiverte varsler forblir arkiverte selv når du får en ny melding.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Hold samtaler med deaktiverte varsler arkivert</string>
+    <string name="preferences__pref_use_address_book_photos">Bruk bilder fra kontaktlisten</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger av lenker direkte fra nettsteder for meldinger du sender.</string>
+    <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
+    <string name="preferences_chats__chats">Samtaler</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">VÆR FORSIKTIG</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">VÆR FORSIKTIG!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Avbryter eksporteringen …</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Velg hvilken mappe du vil at samtaleloggen skal lagres i på enheten.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Velg en mappe</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Velg mappe</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">med hvor du lagrer den eksporterte filen, og ikke del den med noen. Andre apper kan få tilgang til den hvis du har gitt tillatelse til det via enhetsinnstillingene.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Samtalen ble eksportert</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Vil du eksportere samtaleloggen?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">IKKE del denne filen med noen. Samtaleloggen lagres på enheten din. Andre apper kan få tilgang til den hvis du har gitt tillatelse til det via enhetsinnstillingene. Hvis du eksporterer med mediefiler, blir filen større.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Eksporter med mediefiler</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Eksporter uten mediefiler</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Eksporterer mediefil(er): %1$d %%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Fullfører …</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Klargjør sikkerhetskopi …</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Behandler sikkerhetskopi …</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Behandler meldinger …</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Behandler meldinger: %1$s av %2$s (%3$d %%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Laster opp mediefil(er): %1$d %%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Oppdateringer</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">Design</string>
+    <string name="preferences__language">Språk</string>
+    <string name="preferences__theme">Tema</string>
+    <string name="preferences__system_default">Systemstandard</string>
+    <string name="preferences__light_theme">Lys</string>
+    <string name="preferences__dark_theme">Mørk</string>
+    <string name="preferences__chat_color_and_wallpaper">Samtalefarge og -bakgrunn</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">App-ikon</string>
+    <string name="preferences_chats__message_text_size">Skriftstørrelse i meldinger</string>
+    <string name="arrays__small">Liten</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Stor</string>
+    <string name="arrays__extra_large">Ekstra stor</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Størrelse på navigasjonslinjen</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Normal</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Kompakt</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">Appen starter på nytt for å bytte til det nye språket.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Telefonnummer</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Hvem kan se telefonnummeret mitt?</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Telefonnummeret ditt vil være synlig for alle du sender meldinger til.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Telefonnummeret ditt vises kun for de som har det lagret i kontaktlisten på telefonen sin.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Telefonnummeret ditt skjules for alle.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Hvem kan finne meg ved å søke opp telefonnummeret mitt?</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Alle som søker opp telefonnummeret ditt, kan se at du bruker Signal og kan starte samtaler med deg.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ingen kan se at du er på Signal med mindre du sender dem en melding, eller hvis dere allerede har en samtale gående.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"For å endre dette velger du «Ingen» under «Hvem kan se telefonnummeret mitt?»."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Er du sikker?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Hvis du velger «Ingen» under «Hvem kan finne meg ved å søke opp telefonnummeret mitt?», blir det vanskeligere for andre å finne deg på Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Avbryt</string>
+    <string name="PhoneNumberPrivacy_everyone">Alle</string>
+    <string name="PhoneNumberPrivacy_nobody">Ingen</string>
+    <string name="arrays__images">Bilder</string>
+    <string name="arrays__audio">Lyd</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Dokumenter</string>
+    <string name="preferences__data_and_storage">Data og lagring</string>
+    <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
+    <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
+    <string name="preferences_chats__when_roaming">Ved bruk av dataroaming</string>
+    <string name="preferences_chats__media_auto_download">Automatisk nedlasting av medier</string>
+    <string name="preferences_data_and_storage__manage_storage">Administrer lagring</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for anrop</string>
+    <string name="preferences_data_and_storage__never">Aldri</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi og mobildata</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Kun mobildata</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan gi bedre kvalitet i telefonsamtaler på dårlige nettverk.</string>
+    <string name="preferences_proxy">Proxy</string>
+    <string name="preferences_use_proxy">Bruk proxy</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Beregner …</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sendte mediekvalitet</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending av høykvalitetsmedier bruker mer data.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Talemeldinger og klistremerker (under %1$s) lastes alltid ned automatisk.</string>
+    <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Hold deg pålogget i bakgrunnen</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Å være pålogget i bakgrunnen vil sannsynligvis føre til at appen bruker mer batteri. Dette er ikke nødvendig på de fleste enheter. Slå det kun på dersom du har hatt problemer med varsler før.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Slå på</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Høy</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Standard</string>
+    <string name="preferences_app_protection__screen_lock">Skjermlås</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Bruk skjermlås</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Du vil bli bedt om å låse opp Signal via skjermlåsen på enheten din hver gang du lukker appen. Innholdet i meldinger vises ikke i forhåndsvisningene av varsler når Signal er låst.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Lås skjermen</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">Etter 1 minutt</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">Etter 5 minutter</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">Etter 30 minutter</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Selvvalgt tid</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Bruk skjermlås på Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Slå av skjermlåsen på Signal</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">Hjelp</string>
+    <string name="HelpSettingsFragment__support_center">Supportsenter</string>
+    <string name="HelpSettingsFragment__contact_us">Kontakt oss</string>
+    <string name="HelpSettingsFragment__version">Versjon</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Kopiert til utklippstavlen</string>
+    <string name="HelpSettingsFragment__debug_log">Feilsøkingslogg</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Lisenser</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår og personvernerklæring</string>
+    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Lisensiert under GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal er en ideell organisasjon</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Appikonene og -navnene vises på startskjermen og oversikten over apper.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Varslene vil fremdeles vise standardikonet og navnet til Signal.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Bilde som viser hvor det nye appikonet blir vist.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Vær</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Notater</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Nyheter</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Bølger</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Avbryt</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Bytt appikonet og -navnet til «%1$s»</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Signal må starte på nytt for at endringene skal tre i kraft. Varslene vil fremdeles vise standardikonet og navnet til Signal.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Velg et annet ikon og navn som skal vises på telefonens startskjerm og i oversikten over apper. Varslene vil fremdeles vise standardikonet og navnet til Signal. Les mer</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Les mer</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Lenke mangler</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Farge</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">Ferdig</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">Profilen er opprettet</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">Ferdig</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kan slå profilen din av og på manuelt via menyen i samtalelisten.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Legg til en timeplan under Innstillinger for å automatisere profilen din.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profilstatusen din vil endre seg automatisk etter timeplanen din.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke angitt en passordfrase ennå!</string>
+    <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Vil du deaktivere passordfrasen?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette låser opp Signal og meldingsvarsler permanent.</string>
+    <string name="PrivacySettingsFragment__app_security">Appsikkerhet</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokker skjermbilder i Nylige-listen og inne i appen</string>
+    <string name="PrivacySettingsFragment__blocked">Blokkert</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">Du må slå på skjermlås eller fingeravtrykk i telefonens innstillinger for å bruke betalingslås.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">Kan ikke slå på betalingslås</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d kontakt eller gruppe</item>
+        <item quantity="other">%1$d kontakter eller grupper</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard nedtelling for nye samtaler</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Kunne ikke gå til systeminnstillingene</string>
+    <string name="PrivacySettingsFragment__messaging">Meldinger</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Sett opp krav om Android-skjermlås eller fingeravtrykk for å overføre penger</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Angi standard utløpstid for tidsbegrensede meldinger, for alle nye samtaler startet av deg.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meldinger og samtaler, omdiriger alle samtaler, og forseglet avsender</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Av</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatisk etter valgt tid uten aktivitet</string>
+    <string name="preferences__change_passphrase">Endre passordfrase</string>
+    <string name="preferences__change_your_passphrase">Endre passordfrasen din</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">Aktiver skjermlås for passordfrase</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrivetegn er deaktivert, vil du ikke kunne se skrivetegn fra andre.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">Tidsavbrudd ved inaktivitet</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">Passordfrase ved tidsavbrudd</string>
+    <string name="preferences__incognito_keyboard">Inkognito-tastatur</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skjerm og varsler med passordfrase</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">Betalingslås</string>
+    <string name="preferences__read_receipts">Lesebekreftelser</string>
+    <string name="preferences__request_keyboard_to_disable">Be tastaturet ignorere personlig læring.</string>
+    <string name="preferences__screen_security">Skjermsikkerhet</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">Dette er ikke en garanti, og tastaturet ditt kan ignorere forespørselen.</string>
+    <string name="preferences__typing_indicators">Skrivetegn</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Velg hvem som kan se telefonnummeret ditt og bruke det til å komme i kontakt med deg på Signal.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">Betalinger</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Du må velge et mønster, et passord eller en PIN-kode på enheten for å bruke skjermlås.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">Personvern</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">Tidsbegrensede meldinger</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">Avansert</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">Slå på</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">Ikke nå</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">Finn ut mer</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Grensen for sikkerhetskopiering er nådd</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Abonnent-ID for sikkerhetskopier er kopiert til utklippstavlen</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Abonnent-ID for giver er kopiert til utklippstavlen</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Sikkerhetskopiering kunne ikke fullføres</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">Inviter vennene dine</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Forny abonnementet ditt på Sikre sikkerhetskopier</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">Personvern</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">Innstillinger</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">Gå tilbake</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Vi kunne ikke løse inn abonnementet ditt på sikkerhetskopiering</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Gi penger til Signal</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">Interne innstillinger</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">Tilkoblede enheter</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">Varsler</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">Betalinger</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">Storyer</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">Sikkerhetskopiering</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Størrelse på navigasjonslinjen</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Kompakt</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">Gå tilbake</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">Bilder</string>
+    <string name="preferences_storage__videos">Videoer</string>
+    <string name="preferences_storage__files">Filer</string>
+    <string name="preferences_storage__audio">Lyd</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Meldinger</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Klistremerker</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Annet</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Beregner …</string>
+    <string name="preferences_storage__review_storage">Se gjennom lagring</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">Tofaktorautentisering</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Velg en metode for å bekrefte kontoen din.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">Passnøkkel</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Trykk for å bruke biometri på enheten eller en FIDO2-passnøkkel.</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">Autentiseringsapp</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Skriv inn en engangskode generert av autentiseringsappen din.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">Skriv inn den sekssifrede koden fra autentiseringsappen din for å gå videre.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">Avbryt</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">Feil kode. Skriv inn koden fra autentiseringsappen din.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Kunne ikke nå Signal. Sjekk internettilkoblingen, og prøv på nytt.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Noe gikk galt med passnøkkelen. Prøv igjen, eller velg en annen metode.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">Navnet ditt</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">Fornavn</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">Etternavn (valgfritt)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">Lagre</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Kunne ikke lagre på grunn av nettverksproblemer. Prøv igjen senere.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">Behold meldinger</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">For alltid</string>
+    <string name="preferences_storage__one_year">1 år</string>
+    <string name="preferences_storage__six_months">6 Måneder</string>
+    <string name="preferences_storage__thirty_days">30 Dager</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Meldinger som er eldre enn dette, slettes for godt.</string>
+    <string name="preferences_storage__delete_older_messages">Vil du slette eldre meldinger?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette vil permanent slette alle meldingslogger og mediefiler som er eldre enn %1$s fra denne enheten.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">Slett</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">Meldingsgrense for samtaler</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s melding</item>
+        <item quantity="other">%1$s meldinger</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">Ingen</string>
+    <string name="preferences_storage__custom">Selvvalgt</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Når du når det valgte antallet meldinger, slettes gamle meldinger for godt.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Dette vil forkorte alle samtaler til den siste meldingen.</item>
+        <item quantity="other">Dette vil forkorte alle samtaler til de %1$s siste meldingene.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">Om</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv noen ord om deg selv …</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">Snakk fritt</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">Kryptert</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">Vær snill</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">Kaffielsker</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">Ledig til samtale</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">Tar en pause</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">Jobber med noe nytt</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">Lagre</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">Slett</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">Velg emoji</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Kunne ikke lagre på grunn av nettverksproblemer. Prøv igjen senere.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">Velg et brukernavn</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">Brukernavn</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">Slett</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">Det oppsto en nettverksfeil.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Du har gjort for mange forsøk. Prøv igjen senere.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">Dette brukernavnet er allerede i bruk.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">Brukernavn kan bare inneholde a–Z, 0–9 og understrek.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukernavn kan ikke begynne med et tall.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukernavn må være mellom %1$d og %2$d tegn.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">Andre kan sende deg meldinger via brukernavnet ditt i stedet for telefonnummeret ditt. Alle brukernavn består av bokstaver og en tallrekke. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Dette brukernavnet er ikke tilgjengelig. Velg et annet nummer.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Ugyldig brukernavn. Angi minst %1$d tegn.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ugyldig brukernavn. Angi maks. %1$d tegn.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Dette tallet kan ikke være 00. Angi et tall mellom 1 og 9.</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Tall som består av mer enn to sifre, kan ikke starte med 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Hvis du gjenoppretter brukernavnet, får du også en ny QR-kode og profillenke. Vil du gå videre?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Hvis du endrer brukernavnet, får du også en ny QR-kode og profillenke. Er du sikker?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Fortsett</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">Lagre</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">Finn ut mer</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilen din og endringene du gjør, kan ses av personene du sender meldinger til, kontaktene dine og gruppene dine.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Oppdater Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Denne versjonen av Signal er utløpt. Oppdater nå for å fortsette å bruke Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Oppdater</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Enheten er ikke lenger registrert</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Denne enheten er ikke lenger registrert. Du må registrere deg på nytt for å kunne gjøre endringer i kontoen.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Registrer på nytt</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Kunne ikke lagre på grunn av nettverksproblemer. Prøv igjen senere.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Kunne ikke slette brukernavnet. Prøv igjen senere.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Vil du slette brukernavnet?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Brukernavnet fjernes, og QR-koden og profillenken din deaktiveres. Brukernavnet «%1$s» kan brukes av andre. Er du sikker?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">Rediger bildet</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Del brukernavnet ditt</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Del din unike QR-kode eller lenke og la andre starte nye samtaler med deg.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">Brukernavnet er opprettet</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Brukernavnet er slettet</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Andre kan sende deg meldinger via brukernavnet ditt i stedet for telefonnummeret ditt. Brukernavn har en unik QR-kode og lenke som du kan dele med vennene dine.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Brukernavnet, QR-koden og lenken er ikke synlige i profilen din. Ikke del brukernavnet ditt med personer du ikke stoler på.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">Om</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">Kunne ikke lagre profilbilde</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR-kode eller lenke</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">Profilnavn</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">Brukernavn</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Endre brukernavnet</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Slett brukernavnet</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">Profil</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">Velg avatar</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">Merker</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">Slett</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">Lukk</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Få merker på profilen din ved å støtte Signal.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er en ideell organisasjon uten annonsører og investorer som drives kun av folk som deg.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">Bli en støttespiller</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">Merker</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">Mine merker</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Vis merkene på profilen</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">Utvalgt merke</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Kunne ikke oppdatere profilen</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Utvalgt merke</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Velg et merke</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">Lagre</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Kunne ikke oppdatere profilen</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Alle som har denne lenken, kan se brukernavnet ditt og starte nye samtaler med deg. Ikke del lenken med personer du ikke stoler på.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Kopier lenken</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Del</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">QR-kode</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">Skann</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">Lenken er kopiert</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">Brukernavnet er kopiert</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Vil du tilbakestille QR-koden?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">QR-koden og profillenken din slutter å virke hvis du tilbakestiller QR-koden.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Tilbakestill</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Du er ikke koblet til internett. Lenken ble ikke sendt. Prøv igjen senere.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">En feil oppstod da du forsøkte å tilbakestille lenken. Prøv igjen senere.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">En uventet feil oppstod da du forsøkte å tilbakestille lenken. Prøv igjen senere.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">QR-koden og lenken er tilbakestilt, og vi har opprettet en ny QR-kode og lenke for deg.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">Ikke del QR-koden og lenken med personer du ikke stoler på. De du deler dette med kan se brukernavnet ditt og starte nye samtaler med deg.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">Tilbakestill</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Lenke</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">Del</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">Farge</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">QR-koden er ikke gyldig.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Det oppstod en nettverksfeil. Prøv igjen.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR-koden ble ikke funnet</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Prøv å skanne et annet bilde av QR-koden.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">Fant ingen bruker med brukernavn %1$s.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">Skann QR-koden på kontaktens enhet.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">Brukeren ble ikke funnet.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">Gi Signal tilgang til kameraet for å skanne QR-koder.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">Gi tilgang</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">Du må gi Signal tilgang til kameraet for å skanne QR-koder</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">Lagring</string>
+    <string name="preferences_storage__storage_usage">Lagringsbruk</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Lagring på Signal</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimal lagring på Signal</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Ubrukte mediefiler fjernes, men kan lastes ned fra sikkerhetskopien når som helst.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Meldingsgrense i samtaler</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Bruk grenser på tilkoblede enheter</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Når dette er slått på, slettes også meldinger fra de tilkoblede enhetene dine.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Slett meldingslogg</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Vil du slette meldingsloggen?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette vil permanent slette alle meldingslogger og mediefiler fra denne enheten.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Dette sletter alle meldingslogger og mediefiler fra alle tilkoblede enheter permanent.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på at du vil slette alle meldingslogger?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle meldingslogger slettes permanent. Denne handlingen kan ikke angres.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Alle meldingslogger slettes permanent fra alle enheter. Dette kan ikke angres.</string>
+    <string name="preferences_storage__delete_all_now">Slett alt nå</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimalisering av lagring kan kun brukes med betalingsabonnement på sikkerhetskopiering av Signal. Abonnementet ditt er ikke aktivert ennå. Prøv igjen senere.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Mediefilene fjernes fra den lokale sikkerhetskopien din</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Du kan slå på «Optimal lagring på Signal» for å avlaste de gamle mediefilene på enheten din. Du kan laste dem ned igjen når du ønsker. Dette sletter også gamle mediefiler fra den lokale sikkerhetskopien.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Slå på</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring eller varsle når et nytt anrop starter mens varsler er deaktivert.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring eller varsle når et nytt anrop startes i en samtale der varsler er deaktivert.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Få et varsel når du blir nevnt i samtalen mens varsler er deaktivert.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Få et varsel når du blir nevnt i en samtale der varsler er deaktivert.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Få et varsel når noen svarer på meldingen din mens varsler er deaktivert.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Få et varsel når noen svarer på meldingene dine i en samtale der varsler er deaktivert.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">Når varsler er deaktivert</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">Samtaler</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">Omtaler</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">Svar</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Kunne ikke åpne velgeren.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Du må gi Signal tillatelse til å vise varsler før du kan slå dem på.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Slå på varsler</string>
+    <string name="NotificationsSettingsFragment__calls">Samtaler</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt blir med på Signal</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Lag en profil for å motta varsler fra bare de personene og gruppene du ønsker å høre fra.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Få et varsel når en av personene i kontaktlisten din registrerer seg på Signal.</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Tilbakestill innstillingene for varsler</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Vil du tilbakestille innstillingene for varsler for alle samtaler?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Tilbakestill</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Tilbakestill innstillingene til standard, inkludert de egendefinerte innstillingene for samtalene dine.</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Lyder</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Ukjent ringetone</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">Samtaler</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">Omtaler</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">Varslingsprofiler</string>
+    <string name="NotificationsSettingsScreen__notifications">Varsler</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">Svar</string>
+    <string name="NotificationsSettingsScreen__silent">Stille</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">Uleste påminnelser</string>
+    <string name="arrays__default">Forvalgt</string>
+    <string name="arrays__high">Høy</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">Maks</string>
+    <string name="arrays__name_and_message">Navn og melding</string>
+    <string name="arrays__name_only">Kun navn</string>
+    <string name="arrays__no_name_or_message">Verken navn eller melding</string>
+    <string name="preferences__blue">Blå</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Anropsvarsler</string>
+    <string name="preferences__change_sound_and_vibration">Endre lyd og vibrering</string>
+    <string name="preferences__customize">Tilpass</string>
+    <string name="preferences__cyan">Cyan</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Forvalgt</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Slå på varsler</string>
+    <string name="preferences__fast">Raskt</string>
+    <string name="preferences__five_times">Fem ganger</string>
+    <string name="preferences__green">Grønn</string>
+    <string name="preferences__led_color">LED-farge</string>
+    <string name="preferences__magenta">Magenta</string>
+    <string name="preferences__never">Aldri</string>
+    <string name="preferences__normal">Normal</string>
+    <string name="preferences__one_time">Én gang</string>
+    <string name="preferences__orange">Oransje</string>
+    <string name="preferences__pref_led_blink_title">LED-blinkemønster</string>
+    <string name="preferences__red">Rød</string>
+    <string name="preferences__repeat_alerts">Gjenta varsler</string>
+    <string name="preferences__slow">Langsomt</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">Lyd</string>
+    <string name="preferences__ten_times">Ti ganger</string>
+    <string name="preferences__three_times">Tre ganger</string>
+    <string name="preferences__two_times">To ganger</string>
+    <string name="preferences__vibrate">Vibrer</string>
+    <string name="preferences__white">Hvit</string>
+    <string name="preferences_notifications__in_chat_sounds">Samtalelyder</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Vis varsler for reaksjoner på meldinger du har sendt.</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Varsle meg når det finnes uleste meldinger i samtaler der varslene er deaktivert.</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">Prioritet</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaksjoner</string>
+    <string name="preferences_notifications__ringtone">Ringetone</string>
+    <string name="preferences_notifications__show">Vis</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Kjør feilsøking av varsler</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">Når varsler er deaktivert</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Legg til</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Tillatte varsler</string>
 </resources>

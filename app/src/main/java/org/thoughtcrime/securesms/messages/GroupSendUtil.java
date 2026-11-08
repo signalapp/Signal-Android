@@ -7,7 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.models.ServiceId;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Util;
+import org.signal.core.util.groups.GroupChangeException;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.InvalidKeyException;
@@ -16,7 +18,10 @@ import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsement;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
+import org.signal.network.crypto.SealedSenderAccess;
+import org.signal.network.crypto.UnidentifiedAccess;
 import org.signal.network.util.Preconditions;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.database.MessageSendLogTables;
@@ -26,23 +31,18 @@ import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.GroupSendEndorsementRecords;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.LegacyGroupEvents;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.SenderKeyGroupEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.groupsv2.GroupSendEndorsements;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -154,7 +154,7 @@ public final class GroupSendUtil {
                                                           @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException, NoSessionException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, false, false, new TypingSendOperation(message), cancelationSignal);
+    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, false, false, new TypingSendOperation(message, cancelationSignal), cancelationSignal);
   }
 
   /**
@@ -260,17 +260,19 @@ public final class GroupSendUtil {
     Set<Recipient>  unregisteredTargets = allTargets.stream().filter(it -> it.isUnregistered() || it.isUnknown()).collect(Collectors.toSet());
     List<Recipient> registeredTargets   = allTargets.stream().filter(r -> !unregisteredTargets.contains(r)).collect(Collectors.toList());
 
+    SenderCertificate senderCertificate = SealedSenderAccessUtil.getSealedSenderCertificate();
+
+    if (senderCertificate == null) {
+      throw new IOException("No usable sealed sender certificate. Refusing to fall back to an unsealed send.");
+    }
+
     RecipientData               recipients                     = new RecipientData(context, registeredTargets, isStorySend);
     Optional<GroupRecord>       groupRecord                    = groupId != null ? SignalDatabase.groups().getGroup(groupId) : Optional.empty();
     GroupSendEndorsementRecords groupSendEndorsementRecords    = groupRecord.filter(GroupRecord::getHasV2GroupProperties).map(g -> SignalDatabase.groups().getGroupSendEndorsements(g.getId())).orElse(null);
     long                        groupSendEndorsementExpiration = groupRecord.map(GroupRecord::getGroupSendEndorsementExpiration).orElse(0L);
-    SenderCertificate           senderCertificate              = SealedSenderAccessUtil.getSealedSenderCertificate();
     boolean                     useGroupSendEndorsements       = groupSendEndorsementRecords != null;
 
-    if (useGroupSendEndorsements && senderCertificate == null) {
-      Log.w(TAG, "Can't use group send endorsements without a sealed sender certificate, falling back to access key");
-      useGroupSendEndorsements = false;
-    } else if (useGroupSendEndorsements) {
+    if (useGroupSendEndorsements) {
       boolean refreshGroupSendEndorsements = false;
 
       if (groupSendEndorsementExpiration == 0) {
@@ -284,7 +286,11 @@ public final class GroupSendUtil {
         refreshGroupSendEndorsements = true;
       }
 
-      if (refreshGroupSendEndorsements) {
+      if (refreshGroupSendEndorsements && !groupRecord.get().isMember()) {
+        Log.i(TAG, "Not a member of the group, unable to refresh group send endorsements, using legacy");
+        useGroupSendEndorsements    = false;
+        groupSendEndorsementRecords = new GroupSendEndorsementRecords(Collections.emptyMap());
+      } else if (refreshGroupSendEndorsements) {
         try {
           GroupManager.updateGroupSendEndorsements(context, groupRecord.get().requireV2GroupProperties().getGroupMasterKey());
 
@@ -502,7 +508,7 @@ public final class GroupSendUtil {
       final AtomicLong           entryId             = new AtomicLong(-1);
       final boolean              includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
 
-      List<SendMessageResult> results = sendOperation.sendLegacy(messageSender, legacyTargetAddresses, legacyTargets, SealedSenderAccess.forFanOutGroupSend(groupSendTokens, SealedSenderAccessUtil.getSealedSenderCertificate(), legacyTargetAccesses), recipientUpdate, result -> {
+      List<SendMessageResult> results = sendOperation.sendLegacy(messageSender, legacyTargetAddresses, legacyTargets, SealedSenderAccess.forFanOutGroupSend(groupSendTokens, senderCertificate, legacyTargetAccesses), recipientUpdate, result -> {
         if (!includeInMessageLog) {
           return;
         }
@@ -706,9 +712,11 @@ public final class GroupSendUtil {
   private static class TypingSendOperation implements SendOperation {
 
     private final SignalServiceTypingMessage message;
+    private final CancelationSignal          cancelationSignal;
 
-    private TypingSendOperation(@NonNull SignalServiceTypingMessage message) {
-      this.message = message;
+    private TypingSendOperation(@NonNull SignalServiceTypingMessage message, @Nullable CancelationSignal cancelationSignal) {
+      this.message           = message;
+      this.cancelationSignal = cancelationSignal;
     }
 
     @Override
@@ -723,8 +731,14 @@ public final class GroupSendUtil {
     {
       Preconditions.checkNotNull(groupSendEndorsements, "GSEs must be non-null for non-story sender key send.");
 
-      messageSender.sendGroupTyping(distributionId, targets, access, groupSendEndorsements, message);
-      List<SendMessageResult> results = targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
+      messageSender.sendGroupTyping(distributionId, targets, access, groupSendEndorsements, message, cancelationSignal);
+
+      List<SendMessageResult> results;
+      if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+        results = targets.stream().map(SendMessageResult::canceledFailure).collect(Collectors.toList());
+      } else {
+        results = targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
+      }
 
       if (partialListener != null) {
         partialListener.onPartialSendComplete(results);

@@ -14,17 +14,18 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.exists
+import org.signal.core.database.select
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.Util
-import org.signal.core.util.exists
 import org.signal.core.util.orNull
 import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.SessionRecord
@@ -43,7 +44,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import java.util.Optional
 import java.util.UUID
 
@@ -1118,7 +1119,7 @@ class RecipientTableTest_getAndPossiblyMerge {
 
       AppDependencies.recipientCache.clear()
       AppDependencies.recipientCache.clearSelf()
-      RecipientId.clearCache()
+      RecipientIds.clearCache()
     }
 
     fun given(

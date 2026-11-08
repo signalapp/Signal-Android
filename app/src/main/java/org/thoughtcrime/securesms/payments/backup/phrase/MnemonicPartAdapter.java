@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
 
 final class MnemonicPartAdapter extends ListAdapter<MnemonicPart, MnemonicPartAdapter.ViewHolder> {

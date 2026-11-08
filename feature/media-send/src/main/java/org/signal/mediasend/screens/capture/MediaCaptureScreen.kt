@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import org.signal.camera.CameraDisplay
 import org.signal.core.ui.compose.NightPreview
@@ -32,7 +33,6 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.endFadingEdge
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendRoute
-import org.signal.mediasend.PreviewMediaConstraints
 import org.signal.mediasend.screens.edit.rememberPreviewMedia
 import org.signal.mediasend.screens.shared.NEXT_BUTTON_CIRCLE_SIZE
 import org.signal.mediasend.screens.shared.NEXT_BUTTON_HEIGHT
@@ -40,6 +40,8 @@ import org.signal.mediasend.screens.shared.NEXT_BUTTON_TOUCH_TARGET
 import org.signal.mediasend.screens.shared.NextButton
 import org.signal.mediasend.screens.shared.chatColorFor
 import org.signal.mediasend.test.TestTags
+import org.signal.camera.R as CameraR
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * The text story editor slides in over a stationary camera, so it always sits on top.
@@ -163,7 +165,9 @@ private fun MediaCaptureBottomControls(
       NextButton(
         selectedMediaCount = state.selectedMedia.size,
         onClick = { onEvent(MediaCaptureScreenEvents.NextClicked) },
-        recipientChatColor = chatColorFor(state.recipientId)
+        recipientChatColor = chatColorFor(state.recipientId),
+        containerColor = colorResource(CameraR.color.CameraHud_control_background),
+        contentColor = colorResource(CoreUiR.color.signal_dark_colorOnCustom)
       )
     }
   }
@@ -215,11 +219,10 @@ private fun MediaCaptureScreenWithManySelectedMediaPreview() {
 }
 
 @Composable
-private fun rememberPreviewCaptureState(): MediaCaptureState = remember {
+internal fun rememberPreviewCaptureState(): MediaCaptureState = remember {
   MediaCaptureState(
     isCameraFirst = true,
     storiesEnabled = true,
-    mode = MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection,
-    mediaConstraints = PreviewMediaConstraints
+    mode = MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection
   )
 }

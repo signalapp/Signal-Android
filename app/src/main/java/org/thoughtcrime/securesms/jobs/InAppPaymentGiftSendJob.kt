@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.gifts.Gifts
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.MultiShareSender
 import org.thoughtcrime.securesms.sms.MessageSender

@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.signal.core.util.ServiceUtil;
@@ -30,6 +31,11 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
   public void onKeyboardShown() {
   }
 
+  @Override
+  protected boolean onOfferNavigationBar(int inset) {
+    return current != null && current.isShowing() && current.claimNavigationBar(inset);
+  }
+
   public void show(@NonNull final EditText imeTarget, @NonNull final InputView input) {
     if (isKeyboardOpen()) {
       hideSoftkey(imeTarget, new Runnable() {
@@ -37,12 +43,14 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
           hideAttachedInput(true);
           input.show(getKeyboardHeight(), true);
           current = input;
+          ViewCompat.requestApplyInsets(InputAwareLayout.this);
         }
       });
     } else {
       if (current != null) current.hide(true);
       input.show(getKeyboardHeight(), current != null);
       current = input;
+      ViewCompat.requestApplyInsets(this);
     }
   }
 
@@ -58,6 +66,7 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
   public void hideAttachedInput(boolean instant) {
     if (current != null) current.hide(instant);
     current = null;
+    ViewCompat.requestApplyInsets(this);
   }
 
   public boolean isInputOpen() {
@@ -89,6 +98,14 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
     void show(int height, boolean immediate);
     void hide(boolean immediate);
     boolean isShowing();
+
+    /**
+     * Offers the navigation bar beneath this view while it shows. One that takes it grows by {@code inset} to paint behind the
+     * bar, keeps its own contents clear of it, and returns true.
+     */
+    default boolean claimNavigationBar(int inset) {
+      return false;
+    }
   }
 }
 

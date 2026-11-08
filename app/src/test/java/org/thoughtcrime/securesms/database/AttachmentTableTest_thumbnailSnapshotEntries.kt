@@ -16,10 +16,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.update
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.mms.IncomingMessage

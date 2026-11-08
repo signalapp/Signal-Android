@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat
 import arrow.core.Either
 import arrow.core.flatMap
 import arrow.core.left
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -21,7 +22,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
-import org.greenrobot.eventbus.EventBus
 import org.signal.archive.proto.BackupDebugInfo
 import org.signal.archive.proto.BackupInfo
 import org.signal.archive.proto.Frame
@@ -31,6 +31,13 @@ import org.signal.archive.stream.EncryptedBackupReader
 import org.signal.archive.stream.EncryptedBackupWriter
 import org.signal.archive.stream.PlainTextBackupReader
 import org.signal.archive.stream.PlainTextBackupWriter
+import org.signal.core.database.forceForeignKeyConstraintsEnabled
+import org.signal.core.database.fullWalCheckpoint
+import org.signal.core.database.getAllIndexDefinitions
+import org.signal.core.database.getAllTableDefinitions
+import org.signal.core.database.getAllTriggerDefinitions
+import org.signal.core.database.getForeignKeyViolations
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
@@ -40,6 +47,7 @@ import org.signal.core.models.backup.MediaName
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.DiskUtil
@@ -53,12 +61,7 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.core.util.decodeOrNull
-import org.signal.core.util.forceForeignKeyConstraintsEnabled
-import org.signal.core.util.fullWalCheckpoint
-import org.signal.core.util.getAllIndexDefinitions
-import org.signal.core.util.getAllTableDefinitions
-import org.signal.core.util.getAllTriggerDefinitions
-import org.signal.core.util.getForeignKeyViolations
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.core.util.money.FiatMoney
@@ -67,7 +70,7 @@ import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.stream.NonClosingOutputStream
-import org.signal.core.util.withinTransaction
+import org.signal.core.util.toMillis
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.net.DeleteBackupMediaItem
 import org.signal.libsignal.net.RequestResult
@@ -80,6 +83,10 @@ import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.signal.network.service.ArchiveError
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.toArchiveResult
+import org.signal.remoteconfig.RemoteConfig
+import org.signal.storage.database.DatabaseSecretProvider
+import org.signal.storage.keyvalue.KeyValueDatabase
+import org.signal.storage.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -92,18 +99,18 @@ import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatFolderArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.FavoriteStickerArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.HiddenStickerPackArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.InstalledStickerPackArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.NotificationProfileArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientArchiveProcessor
-import org.thoughtcrime.securesms.backup.v2.processor.StickerArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable.ArchiveMediaItem
-import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.KyberPreKeyTable
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SearchTable
@@ -114,13 +121,10 @@ import org.thoughtcrime.securesms.database.StickerTables
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
-import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackfillCollapsedMessageJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -129,7 +133,7 @@ import org.thoughtcrime.securesms.jobs.CancelRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
-import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
+import org.thoughtcrime.securesms.jobs.RefreshGroupsAfterRestoreJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
@@ -138,7 +142,6 @@ import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.Svr2MirrorJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues
-import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
@@ -146,13 +149,10 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
@@ -190,7 +190,7 @@ object BackupRepository {
   private val MANUAL_BACKUP_NOTIFICATION_THRESHOLD = 30.days
 
   private val archiveService: ArchiveService
-    get() = AppDependencies.archiveService
+    get() = SignalNetwork.archiveService
 
   /**
    * Generates a new AEP that the user can choose to confirm.
@@ -201,6 +201,32 @@ object BackupRepository {
       aep = AccountEntropyPool.generate(),
       mediaRootBackupKey = MediaRootBackupKey.generate()
     )
+  }
+
+  /**
+   * Whether the user has any key rotation permits left. If the limit can't be fetched, we assume they do.
+   */
+  suspend fun canRotateBackupKey(): Boolean {
+    return withContext(SignalDispatchers.IO) {
+      archiveService
+        .getKeyRotationLimit()
+        .fold(
+          ifRight = { it.hasPermitsRemaining ?: true },
+          ifLeft = { error ->
+            Log.w(TAG, "Error while getting rotation limit: ${error::class.simpleName}. Default to allowing key rotations.")
+            true
+          }
+        )
+    }
+  }
+
+  /**
+   * Turns off storage optimization and starts pulling down everything that was offloaded. Required before the user can
+   * rotate their AEP.
+   */
+  fun turnOffOptimizedStorageAndDownloadMedia() {
+    SignalStore.backup.optimizeStorage = false
+    RestoreOptimizedMediaJob.enqueue()
   }
 
   /**
@@ -236,6 +262,16 @@ object BackupRepository {
     Log.i(TAG, "Resetting SVRB chain.", true)
     SignalStore.backup.nextBackupSecretData = null
     SignalStore.backup.backupSecretRestoreRequired = false
+  }
+
+  @JvmStatic
+  fun haltBackupWritesForDeregistration() {
+    Log.w(TAG, "Deregistered. Canceling backup upload jobs and clearing cached archive credentials.", true)
+
+    ArchiveUploadProgress.cancel()
+
+    SignalStore.backup.messageCredentials.clearAll()
+    SignalStore.backup.mediaCredentials.clearAll()
   }
 
   fun resetInitializedStateAndAuthCredentials() {
@@ -449,7 +485,7 @@ object BackupRepository {
       return false
     }
 
-    val isRegistered = SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
+    val isRegistered = SignalStore.account.isRegistered && !SignalStore.account.isUnauthorizedReceived
     if (!isRegistered) {
       Log.d(TAG, "[shouldDisplayCouldNotCompleteBackupSheet] Not displaying sheet for unregistered user.")
       return false
@@ -519,11 +555,11 @@ object BackupRepository {
       AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
     }
 
-    val pendingBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes()
-    if (pendingBytes == 0L) {
+    if (!SignalDatabase.attachments.areAnyAttachmentsPendingArchiveUpload()) {
       return
     }
 
+    val pendingBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes()
     Log.w(TAG, "There are ${pendingBytes.bytes.toUnitString(maxPlaces = 2)} of attachments that need to be uploaded to the archive, but no jobs for them! Attempting to fix.")
     val resetCount = SignalDatabase.attachments.clearArchiveTransferStateForInProgressItems()
     Log.w(TAG, "Cleared the archive transfer state of $resetCount attachments.")
@@ -594,7 +630,7 @@ object BackupRepository {
     }
 
     // We make a copy of the database within a transaction to ensure that no writes occur while we're copying the file
-    return SignalDatabase.rawDatabase.withinTransaction {
+    return SignalDatabase.writableDatabase.withinTransaction {
       val context = AppDependencies.application
 
       val existingDbFile = context.getDatabasePath(SignalDatabase.DATABASE_NAME)
@@ -666,7 +702,8 @@ object BackupRepository {
       key = SignalStore.backup.messageBackupKey,
       aci = SignalStore.account.aci!!,
       outputStream = NonClosingOutputStream(main),
-      append = { main.write(it) }
+      append = { main.write(it) },
+      estimatedTotalUncompressedSize = SignalStore.backup.lastLocalBackupUncompressedSize
     )
 
     export(
@@ -698,6 +735,10 @@ object BackupRepository {
         val currentProgress = progress.incrementAndGet()
         localBackupProgressEmitter.onAttachment(currentProgress, localArchivableAttachments.size.toLong())
       }
+    }
+
+    if (!cancellationSignal()) {
+      SignalStore.backup.lastLocalBackupUncompressedSize = writer.uncompressedBytes
     }
   }
 
@@ -750,10 +791,11 @@ object BackupRepository {
       outputStream = outputStream,
       forwardSecrecyToken = forwardSecrecyToken,
       forwardSecrecyMetadata = forwardSecrecyMetadata,
-      append = append
+      append = append,
+      estimatedTotalUncompressedSize = SignalStore.backup.lastBackupUncompressedSize
     )
 
-    return export(
+    export(
       currentTime = currentTime,
       isLocal = false,
       writer = writer,
@@ -764,6 +806,10 @@ object BackupRepository {
       endingExportOperation = null,
       messageInclusionCutoffTime = messageInclusionCutoffTime
     )
+
+    if (!cancellationSignal()) {
+      SignalStore.backup.lastBackupUncompressedSize = writer.uncompressedBytes
+    }
   }
 
   /**
@@ -888,7 +934,7 @@ object BackupRepository {
         eventTimer.emit("header")
 
         // We're using a snapshot, so the transaction is more for perf than correctness
-        dbSnapshot.rawWritableDatabase.withinTransaction {
+        dbSnapshot.signalWritableDatabase.withinTransaction {
           progressEmitter?.onAccount()
           AccountDataArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState) { frame ->
             writer.write(frame)
@@ -936,11 +982,11 @@ object BackupRepository {
             return@export
           }
 
-          progressEmitter?.onSticker()
-          StickerArchiveProcessor.export(dbSnapshot) { frame ->
+          progressEmitter?.onInstalledStickerPack()
+          InstalledStickerPackArchiveProcessor.export(dbSnapshot) { frame ->
             writer.write(frame)
             extraFrameOperation?.invoke(frame)
-            eventTimer.emit("sticker-pack")
+            eventTimer.emit("installed-sticker-pack")
             frameCount++
           }
           if (cancellationSignal()) {
@@ -965,6 +1011,30 @@ object BackupRepository {
             writer.write(frame)
             extraFrameOperation?.invoke(frame)
             eventTimer.emit("chat-folder")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[export] Cancelled! Stopping")
+            return@export
+          }
+
+          progressEmitter?.onHiddenStickerPack()
+          HiddenStickerPackArchiveProcessor.export(dbSnapshot) { frame ->
+            writer.write(frame)
+            extraFrameOperation?.invoke(frame)
+            eventTimer.emit("hidden-sticker-pack")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[export] Cancelled! Stopping")
+            return@export
+          }
+
+          progressEmitter?.onFavoriteStickerList()
+          FavoriteStickerArchiveProcessor.export(dbSnapshot) { frame ->
+            writer.write(frame)
+            extraFrameOperation?.invoke(frame)
+            eventTimer.emit("favorite-sticker-list")
             frameCount++
           }
           if (cancellationSignal()) {
@@ -1154,19 +1224,19 @@ object BackupRepository {
       // SQLite optimizes deletes if there's no foreign keys, triggers, or WHERE clause, so that's the environment we're gonna create.
 
       Log.d(TAG, "[import] Disabling foreign keys...")
-      SignalDatabase.rawDatabase.forceForeignKeyConstraintsEnabled(false)
+      SignalDatabase.writableDatabase.forceForeignKeyConstraintsEnabled(false)
 
       Log.d(TAG, "[import] Acquiring transaction...")
-      SignalDatabase.rawDatabase.beginTransaction()
+      SignalDatabase.writableDatabase.beginTransaction()
 
       Log.d(TAG, "[import] Inside transaction.")
       stopwatch.split("get-transaction")
 
       Log.d(TAG, "[import] --- Dropping all indices ---")
-      val indexMetadata = SignalDatabase.rawDatabase.getAllIndexDefinitions()
+      val indexMetadata = SignalDatabase.writableDatabase.getAllIndexDefinitions()
       for (index in indexMetadata) {
         Log.d(TAG, "[import] Dropping index ${index.name}...")
-        SignalDatabase.rawDatabase.execSQL("DROP INDEX IF EXISTS ${index.name}")
+        SignalDatabase.writableDatabase.execSQL("DROP INDEX IF EXISTS ${index.name}")
       }
       stopwatch.split("drop-indices")
 
@@ -1175,10 +1245,10 @@ object BackupRepository {
       }
 
       Log.d(TAG, "[import] --- Dropping all triggers ---")
-      val triggerMetadata = SignalDatabase.rawDatabase.getAllTriggerDefinitions()
+      val triggerMetadata = SignalDatabase.writableDatabase.getAllTriggerDefinitions()
       for (trigger in triggerMetadata) {
         Log.d(TAG, "[import] Dropping trigger ${trigger.name}...")
-        SignalDatabase.rawDatabase.execSQL("DROP TRIGGER IF EXISTS ${trigger.name}")
+        SignalDatabase.writableDatabase.execSQL("DROP TRIGGER IF EXISTS ${trigger.name}")
       }
       stopwatch.split("drop-triggers")
 
@@ -1197,7 +1267,7 @@ object BackupRepository {
           add(SessionTable.TABLE_NAME)
         }
       }
-      val tableMetadata = SignalDatabase.rawDatabase.getAllTableDefinitions().filter { !it.name.startsWith(SearchTable.FTS_TABLE_NAME + "_") }
+      val tableMetadata = SignalDatabase.writableDatabase.getAllTableDefinitions().filter { !it.name.startsWith(SearchTable.FTS_TABLE_NAME + "_") }
       for (table in tableMetadata) {
         if (skipTables.contains(table.name)) {
           Log.d(TAG, "[import] Skipping drop/create of table ${table.name}")
@@ -1205,13 +1275,13 @@ object BackupRepository {
         }
 
         Log.d(TAG, "[import] Dropping table ${table.name}...")
-        SignalDatabase.rawDatabase.execSQL("DROP TABLE IF EXISTS ${table.name}")
+        SignalDatabase.writableDatabase.execSQL("DROP TABLE IF EXISTS ${table.name}")
 
         Log.d(TAG, "[import] Creating table ${table.name}...")
-        SignalDatabase.rawDatabase.execSQL(table.statement)
+        SignalDatabase.writableDatabase.execSQL(table.statement)
       }
 
-      RecipientId.clearCache()
+      RecipientIds.clearCache()
       SignalDatabase.remappedRecords.clearCache()
       AppDependencies.recipientCache.clear()
       AppDependencies.recipientCache.clearSelf()
@@ -1242,10 +1312,12 @@ object BackupRepository {
         val frameRecipient = frame.recipient
         val frameChat = frame.chat
         val frameAdHocCall = frame.adHocCall
-        val frameStickerPack = frame.stickerPack
+        val frameInstalledStickerPack = frame.installedStickerPack
         val frameNotificationProfile = frame.notificationProfile
         val frameChatFolder = frame.chatFolder
         val frameChatItem = frame.chatItem
+        val frameHiddenStickerPack = frame.hiddenStickerPack
+        val frameFavoriteStickerList = frame.favoriteStickerList
         when {
           frameAccount != null -> {
             AccountDataArchiveProcessor.import(frameAccount, selfId, importState)
@@ -1271,9 +1343,9 @@ object BackupRepository {
             frameCount++
           }
 
-          frameStickerPack != null -> {
-            StickerArchiveProcessor.import(frameStickerPack)
-            eventTimer.emit("sticker-pack")
+          frameInstalledStickerPack != null -> {
+            InstalledStickerPackArchiveProcessor.import(frameInstalledStickerPack)
+            eventTimer.emit("installed-sticker-pack")
             frameCount++
           }
 
@@ -1286,6 +1358,18 @@ object BackupRepository {
           frameChatFolder != null -> {
             ChatFolderArchiveProcessor.import(frameChatFolder, importState)
             eventTimer.emit("chat-folder")
+            frameCount++
+          }
+
+          frameHiddenStickerPack != null -> {
+            HiddenStickerPackArchiveProcessor.import(frameHiddenStickerPack)
+            eventTimer.emit("hidden-sticker-pack")
+            frameCount++
+          }
+
+          frameFavoriteStickerList != null -> {
+            FavoriteStickerArchiveProcessor.import(frameFavoriteStickerList)
+            eventTimer.emit("favorite-sticker-list")
             frameCount++
           }
 
@@ -1305,14 +1389,14 @@ object BackupRepository {
 
           else -> Log.w(TAG, "Unrecognized frame")
         }
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_RESTORE, frameReader.getBytesRead().bytes, totalLength.bytes))
+        EventBus.default.post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_RESTORE, frameReader.getBytesRead().bytes, totalLength.bytes))
       }
 
       if (chatItemInserter.flush()) {
         eventTimer.emit("chatItem")
       }
 
-      EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_FINALIZING, 0.bytes, 0.bytes))
+      EventBus.default.post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_FINALIZING, 0.bytes, 0.bytes))
 
       if (!importState.importedChatFolders) {
         // Add back default All Chats chat folder after clearing data if missing
@@ -1330,14 +1414,14 @@ object BackupRepository {
       Log.d(TAG, "[import] --- Recreating indices ---")
       for (index in indexMetadata) {
         Log.d(TAG, "[import] Creating index ${index.name}...")
-        SignalDatabase.rawDatabase.execSQL(index.statement)
+        SignalDatabase.writableDatabase.execSQL(index.statement)
       }
       stopwatch.split("recreate-indices")
 
       Log.d(TAG, "[import] --- Recreating triggers ---")
       for (trigger in triggerMetadata) {
         Log.d(TAG, "[import] Creating trigger ${trigger.name}...")
-        SignalDatabase.rawDatabase.execSQL(trigger.statement)
+        SignalDatabase.writableDatabase.execSQL(trigger.statement)
       }
       stopwatch.split("recreate-triggers")
 
@@ -1347,17 +1431,17 @@ object BackupRepository {
       }
       stopwatch.split("thread-updates")
 
-      val foreignKeyViolations = SignalDatabase.rawDatabase.getForeignKeyViolations()
+      val foreignKeyViolations = SignalDatabase.writableDatabase.getForeignKeyViolations()
       if (foreignKeyViolations.isNotEmpty()) {
         throw IllegalStateException("Foreign key check failed! Violations: $foreignKeyViolations")
       }
       stopwatch.split("fk-check")
 
-      SignalDatabase.rawDatabase.setTransactionSuccessful()
+      SignalDatabase.writableDatabase.setTransactionSuccessful()
       transactionSuccessful = true
     } finally {
-      if (SignalDatabase.rawDatabase.inTransaction()) {
-        SignalDatabase.rawDatabase.endTransaction()
+      if (SignalDatabase.writableDatabase.inTransaction()) {
+        SignalDatabase.writableDatabase.endTransaction()
       }
 
       if (!transactionSuccessful) {
@@ -1366,7 +1450,7 @@ object BackupRepository {
       }
 
       Log.d(TAG, "[import] Re-enabling foreign keys...")
-      SignalDatabase.rawDatabase.forceForeignKeyConstraintsEnabled(true)
+      SignalDatabase.writableDatabase.forceForeignKeyConstraintsEnabled(true)
     }
 
     SignalDatabase.remappedRecords.clearCache()
@@ -1379,7 +1463,7 @@ object BackupRepository {
       AppDependencies.jobManager.add(ResetSvrGuessCountJob())
     }
 
-    val stickerJobs = SignalDatabase.stickers.getAllStickerPacks().use { cursor ->
+    val installedStickerJobs = SignalDatabase.stickers.getAllStickerPacks().use { cursor ->
       val reader = StickerTables.StickerPackRecordReader(cursor)
       reader
         .filter { it.isInstalled }
@@ -1387,7 +1471,12 @@ object BackupRepository {
           StickerPackDownloadJob.forInstall(it.packId, it.packKey, false)
         }
     }
-    AppDependencies.jobManager.addAll(stickerJobs)
+
+    val favoriteStickerJobs = SignalDatabase.stickers.getFavoritesFromUninstalledPacks().use { cursor ->
+      StickerTables.StickerRecordReader(cursor).map { StickerPackDownloadJob.forFavoriteSticker(it.packId, it.packKey, it.stickerId) }
+    }
+    AppDependencies.jobManager.addAll(installedStickerJobs + favoriteStickerJobs)
+
     stopwatch.split("sticker-jobs")
 
     val recipientIds = SignalDatabase.threads.getRecentConversationList(
@@ -1411,21 +1500,7 @@ object BackupRepository {
 
     AppDependencies.jobManager.add(CreateReleaseChannelJob.create())
 
-    val groupJobs = SignalDatabase.groups.getGroups().use { groups ->
-      val jobs = mutableListOf<Job>()
-      groups
-        .asSequence()
-        .filter { it.id.isV2 && it.hasV2GroupProperties }
-        .forEach { group ->
-          jobs.add(RequestGroupV2InfoJob(group.id as GroupId.V2))
-          val avatarKey = group.requireV2GroupProperties().avatarKey
-          if (avatarKey.isNotEmpty()) {
-            jobs.add(AvatarGroupsV2DownloadJob(group.id.requireV2(), avatarKey))
-          }
-        }
-      jobs
-    }
-    AppDependencies.jobManager.addAll(groupJobs)
+    AppDependencies.jobManager.addAll(RefreshGroupsAfterRestoreJob.createRestoreJobs())
     stopwatch.split("group-jobs")
 
     AppDependencies.jobManager.add(BackfillCollapsedMessageJob())
@@ -1467,12 +1542,18 @@ object BackupRepository {
 
   fun enablePaidBackupTier() {
     Log.i(TAG, "Setting backup tier to PAID", true)
+    val previousTier = SignalStore.backup.backupTier
     resetInitializedStateAndAuthCredentials()
     SignalStore.backup.backupTier = MessageBackupTier.PAID
     SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
     SignalStore.backup.lastCheckInSnoozeMillis = 0
     SignalStore.backup.clearDownloadNotifierState()
-    scheduleSyncForAccountChange()
+
+    if (previousTier != MessageBackupTier.PAID) {
+      scheduleSyncForAccountChange()
+    } else {
+      Log.i(TAG, "Backup tier was already PAID, skipping account record sync.", true)
+    }
   }
 
   fun downloadBackupFile(destination: File, listener: ProgressListener? = null): Either<ArchiveError.BackupFileError, Unit> {
@@ -1597,7 +1678,7 @@ object BackupRepository {
 
     Log.w(TAG, "Resetting backup id reservation due to zk verification failure")
 
-    return when (val triggerResult = runBlocking { SignalNetwork.archiveV2.triggerBackupIdReservation(aep.deriveMessageBackupKey(), null, aci) }) {
+    return when (val triggerResult = runBlocking { SignalNetwork.archiveApiV2.triggerBackupIdReservation(aep.deriveMessageBackupKey(), null, aci) }) {
       is RequestResult.Success -> {
         Log.i(TAG, "Reset successful, retrying aep verification")
         SignalStore.backup.messageCredentials.clearAll()
@@ -1656,7 +1737,7 @@ object BackupRepository {
 
   @WorkerThread
   fun getBackupLevelConfiguration(): NetworkResult<SubscriptionsConfiguration.BackupLevelConfiguration> {
-    return AppDependencies.donationsService
+    return SignalNetwork.donationsService
       .getDonationsConfiguration(Locale.getDefault())
       .toNetworkResult()
       .then {
@@ -1671,7 +1752,7 @@ object BackupRepository {
 
   @WorkerThread
   fun getFreeType(): NetworkResult<MessageBackupsType.Free> {
-    return AppDependencies.donationsService
+    return SignalNetwork.donationsService
       .getDonationsConfiguration(Locale.getDefault())
       .toNetworkResult()
       .map {
@@ -1720,8 +1801,8 @@ object BackupRepository {
 
   data class SelfData(
     val aci: ACI,
-    val pni: PNI,
-    val e164: String,
+    val pni: PNI?,
+    val e164: String?,
     val profileKey: ProfileKey
   )
 
@@ -1740,6 +1821,9 @@ object BackupRepository {
         }
         return@withContext result
       }
+    } catch (e: CancellationException) {
+      ArchiveRestoreProgress.onRestoreCanceled()
+      throw e
     } finally {
       DataRestoreConstraint.isRestoringData = false
     }
@@ -1755,7 +1839,7 @@ object BackupRepository {
           progress = progress.value,
           indeterminate = false
         )
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
+        EventBus.default.post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
       }
 
       override fun shouldCancel() = cancellationSignal()
@@ -1783,7 +1867,7 @@ object BackupRepository {
 
     val forwardSecrecyMetadata = EncryptedBackupReader.readForwardSecrecyMetadata(tempBackupFile.inputStream())
     if (forwardSecrecyMetadata == null) {
-      Log.w(TAG, "Failed to read forward secrecy metadata!")
+      Log.w(TAG, "[remoteRestore] Downloaded the backup file, but failed to read its forward secrecy metadata!")
       return RemoteRestoreResult.Failure
     }
 
@@ -1798,7 +1882,7 @@ object BackupRepository {
       }
     }
 
-    val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, messageBackupKey, forwardSecrecyMetadata)) {
+    val forwardSecrecyToken = when (val result = SignalNetwork.svrBApi.restore(svrBAuth, messageBackupKey, forwardSecrecyMetadata)) {
       is SvrBApi.RestoreResult.Success -> {
         SignalStore.backup.nextBackupSecretData = result.data.nextBackupSecretData
         result.data.forwardSecrecyToken
@@ -1828,7 +1912,7 @@ object BackupRepository {
     }
 
     val self = Recipient.self()
-    val selfData = SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    val selfData = SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
     Log.i(TAG, "[remoteRestore] Importing backup")
     val result = importSignalBackup(
       length = tempBackupFile.length(),
@@ -1861,10 +1945,17 @@ object BackupRepository {
     try {
       DataRestoreConstraint.isRestoringData = true
       return withContext(Dispatchers.IO) {
-        return@withContext BackupProgressService.start(context, context.getString(RegistrationR.string.MessageSyncScreen__syncing_messages)).use {
+        val result = BackupProgressService.start(context, context.getString(RegistrationR.string.MessageSyncScreen__syncing_messages)).use {
           restoreLinkAndSyncBackup(response, ephemeralBackupKey, controller = it, cancellationSignal = { !isActive })
         }
+        if (result !is RemoteRestoreResult.Success) {
+          ArchiveRestoreProgress.onRestoreFailed()
+        }
+        return@withContext result
       }
+    } catch (e: CancellationException) {
+      ArchiveRestoreProgress.onRestoreCanceled()
+      throw e
     } finally {
       DataRestoreConstraint.isRestoringData = false
     }
@@ -1880,7 +1971,7 @@ object BackupRepository {
           progress = progress.value,
           indeterminate = false
         )
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
+        EventBus.default.post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
       }
 
       override fun shouldCancel() = cancellationSignal()
@@ -1914,7 +2005,7 @@ object BackupRepository {
     )
 
     val self = Recipient.self()
-    val selfData = SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    val selfData = SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
     Log.i(TAG, "[restoreLinkAndSyncBackup] Importing backup")
     val result = importLinkAndSyncSignalBackup(
       length = tempBackupFile.length(),
@@ -1971,8 +2062,14 @@ object BackupRepository {
     ).encodeByteString()
   }
 
+  /**
+   * Reads the forward secrecy metadata out of the header of the remote backup file, or null if the file has none.
+   *
+   * Note that the two network steps here can fail with the same error types, so each one logs which step it was.
+   */
   suspend fun getRemoteBackupForwardSecrecyMetadata(): Either<ArchiveError.BackupFileError, ByteArray?> {
     return archiveService.getMessageBackupFileLocation()
+      .onLeft { Log.w(TAG, "[getRemoteBackupForwardSecrecyMetadata] Failed to get the backup file location: ${it::class.simpleName}", it.cause, true) }
       .flatMap { location ->
         val headers = location.cdnCredentials.toMutableMap().apply {
           this["range"] = "bytes=0-${EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND - 1}"
@@ -1981,6 +2078,7 @@ object BackupRepository {
         AppDependencies.signalServiceMessageReceiver
           .retrieveBackupForwardSecretMetadataBytes(location.cdn, headers, location.path, EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND)
           .toArchiveResult()
+          .onLeft { Log.w(TAG, "[getRemoteBackupForwardSecrecyMetadata] Got a backup file location on cdn ${location.cdn}, but failed to read the header: ${it::class.simpleName}", it.cause, true) }
       }
       .map { bytes -> EncryptedBackupReader.readForwardSecrecyMetadata(ByteArrayInputStream(bytes)) }
   }
@@ -2059,9 +2157,11 @@ object BackupRepository {
     fun onRecipient()
     fun onThread()
     fun onCall()
-    fun onSticker()
+    fun onInstalledStickerPack()
     fun onNotificationProfile()
     fun onChatFolder()
+    fun onHiddenStickerPack()
+    fun onFavoriteStickerList()
     fun onMessage(currentProgress: Long, approximateCount: Long)
     fun onAttachment(currentProgress: Long, totalCount: Long)
   }

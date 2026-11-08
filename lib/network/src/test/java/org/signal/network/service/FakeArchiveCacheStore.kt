@@ -50,7 +50,7 @@ class FakeArchiveCacheStore(
     private val credentials = mutableListOf<ArchiveServiceCredential>()
 
     /** How many times [clearOlderThan] was called, and with what. */
-    val clearedOlderThan = mutableListOf<Long>()
+    val clearedOlderThan = mutableListOf<Duration>()
 
     override fun getForTime(currentTime: Duration): ArchiveServiceCredential? = credentials.lastOrNull()
 
@@ -58,8 +58,8 @@ class FakeArchiveCacheStore(
       this.credentials += credentials
     }
 
-    override fun clearOlderThan(startOfDayInSeconds: Long) {
-      clearedOlderThan += startOfDayInSeconds
+    override fun clearOlderThan(currentTime: Duration) {
+      clearedOlderThan += currentTime
     }
 
     override fun clearAll() {

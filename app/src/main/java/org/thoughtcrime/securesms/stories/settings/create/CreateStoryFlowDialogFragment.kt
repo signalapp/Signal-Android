@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.stories.settings.create
 
-import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.enableEdgeToEdge
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.select.BaseStoryRecipientSelectionFragment
 
 class CreateStoryFlowDialogFragment : DialogFragment(R.layout.create_story_flow_dialog_fragment), BaseStoryRecipientSelectionFragment.Callback, CreateStoryWithViewersFragment.Callback {
@@ -16,9 +16,9 @@ class CreateStoryFlowDialogFragment : DialogFragment(R.layout.create_story_flow_
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
   }
 
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    return super.onCreateDialog(savedInstanceState).apply {
-      window?.enableEdgeToEdge()
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return super.onGetLayoutInflater(savedInstanceState).also {
+      dialog?.window?.enableEdgeToEdge()
     }
   }
 

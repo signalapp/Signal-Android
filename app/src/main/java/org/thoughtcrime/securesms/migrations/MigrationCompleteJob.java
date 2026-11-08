@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.eventbus.EventBus;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.BaseJob;

@@ -13,9 +13,9 @@ import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.debuglogsviewer.DebugLogsViewer;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 
 import java.util.ArrayList;

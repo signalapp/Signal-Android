@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.mediasend.v3
 
 import android.content.Context
 import android.net.Uri
-import android.os.Build
 import android.provider.OpenableColumns
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +18,8 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
-import org.signal.core.util.asListContains
+import org.signal.core.models.media.SentMediaQuality
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalLong
 import org.signal.core.util.optionalString
@@ -37,7 +37,6 @@ import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.SaveToStorageResult
 import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
 import org.signal.mediasend.preupload.PreUploadResult
 import org.signal.mediasend.screens.edit.image.BrushWidths
@@ -55,12 +54,10 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.mms.TranscodingConfigProvider
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil.SaveAttachmentsResult
 import org.thoughtcrime.securesms.video.TranscodingConfig
@@ -302,10 +299,6 @@ object MediaSendV3Repository : MediaSendRepository {
 
   override fun getAttachmentStream(context: Context, uri: Uri): InputStream {
     return PartAuthority.getAttachmentStream(context, uri)
-  }
-
-  override fun isMixedModeAvailable(): Boolean {
-    return !RemoteConfig.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
   }
 
   override fun getMediaConstraints(quality: SentMediaQuality?): MediaConstraints {

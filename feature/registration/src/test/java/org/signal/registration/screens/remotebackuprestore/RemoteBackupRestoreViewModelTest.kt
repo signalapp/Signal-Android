@@ -6,6 +6,8 @@
 package org.signal.registration.screens.remotebackuprestore
 
 import assertk.assertThat
+import assertk.assertions.containsExactly
+import assertk.assertions.doesNotContain
 import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
@@ -70,11 +72,16 @@ class RemoteBackupRestoreViewModelTest {
     Dispatchers.resetMain()
   }
 
-  private fun createViewModel(storageCapable: Boolean = false): RemoteBackupRestoreViewModel {
+  private fun createViewModel(
+    storageCapable: Boolean = false,
+    phoneNumberless: Boolean = false,
+    canNavigateBackwards: Boolean = false
+  ): RemoteBackupRestoreViewModel {
     return RemoteBackupRestoreViewModel(
       aep = aep,
+      canNavigateBackwards = canNavigateBackwards,
       repository = mockRepository,
-      parentState = MutableStateFlow(RegistrationFlowState(storageCapable = storageCapable)),
+      parentState = MutableStateFlow(RegistrationFlowState(storageCapable = storageCapable, isPhoneNumberlessAccount = phoneNumberless)),
       parentEventEmitter = parentEventEmitter,
       ioDispatcher = testDispatcher
     )
@@ -116,14 +123,88 @@ class RemoteBackupRestoreViewModelTest {
   // ==================== Cancel ====================
 
   @Test
-  fun `Cancel emits NavigateBack`() = runTest(testDispatcher) {
+  fun `Cancel records the skip and completes registration when a pin is known`() = runTest(testDispatcher) {
+    coEvery { mockRepository.hasKnownPin() } returns true
     val viewModel = createViewModel()
-    val initialState = RemoteBackupRestoreState(aep = aep)
 
-    viewModel.applyEvent(initialState, RemoteBackupRestoreScreenEvents.Cancel, stateEmitter)
+    viewModel.applyEvent(RemoteBackupRestoreState(aep = aep), RemoteBackupRestoreScreenEvents.Cancel, stateEmitter)
 
-    assertThat(emittedParentEvents).hasSize(1)
-    assertThat(emittedParentEvents.first()).isEqualTo(RegistrationFlowEvent.NavigateBack)
+    coVerify { mockRepository.setRestoreDecision(RestoreDecision.SKIPPED) }
+    coVerify { mockRepository.restoreAccountRecord() }
+    assertThat(emittedParentEvents.last()).isEqualTo(RegistrationFlowEvent.RegistrationComplete)
+  }
+
+  @Test
+  fun `Cancel navigates to pin creation when no pin is known and the account is not storage capable`() = runTest(testDispatcher) {
+    coEvery { mockRepository.hasKnownPin() } returns false
+    val viewModel = createViewModel(storageCapable = false)
+
+    viewModel.applyEvent(RemoteBackupRestoreState(aep = aep), RemoteBackupRestoreScreenEvents.Cancel, stateEmitter)
+
+    coVerify { mockRepository.setRestoreDecision(RestoreDecision.SKIPPED) }
+    assertThat(emittedParentEvents.last()).isEqualTo(RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.PinCreate))
+  }
+
+  @Test
+  fun `Cancel navigates to SVR pin entry when no pin is known and the account is storage capable`() = runTest(testDispatcher) {
+    coEvery { mockRepository.hasKnownPin() } returns false
+    val viewModel = createViewModel(storageCapable = true)
+
+    viewModel.applyEvent(RemoteBackupRestoreState(aep = aep), RemoteBackupRestoreScreenEvents.Cancel, stateEmitter)
+
+    coVerify { mockRepository.setRestoreDecision(RestoreDecision.SKIPPED) }
+    assertThat(emittedParentEvents.last()).isEqualTo(RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.PinEntryForSvrRestore))
+  }
+
+  @Test
+  fun `Cancel completes registration for a phone-numberless account, which has no pin`() = runTest(testDispatcher) {
+    coEvery { mockRepository.hasKnownPin() } returns false
+    val viewModel = createViewModel(storageCapable = true, phoneNumberless = true)
+
+    viewModel.applyEvent(RemoteBackupRestoreState(aep = aep), RemoteBackupRestoreScreenEvents.Cancel, stateEmitter)
+
+    coVerify { mockRepository.setRestoreDecision(RestoreDecision.SKIPPED) }
+    coVerify { mockRepository.restoreAccountRecord() }
+    assertThat(emittedParentEvents.last()).isEqualTo(RegistrationFlowEvent.RegistrationComplete)
+  }
+
+  @Test
+  fun `Complete progress completes registration for a phone-numberless account, which has no pin`() = runTest(testDispatcher) {
+    coEvery { mockRepository.hasKnownPin() } returns false
+    every { mockRepository.restoreRemoteBackup(any()) } returns flowOf(RemoteBackupRestoreProgress.Complete(restoredSvrPin = null, restoredProfileKey = null))
+    val viewModel = createViewModel(storageCapable = true, phoneNumberless = true)
+
+    viewModel.applyEvent(RemoteBackupRestoreState(aep = aep), RemoteBackupRestoreScreenEvents.BackupRestoreBackup, stateEmitter)
+
+    assertThat(emittedParentEvents.last()).isEqualTo(RegistrationFlowEvent.RegistrationComplete)
+  }
+
+  @Test
+  fun `Cancel never navigates back, since this screen cleared the back stack`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.applyEvent(RemoteBackupRestoreState(aep = aep), RemoteBackupRestoreScreenEvents.Cancel, stateEmitter)
+
+    assertThat(emittedParentEvents).doesNotContain(RegistrationFlowEvent.NavigateBack)
+  }
+
+  @Test
+  fun `Cancel navigates back to the restore selection screen when it is still behind us`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(canNavigateBackwards = true)
+
+    viewModel.applyEvent(RemoteBackupRestoreState(aep = aep), RemoteBackupRestoreScreenEvents.Cancel, stateEmitter)
+
+    assertThat(emittedParentEvents).containsExactly(RegistrationFlowEvent.NavigateBack)
+  }
+
+  @Test
+  fun `Cancel does not record a skip when handing control back to the restore selection screen`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(canNavigateBackwards = true)
+
+    viewModel.applyEvent(RemoteBackupRestoreState(aep = aep), RemoteBackupRestoreScreenEvents.Cancel, stateEmitter)
+
+    coVerify(exactly = 0) { mockRepository.setRestoreDecision(any()) }
+    assertThat(emittedParentEvents).doesNotContain(RegistrationFlowEvent.RegistrationComplete)
   }
 
   // ==================== Retry ====================

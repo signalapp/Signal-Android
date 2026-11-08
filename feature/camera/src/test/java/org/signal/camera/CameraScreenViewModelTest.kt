@@ -748,17 +748,38 @@ class CameraScreenViewModelTest {
     assertThat(viewModel.state.value.zoomRange).isEqualTo(1f..3f)
   }
 
-  /** A newly bound lens comes up at its own zoom rather than carrying over whatever the one before it was at. */
+  /**
+   * Coming back into the camera rebinds it, which drops the lens back to its default zoom, so the zoom bar goes back
+   * with it rather than keeping a level highlighted over a preview that is no longer at it.
+   */
   @Test
-  fun `Given a lens sitting away from 1x, when bound, then its own zoom is published`() {
-    setupZoomState(minZoom = 1f, maxZoom = 10f, zoomRatio = 5f)
+  fun `Given a lens that has been zoomed, when rebound, then the zoom is back at 1x`() {
+    setupZoomState(minZoom = 1f, maxZoom = 8f)
+    bindCamera()
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(5f))
+    testDispatcher.scheduler.advanceUntilIdle()
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(5f)
 
     bindCamera()
 
-    assertThat(viewModel.state.value.zoomRatio).isEqualTo(5f)
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(1f)
   }
 
-  /** The resync happens once per binding, so it cannot pull the lens back from wherever it has since been sent. */
+  /** The reset happens on the bind itself, so a lens reporting afterwards cannot pull it back off 1x. */
+  @Test
+  fun `Given a rebound lens, when it reports the zoom it was left at, then the zoom stays at 1x`() {
+    setupZoomState(minZoom = 1f, maxZoom = 8f)
+    bindCamera()
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(5f))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    bindCamera()
+    setupZoomState(minZoom = 1f, maxZoom = 8f, zoomRatio = 5f)
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(1f)
+  }
+
+  /** The reset happens on the bind, so it cannot pull the lens back from wherever it has since been sent. */
   @Test
   fun `Given a bound lens that has been zoomed, when it reports again, then the zoom it was sent to stands`() {
     setupZoomState(minZoom = 1f, maxZoom = 10f, zoomRatio = 1f)

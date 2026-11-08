@@ -68,7 +68,7 @@ public class PartAuthority {
       case BLOB_ROW:          return AppDependencies.getBlobs().getStream(context, uri);
       case EMOJI_ROW:         return EmojiFiles.openForReading(context, getEmojiFilename(uri));
       case AVATAR_PICKER_ROW: return AvatarPickerStorage.read(context, getAvatarPickerFilename(uri));
-      case THUMBNAIL_ROW:     return SignalDatabase.attachments().getAttachmentThumbnailStream(new PartUriParser(uri).getPartId(), 0);
+      case THUMBNAIL_ROW:     return WebpPaddingRemover.trim(SignalDatabase.attachments().getAttachmentThumbnailStream(new PartUriParser(uri).getPartId(), 0));
       default:                return openExternalFileStream(context, uri);
       }
     } catch (SecurityException se) {
@@ -154,11 +154,11 @@ public class PartAuthority {
   }
 
   public static Uri getAttachmentDataUri(AttachmentId attachmentId) {
-    return PartAuthorityUris.getAttachmentDataUri(attachmentId);
+    return PartAuthorityUris.getAttachmentDataUri(attachmentId.id);
   }
 
   public static Uri getAttachmentThumbnailUri(AttachmentId attachmentId) {
-    return PartAuthorityUris.getAttachmentThumbnailUri(attachmentId);
+    return PartAuthorityUris.getAttachmentThumbnailUri(attachmentId.id);
   }
 
   public static Uri getStickerUri(long id) {

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
 import java.util.Optional;

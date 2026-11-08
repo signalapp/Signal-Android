@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.stories.settings.story
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.stories.Stories

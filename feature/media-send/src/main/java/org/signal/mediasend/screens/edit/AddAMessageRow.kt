@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -39,11 +38,17 @@ import org.signal.mediasend.R
 import org.signal.mediasend.test.TestTags
 
 /**
- * Mirrors the legacy send button's size. Has to be stated rather than left to the [IconButtons.IconButton] default of
- * 40dp: the default draws the container inside the 48dp of layout that [androidx.compose.material3.minimumInteractiveComponentSize]
- * reserves, leaving a button that is 8dp smaller than it looks like it should be and smaller than the row it sits in.
+ * The circle the arrow is drawn in. [IconButtons.IconButton] keeps the 48dp of layout that
+ * [androidx.compose.material3.minimumInteractiveComponentSize] reserves around it, so what a finger can hit stays a full
+ * touch target wide while the button reads as 40dp.
  */
-private val NextButtonSize = 48.dp
+private val NextButtonSize = 40.dp
+
+/**
+ * The bar itself, stated rather than left to what is inside it: the icon buttons it carries each reserve a 48dp touch
+ * target, which would otherwise make the bar 4dp taller than it is meant to be.
+ */
+private val InputBarHeight = 44.dp
 
 /**
  * Because we need to be able to support stuff like mentions, styled text, and custom emoji, we need to allow
@@ -88,7 +93,7 @@ fun AddAMessageRow(
       modifier = Modifier
         .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(24.dp))
         .weight(1f)
-        .heightIn(min = 44.dp)
+        .height(InputBarHeight)
         .then(
           if (viewOnce) {
             // A view-once send cannot carry a body, so the row becomes a static label rather than an entry point.
@@ -123,7 +128,7 @@ fun AddAMessageRow(
           message?.takeIf { it.isNotBlank() } ?: stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__message),
           Modifier
             .weight(1f)
-            .height(44.dp)
+            .height(InputBarHeight)
             .padding(end = if (viewOnceAvailable) 0.dp else 16.dp, top = 10.dp, bottom = 10.dp)
         )
       }

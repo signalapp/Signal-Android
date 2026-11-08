@@ -40,6 +40,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment for changing the name of a linked device
@@ -83,7 +84,7 @@ class EditDeviceNameFragment : ComposeFragment() {
       title = stringResource(id = R.string.EditDeviceNameFragment__edit),
       onNavigationClick = { navController.popBackStack() },
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding: PaddingValues ->
       EditNameScreen(
         state = state,

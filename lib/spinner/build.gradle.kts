@@ -8,6 +8,7 @@ android {
 
 dependencies {
   implementation(project(":core:util"))
+  implementation(project(":core:database"))
 
   implementation(libs.jknack.handlebars)
   implementation(libs.nanohttpd.webserver)

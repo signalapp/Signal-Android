@@ -8,11 +8,7 @@ package org.signal.registration
 import android.Manifest
 import android.os.Build
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -25,18 +21,17 @@ import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
 import org.signal.registration.screens.restoreselection.RegisteredState
-import kotlin.reflect.KClass
 
 /**
  * ViewModel shared across the registration flow.
  * Manages state and logic for registration screens.
  */
 class RegistrationViewModel(
-  private val repository: RegistrationRepository,
+  val repository: RegistrationRepository,
   private val savedStateHandle: SavedStateHandle,
   startDestination: RegistrationRoute? = null,
   private val startFresh: Boolean = false
-) : EventDrivenViewModel<RegistrationFlowEvent>(TAG) {
+) : EventDrivenViewModel<RegistrationFlowEvent>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(RegistrationViewModel::class)
@@ -91,6 +86,10 @@ class RegistrationViewModel(
     }
   }
 
+  override fun onCleared() {
+    repository.close()
+  }
+
   override suspend fun processEvent(event: RegistrationFlowEvent) {
     _state.value = applyEvent(_state.value, event)
     persistFlowState(event)
@@ -106,7 +105,7 @@ class RegistrationViewModel(
         lastSmsVerificationCodeRequest = event.nextSmsAllowedTimestamp?.let { VerificationCodeRequest(event.e164, it) } ?: state.lastSmsVerificationCodeRequest,
         lastCallVerificationCodeRequest = event.nextCallAllowedTimestamp?.let { VerificationCodeRequest(event.e164, it) } ?: state.lastCallVerificationCodeRequest
       )
-      is RegistrationFlowEvent.Registered -> state.copy(accountEntropyPool = event.accountEntropyPool, storageCapable = event.storageCapable)
+      is RegistrationFlowEvent.Registered -> state.copy(aci = event.aci, accountEntropyPool = event.accountEntropyPool, storageCapable = event.storageCapable, isPhoneNumberlessAccount = event.phoneNumberless)
       is RegistrationFlowEvent.MasterKeyRestoredFromSvr -> state.copy(temporaryMasterKey = event.masterKey)
       is RegistrationFlowEvent.NavigateToScreen -> applyNavigationToScreenEvent(state, event)
       is RegistrationFlowEvent.NavigateBackToScreen -> applyNavigateBackToScreenEvent(state, event)
@@ -157,7 +156,8 @@ class RegistrationViewModel(
       is RegistrationRoute.Welcome,
       is RegistrationRoute.PinCreate,
       is RegistrationRoute.PinEntryForSvrRestore,
-      is RegistrationRoute.RemoteRestore -> true
+      is RegistrationRoute.SignalLoginInfo -> true
+      is RegistrationRoute.RemoteRestore -> !this.backwardNavigationAllowed
       is RegistrationRoute.ArchiveRestoreSelection -> this.registeredState != RegisteredState.NotRegistered
       else -> false
     }
@@ -181,7 +181,7 @@ class RegistrationViewModel(
   }
 
   private fun applyNavigateBackToScreenEvent(inputState: RegistrationFlowState, event: RegistrationFlowEvent.NavigateBackToScreen): RegistrationFlowState {
-    val index = inputState.backStack.indexOfLast { it == event.route }
+    val index = inputState.backStack.indexOfLast { it::class == event.route::class }
     return if (index >= 0) {
       inputState.copy(backStack = inputState.backStack.take(index + 1))
     } else {
@@ -259,12 +259,6 @@ class RegistrationViewModel(
       // No need to persist anything new, fields accounted for in proto already
       is RegistrationFlowEvent.Registered,
       is RegistrationFlowEvent.MasterKeyRestoredFromSvr -> { }
-    }
-  }
-
-  class Factory(private val repository: RegistrationRepository, private val startDestination: RegistrationRoute? = null, private val startFresh: Boolean = false) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: KClass<T>, extras: CreationExtras): T {
-      return RegistrationViewModel(repository, extras.createSavedStateHandle(), startDestination, startFresh) as T
     }
   }
 }

@@ -5,6 +5,7 @@ import android.database.Cursor
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.LRUCache
 import org.signal.core.util.requireLong
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.groups.GroupsInCommonSummary
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Database boundary interface which allows us to safely unit test the data source without

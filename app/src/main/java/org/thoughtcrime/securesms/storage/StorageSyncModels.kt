@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.storage
 
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.appsettings.usernamelinks.UsernameQrCodeColorScheme
 import org.signal.core.models.ServiceId
+import org.signal.core.models.database.FavoriteStickerSyncRecord
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Hex
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotEmpty
@@ -10,8 +13,8 @@ import org.signal.core.util.isNullOrEmpty
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.GroupTable.ShowAsStoryState
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
@@ -22,34 +25,37 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.callLinks
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.distributionLists
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.inAppPaymentSubscribers
+import org.thoughtcrime.securesms.database.model.HiddenStickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.database.model.InstalledStickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
-import org.thoughtcrime.securesms.database.model.StickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
+import org.whispersystems.signalservice.api.storage.SignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.SignalHiddenStickerPackRecord
+import org.whispersystems.signalservice.api.storage.SignalInstalledStickerPackRecord
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
-import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
+import org.whispersystems.signalservice.api.storage.toSignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.toSignalHiddenStickerPackRecord
+import org.whispersystems.signalservice.api.storage.toSignalInstalledStickerPackRecord
 import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
-import org.whispersystems.signalservice.api.storage.toSignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
 import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -103,8 +109,16 @@ object StorageSyncModels {
     return localToRemoteNotificationProfile(profile, rawStorageId).toSignalStorageRecord()
   }
 
-  fun localToRemoteRecord(pack: StickerPackSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
-    return localToRemoteStickerPack(pack, rawStorageId).toSignalStorageRecord()
+  fun localToRemoteRecord(pack: InstalledStickerPackSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteInstalledStickerPack(pack, rawStorageId).toSignalStorageRecord()
+  }
+
+  fun localToRemoteRecord(pack: HiddenStickerPackSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteHiddenStickerPack(pack, rawStorageId).toSignalStorageRecord()
+  }
+
+  fun localToRemoteRecord(sticker: FavoriteStickerSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteFavoriteSticker(sticker, rawStorageId).toSignalStorageRecord()
   }
 
   @JvmStatic
@@ -223,7 +237,10 @@ object StorageSyncModels {
       pniSignatureVerified = recipient.pni?.isValid == true && recipient.syncExtras.pniSignatureVerified
       nickname = recipient.nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       note = recipient.note ?: ""
+      sharedName = recipient.sharedName.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
+      notifyForCallsIfMuted = RecipientTable.NotificationSetting.toOptionalBool(recipient.callNotificationSetting)
+      showUnreadReminders = RecipientTable.NotificationSetting.toOptionalBool(recipient.unreadReminder)
     }.build().toSignalContactRecord(StorageId.forContact(rawStorageId))
   }
 
@@ -245,6 +262,10 @@ object StorageSyncModels {
       markedUnread = recipient.syncExtras.isForcedUnread
       mutedUntilTimestamp = recipient.muteUntil
       dontNotifyForMentionsIfMuted = recipient.mentionSetting == RecipientTable.NotificationSetting.DO_NOT_NOTIFY
+      notifyForMentionsIfMuted = RecipientTable.NotificationSetting.toOptionalBool(recipient.mentionSetting)
+      notifyForCallsIfMuted = RecipientTable.NotificationSetting.toOptionalBool(recipient.callNotificationSetting)
+      notifyForRepliesIfMuted = RecipientTable.NotificationSetting.toOptionalBool(recipient.replyNotificationSetting)
+      showUnreadReminders = RecipientTable.NotificationSetting.toOptionalBool(recipient.unreadReminder)
       hideStory = recipient.extras != null && recipient.extras.hideStory()
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
       storySendMode = when (groups.getShowAsStoryState(groupId)) {
@@ -455,8 +476,8 @@ object StorageSyncModels {
     }.build().toSignalNotificationProfileRecord(StorageId.forNotificationProfile(rawStorageId))
   }
 
-  fun localToRemoteStickerPack(pack: StickerPackSyncRecord, rawStorageId: ByteArray?): SignalStickerPackRecord {
-    return SignalStickerPackRecord.newBuilder(pack.storageServiceProto).apply {
+  fun localToRemoteInstalledStickerPack(pack: InstalledStickerPackSyncRecord, rawStorageId: ByteArray?): SignalInstalledStickerPackRecord {
+    return SignalInstalledStickerPackRecord.newBuilder(pack.storageServiceProto).apply {
       packId = Hex.fromStringCondensed(pack.packId.value).toByteString()
 
       if (pack.deletedTimestampMs > 0) {
@@ -468,7 +489,38 @@ object StorageSyncModels {
         position = pack.position
         deletedAtTimestamp = 0
       }
-    }.build().toSignalStickerPackRecord(StorageId.forStickerPack(rawStorageId))
+    }.build().toSignalInstalledStickerPackRecord(StorageId.forStickerPack(rawStorageId))
+  }
+
+  fun localToRemoteHiddenStickerPack(pack: HiddenStickerPackSyncRecord, rawStorageId: ByteArray): SignalHiddenStickerPackRecord {
+    return SignalHiddenStickerPackRecord.newBuilder(pack.storageServiceProto).apply {
+      packId = Hex.fromStringCondensed(pack.packId.value).toByteString()
+
+      if (pack.unhiddenTimestampMs > 0) {
+        packKey = ByteString.EMPTY
+        unhiddenAtTimestamp = pack.unhiddenTimestampMs
+      } else {
+        packKey = Hex.fromStringCondensed(pack.packKey.value).toByteString()
+        unhiddenAtTimestamp = 0
+      }
+    }.build().toSignalHiddenStickerPackRecord(StorageId.forHiddenStickerPack(rawStorageId))
+  }
+
+  fun localToRemoteFavoriteSticker(sticker: FavoriteStickerSyncRecord, rawStorageId: ByteArray): SignalFavoriteStickerRecord {
+    return SignalFavoriteStickerRecord.newBuilder(sticker.storageServiceProto).apply {
+      packId = Hex.fromStringCondensed(sticker.packId).toByteString()
+      stickerId = sticker.stickerId
+
+      if (sticker.unfavoritedAt > 0) {
+        packKey = ByteString.EMPTY
+        favoritedAtTimestamp = 0
+        deletedAtTimestamp = sticker.unfavoritedAt
+      } else {
+        packKey = Hex.fromStringCondensed(sticker.packKey).toByteString()
+        favoritedAtTimestamp = sticker.favoritedAt
+        deletedAtTimestamp = 0
+      }
+    }.build().toSignalFavoriteStickerRecord(StorageId.forFavoriteSticker(rawStorageId))
   }
 
   private fun localToRemoteDayOfWeek(daysEnabled: Set<DayOfWeek>): List<RemoteDayOfWeek> {

@@ -25,12 +25,11 @@ import org.thoughtcrime.securesms.banner.ui.compose.Action
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.PowerManagerCompat
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class DozeBanner(private val context: Context) : Banner<Unit>() {
 
   override val enabled: Boolean
-    get() = !SignalStore.account.fcmEnabled && !TextSecurePreferences.hasPromptedOptimizeDoze(context) && !ServiceUtil.getPowerManager(context).isIgnoringBatteryOptimizations(context.packageName)
+    get() = !SignalStore.account.fcmEnabled && !SignalStore.uiHints.hasPromptedOptimizeDoze() && !ServiceUtil.getPowerManager(context).isIgnoringBatteryOptimizations(context.packageName)
 
   override val dataFlow: Flow<Unit>
     get() = flowOf(Unit)
@@ -62,7 +61,7 @@ class DozeBanner(private val context: Context) : Banner<Unit>() {
   }
 
   private fun markAsPrompted() {
-    TextSecurePreferences.setPromptedOptimizeDoze(context, true)
+    SignalStore.uiHints.setHasPromptedOptimizeDoze(true)
     enabledState.value = false
   }
 }

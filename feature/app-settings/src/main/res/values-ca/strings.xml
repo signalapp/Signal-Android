@@ -48,152 +48,1129 @@
     <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Compte i recuperació</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d clau</item>
-        <item quantity="other">%1$d claus</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
     <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">El teu Signal Login serveix per recuperar i restaurar el teu compte. Guarda aquestes claus de forma segura en un gestor de contrasenyes de confiança.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Autenticació de dos factors</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Configurar</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">App d\'autenticació</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="one">%1$d configured</item>
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d passkey</item>
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Claus de verificació d\'un sol ús</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Clau d\'accés</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Fes servir la teva empremta, reconeixement facial o bloqueig de pantalla</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Clau d\'accés</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Mètode de dos factors</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Afegit el %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Desconegut</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Obrir les opcions d\'autenticació de dos factors</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Canviar el nom</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Suprimeix</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Eliminar app d\'autenticació?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">No podràs fer servir aquesta app per claus de verificació d\'un sol ús quan iniciïs sessió.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Eliminar clau d\'accés?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">No podràs fer servir aquesta clau d\'accés quan iniciïs sessió.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Eliminar mètode de dos factors?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">No podràs fer servir aquest mètode quan iniciïs sessió.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Mètode de dos factors eliminat</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">No s\'ha pogut eliminar el mètode de dos factors. Comprova la connexió i torna-ho a provar.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Clau d\'accés eliminada</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">No s\'ha pogut eliminar la clau d\'accés. Comprova la connexió i torna-ho a provar.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Configura un gestor de contrasenyes compatible amb les claus d\'accés en aquest dispositiu i torna-ho a provar.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">No s\'ha pogut crear la clau d\'accés. Torna a provar-ho.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Desbloqueja per afegir el teu mètode de dos factors</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Per afegir aquest mètode, confirma que ets tu</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Desbloqueja per eliminar el teu mètode de dos factors</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Per eliminar aquest mètode, confirma que ets tu</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Desbloqueja per veure el Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Per veure el teu Signal Login, confirma que ets tu</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Desbloqueja per confirma que ets tu</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Per eliminar el teu compte, confirma que ets tu</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Es requereix autenticació</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">No es pot afegir l\'app d\'autenticació</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">No pots afegir més de %1$d apps d\'autenticació. Prova d\'eliminar-ne una abans.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">No pots afegir més de %1$d mètodes d\'autenticació de dos factors. Prova d\'eliminar-ne una abans.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">No s\'han pogut carregar els teus mètodes d\'autenticació de dos factors. Comprova la connexió i torna-ho a provar.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">App d\'autenticació eliminada</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">No s\'ha pogut eliminar la teva app d\'autenticació. Comprova la connexió i torna-ho a provar.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
     <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Fes servir una segona forma d\'autenticació per protegir el teu compte mentre fas servir el teu Signal Login en un nou dispositiu.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Més informació</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Les dades del teu compte</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Exporta un informe de les dades del teu compte de Signal. Aquest informe no inclou missatges ni arxius multimèdia. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Més informació</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Exportar informe</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Exportar com a TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Arxiu de text fàcil de llegir</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Exportar com a JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Arxiu llegible per màquina</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Cancel·lar</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">D\'acord</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">No s\'ha pogut generar l\'informe</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Comprova la connexió i torna-ho a provar.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Exportar dades?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Comparteix les dades del teu compte de Signal només amb persones o aplicacions de confiança.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Exporta</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Generant informe…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">El teu informe només es genera en el moment de l\'exportació i Signal no l\'emmagatzema al teu dispositiu.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Configurar la teva app d\'autenticació</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Segueix aquests passos per configurar la teva app d\'autenticació.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Segueix aquests passos per configurar la teva app d\'autenticació.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Més informació</string>
+    <string name="TotpSetupScreen__learn_more">Més informació</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Pas 1</string>
+    <string name="TotpSetupScreen__step_1">Pas 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Instal·la una app d\'autenticació de confiança al teu dispositiu.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Instal·la una app d\'autenticació de confiança al teu dispositiu.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Pas 2</string>
+    <string name="TotpSetupScreen__step_2">Pas 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Toca el botó d\'aquí baix per obrir la teva app d\'autenticació i afegir el teu compte de Signal.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Toca el botó d\'aquí baix per obrir la teva app d\'autenticació i afegir el teu compte de Signal.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Obrir</string>
+    <string name="TotpSetupScreen__open">Obrir</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">O copia aquesta clau per configurar-la de forma manual.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">O copia aquesta clau per configurar-la de forma manual.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Copia</string>
+    <string name="TotpSetupScreen__copy">Copia</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Copiat al portapapers</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Copiat al portapapers</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No s\'ha trobat cap app d\'autenticació</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">No s\'ha trobat cap app d\'autenticació</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">No pots afegir més de %1$d apps d\'autenticació. Prova d\'eliminar-ne una abans.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">No s\'ha pogut connectar Signal. Comprova la connexió i torna-ho a provar.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Pas 3</string>
+    <string name="TotpSetupScreen__step_3">Pas 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copia la clau que generada i torna aquí per continuar.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Copia la clau que generada i torna aquí per continuar.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Continua</string>
+    <string name="TotpSetupScreen__continue">Continua</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">Més informació</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">Claus d\'accés</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Amb les claus d\'accés, pots afegir fàcilment una segona forma segura d\'autenticació. Les claus d\'accés poden fer sevir les dades biomètriques del teu dispositiu o una clau de seguretat FIDO2 compatible.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">Més informació</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Posa-li un nom fàcil d\'identificar a la teva clau d\'accés</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Fes sevir les dades biomètriques del teu dispositiu o una clau de seguretat FIDO2 per guardar la teva clau d\'accés.</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Afegeix o elimina les claus d\'accés quan vulguis.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">S\'hi ha afegit %1$s</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">Canviar el nom</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">Suprimeix</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">Configura una clau d\'accés</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">No es pot afegir la clau d\'accés</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">No pots afegir més de %1$d mètodes d\'autenticació de dos factors. Prova d\'eliminar-ne una abans.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Introdueix la teva clau</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Introdueix la teva clau</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Introdueix la clau de 6 dígits de la teva app d\'autenticació.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Codi</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Introdueix la clau de 6 dígits de la teva app d\'autenticació.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Fet</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">App d\'autenticació</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">Més informació</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">S\'hi ha afegit %1$s</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">Canviar el nom</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">Suprimeix</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">Següent</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Clau incorrecta. Introdueix ara la clau de la teva app d\'autenticació.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">No s\'ha pogut connectar Signal. Comprova la connexió i torna-ho a provar.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">Trieu un nom</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Autenticació</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Trieu un nom</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Tria un nom únic per aquesta app d\'autenticació.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Tria un nom únic per aquesta app d\'autenticació per ajudar-te a identificar-la.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Tria un nom únic per aquest mètode de dos factors.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Tria un nom únic per aquest mètode de dos factors per ajudar-te a identificar-lo.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Tria un nom únic per aquesta clau d\'accés.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Tria un nom únic per aquesta clau d\'accés per ajudar-te a identificar-la.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">Nom</string>
+    <string name="TwoFactorNameEntryScreen__name">Nom</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">Següent</string>
+    <string name="TwoFactorNameEntryScreen__next">Següent</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Configurar app d\'autenticació</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">S\'ha canviat el nom de l\'app d\'autenticació</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Clau d\'accés configurada</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">S\'ha canviat el nom de la clau d\'accés</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Mètode de dos factors configurat</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">S\'ha canviat el nom del mètode de dos factors</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">No s\'ha pogut guardar el nom. Comprova la connexió i torna-ho a provar.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Eliminar el compte comportarà el següent:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Marqueu el número de telèfon.</string>
+    <string name="DeleteAccountFragment__delete_account">Eliminar el compte</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminar la informació del compte i la fotografia del perfil.</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Eliminar tots els missatges</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Suprimeix %1$s del compte de pagaments</string>
+    <string name="DeleteAccountFragment__no_country_code">No s\'ha especificat el codi del país.</string>
+    <string name="DeleteAccountFragment__no_number">No s\'ha especificat el número.</string>
+    <string name="DeleteAccountFragment__the_phone_number">El número de telèfon marcat no coincideix amb el del compte.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Segur que vols suprimir el compte?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Això eliminarà el compte del Signal i restablirà l\'aplicació. L\'aplicació es tancarà quan acabi el procés.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">No s\'han pogut suprimir les dades locals. Les podeu suprimir manualment des de la configuració del sistema.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Obre la configuració de l\'aplicació</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Es deixen els grups…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Se suprimeix el compte…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Cancel·lant la subscripció…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Segons el nombre de grups en què us trobeu, això pot trigar uns quants minuts.</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Se suprimeixen les dades de l\'usuari i es restableix l\'aplicació</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">No s\'ha suprimit el compte</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">S\'ha produït un problema en completar el procés de supressió. Comproveu la connexió de xarxa i torneu-ho a provar.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Eliminar el teu compte amb l\'àlies \"%1$s\" implica:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Eliminar la informació del teu compte i la foto del perfil, incloent el teu àlies \"%1$s\"</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Aquesta acció no es pot desfer</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Això eliminarà el compte del Signal amb l\'àlies \"%1$s\" i restablirà l\'app. L\'app es tancarà quan acabi el procés.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Sí, eliminar el meu compte</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Afegir amistats</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Comparteix</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Seleccioneu el país</string>
+    <string name="RegistrationActivity_phone_number_description">Número de telèfon</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d carpeta</item>
+        <item quantity="other">%1$d carpetes</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Afegir una carpeta de xats</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Afegir o editar carpetes</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Ha fallat l\'autenticació.</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Carpetes de xats</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Exportar l\'historial del xat</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Exportar una còpia JSON llegible per màquina de tots els teus xats. Els missatges a desaparèixer no s\'exportaran.</string>
+    <string name="ChatsSettingsFragment__keyboard">Teclat</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Enviar amb la tecla de Retorn</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Reproduir automàticament stickers i GIF</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Si ho actives, els stickers i els GIF es reproduiran automàticament</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Desbloqueja per exportar l\'historial del xat</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefereixo les fotos dels contactes de l\'agenda si estan disponibles</string>
+    <string name="preferences__generate_link_previews">Genera previsualitzacions d\'enllaç</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Els xats silenciats que estiguin arxivats romandran arxivats quan arribi un missatge nou.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Mantenir arxivats els xats silenciats</string>
+    <string name="preferences__pref_use_address_book_photos">Prefereixo les fotos de l\'agenda de contactes</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupereu les previsualitzacions d’enllaços directament des de qualsevol lloc web per als missatges que envieu.</string>
+    <string name="preferences_advanced__use_system_emoji">Usa els emoji del sistema</string>
+    <string name="preferences_chats__chats">Xats</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">VIGILA</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">VIGILA!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Cancel·lant exportació…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Selecciona una carpeta al teu dispositiu on vulguis emmagatzemar l\'historial del xat.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Tria una carpeta</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Trieu una carpeta</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">a on guardes el fitxer d\'exportació del xat i no el comparteixis amb ningú. Depenent dels permisos del teu dispositiu, altres aplicacions també podrien accedir-hi.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Exportació del xat completada</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Vols exportar l\'historial del xat?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">NO comparteixis aquest arxiu amb ningú. El teu historial del xat es desarà al dispositiu i, d’acord amb els permisos que concedeixis, podrà ser accessible per altres aplicacions. Si l\'exportes amb els arxius multimèdia, la mida de l\'arxiu serà més gran.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Exportar amb arxius multimèdia</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Exportar sense arxius multimèdia</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Exportant arxius multimèdia: %1$d %%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Finalitzant…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Preparant la còpia de seguretat…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">S\'està processant la còpia de seguretat…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Processant missatges…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processant missatges: %1$s de %2$s (%3$d %%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Carregant arxius multimèdia: %1$d %%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Actualitzacions de l\'aplicació</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">Aparença</string>
+    <string name="preferences__language">Llengua</string>
+    <string name="preferences__theme">Tema</string>
+    <string name="preferences__system_default">Per defecte del sistema</string>
+    <string name="preferences__light_theme">Clar</string>
+    <string name="preferences__dark_theme">Fosc</string>
+    <string name="preferences__chat_color_and_wallpaper">Color i fons del xat</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Icona de l\'app</string>
+    <string name="preferences_chats__message_text_size">Mida de la lletra dels missatges</string>
+    <string name="arrays__small">Petita</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Gran</string>
+    <string name="arrays__extra_large">Molt gran</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Mida de la barra de navegació</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Normal</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Compacte</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">L\'app es reiniciarà per aplicar la nova configuració d\'idioma.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Número de telèfon</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Qui pot veure el meu número</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">El teu número de telèfon serà visible per a totes les persones i grups a qui enviïs un missatge.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">El teu número de telèfon no serà visible per a ningú tret que el tingui guardat als contactes del seu telèfon.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">El teu número de telèfon ja no és visible per a ningú.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Qui pot trobar-me a través del meu número</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Qualsevol persona que tingui el teu número de telèfon veurà que ets a Signal i podrà iniciar un xat amb tu.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ningú podrà veure que ets a Signal tret que els enviïs un missatge o tinguis un xat obert amb ells.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Per canviar això, configura Qui pot veure el meu número seleccionant Ningú."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Segur que vols fer això?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Al configurar \"Qui pot trobar-me a través del meu número\" a \"Ningú,\" serà més difícil que la gent pugui trobar-te a Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel·lar</string>
+    <string name="PhoneNumberPrivacy_everyone">Tothom</string>
+    <string name="PhoneNumberPrivacy_nobody">Ningú</string>
+    <string name="arrays__images">Imatges</string>
+    <string name="arrays__audio">Àudio</string>
+    <string name="arrays__video">Vídeo</string>
+    <string name="arrays__documents">Documents</string>
+    <string name="preferences__data_and_storage">Dades i emmagatzematge</string>
+    <string name="preferences_chats__when_using_mobile_data">En usar dades mòbils</string>
+    <string name="preferences_chats__when_using_wifi">En usar Wi-Fi</string>
+    <string name="preferences_chats__when_roaming">En itinerància</string>
+    <string name="preferences_chats__media_auto_download">Baixada automàtica de contingut multimèdia</string>
+    <string name="preferences_data_and_storage__manage_storage">Gestioneu l\'emmagatzematge</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Usa menys dades per a les trucades</string>
+    <string name="preferences_data_and_storage__never">Mai</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">Sense fil i dades mòbils</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Només amb dades mòbils</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">L\'ús de menys dades pot millorar les trucades en xarxes dèbils.</string>
+    <string name="preferences_proxy">Servidor intermediari</string>
+    <string name="preferences_use_proxy">Usa un servidor intermediari</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Qualitat dels mitjans</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculant…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualitat dels mitjans enviats</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">L’enviament de mitjans d’alta qualitat usarà més dades.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Els missatges de veu i els stickers (de menys de %1$s) sempre es baixen automàticament.</string>
+    <string name="DataAndStorageSettingsFragment__calls">Trucades</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Activar la connexió en segon pla</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">És probable que la connexió en segon pla impliqui un ús més intensiu de la bateria. Això no és necessari per la majoria de dispositius. Activa aquesta opció només si has tingut problemes amb les notificacions.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Activar</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Alta</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Estàndard</string>
+    <string name="preferences_app_protection__screen_lock">Bloqueig de pantalla</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Utilitzar el bloqueig de pantalla</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">La configuració de bloqueig del dispositiu Android serà necessària per desbloquejar Signal quan surtis o canviïs d\'aplicació. Amb el bloqueig activat, les previsualitzacions de notificacions no mostraran el contingut del missatge.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Iniciar el bloqueig de pantalla</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">Al cap d\'1 minut</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">Al cap de 5 minuts</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">Després de 30 minuts</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Personalitzar el temps</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Utilitzar el bloqueig de pantalla de Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Desactiva el bloqueig de pantalla de Signal</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">Ajuda</string>
+    <string name="HelpSettingsFragment__support_center">Centre d\'assistència</string>
+    <string name="HelpSettingsFragment__contact_us">Contacteu-nos</string>
+    <string name="HelpSettingsFragment__version">Versió</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Copiat al portapapers</string>
+    <string name="HelpSettingsFragment__debug_log">Registre de depuració</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Llicències</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termes i política de privadesa</string>
+    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Amb llicència de GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal és una organització sense ànim de lucre</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Les icones i els noms de les apps són visibles a la pantalla d\'inici i al menú d\'aplicacions.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Les notificacions sempre mostraran la icona i el nom predeterminats de Signal.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Gràfic que il·lustra on serà visible la icona alternativa de l\'app.</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">El temps</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Notes</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Notícies</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Ones</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">D\'acord</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Cancel·lar</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Canviar la icona i el nom de l\'app per \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Signal s\'haurà de tancar per canviar la icona i el nom de l\'app. Les notificacions sempre mostraran la icona i el nom predeterminats de Signal.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Selecciona la icona i el nom per a l\'app, que seran visibles a la pantalla d\'inici del telèfon i al menú d\'aplicacions. Les notificacions sempre mostraran la icona i el nom predeterminats de Signal. Més informació</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Més informació</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Enllaç no establert</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">Fet</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">Perfil creat</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">Fet</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Pots activar o desactivar el perfil manualment mitjançant el menú de la llista de xats.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Afegiu una programació a la configuració per automatitzar el perfil.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">El perfil s\'activarà i es desactivarà automàticament segons la programació.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Encara no heu establert cap contrasenya.</string>
+    <string name="ApplicationPreferencesActivity_disable">Desactiva</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Voleu desactivar la contrasenya?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">El Signal i les notificacions es desblocaran permanentment.</string>
+    <string name="PrivacySettingsFragment__app_security">Seguretat de l\'aplicació</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloqueja les captures de pantalla a les llistes de recents i dins de l\'aplicació</string>
+    <string name="PrivacySettingsFragment__blocked">Bloquejat</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">Per fer servir el bloqueig de pagament, abans has d\'activar el bloqueig de pantalla o la identificació amb empremta dactilar als Ajustos del teu telèfon.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">No s\'ha pogut activar el bloqueig de pagament</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d contacte o grup</item>
+        <item quantity="other">%1$d contactes o grups</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporitzador per defecte per als xats nous</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">No s\'ha pogut anar als Ajustos del sistema</string>
+    <string name="PrivacySettingsFragment__messaging">Missatges</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Demana el bloqueig de pantalla d\'Android o l\'empremta dactilar per transferir fons.</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Estableix un temporitzador per defecte de desaparició de missatges per a tots els xats nous que hagis iniciat.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Missatges i trucades del Signal: sempre retransmissió de trucades i remitent segellat</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Inactiu</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloca el Signal després d\'un temps d\'inactivitat</string>
+    <string name="preferences__change_passphrase">Canvia la contrasenya</string>
+    <string name="preferences__change_your_passphrase">Canvia la contrasenya</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">Activa la contrasenya del blocatge de la pantalla</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si desactives les confirmacions de lectura, no podràs veure les dels altres.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">Interval d\'inactivitat</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">Contrasenya d\'inactivitat</string>
+    <string name="preferences__incognito_keyboard">Teclat d\'incògnit</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloca la pantalla i les notificacions amb una contrasenya</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">Bloqueig de pagament</string>
+    <string name="preferences__read_receipts">Confirmació de lectura</string>
+    <string name="preferences__request_keyboard_to_disable">Sol·licita un teclat per desactivar l\'aprenentatge personalitzat.</string>
+    <string name="preferences__screen_security">Seguretat de la pantalla</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">Aquesta opció de configuració no és una garantia i és possible que el teclat l’ignori.</string>
+    <string name="preferences__typing_indicators">Indicadors de tecleig</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Tria qui pot veure el teu número de telèfon i qui pot contactar-te a Signal a través d\'ell.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">Pagaments</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Per utilitzar el bloqueig de pantalla, estableix un PIN, un patró o una contrasenya en aquest dispositiu.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">Privadesa</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">Missatges efímers</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">Avançat</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">Activa</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">Ara no</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">Més informació</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">S\'ha assolit el límit d\'emmagatzematge de còpies de seguretat</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">S\'ha copiat les còpies de seguretat del subscriptor al porta-retalls.</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">S\'ha copiat l\'identificador del donant al porta-retalls.</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">No s\'ha pogut completar la còpia de seguretat</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">Convideu-hi amistats</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renova la teva subscripció a les Còpies de seguretat segures de Signal</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">Privadesa</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">Ajustos</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">Enrere</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">No s\'ha pogut activar la teva subscripció a les còpies de seguretat</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Fer una donació a Signal</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">Preferències internes</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">Dispositius enllaçats</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">Notificacions</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">Pagaments</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">Històries</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">Còpies de seguretat</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Mida de la barra de navegació</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Compacte</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">Enrere</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">Fotografies</string>
+    <string name="preferences_storage__videos">Vídeos</string>
+    <string name="preferences_storage__files">Fitxers</string>
+    <string name="preferences_storage__audio">Àudio</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Missatges</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Adhesius</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Altres</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculant…</string>
+    <string name="preferences_storage__review_storage">Revisa l\'emmagatzematge</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">Autenticació de dos factors</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Tria un dels mètodes següents per verificar el teu compte.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">Clau d\'accés</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Toca per fer servir les dades biomètriques del teu dispositiu o la clau d\'accés FIDO2</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">App d\'autenticació</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Introdueix la clau d\'un sol ús que ha generat la teva app d\'autenticació.</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">Per continuar, introdueix la clau de 6 dígits de la teva app d\'autenticació.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">Cancel·lar</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">Clau incorrecta. Introdueix ara la clau de la teva app d\'autenticació.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">No s\'ha pogut connectar Signal. Comprova la connexió i torna-ho a provar.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Alguna cosa ha anat malament amb la teva clau d\'accés. Torna-ho a provar o tria un altre mètode.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">El nom</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">Nom</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">Cognoms (opcional)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">Desar</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Ha fallat desar-ho per problemes de xarxa. Proveu-ho més tard.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">Mantén els missatges</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">Per sempre</string>
+    <string name="preferences_storage__one_year">1 any</string>
+    <string name="preferences_storage__six_months">6 mesos</string>
+    <string name="preferences_storage__thirty_days">30 dies</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Els missatges anteriors a la data seleccionada seran eliminats de manera permanent.</string>
+    <string name="preferences_storage__delete_older_messages">Vols esborrar els missatges més antics?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Això esborrarà permanentment l\'historial dels missatges i el contingut del dispositiu més antic de %1$s.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">Eliminar</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">Límit de la mida del xat</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s missatge</item>
+        <item quantity="other">%1$s missatges</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">Cap</string>
+    <string name="preferences_storage__custom">Personalitzat</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Els missatges que superin la longitud seleccionada seran eliminats de manera permanent.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Això reduirà permanentment tots els xats al missatge més recent.</item>
+        <item quantity="other">Això reduirà permanentment tots els xats als %1$s missatges més recents.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">Quant a</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Escriviu alguna cosa sobre vosaltres…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">Parleu lliurement</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">Encriptat</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">Sigueu amables</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">Amant del cafè</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">Lliure per xatejar-hi</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">Faig un descans.</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">Treballo en una cosa nova.</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">Desar</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">Neteja</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">Seleccionar emoji</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Ha fallat desar-ho per problemes de xarxa. Proveu-ho més tard.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">Tria un àlies</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">Àlies</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">Suprimeix</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">S\'han fet massa intents. Si us plau, torna-ho a provar més tard.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">Aquest àlies ja està agafat.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">Els àlies només poden incloure a-z, 0-9 i _.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Els àlies no poden començar amb un número.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">L\'àlies no és vàlid.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els àlies han de tenir entre %1$d i %2$d caràcters.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">La gent et pot enviar missatges fent servir el teu àlies opcional en comptes d\'un número de telèfon. Els àlies sempre es combinen amb un conjunt de números. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Aquest àlies no està disponible, prova un altre número.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Àlies no vàlid, introdueix %1$d dígits com a mínim.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Àlies no vàlid, introdueix %1$d dígits com a màxim.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">El número no pot ser 00. Introdueix un dígit entre 1 i 9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Els números amb més de 2 dígits no poden començar per 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar el teu àlies restablirà el teu codi QR i enllaç actuals. Segur que vols fer això?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Canviar el teu àlies restablirà el teu codi QR i enllaç actuals. Segur que vols fer això?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Continuar</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">Desar</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">Més informació</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Els canvis que hi facis i el teu perfil, seran visibles per la gent a la qual enviïs un missatge, els teus contactes i els teus grups.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Actualitza el Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Aquesta versió de Signal ha caducat. Actualitza-la ara per continuar utilitzant Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Actualitza-la</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Dispositiu no registrat</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Aquest dispositiu ja no està registrat. Torna a registrar-lo per realitzar canvis al teu compte.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Torna a registrar</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Ha fallat desar-ho per problemes de xarxa. Proveu-ho més tard.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">No s\'ha pogut eliminar l\'àlies. Torna-ho a provar més tard.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Eliminar àlies?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Això eliminarà el teu àlies i desactivarà el teu codi QR i enllaç. %1$s estarà disponible perquè altres puguin utilitzar-lo. Segur que vols fer això?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">Edita la fotografia</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Comparteix el teu àlies</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Deixa que altres persones comencin un xat amb tu compartint el teu codi QR o enllaç únic.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">S\'ha creat l\'àlies</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Àlies eliminat</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">La gent et pot enviar missatges fent servir un àlies opcional en comptes d\'un número de telèfon. Els àlies tenen un codi QR únic que pots compartir amb els teus amics.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">El teu àlies, codi QR i enllaç no són visibles al teu perfil. Comparteix el teu àlies només amb persones de confiança.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">Quant a</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">Codi QR o enllaç</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">Nom del perfil</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">Àlies</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Editar àlies</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Suprimir àlies</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">Perfil</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">Estableix l\'avatar</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">Insígnies</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">Eliminar</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">Tanca</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Aconsegueix insígnies per al perfil donant suport a Signal.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, amb el suport només de persones com vós.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">Converteix-te en donant</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">Insígnies</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">Les meves insígnies</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Mostra les insígnies al perfil</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">Insígnia inclosa</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Insígnia inclosa</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecciona una insígnia</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">Desar</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Qualsevol persona amb aquest enllaç pot veure el teu àlies i començar un xat amb tu. Comparteix-lo només amb persones de confiança.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Copiar enllaç</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Comparteix</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">Codi</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">Escanejar</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">Enllaç copiat</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">S\'ha copiat l\'àlies</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Restablir codi QR?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Si restableixes el teu codi QR, el teu codi QR actual i l\'enllaç deixaran de funcionar.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Restableix</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">No tens accés a la xarxa. El teu enllaç no s\'ha restablert. Torna-ho a provar més tard.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">S\'ha produït un error de xarxa en intentar restablir l\'enllaç. Torna-ho a provar més tard.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">S\'ha produït un error inesperat en intentar restablir l\'enllaç. Torna-ho a provar més tard.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">El teu codi QR i l\'enllaç s\'han restablert, i s\'ha creat un nou codi QR i enllaç.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">Comparteix el teu codi QR i enllaç només amb persones de confiança. Quan ho comparteixis, els altres podran veure el teu àlies i iniciar un xat amb tu.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">Restableix</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Enllaç</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">Comparteix</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">El codi QR no era vàlid.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Ha fallat la xarxa. Si us plau, torna-ho a provar.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">No s\'ha trobat el codi QR</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Prova d\'escanejar una altra imatge que contingui un codi QR de Signal.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">No s\'ha pogut trobar l\'usuari amb l\'àlies %1$s.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">Escaneja el codi QR del dispositiu del teu contacte.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">No s\'ha pogut trobar aquest usuari.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">Per escanejar un codi QR, permet que Signal accedeixi a la càmera.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">Permet l\'accés</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">Signal necessita accedir a la càmera per escanejar codis QR</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">Emmagatzematge</string>
+    <string name="preferences_storage__storage_usage">Ús de l\'emmagatzematge</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Emmagatzematge de Signal</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimitzar l\'emmagatzematge de Signal</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Els arxius multimèdia no utilitzats es descarregaran, però es poden baixar de la còpia de seguretat en qualsevol moment.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Límits del xat</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Aplicar límits als dispositius connectats</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Quan això està activat, els límits de xat també eliminaran els missatges dels dispositius connectats.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Eliminar l\'historial de missatges</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Eliminar l\'historial de missatges?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Això esborrarà permanentment tot l\'historial dels missatges i tot el contingut del dispositiu.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Això eliminarà permanentment tot l\'historial de missatges i els continguts multimèdia d\'aquest dispositiu i de qualsevol dispositiu vinculat.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Segur que vols esborrar tot l\'historial dels missatges?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">S\'esborrarà permanentment tot l\'historial dels missatges. Aquesta acció no es pot desfer.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">S\'esborrarà permanentment tot l\'historial de missatges de tots els dispositius. Aquesta acció no es pot desfer.</string>
+    <string name="preferences_storage__delete_all_now">Esborrar-ho tot ara</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">L\'optimització d\'emmagatzematge només es pot utilitzar amb el nivell de subscripció de pagament de Còpies de seguretat segures de Signal. La teva subscripció a còpies de seguretat s\'està processant i encara no està activa. Torna-ho a provar més tard.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">S\'eliminaran els arxius multimèdia de la teva còpia de seguretat local</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Si actives l\'opció \"Optimitzar l\'emmagatzematge de Signal\", s\'eliminaran els arxius multimèdia antics del teu dispositiu. Podràs tornar-los a descarregar quan vulguis. També s\'eliminaran els arxius multimèdia antics de la teva còpia de seguretat local.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Activar</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Sonar o notificar quan s\'iniciï una trucada mentre aquest xat estigui silenciat.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Sonar o notificar quan s\'iniciï una trucada en xats silenciats.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notificar quan se\'t mencioni mentre aquest xat estigui silenciat.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notificar quan se\'t mencioni en xats silenciats.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notificar quan algú respongui als teus missatges mentre aquest xat estigui silenciat.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notificar quan algú respongui als teus missatges en xats silenciats.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">Mentre està silenciat</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">Trucades</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">Mencions</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">Respostes</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Ha fallat obrir el selector.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Per activar les notificacions, Signal necessita permís per mostrar-les.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Activar</string>
+    <string name="NotificationsSettingsFragment__calls">Trucades</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">El contacte s\'afegeix al Signal</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Creeu un perfil per rebre notificacions només de les persones i els grups que trieu.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Mostrar una notificació quan un contacte del telèfon s\'uneixi a Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Restablir els ajustos de notificacions</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Restablir tots els ajustos de notificacions a la seva configuració per defecte per a tots els xats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Restableix</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Restablir els ajustos de notificacions a la seva configuració per defecte, inclosos els ajustos personalitzats dels teus xats</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sons</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">To desconegut</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">Trucades</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">Mencions</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">Perfils de notificacions</string>
+    <string name="NotificationsSettingsScreen__notifications">Notificacions</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">Respostes</string>
+    <string name="NotificationsSettingsScreen__silent">Silenciós</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">Recordatoris de missatges no llegits</string>
+    <string name="arrays__default">Per defecte</string>
+    <string name="arrays__high">Alta</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">Màxima</string>
+    <string name="arrays__name_and_message">Nom i missatge</string>
+    <string name="arrays__name_only">Només el nom</string>
+    <string name="arrays__no_name_or_message">Sense nom ni missatge</string>
+    <string name="preferences__blue">Blau</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Notificacions de trucades</string>
+    <string name="preferences__change_sound_and_vibration">Canvia el so i la vibració</string>
+    <string name="preferences__customize">Personalitza</string>
+    <string name="preferences__cyan">Cian</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Per defecte</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Habilita les notificacions</string>
+    <string name="preferences__fast">Ràpid</string>
+    <string name="preferences__five_times">5 vegades</string>
+    <string name="preferences__green">Verd</string>
+    <string name="preferences__led_color">Color del LED</string>
+    <string name="preferences__magenta">Magenta</string>
+    <string name="preferences__never">Mai</string>
+    <string name="preferences__normal">Normal</string>
+    <string name="preferences__one_time">1 vegada</string>
+    <string name="preferences__orange">Taronja</string>
+    <string name="preferences__pref_led_blink_title">Patró lluminós per al LED</string>
+    <string name="preferences__red">Vermell</string>
+    <string name="preferences__repeat_alerts">Repeteix les alertes</string>
+    <string name="preferences__slow">Lent</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">So</string>
+    <string name="preferences__ten_times">10 vegades</string>
+    <string name="preferences__three_times">3 vegades</string>
+    <string name="preferences__two_times">2 vegades</string>
+    <string name="preferences__vibrate">Vibra</string>
+    <string name="preferences__white">Blanc</string>
+    <string name="preferences_notifications__in_chat_sounds">Sons del xat</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Mostrar notificacions de reaccions als missatges que hagis enviat</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Notificar de forma ocasional quan hi hagi missatges no llegits als xats silenciats</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">Prioritat</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Notificacions de reacció</string>
+    <string name="preferences_notifications__ringtone">To de trucada</string>
+    <string name="preferences_notifications__show">Mostra</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Resolució de problemes de les notificacions</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">Mentre està silenciat</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Afegeix</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Notificacions permeses</string>
 </resources>

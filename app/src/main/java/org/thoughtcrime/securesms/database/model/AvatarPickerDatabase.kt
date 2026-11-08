@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.database.model
 import android.content.ContentValues
 import android.content.Context
 import android.net.Uri
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.SqlUtil
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.database.DatabaseTable

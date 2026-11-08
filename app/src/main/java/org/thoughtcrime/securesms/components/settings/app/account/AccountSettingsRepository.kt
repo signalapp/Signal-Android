@@ -6,52 +6,58 @@
 package org.thoughtcrime.securesms.components.settings.app.account
 
 import kotlinx.coroutines.withContext
+import org.signal.core.models.MasterKey
+import org.signal.core.util.PinHashUtil
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.account.authenticator.AuthenticatorRepository
-import org.thoughtcrime.securesms.components.settings.app.account.passkeys.AppPasskeysRepository
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.keyboardType
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
+import org.thoughtcrime.securesms.megaphone.TwoFactorReminderSchedule
 import org.thoughtcrime.securesms.pin.SvrRepository
-import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import java.io.IOException
 
 /**
  * All of the storage and network access behind [AccountSettingsViewModel].
  */
-class AccountSettingsRepository {
+class AccountSettingsRepository(
+  private val masterKeyProvider: () -> MasterKey = { SignalStore.svr.masterKey }
+) {
 
   companion object {
     private val TAG = Log.tag(AccountSettingsRepository::class)
   }
 
-  private val authenticatorRepository = AuthenticatorRepository()
-  private val passkeysRepository = AppPasskeysRepository()
-
   fun hasPin(): Boolean = SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()
 
   fun hasRestoredAep(): Boolean = SignalStore.account.restoredAccountEntropyPool
 
-  fun arePinRemindersEnabled(): Boolean = SignalStore.pin.arePinRemindersEnabled() && SignalStore.svr.hasPin()
+  fun arePinRemindersEnabled(): Boolean = SignalStore.pin.pinRemindersEnabled && SignalStore.svr.hasPin()
 
-  fun setPinRemindersEnabled(enabled: Boolean) = SignalStore.pin.setPinRemindersEnabled(enabled)
+  fun setPinRemindersEnabled(enabled: Boolean) {
+    SignalStore.pin.pinRemindersEnabled = enabled
+  }
 
   fun isRegistrationLockEnabled(): Boolean = SignalStore.svr.isRegistrationLockEnabled
 
-  fun isUserUnregistered(): Boolean = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
+  fun isUserUnregistered(): Boolean = SignalStore.account.isUnauthorizedReceived
 
   fun isClientDeprecated(): Boolean = SignalStore.misc.isClientDeprecated
 
   fun getPinKeyboardType(): PinKeyboardType = SignalStore.pin.keyboardType
 
-  fun isPhoneNumberlessRegistrationEnabled(): Boolean = Environment.PHONENUMBERLESS_REGISTRATION
+  fun isPhoneNumberless(): Boolean = SignalStore.account.isPhoneNumberless
 
-  fun getAuthenticatorAppCount(): Int = authenticatorRepository.getAuthenticatorApps().size
+  fun getMaxTotpApps(): Int = RemoteConfig.maxTotpApps
 
-  fun getPasskeyCount(): Int = passkeysRepository.getPasskeys().size
+  /**
+   * How many two-factor methods of every kind the account is allowed at once. Authenticator apps share this limit with
+   * passkeys, so it can be reached even when there's room left under [getMaxTotpApps].
+   */
+  fun getMaxTwoFactorMethods(): Int {
+    return RemoteConfig.maxTwoFactorMethods
+  }
 
   fun verifyLocalPin(pin: String): Boolean {
     val localPinHash = SignalStore.svr.localPinHash
@@ -78,5 +84,14 @@ class AccountSettingsRepository {
       Log.w(TAG, "Failed to ${if (enabled) "enable" else "disable"} registration lock.", e)
       false
     }
+  }
+
+  fun masterKey(): MasterKey {
+    return masterKeyProvider()
+  }
+
+  /** Lets the two-factor reminder know whether there's anything to remind the user about. */
+  fun setHasTwoFactorMethods(hasMethods: Boolean) {
+    TwoFactorReminderSchedule.onMethodsObserved(hasMethods)
   }
 }

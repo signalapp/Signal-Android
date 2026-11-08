@@ -27,9 +27,6 @@
         <attr name="segmentSelectedStrokeColor" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="CustomDefaultPreference">
-        <attr name="custom_pref_toggle" format="string"/>
-    </declare-styleable>
 
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
@@ -168,8 +165,11 @@
     <declare-styleable name="SharedContactView">
         <attr name="contact_titleColor" format="color" />
         <attr name="contact_captionColor" format="color" />
+        <attr name="contact_chevronColor" format="color" />
         <attr name="contact_footerIconColor" format="color" />
         <attr name="contact_footerAlpha" format="float" />
+        <attr name="contact_actionTextColor" format="color" />
+        <attr name="contact_actionBackgroundColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="LinkPreviewView">
@@ -223,14 +223,6 @@
         <attr name="revealable_unopenedIconColor" format="color" />
         <attr name="revealable_circleColor" format="color" />
         <attr name="revealable_circleColorWithWallpaper" format="color" />
-    </declare-styleable>
-
-    <declare-styleable name="MediaKeyboard">
-        <attr name="tabs_gravity" format="enum">
-            <enum name="bottom" value="0" />
-            <enum name="top" value="1" />
-        </attr>
-        <attr name="media_keyboard_theme" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="ContactFilterView">
@@ -295,22 +287,6 @@
 
     <declare-styleable name="ChatColorPreviewView">
         <attr name="ccpv_chat_bubble_count" format="integer" />
-    </declare-styleable>
-
-    <declare-styleable name="KeyboardPageSearchView">
-        <attr name="show_always" format="boolean" />
-        <attr name="search_bar_tint" format="color|reference" />
-        <attr name="search_icon_tint" format="color|reference" />
-        <attr name="search_hint" format="string|reference" />
-        <attr name="click_only" format="boolean" />
-    </declare-styleable>
-
-    <declare-styleable name="TopShadowBehavior">
-        <attr name="app_bar_layout_id" format="reference" />
-    </declare-styleable>
-
-    <declare-styleable name="BottomShadowBehavior">
-        <attr name="bottom_bar_id" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="ButtonStripItemView">

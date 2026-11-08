@@ -55,6 +55,8 @@ interface CallScreenMediator {
   fun showRemoteMuteToast(message: String)
   fun hideMissingPermissionsNotice()
 
+  fun showDialog(callScreenDialogType: CallScreenDialogType)
+
   fun setStatusFromGroupCallState(context: Context, groupCallState: WebRtcViewModel.GroupCallState) {
     when (groupCallState) {
       WebRtcViewModel.GroupCallState.DISCONNECTED -> setStatus(context.getString(R.string.WebRtcCallView__disconnected))

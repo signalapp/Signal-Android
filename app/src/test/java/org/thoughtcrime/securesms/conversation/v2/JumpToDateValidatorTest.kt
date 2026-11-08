@@ -1,213 +1,75 @@
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.app.Application
+import android.os.Parcel
 import assertk.assertThat
-import assertk.assertions.contains
-import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
-import assertk.assertions.isGreaterThanOrEqualTo
-import assertk.assertions.isNotEmpty
 import assertk.assertions.isTrue
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import java.time.LocalDate
-import java.time.ZoneId
-import java.util.concurrent.Executor
-import java.util.concurrent.atomic.AtomicInteger
+import java.time.ZoneOffset
 
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class JumpToDateValidatorTest {
 
-  private val zoneId = ZoneId.of("UTC")
-  private val immediateExecutor = Executor { it.run() }
-
-  private fun timestampForDate(year: Int, month: Int, day: Int): Long {
+  private fun pickerValueFor(year: Int, month: Int, day: Int): Long {
     return LocalDate.of(year, month, day)
-      .atStartOfDay(zoneId)
+      .atStartOfDay(ZoneOffset.UTC)
       .toInstant()
       .toEpochMilli()
   }
 
-  private fun createValidator(
-    lookup: (Collection<Long>) -> Map<Long, Boolean> = { emptyMap() },
-    executor: Executor = immediateExecutor,
-    zone: ZoneId = zoneId
-  ): JumpToDateValidator {
-    return JumpToDateValidator.createForTesting(lookup, executor, zone)
+  private fun validatorFor(vararg dates: LocalDate): JumpToDateValidator {
+    return JumpToDateValidator.from(dates.map { it.toEpochDay() }.toSet())
   }
 
   @Test
-  fun `when date is not cached, returns true`() {
-    val neverExecutor = Executor { /* do nothing */ }
-    val lookup = { _: Collection<Long> -> emptyMap<Long, Boolean>() }
-    val validator = createValidator(lookup, neverExecutor)
+  fun `when day has messages, returns true`() {
+    val validator = validatorFor(LocalDate.of(2024, 6, 15))
 
-    val result = validator.isValid(timestampForDate(2024, 6, 15))
-
-    assertThat(result).isTrue()
+    assertThat(validator.isValid(pickerValueFor(2024, 6, 15))).isTrue()
   }
 
   @Test
-  fun `when date has message after prefetch, returns true`() {
-    val dateWithMessage = timestampForDate(2024, 6, 15)
-    val lookup = { dates: Collection<Long> ->
-      dates.associateWith { it == dateWithMessage }
-    }
-    val validator = createValidator(lookup)
+  fun `when day has no messages, returns false`() {
+    val validator = validatorFor(LocalDate.of(2024, 6, 15))
 
-    validator.isValid(dateWithMessage)
-
-    assertThat(validator.isValid(dateWithMessage)).isTrue()
+    assertThat(validator.isValid(pickerValueFor(2024, 6, 14))).isFalse()
+    assertThat(validator.isValid(pickerValueFor(2024, 6, 16))).isFalse()
   }
 
   @Test
-  fun `when date has no message after prefetch, returns false`() {
-    val dateWithoutMessage = timestampForDate(2024, 6, 15)
-    val lookup = { dates: Collection<Long> ->
-      dates.associateWith { false }
-    }
-    val validator = createValidator(lookup)
+  fun `when there are no days at all, everything is invalid`() {
+    val validator = validatorFor()
 
-    validator.isValid(dateWithoutMessage)
-
-    assertThat(validator.isValid(dateWithoutMessage)).isFalse()
+    assertThat(validator.isValid(pickerValueFor(2024, 6, 15))).isFalse()
   }
 
   @Test
-  fun `loads entire month of dates at once`() {
-    val queriedDates = mutableListOf<Collection<Long>>()
-    val lookup = { dates: Collection<Long> ->
-      queriedDates.add(dates)
-      dates.associateWith { false }
-    }
-    val validator = createValidator(lookup)
+  fun `handles days on either side of the epoch`() {
+    val validator = validatorFor(LocalDate.of(1969, 12, 31), LocalDate.of(1970, 1, 1))
 
-    validator.isValid(timestampForDate(2024, 6, 15))
-
-    assertThat(queriedDates).isNotEmpty()
-
-    val june1 = timestampForDate(2024, 6, 1)
-    val june30 = timestampForDate(2024, 6, 30)
-    val allQueriedTimestamps = queriedDates.flatten().toSet()
-    assertThat(allQueriedTimestamps).contains(june1)
-    assertThat(allQueriedTimestamps).contains(june30)
-
-    val juneQuery = queriedDates.find { it.contains(june1) }!!
-    assertThat(juneQuery.size).isGreaterThanOrEqualTo(30)
+    assertThat(validator.isValid(pickerValueFor(1969, 12, 31))).isTrue()
+    assertThat(validator.isValid(pickerValueFor(1970, 1, 1))).isTrue()
+    assertThat(validator.isValid(pickerValueFor(1969, 12, 30))).isFalse()
   }
 
   @Test
-  fun `prefetches adjacent months`() {
-    val queriedDates = mutableListOf<Collection<Long>>()
-    val lookup = { dates: Collection<Long> ->
-      queriedDates.add(dates)
-      dates.associateWith { false }
-    }
-    val validator = createValidator(lookup)
+  fun `survives a parcel round trip`() {
+    val validator = validatorFor(LocalDate.of(2024, 6, 15), LocalDate.of(2021, 1, 2))
 
-    validator.isValid(timestampForDate(2024, 6, 15))
+    val parcel = Parcel.obtain()
+    parcel.writeParcelable(validator, 0)
+    parcel.setDataPosition(0)
+    val restored = parcel.readParcelable<JumpToDateValidator>(JumpToDateValidator::class.java.classLoader)!!
+    parcel.recycle()
 
-    assertThat(queriedDates.size).isGreaterThanOrEqualTo(2)
-
-    val allQueriedTimestamps = queriedDates.flatten().toSet()
-    val may15 = timestampForDate(2024, 5, 15)
-    val july15 = timestampForDate(2024, 7, 15)
-    assertThat(allQueriedTimestamps).contains(may15)
-    assertThat(allQueriedTimestamps).contains(july15)
-  }
-
-  @Test
-  fun `does not re-query same month`() {
-    val queryCount = AtomicInteger(0)
-    val lookup = { dates: Collection<Long> ->
-      queryCount.incrementAndGet()
-      dates.associateWith { false }
-    }
-    val validator = createValidator(lookup)
-
-    validator.isValid(timestampForDate(2024, 6, 15))
-    val initialCount = queryCount.get()
-
-    validator.isValid(timestampForDate(2024, 6, 1))
-    validator.isValid(timestampForDate(2024, 6, 30))
-
-    assertThat(queryCount.get()).isEqualTo(initialCount)
-  }
-
-  @Test
-  fun `handles timestamp normalization to local midnight`() {
-    val june15Midnight = timestampForDate(2024, 6, 15)
-    val june15Noon = june15Midnight + (12 * 60 * 60 * 1000)
-    val june15Evening = june15Midnight + (20 * 60 * 60 * 1000)
-
-    val lookup = { dates: Collection<Long> ->
-      dates.associateWith { it == june15Midnight }
-    }
-    val validator = createValidator(lookup)
-
-    validator.isValid(june15Midnight)
-
-    assertThat(validator.isValid(june15Midnight)).isTrue()
-    assertThat(validator.isValid(june15Noon)).isTrue()
-    assertThat(validator.isValid(june15Evening)).isTrue()
-  }
-
-  @Test
-  fun `returns true when lookup is pending`() {
-    var shouldExecute = false
-    val delayedExecutor = Executor { runnable ->
-      if (shouldExecute) {
-        runnable.run()
-      }
-    }
-
-    val lookup = { dates: Collection<Long> ->
-      dates.associateWith { false }
-    }
-    val validator = createValidator(lookup, delayedExecutor)
-
-    assertThat(validator.isValid(timestampForDate(2024, 6, 15))).isTrue()
-    assertThat(validator.isValid(timestampForDate(2024, 6, 15))).isTrue()
-
-    shouldExecute = true
-    validator.isValid(timestampForDate(2024, 6, 15))
-
-    val dateInMonth = timestampForDate(2024, 6, 20)
-    assertThat(validator.isValid(dateInMonth)).isTrue()
-  }
-
-  @Test
-  fun `different zones calculate midnight correctly`() {
-    val newYorkZone = ZoneId.of("America/New_York")
-    val june15Utc = timestampForDate(2024, 6, 15)
-
-    val lookup = { dates: Collection<Long> ->
-      dates.associateWith { true }
-    }
-    val validator = createValidator(lookup, zone = newYorkZone)
-
-    validator.isValid(june15Utc)
-
-    assertThat(validator.isValid(june15Utc)).isTrue()
-  }
-
-  @Test
-  fun `picker date maps to the same calendar day in a negative-offset zone`() {
-    val newYorkZone = ZoneId.of("America/New_York")
-
-    // Days are keyed by local midnight in the database.
-    val june15NewYorkMidnight = LocalDate.of(2024, 6, 15)
-      .atStartOfDay(newYorkZone)
-      .toInstant()
-      .toEpochMilli()
-
-    val lookup = { dates: Collection<Long> ->
-      dates.associateWith { it == june15NewYorkMidnight }
-    }
-    val validator = createValidator(lookup, zone = newYorkZone)
-
-    // The picker reports June 15 as UTC midnight; it must map to June 15 locally, not June 14.
-    val june15PickerUtc = timestampForDate(2024, 6, 15)
-
-    validator.isValid(june15PickerUtc)
-
-    assertThat(validator.isValid(june15PickerUtc)).isTrue()
+    assertThat(restored.isValid(pickerValueFor(2024, 6, 15))).isTrue()
+    assertThat(restored.isValid(pickerValueFor(2021, 1, 2))).isTrue()
+    assertThat(restored.isValid(pickerValueFor(2024, 6, 16))).isFalse()
   }
 }

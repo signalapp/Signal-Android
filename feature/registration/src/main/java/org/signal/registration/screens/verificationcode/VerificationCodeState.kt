@@ -7,6 +7,7 @@ package org.signal.registration.screens.verificationcode
 
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
 import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldState
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -16,34 +17,13 @@ data class VerificationCodeState(
   val isSubmittingCode: Boolean = false,
   val rateLimits: SmsAndCallRateLimits = SmsAndCallRateLimits(),
   val incorrectCodeAttempts: Int = 0,
-  val autoFillCode: String? = null,
-  val digits: List<String> = List(CODE_LENGTH) { "" },
-  val focusedDigitIndex: Int = 0,
+  val codeEntry: CodeEntryFieldState = CodeEntryFieldState(),
   val showContactSupportSheet: Boolean = false,
   val showContactSupportDialog: Boolean = false,
   val snackbars: Snackbars = Snackbars(),
   val dialogs: Dialogs = Dialogs()
 ) {
-  override fun toString(): String = "VerificationCodeState(sessionMetadata=$sessionMetadata, e164=$e164, isSubmittingCode=$isSubmittingCode, rateLimits=$rateLimits, incorrectCodeAttempts=$incorrectCodeAttempts, autoFillCode=${autoFillCode?.let { "present" }}, digitsEntered=${digits.count { it.isNotEmpty() }}, focusedDigitIndex=$focusedDigitIndex, showContactSupportSheet=$showContactSupportSheet,  showContactSupportDialog=$showContactSupportDialog, snackbars=$snackbars, dialogs=$dialogs)"
-
-  /**
-   * The full code as currently entered. Only meaningful when [isComplete] is true.
-   */
-  val code: String get() = digits.joinToString("")
-
-  /**
-   * True once every digit field has a value.
-   */
-  val isComplete: Boolean get() = digits.size == CODE_LENGTH && digits.all { it.isNotEmpty() }
-
-  companion object {
-    const val CODE_LENGTH = 6
-
-    /**
-     * A fully empty set of digits, used to reset the fields.
-     */
-    fun emptyDigits(): List<String> = List(CODE_LENGTH) { "" }
-  }
+  override fun toString(): String = "VerificationCodeState(sessionMetadata=$sessionMetadata, e164=$e164, isSubmittingCode=$isSubmittingCode, rateLimits=$rateLimits, incorrectCodeAttempts=$incorrectCodeAttempts, codeEntry=$codeEntry, showContactSupportSheet=$showContactSupportSheet,  showContactSupportDialog=$showContactSupportDialog, snackbars=$snackbars, dialogs=$dialogs)"
 
   /** Transient errors from submitting a code or registering, shown as snackbars. Cleared once shown and dismissed. */
   data class Snackbars(

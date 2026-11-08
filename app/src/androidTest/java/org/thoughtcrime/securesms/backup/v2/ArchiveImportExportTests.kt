@@ -22,7 +22,7 @@ import org.signal.core.util.readFully
 import org.signal.libsignal.messagebackup.ComparableBackup
 import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.io.ByteArrayInputStream
@@ -227,6 +227,11 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun favoriteStickerList() {
+    runTests { it.startsWith("favorite_sticker_list_") }
+  }
+
+//  @Test
   fun notificationProfiles() {
     runTests { it.startsWith("notification_profile_") }
   }
@@ -254,6 +259,16 @@ class ArchiveImportExportTests {
   //  @Test
   fun recipientSelf() {
     runTests { it.startsWith("recipient_self_") }
+  }
+
+//  @Test
+  fun installedStickerPack() {
+    runTests { it.startsWith("installed_sticker_pack_") }
+  }
+
+//  @Test
+  fun hiddenStickerPack() {
+    runTests { it.startsWith("hidden_sticker_pack_") }
   }
 
   private fun runTests(predicate: (String) -> Boolean = { true }) {

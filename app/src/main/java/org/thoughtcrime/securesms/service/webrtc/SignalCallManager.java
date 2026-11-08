@@ -8,15 +8,17 @@ import android.os.Build;
 import android.os.ResultReceiver;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.greenrobot.eventbus.EventBus;
 import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.KeyedSerialMonoLifoExecutor;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.zkgroup.GenericServerPublicParams;
@@ -26,6 +28,7 @@ import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredentialPresentation
 import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams;
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
 import org.signal.network.NetworkResult;
+import org.signal.network.crypto.SealedSenderAccess;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallLinkRootKey;
@@ -63,7 +66,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -73,14 +76,12 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.rx.RxStore;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
@@ -144,6 +145,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   private WebRtcServiceState            serviceState;
   private RxStore<WebRtcEphemeralState> ephemeralStateStore;
   private boolean                       needsToSetSelfUuid = true;
+  private RelaunchListener              pipRelaunchListener;
 
   private RxStore<Map<RecipientId, CallLinkPeekInfo>> linkPeekInfoStore;
 
@@ -387,6 +389,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   public void onBluetoothPermissionDenied() {
     process((s, p) -> p.handleBluetoothPermissionDenied(s));
+  }
+
+  public void onMicrophoneSilencedChanged(boolean silenced) {
+    process((s, p) -> p.handleMicrophoneSilencedChanged(s, silenced));
   }
 
   public void selectAudioDevice(@NonNull SignalAudioManager.ChosenAudioDeviceIdentifier desiredDevice) {
@@ -897,7 +903,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, null);
 
     SignalExecutors.BOUNDED_IO.execute(() -> {
-      Recipient recipient = Recipient.resolved(RecipientId.from(ACI.from(aciUuid)));
+      Recipient recipient = Recipient.resolved(RecipientIds.from(ACI.from(aciUuid)));
       if (recipient.isBlocked()) {
         return;
       }
@@ -995,7 +1001,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         headerPairs = Collections.emptyList();
       }
 
-      NetworkResult<CallingResponse> result = SignalNetwork.calling()
+      NetworkResult<CallingResponse> result = SignalNetwork.callingApi()
                                                            .makeCallingRequest(requestId, url, httpMethod.name(), headerPairs, body);
 
       CallingResponse response = ((NetworkResult.Success<CallingResponse>) result).getResult();
@@ -1140,10 +1146,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void insertMissedCall(@NonNull RemotePeer remotePeer, long timestamp, boolean isVideoOffer, @NonNull CallTable.Event missedEvent) {
-    CallTable.Call call = SignalDatabase.calls()
-                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), missedEvent);
+    CallTable.OneToOneCallUpdate update = SignalDatabase.calls()
+                                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), missedEvent);
 
-    if (call == null) {
+    if (update instanceof CallTable.OneToOneCallUpdate.NotFound) {
       CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
 
       SignalDatabase.calls()
@@ -1152,10 +1158,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean isVideoOffer) {
-    CallTable.Call call = SignalDatabase.calls()
-                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
+    CallTable.OneToOneCallUpdate update = SignalDatabase.calls()
+                                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
 
-    if (call == null) {
+    if (update instanceof CallTable.OneToOneCallUpdate.NotFound) {
       CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
 
       SignalDatabase.calls()
@@ -1172,7 +1178,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           return;
         }
 
-        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.calling().getTurnServerInfo());
+        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.callingApi().getTurnServerInfo());
 
         // Find *any* provided ttl values as long as they are valid.
         long minTtl = turnServerInfos.stream()
@@ -1197,7 +1203,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> {
       RemotePeer activePeer = s.getCallInfoState().getActivePeer();
       if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
-        return p.handleTurnServerUpdate(s, servers, TextSecurePreferences.isTurnOnly(context));
+        return p.handleTurnServerUpdate(s, servers, SignalStore.settings().isTurnOnly());
       }
 
       Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));
@@ -1365,9 +1371,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void sendAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
-    SignalDatabase
-        .calls()
-        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
+    long                         callId = remotePeer.getCallId().longValue();
+    CallTable.OneToOneCallUpdate update = SignalDatabase.calls().updateOneToOneCall(callId, CallTable.Event.ACCEPTED);
+
+    if (update instanceof CallTable.OneToOneCallUpdate.Rejected rejected) {
+      Log.i(TAG, "Call " + callId + " is " + rejected.getCall().getEvent() + ", not sending accepted sync message");
+      return;
+    }
 
     if (SignalStore.account().isMultiDevice()) {
       SignalExecutors.BOUNDED_IO.execute(() -> {
@@ -1382,9 +1392,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void sendNotAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
-    SignalDatabase
-        .calls()
-        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.NOT_ACCEPTED);
+    long                         callId = remotePeer.getCallId().longValue();
+    CallTable.OneToOneCallUpdate update = SignalDatabase.calls().updateOneToOneCall(callId, CallTable.Event.NOT_ACCEPTED);
+
+    if (update instanceof CallTable.OneToOneCallUpdate.Rejected rejected) {
+      Log.i(TAG, "Call " + callId + " is " + rejected.getCall().getEvent() + ", not sending not accepted sync message");
+      return;
+    }
 
     if (SignalStore.account().isMultiDevice()) {
       SignalExecutors.BOUNDED_IO.execute(() -> {
@@ -1422,8 +1436,30 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     callManager.addAsset(assetGroup, content);
   }
 
+  /**
+   * Schedules the call activity to be relaunched in PiP the next time the app is foregrounded. Only relevant if the call activity did not survive being
+   * backgrounded, e.g. the user dismissed the PiP window or another app's PiP evicted it. If it did survive, {@link #cancelPipRelaunch()} should be called
+   * to cancel this.
+   */
+  @MainThread
   public void relaunchPipOnForeground() {
-    AppForegroundObserver.addListener(new RelaunchListener(AppForegroundObserver.isForegrounded()));
+    cancelPipRelaunch();
+
+    pipRelaunchListener = new RelaunchListener(AppForegroundObserver.isForegrounded());
+    AppForegroundObserver.addListener(pipRelaunchListener);
+  }
+
+  /**
+   * Cancels any pending PiP relaunch scheduled via {@link #relaunchPipOnForeground()}. Relaunching while the call activity is still alive delivers a
+   * launch-in-PiP intent to it, which pulls it out of PiP and into fullscreen, or forces a deliberately expanded call back into PiP. The former is both
+   * unprompted and, if it happens while the keyguard is going away, can leave the device wedged in a partially-locked state.
+   */
+  @MainThread
+  public void cancelPipRelaunch() {
+    if (pipRelaunchListener != null) {
+      AppForegroundObserver.removeListener(pipRelaunchListener);
+      pipRelaunchListener = null;
+    }
   }
 
   private void processSendMessageFailureWithChangeDetection(@NonNull RemotePeer remotePeer,
@@ -1471,6 +1507,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           });
         }
         AppForegroundObserver.removeListener(this);
+        if (pipRelaunchListener == this) {
+          pipRelaunchListener = null;
+        }
       }
     }
 

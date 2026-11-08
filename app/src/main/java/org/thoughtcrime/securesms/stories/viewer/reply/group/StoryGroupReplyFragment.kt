@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 
 import android.content.ClipData
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -18,6 +17,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SignalExecutors
@@ -25,7 +26,6 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.configure
@@ -44,14 +44,10 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
-import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardCallback
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sms.MessageSender
@@ -59,7 +55,6 @@ import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPager
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
 import org.thoughtcrime.securesms.util.DeleteDialog
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -72,7 +67,6 @@ class StoryGroupReplyFragment :
   Fragment(R.layout.stories_group_replies_fragment),
   StoryViewsAndRepliesPagerChild,
   StoryReplyComposer.Callback,
-  EmojiKeyboardCallback,
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
   SafetyNumberBottomSheet.Callbacks {
 
@@ -108,10 +102,6 @@ class StoryGroupReplyFragment :
   )
 
   private val inlineQueryViewModel: InlineQueryViewModel by viewModels(
-    ownerProducer = { requireActivity() }
-  )
-
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by viewModels(
     ownerProducer = { requireActivity() }
   )
 
@@ -359,10 +349,6 @@ class StoryGroupReplyFragment :
     sendReaction(emoji)
   }
 
-  override fun onEmojiSelected(emoji: String?) {
-    composer.onEmojiSelected(emoji)
-  }
-
   private fun sendReaction(emoji: String) {
     findListener<Callback>()?.onReactionEmojiSelected(emoji)
 
@@ -387,27 +373,12 @@ class StoryGroupReplyFragment :
       )
   }
 
-  override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
-
-  override fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard) {
-    keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
-    mediaKeyboard.setFragmentManager(childFragmentManager)
-  }
-
   override fun onShowEmojiKeyboard() {
     requireListener<Callback>().requestFullScreen(true)
   }
 
   override fun onHideEmojiKeyboard() {
     requireListener<Callback>().requestFullScreen(false)
-  }
-
-  override fun openEmojiSearch() {
-    composer.openEmojiSearch()
-  }
-
-  override fun closeEmojiSearch() {
-    composer.closeEmojiSearch()
   }
 
   override fun onReactWithAnyEmojiDialogDismissed() = Unit

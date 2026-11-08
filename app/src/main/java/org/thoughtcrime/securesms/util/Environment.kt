@@ -23,23 +23,21 @@ object Environment {
   }
 
   @JvmField
-  val USE_NEW_REGISTRATION: Boolean = true
-
-  @JvmField
   val IS_LINK_AND_SYNC_AVAILABLE: Boolean = true
 
-  const val PHONENUMBERLESS_REGISTRATION: Boolean = false
+  @JvmField
+  val PHONENUMBERLESS_REGISTRATION: Boolean = true
 
-  /**
-   * When true, all local knowledge of the user's phone number (E164 and PNI) is wiped once registration completes,
-   * mimicking the experience of an account that has no phone number. Flip manually for local testing.
-   */
-  const val MOCK_PHONE_NUMBERLESS_REGISTRATION: Boolean = false
+  /** Whether this build is distributed through the Play Store, and so can use Google Play billing at all. */
+  @JvmStatic
+  fun supportsGooglePlayBilling(): Boolean {
+    return BuildConfig.APPLICATION_ID == GOOGLE_PLAY_BILLING_APPLICATION_ID
+  }
 
   object Backups {
     @JvmStatic
     fun supportsGooglePlayBilling(): Boolean {
-      return BuildConfig.APPLICATION_ID == GOOGLE_PLAY_BILLING_APPLICATION_ID
+      return Environment.supportsGooglePlayBilling()
     }
 
     @JvmStatic

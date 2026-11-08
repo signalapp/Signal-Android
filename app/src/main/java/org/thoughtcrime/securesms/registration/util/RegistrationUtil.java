@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.util;
 
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -15,11 +16,10 @@ import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.PostRegistrationBackupRedemptionJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
-import org.thoughtcrime.securesms.keyvalue.RestoreDecisionStateUtil;
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
+import org.signal.storage.keyvalue.RestoreDecisionStateUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 public final class RegistrationUtil {
 
@@ -36,7 +36,7 @@ public final class RegistrationUtil {
     if (!SignalStore.registration().isRegistrationComplete() &&
         SignalStore.account().isRegistered() &&
         !Recipient.self().getProfileName().isEmpty() &&
-        (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut() || SignalStore.account().isLinkedDevice()) &&
+        (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut() || SignalStore.account().isLinkedDevice() || SignalStore.account().isPhoneNumberless()) &&
         RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState()))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
@@ -44,7 +44,7 @@ public final class RegistrationUtil {
       SignalStore.registration().setLocalRegistrationMetadata(null);
       SignalStore.registration().setRestoreMethodToken(null);
 
-      if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED) {
+      if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED && !SignalStore.account().isPhoneNumberless()) {
         Log.w(TAG, "Phone number discoverability mode is still UNDECIDED. Setting to DISCOVERABLE.");
         SignalStore.phoneNumberPrivacy().setPhoneNumberDiscoverabilityMode(PhoneNumberDiscoverabilityMode.DISCOVERABLE);
       }

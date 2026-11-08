@@ -3,7 +3,30 @@ package org.thoughtcrime.securesms.keyvalue
 import android.app.Application
 import androidx.annotation.VisibleForTesting
 import androidx.preference.PreferenceDataStore
-import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.signal.remoteconfig.RemoteConfig
+import org.signal.storage.keyvalue.ApkUpdateValues
+import org.signal.storage.keyvalue.CallQualityValues
+import org.signal.storage.keyvalue.CertificateValues
+import org.signal.storage.keyvalue.EmojiValues
+import org.signal.storage.keyvalue.ImageEditorValues
+import org.signal.storage.keyvalue.KeyValueDatabase
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.LabsValues
+import org.signal.storage.keyvalue.NotificationProfileValues
+import org.signal.storage.keyvalue.OnboardingValues
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
+import org.signal.storage.keyvalue.PinValues
+import org.signal.storage.keyvalue.ProxyValues
+import org.signal.storage.keyvalue.RegistrationValues
+import org.signal.storage.keyvalue.ReleaseChannelValues
+import org.signal.storage.keyvalue.RemoteConfigValues
+import org.signal.storage.keyvalue.SignalPreferenceDataStore
+import org.signal.storage.keyvalue.StorageServiceValues
+import org.signal.storage.keyvalue.SvrValues
+import org.signal.storage.keyvalue.TooltipValues
+import org.signal.storage.keyvalue.UiHintValues
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.lock.RegistrationLockReminders
 
 /**
  * Simple, encrypted key-value store.
@@ -11,19 +34,22 @@ import org.thoughtcrime.securesms.database.KeyValueDatabase
 class SignalStore(context: Application, private val store: KeyValueStore) {
 
   val accountValues = AccountValues(store, context)
-  val svrValues = SvrValues(store)
-  val registrationValues = RegistrationValues(store)
-  val pinValues = PinValues(store)
+  val svrValues = SvrValues(
+    store = store,
+    deriveMasterKey = { account.accountEntropyPool.deriveMasterKey() }
+  )
+  val registrationValues = RegistrationValues(store, context) { AppDependencies.incomingMessageObserver.notifyRestoreDecisionMade() }
+  val pinValues = PinValues(store, context, RegistrationLockReminders.INITIAL_INTERVAL)
   val remoteConfigValues = RemoteConfigValues(store)
-  val storageServiceValues = StorageServiceValues(store)
-  val uiHintValues = UiHintValues(store)
-  val tooltipValues = TooltipValues(store)
-  val miscValues = MiscellaneousValues(store)
+  val storageServiceValues = StorageServiceValues(store, svrValues)
+  val uiHintValues = UiHintValues(store, context)
+  val tooltipValues = TooltipValues(store, context)
+  val miscValues = MiscellaneousValues(store, context)
   val internalValues = InternalValues(store)
   val emojiValues = EmojiValues(store)
   val settingsValues = SettingsValues(store, context)
-  val certificateValues = CertificateValues(store)
-  val phoneNumberPrivacyValues = PhoneNumberPrivacyValues(store)
+  val certificateValues = CertificateValues(store, context)
+  val phoneNumberPrivacyValues = PhoneNumberPrivacyValues(store) { account.isPhoneNumberless }
   val onboardingValues = OnboardingValues(store)
   val wallpaperValues = WallpaperValues(store)
   val paymentsValues = PaymentsValues(store)
@@ -35,12 +61,10 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val notificationProfileValues = NotificationProfileValues(store)
   val releaseChannelValues = ReleaseChannelValues(store)
   val storyValues = StoryValues(store)
-  val apkUpdateValues = ApkUpdateValues(store)
-  val backupValues = BackupValues(store)
+  val apkUpdateValues = ApkUpdateValues(store, context)
+  val backupValues = BackupValues(store, context)
   val callQualityValues = CallQualityValues(store)
-  val labsValues = LabsValues(store)
-
-  val plainTextValues = PlainTextSharedPrefsDataStore(context)
+  val labsValues = LabsValues(store) { RemoteConfig.internalUser }
 
   companion object {
 
@@ -147,6 +171,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     @JvmStatic
     fun onPostBackupRestore() {
       instance!!.store.resetCache()
+      instance!!.settingsValues.restoreLegacySharedPrefsAfterBackupRestore()
     }
 
     @JvmStatic
@@ -272,6 +297,8 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     val story: StoryValues
       get() = instance!!.storyValues
 
+    @JvmStatic
+    @get:JvmName("apkUpdate")
     val apkUpdate: ApkUpdateValues
       get() = instance!!.apkUpdateValues
 
@@ -292,9 +319,6 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
 
     val groupsV2AciAuthorizationCache: GroupsV2AuthorizationSignalStoreCache
       get() = GroupsV2AuthorizationSignalStoreCache.createAciCache(instance!!.store)
-
-    val plaintext: PlainTextSharedPrefsDataStore
-      get() = instance!!.plainTextValues
 
     fun getPreferenceDataStore(): PreferenceDataStore {
       return SignalPreferenceDataStore(instance!!.store)

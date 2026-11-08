@@ -24,24 +24,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.SelectedContact
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsUiState.UserMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
-import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 
 /**
@@ -127,9 +127,8 @@ private fun AddToGroupsScreenUi(
     stringResource(R.string.AddToGroupActivity_add_to_a_group)
   }
 
-  RecipientPickerScaffold(
+  Scaffolds.TitlePane(
     title = title,
-    forceSplitPane = uiState.forceSplitPane,
     onNavigateUpClick = callbacks::onBackPressed,
     topAppBarActions = {},
     snackbarHostState = remember { SnackbarHostState() },
@@ -240,6 +239,17 @@ private fun UserMessagesHost(
       closeScreen()
     }
 
+    is UserMessage.InvitedRecipientToGroup -> {
+      Dialogs.SimpleMessageDialog(
+        message = stringResource(R.string.GroupManagement_invite_single_user, userMessage.recipient.getDisplayName(context)),
+        dismiss = stringResource(android.R.string.ok),
+        onDismiss = {
+          onDismiss(userMessage)
+          closeScreen()
+        }
+      )
+    }
+
     is UserMessage.CantAddRecipientToLegacyGroup -> {
       Toast.makeText(context, stringResource(R.string.AddToGroupActivity_this_person_cant_be_added_to_legacy_groups), Toast.LENGTH_SHORT).show()
       onDismiss(userMessage)
@@ -282,7 +292,6 @@ private fun AddToSingleGroupScreenPreview() {
   Previews.Preview {
     AddToGroupsScreenUi(
       uiState = AddToGroupsUiState(
-        forceSplitPane = false,
         selectionLimits = null
       ),
       callbacks = AddToGroupsUiCallbacks.Empty
@@ -296,7 +305,6 @@ private fun AddToMultipleGroupsScreenPreview() {
   Previews.Preview {
     AddToGroupsScreenUi(
       uiState = AddToGroupsUiState(
-        forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
       callbacks = AddToGroupsUiCallbacks.Empty

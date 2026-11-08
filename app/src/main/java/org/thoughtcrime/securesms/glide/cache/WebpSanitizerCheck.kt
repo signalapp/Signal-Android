@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.glide.cache
 
+import org.signal.core.util.Conversions
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.media.WebpSanitizer
@@ -20,6 +21,9 @@ object WebpSanitizerCheck {
   private val MAGIC_NUMBER_P1 = byteArrayOf(0x52, 0x49, 0x46, 0x46) // "RIFF"
   private val MAGIC_NUMBER_P2 = byteArrayOf(0x57, 0x45, 0x42, 0x50) // "WEBP"
 
+  const val HEADER_SIZE = 12
+  private const val RIFF_PREAMBLE_SIZE = 8L
+
   const val MAX_WEBP_COMPRESSED_SIZE = 10 * 1024 * 1024 // 10mb
 
   /**
@@ -34,16 +38,20 @@ object WebpSanitizerCheck {
    * Consumes the first 12 bytes of [source], which must be positioned at the start of the file.
    */
   fun isWebp(source: InputStream): Boolean {
-    val magicNumberP1 = ByteArray(4)
-    StreamUtil.readFully(source, magicNumberP1)
+    val header = ByteArray(HEADER_SIZE)
+    StreamUtil.readFully(source, header)
 
-    val fileLength = ByteArray(4)
-    StreamUtil.readFully(source, fileLength)
+    return isWebpHeader(header)
+  }
 
-    val magicNumberP2 = ByteArray(4)
-    StreamUtil.readFully(source, magicNumberP2)
+  fun isWebpHeader(header: ByteArray): Boolean {
+    return header.size >= HEADER_SIZE &&
+      header.copyOfRange(0, 4).contentEquals(MAGIC_NUMBER_P1) &&
+      header.copyOfRange(8, 12).contentEquals(MAGIC_NUMBER_P2)
+  }
 
-    return magicNumberP1.contentEquals(MAGIC_NUMBER_P1) && magicNumberP2.contentEquals(MAGIC_NUMBER_P2)
+  fun declaredFileLength(header: ByteArray): Long {
+    return RIFF_PREAMBLE_SIZE + Conversions.byteArrayToIntLittleEndian(header, 4).toUInt().toLong()
   }
 
   /**

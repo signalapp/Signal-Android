@@ -8,13 +8,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.components.settings.app.notifications.ReminderType
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
+import kotlin.time.Duration.Companion.days
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -34,7 +35,7 @@ class MessageTableTest_unreadForReminder {
     insertIncoming(threadId, sender, time = 1000)
     insertIncoming(threadId, sender, time = 1001)
 
-    val (count, authors) = messages.getUnreadContentForReminderNotification(listOf(threadId), ReminderType.MESSAGES)
+    val (count, authors) = messages.getUnreadContentForReminderNotification(threadId, ReminderType.MESSAGES, 1002)
 
     assertThat(count).isEqualTo(2)
     assertThat(authors).isEqualTo(listOf(sender))
@@ -48,7 +49,7 @@ class MessageTableTest_unreadForReminder {
     insertIncoming(threadId, sender, time = 1000)
     insertIncoming(threadId, sender, time = 1001, mentions = listOf(Mention(recipients.self, 0, 1)))
 
-    val (count, authors) = messages.getUnreadContentForReminderNotification(listOf(threadId), ReminderType.MENTIONS)
+    val (count, authors) = messages.getUnreadContentForReminderNotification(threadId, ReminderType.MENTIONS, 1002)
 
     assertThat(count).isEqualTo(1)
     assertThat(authors).isEqualTo(listOf(sender))
@@ -72,7 +73,7 @@ class MessageTableTest_unreadForReminder {
     insertIncoming(threadId, sender, time = 1000)
     insertIncoming(threadId, sender, time = 1001, quote = quote)
 
-    val (count, authors) = messages.getUnreadContentForReminderNotification(listOf(threadId), ReminderType.REPLIES)
+    val (count, authors) = messages.getUnreadContentForReminderNotification(threadId, ReminderType.REPLIES, 1002)
 
     assertThat(count).isEqualTo(1)
     assertThat(authors).isEqualTo(listOf(sender))
@@ -87,7 +88,7 @@ class MessageTableTest_unreadForReminder {
     insertIncoming(threadId, sender, time = 1001)
     markRead(read)
 
-    val (count, _) = messages.getUnreadContentForReminderNotification(listOf(threadId), ReminderType.MESSAGES)
+    val (count, _) = messages.getUnreadContentForReminderNotification(threadId, ReminderType.MESSAGES, 1002)
     assertThat(count).isEqualTo(1)
   }
 
@@ -101,7 +102,7 @@ class MessageTableTest_unreadForReminder {
     insertIncoming(includedThreadId, included, time = 1000)
     insertIncoming(excludedThreadId, excluded, time = 1000)
 
-    val (count, authors) = messages.getUnreadContentForReminderNotification(listOf(includedThreadId), ReminderType.MESSAGES)
+    val (count, authors) = messages.getUnreadContentForReminderNotification(includedThreadId, ReminderType.MESSAGES, 1002)
 
     assertThat(count).isEqualTo(1)
     assertThat(authors).isEqualTo(listOf(included))
@@ -122,10 +123,22 @@ class MessageTableTest_unreadForReminder {
     insertIncoming(threadId, c, time = 1003)
     insertIncoming(threadId, d, time = 1004)
 
-    val (count, authors) = messages.getUnreadContentForReminderNotification(listOf(threadId), ReminderType.MESSAGES)
+    val (count, authors) = messages.getUnreadContentForReminderNotification(threadId, ReminderType.MESSAGES, 1005)
 
     assertThat(count).isEqualTo(5)
     assertThat(authors).isEqualTo(listOf(d, c, b))
+  }
+
+  @Test
+  fun `messages more than two weeks old are excluded`() {
+    val sender = recipients.createRecipient("Erin Reader")
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(sender))
+
+    insertIncoming(threadId, sender, time = 1000)
+    insertIncoming(threadId, sender, time = 1001)
+
+    val (count, _) = messages.getUnreadContentForReminderNotification(threadId, ReminderType.MESSAGES, 1000 + 14.days.inWholeMilliseconds)
+    assertThat(count).isEqualTo(1)
   }
 
   private fun insertIncoming(threadId: Long, from: RecipientId, time: Long, quote: QuoteModel? = null, mentions: List<Mention> = emptyList()): Long {

@@ -18,7 +18,7 @@ class EnterAepScreenEventHandlerTest {
       EnterAepEvents.BackupKeyChanged("a0O#=b")
     )
 
-    assertThat(updated.enteredText).isEqualTo("a0O#=b")
-    assertThat(updated.backupKey).isEqualTo("a0oo0b")
+    assertThat(updated.recoveryKey.enteredText).isEqualTo("a0O#=b")
+    assertThat(updated.recoveryKey.normalized).isEqualTo("a0oo0b")
   }
 }

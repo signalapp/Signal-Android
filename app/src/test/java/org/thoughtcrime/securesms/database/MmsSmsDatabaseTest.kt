@@ -36,7 +36,7 @@ class MmsSmsDatabaseTest {
   }
 
   @Test
-  fun `getConversationSnippet when single normal MMS then GV2 leave update message, return MMS message id and transport as true both times`() {
+  fun `getConversationSnippet when normal MMS then outgoing GV2 leave update, return leave message id`() {
     val timestamp = System.currentTimeMillis()
 
     TestMms.insert(signalDatabaseRule.writeableDatabase, receivedTimestampMillis = timestamp + 2)
@@ -46,6 +46,18 @@ class MmsSmsDatabaseTest {
     }
 
     TestSms.insert(signalDatabaseRule.writeableDatabase, receivedTimestampMillis = timestamp + 3, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_V2_LEAVE_BITS)
+    SignalDatabase.messages.getConversationSnippetCursor(1).use { cursor ->
+      cursor.moveToFirst()
+      assertEquals(2, CursorUtil.requireLong(cursor, MessageTable.ID))
+    }
+  }
+
+  @Test
+  fun `getConversationSnippet when normal MMS then incoming GV2 leave update, return MMS message id`() {
+    val timestamp = System.currentTimeMillis()
+
+    TestMms.insert(signalDatabaseRule.writeableDatabase, receivedTimestampMillis = timestamp + 2)
+    TestSms.insert(signalDatabaseRule.writeableDatabase, receivedTimestampMillis = timestamp + 3, type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_V2_LEAVE_BITS)
     SignalDatabase.messages.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))

@@ -29,6 +29,8 @@ import org.thoughtcrime.securesms.components.settings.conversation.shared.Unmute
 import org.thoughtcrime.securesms.components.settings.conversation.shared.previewRecipient
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.signal.appsettings.R as AppSettingsR
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Settings for the Signal release notes chat.
@@ -113,20 +115,20 @@ fun ReleaseNotesSettingsScreen(
 
     item { Dividers.Default() }
 
-    item { Texts.SectionHeader(text = stringResource(R.string.preferences__help)) }
+    item { Texts.SectionHeader(text = stringResource(AppSettingsR.string.preferences__help)) }
 
     item {
       Rows.TextRow(
-        text = stringResource(R.string.HelpSettingsFragment__support_center),
-        icon = painterResource(R.drawable.symbol_help_24),
+        text = stringResource(AppSettingsR.string.HelpSettingsFragment__support_center),
+        icon = painterResource(CoreUiR.drawable.symbol_help_24),
         onClick = { onEvent(IndividualSettingsEvent.SupportCenterClicked) }
       )
     }
 
     item {
       Rows.TextRow(
-        text = stringResource(R.string.HelpSettingsFragment__contact_us),
-        icon = painterResource(R.drawable.symbol_invite_24),
+        text = stringResource(AppSettingsR.string.HelpSettingsFragment__contact_us),
+        icon = painterResource(CoreUiR.drawable.symbol_invite_24),
         onClick = { onEvent(IndividualSettingsEvent.ContactUsClicked) }
       )
     }

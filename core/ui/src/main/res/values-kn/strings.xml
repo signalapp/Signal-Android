@@ -12,14 +12,104 @@
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
     <string name="PermissionDeniedBottomSheet__2_tap_permissions">"2. ಅನುಮತಿಗಳು ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ"</string>
     <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">"3. %1$s ಫೋಟೋಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳು ಅನುಮತಿಗೆ ಅನುವು ಮಾಡಿಕೊಡಿ"</string>
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">"3. %1$s ಫೋಟೋ ಮತ್ತು ವೀಡಿಯೊ ಅನುಮತಿಗೆ ಅನುವು ಮಾಡಿಕೊಡಿ"</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">ಅನುಮತಿ ಅಗತ್ಯವಿದೆ</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">ಪೇನ್‌ಗಳನ್ನು ಮರುಗಾತ್ರಗೊಳಿಸಿ</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">ಡಿವೈಡರ್ ಮೂವ್ ಮಾಡಿ</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s/</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">ಮುಂದುವರಿಸಿ ಎಂಬುದನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ದೃಢೀಕರಿಸಲು ನಿಮ್ಮ ಫೋನ್‌ನ ಲಾಕ್ ನಮೂದಿಸಿ. ನಿಮ್ಮ Signal PIN ಅನ್ನು ನಮೂದಿಸಬೇಡಿ.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">ಮುಂದುವರಿಸಿ</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">ಮುಚ್ಚಿ</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">ಮೇಲಕ್ಕೆ ನ್ಯಾವಿಗೇಟ್ ಮಾಡಿ</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">ಮೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆದುಹಾಕಿ</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">ಮೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆದುಹಾಕಬೇಕೇ?</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">ನೀವು ಆ ಪ್ಯಾಕ್ ಅನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿಕೊಂಡಿರದಿದ್ದರೆ ಅಥವಾ ನಿಮ್ಮ ಬಳಿ ಲಿಂಕ್ ಅಥವಾ ಸ್ಟಿಕ್ಕರ್ ಮೆಸೇಜ್ ಇಲ್ಲದಿದ್ದರೆ, ನೀವು ಅದನ್ನು ಮತ್ತೆ ಕಳುಹಿಸಲು ಅಥವಾ ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">ತೆಗೆದುಹಾಕಿ</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">ಯಾವುದೂ ಇಲ್ಲ</string>
+    <string name="preferences_off">ಆಫ಼್</string>
+    <string name="preferences_on">ಆನ್</string>
+    <string name="ExpireTimerSettingsFragment__set">ಸೆಟ್ ಮಾಡಿ</string>
+    <string name="CustomExpireTimerSelectorView__seconds">ಸೆಕೆಂಡುಗಳು</string>
+    <string name="CustomExpireTimerSelectorView__minutes">ನಿಮಿಷಗಳು</string>
+    <string name="CustomExpireTimerSelectorView__hours">ಗಂಟೆಗಳು</string>
+    <string name="CustomExpireTimerSelectorView__days">ದಿನಗಳು</string>
+    <string name="CustomExpireTimerSelectorView__weeks">ವಾರಗಳು</string>
+    <!-- expiration -->
+    <string name="expiration_off">ಆಫ಼್</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="one">%1$d ಸೆಕೆಂಡು</item>
+        <item quantity="other">%1$d ಸೆಕೆಂಡುಗಳು</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$dಸೆ</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">%1$dನಿಮಿಷ</item>
+        <item quantity="other">%1$dನಿಮಿಷಗಳು</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$dನಿ</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">%1$d ಗಂಟೆ</item>
+        <item quantity="other">%1$d ಗಂಟೆಗಳು</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$dಗಂ</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">%1$d ದಿನ</item>
+        <item quantity="other">%1$d ದಿನಗಳು</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$dದಿ</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">%1$d ವಾರ</item>
+        <item quantity="other">%1$d ವಾರಗಳು</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$dವಾ</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+
+    <string name="SpanUtil__read_more">ಇನ್ನಷ್ಟು ಓದಿ</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">ಪಠ್ಯ ಇನ್‌ಪುಟ್‌ಗೆ ಬದಲಿಸಿ</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">ಗಡಿಯಾರ ಮೋಡ್‌ಗೆ ಬದಲಿಸಿ</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">%1$s ತೆಗೆದುಹಾಕಿ</string>
 </resources>

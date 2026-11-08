@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.MemoryCategory
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.getWindowBreakpoint
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewStateCache
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewStateViewModel
-import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.math.max
 import kotlin.math.min
 

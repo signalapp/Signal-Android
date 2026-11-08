@@ -3,7 +3,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">등록 잠금을 켤까요?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">등록 잠금을 끌까요?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal에 다시 가입할 때 PIN을 잊어버리면, 7일 동안 계정 사용이 제한됩니다.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal에 다시 가입할 때 PIN이 기억나지 않으면, 7일 동안 계정 사용이 제한됩니다.</string>
     <string name="RegistrationLockV2Dialog_turn_on">켜기</string>
     <string name="RegistrationLockV2Dialog_turn_off">끄기</string>
     <string name="preferences__advanced_pin_settings">PIN 고급 설정</string>
@@ -13,7 +13,7 @@
     <string name="preferences_chats__transfer_account">계정 이전</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">새 Android 기기로 계정 이전</string>
     <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-    <string name="preferences_app_protection__create_a_pin">PIN을 생성하세요</string>
+    <string name="preferences_app_protection__create_a_pin">PIN 생성</string>
     <string name="preferences_app_protection__change_your_pin">PIN 변경</string>
     <string name="preferences_app_protection__pin_reminders">PIN 알림</string>
     <string name="preferences_app_protection__turn_off">끄기</string>
@@ -45,152 +45,1128 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">내 계정 데이터</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Signal 로그인</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">계정 및 복구</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="other">키 %1$d개</item>
-    </plurals>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal 로그인 정보는 계정을 복구하고 되살리는 데 사용됩니다. 이 키들을 신뢰할 수 있는 비밀번호 관리자에 안전하게 저장하세요.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal Login 정보는 계정을 복구하고 되살리는 데 사용됩니다. 이 키들을 신뢰할 수 있는 비밀번호 관리자에 안전하게 저장하세요.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">2단계 인증</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">설정</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">인증 앱</string>
-    <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">One-time verification codes</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="other">%1$d configured</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Passkeys</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Device biometrics or FIDO2 security key</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="other">%1$d passkeys</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">새 기기에서 Signal 로그인 정보를 사용할 때 계정을 보호하려면 2차 인증을 사용하세요</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">1회용 인증 코드</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">패스키</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">지문, 얼굴 인식, 또는 화면 잠금을 사용하세요</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">패스키</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">2단계 인증 수단</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s에 추가됨</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">알 수 없음</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">2단계 인증 옵션 열기</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">이름 변경</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">삭제</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">인증 앱을 삭제할까요?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">로그인할 때 이 앱으로 일회용 인증 코드를 받을 수 없게 됩니다.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">패스키를 삭제할까요?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">로그인할 때 이 패스키를 사용할 수 없게 됩니다.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">2단계 인증 수단을 삭제할까요?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">로그인할 때 이 수단을 사용할 수 없게 됩니다.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">2단계 인증 수단 삭제됨</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">2단계 인증 수단을 삭제할 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">패스키 삭제됨</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">패스키를 삭제할 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">이 기기에서 패스키를 지원하는 비밀번호 관리자를 설정한 후 다시 시도하세요.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">패스키를 생성할 수 없습니다. 다시 시도해 주세요.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">2단계 인증 수단을 추가하려면 잠금을 해제하세요</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">이 인증 수단을 추가하려면 본인 확인이 필요합니다</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">2단계 인증 수단을 삭제하려면 잠금을 해제하세요</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">이 인증 수단을 삭제하려면 본인 확인이 필요합니다</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login을 확인하려면 잠금을 해제하세요</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Signal Login을 확인하려면 본인 확인이 필요합니다</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">본인 확인을 위해 잠금을 해제해 주세요</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">계정을 삭제하려면 본인 확인이 필요합니다.</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">인증 필요</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">인증 앱을 추가할 수 없음</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">인증 앱은 최대 %1$d개까지만 등록할 수 있습니다. 기존 앱 하나를 삭제한 후 다시 시도해 주세요.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">2단계 인증 수단은 최대 %1$d개까지만 등록할 수 있습니다. 기존 앱 하나를 삭제한 후 다시 시도해 주세요.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">2단계 인증 수단을 불러올 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">인증 앱이 삭제됨</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">인증 앱을 삭제할 수 없습니다. 연결을 확인하고 다시 시도해 주세요.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">새 기기에서 Signal Login 정보를 사용할 때 계정을 보호하려면 2차 인증을 사용하세요.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">자세히 알아보기</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- ExportAccountDataFragment -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">내 계정 데이터</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Signal 계정 데이터 보고서를 내보냅니다. 이 보고서는 메시지나 미디어를 포함하지 않습니다. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">자세히 알아보기</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">보고서 내보내기</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">TXT로 내보내기</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">읽기 쉬운 텍스트 파일</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">JSON으로 내보내기</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">기계 가독형 파일</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">취소</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">확인</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">보고서를 생성할 수 없습니다</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">연결을 확인하고 다시 시도하세요.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">데이터를 내보낼까요?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Signal 계정 데이터를 신뢰하는 사람 또는 앱에만 공유하세요.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">내보내기</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">보고서를 생성하는 중…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">보고서는 내보내는 시점에만 생성되며, 기기에는 저장되지 않습니다.</string>
+
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__set_up_your_authenticator_app">Set up your authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">인증 앱 설정하기</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">인증 앱을 설정하려면 다음 단계를 따르세요.</string>
+    <string name="TotpSetupScreen__follow_these_steps">인증 앱을 설정하려면 다음 단계를 따르세요.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">자세히 알아보기</string>
+    <string name="TotpSetupScreen__learn_more">자세히 알아보기</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">1단계</string>
+    <string name="TotpSetupScreen__step_1">1단계</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">기기에 신뢰할 수 있는 인증 앱을 설치하세요.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">기기에 신뢰할 수 있는 인증 앱을 설치하세요.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">2단계</string>
+    <string name="TotpSetupScreen__step_2">2단계</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">아래 버튼을 탭하여 인증 앱을 열고 Signal 계정을 추가하세요.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">아래 버튼을 탭하여 인증 앱을 열고 Signal 계정을 추가하세요.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">열기</string>
+    <string name="TotpSetupScreen__open">열기</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">또는 이 키를 복사하여 직접 설정할 수도 있습니다.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">또는 이 키를 복사하여 직접 설정할 수도 있습니다.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">복사</string>
+    <string name="TotpSetupScreen__copy">복사</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">클립보드로 복사했습니다.</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">클립보드로 복사했습니다</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">인증 앱을 찾을 수 없음</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">인증 앱을 찾을 수 없음</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">인증 앱은 최대 %1$d개까지만 등록할 수 있습니다. 기존 앱 하나를 삭제한 후 다시 시도해 주세요.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Signal에 연결할 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">3단계</string>
+    <string name="TotpSetupScreen__step_3">3단계</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">생성된 코드를 복사한 후 여기에 돌아와 계속 진행하세요.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">생성된 코드를 복사한 후 여기에 돌아와 계속 진행하세요.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">계속</string>
+    <string name="TotpSetupScreen__continue">계속</string>
 
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Passkeys</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">자세히 알아보기</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Add or remove passkeys at anytime.</string>
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">패스키</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">패스키를 사용하면 계정에 안전한 2단계 인증을 쉽게 추가할 수 있습니다. 패스키에는 기기의 생체 인증 또는 호환되는 FIDO2 보안 키를 사용할 수 있습니다.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">자세히 알아보기</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">쉽게 알아볼 수 있는 패스키 이름 지정하기</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">기기의 생체 인증 또는 FIDO2 보안 키를 사용하여 패스키 저장하기</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">패스키는 언제든지 추가하거나 삭제할 수 있습니다.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Set up a passkey with your device\'s biometrics or a compatible FIDO2 security key.</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Add a new passkey</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">%1$s 님을 추가했습니다</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Open passkey options</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">이름 변경</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">내보내기</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">패스키 설정하기</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">패스키를 추가할 수 없습니다</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">2단계 인증 수단은 최대 %1$d개까지만 등록할 수 있습니다. 기존 앱 하나를 삭제한 후 다시 시도해 주세요.</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">코드 입력</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">코드 입력</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">인증 앱에 표시된 6자리 코드를 입력하세요.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">코드</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">인증 앱에 표시된 6자리 코드를 입력하세요.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">확인</string>
-    <!-- AuthenticatorAppsScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="AuthenticatorAppsScreen__authenticator_app">인증 앱</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="AuthenticatorAppsScreen__set_up_an_authenticator_app">Set up an authenticator app to generate one-time verification codes</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorAppsScreen__learn_more">자세히 알아보기</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="AuthenticatorAppsScreen__add_authenticator_app">Add authenticator app</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="AuthenticatorAppsScreen__authenticator_apps">Authenticator apps</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="AuthenticatorAppsScreen__no_authenticator_apps">No authenticator apps</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="AuthenticatorAppsScreen__added_s">%1$s 님을 추가했습니다</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="AuthenticatorAppsScreen__open_authenticator_app_options">Open authenticator app options</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="AuthenticatorAppsScreen__rename">이름 변경</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove">내보내기</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__remove_authenticator_app">Remove authenticator app?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AuthenticatorAppsScreen__to_remove_this_authentication_method">To remove this authentication method the 6-digit code from your authenticator app is required.</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__cant_add_authenticator_app">Can\'t add authenticator app</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AuthenticatorAppsScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AuthenticatorAppsScreen__authenticator_app_removed">Authenticator app removed</string>
+    <string name="TotpCodeEntryScreen__next">다음</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">올바르지 않은 코드입니다. 지금 인증 앱에 표시된 코드를 입력하세요.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal에 연결할 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
 
-    <!-- AuthenticatorNameScreen -->
-    <!-- Title of the screen where the user names an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_name">이름을 선택하세요</string>
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">인증 앱</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">이름을 선택하세요</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">이 인증 앱에 해당하는 이름을 설정해 주세요.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="AuthenticatorNameScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">나중에 알아보기 쉽도록 이 인증 앱에 이름을 설정해 주세요.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">이 2단계 인증 수단에 해당하는 이름을 설정해 주세요.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">나중에 알아보기 쉽도록 2단계 인증 수단의 이름을 설정해 주세요.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">이 패스키에 해당하는 이름을 설정해 주세요.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">나중에 알아보기 쉽도록 패스키의 이름을 설정해 주세요.</string>
     <!-- Label of the name field -->
-    <string name="AuthenticatorNameScreen__name">이름</string>
+    <string name="TwoFactorNameEntryScreen__name">이름</string>
     <!-- Button that submits the entered name -->
-    <string name="AuthenticatorNameScreen__next">다음</string>
+    <string name="TwoFactorNameEntryScreen__next">다음</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorNameScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">인증 앱 설정됨</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="AuthenticatorNameScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">인증 앱 이름이 변경됨</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">패스키 설정됨</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">패스키 이름 변경됨</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">2단계 인증 수단 설정됨</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">2단계 인증 수단 이름 변경됨</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">이름을 저장할 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">계정을 삭제할 경우:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요</string>
+    <string name="DeleteAccountFragment__delete_account">계정 삭제</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">계정 정보와 프로필 사진이 삭제됩니다.</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">모든 메시지를 삭제합니다.</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">결제 계정에서 %1$s 삭제</string>
+    <string name="DeleteAccountFragment__no_country_code">지정된 국가 코드가 없습니다.</string>
+    <string name="DeleteAccountFragment__no_number">지정된 전화번호가 없습니다.</string>
+    <string name="DeleteAccountFragment__the_phone_number">입력한 전화번호가 내 계정과 일치하지 않습니다.</string>
+    <string name="DeleteAccountFragment__are_you_sure">정말 계정을 삭제하시겠어요?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">진행 시 Signal 계정이 삭제되며 앱이 초기화됩니다. 프로세스가 완료되면 앱이 자동으로 종료됩니다.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">로컬 데이터를 삭제하지 못했습니다. 기기의 애플리케이션 설정에서 직접 삭제할 수 있습니다.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">앱 설정 시작</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">그룹을 나가는 중…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">계정을 삭제하는 중…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">구독을 취소하는 중…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">참여 중인 그룹 수에 따라 몇 분 정도 걸릴 수 있습니다.</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">사용자 데이터를 삭제하고 앱을 초기화하는 중</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">계정을 삭제하지 못함</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">삭제를 완료하지 못했습니다. 네트워크 연결 상태를 확인하고 다시 시도해 주세요.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">사용자 이름이 \"%1$s\"인 계정을 삭제하면 다음 사항이 진행됩니다.</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">사용자 이름(\"%1$s\")을 포함한 계정 정보 및 프로필 사진이 삭제됩니다.</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">이 작업은 취소할 수 없습니다.</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">진행 시 사용자 이름이 \"%1$s\"인 Signal 계정이 삭제되며 앱이 초기화됩니다. 프로세스가 완료되면 앱이 종료됩니다.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">네, 계정을 삭제해 주세요.</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">친구 초대</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">공유</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">국가 선택</string>
+    <string name="RegistrationActivity_phone_number_description">전화번호</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="other">폴더 %1$d개</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">대화 폴더 추가</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">폴더 추가 또는 수정</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">인증 실패</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">대화 폴더</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">대화 기록 내보내기</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">모든 대화 기록을 기계 가독형 JSON 파일로 내보냅니다. 자동 삭제 메시지는 내보내기에서 제외됩니다.</string>
+    <string name="ChatsSettingsFragment__keyboard">키보드</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Enter 키로 보내기</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">스티커 및 GIF 자동 재생</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">이 기능을 켜면 스티커와 GIF가 자동으로 재생됩니다.</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">대화 기록을 내보내려면 잠금해제하세요</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">주소록에 등록된 연락처 사진이 있는 경우 우선 사용하기</string>
+    <string name="preferences__generate_link_previews">링크 미리보기 생성</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">알림을 끈 상태로 보관한 대화는 새 메시지가 도착해도 보관 상태로 유지됩니다.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">음소거된 채팅 보관 상태로 유지</string>
+    <string name="preferences__pref_use_address_book_photos">주소록 사진 우선 사용하기</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">보내는 메시지의 링크 미리보기 정보를 웹사이트에서 직접 불러옵니다.</string>
+    <string name="preferences_advanced__use_system_emoji">시스템 이모지 사용</string>
+    <string name="preferences_chats__chats">대화</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">주의!</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">주의!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">내보내기 취소 중…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">기기의 저장 공간에서 대화 기록이 저장될 폴더를 선택해 주세요.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">폴더 선택</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">폴더 선택</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">내보낸 대화 파일을 저장할 때 보안에 유의해 주시고, 다른 사람과 공유하지 마세요. 기기의 사용 권한에 따라 다른 앱이 이 파일에 접근할 수 있습니다.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">대화 내보내기 완료</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">대화 기록을 내보낼까요?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">이 파일을 다른 사람과 공유하지 마세요. 대화 기록이 기기에 저장되며, 기기의 사용 권한에 따라 다른 앱에서 액세스할 수 있습니다. 미디어를 포함하여 내보내면 파일 용량이 커집니다.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">미디어를 포함하여 내보내기</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">미디어 없이 내보내기</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">미디어 내보내기 중: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">마무리 중…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">백업 준비 중…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">백업을 처리하는 중…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">메시지 처리 중…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">메시지 처리 중: %1$s/%2$s개(%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">미디어 업로드 중: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">앱 업데이트</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">디자인</string>
+    <string name="preferences__language">언어</string>
+    <string name="preferences__theme">테마</string>
+    <string name="preferences__system_default">시스템 기본값</string>
+    <string name="preferences__light_theme">밝게</string>
+    <string name="preferences__dark_theme">어둡게</string>
+    <string name="preferences__chat_color_and_wallpaper">대화창 색 및 배경화면</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">앱 아이콘</string>
+    <string name="preferences_chats__message_text_size">메시지 글꼴 사이즈</string>
+    <string name="arrays__small">작게</string>
+    <string name="arrays__normal">보통</string>
+    <string name="arrays__large">크게</string>
+    <string name="arrays__extra_large">더 크게</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">탐색 바 크기</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">보통</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">작게</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">앱을 다시 시작하여 새 언어 설정을 적용합니다.</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">전화번호</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">내 전화번호를 볼 수 있는 사람</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">내가 메시지를 보내는 사람과 그룹에 내 전화번호가 표시됩니다.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">휴대폰 연락처에 내 전화번호를 저장한 사람을 제외하고 다른 사람에게 전화번호가 표시되지 않습니다.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">전화번호가 다른 사람에게 표시되지 않습니다.</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">전화번호로 나를 찾을 수 있는 사람</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">내 전화번호가 있는 사람은 내가 Signal을 사용 중임을 알 수 있으며, 나와 대화를 시작할 수 있습니다.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">내가 메시지를 보내는 사용자 또는 기존 대화 기록이 있는 사용자를 제외하고는 아무도 Signal에서 나를 볼 수 없습니다.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"이 설정을 바꾸려면 \'내 전화번호를 볼 수 있는 사람\'을 \'없음\'으로 설정하세요."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">계속할까요?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\'내 전화번호를 볼 수 있는 사람\'을 \'없음\'으로 설정하면 Signal에서 다른 사람이 나를 찾기가 어려워집니다.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">취소</string>
+    <string name="PhoneNumberPrivacy_everyone">모두</string>
+    <string name="PhoneNumberPrivacy_nobody">없음</string>
+    <string name="arrays__images">이미지</string>
+    <string name="arrays__audio">오디오</string>
+    <string name="arrays__video">동영상</string>
+    <string name="arrays__documents">문서</string>
+    <string name="preferences__data_and_storage">데이터와 저장 공간</string>
+    <string name="preferences_chats__when_using_mobile_data">모바일 데이터 사용 시</string>
+    <string name="preferences_chats__when_using_wifi">Wi-Fi 사용 시</string>
+    <string name="preferences_chats__when_roaming">로밍 시</string>
+    <string name="preferences_chats__media_auto_download">미디어 자동 다운로드</string>
+    <string name="preferences_data_and_storage__manage_storage">저장 공간 관리하기</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">통화 시 데이터 사용량 줄이기</string>
+    <string name="preferences_data_and_storage__never">없음</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi 및 모바일 데이터</string>
+    <string name="preferences_data_and_storage__mobile_data_only">모바일 데이터만</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">데이터 사용량을 줄이면 네트워크 상태가 좋지 않을 때 통화 품질이 향상될 수 있습니다.</string>
+    <string name="preferences_proxy">프록시</string>
+    <string name="preferences_use_proxy">프록시 사용하기</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">미디어 품질</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">계산 중…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">미디어 전송 품질</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">고품질 미디어는 더 많은 모바일 데이터를 사용할 수 있습니다.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">%1$s 미만의 음성 메시지와 스티커를 항상 자동 다운로드합니다.</string>
+    <string name="DataAndStorageSettingsFragment__calls">전화</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">백그라운드에서 연결 유지</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">백그라운드 상태에서도 연결을 유지하면 배터리 사용량이 증가할 수 있습니다. 대부분의 기기에서는 이 설정이 필요하지 않습니다. 알림 문제가 있는 경우에만 이 설정을 활성화하세요.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">활성화하기</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">높음</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">기본</string>
+    <string name="preferences_app_protection__screen_lock">화면 잠금</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">화면 잠금 사용</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">앱을 벗어나거나 전환할 때, Android 기기 잠금 설정으로 Signal 잠금을 해제합니다. 잠금 상태에서는 알림 미리보기에 메시지 내용이 표시되지 않습니다.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">화면 잠금 시작</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">1분 후</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">5분 후</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">30분 후</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">맞춤 시간</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal 화면 잠금 사용</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal 화면 잠금 해제</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="preferences__help">문의</string>
+    <string name="HelpSettingsFragment__support_center">고객 지원</string>
+    <string name="HelpSettingsFragment__contact_us">문의하기</string>
+    <string name="HelpSettingsFragment__version">버전</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">클립보드로 복사했습니다</string>
+    <string name="HelpSettingsFragment__debug_log">디버그 로그</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">라이선스</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">이용약관 &amp; 개인정보처리방침</string>
+    <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 저작권</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3에 따라 라이선스가 부여됨</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal은 비영리단체입니다</string>
+
+    <!-- AppIconTutorialScreen -->
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">앱 아이콘과 이름이 홈 화면과 앱 서랍에 표시됩니다.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">알림은 항상 기본 Signal 아이콘과 이름을 표시합니다.</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">대체 앱 아이콘의 노출 위치 안내 그래픽</string>
+
+    <!-- AppIconSelectionScreen -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">날씨</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">메모</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">뉴스</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">파도</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">확인</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">취소</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">앱 아이콘과 이름을 \'%1$s\'(으)로 변경</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">앱 아이콘과 이름을 변경하려면 Signal을 종료해야 합니다. 알림은 항상 기본 Signal 아이콘과 이름을 표시합니다.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">휴대폰 홈 화면과 앱 서랍에 표시될 앱 아이콘과 이름을 선택하세요. 알림은 항상 기본 Signal 아이콘과 이름을 표시합니다. 자세히 알아보기</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">자세히 알아보기</string>
+
+    <!-- QrCodeBadge -->
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">링크를 설정하지 않음</string>
+
+    <!-- UsernameLinkQrColorPickerScreen -->
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">색상</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">확인</string>
+
+    <!-- NotificationProfileCreatedScreen -->
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">프로필 생성 완료</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">확인</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">대화 목록의 메뉴를 통해 수동으로 이 프로필을 켜거나 끌 수 있습니다.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">설정에서 일정을 추가하여 프로필을 자동으로 관리해 보세요.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">일정에 따라 자동으로 프로필이 켜지고 꺼집니다.</string>
+
+    <!-- PrivacySettingsScreen -->
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">아직 암호 문구가 설정되지 않았어요.</string>
+    <string name="ApplicationPreferencesActivity_disable">비활성화하기</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">암호 문구 사용을 비활성화할까요?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal이 잠금 해제되어 메시지 알림이 표시됩니다.</string>
+    <string name="PrivacySettingsFragment__app_security">앱 보안</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">최근 사용 목록과 앱 내 스크린샷 차단</string>
+    <string name="PrivacySettingsFragment__blocked">차단</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">결제 잠금을 사용하려면 휴대폰 설정에서 화면 잠금 또는 지문 ID를 활성화해야 합니다.</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">결제 잠금 기능을 활성화할 수 없음</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="other">연락처 또는 그룹 %1$d개</item>
+    </plurals>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">새 대화를 위한 기본 타이머</string>
+    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">시스템 설정으로 이동하지 못했습니다.</string>
+    <string name="PrivacySettingsFragment__messaging">메시지</string>
+    <!-- Description for the payment lock toggle in privacy settings -->
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">자금 이체 시 Android 화면 잠금 또는 지문 인증을 요구합니다.</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">내가 새로 시작하는 모든 대화에 자동 삭제 메시지 타이머를 기본으로 설정합니다.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 메시지 및 통화, 통화 시 항상 서버 경유, 발신자 암호화</string>
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">꺼짐</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">일정 시간 미사용 시 Signal 자동 잠금</string>
+    <string name="preferences__change_passphrase">암호 문구 변경</string>
+    <string name="preferences__change_your_passphrase">암호 문구를 변경하세요</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
+    <string name="preferences__enable_passphrase">암호 문구 화면 잠금 활성화</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">읽음 표시 기능이 꺼져 있다면, 다른 사람이 메시지를 읽었는지 확인할 수 없습니다.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">메시지 입력 중 표시 기능이 꺼져 있다면, 다른 사람이 메시지를 쓰고 있는지 확인할 수 없습니다.</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
+    <string name="preferences__inactivity_timeout_interval">미사용 시 자동 잠금 기준 시간</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
+    <string name="preferences__inactivity_timeout_passphrase">미사용 시 자동 잠금 암호 문구</string>
+    <string name="preferences__incognito_keyboard">익명 키보드</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">암호 문구로 화면 및 알림 잠그기</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">송금 잠금</string>
+    <string name="preferences__read_receipts">읽음 표시</string>
+    <string name="preferences__request_keyboard_to_disable">키보드가 입력 내용을 학습하지 않도록 설정합니다.</string>
+    <string name="preferences__screen_security">화면 보안</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">설정이 항상 적용되지는 않으며, 일부 키보드에서는 이 설정이 무시될 수 있습니다.</string>
+    <string name="preferences__typing_indicators">메시지 입력 중 표시</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">내 전화번호를 볼 수 있고, Signal에서 내 전화번호로 나한테 연락할 수 있는 사람을 선택하세요.</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">송금</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">화면 잠금을 사용하려면 이 기기에서 PIN, 패턴, 또는 암호를 설정하세요.</string>
+    <!-- Title of the privacy settings screen -->
+    <string name="PrivacySettingsScreen__privacy">개인정보 보호</string>
+    <!-- Section header in privacy settings for disappearing message defaults -->
+    <string name="PrivacySettingsScreen__disappearing_messages">자동 삭제 메시지</string>
+    <!-- Row in privacy settings that opens advanced privacy settings -->
+    <string name="PrivacySettingsScreen__advanced">고급</string>
+    <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
+    <string name="PrivacySettingsScreen__turn_on">켜기</string>
+    <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
+    <string name="PrivacySettingsScreen__not_now">나중에</string>
+    <!-- Title of the authentication prompt shown when turning off payment lock -->
+    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <!-- Link after the incognito keyboard disclaimer that opens a support article -->
+    <string name="PrivacySettingsScreen__learn_more">자세히 알아보기</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">백업 저장 용량 한도 도달</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">백업 구독자 ID를 클립보드에 복사했습니다.</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">후원자 구독 ID를 클립보드에 복사했습니다.</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">백업을 완료할 수 없음</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">친구를 초대해 보세요</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signal 안전 백업 구독을 갱신하세요</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">개인정보 보호</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">설정</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">뒤로 가기</string>
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">백업 구독을 사용하지 못했습니다</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Signal 후원하기</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">내부 기본 설정</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">연동 기기</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">알림</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">결제</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">스토리</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">백업</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">탐색 바 크기</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">보통</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">작게</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">뒤로 가기</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">사진</string>
+    <string name="preferences_storage__videos">동영상</string>
+    <string name="preferences_storage__files">파일</string>
+    <string name="preferences_storage__audio">오디오</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">메시지</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">스티커</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">기타</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">계산 중…</string>
+    <string name="preferences_storage__review_storage">저장 공간 검토</string>
+
+    <!-- TwoFactorVerifyScreen -->
+    <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">2단계 인증</string>
+    <!-- Instructions shown above the list of two-factor methods the user can verify with -->
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">계정을 인증하려면 아래 방식을 선택하세요.</string>
+    <!-- Title of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__passkey">패스키</string>
+    <!-- Description of the option to verify with a passkey -->
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">탭하여 기기의 생체 인증 또는 FIDO2 패스키 사용하기</string>
+    <!-- Title of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__authenticator_app">인증 앱</string>
+    <!-- Description of the option to verify with an authenticator app -->
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">인증 앱에 생성된 일회용 코드 입력하기</string>
+    <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">계속 진행하려면 인증 앱에 표시된 6자리 코드를 입력하세요.</string>
+    <!-- Button that leaves the verification flow without verifying anything -->
+    <string name="TwoFactorVerifyScreen__cancel">취소</string>
+    <!-- Error shown under the code field when the service rejected the code -->
+    <string name="TwoFactorVerifyScreen__incorrect_code">올바르지 않은 코드입니다. 지금 인증 앱에 표시된 코드를 입력하세요.</string>
+    <!-- Error shown when the service could not be reached -->
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Signal에 연결할 수 없습니다. 연결을 확인하고 다시 시도하세요.</string>
+    <!-- Dialog shown when verifying with a passkey failed -->
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">패스키에 오류가 발생했습니다. 다시 시도하거나 다른 방법을 선택해 주세요.</string>
+
+    <!-- EditProfileNameScreen -->
+    <!-- Title of the screen for editing your profile name -->
+    <string name="EditProfileNameFragment_your_name">내 이름</string>
+    <!-- Hint for the first name field when editing your profile name -->
+    <string name="EditProfileNameFragment_first_name">이름</string>
+    <!-- Hint for the last name field when editing your profile name -->
+    <string name="EditProfileNameFragment_last_name_optional">성(선택 사항)</string>
+    <!-- Button that saves your edited profile name -->
+    <string name="EditProfileNameScreen__save">저장</string>
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">네트워크 문제로 저장하지 못했습니다. 나중에 다시 진행해 주세요.</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">메시지 보관</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">영구 보관</string>
+    <string name="preferences_storage__one_year">1년</string>
+    <string name="preferences_storage__six_months">6개월</string>
+    <string name="preferences_storage__thirty_days">30일</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">선택한 기간보다 오래된 메시지를 영구 삭제합니다.</string>
+    <string name="preferences_storage__delete_older_messages">오래된 메시지를 삭제할까요?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s 이상 지난 모든 메시지 기록과 미디어를 기기에서 영구적으로 삭제합니다.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">삭제</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">채팅 내 최대 메시지 수</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="other">메시지 %1$s개</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">없음</string>
+    <string name="preferences_storage__custom">맞춤</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">선택한 길이를 초과하는 메시지를 영구 삭제합니다.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">모든 대화에서 최근 메시지 %1$s개만 남기고 나머지를 영구 삭제합니다.</item>
+    </plurals>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">정보</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">나를 간략하게 소개해 보세요</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">자유롭게 이야기해요</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">프라이버시가 중요해요</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">배려 있게 대화해요</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">커피 없인 못 살아요</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">대화 가능해요</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">휴식 모드</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">새로운 것에 도전하고 있어요</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">저장</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">지우기</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">이모지 선택하기</string>
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">네트워크 문제로 저장하지 못했습니다. 나중에 다시 진행해 주세요.</string>
+
+    <!-- UsernameEditScreen -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">사용자 이름을 선택하세요</string>
+    <!-- Title of the username screen, and the label of its field -->
+    <string name="UsernameEditFragment_username">사용자 이름</string>
+    <!-- Button that deletes your username -->
+    <string name="UsernameEditFragment_delete">삭제</string>
+    <!-- Snackbar shown when a username change failed because of a network problem -->
+    <string name="UsernameEditFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">입력 횟수를 초과했습니다. 나중에 다시 시도해 주세요.</string>
+    <!-- Shown when the username someone typed already belongs to someone else -->
+    <string name="UsernameEditFragment_this_username_is_taken">이미 사용 중인 이름입니다.</string>
+    <!-- Shown when a username has characters that usernames can\'t have -->
+    <string name="UsernameEditFragment_usernames_can_only_include">사용자 이름에는 a~Z, 0~9 및 밑줄만 포함할 수 있습니다.</string>
+    <!-- Shown when a username starts with a digit -->
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">사용자 이름은 숫자로 시작할 수 없습니다.</string>
+    <!-- Shown when the service rejects a username -->
+    <string name="UsernameEditFragment_username_is_invalid">잘못된 사용자 이름입니다.</string>
+    <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">사용자 이름은 %1$d~%2$d자여야 합니다.</string>
+    <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
+    <string name="UsernameEditScreen__usernames_let_others_message">사용자 이름을 설정하면 전화번호 대신 사용자 이름으로 메시지를 주고받을 수 있습니다. 모든 사용자 이름에는 고유 번호가 부여됩니다. %1$s</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">사용할 수 없는 사용자 이름입니다. 다른 번호를 입력해 보세요.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">잘못된 사용자 이름입니다. %1$d자 이상으로 입력해 주세요.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">잘못된 사용자 이름입니다. %1$d자 이하로 입력해 주세요.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">00은 일련번호로 사용할 수 없습니다. 1–9 사이의 숫자를 입력하세요.</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">세 자리 이상 숫자는 0으로 시작할 수 없습니다.</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">사용자 이름을 복구하면 기존 QR 코드와 링크가 초기화됩니다. 계속할까요?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">사용자 이름을 변경하면 기존 QR 코드와 링크가 초기화됩니다. 계속할까요?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">계속</string>
+    <!-- Button that saves the username you typed -->
+    <string name="UsernameEditScreen__save">저장</string>
+    <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
+    <string name="UsernameEditScreen__learn_more">자세히 알아보기</string>
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
+
+    <!-- EditProfileScreen -->
+    <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필과 프로필 변경 사항은 메시지를 주고받는 상대와 연락처, 그룹에 표시됩니다.</string>
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal 업데이트</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">이 Signal 버전은 만료되었습니다. Signal을 계속 사용하려면 지금 업데이트하세요.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">업데이트</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">등록되지 않은 기기입니다</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">기기가 등록 해제되었습니다. 계정을 변경하려면 다시 등록하세요.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">다시 등록하기</string>
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">네트워크 문제로 저장하지 못했습니다. 나중에 다시 진행해 주세요.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">사용자 이름을 삭제하지 못했습니다. 나중에 다시 시도하세요.</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">사용자 이름을 삭제할까요?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"사용자 이름이 삭제되고 QR 코드와 링크가 비활성화됩니다. \'%1$s\' 이름은 다른 사용자가 사용할 수 있게 됩니다. 계속할까요?"</string>
+    <!-- Button below your avatar on the profile screen that lets you change it -->
+    <string name="ManageProfileFragment__edit_photo">프로필 사진 수정하기</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">사용자 이름 공유하기</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">나와 채팅을 시작할 수 있도록 고유 QR 코드 또는 링크를 공유하세요.</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">사용자 이름을 만들었어요</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">사용자 이름이 삭제됐어요</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">사용자 이름을 설정하면 전화번호 대신 사용자 이름으로 메시지를 주고받을 수 있습니다. 각 사용자 이름에는 친구들에게 공유할 수 있는 전용 QR 코드와 링크가 제공됩니다.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">사용자 이름과 QR 코드, 링크는 프로필에 표시되지 않습니다. 사용자 이름은 신뢰하는 사람에게만 공유하세요.</string>
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_about">정보</string>
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
+    <string name="ManageProfileFragment_failed_to_set_avatar">아바타를 설정하지 못했습니다</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR 코드 또는 링크</string>
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
+    <string name="ManageProfileFragment_profile_name">프로필 이름</string>
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
+    <string name="ManageProfileFragment_username">사용자 이름</string>
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">사용자 이름 수정</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">사용자 이름 삭제</string>
+    <!-- Title of the screen showing your own profile -->
+    <string name="EditProfileScreen__profile">프로필</string>
+    <!-- Content description for your avatar on the profile screen, which opens it full screen -->
+    <string name="EditProfileScreen__set_avatar">아바타 설정</string>
+    <!-- Row on the profile screen that opens your badges -->
+    <string name="EditProfileScreen__badges">배지</string>
+    <!-- Button in the dialog confirming that you want your username deleted -->
+    <string name="EditProfileScreen__delete">삭제</string>
+    <!-- Content description for the button that closes the tip about your username link -->
+    <string name="EditProfileScreen__close_tip">닫기</string>
+    <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__get_badges">Signal을 후원하고 프로필 배지를 받으세요.</string>
+    <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal은 광고주나 투자자 없이 오로지 사용자의 기여로 운영되는 비영리 단체입니다.</string>
+    <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
+    <string name="EditProfileScreen__become_a_sustainer">후원자 되기</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
+    <string name="BadgesOverviewScreen__badges">배지</string>
+    <!-- Section header above the grid of badges you\'ve unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">내 배지</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">프로필에 배지 표시</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">프로필 배지</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">프로필을 업데이트하지 못했습니다.</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">프로필 배지</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">배지 선택</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">저장</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">프로필을 업데이트하지 못했습니다.</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">이 링크를 가진 사람은 누구나 나의 사용자 이름을 확인하고 대화를 시작할 수 있습니다. 링크는 신뢰하는 사람에게만 공유하세요.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">링크 복사</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">공유</string>
+
+    <!-- UsernameLinkSettingsScreen -->
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">코드</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">스캔</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">링크를 복사했습니다.</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">사용자 이름을 복사했어요</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR 코드를 초기화할까요?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">QR 코드를 초기화하면 기존 QR 코드와 링크가 더 이상 작동하지 않습니다.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">초기화</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">네트워크가 연결되어 있지 않아 링크를 초기화하지 못했습니다. 나중에 다시 시도해 주세요.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">링크를 초기화하는 중에 네트워크 오류가 발생했습니다. 나중에 다시 시도해 주세요.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">링크를 초기화하는 동안 예기치 못한 오류가 발생했습니다. 나중에 다시 시도해 주세요.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">QR 코드와 링크를 초기화하고 새 QR 코드와 링크를 만들었습니다.</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">QR 코드와 링크는 신뢰하는 사람에게만 공유하세요.  QR 코드와 링크를 공유하면 다른 사용자가 나의 사용자 이름을 보고 대화를 시작할 수 있습니다.</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">초기화</string>
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">링크</string>
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">공유</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">색상</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">QR 코드가 잘못되었습니다.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">네트워크 오류가 발생했습니다. 다시 시도해 주세요.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR 코드를 찾을 수 없습니다.</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal QR 코드가 포함된 다른 이미지를 스캔해 보세요.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">사용자 이름이 %1$s인 사용자를 찾을 수 없습니다.</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">상대방 기기의 QR 코드를 스캔해 주세요.</string>
+    <!-- Shown when the QR code you scanned leads to a username link that no one has -->
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">이 사용자를 찾을 수 없습니다.</string>
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">QR 코드를 스캔하려면 Signal에 카메라 접근을 허용해 주세요.</string>
+    <!-- Button on the scan tab that asks for the camera permission -->
+    <string name="UsernameLinkSettingsScreen__allow_access">권한 허용</string>
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
+    <string name="UsernameLinkSettingsScreen__camera_needed">QR 코드를 스캔하려면 Signal에 카메라 접근 권한이 필요합니다.</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">저장 공간</string>
+    <string name="preferences_storage__storage_usage">저장 공간 사용</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal 저장 공간</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal 저장 공간 최적화</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">사용하지 않는 미디어는 오프로드되지만, 언제든지 백업에서 다시 다운로드할 수 있습니다.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">대화 한도</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">연동된 기기에 제한 적용</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">대화 제한을 설정하면 연동된 기기에서도 메시지가 삭제됩니다.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">메시지 기록 삭제</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">메시지 기록을 삭제할까요?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">이 기기의 모든 메시지 기록과 미디어를 영구 삭제합니다.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">이 기기와 모든 연동 기기에서 영구적으로 모든 메시지 기록과 미디어를 삭제합니다.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">모든 메시지 기록을 정말 삭제하시겠어요?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">모든 메시지 기록을 영구적으로 제거합니다. 이 작업은 다시 되돌릴 수 없습니다.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">모든 기기에서 모든 메시지 기록을 영구적으로 제거합니다. 이 작업은 취소할 수 없습니다.</string>
+    <string name="preferences_storage__delete_all_now">지금 모두 삭제</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">저장 공간 최적화는 유료 Signal 안전한 백업에서만 사용할 수 있습니다. 백업 구독은 아직 처리 중이며 활성화되지 않았습니다. 나중에 다시 시도해 주세요.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">기기 백업에서 미디어가 제외됩니다.</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal 저장 공간 최적화\" 기능을 켜면 오래된 미디어가 기기에서 오프로드됩니다. 오프로드된 미디어는 언제든 다시 다운로드할 수 있습니다. 또한, 기기 백업에서도 오래된 미디어가 제외됩니다.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">켜기</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">알림을 끈 대화에서 통화가 시작되면 벨이 울리거나 알림이 뜹니다.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">알림을 끈 대화에서 통화가 시작되면 벨이 울리거나 알림이 뜹니다.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">알림을 끈 대화에서 나를 멘션하면 알림이 뜹니다.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">알림을 끈 대화에서 나를 멘션하면 알림이 뜹니다.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">알림을 끈 대화에서 누군가 내 메시지에 답장을 할 경우 알림이 뜹니다.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">알림을 끈 대화에서 누군가 내 메시지에 답장을 할 경우 알림이 뜹니다.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">알림 끄기 설정 시</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">전화</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">멘션</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">답장</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">선택창을 열지 못했습니다.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">알림을 사용하려면 Signal에 알림을 표시할 권한을 부여해야 합니다.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">켜기</string>
+    <string name="NotificationsSettingsFragment__calls">전화</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">연락처에 있는 사용자가 Signal에 가입한 경우</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">선택한 연락처와 그룹의 알림만 받으려면 프로필을 설정하세요.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">휴대폰 연락처에 있는 사람이 Signal에 가입하면 알림을 표시합니다.</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">알림 설정 초기화</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">모든 대화의 알림 설정을 기본값으로 초기화할까요?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">초기화</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">맞춤 대화 설정을 포함한 모든 알림 설정을 기본값으로 초기화합니다.</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">소리</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">알 수 없는 벨소리</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">전화</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">멘션</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">알림 프로필</string>
+    <string name="NotificationsSettingsScreen__notifications">알림</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">답장</string>
+    <string name="NotificationsSettingsScreen__silent">무음</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">읽지 않은 메시지 알림</string>
+    <string name="arrays__default">기본</string>
+    <string name="arrays__high">높음</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">최대</string>
+    <string name="arrays__name_and_message">이름 및 메시지</string>
+    <string name="arrays__name_only">이름</string>
+    <string name="arrays__no_name_or_message">이름 또는 메시지 표시 안 함</string>
+    <string name="preferences__blue">파란색</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">통화 알림</string>
+    <string name="preferences__change_sound_and_vibration">소리와 진동 변경하기</string>
+    <string name="preferences__customize">맞춤 설정</string>
+    <string name="preferences__cyan">청록색</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">기본값</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">알림 사용</string>
+    <string name="preferences__fast">빠르게</string>
+    <string name="preferences__five_times">5회</string>
+    <string name="preferences__green">초록색</string>
+    <string name="preferences__led_color">LED 색상</string>
+    <string name="preferences__magenta">자홍색</string>
+    <string name="preferences__never">없음</string>
+    <string name="preferences__normal">보통</string>
+    <string name="preferences__one_time">1회</string>
+    <string name="preferences__orange">주황색</string>
+    <string name="preferences__pref_led_blink_title">LED 반복 패턴</string>
+    <string name="preferences__red">빨간색</string>
+    <string name="preferences__repeat_alerts">알림 반복</string>
+    <string name="preferences__slow">느리게</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">소리</string>
+    <string name="preferences__ten_times">10회</string>
+    <string name="preferences__three_times">3회</string>
+    <string name="preferences__two_times">2회</string>
+    <string name="preferences__vibrate">진동</string>
+    <string name="preferences__white">하얀색</string>
+    <string name="preferences_notifications__in_chat_sounds">대화 내 사운드</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">내가 보낸 메시지에 대한 반응 알림을 표시합니다.</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">알림을 끈 대화에 읽지 않은 메시지가 있으면 일정 주기로 알림을 표시합니다.</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">우선 항목</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">반응 알림</string>
+    <string name="preferences_notifications__ringtone">알림 벨소리</string>
+    <string name="preferences_notifications__show">표시</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">알림 문제 해결</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">알림 끄기 설정 시</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">추가</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">알림 허용</string>
 </resources>

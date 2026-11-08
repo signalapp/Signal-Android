@@ -8,8 +8,8 @@ package org.thoughtcrime.securesms.webrtc.audio
 import android.content.Context
 import android.media.AudioManager
 import androidx.annotation.RequiresApi
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil
 
 /**

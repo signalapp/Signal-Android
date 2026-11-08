@@ -7,21 +7,20 @@ package org.thoughtcrime.securesms.stickers
 
 import org.signal.core.models.database.StickerRecord
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
-import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack
-import org.thoughtcrime.securesms.stickers.manage.InstalledStickerPack
+import org.thoughtcrime.securesms.stickers.manage.StickerPack
 import java.util.UUID
 
 /**
  * Generates sample sticker data to use in compose UI previews.
  */
 object StickerPreviewDataFactory {
-  fun availablePack(
+  fun stickerPack(
     packId: String = UUID.randomUUID().toString(),
     title: String,
     author: String,
     isBlessed: Boolean = false,
-    downloadStatus: AvailableStickerPack.DownloadStatus = AvailableStickerPack.DownloadStatus.NotDownloaded
-  ): AvailableStickerPack = AvailableStickerPack(
+    downloadStatus: StickerPack.DownloadStatus = StickerPack.DownloadStatus.NotDownloaded
+  ): StickerPack = StickerPack(
     record = StickerPackRecord(
       packId = packId,
       packKey = "packKey",
@@ -48,7 +47,7 @@ object StickerPreviewDataFactory {
     title: String,
     author: String,
     isBlessed: Boolean = false
-  ): InstalledStickerPack = InstalledStickerPack(
+  ): StickerPack = StickerPack(
     record = StickerPackRecord(
       packId = packId,
       packKey = "packKey",
@@ -67,7 +66,7 @@ object StickerPreviewDataFactory {
       isInstalled = true
     ),
     isBlessed = isBlessed,
-    sortOrder = 0
+    downloadStatus = StickerPack.DownloadStatus.Downloaded
   )
 
   fun manifestStickers(count: Int): List<StickerManifest.Sticker> = buildList {

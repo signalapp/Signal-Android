@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,6 +55,12 @@ abstract class DSLSettingsFragment(
    * focused field visible.
    */
   protected open val listAvoidsKeyboard: Boolean = false
+
+  /**
+   * Cleared by layouts that anchor another view below the list, like a bottom action button. That view carries
+   * the navigation bar inset instead, so the list must not pad for it as well.
+   */
+  protected open val listClearsNavigationBar: Boolean = true
 
   @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -107,7 +114,8 @@ abstract class DSLSettingsFragment(
    * list must scroll clear of the navigation bar. Skipped only for fragments embedded directly in
    * [MainActivity]'s Compose scaffolding, which insets those containers itself — except the
    * conversation-settings detail entry ([ConversationSettingsNavHostFragment]), which leaves insets to these
-   * fragments so the toolbar scroll tint can reach behind the status bar.
+   * fragments so the toolbar scroll tint can reach behind the status bar. Fragments shown inside a dialog have
+   * their own window, which the [MainActivity] scaffolding never insets, so they always apply insets themselves.
    */
   private fun applyEdgeToEdgeInsets() {
     if (isInsetByMainActivityHost()) {
@@ -120,7 +128,7 @@ abstract class DSLSettingsFragment(
     }
 
     recyclerView?.let { recycler ->
-      val insetTypes = WindowInsetsCompat.Type.navigationBars() or
+      val insetTypes = (if (listClearsNavigationBar) WindowInsetsCompat.Type.navigationBars() else 0) or
         (if (listScrollsBehindToolbar) WindowInsetsCompat.Type.statusBars() else 0) or
         (if (listAvoidsKeyboard) WindowInsetsCompat.Type.ime() else 0)
 
@@ -128,8 +136,10 @@ abstract class DSLSettingsFragment(
         recycler.updatePadding(top = recycler.paddingTop + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height))
       }
 
-      recycler.clipToPadding = false
-      SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, insetTypes)
+      if (insetTypes != 0) {
+        recycler.clipToPadding = false
+        SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, insetTypes)
+      }
     }
   }
 
@@ -137,7 +147,7 @@ abstract class DSLSettingsFragment(
     if (activity !is MainActivity) {
       return false
     }
-    return generateSequence(parentFragment) { it.parentFragment }.none { it is ConversationSettingsNavHostFragment }
+    return generateSequence(parentFragment) { it.parentFragment }.none { it is ConversationSettingsNavHostFragment || (it is DialogFragment && it.showsDialog) }
   }
 
   open fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper? {

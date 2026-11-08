@@ -5,8 +5,10 @@ import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.remoteconfig.RemoteConfig;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
@@ -17,7 +19,6 @@ import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata;
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -257,9 +257,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   protected @NonNull WebRtcServiceState handleLocalHangup(@NonNull WebRtcServiceState currentState) {
     RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
     if (activePeer != null) {
-      webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
-                                                           true,
-                                                           currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled());
+      markNotAccepted(currentState, activePeer.getCallId());
     }
 
     return activeCallDelegate.handleLocalHangup(currentState);
@@ -280,9 +278,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
          callEndReason == CallManager.CallEndReason.TIMEOUT ||
          callEndReason == CallManager.CallEndReason.REMOTE_GLARE))
     {
-      webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
-                                                           true,
-                                                           currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled());
+      markNotAccepted(currentState, remotePeer.getCallId());
     }
 
     return activeCallDelegate.handleEndedRemote(currentState, callEndReason, remotePeer);
@@ -290,11 +286,15 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEndReason callEndReason, @NonNull RemotePeer remotePeer) {
+    markNotAccepted(currentState, remotePeer.getCallId());
+
     return activeCallDelegate.handleEnded(currentState, callEndReason, remotePeer);
   }
 
   @Override
   protected @NonNull WebRtcServiceState handleSetupFailure(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
+    markNotAccepted(currentState, callId);
+
     return activeCallDelegate.handleSetupFailure(currentState, callId);
   }
 
@@ -306,5 +306,19 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   @Override
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
     return callSetupDelegate.handleSetEnableVideo(currentState, enable);
+  }
+
+  /**
+   * Notifies linked devices the active outgoing call ended unaccepted. No-op if {@code callId} isn't the active peer's.
+   */
+  private void markNotAccepted(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
+    RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
+    if (activePeer == null || !activePeer.getCallId().equals(callId)) {
+      return;
+    }
+
+    webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
+                                                         true,
+                                                         currentState.getCallSetupState(activePeer).isEnableVideoOnCreate() || currentState.getLocalDeviceState().getCameraState().isEnabled());
   }
 }

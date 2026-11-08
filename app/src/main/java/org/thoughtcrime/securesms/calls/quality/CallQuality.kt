@@ -6,12 +6,13 @@
 package org.thoughtcrime.securesms.calls.quality
 
 import okio.ByteString.Companion.toByteString
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.CallSummary
 import org.signal.ringrtc.GroupCall
+import org.signal.storage.protos.CallQualitySurveyRequest
 import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
@@ -48,7 +49,7 @@ object CallQuality {
   @JvmStatic
   private fun handleCallSummary(callSummary: CallSummary, callType: CallType) {
     if (isCallQualitySurveyRequired(callSummary)) {
-      SignalStore.callQuality.surveyRequest = SubmitCallQualitySurveyRequest.Builder()
+      SignalStore.callQuality.surveyRequest = CallQualitySurveyRequest.Builder()
         .call_type(callType.code)
         .start_timestamp(callSummary.startTime)
         .end_timestamp(callSummary.endTime)
@@ -83,7 +84,7 @@ object CallQuality {
     return if (!isFeatureEnabled() || request.end_timestamp.milliseconds < fiveMinutesAgo) {
       null
     } else {
-      request
+      SubmitCallQualitySurveyRequest.ADAPTER.decode(request.encode())
     }
   }
 

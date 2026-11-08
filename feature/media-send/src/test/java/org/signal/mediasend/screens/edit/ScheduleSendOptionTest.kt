@@ -20,15 +20,15 @@ import java.time.ZoneOffset
 class ScheduleSendOptionTest {
 
   @Test
-  fun `Given a mid-morning weekday, when building options, then the rest of today is suggested soonest-last`() {
+  fun `Given a mid-morning weekday, when building options, then the rest of today is suggested soonest-first`() {
     val options = optionsAt(WEDNESDAY.atTime(9, 30))
 
     assertEquals(
       listOf(
-        ScheduleSendOption.PickTime,
-        presetAt(WEDNESDAY.atTime(21, 0)),
+        presetAt(WEDNESDAY.atTime(12, 0)),
         presetAt(WEDNESDAY.atTime(18, 0)),
-        presetAt(WEDNESDAY.atTime(12, 0))
+        presetAt(WEDNESDAY.atTime(21, 0)),
+        ScheduleSendOption.PickTime
       ),
       options
     )
@@ -40,10 +40,10 @@ class ScheduleSendOptionTest {
 
     assertEquals(
       listOf(
-        ScheduleSendOption.PickTime,
-        presetAt(THURSDAY.atTime(18, 0)),
+        presetAt(THURSDAY.atTime(8, 0)),
         presetAt(THURSDAY.atTime(12, 0)),
-        presetAt(THURSDAY.atTime(8, 0))
+        presetAt(THURSDAY.atTime(18, 0)),
+        ScheduleSendOption.PickTime
       ),
       options
     )
@@ -55,10 +55,10 @@ class ScheduleSendOptionTest {
 
     assertEquals(
       listOf(
-        ScheduleSendOption.PickTime,
-        presetAt(THURSDAY.atTime(12, 0)),
+        presetAt(WEDNESDAY.atTime(21, 0)),
         presetAt(THURSDAY.atTime(8, 0)),
-        presetAt(WEDNESDAY.atTime(21, 0))
+        presetAt(THURSDAY.atTime(12, 0)),
+        ScheduleSendOption.PickTime
       ),
       options
     )
@@ -70,11 +70,11 @@ class ScheduleSendOptionTest {
 
     assertEquals(
       listOf(
-        ScheduleSendOption.PickTime,
-        presetAt(MONDAY.atTime(8, 0)),
-        presetAt(FRIDAY.atTime(21, 0)),
+        presetAt(FRIDAY.atTime(12, 0)),
         presetAt(FRIDAY.atTime(18, 0)),
-        presetAt(FRIDAY.atTime(12, 0))
+        presetAt(FRIDAY.atTime(21, 0)),
+        presetAt(MONDAY.atTime(8, 0)),
+        ScheduleSendOption.PickTime
       ),
       options
     )
@@ -86,11 +86,11 @@ class ScheduleSendOptionTest {
 
     assertEquals(
       listOf(
-        ScheduleSendOption.PickTime,
-        presetAt(MONDAY.atTime(8, 0)),
-        presetAt(SATURDAY.atTime(21, 0)),
+        presetAt(SATURDAY.atTime(12, 0)),
         presetAt(SATURDAY.atTime(18, 0)),
-        presetAt(SATURDAY.atTime(12, 0))
+        presetAt(SATURDAY.atTime(21, 0)),
+        presetAt(MONDAY.atTime(8, 0)),
+        ScheduleSendOption.PickTime
       ),
       options
     )

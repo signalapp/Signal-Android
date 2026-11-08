@@ -7,7 +7,8 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.core.os.LocaleListCompat;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import org.signal.storage.keyvalue.PlainTextKeyValueStore;
 
 import java.util.Locale;
 
@@ -19,27 +20,38 @@ public final class DynamicLanguageContextWrapper {
 
   private static LocaleListCompat systemLocaleList = LocaleListCompat.getEmptyLocaleList();
 
-  public static void prepareOverrideConfiguration(@NonNull Context context, @NonNull Configuration base) {
+  public static void prepareOverrideConfiguration(@NonNull Configuration base) {
     if (Build.VERSION.SDK_INT >= 24) {
       systemLocaleList = LocaleListCompat.wrap(base.getLocales());
     } else {
       systemLocaleList = LocaleListCompat.create(base.locale);
     }
-    Locale newLocale = getUsersSelectedLocale(context);
+    Locale newLocale = getUsersSelectedLocale();
 
     Locale.setDefault(newLocale);
     base.setLocale(newLocale);
   }
 
   @SuppressWarnings("deprecated")
-  public static @NonNull Locale getUsersSelectedLocale(@NonNull Context context) {
-    String language = TextSecurePreferences.getLanguage(context);
+  public static @NonNull Locale getUsersSelectedLocale() {
+    String language = PlainTextKeyValueStore.getLanguage();
     return LocaleParser.findBestMatchingLocaleForLanguage(language, systemLocaleList);
   }
 
   public static void updateContext(@NonNull Context base) {
     Configuration config = base.getResources().getConfiguration();
 
-    prepareOverrideConfiguration(base, config);
+    prepareOverrideConfiguration(config);
+  }
+
+  /**
+   * A context whose resources use the user's selected language. The application context only has it applied once at
+   * startup, and a later configuration change resets it to the system language.
+   */
+  public static @NonNull Context createLocalizedContext(@NonNull Context context) {
+    Configuration config = new Configuration(context.getResources().getConfiguration());
+    config.setLocale(getUsersSelectedLocale());
+
+    return context.createConfigurationContext(config);
   }
 }

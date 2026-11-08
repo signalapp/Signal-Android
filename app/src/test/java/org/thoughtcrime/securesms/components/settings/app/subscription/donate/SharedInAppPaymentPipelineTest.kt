@@ -359,6 +359,78 @@ class SharedInAppPaymentPipelineTest {
   }
 
   @Test
+  fun `Given WAITING_FOR_AUTHORIZATION state transitions to END state without error, when I awaitTransaction, then I expect to complete`() {
+    val inAppPayment = createInAppPayment()
+    val paymentSource = PayPalPaymentSource()
+    val requiredActionHandler: RequiredActionHandler = {
+      Completable.complete()
+    }
+
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
+    val test = SharedInAppPaymentPipeline.awaitTransaction(
+      inAppPayment.id,
+      paymentSource,
+      requiredActionHandler,
+      requiredActionHandler
+    ).test()
+
+    test.assertNoErrors()
+
+    updateDispatcher.onNext(
+      inAppPayment.copy(
+        state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION
+      )
+    )
+
+    updateDispatcher.onNext(
+      inAppPayment.copy(
+        state = InAppPaymentTable.State.PENDING
+      )
+    )
+
+    updateDispatcher.onNext(
+      inAppPayment.copy(
+        state = InAppPaymentTable.State.END
+      )
+    )
+
+    test.assertComplete()
+  }
+
+  @Test
+  fun `Given WAITING_FOR_AUTHORIZATION state that times out, when I awaitTransaction, then I expect TimeoutWaitingForTokenError`() {
+    val inAppPayment = createInAppPayment()
+    val paymentSource = PayPalPaymentSource()
+    val requiredActionHandler: RequiredActionHandler = {
+      Completable.complete()
+    }
+
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
+    val test = SharedInAppPaymentPipeline.awaitTransaction(
+      inAppPayment.id,
+      paymentSource,
+      requiredActionHandler,
+      requiredActionHandler
+    ).test()
+
+    test.assertNoErrors()
+
+    updateDispatcher.onNext(
+      inAppPayment.copy(
+        state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION
+      )
+    )
+
+    rxRule.defaultScheduler.advanceTimeBy(10, TimeUnit.SECONDS)
+
+    test.assertError {
+      it is DonationError.BadgeRedemptionError.TimeoutWaitingForTokenError
+    }
+  }
+
+  @Test
   fun `Given PENDING state that times out, when I awaitTransaction, then I expect TimeoutWaitingForTokenError`() {
     val inAppPayment = createInAppPayment()
     val paymentSource = PayPalPaymentSource()

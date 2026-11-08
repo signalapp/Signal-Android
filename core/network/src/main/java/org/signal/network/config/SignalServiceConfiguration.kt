@@ -17,7 +17,6 @@ data class SignalServiceConfiguration(
   val networkInterceptors: List<Interceptor>,
   val dns: Optional<Dns>,
   val signalProxy: Optional<SignalProxy>,
-  val systemHttpProxy: Optional<HttpProxy>,
   val zkGroupServerPublicParams: ByteArray,
   val genericServerPublicParams: ByteArray,
   val backupServerPublicParams: ByteArray,

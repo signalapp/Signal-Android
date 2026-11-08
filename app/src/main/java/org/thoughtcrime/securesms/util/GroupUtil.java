@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.BidiUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
@@ -36,14 +36,26 @@ public final class GroupUtil {
   private static final String TAG = Log.tag(GroupUtil.class);
 
   public static @Nullable GroupContextV2 getGroupContextIfPresent(@NonNull Content content) {
-    if (content.dataMessage != null && SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.dataMessage)) {
+    if (content.dataMessage != null && SignalServiceProtoUtil.hasGroupContext(content.dataMessage)) {
       return content.dataMessage.groupV2;
     } else if (content.syncMessage != null                 &&
                content.syncMessage.sent != null &&
                content.syncMessage.sent.message != null &&
-               SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.syncMessage.sent.message))
+               SignalServiceProtoUtil.hasGroupContext(content.syncMessage.sent.message))
     {
       return content.syncMessage.sent.message.groupV2;
+    } else if (content.editMessage != null &&
+               content.editMessage.dataMessage != null &&
+               SignalServiceProtoUtil.hasGroupContext(content.editMessage.dataMessage))
+    {
+      return content.editMessage.dataMessage.groupV2;
+    } else if (content.syncMessage != null &&
+               content.syncMessage.sent != null &&
+               content.syncMessage.sent.editMessage != null &&
+               content.syncMessage.sent.editMessage.dataMessage != null &&
+               SignalServiceProtoUtil.hasGroupContext(content.syncMessage.sent.editMessage.dataMessage))
+    {
+      return content.syncMessage.sent.editMessage.dataMessage.groupV2;
     } else if (content.storyMessage != null && SignalServiceProtoUtil.INSTANCE.isValid(content.storyMessage.group)) {
       return content.storyMessage.group;
     } else {
@@ -83,16 +95,27 @@ public final class GroupUtil {
       GroupTable  groupDatabase = SignalDatabase.groups();
       GroupRecord groupRecord   = groupDatabase.requireGroup(groupId);
 
-      if (!groupRecord.getHasV2GroupProperties()) {
-        throw new UndeliverableMessageException("No group properties for V2 group " + groupId + ", likely deleted; cannot attach group context.");
-      }
-
-      GroupTable.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
-      SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
-                                                                              .withRevision(v2GroupProperties.getGroupRevision())
-                                                                              .build();
-      dataMessageBuilder.asGroupMessage(group);
+      setDataMessageGroupContext(dataMessageBuilder, groupRecord);
     }
+  }
+
+  public static void setDataMessageGroupContext(@NonNull SignalServiceDataMessage.Builder dataMessageBuilder,
+                                                @NonNull GroupRecord groupRecord)
+      throws UndeliverableMessageException
+  {
+    if (!groupRecord.getId().isV2()) {
+      return;
+    }
+
+    if (!groupRecord.getHasV2GroupProperties()) {
+      throw new UndeliverableMessageException("No group properties for V2 group " + groupRecord.getId() + ", likely deleted; cannot attach group context.");
+    }
+
+    GroupTable.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
+    SignalServiceGroupV2         group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
+                                                                         .withRevision(v2GroupProperties.getGroupRevision())
+                                                                         .build();
+    dataMessageBuilder.asGroupMessage(group);
   }
 
   public static class GroupDescription {

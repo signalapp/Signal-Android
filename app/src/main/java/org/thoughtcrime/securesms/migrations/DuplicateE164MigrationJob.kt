@@ -1,14 +1,15 @@
 package org.thoughtcrime.securesms.migrations
 
+import org.signal.core.database.delete
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
-import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToMap
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTable.Companion.ACI_COLUMN
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.database.RecipientTable.Companion.PNI_COLUMN
 import org.thoughtcrime.securesms.database.RecipientTable.Companion.TABLE_NAME
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Through testing, we've discovered that there are some duplicate E164's in the database. They're not identical strings, since the UNIQUE constraint
@@ -99,7 +99,7 @@ internal class DuplicateE164MigrationJob(
       }
 
       Log.w(TAG, "Was not able to resolve all conflicts. We must merge the contacts together.")
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         val first = resolved.first()
         for (entry in resolved.drop(1)) {
           Log.w(TAG, "Merging ${first.id} with ${entry.id}")

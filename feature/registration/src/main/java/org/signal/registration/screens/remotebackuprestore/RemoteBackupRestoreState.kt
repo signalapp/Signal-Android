@@ -17,10 +17,11 @@ data class RemoteBackupRestoreState(
   val restoreState: RestoreState = RestoreState.None,
   val restoreProgress: RestoreProgress? = null,
   val loadAttempts: Int = 0,
-  val showContactSupportDialog: Boolean = false
+  val showContactSupportDialog: Boolean = false,
+  val isSkipping: Boolean = false
 ) {
 
-  override fun toString(): String = "RemoteBackupRestoreState(aep=${aep.displayValue.censor()}, loadState=$loadState, backupTime=$backupTime, backupSize=$backupSize, restoreState=$restoreState, restoreProgress=$restoreProgress, loadAttempts=$loadAttempts, showContactSupportDialog=$showContactSupportDialog)"
+  override fun toString(): String = "RemoteBackupRestoreState(aep=${aep.displayValue.censor()}, loadState=$loadState, backupTime=$backupTime, backupSize=$backupSize, restoreState=$restoreState, restoreProgress=$restoreProgress, loadAttempts=$loadAttempts, showContactSupportDialog=$showContactSupportDialog, isSkipping=$isSkipping)"
 
   enum class LoadState {
     Loading,

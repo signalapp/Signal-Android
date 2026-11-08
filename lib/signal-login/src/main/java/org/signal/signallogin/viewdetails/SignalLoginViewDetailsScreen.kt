@@ -6,65 +6,119 @@
 package org.signal.signallogin.viewdetails
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.BreakpointPreviews
 import org.signal.core.ui.compose.Buttons
-import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.rememberWindowBreakpoint
+import org.signal.passwordmanager.compose.SaveToPasswordManagerDialog
 import org.signal.signallogin.R
 import org.signal.signallogin.SignalLoginTestTags
-import org.signal.signallogin.fonts.MonoTypeface
+import org.signal.signallogin.beta.SignalLoginBetaDisclaimer
+import org.signal.signallogin.beta.SignalLoginBetaTag
+import org.signal.signallogin.details.SignalLoginKeyDetails
+import org.signal.signallogin.warning.DoNotShareLoginBottomSheet
 
-/** Size of the miniature credential card artwork shown at the top of the screen, from the design. */
-private val MINI_CARD_WIDTH = 175.dp
-private val MINI_CARD_HEIGHT = 100.dp
+/** Aspect ratio of the credential card artwork. */
+private const val CARD_ASPECT_RATIO = 1.75f
 
-/** Corner radius of the card artwork (26dp in its 363dp-wide coordinates), scaled down to the miniature size. */
-private val MINI_CARD_CORNER_RADIUS = 13.dp
+/** The artwork's 26dp corner radius as a fraction of its 363dp design width, so the radius tracks the card's size. */
+private const val CARD_CORNER_RADIUS_RATIO = 26f / 363f
 
-private val BUTTON_MAX_WIDTH = 331.dp
+private val smallLayout = Layout.OnePane(
+  cardWidth = 175.dp,
+  maxButtonWidth = 331.dp
+)
 
-private const val GROUPS_PER_ROW = 4
+private val mediumLayout = Layout.TwoPane(
+  cardWidth = 240.dp,
+  maxButtonWidth = 331.dp,
+  paneOuterInset = 24.dp,
+  paneInnerInset = 24.dp,
+  paneVerticalInset = 24.dp
+)
 
-/** The least amount of space allowed between recovery key groups before falling back to natural text wrapping. */
-private val MIN_GROUP_SPACING = 12.dp
+private val largeWidthLayout = Layout.TwoPane(
+  cardWidth = 280.dp,
+  maxButtonWidth = 412.dp,
+  paneOuterInset = 128.dp,
+  paneInnerInset = 64.dp,
+  paneVerticalInset = 64.dp
+)
+
+private val largeHeightLayout = Layout.OnePane(
+  cardWidth = 240.dp,
+  maxButtonWidth = 331.dp
+)
+
+/**
+ * Sizing that the screen switches between as the window grows, mirroring the registration flow's scaffold params.
+ */
+private sealed interface Layout {
+  val cardWidth: Dp
+  val maxButtonWidth: Dp
+
+  data class OnePane(
+    override val cardWidth: Dp,
+    override val maxButtonWidth: Dp
+  ) : Layout
+
+  data class TwoPane(
+    override val cardWidth: Dp,
+    override val maxButtonWidth: Dp,
+    val paneOuterInset: Dp,
+    val paneInnerInset: Dp,
+    val paneVerticalInset: Dp
+  ) : Layout
+}
+
+@Composable
+private fun rememberLayout(): Layout {
+  return when (val breakpoint = rememberWindowBreakpoint()) {
+    is WindowBreakpoint.Small -> smallLayout
+    is WindowBreakpoint.Medium -> mediumLayout
+    is WindowBreakpoint.Large -> if (breakpoint.isWidthExpanded) largeWidthLayout else largeHeightLayout
+  }
+}
 
 /**
  * Shows the user the full keys that make up their Signal Login and offers ways to save them.
@@ -75,186 +129,284 @@ fun SignalLoginViewDetailsScreen(
   onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val layout = rememberLayout()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
+
   Scaffolds.Settings(
     title = stringResource(R.string.SignalLoginViewDetailsScreen__signal_login),
     onNavigationClick = { onEvent(SignalLoginViewDetailsScreenEvents.BackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.SignalLoginViewDetailsScreen__navigate_back),
+    titleContent = { _, title -> TitleWithBetaTag(title) },
+    bottomBar = {
+      Footer(
+        maxButtonWidth = layout.maxButtonWidth,
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward,
+        showSaveToPasswordManagerButton = state.showSaveToPasswordManagerButton,
+        isPasswordManagerAvailable = state.isPasswordManagerAvailable,
+        showResetRecoveryKeyButton = state.showResetRecoveryKeyButton,
+        resetRecoveryKeyButtonLoading = state.resetRecoveryKeyButtonLoading,
+        onEvent = onEvent
+      )
+    },
     modifier = modifier.testTag(SignalLoginTestTags.VIEW_DETAILS_SCREEN)
   ) { paddingValues ->
-    Column(
+    Box(
       modifier = Modifier
         .fillMaxSize()
         .padding(paddingValues)
     ) {
-      Column(
-        modifier = Modifier
-          .weight(1f)
-          .fillMaxWidth()
-          .verticalScroll(rememberScrollState())
-      ) {
-        MiniCard(
-          modifier = Modifier
-            .align(Alignment.CenterHorizontally)
-            .padding(top = 20.dp)
+      when (layout) {
+        is Layout.OnePane -> OnePaneContent(
+          layout = layout,
+          scrollState = firstPaneScrollState,
+          state = state,
+          onEvent = onEvent
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Texts.SectionHeader(text = stringResource(R.string.SignalLoginViewDetailsScreen__account_key))
-
-        KeyBlock(text = state.accountKey)
-
-        Texts.SectionHeader(text = stringResource(R.string.SignalLoginViewDetailsScreen__recovery_key))
-
-        RecoveryKeyBlock(groups = state.recoveryKeyGroups)
+        is Layout.TwoPane -> TwoPaneContent(
+          layout = layout,
+          firstPaneScrollState = firstPaneScrollState,
+          secondPaneScrollState = secondPaneScrollState,
+          state = state,
+          onEvent = onEvent
+        )
       }
+    }
+  }
 
-      Footer(onEvent = onEvent)
+  if (state.showSaveToPasswordManagerConfirmation) {
+    SaveToPasswordManagerDialog(
+      trustBody = stringResource(R.string.SignalLoginViewDetailsScreen__only_store_your_credentials),
+      isGooglePasswordManagerDefault = state.isGooglePasswordManagerDefault,
+      onContinue = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmed) },
+      onDismiss = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmationDismissed) }
+    )
+  }
+
+  if (state.doNotShareWarningAction != null) {
+    DoNotShareLoginBottomSheet(
+      onGotIt = { onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningGotItClicked) },
+      onLearnMore = { onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningLearnMoreClicked) },
+      onDismiss = { onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningDismissed) }
+    )
+  }
+}
+
+@Composable
+private fun OnePaneContent(
+  layout: Layout.OnePane,
+  scrollState: ScrollState,
+  state: SignalLoginViewDetailsState,
+  onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit
+) {
+  Column(
+    modifier = Modifier
+      .fillMaxSize()
+      .verticalScroll(scrollState)
+  ) {
+    SignalLoginBetaDisclaimer(
+      modifier = Modifier
+        .horizontalGutters()
+        .padding(vertical = 12.dp)
+    )
+
+    CredentialCard(
+      width = layout.cardWidth,
+      modifier = Modifier
+        .align(Alignment.CenterHorizontally)
+        .padding(top = 8.dp)
+    )
+
+    Spacer(modifier = Modifier.height(16.dp))
+
+    KeyDetails(state = state, onEvent = onEvent)
+  }
+}
+
+@Composable
+private fun TwoPaneContent(
+  layout: Layout.TwoPane,
+  firstPaneScrollState: ScrollState,
+  secondPaneScrollState: ScrollState,
+  state: SignalLoginViewDetailsState,
+  onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit
+) {
+  Row(modifier = Modifier.fillMaxSize()) {
+    Column(
+      horizontalAlignment = Alignment.CenterHorizontally,
+      verticalArrangement = Arrangement.Center,
+      modifier = Modifier
+        .weight(1f)
+        .fillMaxHeight()
+        .verticalScroll(firstPaneScrollState)
+        .padding(
+          start = layout.paneOuterInset,
+          end = layout.paneInnerInset,
+          top = layout.paneVerticalInset,
+          bottom = layout.paneVerticalInset
+        )
+    ) {
+      CredentialCard(width = layout.cardWidth)
+
+      Spacer(modifier = Modifier.height(24.dp))
+
+      SignalLoginBetaDisclaimer(textAlign = TextAlign.Center)
+    }
+
+    Column(
+      verticalArrangement = Arrangement.Center,
+      modifier = Modifier
+        .weight(1f)
+        .fillMaxHeight()
+        .verticalScroll(secondPaneScrollState)
+        .padding(vertical = layout.paneVerticalInset)
+    ) {
+      KeyDetails(state = state, onEvent = onEvent)
     }
   }
 }
 
+@Composable
+private fun TitleWithBetaTag(title: String) {
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.spacedBy(8.dp)
+  ) {
+    Text(
+      text = title,
+      style = MaterialTheme.typography.titleLarge,
+      modifier = Modifier.weight(1f, fill = false)
+    )
+
+    SignalLoginBetaTag()
+  }
+}
+
 /**
- * A miniature of the credential card artwork, without any of the card's content.
+ * The credential card artwork, without any of the card's content.
  */
 @Composable
-private fun MiniCard(modifier: Modifier = Modifier) {
+private fun CredentialCard(width: Dp, modifier: Modifier = Modifier) {
   Image(
     painter = painterResource(R.drawable.image_signal_login_card),
     contentDescription = null,
     contentScale = ContentScale.FillBounds,
     modifier = modifier
-      .size(width = MINI_CARD_WIDTH, height = MINI_CARD_HEIGHT)
-      .shadow(elevation = 6.dp, shape = RoundedCornerShape(MINI_CARD_CORNER_RADIUS))
+      .size(width = width, height = width / CARD_ASPECT_RATIO)
+      .shadow(elevation = 6.dp, shape = RoundedCornerShape(width * CARD_CORNER_RADIUS_RATIO))
   )
 }
 
-/**
- * A full credential rendered in the special monospace font on a rounded surface.
- */
 @Composable
-private fun KeyBlock(
-  text: String,
-  modifier: Modifier = Modifier
+private fun KeyDetails(
+  state: SignalLoginViewDetailsState,
+  onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit
 ) {
-  Box(modifier = modifier.keyBlockSurface()) {
-    Text(
-      text = text,
-      style = keyTextStyle()
-    )
-  }
+  SignalLoginKeyDetails(
+    accountId = state.accountKey,
+    recoveryKeyGroups = state.recoveryKeyGroups,
+    onCopyAccountId = { onEvent(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked) },
+    onCopyRecoveryKey = { onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked) }
+  )
 }
 
-/**
- * The recovery key rendered as character groups. When four groups fit per row with at least
- * [MIN_GROUP_SPACING] between them, renders rows of four groups evenly spaced across the full
- * width. Otherwise renders the whole key as a single space-separated string that wraps naturally.
- */
 @Composable
-private fun RecoveryKeyBlock(
-  groups: List<String>,
-  modifier: Modifier = Modifier
+private fun Footer(
+  maxButtonWidth: Dp,
+  isElevated: Boolean,
+  showSaveToPasswordManagerButton: Boolean,
+  isPasswordManagerAvailable: Boolean,
+  showResetRecoveryKeyButton: Boolean,
+  resetRecoveryKeyButtonLoading: Boolean,
+  onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit
 ) {
-  BoxWithConstraints(modifier = modifier.keyBlockSurface()) {
-    val style = keyTextStyle()
-    val textMeasurer = rememberTextMeasurer()
-    val maxWidth = constraints.maxWidth
+  Surface(shadowElevation = if (isElevated) 8.dp else 0.dp) {
+    Column(
+      horizontalAlignment = Alignment.CenterHorizontally,
+      verticalArrangement = Arrangement.spacedBy(16.dp),
+      modifier = Modifier
+        .fillMaxWidth()
+        .navigationBarsPadding()
+        .horizontalGutters()
+        .padding(vertical = 16.dp)
+    ) {
+      if (showSaveToPasswordManagerButton) {
+        Buttons.MediumTonal(
+          onClick = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked) },
+          colors = primaryContainerButtonColors(enabledLook = isPasswordManagerAvailable),
+          modifier = Modifier
+            .widthIn(max = maxButtonWidth)
+            .fillMaxWidth()
+            .testTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON)
+        ) {
+          Text(stringResource(R.string.SignalLoginViewDetailsScreen__save_to_password_manager))
+        }
+      }
 
-    val groupWidth = remember(groups, style) {
-      groups.maxOfOrNull { group -> textMeasurer.measure(text = group, style = style).size.width } ?: 0
-    }
+      Buttons.MediumTonal(
+        onClick = { onEvent(SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked) },
+        colors = ButtonDefaults.filledTonalButtonColors(
+          containerColor = MaterialTheme.colorScheme.primaryContainer,
+          contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        ),
+        modifier = Modifier
+          .widthIn(max = maxButtonWidth)
+          .fillMaxWidth()
+          .testTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_AS_PDF_BUTTON)
+      ) {
+        Text(stringResource(R.string.SignalLoginViewDetailsScreen__save_as_pdf))
+      }
 
-    val minSpacing = with(LocalDensity.current) { MIN_GROUP_SPACING.roundToPx() }
-    val fitsFourPerRow = groupWidth * GROUPS_PER_ROW + minSpacing * (GROUPS_PER_ROW - 1) <= maxWidth
-
-    if (fitsFourPerRow) {
-      val spacing = with(LocalDensity.current) { ((maxWidth - groupWidth * GROUPS_PER_ROW) / (GROUPS_PER_ROW - 1)).toDp() }
-
-      Column {
-        groups.chunked(GROUPS_PER_ROW).forEach { row ->
-          Row(
-            horizontalArrangement = Arrangement.spacedBy(spacing),
-            modifier = Modifier.fillMaxWidth()
+      if (showResetRecoveryKeyButton) {
+        if (resetRecoveryKeyButtonLoading) {
+          Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+              .height(ButtonDefaults.MinHeight)
+              .testTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_SPINNER)
           ) {
-            row.forEach { group ->
-              Text(
-                text = group,
-                style = style
-              )
-            }
+            CircularProgressIndicator(
+              strokeWidth = 3.dp,
+              modifier = Modifier.size(24.dp)
+            )
+          }
+        } else {
+          TextButton(
+            onClick = { onEvent(SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked) },
+            modifier = Modifier
+              .widthIn(max = maxButtonWidth)
+              .fillMaxWidth()
+              .testTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON)
+          ) {
+            Text(stringResource(R.string.SignalLoginViewDetailsScreen__reset_recovery_key))
           }
         }
       }
-    } else {
-      Text(
-        text = groups.joinToString(separator = " "),
-        style = style
-      )
     }
   }
 }
 
+/**
+ * Tonal button colors, optionally rendered with the disabled palette while the button stays clickable so that tapping
+ * it can explain why it won't work.
+ */
 @Composable
-private fun Modifier.keyBlockSurface(): Modifier {
-  return this
-    .horizontalGutters()
-    .fillMaxWidth()
-    .clip(RoundedCornerShape(18.dp))
-    .background(SignalTheme.colors.colorSurface2)
-    .padding(horizontal = 28.dp, vertical = 20.dp)
-}
-
-@Composable
-private fun keyTextStyle(): TextStyle {
-  return MaterialTheme.typography.bodyLarge.copy(
-    fontFamily = MonoTypeface.fontFamily(),
-    fontSize = 18.sp,
-    lineHeight = 28.sp,
-    letterSpacing = 1.44.sp
+private fun primaryContainerButtonColors(enabledLook: Boolean): ButtonColors {
+  val colors = ButtonDefaults.filledTonalButtonColors(
+    containerColor = MaterialTheme.colorScheme.primaryContainer,
+    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
   )
-}
 
-@Composable
-private fun Footer(onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit) {
-  Column(
-    horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.spacedBy(16.dp),
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(horizontal = 24.dp, vertical = 16.dp)
-  ) {
-    Buttons.MediumTonal(
-      onClick = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked) },
-      colors = ButtonDefaults.filledTonalButtonColors(
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
-        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-      ),
-      modifier = Modifier
-        .widthIn(max = BUTTON_MAX_WIDTH)
-        .fillMaxWidth()
-        .testTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON)
-    ) {
-      Text(stringResource(R.string.SignalLoginViewDetailsScreen__save_to_password_manager))
-    }
-
-    Buttons.MediumTonal(
-      onClick = { onEvent(SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked) },
-      colors = ButtonDefaults.filledTonalButtonColors(
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
-        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-      ),
-      modifier = Modifier
-        .widthIn(max = BUTTON_MAX_WIDTH)
-        .fillMaxWidth()
-        .testTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_AS_PDF_BUTTON)
-    ) {
-      Text(stringResource(R.string.SignalLoginViewDetailsScreen__save_as_pdf))
-    }
+  return if (enabledLook) {
+    colors
+  } else {
+    colors.copy(containerColor = colors.disabledContainerColor, contentColor = colors.disabledContentColor)
   }
 }
 
-@DayNightPreviews
+@BreakpointPreviews
 @Composable
 private fun SignalLoginViewDetailsScreenPreview() {
   Previews.Preview {
@@ -262,6 +414,52 @@ private fun SignalLoginViewDetailsScreenPreview() {
       state = SignalLoginViewDetailsState(
         accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
         recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T"
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun SignalLoginViewDetailsScreenNoPasswordManagerPreview() {
+  Previews.Preview {
+    SignalLoginViewDetailsScreen(
+      state = SignalLoginViewDetailsState(
+        accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
+        recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T",
+        isPasswordManagerAvailable = false
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun SignalLoginViewDetailsScreenWithResetPreview() {
+  Previews.Preview {
+    SignalLoginViewDetailsScreen(
+      state = SignalLoginViewDetailsState(
+        accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
+        recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T",
+        showResetRecoveryKeyButton = true
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun SignalLoginViewDetailsScreenWithResetLoadingPreview() {
+  Previews.Preview {
+    SignalLoginViewDetailsScreen(
+      state = SignalLoginViewDetailsState(
+        accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
+        recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T",
+        showResetRecoveryKeyButton = true,
+        resetRecoveryKeyButtonLoading = true
       ),
       onEvent = {}
     )

@@ -18,8 +18,108 @@
     <!-- Title for dialog shown when a required permission has not been granted -->
     <string name="Permissions_permission_required">Wymagane uprawnienie</string>
 
+    <!-- ListDetailPane -->
+    <!-- Content description for the draggable divider between the list and detail panes on large screens -->
+    <string name="ListDetailPane__accessibility_pane_divider">Zmień rozmiar paneli</string>
+    <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
+    <string name="ListDetailPane__accessibility_move_pane_divider">Przesuń separator</string>
+
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
 
+    <!-- DevicePinAuthEducationSheet -->
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Aby potwierdzić, wybierz opcję „Kontynuuj” i użyj swojej metody odblokowywania telefonu. Nie wpisuj PIN-u do aplikacji Signal.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Kontynuuj</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">Zamknij</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Przejdź wstecz</string>
+
+    <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
+    <string name="StickerFavorites__add_to_favorites">Dodaj do ulubionych</string>
+    <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites">Usuń z ulubionych</string>
+    <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__remove_from_favorites_question">Usunąć z ulubionych?</string>
+    <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Nie będzie można ponownie wysłać tej naklejki ani dodać jej do Ulubionych bez zainstalowanego pakietu, linku lub wiadomości z naklejką.</string>
+    <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
+    <string name="StickerFavorites__remove">Usuń</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">Brak</string>
+    <string name="preferences_off">Wyłączone</string>
+    <string name="preferences_on">Włączone</string>
+    <string name="ExpireTimerSettingsFragment__set">Ustaw</string>
+    <string name="CustomExpireTimerSelectorView__seconds">sekundy</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minuty</string>
+    <string name="CustomExpireTimerSelectorView__hours">godziny</string>
+    <string name="CustomExpireTimerSelectorView__days">dni</string>
+    <string name="CustomExpireTimerSelectorView__weeks">tygodnie</string>
+    <!-- expiration -->
+    <string name="expiration_off">Wyłączone</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="one">%1$d sekunda</item>
+        <item quantity="few">%1$d sekundy</item>
+        <item quantity="many">%1$d sekund</item>
+        <item quantity="other">%1$d sekundy</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$ds</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="few">%1$d minuty</item>
+        <item quantity="many">%1$d minut</item>
+        <item quantity="other">%1$d minuty</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$dm</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">%1$d godzina</item>
+        <item quantity="few">%1$d godziny</item>
+        <item quantity="many">%1$d godzin</item>
+        <item quantity="other">%1$d godziny</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$dg</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">%1$d dzień</item>
+        <item quantity="few">%1$d dni</item>
+        <item quantity="many">%1$d dni</item>
+        <item quantity="other">%1$d dnia</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$dd</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">%1$d tydzień</item>
+        <item quantity="few">%1$d tygodnie</item>
+        <item quantity="many">%1$d tygodni</item>
+        <item quantity="other">%1$d tygodnia</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$dt</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">Dowiedz się więcej</string>
+
+    <string name="SpanUtil__read_more">Czytaj dalej</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">Przełącz na wpisywanie tekstu</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">Przełącz na zegar</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">Usuń tę osobę: %1$s</string>
 </resources>

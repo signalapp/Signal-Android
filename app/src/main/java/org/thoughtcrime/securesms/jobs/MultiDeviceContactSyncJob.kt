@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobs
 
-import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -14,7 +13,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsReader
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil
@@ -69,50 +68,56 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
   }
 
   private fun processContactFile(inputStream: InputStream) {
-    val deviceContacts = DeviceContactsInputStream(inputStream)
+    val reader = DeviceContactsReader(inputStream)
+
+    for (contact in reader.contacts()) {
+      applyContact(contact)
+    }
+
+    Log.i(TAG, "[ContactSync] Sync complete. Skipped ${reader.skippedRecords} records with no address.")
+  }
+
+  private fun applyContact(contact: DeviceContact) {
+    val aci = contact.aci
+    val e164 = contact.e164
+    val recipient: Recipient? = when {
+      aci != null -> Recipient.externalPush(SignalServiceAddress(aci, e164))
+      e164 != null -> Recipient.external(e164)
+      else -> null
+    }
+
+    if (recipient == null) {
+      Log.w(TAG, "[ContactSync] Could not resolve a recipient for a synced contact. Skipping.")
+      return
+    }
+
+    if (recipient.isSelf) {
+      return
+    }
+
     val recipients = SignalDatabase.recipients
 
-    var contact: DeviceContact? = deviceContacts.read()
-    while (contact != null) {
-      val recipient: Recipient? = if (contact.aci.isPresent) {
-        Recipient.externalPush(SignalServiceAddress(contact.aci.get(), contact.e164.orElse(null)))
+    contact.name?.let { recipients.setSystemContactName(recipient.id, it) }
+
+    val expireTimer = contact.expireTimer
+    if (expireTimer != null) {
+      val syncedVersion = contact.expireTimerVersion
+      if (syncedVersion == null) {
+        // TODO [expireVersion] After unsupported builds expire, we can remove this branch
+        recipients.setExpireMessagesWithoutIncrementingVersion(recipient.id, expireTimer)
+      } else if (syncedVersion >= recipient.expireTimerVersion) {
+        recipients.setExpireMessages(recipient.id, expireTimer, syncedVersion)
       } else {
-        Recipient.external(contact.e164.get())
+        Log.w(TAG, "[ContactSync] ${recipient.id} was synced with an old expiration timer. Ignoring. Received: $syncedVersion Current: ${recipient.expireTimerVersion}")
       }
+    }
 
-      if (recipient == null) {
-        continue
+    contact.avatar?.let {
+      try {
+        AvatarHelper.setSyncAvatar(context, recipient.id, it.inputStream)
+      } catch (e: IOException) {
+        Log.w(TAG, "[ContactSync] Unable to set sync avatar for ${recipient.id}")
       }
-
-      if (recipient.isSelf) {
-        contact = deviceContacts.read()
-        continue
-      }
-
-      if (contact.name.isPresent) {
-        recipients.setSystemContactName(recipient.id, contact.name.get())
-      }
-
-      if (contact.expirationTimer.isPresent) {
-        if (contact.expirationTimerVersion.isPresent && contact.expirationTimerVersion.get() > recipient.expireTimerVersion) {
-          recipients.setExpireMessages(recipient.id, contact.expirationTimer.get(), contact.expirationTimerVersion.orElse(1))
-        } else if (contact.expirationTimerVersion.isAbsent()) {
-          // TODO [expireVersion] After unsupported builds expire, we can remove this branch
-          recipients.setExpireMessagesWithoutIncrementingVersion(recipient.id, contact.expirationTimer.get())
-        } else {
-          Log.w(TAG, "[ContactSync] ${recipient.id} was synced with an old expiration timer. Ignoring. Recieved: ${contact.expirationTimerVersion.get()} Current: ${recipient.expireTimerVersion}")
-        }
-      }
-
-      if (contact.avatar.isPresent) {
-        try {
-          AvatarHelper.setSyncAvatar(context, recipient.id, contact.avatar.get().inputStream)
-        } catch (e: IOException) {
-          Log.w(TAG, "Unable to set sync avatar for ${recipient.id}")
-        }
-      }
-
-      contact = deviceContacts.read()
     }
   }
 

@@ -13,7 +13,7 @@
         <argument
             android:name="recipient_id"
             android:defaultValue="@null"
-            app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+            app:argType="org.signal.core.models.recipients.RecipientId"
             app:nullable="true" />
 
         <argument

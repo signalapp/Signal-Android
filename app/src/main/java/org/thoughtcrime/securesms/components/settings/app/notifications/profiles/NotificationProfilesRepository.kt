@@ -6,6 +6,9 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
+import org.signal.core.util.toLocalDateTime
+import org.signal.core.util.toMillis
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.NotificationProfileTables
@@ -17,10 +20,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.toLocalDateTime
-import org.thoughtcrime.securesms.util.toMillis
 
 /**
  * One stop shop for all your Notification Profile data needs.
@@ -101,22 +101,6 @@ class NotificationProfilesRepository {
   fun updateSchedule(schedule: NotificationProfileSchedule): Completable {
     return Completable.fromCallable { database.updateSchedule(schedule) }
       .subscribeOn(Schedulers.io())
-  }
-
-  fun toggleAllowAllMentions(profileId: Long): Single<NotificationProfile> {
-    return getProfile(profileId)
-      .take(1)
-      .singleOrError()
-      .flatMap { updateProfile(it.copy(allowAllMentions = !it.allowAllMentions)) }
-      .map { (it as NotificationProfileTables.NotificationProfileChangeResult.Success).notificationProfile }
-  }
-
-  fun toggleAllowAllCalls(profileId: Long): Single<NotificationProfile> {
-    return getProfile(profileId)
-      .take(1)
-      .singleOrError()
-      .flatMap { updateProfile(it.copy(allowAllCalls = !it.allowAllCalls)) }
-      .map { (it as NotificationProfileTables.NotificationProfileChangeResult.Success).notificationProfile }
   }
 
   fun manuallyToggleProfile(profile: NotificationProfile, now: Long = System.currentTimeMillis()): Completable {

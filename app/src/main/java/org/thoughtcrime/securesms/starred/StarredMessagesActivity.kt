@@ -40,7 +40,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.doOnNextLayout
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -50,9 +49,11 @@ import com.bumptech.glide.Glide
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.viewModel
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -72,23 +73,18 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
-import org.thoughtcrime.securesms.util.viewModel
+import org.thoughtcrime.securesms.video.inline.InlineVideoController
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 class StarredMessagesActivity : PassphraseRequiredActivity() {
 
@@ -163,7 +159,7 @@ private fun StarredMessagesScreen(
         title = stringResource(R.string.StarredMessagesActivity__starred_messages),
         titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
         navigationIcon = SignalIcons.ArrowStart.imageVector,
-        navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+        navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description),
         onNavigationClick = onNavigateBack,
         scrollBehavior = scrollBehavior
       )
@@ -255,14 +251,6 @@ private fun StarredMessageList(
           ViewGroup.LayoutParams.MATCH_PARENT
         )
 
-        val videoContainer = FrameLayout(ctx).apply {
-          layoutParams = FrameLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-          )
-        }
-        addView(videoContainer)
-
         val recyclerView = RecyclerView(ctx).apply {
           layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -279,7 +267,7 @@ private fun StarredMessageList(
         }
         addView(recyclerView)
 
-        initializeGiphyMp4(lifecycleOwner.lifecycle, videoContainer, recyclerView)
+        InlineVideoController.attachForConversation(recyclerView, lifecycleOwner)
       }
     },
     update = {
@@ -287,16 +275,6 @@ private fun StarredMessageList(
     },
     modifier = modifier
   )
-}
-
-private fun initializeGiphyMp4(lifecycle: Lifecycle, videoContainer: ViewGroup, list: RecyclerView) {
-  val context = list.context
-  val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
-  val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(context, lifecycle, videoContainer, maxPlayback)
-  val callback = GiphyMp4ProjectionRecycler(holders)
-
-  GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
-  list.addItemDecoration(GiphyMp4ItemDecoration(callback), 0)
 }
 
 @Composable
@@ -365,12 +343,13 @@ private class StarredMessageClickListener(
   override fun onLinkPreviewClicked(linkPreview: LinkPreview) = Unit
   override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) = Unit
   override fun onMoreTextClicked(conversationRecipientId: RecipientId, messageId: Long, isMms: Boolean) = Unit
-  override fun onStickerClicked(stickerLocator: StickerLocator) = Unit
+  override fun onStickerClicked(stickerSlide: StickerSlide) = Unit
   override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) = Unit
   override fun onSharedContactDetailsClicked(contact: Contact, avatarTransitionView: View) = Unit
   override fun onAddToContactsClicked(contact: Contact) = Unit
-  override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) = Unit
-  override fun onInviteSharedContactClicked(choices: MutableList<Recipient>) = Unit
+  override fun onMessageSharedContactClicked(contact: Contact, choices: MutableList<Recipient>) = Unit
+  override fun onInviteSharedContactClicked(contact: Contact) = Unit
+  override fun onAddSharedContactToGroupClicked(contact: Contact) = Unit
   override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) = Unit
   override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) = Unit
   override fun onMessageWithErrorClicked(messageRecord: MessageRecord) = Unit
@@ -415,6 +394,7 @@ private class StarredMessageClickListener(
   override fun goToMediaPreview(parent: ConversationItem, sharedElement: View, args: MediaIntentFactory.MediaPreviewArgs) = Unit
   override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) = Unit
   override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) = Unit
+  override fun onViewStickerPackLink(packId: String, packKey: String) = Unit
   override fun onPaymentTombstoneClicked() = Unit
   override fun onDisplayMediaNoLongerAvailableSheet() = Unit
   override fun onShowUnverifiedProfileSheet(forGroup: Boolean) = Unit

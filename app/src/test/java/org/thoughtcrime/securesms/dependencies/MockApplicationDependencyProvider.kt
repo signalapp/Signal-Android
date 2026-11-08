@@ -12,12 +12,14 @@ import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.network.api.AccountApiV2
-import org.signal.network.api.ArchiveApi
 import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
+import org.signal.network.api.CdnApi
 import org.signal.network.api.CdsApi
 import org.signal.network.api.CertificateApi
+import org.signal.network.api.KeysApiV2
 import org.signal.network.api.LinkDeviceApi
+import org.signal.network.api.MessageApiV2
 import org.signal.network.api.PaymentsApi
 import org.signal.network.api.ProvisioningApi
 import org.signal.network.api.RateLimitChallengeApi
@@ -25,8 +27,13 @@ import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
+import org.signal.network.config.NetworkProxyState
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
+import org.signal.network.service.CdnService
+import org.signal.network.service.MessageService
+import org.signal.network.service.StorageServiceService
+import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.components.TypingStatusRepository
@@ -51,6 +58,7 @@ import org.thoughtcrime.securesms.service.PendingRetryReceiptManager
 import org.thoughtcrime.securesms.service.PinnedMessageManager
 import org.thoughtcrime.securesms.service.ScheduledMessageManager
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager
+import org.thoughtcrime.securesms.service.UnreadReminderManager
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import org.thoughtcrime.securesms.shakereport.ShakeToReport
 import org.thoughtcrime.securesms.util.EarlyMessageCache
@@ -66,6 +74,7 @@ import org.whispersystems.signalservice.api.donations.DonationsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.message.MessageApi
+import org.whispersystems.signalservice.api.messages.AttachmentUploader
 import org.whispersystems.signalservice.api.profiles.ProfileApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.services.DonationsService
@@ -73,14 +82,15 @@ import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import java.util.function.BooleanSupplier
 import java.util.function.Supplier
 
 class MockApplicationDependencyProvider : AppDependencies.Provider {
-  override fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): PushServiceSocket {
+  override fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, uncensoredConfiguration: SignalServiceConfiguration, preferDirectRoute: BooleanSupplier, groupsV2Operations: GroupsV2Operations): PushServiceSocket {
     return mockk(relaxed = true)
   }
 
-  override fun provideSignalRestClient(signalServiceConfiguration: SignalServiceConfiguration): SignalRestClient {
+  override fun provideSignalRestClient(signalServiceConfiguration: SignalServiceConfiguration, uncensoredConfiguration: SignalServiceConfiguration, preferDirectRoute: BooleanSupplier): SignalRestClient {
     return mockk(relaxed = true)
   }
 
@@ -100,7 +110,8 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     protocolStore: SignalServiceDataStore,
     pushServiceSocket: PushServiceSocket,
     messageApi: MessageApi,
-    keysApi: KeysApi
+    keysApi: KeysApi,
+    attachmentUploader: AttachmentUploader
   ): SignalServiceMessageSender {
     return mockk(relaxed = true)
   }
@@ -117,11 +128,15 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
+  override fun provideStorageService(storageServiceApi: StorageServiceApi): StorageServiceService {
+    return mockk(relaxed = true)
+  }
+
   override fun provideMessageService(
     protocolStore: SignalServiceDataStore,
-    messageApiV2: org.signal.network.api.MessageApiV2,
-    keysApiV2: org.signal.network.api.KeysApiV2
-  ): org.signal.network.service.MessageService {
+    messageApiV2: MessageApiV2,
+    keysApiV2: KeysApiV2
+  ): MessageService {
     return mockk(relaxed = true)
   }
 
@@ -271,7 +286,11 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network {
+  override fun provideUnreadReminderManager(): UnreadReminderManager {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideLibsignalNetwork(config: SignalServiceConfiguration, proxyState: NetworkProxyState): Network {
     return mockk(relaxed = true)
   }
 
@@ -279,7 +298,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi {
+  override fun provideCdnService(cdnApi: CdnApi, attachmentApi: AttachmentApi): CdnService {
     return mockk(relaxed = true)
   }
 
@@ -287,7 +306,15 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideAttachmentApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): AttachmentApi {
+  override fun provideKeysApiV2(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeysApiV2 {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideAttachmentApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AttachmentApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideCdnApi(signalRestClient: SignalRestClient): CdnApi {
     return mockk(relaxed = true)
   }
 
@@ -327,6 +354,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
+  override fun provideTwoFactorMethodService(accountApi: AccountApiV2): TwoFactorMethodService {
+    return mockk(relaxed = true)
+  }
+
   override fun provideUsernameApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): UsernameApi {
     return mockk(relaxed = true)
   }
@@ -363,7 +394,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideRemoteConfigApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): RemoteConfigApi {
+  override fun provideRemoteConfigApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): RemoteConfigApi {
     return mockk(relaxed = true)
   }
 

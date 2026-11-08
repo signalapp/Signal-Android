@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.R
 import java.util.concurrent.TimeUnit
 

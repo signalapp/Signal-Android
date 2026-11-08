@@ -15,6 +15,7 @@ import androidx.media.AudioManagerCompat
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.ServiceUtil
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays a vertical volume bar.
@@ -42,7 +43,7 @@ class StoryVolumeBar @JvmOverloads constructor(
 
   private val foregroundPaint = Paint().apply {
     isAntiAlias = true
-    color = ContextCompat.getColor(context, R.color.core_white)
+    color = ContextCompat.getColor(context, CoreUiR.color.core_white)
     style = Paint.Style.STROKE
   }
 

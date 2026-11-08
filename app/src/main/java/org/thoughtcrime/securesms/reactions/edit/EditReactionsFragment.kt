@@ -15,12 +15,12 @@ import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import org.signal.core.ui.logging.LoggingFragment
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.transitions.AlphaTransition
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
-import org.thoughtcrime.securesms.util.ViewUtil
 
 private val SELECTED_SIZE = ViewUtil.dpToPx(36)
 private val UNSELECTED_SIZE = ViewUtil.dpToPx(26)

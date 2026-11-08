@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * ItemDecoration which paints a letter header at the appropriate location above a LetterHeaderItem.

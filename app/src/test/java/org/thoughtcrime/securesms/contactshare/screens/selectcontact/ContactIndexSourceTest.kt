@@ -1,0 +1,139 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.contactshare.screens.selectcontact
+
+import android.app.Application
+import assertk.assertThat
+import assertk.assertions.containsExactly
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNull
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.unmockkStatic
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
+import org.junit.After
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
+import org.robolectric.annotation.Config
+import org.signal.contacts.SystemContactsRepository
+import org.signal.core.models.recipients.RecipientId
+import org.thoughtcrime.securesms.contacts.index.ContactIndexRecord
+import org.thoughtcrime.securesms.contacts.index.ContactIndexRepository
+import org.thoughtcrime.securesms.contacts.index.ContactIndexType
+import org.thoughtcrime.securesms.contactshare.SharedContactSource
+import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
+
+@OptIn(ExperimentalCoroutinesApi::class)
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
+class ContactIndexSourceTest {
+
+  companion object {
+    private const val LOOKUP_KEY = "lookup-1"
+    private const val CONTACT_ID = 1L
+  }
+
+  private val testDispatcher = UnconfinedTestDispatcher()
+
+  @get:Rule
+  val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
+  @After
+  fun tearDown() {
+    unmockkStatic(SystemContactsRepository::class)
+  }
+
+  /**
+   * Contacts permission can go away after the index was built, which leaves rows whose address book half is
+   * no longer readable. Those still have a Signal profile to share, so they degrade rather than throw.
+   */
+  @Test
+  fun `losing contacts permission degrades an address book row to its signal profile`() = runTest(testDispatcher) {
+    val resolved = sourceThatThrows(SecurityException("denied")).resolve(addressBookRecord(recipientId = RecipientId.from(7)))
+
+    assertThat(resolved).isEqualTo(SharedContactSource.SignalContact(RecipientId.from(7)))
+  }
+
+  @Test
+  fun `losing contacts permission on a row with no signal profile resolves to nothing`() = runTest(testDispatcher) {
+    val resolved = sourceThatThrows(SecurityException("denied")).resolve(addressBookRecord(recipientId = null))
+
+    assertThat(resolved).isNull()
+  }
+
+  @Test
+  fun `a lookup key the provider rejects degrades an address book row to its signal profile`() = runTest(testDispatcher) {
+    val resolved = sourceThatThrows(IllegalArgumentException("Invalid lookup id: $LOOKUP_KEY")).resolve(addressBookRecord(recipientId = RecipientId.from(7)))
+
+    assertThat(resolved).isEqualTo(SharedContactSource.SignalContact(RecipientId.from(7)))
+  }
+
+  @Test
+  fun `a lookup key the provider rejects on a row with no signal profile resolves to nothing`() = runTest(testDispatcher) {
+    val resolved = sourceThatThrows(IllegalArgumentException("Invalid lookup id: $LOOKUP_KEY")).resolve(addressBookRecord(recipientId = null))
+
+    assertThat(resolved).isNull()
+  }
+
+  @Test
+  fun `a page marks rows whose recipient has a profile photo when system photos are not preferred`() = runTest(testDispatcher) {
+    val withPhoto = addressBookRecord(recipientId = RecipientId.from(7))
+    val withoutPhoto = addressBookRecord(recipientId = RecipientId.from(8)).copy(position = 2)
+    val addressBookOnly = addressBookRecord(recipientId = null).copy(position = 3)
+
+    val page = pagingSource(rows = listOf(withPhoto, withoutPhoto, addressBookOnly), preferSystemContactPhotos = false).page("", 1, 10)
+
+    assertThat(page.map { it.hasProfilePhoto }).containsExactly(true, false, false)
+  }
+
+  @Test
+  fun `a page leaves profile photos unmarked when system photos are preferred`() = runTest(testDispatcher) {
+    val page = pagingSource(rows = listOf(addressBookRecord(recipientId = RecipientId.from(7))), preferSystemContactPhotos = true).page("", 1, 10)
+
+    assertThat(page.map { it.hasProfilePhoto }).containsExactly(false)
+  }
+
+  private fun pagingSource(rows: List<ContactIndexRecord>, preferSystemContactPhotos: Boolean): ContactIndexSource {
+    val repository: ContactIndexRepository = mockk { every { search(any(), any(), any()) } returns rows }
+
+    return ContactIndexSource(
+      repository = repository,
+      context = RuntimeEnvironment.getApplication(),
+      hasProfilePhoto = { it == RecipientId.from(7) },
+      preferSystemContactPhotosSetting = { preferSystemContactPhotos }
+    )
+  }
+
+  private fun sourceThatThrows(error: Exception): ContactIndexSource {
+    val context = RuntimeEnvironment.getApplication()
+
+    mockkStatic(SystemContactsRepository::class)
+    every { SystemContactsRepository.currentContactUri(context, LOOKUP_KEY, CONTACT_ID) } throws error
+
+    return ContactIndexSource(mockk(relaxed = true), context)
+  }
+
+  private fun addressBookRecord(recipientId: RecipientId?): ContactIndexRecord {
+    return ContactIndexRecord(
+      position = 1,
+      type = if (recipientId != null) ContactIndexType.BOTH else ContactIndexType.SYSTEM_ONLY,
+      section = "A",
+      displayName = "Andrew Bell",
+      recipientId = recipientId,
+      lookupKey = LOOKUP_KEY,
+      contactId = CONTACT_ID,
+      hasPersonalName = true,
+      isOrgOnly = false,
+      hasPhoto = false
+    )
+  }
+}

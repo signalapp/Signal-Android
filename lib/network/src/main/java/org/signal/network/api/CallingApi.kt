@@ -67,14 +67,14 @@ class CallingApi(
   /**
    * Generate a call link credential.
    *
-   * POST /v1/call-link/create-auth
+   * POST /v1/call-link/create-auth?v101=true
    * - 200: Success
    * - 400: Invalid request
    * - 422: Invalid request format
    * - 429: Rate limited
    */
   fun createCallLinkCredential(request: CreateCallLinkCredentialRequest): NetworkResult<CreateCallLinkCredentialResponse> {
-    val request = WebSocketRequestMessage.post("/v1/call-link/create-auth", body = CreateCallLinkAuthRequest.create(request))
+    val request = WebSocketRequestMessage.post("/v1/call-link/create-auth?v101=true", body = CreateCallLinkAuthRequest.create(request))
     return NetworkResult.fromWebSocketRequest(auth, request, CreateCallLinkAuthResponse::class)
       .map { it.createCallLinkCredentialResponse }
   }

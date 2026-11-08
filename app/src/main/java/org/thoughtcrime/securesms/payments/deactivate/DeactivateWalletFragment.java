@@ -20,7 +20,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.MoneyView;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;

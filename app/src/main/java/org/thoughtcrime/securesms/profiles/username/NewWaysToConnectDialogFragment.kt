@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.profiles.username
 
-import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,9 +50,9 @@ class NewWaysToConnectDialogFragment : ComposeDialogFragment() {
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
   }
 
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    return super.onCreateDialog(savedInstanceState).apply {
-      window?.enableEdgeToEdge()
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return super.onGetLayoutInflater(savedInstanceState).also {
+      dialog?.window?.enableEdgeToEdge()
     }
   }
 

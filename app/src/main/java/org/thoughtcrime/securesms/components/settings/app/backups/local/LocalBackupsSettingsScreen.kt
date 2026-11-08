@@ -28,6 +28,8 @@ import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.backups.BackupCreationProgressRow
+import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
@@ -37,8 +39,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Snackbars
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.isIdle
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreationProgressRow
-import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
+import org.thoughtcrime.securesms.backup.toBackupCreationProgress
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.signal.core.ui.R as CoreUiR
@@ -134,7 +135,7 @@ internal fun LocalBackupsSettingsScreen(
         if (isCreating) {
           item {
             BackupCreationProgressRow(
-              progress = state.progress,
+              progress = state.progress.toBackupCreationProgress(),
               isRemote = false
             )
           }

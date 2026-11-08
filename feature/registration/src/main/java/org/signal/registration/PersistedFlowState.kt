@@ -8,6 +8,7 @@ package org.signal.registration
 import kotlinx.serialization.Serializable
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.core.models.ServiceId.ACI
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
 
 /**
@@ -23,11 +24,13 @@ data class PersistedFlowState(
   val sessionMetadata: SessionMetadata?,
   val sessionE164: String?,
   val submittedVerificationCode: String? = null,
+  val aci: String? = null,
   val doNotAttemptRecoveryPassword: Boolean,
   val pendingRestoreOption: PendingRestoreOption? = null,
   val restoredAepValue: String? = null,
   val restoreMethodToken: String? = null,
   val storageCapable: Boolean = false,
+  val phoneNumberlessAccount: Boolean = false,
   val smsVerificationCodeRequest: VerificationCodeRequest? = null,
   val callVerificationCodeRequest: VerificationCodeRequest? = null
 )
@@ -41,11 +44,13 @@ fun RegistrationFlowState.toPersistedFlowState(): PersistedFlowState {
     sessionMetadata = sessionMetadata,
     sessionE164 = sessionE164,
     submittedVerificationCode = submittedVerificationCode,
+    aci = aci?.toString(),
     doNotAttemptRecoveryPassword = doNotAttemptRecoveryPassword,
     pendingRestoreOption = pendingRestoreOption,
     restoredAepValue = unverifiedRestoredAep?.value,
     restoreMethodToken = restoreMethodToken,
     storageCapable = storageCapable,
+    phoneNumberlessAccount = isPhoneNumberlessAccount,
     smsVerificationCodeRequest = lastSmsVerificationCodeRequest,
     callVerificationCodeRequest = lastCallVerificationCodeRequest
   )
@@ -69,6 +74,7 @@ fun PersistedFlowState.toRegistrationFlowState(
     sessionE164 = sessionE164,
     submittedVerificationCode = submittedVerificationCode,
     accountEntropyPool = accountEntropyPool,
+    aci = aci?.let { ACI.parseOrNull(it) },
     temporaryMasterKey = temporaryMasterKey,
     preExistingRegistrationData = preExistingRegistrationData,
     doNotAttemptRecoveryPassword = doNotAttemptRecoveryPassword,
@@ -76,6 +82,7 @@ fun PersistedFlowState.toRegistrationFlowState(
     unverifiedRestoredAep = restoredAepValue?.let { AccountEntropyPool(it) },
     restoreMethodToken = restoreMethodToken,
     storageCapable = storageCapable,
+    isPhoneNumberlessAccount = phoneNumberlessAccount,
     lastSmsVerificationCodeRequest = smsVerificationCodeRequest,
     lastCallVerificationCodeRequest = callVerificationCodeRequest
   )

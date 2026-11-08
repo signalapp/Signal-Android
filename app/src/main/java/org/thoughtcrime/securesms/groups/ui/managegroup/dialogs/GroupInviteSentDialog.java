@@ -11,11 +11,11 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
 import java.util.List;

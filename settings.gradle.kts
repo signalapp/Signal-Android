@@ -98,11 +98,10 @@ include(":app")
 // Core modules
 include(":core:util")
 include(":core:util-jvm")
-include(":core:models")
-include(":core:models-jvm")
 include(":core:network")
 include(":core:ui")
 include(":core:serialization")
+include(":core:database")
 
 // Lib modules
 include(":lib:libsignal-service")
@@ -126,12 +125,18 @@ include(":lib:emoji")
 include(":lib:archive")
 include(":lib:ui-components")
 include(":lib:signal-login")
+include(":lib:password-manager")
+include(":lib:storage")
+include(":lib:remote-config")
 
 // Feature modules
 include(":feature:app-settings")
 include(":feature:registration")
 include(":feature:camera")
 include(":feature:media-send")
+include(":feature:chat-settings")
+include(":feature:media-keyboard")
+include(":feature:media-viewer")
 
 // Demo apps
 include(":demo:paging")
@@ -145,11 +150,14 @@ include(":demo:image-editor")
 include(":demo:debuglogs-viewer")
 include(":demo:registration")
 include(":demo:camera")
+include(":demo:media-keyboard")
 include(":demo:apng")
+include(":demo:list-detail")
 
 // Testing/Lint modules
 include(":lintchecks")
 include(":fast-lint")
+include(":screener")
 include(":benchmark")
 include(":baseline-profile")
 include(":microbenchmark")

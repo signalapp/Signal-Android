@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations
 
+import org.signal.core.database.select
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTables
 import org.thoughtcrime.securesms.database.model.StickerPackId

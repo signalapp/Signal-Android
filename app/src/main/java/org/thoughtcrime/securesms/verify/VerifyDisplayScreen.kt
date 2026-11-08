@@ -85,14 +85,13 @@ fun VerifyDisplayScreen(
       horizontalAlignment = Alignment.CenterHorizontally,
       modifier = Modifier
         .fillMaxWidth()
-        .verticalScroll(scrollState)
         .padding(it)
+        .verticalScroll(scrollState)
     ) {
       SafetyNumberQr(
         state = state,
         emitter = emitter,
-        onQrViewInitialized = onQrViewInitialized,
-        modifier = Modifier.padding(top = 24.dp)
+        onQrViewInitialized = onQrViewInitialized
       )
 
       Text(
@@ -111,7 +110,7 @@ fun VerifyDisplayScreen(
               CommunicationActions.openBrowserLink(context, "https://signal.org/redirect/safety-numbers")
             }
           ) {
-            append(stringResource(R.string.LearnMoreTextView_learn_more))
+            append(stringResource(CoreUiR.string.LearnMoreTextView_learn_more))
           }
         },
         textAlign = TextAlign.Center,
@@ -149,7 +148,7 @@ fun VerifyDisplayScreen(
                 CommunicationActions.openBrowserLink(context, url)
               }
             ) {
-              append(stringResource(R.string.LearnMoreTextView_learn_more))
+              append(stringResource(CoreUiR.string.LearnMoreTextView_learn_more))
             }
           },
           style = MaterialTheme.typography.bodyMedium,

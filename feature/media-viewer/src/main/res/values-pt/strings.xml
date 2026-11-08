@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- MediaViewerScreen -->
+  <!-- Toolbar title for media you sent -->
+  <string name="MediaViewerScreen__you">Você</string>
+  <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
+  <string name="MediaViewerScreen__you_to_s">De si para %1$s</string>
+  <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
+  <string name="MediaViewerScreen__s_to_s">%1$s para %2$s</string>
+  <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
+  <string name="MediaViewerScreen__s_to_you">De %1$s para si</string>
+  <!-- Toolbar title for media in your own note-to-self chat -->
+  <string name="MediaViewerScreen__note_to_self">Nota para mim</string>
+  <!-- Toolbar subtitle when previewing a draft attachment that has not been sent yet -->
+  <string name="MediaViewerScreen__draft">Rascunho</string>
+  <!-- Overflow menu item that opens the media editor -->
+  <string name="MediaViewerScreen__edit">Editar</string>
+  <!-- Overflow menu item that saves the media to the device -->
+  <string name="MediaViewerScreen__save">Guardar</string>
+  <!-- Overflow menu item that deletes the media -->
+  <string name="MediaViewerScreen__delete">Eliminar</string>
+  <!-- Button in the note-to-self delete confirmation dialog that deletes the media -->
+  <string name="MediaViewerScreen__delete_dialog_delete">Eliminar</string>
+  <!-- Title of the dialog confirming deletion of a media message -->
+  <string name="MediaViewerScreen__media_delete_confirmation_title">Eliminar mensagem?</string>
+  <!-- Body of the dialog confirming deletion of a media message -->
+  <string name="MediaViewerScreen__media_delete_confirmation_message">Isto irá eliminar permanentemente esta mensagem.</string>
+  <!-- Delete dialog button that deletes the media only on this device -->
+  <string name="MediaViewerScreen__delete_for_me">Eliminar para mim</string>
+  <!-- Delete dialog button that deletes the media for all members of the chat -->
+  <string name="MediaViewerScreen__delete_for_everyone">Eliminar para todos</string>
+  <!-- Generic dialog cancel button -->
+  <string name="MediaViewerScreen__cancel">Cancelar</string>
+  <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
+  <string name="MediaViewerScreen__read_more">…Ler mais</string>
+  <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
+  <string name="MediaViewerScreen__cant_save_media">Não é possível guardar os ficheiros</string>
+  <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
+  <string name="MediaViewerScreen__media_offloaded_message">Este ficheiro multimédia já não está armazenado neste dispositivo. Pode alterar as suas definições de armazenamento e voltar a transferir este ficheiro multimédia através de uma ligação Wi-Fi sem limite de dados.</string>
+  <!-- Button on the offloaded-media dialog that opens storage settings -->
+  <string name="MediaViewerScreen__view_storage_settings">Ver definições de armazenamento</string>
+  <!-- Generic dialog confirmation button -->
+  <string name="MediaViewerScreen__ok">OK</string>
+  <!-- Content description of the toolbar back button -->
+  <string name="MediaViewerScreen__navigate_back">Navegar de volta</string>
+  <!-- Content description of the toolbar overflow menu button -->
+  <string name="MediaViewerScreen__more_options">Mais opções</string>
+  <!-- Content description of the share button -->
+  <string name="MediaViewerScreen__share">Partilhar</string>
+  <!-- Content description of the forward button -->
+  <string name="MediaViewerScreen__forward">Reencaminhar</string>
+  <!-- Content description of the video play button -->
+  <string name="MediaViewerScreen__play">Reproduzir</string>
+  <!-- Content description of the video pause button -->
+  <string name="MediaViewerScreen__pause">Pausar</string>
+  <!-- Content description of the video rewind button -->
+  <string name="MediaViewerScreen__rewind">Recuar</string>
+  <!-- Content description of the video fast-forward button -->
+  <string name="MediaViewerScreen__fast_forward">Avançar</string>
+  <!-- Content description of a thumbnail in the album rail at the bottom of the screen -->
+  <string name="MediaViewerScreen__album_rail_thumbnail">Miniatura do ficheiro multimédia</string>
+  <!-- Time left in the playing video, shown at the end of the seek bar. %1$s is the remaining time, e.g. 0:38. The leading minus sign marks it as a countdown. -->
+  <string name="MediaViewerScreen__remaining_time">−%1$s</string>
+</resources>

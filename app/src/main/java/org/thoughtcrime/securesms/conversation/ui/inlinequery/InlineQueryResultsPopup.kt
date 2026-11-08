@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.widget.PopupWindow
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 

@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log
 import org.signal.donations.PaymentSource
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
+import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.protos.InAppPaymentSetupJobData
 import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError
+import java.io.IOException
 
 /**
  * Handles common pipeline logic between one-time and recurring transactions.
@@ -202,6 +204,25 @@ abstract class InAppPaymentSetupJob(
     } else {
       inAppPayment
     }
+  }
+
+  /**
+   * The intent is already confirmed, so the user may have been charged. Hand off to [InAppPaymentAuthCheckJob] to finish the pipeline.
+   */
+  protected fun awaitAuthorization(inAppPaymentId: InAppPaymentTable.InAppPaymentId, stripeIntentAccessor: StripeIntentAccessor, exception: IOException): Result {
+    warning("Network failure after confirming intent. Deferring to InAppPaymentAuthCheckJob.", exception)
+
+    val freshPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+    val waitingForAuth = InAppPaymentsRepository.toWaitingForAuthorization(freshPayment, stripeIntentAccessor.intentId, stripeIntentAccessor.intentClientSecret)
+    if (waitingForAuth == null) {
+      warning("Could not move payment to WAITING_FOR_AUTHORIZATION. Failing.")
+      handleFailure(inAppPaymentId, exception)
+      return Result.failure()
+    }
+
+    SignalDatabase.inAppPayments.update(waitingForAuth)
+    InAppPaymentAuthCheckJob.enqueueIfNeeded()
+    return Result.success()
   }
 
   protected fun handleFailure(inAppPaymentId: InAppPaymentTable.InAppPaymentId, exception: Exception) {

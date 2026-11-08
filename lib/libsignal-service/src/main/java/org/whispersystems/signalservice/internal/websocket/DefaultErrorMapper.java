@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredExcepti
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.internal.push.DeviceLimit;
+import org.whispersystems.signalservice.internal.push.RegistrationLockFailure;
 import org.whispersystems.signalservice.internal.push.DeviceLimitExceededException;
 import org.whispersystems.signalservice.internal.push.LockedException;
 import org.whispersystems.signalservice.internal.push.MismatchedDevices;
@@ -110,17 +111,17 @@ public final class DefaultErrorMapper implements ErrorMapper {
       case 417:
         return new ExpectationFailedException();
       case 423:
-        PushServiceSocket.RegistrationLockFailure accountLockFailure;
+        RegistrationLockFailure accountLockFailure;
         try {
-          accountLockFailure = JsonUtil.fromJsonResponse(body, PushServiceSocket.RegistrationLockFailure.class);
+          accountLockFailure = JsonUtil.fromJsonResponse(body, RegistrationLockFailure.class);
         } catch (MalformedResponseException e) {
           return e;
         }
 
-        return new LockedException(accountLockFailure.length,
-                                   accountLockFailure.timeRemaining,
-                                   accountLockFailure.svr2Credentials,
-                                   accountLockFailure.svr3Credentials);
+        return new LockedException(accountLockFailure.getLength(),
+                                   accountLockFailure.getTimeRemaining(),
+                                   accountLockFailure.getSvr2Credentials(),
+                                   accountLockFailure.getSvr3Credentials());
       case 428:
         ProofRequiredResponse proofRequiredResponse;
         try {

@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.Util
 import org.signal.core.util.bitmaps.BitmapUtil
@@ -24,7 +26,6 @@ import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.roundedString
-import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.Objects
 import kotlin.random.Random
@@ -178,7 +178,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
       val recipient = Recipient.live(recipientId).get()
       val messageCount = 1000
       val startTime = System.currentTimeMillis() - messageCount
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
         for (i in 1..messageCount) {
           val time = startTime + i
@@ -208,7 +208,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
       val recipient = Recipient.live(recipientId).get()
       val messageCount = 100
       val startTime = System.currentTimeMillis() - messageCount
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
         for (i in 1..messageCount) {
           val time = startTime + i

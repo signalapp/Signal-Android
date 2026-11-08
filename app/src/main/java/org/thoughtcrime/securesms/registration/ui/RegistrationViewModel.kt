@@ -31,26 +31,28 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Util
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
 import org.signal.registration.proto.RegistrationProvisionMessage
+import org.signal.remoteconfig.RemoteConfig
+import org.signal.storage.keyvalue.NewAccount
+import org.signal.storage.keyvalue.Skipped
+import org.signal.storage.keyvalue.Start
+import org.signal.storage.keyvalue.intendToRestore
+import org.signal.storage.keyvalue.isDecisionPending
+import org.signal.storage.keyvalue.isTerminal
+import org.signal.storage.keyvalue.isWantingManualRemoteRestore
+import org.signal.storage.protos.LinkedDeviceInfo
+import org.signal.storage.protos.RestoreDecisionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.RestoreTimestampResult
-import org.thoughtcrime.securesms.database.model.databaseprotos.LinkedDeviceInfo
-import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
-import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.Skipped
-import org.thoughtcrime.securesms.keyvalue.Start
-import org.thoughtcrime.securesms.keyvalue.intendToRestore
-import org.thoughtcrime.securesms.keyvalue.isDecisionPending
-import org.thoughtcrime.securesms.keyvalue.isTerminal
-import org.thoughtcrime.securesms.keyvalue.isWantingManualRemoteRestore
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.data.AccountRegistrationResult
@@ -84,8 +86,6 @@ import org.thoughtcrime.securesms.registration.ui.link.RegisterLinkDeviceResult
 import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
-import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
@@ -802,7 +802,6 @@ class RegistrationViewModel : ViewModel() {
 
   fun verifyCodeAndRegisterAccountWithRegistrationLock(context: Context, pin: String) {
     Log.v(TAG, "verifyCodeAndRegisterAccountWithRegistrationLock()")
-    SignalStore.pin.keyboardType = store.value.pinKeyboardType
 
     store.update {
       it.copy(
@@ -1165,7 +1164,7 @@ class RegistrationViewModel : ViewModel() {
         )
 
         if (message.readReceipts != null) {
-          TextSecurePreferences.setReadReceiptsEnabled(context, message.readReceipts!!)
+          SignalStore.settings.isReadReceiptsEnabled = message.readReceipts!!
         }
 
         RegistrationRepository.registerAccountLocally(context, data)
@@ -1258,11 +1257,9 @@ class RegistrationViewModel : ViewModel() {
 
     private suspend fun refreshRemoteConfig() = withContext(Dispatchers.IO) {
       val startTime = System.currentTimeMillis()
-      try {
-        RemoteConfig.refreshSync()
-        Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to get feature flags.")
-      } catch (e: IOException) {
-        Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms.", e)
+      when (val result = RemoteConfig.refresh()) {
+        is RequestResult.Success -> Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to get feature flags.")
+        else -> Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms. Result: $result")
       }
     }
 

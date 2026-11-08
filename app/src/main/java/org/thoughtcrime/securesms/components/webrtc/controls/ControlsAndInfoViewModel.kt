@@ -14,13 +14,13 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsRepository
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 
 /**

@@ -55,7 +55,6 @@ dependencies {
   lintChecks(project(":lintchecks"))
 
   implementation(project(":core:util"))
-  implementation(project(":core:models-jvm"))
 
   // Base dependencies
   androidTestImplementation(testLibs.junit.junit)

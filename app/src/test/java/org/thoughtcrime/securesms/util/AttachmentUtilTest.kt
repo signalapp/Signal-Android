@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraint
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stickers.StickerLocator
 
@@ -49,7 +50,7 @@ class AttachmentUtilTest {
 
     mockkStatic(NotInCallConstraint::class)
     mockkStatic(NetworkUtil::class)
-    mockkStatic(TextSecurePreferences::class)
+    mockkObject(SignalStore)
     mockkObject(MultiDeviceDeleteSyncJob.Companion)
     every { MultiDeviceDeleteSyncJob.enqueueAttachmentDelete(any(), any()) } just Runs
 
@@ -57,9 +58,9 @@ class AttachmentUtilTest {
     every { NetworkUtil.isConnectedWifi(context) } returns true
     every { NetworkUtil.isConnectedRoaming(context) } returns false
     every { NetworkUtil.isConnectedMobile(context) } returns false
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns emptySet()
-    every { TextSecurePreferences.getRoamingMediaDownloadAllowed(context) } returns emptySet()
-    every { TextSecurePreferences.getMobileMediaDownloadAllowed(context) } returns emptySet()
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns emptySet()
+    every { SignalStore.settings.roamingMediaDownloadAllowed } returns emptySet()
+    every { SignalStore.settings.mobileMediaDownloadAllowed } returns emptySet()
 
     every { messageTable.getMessageRecord(any()) } returns messageRecord
     every { messageRecord.fromRecipient } returns fromRecipient
@@ -104,7 +105,7 @@ class AttachmentUtilTest {
     every { toRecipient.isGroup } returns true
     every { toRecipient.isProfileSharing } returns true
     every { fromRecipient.isSystemContact } returns false
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment()))
   }
@@ -125,7 +126,7 @@ class AttachmentUtilTest {
   @Test
   fun `null toRecipient falls to individual trust`() {
     every { threadTable.getRecipientForThreadId(any()) } returns null
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment()))
   }
@@ -134,7 +135,7 @@ class AttachmentUtilTest {
   fun `profile sharing from recipient is trusted`() {
     every { fromRecipient.isSystemContact } returns false
     every { fromRecipient.isProfileSharing } returns true
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment()))
   }
@@ -142,7 +143,7 @@ class AttachmentUtilTest {
   @Test
   fun `video gif blocked when in call`() {
     val attachment = attachment(videoGif = true, contentType = "video/mp4")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
     every { NotInCallConstraint.isNotInConnectedCall() } returns false
 
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
@@ -151,7 +152,7 @@ class AttachmentUtilTest {
   @Test
   fun `document blocked when in call`() {
     val attachment = attachment(contentType = "application/pdf", fileName = "doc.pdf")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("documents")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("documents")
     every { NotInCallConstraint.isNotInConnectedCall() } returns false
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
@@ -163,7 +164,7 @@ class AttachmentUtilTest {
     every { fromRecipient.isSystemContact } returns false
     every { fromRecipient.isProfileSharing } returns false
     every { messageRecord.isOutgoing } returns true
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment()))
   }
@@ -172,7 +173,7 @@ class AttachmentUtilTest {
   fun `outgoing message is trusted`() {
     every { fromRecipient.isSystemContact } returns false
     every { messageRecord.isOutgoing } returns true
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment()))
   }
@@ -181,7 +182,7 @@ class AttachmentUtilTest {
   fun `self recipient is trusted`() {
     every { fromRecipient.isSystemContact } returns false
     every { fromRecipient.isSelf } returns true
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment()))
   }
@@ -190,21 +191,21 @@ class AttachmentUtilTest {
   fun `release notes recipient is trusted`() {
     every { fromRecipient.isSystemContact } returns false
     every { fromRecipient.isReleaseNotes } returns true
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment()))
   }
 
   @Test
   fun `zero size rejects`() {
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment(size = 0L, contentType = "image/jpeg")))
   }
 
   @Test
   fun `ciphertext over 200MB rejects`() {
     val huge = attachment(size = 250L * 1024 * 1024, contentType = "image/jpeg")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, huge))
   }
@@ -232,7 +233,7 @@ class AttachmentUtilTest {
   @Test
   fun `large sticker requires image allowed type`() {
     val attachment = attachment(size = 500L * 1024, isSticker = true, contentType = "image/webp")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
@@ -240,7 +241,7 @@ class AttachmentUtilTest {
   @Test
   fun `large sticker blocked when in call`() {
     val attachment = attachment(size = 500L * 1024, isSticker = true, contentType = "image/webp")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
     every { NotInCallConstraint.isNotInConnectedCall() } returns false
 
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
@@ -249,7 +250,7 @@ class AttachmentUtilTest {
   @Test
   fun `large sticker blocked when image type not allowed`() {
     val attachment = attachment(size = 500L * 1024, isSticker = true, contentType = "image/webp")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("audio")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("audio")
 
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
@@ -263,27 +264,27 @@ class AttachmentUtilTest {
   @Test
   fun `unnamed audio without voice note flag uses audio setting`() {
     val attachment = attachment(size = 10L * 1024, voiceNote = false, contentType = "audio/aac", fileName = null)
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("audio")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("audio")
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
 
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns emptySet()
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns emptySet()
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
 
   @Test
   fun `named audio uses audio setting`() {
     val attachment = attachment(size = 10L * 1024, voiceNote = false, contentType = "audio/mpeg", fileName = "song.mp3")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("audio")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("audio")
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
 
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns emptySet()
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns emptySet()
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
 
   @Test
   fun `large voice note requires audio allowed type`() {
     val attachment = attachment(size = 500L * 1024, voiceNote = true, contentType = "audio/aac", fileName = null)
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("audio")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("audio")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
@@ -291,7 +292,7 @@ class AttachmentUtilTest {
   @Test
   fun `large voice note blocked when audio not allowed`() {
     val attachment = attachment(size = 500L * 1024, voiceNote = true, contentType = "audio/aac", fileName = null)
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
 
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
@@ -299,7 +300,7 @@ class AttachmentUtilTest {
   @Test
   fun `large voice note blocked when in call`() {
     val attachment = attachment(size = 500L * 1024, voiceNote = true, contentType = "audio/aac", fileName = null)
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("audio")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("audio")
     every { NotInCallConstraint.isNotInConnectedCall() } returns false
 
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
@@ -308,51 +309,51 @@ class AttachmentUtilTest {
   @Test
   fun `video gif requires image allowed type`() {
     val attachment = attachment(videoGif = true, contentType = "video/mp4")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
 
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns emptySet()
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns emptySet()
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
 
   @Test
   fun `image content type uses image setting`() {
     val attachment = attachment(contentType = "image/jpeg")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
 
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns emptySet()
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns emptySet()
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
 
   @Test
   fun `video content type uses video setting`() {
     val attachment = attachment(contentType = "video/mp4")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("video")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("video")
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
 
   @Test
   fun `document content type uses documents setting`() {
     val attachment = attachment(contentType = "application/pdf", fileName = "doc.pdf")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("documents")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("documents")
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
 
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns emptySet()
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns emptySet()
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
 
   @Test
   fun `null content type falls to documents setting`() {
     val attachment = attachment(contentType = null, fileName = "file")
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("documents")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("documents")
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment))
   }
 
   @Test
   fun `in-call blocks non-sticker paths`() {
     every { NotInCallConstraint.isNotInConnectedCall() } returns false
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image", "video", "audio", "documents")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image", "video", "audio", "documents")
 
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment(contentType = "image/jpeg")))
     assertFalse(AttachmentUtil.isAutoDownloadPermitted(context, attachment(contentType = "application/pdf", fileName = "a.pdf")))
@@ -362,7 +363,7 @@ class AttachmentUtilTest {
   fun `roaming network uses roaming allowed set`() {
     every { NetworkUtil.isConnectedWifi(context) } returns false
     every { NetworkUtil.isConnectedRoaming(context) } returns true
-    every { TextSecurePreferences.getRoamingMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.roamingMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment(contentType = "image/jpeg")))
   }
@@ -372,7 +373,7 @@ class AttachmentUtilTest {
     every { NetworkUtil.isConnectedWifi(context) } returns false
     every { NetworkUtil.isConnectedRoaming(context) } returns false
     every { NetworkUtil.isConnectedMobile(context) } returns true
-    every { TextSecurePreferences.getMobileMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.mobileMediaDownloadAllowed } returns setOf("image")
 
     assertTrue(AttachmentUtil.isAutoDownloadPermitted(context, attachment(contentType = "image/jpeg")))
   }
@@ -433,20 +434,20 @@ class AttachmentUtilTest {
 
   @Test
   fun `restore image permitted when allowed and not in call`() {
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
     assertTrue(AttachmentUtil.isRestoreOnOpenPermitted(context, attachment(contentType = "image/jpeg")))
   }
 
   @Test
   fun `restore image blocked when in call`() {
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns setOf("image")
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns setOf("image")
     every { NotInCallConstraint.isNotInConnectedCall() } returns false
     assertFalse(AttachmentUtil.isRestoreOnOpenPermitted(context, attachment(contentType = "image/jpeg")))
   }
 
   @Test
   fun `restore image blocked when type not allowed`() {
-    every { TextSecurePreferences.getWifiMediaDownloadAllowed(context) } returns emptySet()
+    every { SignalStore.settings.wifiMediaDownloadAllowed } returns emptySet()
     assertFalse(AttachmentUtil.isRestoreOnOpenPermitted(context, attachment(contentType = "image/jpeg")))
   }
 

@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.manifest
 import org.whispersystems.signalservice.api.storage.RecordIkm
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
@@ -324,9 +325,21 @@ private fun StorageRecordRow(record: SignalStorageRecord) {
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }
-      record.proto.stickerPack != null -> {
+      record.proto.installedStickerPack != null -> {
         Column {
-          Text("Sticker Pack", fontWeight = FontWeight.Bold)
+          Text("Installed Sticker Pack", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
+      record.proto.hiddenStickerPack != null -> {
+        Column {
+          Text("Hidden Sticker Pack", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
+      record.proto.favoriteSticker != null -> {
+        Column {
+          Text("Favorite Sticker", fontWeight = FontWeight.Bold)
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }

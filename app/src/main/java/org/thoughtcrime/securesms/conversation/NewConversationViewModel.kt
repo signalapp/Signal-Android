@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.contacts.management.ContactsManagementRepository
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 
@@ -34,7 +34,13 @@ class NewConversationViewModel : ViewModel() {
     private val TAG = Log.tag(NewConversationViewModel::class)
   }
 
-  private val internalUiState = MutableStateFlow(NewConversationUiState())
+  private val internalUiState = MutableStateFlow(
+    NewConversationUiState(
+      showSetUpUsernameBanner = SignalStore.account.isPhoneNumberless &&
+        SignalStore.account.username == null &&
+        !SignalStore.uiHints.hasDismissedSetUpUsernameBanner()
+    )
+  )
   val uiState: StateFlow<NewConversationUiState> = internalUiState.asStateFlow()
 
   private val contactsManagementRepo = ContactsManagementRepository(AppDependencies.application)
@@ -176,16 +182,21 @@ class NewConversationViewModel : ViewModel() {
   fun clearUserMessage() {
     internalUiState.update { it.copy(userMessage = null) }
   }
+
+  fun dismissSetUpUsernameBanner() {
+    SignalStore.uiHints.markHasDismissedSetUpUsernameBanner()
+    internalUiState.update { it.copy(showSetUpUsernameBanner = false) }
+  }
 }
 
 data class NewConversationUiState(
-  val forceSplitPaneOnCompactLandscape: Boolean = SignalStore.internal.forceSplitPane,
   val searchQuery: String = "",
   val isLookingUpRecipient: Boolean = false,
   val isRefreshingContacts: Boolean = false,
   val shouldResetContactsList: Boolean = false,
   val pendingDestination: RecipientId? = null,
-  val userMessage: UserMessage? = null
+  val userMessage: UserMessage? = null,
+  val showSetUpUsernameBanner: Boolean = false
 ) {
   sealed interface UserMessage {
     sealed interface Info : UserMessage {

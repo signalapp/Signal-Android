@@ -30,6 +30,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -106,15 +108,35 @@ private fun AvatarResource(
   }
 }
 
+/** The typeface text avatars are drawn in. */
+@Composable
+fun rememberAvatarTypeface(): FontFamily {
+  val context = LocalContext.current
+  return remember(context) { FontFamily(AvatarRenderer.getTypeface(context)) }
+}
+
+/** The largest font size [text] fits at within a text avatar measured with [constraints]. */
+@Composable
+fun rememberAvatarFontSize(text: String, constraints: Constraints): TextUnit {
+  val context = LocalContext.current
+  val density = LocalDensity.current
+
+  return remember(text, constraints, density) {
+    val sizePx = min(constraints.maxWidth, constraints.maxHeight).toFloat()
+
+    with(density) {
+      Avatars.getTextSizeForLength(context, text, sizePx * TEXT_WIDTH_PERCENT, sizePx * MAX_TEXT_SIZE_PERCENT).toSp()
+    }
+  }
+}
+
 @Composable
 private fun AvatarText(
   avatar: Avatar.Text,
   contentDescription: String?,
   modifier: Modifier
 ) {
-  val context = LocalContext.current
-  val density = LocalDensity.current
-  val typeface = remember(context) { FontFamily(AvatarRenderer.getTypeface(context)) }
+  val typeface = rememberAvatarTypeface()
 
   BoxWithConstraints(
     contentAlignment = Alignment.Center,
@@ -123,13 +145,7 @@ private fun AvatarText(
       .semantics(mergeDescendants = true) { contentDescription?.let { this.contentDescription = it } }
       .background(color = Color(avatar.color.backgroundColor))
   ) {
-    val fontSize = remember(avatar.text, constraints, density) {
-      val sizePx = min(constraints.maxWidth, constraints.maxHeight).toFloat()
-
-      with(density) {
-        Avatars.getTextSizeForLength(context, avatar.text, sizePx * TEXT_WIDTH_PERCENT, sizePx * MAX_TEXT_SIZE_PERCENT).toSp()
-      }
-    }
+    val fontSize = rememberAvatarFontSize(avatar.text, constraints)
 
     Emojifier(
       text = avatar.text

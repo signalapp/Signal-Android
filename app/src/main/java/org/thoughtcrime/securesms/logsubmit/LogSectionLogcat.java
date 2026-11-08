@@ -10,6 +10,9 @@ import java.io.InputStreamReader;
 
 public class LogSectionLogcat implements LogSection {
 
+  /** Silences the View tag, which some OEM builds spam once per draw pass, while leaving every other tag at verbose. */
+  private static final String FILTER_SPEC = "View:S *:V";
+
   @Override
   public @NonNull String getTitle() {
     return "LOGCAT";
@@ -18,7 +21,7 @@ public class LogSectionLogcat implements LogSection {
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
     try {
-      final Process        process        = Runtime.getRuntime().exec("logcat -d");
+      final Process        process        = Runtime.getRuntime().exec("logcat -d " + FILTER_SPEC);
       final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
       final StringBuilder  log            = new StringBuilder();
       final String         separator      = System.lineSeparator();

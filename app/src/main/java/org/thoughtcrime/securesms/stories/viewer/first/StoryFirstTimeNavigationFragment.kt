@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import androidx.core.app.ActivityCompat
@@ -36,7 +37,6 @@ class StoryFirstTimeNavigationFragment : DialogFragment(R.layout.story_viewer_fi
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState)
     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    dialog.window!!.enableEdgeToEdge()
 
     if (Build.VERSION.SDK_INT >= 28) {
       dialog.window!!.attributes = dialog.window!!.attributes.apply {
@@ -44,6 +44,12 @@ class StoryFirstTimeNavigationFragment : DialogFragment(R.layout.story_viewer_fi
       }
     }
     return dialog
+  }
+
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return super.onGetLayoutInflater(savedInstanceState).also {
+      dialog?.window?.enableEdgeToEdge()
+    }
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

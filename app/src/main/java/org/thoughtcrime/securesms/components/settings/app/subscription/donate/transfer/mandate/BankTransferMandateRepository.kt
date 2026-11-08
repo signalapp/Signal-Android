@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.t
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.donations.PaymentSourceType
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.net.SignalNetwork
 import java.util.Locale
 
 object BankTransferMandateRepository {
@@ -21,7 +21,7 @@ object BankTransferMandateRepository {
     }
 
     return Single
-      .fromCallable { AppDependencies.donationsService.getBankMandate(Locale.getDefault(), sourceString) }
+      .fromCallable { SignalNetwork.donationsService.getBankMandate(Locale.getDefault(), sourceString) }
       .flatMap { it.flattenResult() }
       .map { it.mandate }
       .subscribeOn(Schedulers.io())

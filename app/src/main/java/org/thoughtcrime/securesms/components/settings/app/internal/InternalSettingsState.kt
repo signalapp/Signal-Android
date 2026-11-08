@@ -26,6 +26,7 @@ data class InternalSettingsState(
   val callingUseSoftwareVp9Decode: Boolean,
   val callingEnableSvc: Boolean,
   val callingStatsIntervalSecs: Int,
+  val callingMinimumCaptureFps: Int,
   val useBuiltInEmojiSet: Boolean,
   val emojiVersion: EmojiFiles.Version?,
   val removeSenderKeyMinimium: Boolean,
@@ -35,8 +36,6 @@ data class InternalSettingsState(
   val pnpInitialized: Boolean,
   val useConversationItemV2ForMedia: Boolean,
   val hasPendingOneTimeDonation: Boolean,
-  val forceSplitPane: Boolean,
-  val forceSinglePane: Boolean,
   val disableInternalUser: Boolean,
   val searchQuery: String = ""
 )

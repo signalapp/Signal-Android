@@ -32,10 +32,16 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -43,8 +49,10 @@ import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
+import kotlinx.coroutines.withContext
 import org.signal.core.models.ServiceId
 import org.signal.core.models.database.StickerRecord
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -78,6 +86,7 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.jobs.PollVoteJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
@@ -92,12 +101,10 @@ import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.NetworkUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -162,6 +169,8 @@ class ConversationViewModel(
   private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(null, null))
   val chatColorsSnapshot: ChatColorsDrawable.ChatColorsData get() = chatColors.state
 
+  val recipientId = recipientRepository.recipientId
+
   @Volatile
   var recipientSnapshot: Recipient? = null
     private set
@@ -189,6 +198,11 @@ class ConversationViewModel(
 
   val groupRecordFlow: Flow<GroupRecord>
 
+  private val internalGroupTerminatedEvents = MutableSharedFlow<String?>()
+
+  /** Emits the display name of who ended the group (null if unknown) when someone other than self ends it while this conversation is open. */
+  val groupTerminatedEvents: SharedFlow<String?> = internalGroupTerminatedEvents.asSharedFlow()
+
   private val refreshIdentityRecords: Subject<Unit> = PublishSubject.create()
   private val identityRecordsStore: RxStore<IdentityRecordsState> = RxStore(IdentityRecordsState())
   val identityRecordsObservable: Observable<IdentityRecordsState> = identityRecordsStore.stateFlowable.toObservable()
@@ -205,10 +219,6 @@ class ConversationViewModel(
     .observeOn(AndroidSchedulers.mainThread())
 
   private val startExpiration = BehaviorSubject.create<MessageTable.ExpirationInfo>()
-
-  private val _jumpToDateValidator: JumpToDateValidator by lazy { JumpToDateValidator.create(threadId) }
-  val jumpToDateValidator: JumpToDateValidator
-    get() = _jumpToDateValidator
 
   private val internalBackPressedState = MutableStateFlow(BackPressedState())
   val backPressedState: StateFlow<BackPressedState> = internalBackPressedState
@@ -301,6 +311,34 @@ class ConversationViewModel(
       )
     }
 
+    disposables += recipientRepository
+      .groupRecord
+      .filter { it.isPresent && it.get().isV2Group }
+      .map { it.get().requireV2GroupProperties().memberLabelsByAci() }
+      .distinctUntilChanged()
+      .skip(1)
+      .subscribeBy(onNext = {
+        pagingController.onDataInvalidated()
+      })
+
+    disposables += conversationThreadState.flatMapObservable { threadState ->
+      threadState.sharedContactMessages.hasAny.switchMap { hasAny ->
+        if (hasAny) {
+          Observable.combineLatest(
+            recipientRepository.groupRecord.filter { it.isPresent && it.get().hasV2GroupProperties }.map { it.get().requireV2GroupProperties().groupRevision },
+            recipientRepository.conversationRecipient.map { it.isProfileSharing }
+          ) { revision, isProfileSharing -> revision to isProfileSharing }
+            .distinctUntilChanged()
+            .skip(1)
+            .map { threadState }
+        } else {
+          Observable.empty()
+        }
+      }
+    }.subscribeBy(onNext = { threadState ->
+      threadState.sharedContactMessages.messageIds.forEach { threadState.items.controller.onDataItemChanged(ConversationElementKey.forMessage(it)) }
+    })
+
     _inputReadyState = Observable.combineLatest(
       recipientRepository.conversationRecipient,
       recipientRepository.groupRecord
@@ -310,7 +348,7 @@ class ConversationViewModel(
         messageRequestState = messageRequestRepository.getMessageRequestState(recipient, threadId),
         groupRecord = groupRecord.orNull(),
         isClientExpired = SignalStore.misc.isClientDeprecated,
-        isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
+        isUnauthorized = SignalStore.account.isUnauthorizedReceived,
         threadContainsSms = !recipient.isRegistered && !recipient.isPushGroup && !recipient.isSelf && messageRequestRepository.threadContainsSms(threadId)
       )
     }.doOnNext {
@@ -323,6 +361,15 @@ class ConversationViewModel(
       .observeOn(AndroidSchedulers.mainThread())
       .asFlow()
       .mapNotNull { it.orNull() }
+
+    viewModelScope.launch {
+      groupRecordFlow
+        .distinctUntilChangedBy { it.isTerminated }
+        .drop(1)
+        .filter { it.isTerminated && it.terminatedByRecipientId != Recipient.self().id }
+        .map { record -> record.terminatedByRecipientId?.let { withContext(Dispatchers.Default) { Recipient.resolved(it).getDisplayName(AppDependencies.application) } } }
+        .collect { internalGroupTerminatedEvents.emit(it) }
+    }
 
     Observable.combineLatest(
       refreshIdentityRecords.startWithItem(Unit).observeOn(Schedulers.io()),
@@ -365,6 +412,12 @@ class ConversationViewModel(
         ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(AppDependencies.application, it, threadRecipient!!)
       }
     }
+  }
+
+  fun addSharedContactToGroup(contact: Contact, groupRecipient: Recipient): Single<GroupAddMembersResult> {
+    return repository
+      .addSharedContactToGroup(contact, groupRecipient)
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {
@@ -600,7 +653,6 @@ class ConversationViewModel(
 
   fun sendMessage(
     metricId: String?,
-    threadRecipient: Recipient,
     body: String,
     slideDeck: SlideDeck?,
     scheduledDate: Long,
@@ -615,7 +667,7 @@ class ConversationViewModel(
   ): Completable {
     return repository.sendMessage(
       threadId = threadId,
-      threadRecipient = threadRecipient,
+      threadRecipient = recipientSnapshot ?: Recipient.resolved(recipientId),
       metricId = metricId,
       body = body,
       slideDeck = slideDeck,
@@ -710,14 +762,9 @@ class ConversationViewModel(
       .observeOn(AndroidSchedulers.mainThread())
   }
 
-  fun onChatSearchOpened() {
-    // Trigger the lazy load, so we can race initialization of the validator
-    _jumpToDateValidator
-  }
-
-  fun getEarliestMessageSentDate(): Single<Long> {
+  fun getDaysWithMessages(): Single<Set<Long>> {
     return repository
-      .getEarliestMessageSentDate(threadId)
+      .getDaysWithMessages(threadId)
       .observeOn(AndroidSchedulers.mainThread())
   }
 
@@ -736,12 +783,6 @@ class ConversationViewModel(
   fun setIsInActionMode(isInActionMode: Boolean) {
     internalBackPressedState.update {
       it.copy(isInActionMode = isInActionMode)
-    }
-  }
-
-  fun setIsMediaKeyboardShowing(isMediaKeyboardShowing: Boolean) {
-    internalBackPressedState.update {
-      it.copy(isMediaKeyboardShowing = isMediaKeyboardShowing)
     }
   }
 
@@ -846,12 +887,12 @@ class ConversationViewModel(
     data object Cancelled : PlaintextExportState
   }
 
+  /** A media keyboard is absent by design: KeyboardSheetScaffold registers its own back handler. */
   data class BackPressedState(
     val isReactionDelegateShowing: Boolean = false,
     val isSearchRequested: Boolean = false,
-    val isInActionMode: Boolean = false,
-    val isMediaKeyboardShowing: Boolean = false
+    val isInActionMode: Boolean = false
   ) {
-    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing || isInActionMode || isMediaKeyboardShowing
+    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing || isInActionMode
   }
 }

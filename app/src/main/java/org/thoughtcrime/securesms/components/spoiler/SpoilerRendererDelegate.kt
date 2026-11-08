@@ -13,6 +13,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import org.signal.core.util.AccessibilityUtil
 import org.signal.core.util.dp
+import org.signal.uicomponents.spoiler.SpoilerPaint
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation.SpoilerClickableSpan
 import org.thoughtcrime.securesms.util.getLifecycle
 import org.signal.core.ui.R as CoreUiR

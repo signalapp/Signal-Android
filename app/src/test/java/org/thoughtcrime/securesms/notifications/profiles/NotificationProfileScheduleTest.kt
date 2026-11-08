@@ -6,7 +6,7 @@ import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import org.junit.BeforeClass
 import org.junit.Test
-import org.thoughtcrime.securesms.util.toMillis
+import org.signal.core.util.toMillis
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.ZoneOffset

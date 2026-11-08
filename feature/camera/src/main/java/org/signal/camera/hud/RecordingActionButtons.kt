@@ -58,7 +58,7 @@ fun RecordingLockButton(
     Icon(
       imageVector = if (isEngaged) SignalIcons.LockFill.imageVector else SignalIcons.Lock.imageVector,
       contentDescription = null,
-      tint = Color.White,
+      tint = colorResource(R.color.CameraHud_control_foreground),
       modifier = Modifier.size(ActionIconSize)
     )
   }
@@ -88,7 +88,7 @@ fun RecordingPauseButton(
         Icon(
           imageVector = SignalIcons.Pause.imageVector,
           contentDescription = null,
-          tint = Color.White,
+          tint = colorResource(R.color.CameraHud_control_foreground),
           modifier = Modifier
             .fillMaxSize()
             .padding(14.dp)

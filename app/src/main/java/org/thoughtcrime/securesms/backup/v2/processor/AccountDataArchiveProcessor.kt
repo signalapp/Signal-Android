@@ -5,18 +5,22 @@
 
 package org.thoughtcrime.securesms.backup.v2.processor
 
-import android.content.Context
 import okio.ByteString.Companion.EMPTY
 import okio.ByteString.Companion.toByteString
+import org.signal.appsettings.usernamelinks.UsernameQrCodeColorScheme
 import org.signal.archive.proto.AccountData
 import org.signal.archive.proto.ChatStyle
 import org.signal.archive.proto.Frame
 import org.signal.archive.stream.BackupFrameEmitter
+import org.signal.core.models.calls.CallDataMode
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.media.SentMediaQuality
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
-import org.signal.mediasend.SentMediaQuality
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -29,23 +33,17 @@ import org.thoughtcrime.securesms.backup.v2.util.parseChatWallpaper
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.webrtc.CallDataMode
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.AppleIAPOriginalTransactionId
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.GooglePlayBillingPurchaseToken
@@ -62,8 +60,6 @@ object AccountDataArchiveProcessor {
   private val TAG = Log.tag(AccountDataArchiveProcessor::class)
 
   fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, emitter: BackupFrameEmitter) {
-    val context = AppDependencies.application
-
     val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get()
     val selfRecord = db.recipientTable.getRecordForSync(selfId)!!
 
@@ -82,8 +78,8 @@ object AccountDataArchiveProcessor {
       null
     }
 
-    val mobileAutoDownload = TextSecurePreferences.getMobileMediaDownloadAllowed(context)
-    val wifiAutoDownload = TextSecurePreferences.getWifiMediaDownloadAllowed(context)
+    val mobileAutoDownload = SignalStore.settings.mobileMediaDownloadAllowed
+    val wifiAutoDownload = SignalStore.settings.wifiMediaDownloadAllowed
 
     val username = selfRecord.username?.takeIf { it.isValidUsername() }
 
@@ -107,10 +103,10 @@ object AccountDataArchiveProcessor {
           },
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = signalStore.storyValues.viewedReceiptsEnabled,
-            typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
-            readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context),
-            sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-            allowSealedSenderFromAnyone = TextSecurePreferences.isUniversalUnidentifiedAccess(context),
+            typingIndicators = SignalStore.settings.isTypingIndicatorsEnabled,
+            readReceipts = SignalStore.settings.isReadReceiptsEnabled,
+            sealedSenderIndicators = SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
+            allowSealedSenderFromAnyone = SignalStore.settings.isUniversalUnidentifiedAccess,
             linkPreviews = signalStore.settingsValues.isLinkPreviewsEnabled,
             notDiscoverableByPhoneNumber = signalStore.phoneNumberPrivacyValues.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE,
             phoneNumberSharingMode = signalStore.phoneNumberPrivacyValues.phoneNumberSharingMode.toRemotePhoneNumberSharingMode(),
@@ -120,7 +116,7 @@ object AccountDataArchiveProcessor {
             storiesDisabled = signalStore.storyValues.isFeatureDisabled,
             hasViewedOnboardingStory = signalStore.storyValues.userHasViewedOnboardingStory,
             hasSetMyStoriesPrivacy = signalStore.storyValues.userHasBeenNotifiedAboutStories,
-            keepMutedChatsArchived = signalStore.settingsValues.shouldKeepMutedChatsArchived(),
+            keepMutedChatsArchived = signalStore.settingsValues.keepMutedChatsArchived,
             displayBadgesOnProfile = signalStore.inAppPaymentValues.getDisplayBadgesOnProfile(),
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
@@ -135,7 +131,7 @@ object AccountDataArchiveProcessor {
               documents = getRemoteAutoDownloadOption("documents", mobileAutoDownload, wifiAutoDownload)
             ),
             screenLockTimeoutMinutes = screenLockTimeoutMinutes,
-            pinReminders = signalStore.pinValues.arePinRemindersEnabled(),
+            pinReminders = signalStore.pinValues.pinRemindersEnabled,
             appTheme = signalStore.settingsValues.theme.toRemoteAppTheme(),
             callsUseLessDataSetting = signalStore.settingsValues.callDataMode.toRemoteCallsUseLessDataSetting(),
             defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
@@ -146,13 +142,21 @@ object AccountDataArchiveProcessor {
               backupMode = exportState.backupMode
             ),
             allowAutomaticKeyVerification = signalStore.settingsValues.automaticVerificationEnabled,
-            hasSeenAdminDeleteEducationDialog = signalStore.uiHintValues.hasSeenAdminDeleteEducationDialog()
+            hasSeenAdminDeleteEducationDialog = signalStore.uiHintValues.hasSeenAdminDeleteEducationDialog(),
+            unreadBadgeType = signalStore.settingsValues.unreadBadgeType.toRemoteBadgeType(),
+            includeMutedChatsInBadge = signalStore.settingsValues.includeMutedInBadgeCount,
+            notifyForCallsIfMuted = signalStore.settingsValues.allowCallsWhileMuted,
+            notifyForMentionsIfMuted = signalStore.settingsValues.allowMentionsWhileMuted,
+            notifyForRepliesIfMuted = signalStore.settingsValues.allowRepliesWhileMuted,
+            reactionNotifications = signalStore.settingsValues.reactionNotifications,
+            showUnreadReminders = signalStore.settingsValues.unreadReminderEnabled,
+            notifyWhenContactJoins = signalStore.settingsValues.isNotifyWhenContactJoinsSignal
           ),
           donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled()),
           backupsSubscriberData = backupSubscriberRecord?.toIAPSubscriberData(),
           androidSpecificSettings = AccountData.AndroidSpecificSettings(
             useSystemEmoji = signalStore.settingsValues.isPreferSystemEmoji,
-            screenshotSecurity = TextSecurePreferences.isScreenSecurityEnabled(context),
+            screenshotSecurity = SignalStore.settings.isScreenSecurityEnabled,
             navigationBarSize = signalStore.settingsValues.useCompactNavigationBar.toRemoteNavigationBarSize()
           ).takeUnless { Environment.IS_INSTRUMENTATION && SignalStore.backup.importedEmptyAndroidSettings },
           bioText = selfRecord.about ?: "",
@@ -170,17 +174,16 @@ object AccountDataArchiveProcessor {
       SignalStore.svr.setPin(accountData.svrPin)
     }
 
-    val context = AppDependencies.application
     val settings = accountData.accountSettings
 
     if (settings != null) {
-      importSettings(context, settings, importState)
+      importSettings(settings, importState)
     }
 
     val androidSpecificSettings = accountData.androidSpecificSettings
     if (androidSpecificSettings != null) {
       SignalStore.settings.isPreferSystemEmoji = androidSpecificSettings.useSystemEmoji
-      TextSecurePreferences.setScreenSecurityEnabled(context, androidSpecificSettings.screenshotSecurity)
+      SignalStore.settings.isScreenSecurityEnabled = androidSpecificSettings.screenshotSecurity
       SignalStore.settings.useCompactNavigationBar = androidSpecificSettings.navigationBarSize.toLocalNavigationBarSize()
     } else if (Environment.IS_INSTRUMENTATION) {
       SignalStore.backup.importedEmptyAndroidSettings = true
@@ -236,7 +239,7 @@ object AccountDataArchiveProcessor {
     }
 
     if (accountData.avatarUrlPath.isNotEmpty()) {
-      AppDependencies.jobManager.add(RetrieveProfileAvatarJob(Recipient.self().fresh(), accountData.avatarUrlPath))
+      AppDependencies.jobManager.add(RetrieveProfileAvatarJob.forBackupRestore(Recipient.self().fresh(), accountData.avatarUrlPath))
     }
 
     val usernameLink = accountData.usernameLink
@@ -252,24 +255,24 @@ object AccountDataArchiveProcessor {
 
     SignalDatabase.recipients.clearSelfKeyTransparencyData()
 
-    SignalDatabase.runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
+    ProfileUtil.handleSelfProfileKeyChange()
 
     Recipient.self().live().refresh()
   }
 
-  private fun importSettings(context: Context, settings: AccountData.AccountSettings, importState: ImportState) {
-    TextSecurePreferences.setReadReceiptsEnabled(context, settings.readReceipts)
-    TextSecurePreferences.setTypingIndicatorsEnabled(context, settings.typingIndicators)
-    TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, settings.sealedSenderIndicators)
-    TextSecurePreferences.setIsUniversalUnidentifiedAccess(context, settings.allowSealedSenderFromAnyone)
+  private fun importSettings(settings: AccountData.AccountSettings, importState: ImportState) {
+    SignalStore.settings.isReadReceiptsEnabled = settings.readReceipts
+    SignalStore.settings.isTypingIndicatorsEnabled = settings.typingIndicators
+    SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled = settings.sealedSenderIndicators
+    SignalStore.settings.isUniversalUnidentifiedAccess = settings.allowSealedSenderFromAnyone
     SignalStore.settings.isLinkPreviewsEnabled = settings.linkPreviews
     SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
     SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
     SignalStore.settings.isPreferSystemContactPhotos = settings.preferContactAvatars
     SignalStore.settings.universalExpireTimer = settings.universalExpireTimerSeconds
-    SignalStore.emoji.reactions = settings.preferredReactionEmoji
+    SignalStore.emoji.rawReactions = settings.preferredReactionEmoji
     SignalStore.inAppPayments.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
-    SignalStore.settings.setKeepMutedChatsArchived(settings.keepMutedChatsArchived)
+    SignalStore.settings.keepMutedChatsArchived = settings.keepMutedChatsArchived
     SignalStore.story.userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
     SignalStore.story.userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
     SignalStore.story.isFeatureDisabled = settings.storiesDisabled
@@ -278,20 +281,25 @@ object AccountDataArchiveProcessor {
     SignalStore.backup.optimizeStorage = !importState.backupMode.isLinkAndSync && settings.optimizeOnDeviceStorage
     SignalStore.backup.backupTier = MessageBackupTier.fromBackupLevel(settings.backupTier)
     SignalStore.settings.sentMediaQuality = settings.defaultSentMediaQuality.toLocalSentMediaQuality()
-    SignalStore.settings.setTheme(settings.appTheme.toLocalTheme())
-    SignalStore.settings.setCallDataMode(settings.callsUseLessDataSetting.toLocalCallDataMode())
+    SignalStore.settings.theme = settings.appTheme.toLocalTheme()
+    SignalStore.settings.callDataMode = settings.callsUseLessDataSetting.toLocalCallDataMode()
     SignalStore.settings.automaticVerificationEnabled = settings.allowAutomaticKeyVerification
+    SignalStore.settings.setUnreadBadgeType(settings.unreadBadgeType.value)
+    SignalStore.settings.setIncludeMutedInBadgeCount(settings.includeMutedChatsInBadge ?: false)
+    SignalStore.settings.allowCallsWhileMuted = settings.notifyForCallsIfMuted ?: false
+    SignalStore.settings.allowMentionsWhileMuted = settings.notifyForMentionsIfMuted ?: true
+    SignalStore.settings.allowRepliesWhileMuted = settings.notifyForRepliesIfMuted ?: true
+    SignalStore.settings.reactionNotifications = settings.reactionNotifications ?: true
+    SignalStore.settings.unreadReminderEnabled = settings.showUnreadReminders ?: true
+    SignalStore.settings.isNotifyWhenContactJoinsSignal = settings.notifyWhenContactJoins ?: false
 
     val autoDownloadSettings = settings.autoDownloadSettings
     if (autoDownloadSettings != null) {
       val mobileAndWifiDownloadSet = autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI_AND_CELLULAR)
       val wifiDownloadSet = mobileAndWifiDownloadSet + autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI)
 
-      TextSecurePreferences.getSharedPreferences(context).edit().apply {
-        putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF, mobileAndWifiDownloadSet)
-        putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF, wifiDownloadSet)
-        apply()
-      }
+      SignalStore.settings.mobileMediaDownloadAllowed = mobileAndWifiDownloadSet
+      SignalStore.settings.wifiMediaDownloadAllowed = wifiDownloadSet
     }
 
     val screenLockTimeoutMinutes = settings.screenLockTimeoutMinutes
@@ -301,7 +309,7 @@ object AccountDataArchiveProcessor {
 
     val pinReminders = settings.pinReminders
     if (pinReminders != null) {
-      SignalStore.pin.setPinRemindersEnabled(pinReminders)
+      SignalStore.pin.pinRemindersEnabled = pinReminders
     }
 
     settings.customChatColors
@@ -350,7 +358,7 @@ object AccountDataArchiveProcessor {
     }
 
     if (settings.preferredReactionEmoji.isNotEmpty()) {
-      SignalStore.emoji.reactions = settings.preferredReactionEmoji
+      SignalStore.emoji.rawReactions = settings.preferredReactionEmoji
     }
 
     if (settings.hasCompletedUsernameOnboarding) {
@@ -543,6 +551,14 @@ object AccountDataArchiveProcessor {
       AccountData.CallsUseLessDataSetting.MOBILE_DATA_ONLY -> CallDataMode.HIGH_ON_WIFI
       AccountData.CallsUseLessDataSetting.NEVER -> CallDataMode.HIGH_ALWAYS
       AccountData.CallsUseLessDataSetting.UNKNOWN_CALL_DATA_SETTING -> CallDataMode.HIGH_ALWAYS
+    }
+  }
+
+  private fun SettingsValues.UnreadBadgeType.toRemoteBadgeType(): AccountData.AccountSettings.UnreadBadgeType {
+    return when (this) {
+      SettingsValues.UnreadBadgeType.UNREAD_MESSAGES -> AccountData.AccountSettings.UnreadBadgeType.UNREAD_MESSAGES
+      SettingsValues.UnreadBadgeType.UNREAD_CHATS -> AccountData.AccountSettings.UnreadBadgeType.UNREAD_CHATS
+      SettingsValues.UnreadBadgeType.UNKNOWN_BADGE_TYPE -> AccountData.AccountSettings.UnreadBadgeType.UNREAD_MESSAGES
     }
   }
 }

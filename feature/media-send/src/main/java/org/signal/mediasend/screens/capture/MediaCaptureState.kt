@@ -6,7 +6,6 @@
 package org.signal.mediasend.screens.capture
 
 import org.signal.core.models.media.Media
-import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendRoute
@@ -26,14 +25,14 @@ internal data class MediaCaptureState(
   val mode: MediaSendFlowActivityContract.Mode = MediaSendFlowActivityContract.Mode.SingleRecipient,
   /** Who this is headed to, when that is already settled. Only the chrome's tint reads it. */
   val recipientId: MediaRecipientId? = null,
-  /** Null leaves recording on the most conservative limits this device supports. */
-  val mediaConstraints: MediaConstraints? = null,
   val storyMaxVideoDuration: Duration = Duration.ZERO,
   /** Only ever [MediaCaptureMode.PHOTO] or [MediaCaptureMode.VIDEO]; whether the text story is showing is navigation's. */
   val selectedCameraMode: MediaCaptureMode = MediaCaptureMode.PHOTO,
   val isVideoCaptureSupported: Boolean = true,
   /** As the camera reports it, so only ever true of the camera screen. */
-  val isRecording: Boolean = false
+  val isRecording: Boolean = false,
+  /** Mirrors the flow, which keeps the user on the camera after each capture while this is on. */
+  val isMultiCaptureEnabled: Boolean = false
 ) {
 
   /**

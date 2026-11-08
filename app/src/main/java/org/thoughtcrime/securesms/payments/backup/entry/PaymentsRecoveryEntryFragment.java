@@ -3,12 +3,14 @@ package org.thoughtcrime.securesms.payments.backup.entry;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -19,6 +21,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.Mnemonic;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
@@ -36,6 +39,10 @@ public class PaymentsRecoveryEntryFragment extends Fragment {
     MaterialAutoCompleteTextView   word      = view.findViewById(R.id.payments_recovery_entry_fragment_word);
     View                           next      = view.findViewById(R.id.payments_recovery_entry_fragment_next);
     PaymentsRecoveryEntryViewModel viewModel = new ViewModelProvider(this).get(PaymentsRecoveryEntryViewModel.class);
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.payments_recovery_entry_fragment_scroll_view), getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime());
 
     toolbar.setNavigationOnClickListener(t -> Navigation.findNavController(view).popBackStack(R.id.paymentsHome, false));
 

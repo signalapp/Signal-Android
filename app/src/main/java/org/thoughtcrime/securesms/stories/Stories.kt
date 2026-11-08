@@ -11,13 +11,14 @@ import androidx.media3.exoplayer.ExoPlayer
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.mediasend.MediaConstraints
-import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomShee
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -248,6 +248,8 @@ object Stories {
           getVideoDuration(media.uri)
         } else if (transforms?.videoTrim ?: false) {
           TimeUnit.MICROSECONDS.toMillis(transforms.videoTrimEndTimeUs - transforms.videoTrimStartTimeUs)
+        } else if (media.duration == 0L) {
+          getVideoDuration(media.uri)
         } else {
           media.duration
         }

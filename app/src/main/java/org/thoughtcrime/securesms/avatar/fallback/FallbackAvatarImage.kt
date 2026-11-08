@@ -77,8 +77,8 @@ fun FallbackAvatarImage(
       }
 
       is FallbackAvatar.Text -> {
-        val size = DimensionUnit.DP.toPixels(maxWidth.value) * 0.8f
-        val textSize = DimensionUnit.PIXELS.toDp(Avatars.getTextSizeForLength(context, fallbackAvatar.content, size, size))
+        val widthPx = DimensionUnit.DP.toPixels(maxWidth.value)
+        val textSize = DimensionUnit.PIXELS.toDp(Avatars.getTextSizeForLength(context, fallbackAvatar.content, widthPx * 0.8f, widthPx * 0.45f))
 
         // TODO [alex] -- Handle emoji
 

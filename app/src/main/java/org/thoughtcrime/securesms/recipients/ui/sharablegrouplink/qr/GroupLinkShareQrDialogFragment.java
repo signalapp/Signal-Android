@@ -63,12 +63,13 @@ public class GroupLinkShareQrDialogFragment extends DialogFragment {
   }
 
   @Override
-  public @NonNull Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-    Dialog dialog = super.onCreateDialog(savedInstanceState);
-    if (dialog.getWindow() != null) {
+  public @NonNull LayoutInflater onGetLayoutInflater(@Nullable Bundle savedInstanceState) {
+    LayoutInflater inflater = super.onGetLayoutInflater(savedInstanceState);
+    Dialog         dialog   = getDialog();
+    if (dialog != null && dialog.getWindow() != null) {
       WindowExtensionsKt.enableEdgeToEdge(dialog.getWindow());
     }
-    return dialog;
+    return inflater;
   }
 
   @Override

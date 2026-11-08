@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.conversation
 
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity
-import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * Activity which encapsulates a conversation for a Bubble window.
