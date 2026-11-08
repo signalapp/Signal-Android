@@ -8,10 +8,13 @@ package org.thoughtcrime.securesms.database
 import android.app.Application
 import android.database.Cursor
 import assertk.assertThat
+import assertk.assertions.containsExactly
+import assertk.assertions.containsExactlyInAnyOrder
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import io.mockk.every
+import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -22,13 +25,17 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.CursorUtil
 import org.signal.remoteconfig.RemoteConfig
+import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointer
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
+import org.thoughtcrime.securesms.util.MediaUtil
+import org.whispersystems.signalservice.internal.push.AttachmentPointer
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -289,6 +296,30 @@ class EditMessageRevisionTest {
     assertThat(getLatestRevisionId(edit2Id)).isNull()
   }
 
+  @Test
+  fun incomingEditThatBecomesLongTextKeepsMediaOfPreviousRevision() {
+    insertOriginalMessage(sentTimeMillis = 1000, attachments = listOf(pointer("image/jpeg")))
+    val editId = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1001, attachments = listOf(pointer(MediaUtil.LONG_TEXT)))
+
+    assertThat(getAttachmentContentTypes(editId)).containsExactlyInAnyOrder("image/jpeg", MediaUtil.LONG_TEXT)
+  }
+
+  @Test
+  fun incomingLongTextEditOfLongTextMediaMessageKeepsMediaAndOnlyNewLongText() {
+    insertOriginalMessage(sentTimeMillis = 1000, attachments = listOf(pointer("image/jpeg"), pointer(MediaUtil.LONG_TEXT)))
+    val editId = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1001, attachments = listOf(pointer(MediaUtil.LONG_TEXT)))
+
+    assertThat(getAttachmentContentTypes(editId)).containsExactlyInAnyOrder("image/jpeg", MediaUtil.LONG_TEXT)
+  }
+
+  @Test
+  fun incomingShortEditOfMediaMessageKeepsMedia() {
+    insertOriginalMessage(sentTimeMillis = 1000, attachments = listOf(pointer("image/jpeg")))
+    val editId = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1001)
+
+    assertThat(getAttachmentContentTypes(editId)).containsExactly("image/jpeg")
+  }
+
   private fun insertOutgoingEdit(messageToEdit: Long, sentTimeMillis: Long): Long {
     val message = OutgoingMessage(
       recipient = Recipient.resolved(contactId),
@@ -338,14 +369,15 @@ class EditMessageRevisionTest {
       }
   }
 
-  private fun insertOriginalMessage(sentTimeMillis: Long): Long {
+  private fun insertOriginalMessage(sentTimeMillis: Long, attachments: List<Attachment> = emptyList()): Long {
     val message = IncomingMessage(
       type = MessageType.NORMAL,
       from = senderId,
       sentTimeMillis = sentTimeMillis,
       serverTimeMillis = sentTimeMillis,
       receivedTimeMillis = System.currentTimeMillis(),
-      body = "original message"
+      body = "original message",
+      attachments = attachments
     )
     return SignalDatabase.messages.insertMessageInbox(message, threadId).get().messageId
   }
@@ -355,8 +387,10 @@ class EditMessageRevisionTest {
    * timestamp — this matches what [EditMessageProcessor] does and means targetMessage.id
    * is always the original message's row ID.
    */
-  private fun insertEdit(originalSentTimestamp: Long, editSentTimeMillis: Long): Long {
-    val targetMessage = SignalDatabase.messages.getMessageFor(originalSentTimestamp, senderId) as MmsMessageRecord
+  private fun insertEdit(originalSentTimestamp: Long, editSentTimeMillis: Long, attachments: List<Attachment> = emptyList()): Long {
+    val targetMessage = (SignalDatabase.messages.getMessageFor(originalSentTimestamp, senderId) as MmsMessageRecord).let {
+      it.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(it.id))
+    }
 
     val editMessage = IncomingMessage(
       type = MessageType.NORMAL,
@@ -364,9 +398,25 @@ class EditMessageRevisionTest {
       sentTimeMillis = editSentTimeMillis,
       serverTimeMillis = editSentTimeMillis,
       receivedTimeMillis = System.currentTimeMillis(),
-      body = "edited at $editSentTimeMillis"
+      body = "edited at $editSentTimeMillis",
+      attachments = attachments
     )
     return SignalDatabase.messages.insertEditMessageInbox(editMessage, targetMessage).get().messageId
+  }
+
+  private fun pointer(contentType: String): Attachment {
+    return AttachmentPointer(
+      cdnKey = "cdn-key-$contentType",
+      cdnNumber = 3,
+      key = ByteArray(64) { 1 }.toByteString(),
+      contentType = contentType,
+      size = 1024,
+      digest = ByteArray(32) { 2 }.toByteString()
+    ).toPointer()!!
+  }
+
+  private fun getAttachmentContentTypes(messageId: Long): List<String?> {
+    return SignalDatabase.attachments.getAttachmentsForMessage(messageId).map { it.contentType }
   }
 
   private fun getLatestRevisionId(messageId: Long): Long? {
