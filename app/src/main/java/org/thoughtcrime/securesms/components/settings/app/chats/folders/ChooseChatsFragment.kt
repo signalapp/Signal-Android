@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.ui.util.ViewUtil
@@ -17,6 +18,9 @@ import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
+import org.thoughtcrime.securesms.components.settings.insetToolbarForStatusBar
+import org.thoughtcrime.securesms.components.settings.isInsetByHost
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.contacts.paged.ChatType
@@ -28,6 +32,7 @@ import java.util.function.Consumer
 class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnContactSelectedListener {
 
   private val viewModel: ChatFoldersViewModel by activityViewModels()
+  private val appSettingsRouter by appSettingsRouter()
 
   private var includeChatsMode: Boolean = true
 
@@ -69,7 +74,7 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
     } else {
       toolbar.setTitle(R.string.CreateFoldersFragment__exceptions)
     }
-    toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+    toolbar.setNavigationOnClickListener { (appSettingsRouter::onEvent).navigateBack() }
 
     selectionFragment = childFragmentManager.findFragmentById(R.id.contact_selection_list) as ContactSelectionListFragment
     contactFilterView = view.findViewById(R.id.contact_filter_edit_text)
@@ -84,7 +89,7 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
     doneButton = view.findViewById(R.id.done_button)
     doneButton.setOnClickListener {
       viewModel.savePendingChats()
-      findNavController().popBackStack()
+      (appSettingsRouter::onEvent).navigateBack()
     }
     doneButton.isEnabled = false
 
@@ -92,7 +97,11 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
   }
 
   private fun applyEdgeToEdgeInsets(view: View, toolbar: Toolbar) {
-    SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+    if (isInsetByHost()) {
+      return
+    }
+
+    insetToolbarForStatusBar(toolbar, viewLifecycleOwner)
 
     val bottomInsetTypes = WindowInsetsCompat.Type.navigationBars() or WindowInsetsCompat.Type.ime()
     SystemWindowInsetsSetter.attach(view.findViewById(R.id.contact_selection_list), viewLifecycleOwner, bottomInsetTypes)
@@ -161,6 +170,8 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
 
   companion object {
     private val TAG = Log.tag(ChooseChatsFragment::class.java)
-    private val KEY_INCLUDE_CHATS = "include_chats"
+    private const val KEY_INCLUDE_CHATS = "include_chats"
+
+    fun createArguments(includeChats: Boolean): Bundle = bundleOf(KEY_INCLUDE_CHATS to includeChats)
   }
 }

@@ -1,9 +1,8 @@
 package org.thoughtcrime.securesms.components.settings.app.chats.folders
 
-import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -47,10 +46,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -61,6 +63,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -73,110 +76,130 @@ private const val MAX_CHAT_COUNT = 5
  */
 class CreateFoldersFragment : ComposeFragment() {
 
-  private val viewModel: ChatFoldersViewModel by activityViewModels()
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-
-    requireActivity().onBackPressedDispatcher.addCallback(
-      viewLifecycleOwner,
-      object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-          if (viewModel.hasChanges() && !viewModel.hasEmptyName()) {
-            viewModel.showConfirmationDialog(true)
-          } else {
-            requireActivity().onNavigateUp()
-          }
-        }
-      }
-    )
-  }
+  // Leaves by navigating up, since going back is intercepted to confirm discarding changes.
+  private val appSettingsRouter by appSettingsRouter(
+    onNavigateBack = { requireActivity().onNavigateUp() },
+    onNavigateToScreen = ::navigateToScreen
+  )
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    val navController: NavController by remember { mutableStateOf(findNavController()) }
-    val focusRequester = remember { FocusRequester() }
-    val isNewFolder = state.originalFolder.folderRecord.id == -1L
+    CreateFoldersEntry(
+      folderId = arguments?.getLong(KEY_FOLDER_ID) ?: -1,
+      threadIds = arguments?.getLongArray(KEY_THREAD_IDS),
+      parentEventEmitter = appSettingsRouter::onEvent
+    )
+  }
 
-    LaunchedEffect(Unit) {
-      if (viewModel.shouldSetInitialFolder()) {
-        viewModel.setCurrentFolderId(arguments?.getLong(KEY_FOLDER_ID) ?: -1)
-        viewModel.addThreadsToFolder(arguments?.getLongArray(KEY_THREAD_IDS))
-      }
-    }
-
-    LaunchedEffect(Unit) {
-      if (viewModel.shouldShowEducationSheet()) {
-        SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
-        navController.safeNavigate(R.id.action_createFoldersFragment_to_chatFoldersEducationSheet)
-      }
-    }
-
-    Scaffolds.Settings(
-      title = if (isNewFolder) stringResource(id = R.string.CreateFoldersFragment__create_a_folder) else stringResource(id = R.string.CreateFoldersFragment__edit_folder),
-      onNavigationClick = {
-        if (viewModel.hasChanges() && !viewModel.hasEmptyName()) {
-          viewModel.showConfirmationDialog(true)
-        } else {
-          requireActivity().onNavigateUp()
-        }
-      },
-      navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
-    ) { contentPadding: PaddingValues ->
-      CreateFolderScreen(
-        state = state,
-        focusRequester = focusRequester,
-        modifier = Modifier
-          .padding(contentPadding)
-          .consumeWindowInsets(contentPadding)
-          .imePadding(),
-        isNewFolder = isNewFolder,
-        hasChanges = viewModel.hasChanges(),
-        onAddChat = {
-          viewModel.setPendingChats()
-          navController.safeNavigate(CreateFoldersFragmentDirections.actionCreateFoldersFragmentToChooseChatsFragment(true))
-        },
-        onRemoveChat = {
-          viewModel.setPendingChats()
-          navController.safeNavigate(CreateFoldersFragmentDirections.actionCreateFoldersFragmentToChooseChatsFragment(false))
-        },
-        onNameChange = { viewModel.updateName(it) },
-        onToggleShowUnread = { viewModel.toggleShowUnread(it) },
-        onToggleShowMuted = { viewModel.toggleShowMutedChats(it) },
-        onDeleteClicked = { viewModel.showDeleteDialog(true) },
-        onDeleteConfirmed = {
-          viewModel.deleteFolder(requireContext())
-          requireActivity().onNavigateUp()
-        },
-        onDeleteDismissed = {
-          viewModel.showDeleteDialog(false)
-        },
-        onCreateConfirmed = {
-          if (isNewFolder) {
-            viewModel.createFolder(requireContext())
-          } else {
-            viewModel.updateFolder(requireContext())
-          }
-          requireActivity().onNavigateUp()
-        },
-        onCreateDismissed = { shouldExit ->
-          viewModel.showConfirmationDialog(false)
-          if (shouldExit) {
-            requireActivity().onNavigateUp()
-          }
-        },
-        onShowToast = {
-          Toast.makeText(requireContext(), R.string.CreateFoldersFragment__please_enter_name, Toast.LENGTH_LONG).show()
-        }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      is AppSettingsRoute.ChatFoldersRoute.ChooseChats -> findNavController().safeNavigate(
+        CreateFoldersFragmentDirections.actionCreateFoldersFragmentToChooseChatsFragment(route.includeChats)
       )
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 
   companion object {
     private val KEY_FOLDER_ID = "folder_id"
     private val KEY_THREAD_IDS = "thread_ids"
+  }
+}
+
+/**
+ * Creates, edits or deletes the folder [folderId] (-1 for a new one, starting with [threadIds]), wired to the view
+ * model the folder screens share, leaving through [parentEventEmitter]. Going back with unsaved changes asks first.
+ */
+@Composable
+fun CreateFoldersEntry(
+  folderId: Long,
+  threadIds: LongArray?,
+  parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) {
+  val context = LocalContext.current
+  val activity = requireNotNull(LocalActivity.current) as FragmentActivity
+  val viewModel = chatFoldersViewModel()
+  val state by viewModel.state.collectAsStateWithLifecycle()
+  val focusRequester = remember { FocusRequester() }
+  val isNewFolder = state.originalFolder.folderRecord.id == -1L
+  val hasUnsavedChanges = viewModel.hasChanges() && !viewModel.hasEmptyName()
+
+  BackHandler(enabled = hasUnsavedChanges) {
+    viewModel.showConfirmationDialog(true)
+  }
+
+  LaunchedEffect(Unit) {
+    if (viewModel.shouldSetInitialFolder()) {
+      viewModel.setCurrentFolderId(folderId)
+      viewModel.addThreadsToFolder(threadIds)
+    }
+  }
+
+  LaunchedEffect(Unit) {
+    if (viewModel.shouldShowEducationSheet()) {
+      SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
+      ChatFoldersEducationSheet().show(activity.supportFragmentManager, null)
+    }
+  }
+
+  Scaffolds.Settings(
+    title = if (isNewFolder) stringResource(id = R.string.CreateFoldersFragment__create_a_folder) else stringResource(id = R.string.CreateFoldersFragment__edit_folder),
+    onNavigationClick = {
+      if (hasUnsavedChanges) {
+        viewModel.showConfirmationDialog(true)
+      } else {
+        parentEventEmitter.navigateBack()
+      }
+    },
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
+  ) { contentPadding: PaddingValues ->
+    CreateFolderScreen(
+      state = state,
+      focusRequester = focusRequester,
+      modifier = Modifier
+        .padding(contentPadding)
+        .consumeWindowInsets(contentPadding)
+        .imePadding(),
+      isNewFolder = isNewFolder,
+      hasChanges = viewModel.hasChanges(),
+      onAddChat = {
+        viewModel.setPendingChats()
+        parentEventEmitter.navigateTo(AppSettingsRoute.ChatFoldersRoute.ChooseChats(includeChats = true))
+      },
+      onRemoveChat = {
+        viewModel.setPendingChats()
+        parentEventEmitter.navigateTo(AppSettingsRoute.ChatFoldersRoute.ChooseChats(includeChats = false))
+      },
+      onNameChange = { viewModel.updateName(it) },
+      onToggleShowUnread = { viewModel.toggleShowUnread(it) },
+      onToggleShowMuted = { viewModel.toggleShowMutedChats(it) },
+      onDeleteClicked = { viewModel.showDeleteDialog(true) },
+      onDeleteConfirmed = {
+        viewModel.deleteFolder(context)
+        parentEventEmitter.navigateBack()
+      },
+      onDeleteDismissed = {
+        viewModel.showDeleteDialog(false)
+      },
+      onCreateConfirmed = {
+        if (isNewFolder) {
+          viewModel.createFolder(context)
+        } else {
+          viewModel.updateFolder(context)
+        }
+        parentEventEmitter.navigateBack()
+      },
+      onCreateDismissed = { shouldExit ->
+        viewModel.showConfirmationDialog(false)
+        if (shouldExit) {
+          parentEventEmitter.navigateBack()
+        }
+      },
+      onShowToast = {
+        Toast.makeText(context, R.string.CreateFoldersFragment__please_enter_name, Toast.LENGTH_LONG).show()
+      }
+    )
   }
 }
 

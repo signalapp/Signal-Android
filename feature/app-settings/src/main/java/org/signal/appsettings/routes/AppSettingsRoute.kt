@@ -417,11 +417,9 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
       }
     }
 
+    /** Picks the chats a folder includes, or with [includeChats] false, the ones it excludes. */
     @Serializable
-    data object Education : ChatFoldersRoute
-
-    @Serializable
-    data object ChooseChats : ChatFoldersRoute
+    data class ChooseChats(val includeChats: Boolean) : ChatFoldersRoute
   }
 
   @Serializable

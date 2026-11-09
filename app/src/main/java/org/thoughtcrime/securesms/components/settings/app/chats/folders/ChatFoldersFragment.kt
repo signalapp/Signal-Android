@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.chats.folders
 
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,7 +31,9 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -39,10 +41,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -58,6 +64,7 @@ import org.signal.core.ui.compose.list.rememberReorderableListState
 import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.appsettings.R as AppSettingsR
@@ -68,57 +75,90 @@ import org.signal.core.ui.R as CoreUiR
  */
 class ChatFoldersFragment : ComposeFragment() {
 
-  private val viewModel: ChatFoldersViewModel by activityViewModels()
+  private val appSettingsRouter by appSettingsRouter(
+    onNavigateBack = { requireActivity().onNavigateUp() },
+    onNavigateToScreen = ::navigateToScreen
+  )
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    val navController: NavController by remember { mutableStateOf(findNavController()) }
-    viewModel.loadCurrentFolders(requireContext())
+    ChatFoldersEntry(parentEventEmitter = appSettingsRouter::onEvent)
+  }
 
-    LaunchedEffect(Unit) {
-      if (viewModel.shouldShowEducationSheet()) {
-        SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
-        navController.safeNavigate(R.id.action_chatFoldersFragment_to_chatFoldersEducationSheet)
-      }
-    }
-
-    Scaffolds.Settings(
-      title = stringResource(id = AppSettingsR.string.ChatsSettingsFragment__chat_folders),
-      onNavigationClick = { requireActivity().onNavigateUp() },
-      navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
-    ) { contentPadding: PaddingValues ->
-      FoldersScreen(
-        state = state,
-        modifier = Modifier.padding(contentPadding),
-        onFolderClicked = {
-          navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id, null))
-        },
-        onAdd = { folder ->
-          Toast.makeText(requireContext(), getString(R.string.ChatFoldersFragment__folder_added, folder.name), Toast.LENGTH_SHORT).show()
-          viewModel.createFolder(requireContext(), folder)
-        },
-        onDeleteClicked = { folder ->
-          viewModel.setCurrentFolder(folder)
-          viewModel.showDeleteDialog(true)
-        },
-        onDeleteConfirmed = {
-          viewModel.deleteFolder(context = requireContext())
-        },
-        onDeleteDismissed = {
-          viewModel.showDeleteDialog(false)
-        },
-        onReorderListEvent = { event ->
-          when (event) {
-            is ReorderListEvent.ItemMoved -> viewModel.updateItemPosition(event.fromIndex, event.toIndex)
-            is ReorderListEvent.ItemDropped -> viewModel.saveItemPositions()
-            is ReorderListEvent.DragCanceled -> {}
-          }
-        }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      is AppSettingsRoute.ChatFoldersRoute.CreateChatFolders -> findNavController().safeNavigate(
+        ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(route.folderId, route.threadIds)
       )
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
+}
+
+/**
+ * The chat folder list, wired to the view model it shares with the rest of the folder screens, leaving through
+ * [parentEventEmitter].
+ */
+@Composable
+fun ChatFoldersEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  val context = LocalContext.current
+  val resources = LocalResources.current
+  val activity = requireNotNull(LocalActivity.current) as FragmentActivity
+  val viewModel = chatFoldersViewModel()
+  val state by viewModel.state.collectAsStateWithLifecycle()
+  viewModel.loadCurrentFolders(context)
+
+  LaunchedEffect(Unit) {
+    if (viewModel.shouldShowEducationSheet()) {
+      SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
+      ChatFoldersEducationSheet().show(activity.supportFragmentManager, null)
+    }
+  }
+
+  Scaffolds.Settings(
+    title = stringResource(id = AppSettingsR.string.ChatsSettingsFragment__chat_folders),
+    onNavigationClick = { parentEventEmitter.navigateBack() },
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
+  ) { contentPadding: PaddingValues ->
+    FoldersScreen(
+      state = state,
+      modifier = Modifier.padding(contentPadding),
+      onFolderClicked = {
+        parentEventEmitter.navigateTo(AppSettingsRoute.ChatFoldersRoute.CreateChatFolders(folderId = it.id, threadIds = longArrayOf()))
+      },
+      onAdd = { folder ->
+        Toast.makeText(context, resources.getString(R.string.ChatFoldersFragment__folder_added, folder.name), Toast.LENGTH_SHORT).show()
+        viewModel.createFolder(context, folder)
+      },
+      onDeleteClicked = { folder ->
+        viewModel.setCurrentFolder(folder)
+        viewModel.showDeleteDialog(true)
+      },
+      onDeleteConfirmed = {
+        viewModel.deleteFolder(context = context)
+      },
+      onDeleteDismissed = {
+        viewModel.showDeleteDialog(false)
+      },
+      onReorderListEvent = { event ->
+        when (event) {
+          is ReorderListEvent.ItemMoved -> viewModel.updateItemPosition(event.fromIndex, event.toIndex)
+          is ReorderListEvent.ItemDropped -> viewModel.saveItemPositions()
+          is ReorderListEvent.DragCanceled -> {}
+        }
+      }
+    )
+  }
+}
+
+/**
+ * The view model the chat folder screens share. Scoped to the activity, where [ChooseChatsFragment]'s
+ * `activityViewModels()` finds it.
+ */
+@Composable
+internal fun chatFoldersViewModel(): ChatFoldersViewModel {
+  return viewModel(viewModelStoreOwner = requireNotNull(LocalActivity.current) as FragmentActivity)
 }
 
 @Composable

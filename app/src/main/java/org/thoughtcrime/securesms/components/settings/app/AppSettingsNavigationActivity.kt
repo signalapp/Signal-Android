@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.components.enableSettingsEdgeToEdge
 import org.thoughtcrime.securesms.components.settings.app.account.registerAccountRoutes
 import org.thoughtcrime.securesms.components.settings.app.appearance.registerAppearanceRoutes
 import org.thoughtcrime.securesms.components.settings.app.backups.registerBackupsRoutes
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.registerChatFoldersRoutes
 import org.thoughtcrime.securesms.components.settings.app.chats.registerChatsRoutes
 import org.thoughtcrime.securesms.components.settings.app.help.registerHelpRoutes
 import org.thoughtcrime.securesms.components.settings.app.internal.registerInternalRoutes
@@ -95,6 +96,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
               registerAccountRoutes(router::onEvent)
               registerAppearanceRoutes(router::onEvent)
               registerChatsRoutes(router::onEvent)
+              registerChatFoldersRoutes(router::onEvent)
               registerNotificationsRoutes(router::onEvent)
               registerLabsRoutes(router::onEvent)
               registerAppUpdatesRoutes(router::onEvent)
