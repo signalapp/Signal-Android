@@ -32,6 +32,7 @@ import org.signal.appsettings.exportaccountdata.ExportAccountDataEvent
 import org.signal.appsettings.exportaccountdata.ExportAccountDataFormat
 import org.signal.appsettings.exportaccountdata.ExportAccountDataState
 import org.signal.appsettings.exportaccountdata.ExportAccountDataState.Dialog
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.thoughtcrime.securesms.components.settings.app.account.export.ExportAccountDataRepository.GenerateReportResult
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -45,6 +46,7 @@ class ExportAccountDataViewModelTest {
 
   private val repository = mockk<ExportAccountDataRepository>()
   private val reportUri = mockk<Uri>()
+  private val parentEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -68,11 +70,10 @@ class ExportAccountDataViewModelTest {
   @Test
   fun `NavigateBackClicked leaves the screen`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(ExportAccountDataEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(ExportAccountDataAction.NavigateBack)
+    assertThat(parentEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -180,7 +181,7 @@ class ExportAccountDataViewModelTest {
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
   }
 
-  private fun createViewModel(): ExportAccountDataViewModel = ExportAccountDataViewModel(repository)
+  private fun createViewModel(): ExportAccountDataViewModel = ExportAccountDataViewModel(parentEventEmitter = parentEvents::add, repository = repository)
 
   private fun TestScope.collectActions(actions: Flow<ExportAccountDataAction>): List<ExportAccountDataAction> {
     val collected = mutableListOf<ExportAccountDataAction>()

@@ -16,7 +16,4 @@ sealed interface ExportAccountDataAction {
 
   /** Open system share sheet so the user can pick where the generated report goes. */
   data class ShareGeneratedReport(val uri: Uri, val mimeType: String) : ExportAccountDataAction
-
-  /** Leave the screen. */
-  data object NavigateBack : ExportAccountDataAction
 }

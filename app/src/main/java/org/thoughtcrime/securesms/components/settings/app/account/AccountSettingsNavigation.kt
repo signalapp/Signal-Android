@@ -18,6 +18,7 @@ import org.signal.core.ui.navigation.LocalResultEventBus
 import org.thoughtcrime.securesms.components.settings.app.AutofillDisabled
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpCodeEntryEntry
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpSetupEntry
+import org.thoughtcrime.securesms.components.settings.app.account.export.ExportAccountDataEntry
 import org.thoughtcrime.securesms.components.settings.app.account.passkey.PasskeySetupEntry
 import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SettingsSignalLoginDetailsEntry
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNameEntryEntry
@@ -89,6 +90,10 @@ fun EntryProviderScope<NavKey>.registerAccountRoutes(parentEventEmitter: (AppSet
 
   detailEntry<AppSettingsRoute.AccountRoute.AdvancedPinSettings> {
     AdvancedPinSettingsEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.ExportAccountData> {
+    ExportAccountDataEntry(parentEventEmitter = parentEventEmitter)
   }
 
   detailEntry<AppSettingsRoute.AccountRoute.DeleteAccount> {

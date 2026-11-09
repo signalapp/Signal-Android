@@ -11,11 +11,14 @@ import org.signal.appsettings.exportaccountdata.ExportAccountDataAction
 import org.signal.appsettings.exportaccountdata.ExportAccountDataEvent
 import org.signal.appsettings.exportaccountdata.ExportAccountDataState
 import org.signal.appsettings.exportaccountdata.ExportAccountDataState.Dialog
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.account.export.ExportAccountDataRepository.GenerateReportResult
 
 class ExportAccountDataViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
   private val repository: ExportAccountDataRepository = ExportAccountDataRepository()
 ) : EventDrivenViewModel<ExportAccountDataEvent>(TAG) {
 
@@ -50,7 +53,7 @@ class ExportAccountDataViewModel(
         _actions.send(ExportAccountDataAction.OpenBrowserLink(event.url))
       }
       ExportAccountDataEvent.NavigateBackClicked -> {
-        _actions.send(ExportAccountDataAction.NavigateBack)
+        parentEventEmitter.navigateBack()
       }
     }
   }
