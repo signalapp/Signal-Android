@@ -3970,7 +3970,7 @@
     <string name="conversation_unmuted__mute_notifications">Redamkan pemberitahuan</string>
 
     <!-- conversation -->
-    <string name="conversation__menu_group_settings">Group settings</string>
+    <string name="conversation__menu_group_settings">Tetapan kumpulan</string>
     <string name="conversation__menu_leave_group">Keluar kumpulan</string>
     <string name="conversation__menu_view_all_media">Semua media</string>
     <string name="conversation__menu_conversation_settings">Tetapan sembang</string>
@@ -5131,7 +5131,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Warna %1$d daripada %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Kongsi</string>
@@ -6462,11 +6462,11 @@
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">Bold</string>
+    <string name="TextFormatting_bold">Tebal</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Italik</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Coretan</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
