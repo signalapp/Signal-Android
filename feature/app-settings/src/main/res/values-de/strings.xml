@@ -788,7 +788,7 @@
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Nachrichten, die die ausgewählte Anzahl überschreiten, werden dauerhaft gelöscht.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">Dies wird alle Chats bis auf die letzte %1$s Nachricht je Chat unwiderruflich löschen.</item>
+        <item quantity="one">Dies wird alle Chats bis auf die letzte Nachricht je Chat unwiderruflich löschen.</item>
         <item quantity="other">Dies wird alle Chats bis auf die letzten %1$s Nachrichten je Chat unwiderruflich löschen.</item>
     </plurals>
 

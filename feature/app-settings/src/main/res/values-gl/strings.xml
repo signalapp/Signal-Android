@@ -316,9 +316,9 @@
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
     <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Borrará a información da túa conta, a foto de perfil e o nome de usuario «%1$s»</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
-    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Borrarase o teu ID da conta e a clave de recuperación</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
-    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Non poderás rexistrar de novo a túa conta nin restaurala</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
     <string name="DeleteAccountScreen__this_action_can_not_be_undone">Non se poderá desfacer</string>
     <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
@@ -711,7 +711,7 @@
     <string name="ChatsSettingsScreen__go_back">Volver</string>
 
     <!-- StorageUsageOverview -->
-    <string name="preferences_storage__photos">Fotografías</string>
+    <string name="preferences_storage__photos">Fotos</string>
     <string name="preferences_storage__videos">Vídeos</string>
     <string name="preferences_storage__files">Ficheiros</string>
     <string name="preferences_storage__audio">Audio</string>
@@ -1031,7 +1031,7 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Eliminaranse os arquivos non utilizados, pero sempre poderás descargalos de novo desde a túa copia de seguranza.</string>
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Límete da conversa</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">Límites da conversa</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_title">Aplicar límites nos dispositivos vinculados</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
@@ -1042,8 +1042,8 @@
     <string name="preferences_storage__delete_message_history">Borrar historial de mensaxes?</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Isto eliminará permanentemente todo o historial de mensaxes e multimedia do teu dispositivo.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Borrarase todo o historial de mensaxes e arquivos de forma permanente, tanto deste dispositivo como de todos os dispositivos vinculados.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tes a certeza de querer eliminar todo o historial de mensaxes?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Isto borrará todo o historial de mensaxes e arquivos multimedia de forma permanente, tanto deste dispositivo como de todos os dispositivos vinculados.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Seguro que queres eliminar todo o historial de mensaxes?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Eliminarase todo o historial de mensaxes. Esta acción non se pode desfacer.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Borrarase o historial de mensaxes de forma permanente de todos os dispositivos. Esta acción non se pode desfacer.</string>
@@ -1085,7 +1085,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">Para activar as notificacións, Signal necesita permisos para poder mostralas.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Acender</string>
+    <string name="NotificationSettingsFragment__turn_on">Activar</string>
     <string name="NotificationsSettingsFragment__calls">Chamadas</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Contacto únese a Signal</string>
     <!-- Notification preference summary text -->
