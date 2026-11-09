@@ -182,19 +182,19 @@ class AppSettingsRouterTest {
 
     router.navigate(
       AppSettingsNavigationEvent.NavigateToScreen(
-        route = AppSettingsRoute.ChatFoldersRoute.Education,
+        route = AppSettingsRoute.ChatFoldersRoute.ChooseChats(includeChats = true),
         popUpTo = PopUpTo(AppSettingsRoute.ChatsRoute.Chats::class)
       )
     )
 
-    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatFoldersRoute.Education)
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatFoldersRoute.ChooseChats(includeChats = true))
   }
 
   @Test
   fun `when navigating to a screen already open with a pop up to it, then it is returned to`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.Education))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChooseChats(includeChats = true)))
 
     router.navigate(
       AppSettingsNavigationEvent.NavigateToScreen(

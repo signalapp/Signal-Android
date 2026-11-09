@@ -5,8 +5,16 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
+import androidx.activity.compose.LocalActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.getSerializableCompat
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -29,6 +37,34 @@ object MessageBackupsCheckoutLauncher {
     return registerForActivityResult(MessageBackupsCheckoutActivity.Contract()) { result ->
       if (result?.action == InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT || result?.action == InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION) {
         CreateBackupBottomSheet().show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      }
+    }
+  }
+
+  /**
+   * The Compose counterpart of [createBackupsCheckoutLauncher], for screens that aren't fragments. The sheet that follows
+   * a successful checkout is shown on the activity, and [onCreateBackupBottomSheetResult] hears back from it while this
+   * is in the composition.
+   */
+  @Composable
+  fun rememberBackupsCheckoutLauncher(
+    onCreateBackupBottomSheetResult: (backUpLater: Boolean) -> Unit = {}
+  ): ActivityResultLauncher<MessageBackupTier?> {
+    val fragmentManager = (LocalActivity.current as FragmentActivity).supportFragmentManager
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val currentOnResult by rememberUpdatedState(onCreateBackupBottomSheetResult)
+
+    DisposableEffect(fragmentManager, lifecycleOwner) {
+      fragmentManager.setFragmentResultListener(CreateBackupBottomSheet.REQUEST_KEY, lifecycleOwner) { _, bundle ->
+        val result = bundle.getSerializableCompat(CreateBackupBottomSheet.REQUEST_KEY, CreateBackupBottomSheet.Result::class.java)
+        currentOnResult(result != CreateBackupBottomSheet.Result.BACKUP_STARTED)
+      }
+      onDispose { fragmentManager.clearFragmentResultListener(CreateBackupBottomSheet.REQUEST_KEY) }
+    }
+
+    return rememberLauncherForActivityResult(MessageBackupsCheckoutActivity.Contract()) { result ->
+      if (result?.action == InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT || result?.action == InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION) {
+        CreateBackupBottomSheet().show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
       }
     }
   }

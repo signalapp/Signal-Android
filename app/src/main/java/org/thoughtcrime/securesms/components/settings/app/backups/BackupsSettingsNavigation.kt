@@ -20,6 +20,10 @@ import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupK
  * rotation goes back to whichever screen asked for it as a [BackupKeyRotated] result.
  */
 fun EntryProviderScope<NavKey>.registerBackupsRoutes(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  detailEntry<AppSettingsRoute.BackupsRoute.Backups> { route ->
+    BackupsSettingsEntry(parentEventEmitter = parentEventEmitter, launchCheckoutFlow = route.launchCheckoutFlow)
+  }
+
   detailEntry<AppSettingsRoute.BackupsRoute.DisplayKey> { route ->
     val resultEventBus = LocalResultEventBus.current
     BackupKeyDisplayEntry(
