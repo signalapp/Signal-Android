@@ -14,6 +14,7 @@ import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.navigation.LocalResultEventBus
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayEntry
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyRotated
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.RemoteBackupsSettingsEntry
 
 /**
  * Registers the routes within the backups section of app settings that the new host can show so far. A finished key
@@ -22,6 +23,10 @@ import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupK
 fun EntryProviderScope<NavKey>.registerBackupsRoutes(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
   detailEntry<AppSettingsRoute.BackupsRoute.Backups> { route ->
     BackupsSettingsEntry(parentEventEmitter = parentEventEmitter, launchCheckoutFlow = route.launchCheckoutFlow)
+  }
+
+  detailEntry<AppSettingsRoute.BackupsRoute.Remote> { route ->
+    RemoteBackupsSettingsEntry(parentEventEmitter = parentEventEmitter, forQuickRestore = route.forQuickRestore)
   }
 
   detailEntry<AppSettingsRoute.BackupsRoute.DisplayKey> { route ->

@@ -5,17 +5,16 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
-import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.compose.requireFragmentActivity
 import org.signal.core.util.getSerializableCompat
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.CreateBackupBottomSheet
@@ -50,16 +49,15 @@ object MessageBackupsCheckoutLauncher {
   fun rememberBackupsCheckoutLauncher(
     onCreateBackupBottomSheetResult: (backUpLater: Boolean) -> Unit = {}
   ): ActivityResultLauncher<MessageBackupTier?> {
-    val fragmentManager = (LocalActivity.current as FragmentActivity).supportFragmentManager
+    val fragmentManager = requireFragmentActivity().supportFragmentManager
     val lifecycleOwner = LocalLifecycleOwner.current
     val currentOnResult by rememberUpdatedState(onCreateBackupBottomSheetResult)
 
-    DisposableEffect(fragmentManager, lifecycleOwner) {
+    LaunchedEffect(fragmentManager, lifecycleOwner) {
       fragmentManager.setFragmentResultListener(CreateBackupBottomSheet.REQUEST_KEY, lifecycleOwner) { _, bundle ->
         val result = bundle.getSerializableCompat(CreateBackupBottomSheet.REQUEST_KEY, CreateBackupBottomSheet.Result::class.java)
         currentOnResult(result != CreateBackupBottomSheet.Result.BACKUP_STARTED)
       }
-      onDispose { fragmentManager.clearFragmentResultListener(CreateBackupBottomSheet.REQUEST_KEY) }
     }
 
     return rememberLauncherForActivityResult(MessageBackupsCheckoutActivity.Contract()) { result ->

@@ -1402,11 +1402,6 @@
             app:popExitAnim="@anim/fragment_close_exit" />
 
         <argument
-            android:name="backup_later_selected"
-            app:argType="boolean"
-            android:defaultValue="false" />
-
-        <argument
             android:name="forQuickRestore"
             app:argType="boolean"
             android:defaultValue="false" />

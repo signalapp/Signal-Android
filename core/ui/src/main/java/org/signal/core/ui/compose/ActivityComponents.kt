@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.core.app.PictureInPictureModeChangedInfo
 import androidx.core.util.Consumer
+import androidx.fragment.app.FragmentActivity
 
 /**
  * Returns whether the screen is currently in the system picture-in-picture mode.
@@ -41,4 +42,14 @@ fun rememberIsInPipMode(): Boolean {
   } else {
     return false
   }
+}
+
+/**
+ * The [FragmentActivity] hosting this composition, for callers that need its fragment manager or other fragment APIs.
+ * Fails with a message naming the actual host when the composition isn't in one.
+ */
+@Composable
+fun requireFragmentActivity(): FragmentActivity {
+  val activity = LocalActivity.current
+  return activity as? FragmentActivity ?: error("Expected a FragmentActivity host, but found ${activity?.javaClass?.name}.")
 }

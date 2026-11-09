@@ -6,9 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -43,9 +41,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.Stable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -66,9 +63,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.biometrics.BiometricsAuthentication
 import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.BottomSheets
@@ -85,34 +82,26 @@ import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.core.ui.viewModel
+import org.signal.core.ui.navigation.LocalResultEventBus
+import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.bytes
 import org.signal.core.util.gibiBytes
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
-import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreateErrorRow
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusRow
 import org.thoughtcrime.securesms.backup.v2.ui.status.RestoreType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
-import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
-import org.thoughtcrime.securesms.help.HelpFragment
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
-import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
@@ -125,202 +114,50 @@ import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
 
 /**
- * Remote backups settings fragment.
+ * Remote backups settings, under the legacy nav graph.
  */
 class RemoteBackupsSettingsFragment : ComposeFragment() {
 
-  private val viewModel by viewModel {
-    RemoteBackupsSettingsViewModel()
-  }
-
   private val args: RemoteBackupsSettingsFragmentArgs by navArgs()
 
-  private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
+
+  /** Stands in for the Nav3 host's bus, so the backup key screen's fragment result reaches the Entry the same way. */
+  private val resultEventBus = ResultEventBus()
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    setFragmentResultListener(BackupKeyDisplayFragment.AEP_ROTATION_KEY) { _, bundle ->
+      if (bundle.getBoolean(BackupKeyDisplayFragment.AEP_ROTATION_KEY, false)) {
+        resultEventBus.sendResult(result = BackupKeyRotated)
+      }
+    }
+  }
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsState()
-    val backupProgress by ArchiveUploadProgress.progress.collectAsStateWithLifecycle(initialValue = null)
-    val restoreState by viewModel.restoreState.collectAsState()
-    val deleteState by SignalStore.backup.deletionStateFlow.collectAsStateWithLifecycle(initialValue = SignalStore.backup.deletionState)
-    val callbacks = remember { Callbacks() }
-
-    RemoteBackupsSettingsContent(
-      state = state,
-      backupRestoreState = restoreState,
-      backupDeleteState = deleteState,
-      contentCallbacks = callbacks,
-      backupProgress = backupProgress
-    )
-  }
-
-  @Stable
-  private inner class Callbacks : ContentCallbacks {
-    override fun onNavigationClick() {
-      requireActivity().onBackPressedDispatcher.onBackPressed()
-    }
-
-    override fun onBackupTypeActionClick(tier: MessageBackupTier) {
-      when (tier) {
-        MessageBackupTier.FREE -> checkoutLauncher.launch(MessageBackupTier.PAID)
-        MessageBackupTier.PAID -> launchManageBackupsSubscription()
-      }
-    }
-
-    override fun onLaunchBackupsCheckoutFlow() {
-      checkoutLauncher.launch(null)
-    }
-
-    override fun onBackUpUsingCellularClick(canUseCellular: Boolean) {
-      viewModel.setCanBackUpUsingCellular(canUseCellular)
-    }
-
-    override fun onBackupNowClick() {
-      viewModel.onBackupNowClick(args.forQuickRestore)
-    }
-
-    override fun onTurnOffAndDeleteBackupsClick() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.TURN_OFF_AND_DELETE_BACKUPS)
-    }
-
-    override fun onBackupFrequencyClick() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.BACKUP_FREQUENCY)
-    }
-
-    override fun onDialogDismissed() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.NONE)
-    }
-
-    override fun onSnackbarDismissed() {
-      viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.NONE)
-    }
-
-    override fun onTurnOffAndDeleteBackupsConfirm() {
-      viewModel.turnOffAndDeleteBackups()
-    }
-
-    override fun onViewBackupKeyClick() {
-      displayBackupKey()
-    }
-
-    override fun onStartMediaRestore() {
-      viewModel.beginMediaRestore()
-    }
-
-    override fun onCancelMediaRestore() {
-      viewModel.cancelMediaRestore()
-    }
-
-    override fun onDisplaySkipMediaRestoreProtectionDialog() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.SKIP_MEDIA_RESTORE_PROTECTION)
-    }
-
-    override fun onSkipMediaRestore() {
-      viewModel.skipMediaRestore()
-    }
-
-    override fun onLearnMoreAboutLostSubscription() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.SUBSCRIPTION_NOT_FOUND)
-    }
-
-    override fun onRenewLostSubscription() {
-      checkoutLauncher.launch(MessageBackupTier.PAID)
-    }
-
-    override fun onCancelUploadClick() {
-      viewModel.cancelUpload()
-    }
-
-    override fun onContactSupport() {
-      requireActivity().finish()
-      requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.REMOTE_BACKUPS_INDEX))
-    }
-
-    override fun onLearnMoreAboutBackupFailure() {
-      BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(parentFragmentManager, null)
-    }
-
-    override fun onRestoreUsingCellularConfirm() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.RESTORE_OVER_CELLULAR_PROTECTION)
-    }
-
-    override fun onRestoreUsingCellularClick() {
-      viewModel.setCanRestoreUsingCellular()
-    }
-
-    override fun onRedemptionErrorDetailsClick() {
-      BackupAlertBottomSheet.create(BackupAlert.CouldNotRedeemBackup).show(parentFragmentManager, null)
-    }
-
-    override fun onDisplayProgressDialog() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
-    }
-
-    override fun onDisplayDownloadingBackupDialog() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP)
-    }
-
-    override fun onManageStorageClick() {
-      requireActivity().finish()
-      requireActivity().startActivity(AppSettingsActivity.manageStorage(requireActivity()))
-    }
-
-    override fun onIncludeDebuglogClick(newState: Boolean) {
-      viewModel.setIncludeDebuglog(newState)
-    }
-
-    override fun onMediaBackupSizeClick() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.FREE_TIER_MEDIA_EXPLAINER)
-    }
-
-    override fun onFreeTierBackupSizeLearnMore() {
-      CommunicationActions.openBrowserLink(requireContext(), "https://support.signal.org/hc/articles/9708267671322")
-    }
-
-    override fun onTransferScanQrCodeClick() {
-      startActivity(MediaSendLauncher.camera(context!!))
+    CompositionLocalProvider(LocalResultEventBus provides resultEventBus) {
+      RemoteBackupsSettingsEntry(
+        parentEventEmitter = appSettingsRouter::onEvent,
+        forQuickRestore = args.forQuickRestore
+      )
     }
   }
 
-  private fun displayBackupKey() {
-    if (SignalStore.account.isPhoneNumberless) {
-      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_settingsSignalLoginDetailsFragment)
-    } else {
-      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.AccountRoute.SignalLoginDetails -> findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_settingsSignalLoginDetailsFragment)
+      is AppSettingsRoute.BackupsRoute.DisplayKey -> findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
-  }
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    checkoutLauncher = createBackupsCheckoutLauncher { backUpLater ->
-      if (backUpLater) {
-        viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.BACKUP_WILL_BE_CREATED_OVERNIGHT)
-      }
-    }
-
-    setFragmentResultListener(BackupKeyDisplayFragment.AEP_ROTATION_KEY) { _, bundle ->
-      val didRotate = bundle.getBoolean(BackupKeyDisplayFragment.AEP_ROTATION_KEY, false)
-      if (didRotate) {
-        viewModel.getKeyRotationLimit()
-        viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.AEP_KEY_ROTATED)
-      }
-    }
-
-    if (savedInstanceState == null && args.backupLaterSelected) {
-      viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.BACKUP_WILL_BE_CREATED_OVERNIGHT)
-    }
-  }
-
-  override fun onResume() {
-    super.onResume()
-    viewModel.refresh()
   }
 }
 
 /**
  * Callback interface for RemoteBackupsSettingsContent composable.
  */
-private interface ContentCallbacks {
+internal interface ContentCallbacks {
   fun onNavigationClick() = Unit
   fun onLaunchBackupsCheckoutFlow() = Unit
   fun onBackupTypeActionClick(tier: MessageBackupTier) = Unit
@@ -357,7 +194,7 @@ private interface ContentCallbacks {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun RemoteBackupsSettingsContent(
+internal fun RemoteBackupsSettingsContent(
   state: RemoteBackupsSettingsState,
   backupRestoreState: BackupRestoreState,
   backupDeleteState: DeletionState,
