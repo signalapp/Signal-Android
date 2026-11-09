@@ -293,9 +293,15 @@ class AttachmentTable(
 
     private const val DATA_FILE_INDEX = "attachment_data_index"
     private const val DATA_HASH_REMOTE_KEY_INDEX = "attachment_data_hash_end_remote_key_index"
+    private const val ARCHIVE_TRANSFER_STATE_INDEX = "attachment_archive_transfer_state"
 
     /** How many media names fit in one statement. Each binds two args, so this has to stay under half of [SqlUtil.MAX_QUERY_ARGS]. */
     const val ARCHIVE_MEDIA_KEY_BATCH_SIZE = 400
+
+    /** Every state but FINISHED and PERMANENT_FAILURE, as a positive IN list so it can use [ARCHIVE_TRANSFER_STATE_INDEX]. */
+    private val PENDING_ARCHIVE_UPLOAD_FILTER = ArchiveTransferState.entries
+      .filter { it != ArchiveTransferState.FINISHED && it != ArchiveTransferState.PERMANENT_FAILURE }
+      .joinToString(prefix = "$ARCHIVE_TRANSFER_STATE IN (", postfix = ")") { it.value.toString() }
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
@@ -305,7 +311,7 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_start_index ON $TABLE_NAME ($DATA_HASH_START);",
       "CREATE INDEX IF NOT EXISTS $DATA_HASH_REMOTE_KEY_INDEX ON $TABLE_NAME ($DATA_HASH_END, $REMOTE_KEY);",
       "CREATE INDEX IF NOT EXISTS $DATA_FILE_INDEX ON $TABLE_NAME ($DATA_FILE);",
-      "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
+      "CREATE INDEX IF NOT EXISTS $ARCHIVE_TRANSFER_STATE_INDEX ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);",
       "CREATE INDEX IF NOT EXISTS attachment_metadata_id ON $TABLE_NAME ($METADATA_ID);",
       "CREATE INDEX IF NOT EXISTS attachment_media_overview_size ON $TABLE_NAME ($DATA_SIZE DESC, $DISPLAY_ORDER DESC) WHERE $QUOTE = 0 AND $STICKER_PACK_ID IS NULL AND $DATA_FILE IS NOT NULL",
@@ -1501,15 +1507,14 @@ class AttachmentTable(
    * also match query in [areAnyAttachmentsPendingArchiveUpload].
    */
   fun getPendingArchiveUploadBytes(): Long {
-    val archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})"
     return readableDatabase
       .rawQuery(
         """
           SELECT SUM($DATA_SIZE)
           FROM (
             SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
-            FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-            WHERE ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter)}
+            FROM $TABLE_NAME INDEXED BY $ARCHIVE_TRANSFER_STATE_INDEX LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+            WHERE ${buildAttachmentsThatCanArchiveQuery(PENDING_ARCHIVE_UPLOAD_FILTER)}
           )
         """.trimIndent()
       )
@@ -1522,14 +1527,13 @@ class AttachmentTable(
    * Matches the rows summed by [getPendingArchiveUploadBytes], but stops at the first hit.
    */
   fun areAnyAttachmentsPendingArchiveUpload(): Boolean {
-    val archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})"
     return readableDatabase
       .rawQuery(
         """
           SELECT EXISTS (
             SELECT 1
-            FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-            WHERE ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter)}
+            FROM $TABLE_NAME INDEXED BY $ARCHIVE_TRANSFER_STATE_INDEX LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+            WHERE ${buildAttachmentsThatCanArchiveQuery(PENDING_ARCHIVE_UPLOAD_FILTER)}
           )
         """.trimIndent()
       )
