@@ -66,7 +66,7 @@ class AppSettingsRouterTest {
   @Test
   fun `when opening another section, then it replaces the screens displayed`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.PrivacyRoute.Privacy, replacesDetail = true))
 
     assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.PrivacyRoute.Privacy)
@@ -75,15 +75,15 @@ class AppSettingsRouterTest {
   @Test
   fun `when navigating within a section, then it stacks on top`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
 
-    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatsRoute.Reactions)
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatFoldersRoute.ChatFolders)
   }
 
   @Test
   fun `when navigating to empty, then the detail is cleared`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
 
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.Empty))
 
@@ -153,7 +153,7 @@ class AppSettingsRouterTest {
   @Test
   fun `given split pane, when navigating back from a screen within a section, then that screen is popped`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
 
     assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack(), isSplitPane = true)).isTrue()
     assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats)
@@ -178,23 +178,23 @@ class AppSettingsRouterTest {
   @Test
   fun `when navigating with an exclusive pop up to, then only the screens above it are replaced`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
 
     router.navigate(
       AppSettingsNavigationEvent.NavigateToScreen(
-        route = AppSettingsRoute.ChatFoldersRoute.ChatFolders,
+        route = AppSettingsRoute.ChatFoldersRoute.Education,
         popUpTo = PopUpTo(AppSettingsRoute.ChatsRoute.Chats::class)
       )
     )
 
-    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatFoldersRoute.ChatFolders)
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatFoldersRoute.Education)
   }
 
   @Test
   fun `when navigating to a screen already open with a pop up to it, then it is returned to`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.Education))
 
     router.navigate(
       AppSettingsNavigationEvent.NavigateToScreen(
@@ -212,12 +212,12 @@ class AppSettingsRouterTest {
 
     router.navigate(
       AppSettingsNavigationEvent.NavigateToScreen(
-        route = AppSettingsRoute.ChatsRoute.Reactions,
+        route = AppSettingsRoute.ChatFoldersRoute.ChatFolders,
         popUpTo = PopUpTo(AppSettingsRoute.PrivacyRoute.Privacy::class, inclusive = true)
       )
     )
 
-    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatsRoute.Reactions)
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatFoldersRoute.ChatFolders)
   }
 
   @Test
@@ -285,7 +285,7 @@ class AppSettingsRouterTest {
   @Test
   fun `when navigating within a section, then the section stays selected`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
     Snapshot.sendApplyNotifications()
 
     assertThat(router.selectedRoute.value).isEqualTo(AppSettingsRoute.ChatsRoute.Chats)

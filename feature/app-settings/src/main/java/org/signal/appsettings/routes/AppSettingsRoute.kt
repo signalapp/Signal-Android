@@ -167,9 +167,6 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
 
     @Serializable
     data object QRColorPicker : UsernameLinkRoute
-
-    @Serializable
-    data object Share : UsernameLinkRoute
   }
 
   @Serializable
@@ -382,9 +379,6 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
   sealed interface ChatsRoute : AppSettingsRoute {
     @Serializable
     data object Chats : ChatsRoute
-
-    @Serializable
-    data object Reactions : ChatsRoute
   }
 
   @Serializable
