@@ -96,6 +96,7 @@ import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.AccountIdErrorText
 import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.screens.shared.AccountIdVisualTransformation
+import org.signal.registration.screens.shared.ContactSupportDialog
 import org.signal.registration.screens.shared.accountIdTextStyle
 import org.signal.registration.test.TestTags
 import kotlin.math.max
@@ -223,6 +224,26 @@ fun PhoneNumberScreen(
       message = stringResource(R.string.RegistrationActivity_the_number_you_entered_is_not_valid),
       dismiss = stringResource(android.R.string.ok),
       onDismiss = { onEvent(PhoneNumberEntryScreenEvents.InvalidPhoneNumberDialogDismissed) }
+    )
+  }
+
+  if (state.dialogs.captchaNotAccepted) {
+    Dialogs.SimpleAlertDialog(
+      title = "",
+      body = stringResource(R.string.PhoneNumberEntryScreen__captcha_not_accepted),
+      confirm = stringResource(android.R.string.ok),
+      dismiss = stringResource(R.string.PhoneNumberEntryScreen__contact_support),
+      onConfirm = { onEvent(PhoneNumberEntryScreenEvents.CaptchaNotAcceptedDialogDismissed) },
+      onDeny = { onEvent(PhoneNumberEntryScreenEvents.CaptchaNotAcceptedContactSupport) },
+      onDismissRequest = { onEvent(PhoneNumberEntryScreenEvents.CaptchaNotAcceptedDialogDismissed) }
+    )
+  }
+
+  if (state.dialogs.contactSupport) {
+    ContactSupportDialog(
+      subject = R.string.PhoneNumberEntryScreen__contact_support_email_subject,
+      filter = R.string.PhoneNumberEntryScreen__contact_support_email_filter,
+      onDismiss = { onEvent(PhoneNumberEntryScreenEvents.ContactSupportDialogDismissed) }
     )
   }
 

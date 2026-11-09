@@ -1589,6 +1589,56 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
+  fun `CaptchaCompleted shows captcha not accepted dialog when token is not accepted`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = listOf("captcha"))
+    val initialState = PhoneNumberEntryState(sessionMetadata = sessionMetadata)
+
+    coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
+      RequestResult.NonSuccess(
+        UpdateSessionError.TokenNotAccepted("Token not accepted")
+      )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates).hasSize(1)
+    assertThat(emittedStates.last().dialogs).isEqualTo(PhoneNumberEntryState.Dialogs(captchaNotAccepted = true))
+    assertThat(emittedEvents).isEmpty()
+  }
+
+  @Test
+  fun `CaptchaNotAcceptedDialogDismissed clears the captcha not accepted dialog`() = runTest {
+    val initialState = PhoneNumberEntryState(
+      dialogs = PhoneNumberEntryState.Dialogs(captchaNotAccepted = true)
+    )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaNotAcceptedDialogDismissed, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().dialogs).isEqualTo(PhoneNumberEntryState.Dialogs())
+  }
+
+  @Test
+  fun `CaptchaNotAcceptedContactSupport swaps the captcha not accepted dialog for the contact support dialog`() = runTest {
+    val initialState = PhoneNumberEntryState(
+      dialogs = PhoneNumberEntryState.Dialogs(captchaNotAccepted = true)
+    )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaNotAcceptedContactSupport, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().dialogs).isEqualTo(PhoneNumberEntryState.Dialogs(contactSupport = true))
+  }
+
+  @Test
+  fun `ContactSupportDialogDismissed clears the contact support dialog`() = runTest {
+    val initialState = PhoneNumberEntryState(
+      dialogs = PhoneNumberEntryState.Dialogs(contactSupport = true)
+    )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.ContactSupportDialogDismissed, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().dialogs).isEqualTo(PhoneNumberEntryState.Dialogs())
+  }
+
+  @Test
   fun `CaptchaCompleted handles session not found`() = runTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = PhoneNumberEntryState(sessionMetadata = sessionMetadata)

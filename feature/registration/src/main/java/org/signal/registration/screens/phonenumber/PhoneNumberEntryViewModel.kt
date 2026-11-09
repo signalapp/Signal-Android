@@ -199,6 +199,15 @@ class PhoneNumberEntryViewModel(
       is PhoneNumberEntryScreenEvents.InvalidPhoneNumberDialogDismissed -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(invalidPhoneNumber = false)))
       }
+      is PhoneNumberEntryScreenEvents.CaptchaNotAcceptedDialogDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(captchaNotAccepted = false)))
+      }
+      is PhoneNumberEntryScreenEvents.CaptchaNotAcceptedContactSupport -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(captchaNotAccepted = false, contactSupport = true)))
+      }
+      is PhoneNumberEntryScreenEvents.ContactSupportDialogDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(contactSupport = false)))
+      }
     }
   }
 
@@ -746,6 +755,10 @@ class PhoneNumberEntryViewModel(
           }
           is UpdateSessionError.RejectedUpdate -> {
             state.copy(dialogs = state.dialogs.copy(unknownError = true))
+          }
+          is UpdateSessionError.TokenNotAccepted -> {
+            Log.w(TAG, "[SubmitCaptcha] Captcha token was not accepted.")
+            state.copy(dialogs = state.dialogs.copy(captchaNotAccepted = true))
           }
           is UpdateSessionError.SessionNotFound -> {
             Log.w(TAG, "[SubmitCaptcha] Session not found when submitting captcha token.")

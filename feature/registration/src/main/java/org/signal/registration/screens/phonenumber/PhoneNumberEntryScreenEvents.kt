@@ -85,4 +85,13 @@ sealed class PhoneNumberEntryScreenEvents {
 
   /** The user dismissed the invalid phone number dialog. */
   data object InvalidPhoneNumberDialogDismissed : PhoneNumberEntryScreenEvents()
+
+  /** The user dismissed the captcha-not-accepted dialog. */
+  data object CaptchaNotAcceptedDialogDismissed : PhoneNumberEntryScreenEvents()
+
+  /** The user chose to contact support from the captcha-not-accepted dialog. */
+  data object CaptchaNotAcceptedContactSupport : PhoneNumberEntryScreenEvents()
+
+  /** The user finished or dismissed the contact support dialog. */
+  data object ContactSupportDialogDismissed : PhoneNumberEntryScreenEvents()
 }

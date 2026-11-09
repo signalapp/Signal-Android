@@ -77,6 +77,9 @@ data class PhoneNumberEntryState(
     val rateLimitedRetryAfter: Duration? = null,
     val unableToSendSms: Boolean = false,
     val couldNotRequestCodeWithSelectedTransport: Boolean = false,
-    val invalidPhoneNumber: Boolean = false
+    val invalidPhoneNumber: Boolean = false,
+    /** The server did not accept the user's captcha response. */
+    val captchaNotAccepted: Boolean = false,
+    val contactSupport: Boolean = false
   )
 }

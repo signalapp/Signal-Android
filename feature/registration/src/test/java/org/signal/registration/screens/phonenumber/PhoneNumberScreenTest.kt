@@ -297,6 +297,29 @@ class PhoneNumberScreenTest {
   }
 
   @Test
+  fun `the captcha not accepted dialog emits contact support when the contact support button is clicked`() {
+    // Given
+    var emittedEvent: PhoneNumberEntryScreenEvents? = null
+
+    composeTestRule.setContent {
+      SignalTheme {
+        PhoneNumberScreen(
+          state = PhoneNumberEntryState(dialogs = PhoneNumberEntryState.Dialogs(captchaNotAccepted = true)),
+          onEvent = { event -> emittedEvent = event }
+        )
+      }
+    }
+
+    // When
+    composeTestRule.onNodeWithText(context.getString(R.string.PhoneNumberEntryScreen__contact_support)).performClick()
+
+    // Then
+    assert(emittedEvent == PhoneNumberEntryScreenEvents.CaptchaNotAcceptedContactSupport) {
+      "Expected CaptchaNotAcceptedContactSupport but got $emittedEvent"
+    }
+  }
+
+  @Test
   fun `the country code control shows the selected calling code`() {
     // Given
     composeTestRule.setContent {

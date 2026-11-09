@@ -135,6 +135,7 @@ class RegistrationApiV2(
    * `PATCH /v1/verification/session/{session-id}`
    * - 200: Success, body is session metadata
    * - 400: Request is invalid
+   * - 403: Captcha or push challenge token was not accepted
    * - 404: Session not found
    * - 409: Rejected update
    * - 429: Rate limited, body is session metadata
@@ -168,6 +169,7 @@ class RegistrationApiV2(
       mapError = { error ->
         when (error.statusCode) {
           400 -> UpdateSessionError.InvalidRequest(error.bodyString())
+          403 -> UpdateSessionError.TokenNotAccepted(error.bodyString())
           404 -> UpdateSessionError.SessionNotFound(error.bodyString())
           409 -> UpdateSessionError.RejectedUpdate(error.bodyString())
           429 -> UpdateSessionError.RateLimited(error.retryAfter(), SignalJson.json.decodeFromString<SessionMetadata>(error.bodyString()))
@@ -1028,6 +1030,7 @@ class RegistrationApiV2(
 
   sealed class UpdateSessionError : BadRequestError {
     data class RejectedUpdate(val message: String) : UpdateSessionError()
+    data class TokenNotAccepted(val message: String) : UpdateSessionError()
     data class SessionNotFound(val message: String) : UpdateSessionError()
     data class InvalidRequest(val message: String) : UpdateSessionError()
     data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : UpdateSessionError()
