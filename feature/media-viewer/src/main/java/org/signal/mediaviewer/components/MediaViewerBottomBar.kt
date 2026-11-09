@@ -27,18 +27,21 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.compose.LottieAnimatable
@@ -133,30 +136,33 @@ private fun SeekBarRow(
 ) {
   val playback = playbackController.uiState
 
-  Row(
-    verticalAlignment = Alignment.CenterVertically,
-    modifier = modifier
-  ) {
-    Text(
-      text = formatTime(playback.positionMs),
-      style = MaterialTheme.typography.bodyMedium,
-      color = MaterialTheme.colorScheme.onSurface,
-      modifier = Modifier.testTag(MediaViewerScreenTestTags.POSITION_LABEL)
-    )
+  // Playbar should be forced LTR
+  CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = modifier
+    ) {
+      Text(
+        text = formatTime(playback.positionMs),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = Modifier.testTag(MediaViewerScreenTestTags.POSITION_LABEL)
+      )
 
-    SeekBarSlider(
-      playbackController = playbackController,
-      modifier = Modifier
-        .weight(1f)
-        .padding(horizontal = 12.dp)
-    )
+      SeekBarSlider(
+        playbackController = playbackController,
+        modifier = Modifier
+          .weight(1f)
+          .padding(horizontal = 12.dp)
+      )
 
-    Text(
-      text = stringResource(R.string.MediaViewerScreen__remaining_time, formatTime((playback.durationMs - playback.positionMs).coerceAtLeast(0))),
-      style = MaterialTheme.typography.bodyMedium,
-      color = MaterialTheme.colorScheme.onSurface,
-      modifier = Modifier.testTag(MediaViewerScreenTestTags.DURATION_LABEL)
-    )
+      Text(
+        text = stringResource(R.string.MediaViewerScreen__remaining_time, formatTime((playback.durationMs - playback.positionMs).coerceAtLeast(0))),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = Modifier.testTag(MediaViewerScreenTestTags.DURATION_LABEL)
+      )
+    }
   }
 }
 
@@ -214,32 +220,35 @@ private fun TransportRow(
   val playback = playbackController.uiState
   val showSkipButtons = playback.durationMs > MINIMUM_DURATION_FOR_SKIP_MS
 
-  Row(
-    verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterHorizontally),
-    modifier = modifier.padding(vertical = 4.dp)
-  ) {
-    if (showSkipButtons) {
-      SkipButton(
-        rawRes = R.raw.lottie_15s_skip_back,
-        contentDescription = stringResource(R.string.MediaViewerScreen__rewind),
-        onClick = { playbackController.rewind() },
-        modifier = Modifier.testTag(MediaViewerScreenTestTags.REWIND_BUTTON)
-      )
-    }
+  // Playbar should be forced LTR
+  CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      horizontalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterHorizontally),
+      modifier = modifier.padding(vertical = 4.dp)
+    ) {
+      if (showSkipButtons) {
+        SkipButton(
+          rawRes = R.raw.lottie_15s_skip_back,
+          contentDescription = stringResource(R.string.MediaViewerScreen__rewind),
+          onClick = { playbackController.rewind() },
+          modifier = Modifier.testTag(MediaViewerScreenTestTags.REWIND_BUTTON)
+        )
+      }
 
-    PlayPauseButton(
-      isPlaying = playback.isPlaying,
-      onClick = { playbackController.togglePlayPause() }
-    )
-
-    if (showSkipButtons) {
-      SkipButton(
-        rawRes = R.raw.lottie_15s_skip_forward,
-        contentDescription = stringResource(R.string.MediaViewerScreen__fast_forward),
-        onClick = { playbackController.fastForward() },
-        modifier = Modifier.testTag(MediaViewerScreenTestTags.FAST_FORWARD_BUTTON)
+      PlayPauseButton(
+        isPlaying = playback.isPlaying,
+        onClick = { playbackController.togglePlayPause() }
       )
+
+      if (showSkipButtons) {
+        SkipButton(
+          rawRes = R.raw.lottie_15s_skip_forward,
+          contentDescription = stringResource(R.string.MediaViewerScreen__fast_forward),
+          onClick = { playbackController.fastForward() },
+          modifier = Modifier.testTag(MediaViewerScreenTestTags.FAST_FORWARD_BUTTON)
+        )
+      }
     }
   }
 }
