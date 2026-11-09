@@ -10,6 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.util.SpanUtil
 import org.signal.core.util.dp
 import org.signal.core.util.money.FiatMoney
@@ -22,10 +25,13 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsNavigationActivity
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.isPaymentFailure
+import org.thoughtcrime.securesms.components.settings.app.subscription.subscribe.SubscribeLearnMoreBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.ui.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
@@ -66,12 +72,13 @@ class ManageDonationsFragment :
       .append("\n")
       .append(
         SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorPrimary)) {
-          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeLearnMoreBottomSheetDialog())
+          SubscribeLearnMoreBottomSheetDialogFragment().show(childFragmentManager, null)
         }
       )
   }
 
   private val viewModel: ManageDonationsViewModel by viewModels()
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   override val listScrollsBehindToolbar: Boolean = true
 
@@ -276,10 +283,7 @@ class ManageDonationsFragment :
           subscription = subscription,
           renewalTimestamp = renewalTimestamp,
           redemptionState = state.subscriptionRedemptionState,
-          onContactSupport = {
-            requireActivity().finish()
-            requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
-          },
+          onContactSupport = { contactSupport() },
           isPaymentFailure = payment.isPaymentFailure(),
           subscriberRequiresCancel = state.subscriberRequiresCancel,
           onRowClick = {
@@ -355,7 +359,7 @@ class ManageDonationsFragment :
       title = DSLSettingsText.from(R.string.ManageDonationsFragment__badges),
       icon = DSLSettingsIcon.from(CoreUiR.drawable.symbol_badge_multi_24),
       onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToManageBadges())
+        (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.DonationsRoute.Badges)
       }
     )
   }
@@ -365,7 +369,7 @@ class ManageDonationsFragment :
       title = DSLSettingsText.from(R.string.ManageDonationsFragment__donation_receipts),
       icon = DSLSettingsIcon.from(R.drawable.symbol_receipt_24),
       onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonationReceiptListFragment())
+        (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.DonationsRoute.Receipts)
       }
     )
   }
@@ -412,10 +416,7 @@ class ManageDonationsFragment :
           .setNegativeButton(R.string.DonationsErrors__learn_more) { _, _ ->
             CommunicationActions.openBrowserLink(requireContext(), DONATE_TROUBLESHOOTING_URL)
           }
-          .setPositiveButton(R.string.Subscription__contact_support) { _, _ ->
-            requireActivity().finish()
-            startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
-          }
+          .setPositiveButton(R.string.Subscription__contact_support) { _, _ -> contactSupport() }
           .setOnDismissListener {
             SignalStore.inAppPayments.setPendingOneTimeDonation(null)
           }
@@ -446,5 +447,26 @@ class ManageDonationsFragment :
 
   override fun onMakeAMonthlyDonation() {
     launcher.launch(InAppPaymentType.ONE_TIME_DONATION)
+  }
+
+  private fun contactSupport() {
+    if (requireActivity() is AppSettingsNavigationActivity) {
+      (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.HelpRoute.Help(startCategoryIndex = HelpFragment.DONATION_INDEX))
+    } else {
+      requireActivity().finish()
+      startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
+    }
+  }
+
+  override fun onToolbarNavigationClicked() {
+    (appSettingsRouter::onEvent).navigateBack()
+  }
+
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.DonationsRoute.Badges -> findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToManageBadges())
+      AppSettingsRoute.DonationsRoute.Receipts -> findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonationReceiptListFragment())
+      else -> error("Unexpected route: ${route.javaClass.name}")
+    }
   }
 }

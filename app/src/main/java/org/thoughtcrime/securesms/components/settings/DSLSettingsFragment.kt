@@ -106,6 +106,13 @@ abstract class DSLSettingsFragment(
    * already insets this fragment ([isInsetByHost]).
    */
   private fun applyEdgeToEdgeInsets() {
+    if (listScrollsBehindToolbar) {
+      recyclerView?.let { recycler ->
+        recycler.clipToPadding = false
+        recycler.updatePadding(top = recycler.paddingTop + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height))
+      }
+    }
+
     if (isInsetByHost()) {
       return
     }
@@ -116,10 +123,6 @@ abstract class DSLSettingsFragment(
       val insetTypes = (if (listClearsNavigationBar) WindowInsetsCompat.Type.navigationBars() else 0) or
         (if (listScrollsBehindToolbar) WindowInsetsCompat.Type.statusBars() else 0) or
         (if (listAvoidsKeyboard) WindowInsetsCompat.Type.ime() else 0)
-
-      if (listScrollsBehindToolbar) {
-        recycler.updatePadding(top = recycler.paddingTop + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height))
-      }
 
       if (insetTypes != 0) {
         recycler.clipToPadding = false

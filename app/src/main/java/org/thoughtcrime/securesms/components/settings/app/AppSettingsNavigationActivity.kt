@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.components.settings.app.privacy.registerPrivac
 import org.thoughtcrime.securesms.components.settings.app.storage.registerDataAndStorageRoutes
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.registerDonationsRoutes
 import org.thoughtcrime.securesms.components.settings.app.updates.registerAppUpdatesRoutes
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity
@@ -97,6 +98,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
               registerAppearanceRoutes(router::onEvent)
               registerChatsRoutes(router::onEvent)
               registerChatFoldersRoutes(router::onEvent)
+              registerDonationsRoutes(router::onEvent)
               registerNotificationsRoutes(router::onEvent)
               registerLabsRoutes(router::onEvent)
               registerAppUpdatesRoutes(router::onEvent)

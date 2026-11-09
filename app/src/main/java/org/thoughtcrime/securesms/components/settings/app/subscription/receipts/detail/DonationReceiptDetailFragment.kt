@@ -4,49 +4,58 @@ import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.viewmodel.compose.viewModel
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.viewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.ReceiptImageRenderer
 
 class DonationReceiptDetailFragment : ComposeFragment() {
 
-  companion object {
-    private val TAG = Log.tag(DonationReceiptDetailFragment::class)
-  }
-
-  private val viewModel: DonationReceiptDetailViewModel by viewModel {
-    val id = DonationReceiptDetailFragmentArgs.fromBundle(requireArguments()).id
-    DonationReceiptDetailViewModel(id)
-  }
+  private val appSettingsRouter by appSettingsRouter()
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    CollectActions(viewModel.actions) { action -> handleAction(action) }
-
-    DonationReceiptDetailScreen(
-      state = state,
-      onEvent = viewModel::onEvent
+    DonationReceiptDetailEntry(
+      receiptId = DonationReceiptDetailFragmentArgs.fromBundle(requireArguments()).id,
+      parentEventEmitter = appSettingsRouter::onEvent
     )
   }
+}
 
-  private fun handleAction(action: DonationReceiptDetailAction) {
+private val TAG = Log.tag(DonationReceiptDetailFragment::class)
+
+/**
+ * The receipt [receiptId], wired to its view model and the share sheet, leaving through [parentEventEmitter].
+ */
+@Composable
+fun DonationReceiptDetailEntry(receiptId: Long, parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  val context = LocalContext.current
+  val viewModel: DonationReceiptDetailViewModel = viewModel { DonationReceiptDetailViewModel(receiptId) }
+  val state by viewModel.state.collectAsStateWithLifecycle()
+
+  CollectActions(viewModel.actions) { action ->
     when (action) {
-      DonationReceiptDetailAction.NavigateBack -> findNavController().popBackStack()
+      DonationReceiptDetailAction.NavigateBack -> parentEventEmitter.navigateBack()
       is DonationReceiptDetailAction.ShareReceipt -> {
         try {
-          startActivity(ReceiptImageRenderer.createShareIntent(requireContext(), action.uri))
+          context.startActivity(ReceiptImageRenderer.createShareIntent(context, action.uri))
         } catch (e: ActivityNotFoundException) {
           Log.w(TAG, "No activity existed to share the media.", e)
-          Toast.makeText(requireContext(), R.string.MediaPreviewActivity_cant_find_an_app_able_to_share_this_media, Toast.LENGTH_LONG).show()
+          Toast.makeText(context, R.string.MediaPreviewActivity_cant_find_an_app_able_to_share_this_media, Toast.LENGTH_LONG).show()
         }
       }
     }
   }
+
+  DonationReceiptDetailScreen(
+    state = state,
+    onEvent = viewModel::onEvent
+  )
 }
