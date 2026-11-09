@@ -12,17 +12,21 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isGreaterThan
+import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import assertk.assertions.isTrue
+import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
+import io.mockk.mockkObject
 import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import io.mockk.verify
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
@@ -32,12 +36,15 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.contentproviders.BlobProvider
+import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.registration.RestoreDecision
 import org.signal.registration.proto.AccountData
@@ -47,11 +54,13 @@ import org.signal.storage.keyvalue.Completed
 import org.signal.storage.keyvalue.NewAccount
 import org.signal.storage.keyvalue.Skipped
 import org.signal.storage.protos.RestoreDecisionState
+import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.runJobBlocking
+import org.thoughtcrime.securesms.jobs.CheckKeyTransparencyJob
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
@@ -59,12 +68,14 @@ import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
+import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SignalDatabaseRule
 import org.thoughtcrime.securesms.testutil.SignalStoreRule
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.IOException
+import java.io.InputStream
 import java.util.UUID
 import kotlin.random.Random
 
@@ -76,6 +87,8 @@ class AppRegistrationStorageControllerTest {
     private const val E164 = "+15555550101"
     private const val SERVICE_PASSWORD = "service-password"
     private const val PIN = "1234"
+    private val V1_ROOT_URI = Uri.parse("content://test/backups")
+    private val V1_BACKUP_URI = Uri.parse("content://test/backups/signal.backup")
   }
 
   @get:Rule
@@ -715,6 +728,112 @@ class AppRegistrationStorageControllerTest {
     assertThat(data.pniIdentityKeyPair.serialize()).isEqualTo(pniIdentity.serialize())
   }
 
+  @Test
+  fun `v1 restore after commit - puts back the identity keys and aep the backup overwrote`() = runBlocking<Unit> {
+    commitThenSetUpV1Restore(RegistrationData(accountData = accountData(), accountEntropyPool = aep.value, pin = PIN))
+
+    val result = runV1Restore { overwriteAccountKeysLikeABackup() }
+
+    assertThat(result).isInstanceOf<LocalBackupRestoreProgress.Complete>()
+    verify { FullBackupImporter.importFile(any(), any(), any(), any<InputStream>(), any(), true) }
+    assertThat(SignalStore.account.aciIdentityKey.serialize()).isEqualTo(aciIdentity.serialize())
+    assertThat(SignalStore.account.pniIdentityKey.serialize()).isEqualTo(pniIdentity.serialize())
+    assertThat(SignalStore.account.accountEntropyPool.value).isEqualTo(aep.value)
+
+    val selfRecord = SignalDatabase.recipients.getRecord(SignalDatabase.recipients.getByAci(aci).get())
+    assertThat(selfRecord.registered).isEqualTo(RecipientTable.RegisteredState.REGISTERED)
+    assertThat(selfRecord.pni).isEqualTo(pni)
+    assertThat(selfRecord.e164).isEqualTo(E164)
+  }
+
+  @Test
+  fun `v1 restore after commit - keeps backup state that the backup's aep did not touch`() = runBlocking<Unit> {
+    commitThenSetUpV1Restore(RegistrationData(accountData = accountData(), accountEntropyPool = aep.value, pin = PIN))
+    val chain = byteArrayOf(1, 2, 3)
+    SignalStore.backup.nextBackupSecretData = chain
+    SignalStore.backup.messageBackupInitialized = true
+
+    runV1Restore { overwriteAccountKeysLikeABackup() }
+
+    assertThat(SignalStore.account.accountEntropyPool.value).isEqualTo(aep.value)
+    assertThat(SignalStore.backup.nextBackupSecretData).isNotNull().isEqualTo(chain)
+    assertThat(SignalStore.backup.messageBackupInitialized).isTrue()
+    assertThat(SignalStore.backup.backupSecretRestoreRequired).isFalse()
+  }
+
+  @Test
+  fun `v1 restore after commit - does not rewind prekey state that advanced after commit`() = runBlocking<Unit> {
+    commitThenSetUpV1Restore(RegistrationData(accountData = accountData(), accountEntropyPool = aep.value, pin = PIN))
+
+    for (preKeys in listOf(SignalStore.account.aciPreKeys, SignalStore.account.pniPreKeys)) {
+      preKeys.activeSignedPreKeyId = 300
+      preKeys.nextSignedPreKeyId = 301
+      preKeys.lastSignedPreKeyRotationTime = 1000
+      preKeys.lastResortKyberPreKeyId = 400
+      preKeys.nextKyberPreKeyId = 501
+      preKeys.lastResortKyberPreKeyRotationTime = 2000
+    }
+
+    runV1Restore { overwriteAccountKeysLikeABackup() }
+
+    for (preKeys in listOf(SignalStore.account.aciPreKeys, SignalStore.account.pniPreKeys)) {
+      assertThat(preKeys.activeSignedPreKeyId).isEqualTo(300)
+      assertThat(preKeys.nextSignedPreKeyId).isEqualTo(301)
+      assertThat(preKeys.lastSignedPreKeyRotationTime).isEqualTo(1000)
+      assertThat(preKeys.lastResortKyberPreKeyId).isEqualTo(400)
+      assertThat(preKeys.nextKyberPreKeyId).isEqualTo(501)
+      assertThat(preKeys.lastResortKyberPreKeyRotationTime).isEqualTo(2000)
+    }
+  }
+
+  @Test
+  fun `v1 restore after commit - numberless account - drops the backup's pni identity`() = runBlocking<Unit> {
+    commitThenSetUpV1Restore(
+      RegistrationData(
+        accountData = accountData().newBuilder()
+          .e164("")
+          .pni("")
+          .pniIdentityKeyPair(ByteString.EMPTY)
+          .pniSignedPreKey(ByteString.EMPTY)
+          .pniLastResortKyberPreKey(ByteString.EMPTY)
+          .pniRegistrationId(0)
+          .build(),
+        accountEntropyPool = aep.value,
+        pin = PIN
+      )
+    )
+
+    runV1Restore { overwriteAccountKeysLikeABackup() }
+
+    assertThat(SignalStore.account.aciIdentityKey.serialize()).isEqualTo(aciIdentity.serialize())
+    assertThat(SignalStore.account.hasPniIdentityKey()).isFalse()
+  }
+
+  @Test
+  fun `v1 restore after commit - archives sessions and re-checks key transparency`() = runBlocking<Unit> {
+    commitThenSetUpV1Restore(RegistrationData(accountData = accountData(), accountEntropyPool = aep.value, pin = PIN))
+    mockkObject(CheckKeyTransparencyJob)
+    justRun { CheckKeyTransparencyJob.enqueueIfNecessary(any(), any()) }
+    clearMocks(AppDependencies.protocolStore, answers = false)
+
+    runV1Restore { overwriteAccountKeysLikeABackup() }
+
+    verify { AppDependencies.protocolStore.aci().sessions().archiveAllSessions() }
+    verify { CheckKeyTransparencyJob.enqueueIfNecessary(true, any()) }
+  }
+
+  @Test
+  fun `v1 restore with no committed account - leaves the backup's keys in place`() = runBlocking<Unit> {
+    seedInProgressData(RegistrationData(accountData = accountData(), accountEntropyPool = aep.value, pin = PIN))
+    stubV1RestoreDependencies()
+    val backupIdentity = IdentityKeyPair.generate()
+
+    runV1Restore { SignalStore.account.restoreAciIdentityKeyFromBackup(backupIdentity.publicKey.serialize(), backupIdentity.privateKey.serialize()) }
+
+    verify { FullBackupImporter.importFile(any(), any(), any(), any<InputStream>(), any(), false) }
+    assertThat(SignalStore.account.aciIdentityKey.serialize()).isEqualTo(backupIdentity.serialize())
+  }
+
   /**
    * Backs the relaxed [AppDependencies.blobs] mock with an in-memory map so the controller's real
    * read/write/delete logic runs against inspectable storage.
@@ -741,6 +860,48 @@ class AppRegistrationStorageControllerTest {
     every { blobs.delete(any(), any()) } answers {
       blobData.remove(secondArg<Uri>())
     }
+  }
+
+  private suspend fun commitThenSetUpV1Restore(data: RegistrationData) {
+    seedInProgressData(data)
+    controller.commitRegistrationData()
+    stubV1RestoreDependencies()
+  }
+
+  /** Stubs out the parts of a V1 restore that need a real backup file or the Android keystore. */
+  private fun stubV1RestoreDependencies() {
+    mockkStatic(FullBackupImporter::class)
+    every { FullBackupImporter.validatePassphrase(any(), any(), any()) } returns true
+
+    every { SignalDatabase.backupDatabase } returns mockk(relaxed = true)
+    justRun { SignalDatabase.runPostBackupRestoreTasks(any()) }
+
+    mockkObject(BackupProgressService)
+    every { BackupProgressService.start(any(), any()) } returns mockk(relaxed = true)
+
+    mockkStatic(AttachmentSecretProvider::class)
+    every { AttachmentSecretProvider.getInstance(any(), any()) } returns mockk(relaxed = true)
+
+    shadowOf(context.contentResolver).registerInputStream(V1_BACKUP_URI, ByteArrayInputStream(ByteArray(0)))
+  }
+
+  /** Runs a V1 restore whose import step is replaced by [importBackup], returning the final progress event. */
+  private suspend fun runV1Restore(importBackup: () -> Unit): LocalBackupRestoreProgress {
+    every { FullBackupImporter.importFile(any(), any(), any(), any<InputStream>(), any(), any()) } answers { importBackup() }
+    val result = controller.restoreLocalBackupV1(V1_ROOT_URI, V1_BACKUP_URI, "passphrase").toList().last()
+    if (result is LocalBackupRestoreProgress.Error) {
+      throw AssertionError("V1 restore failed", result.cause)
+    }
+    return result
+  }
+
+  /** Writes every [SignalStore.account] key a V1 backup carries, with values from a different account. */
+  private fun overwriteAccountKeysLikeABackup() {
+    val backupAci = IdentityKeyPair.generate()
+    val backupPni = IdentityKeyPair.generate()
+    SignalStore.account.restoreAciIdentityKeyFromBackup(backupAci.publicKey.serialize(), backupAci.privateKey.serialize())
+    SignalStore.account.restorePniIdentityKeyFromBackup(backupPni.publicKey.serialize(), backupPni.privateKey.serialize())
+    SignalStore.account.restoreAccountEntropyPool(AccountEntropyPool.generate())
   }
 
   /** Puts onboarding into the state a fresh install leaves it in, where the get-started megaphone would show. */

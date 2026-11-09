@@ -406,6 +406,19 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     }
   }
 
+  /** Removes the PNI identity key pair. Only for accounts that have no PNI. */
+  fun clearPniIdentityKey() {
+    synchronized(this) {
+      Log.i(TAG, "Clearing the PNI identity key pair.")
+
+      store
+        .beginWrite()
+        .remove(KEY_PNI_IDENTITY_PUBLIC_KEY)
+        .remove(KEY_PNI_IDENTITY_PRIVATE_KEY)
+        .commit()
+    }
+  }
+
   fun restoreAciIdentityKeyFromBackup(publicKey: ByteArray, privateKey: ByteArray) {
     synchronized(this) {
       Log.i(TAG, "Setting a new ACI identity key pair.")

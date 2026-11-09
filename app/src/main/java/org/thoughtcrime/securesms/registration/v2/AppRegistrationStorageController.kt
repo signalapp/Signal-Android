@@ -371,13 +371,10 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
         // Reset it so the state we read below reflects the restored values rather than stale pre-restore ones.
         SignalStore.onPostBackupRestore()
 
-        // A post-registration restore clobbers parts of SignalStore.account with the backup's values -- V1 backups
-        // carry the identity keys and AEP. Re-apply the frozen account data to heal the committed registration.
         val committedAccountData = inProgressData.accountData
         if (inProgressData.accountDataCommitted && committedAccountData != null) {
-          Log.i(TAG, "V1 restore ran after an account was committed. Re-applying committed account data.")
-          val masterKey = applyAccountEntropyPool(inProgressData)
-          applyAccountData(committedAccountData, pin = inProgressData.pin, registrationLockEnabled = inProgressData.registrationLockEnabled, masterKey = masterKey)
+          Log.i(TAG, "V1 restore ran after an account was committed. Restoring the committed account state the backup overwrote.")
+          restoreCommittedAccountAfterV1Restore(inProgressData, committedAccountData)
         }
 
         reenableLegacyLocalBackups(rootUri, passphrase)
@@ -726,10 +723,65 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
   }
 
   /**
-   * Applies the one-time [AccountData] to permanent storage, registering the account locally. This runs once per
-   * registration, guarded by [RegistrationData.accountDataCommitted] -- the only re-application is after a
-   * post-registration V1 backup restore, which clobbers parts of [SignalStore.account] and re-applies this frozen
-   * data to heal them.
+   * A V1 restore after the account was committed replaces every database table except the prekey tables, and
+   * overwrites the identity keys and AEP in [SignalStore.account] with the backup's. This puts back only that state.
+   */
+  private fun restoreCommittedAccountAfterV1Restore(inProgressData: RegistrationData, accountData: AccountData) {
+    val accountEntropyPool = inProgressData.accountEntropyPool.takeIf { it.isNotEmpty() }?.let { AccountEntropyPool(it) }
+    if (accountEntropyPool != null) {
+      if (accountData.linkedDeviceData != null) {
+        SignalStore.account.setAccountEntropyPoolFromPrimaryDevice(accountEntropyPool)
+      } else {
+        SignalStore.account.restoreAccountEntropyPool(accountEntropyPool)
+      }
+    }
+
+    val aci = ACI.parseOrThrow(accountData.aci)
+    val pni = PNI.parseOrNull(accountData.pni)
+    val e164 = accountData.e164?.nullIfBlank()
+
+    val aciIdentityKeyPair = IdentityKeyPair(accountData.aciIdentityKeyPair.toByteArray())
+    SignalStore.account.restoreAciIdentityKeyFromBackup(aciIdentityKeyPair.publicKey.serialize(), aciIdentityKeyPair.privateKey.serialize())
+
+    val pniIdentityKeyPair = accountData.pniIdentityKeyPair.takeIf { it.size > 0 }?.let { IdentityKeyPair(it.toByteArray()) }
+    if (pniIdentityKeyPair != null) {
+      SignalStore.account.restorePniIdentityKeyFromBackup(pniIdentityKeyPair.publicKey.serialize(), pniIdentityKeyPair.privateKey.serialize())
+    } else if (pni == null) {
+      SignalStore.account.clearPniIdentityKey()
+    }
+
+    AppDependencies.resetProtocolStores()
+
+    val aciProtocolStore = AppDependencies.protocolStore.aci()
+    val pniProtocolStore = AppDependencies.protocolStore.pniOrNull()
+
+    aciProtocolStore.sessions().archiveAllSessions()
+    pniProtocolStore?.sessions()?.archiveAllSessions()
+    SenderKeyUtil.clearAllState()
+
+    val profileKey = getOrCreateProfileKey(aci)
+    val recipientTable = SignalDatabase.recipients
+    val selfId = recipientTable.getAndPossiblyMergePnpVerified(aci, pni, e164)
+
+    recipientTable.setProfileSharing(selfId, true)
+    recipientTable.markRegisteredOrThrow(selfId, aci)
+    recipientTable.linkIdsForSelf(aci, pni, e164)
+    recipientTable.setProfileKey(selfId, profileKey)
+
+    AppDependencies.recipientCache.clearSelf()
+
+    val now = System.currentTimeMillis()
+    saveOwnIdentityKey(selfId, aci, aciProtocolStore, now)
+    if (pni != null && pniProtocolStore != null) {
+      saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
+    }
+
+    CheckKeyTransparencyJob.enqueueIfNecessary(addDelay = true)
+  }
+
+  /**
+   * Applies the one-time [AccountData] to permanent storage, registering the account locally. This must only run once
+   * per registration, guarded by [RegistrationData.accountDataCommitted].
    */
   private suspend fun applyAccountData(accountData: AccountData, pin: String, registrationLockEnabled: Boolean, masterKey: MasterKey?) {
     Log.i(TAG, "[applyAccountData] Registering account locally.")
