@@ -24,6 +24,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.content.contentValuesOf
 import com.bumptech.glide.Glide
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.BackupDebugInfo
 import org.signal.blurhash.BlurHash
@@ -292,7 +293,7 @@ class AttachmentTable(
       """
 
     private const val DATA_FILE_INDEX = "attachment_data_index"
-    private const val DATA_HASH_REMOTE_KEY_INDEX = "attachment_data_hash_end_remote_key_index"
+    private const val DATA_HASH_REMOTE_KEY_INDEX = "attachment_media_name_index"
     private const val ARCHIVE_TRANSFER_STATE_INDEX = "attachment_archive_transfer_state"
 
     /** How many media names fit in one statement. Each binds two args, so this has to stay under half of [SqlUtil.MAX_QUERY_ARGS]. */
@@ -309,7 +310,7 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_transfer_state_index ON $TABLE_NAME ($TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_sticker_pack_id_index ON $TABLE_NAME ($STICKER_PACK_ID);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_start_index ON $TABLE_NAME ($DATA_HASH_START);",
-      "CREATE INDEX IF NOT EXISTS $DATA_HASH_REMOTE_KEY_INDEX ON $TABLE_NAME ($DATA_HASH_END, $REMOTE_KEY);",
+      "CREATE INDEX IF NOT EXISTS $DATA_HASH_REMOTE_KEY_INDEX ON $TABLE_NAME ($DATA_HASH_END, $REMOTE_KEY, $ARCHIVE_TRANSFER_STATE, $MESSAGE_ID);",
       "CREATE INDEX IF NOT EXISTS $DATA_FILE_INDEX ON $TABLE_NAME ($DATA_FILE);",
       "CREATE INDEX IF NOT EXISTS $ARCHIVE_TRANSFER_STATE_INDEX ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);",
@@ -2859,7 +2860,7 @@ class AttachmentTable(
 
     readableDatabase
       .select(DATA_HASH_END, REMOTE_KEY)
-      .from(TABLE_NAME)
+      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
       .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL AND $ARCHIVE_TRANSFER_STATE != ?", ArchiveTransferState.FINISHED.value)
       .groupBy("$DATA_HASH_END, $REMOTE_KEY")
       .run()
@@ -3975,18 +3976,18 @@ class AttachmentTable(
     val mediaIdByteStrings = mediaIds.map { it.value.toByteString() }.toSet()
     val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
-    val found: MutableList<ArchiveAttachmentMatch> = mutableListOf()
+    val matchedIds: MutableList<MediaIdMatch> = mutableListOf()
 
     readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
+      .select("MIN($ID) AS $ID", DATA_HASH_END, REMOTE_KEY)
+      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
       .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
       .groupBy("$DATA_HASH_END, $REMOTE_KEY")
       .run()
       .forEach { cursor ->
+        val attachmentId = AttachmentId(cursor.requireLong(ID))
         val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
         val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
-        val messageId = cursor.requireLong(MESSAGE_ID)
 
         val mediaId = MediaName
           .fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey)
@@ -4001,19 +4002,24 @@ class AttachmentTable(
           .toByteString()
 
         if (mediaId in mediaIdByteStrings) {
-          val attachment = getAttachment(cursor)
-          val messageRecord = messages.getMessageRecordOrNull(messageId)
-          found.add(ArchiveAttachmentMatch(attachment = attachment, mediaId = MediaId(mediaId.toByteArray()), isThumbnail = false, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
+          matchedIds += MediaIdMatch(attachmentId = attachmentId, mediaId = mediaId, isThumbnail = false)
         }
 
         if (mediaIdThumbnail in mediaIdByteStrings) {
-          val attachment = getAttachment(cursor)
-          val messageRecord = messages.getMessageRecordOrNull(messageId)
-          found.add(ArchiveAttachmentMatch(attachment = attachment, mediaId = MediaId(mediaIdThumbnail.toByteArray()), isThumbnail = true, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
+          matchedIds += MediaIdMatch(attachmentId = attachmentId, mediaId = mediaIdThumbnail, isThumbnail = true)
         }
       }
 
-    return found
+    return matchedIds.mapNotNull { (attachmentId, mediaId, isThumbnail) ->
+      val attachment = getAttachment(attachmentId) ?: return@mapNotNull null
+      ArchiveAttachmentMatch(
+        attachment = attachment,
+        mediaId = MediaId(mediaId.toByteArray()),
+        isThumbnail = isThumbnail,
+        isWallpaper = attachment.mmsId == WALLPAPER_MESSAGE_ID,
+        messageRecord = messages.getMessageRecordOrNull(attachment.mmsId)
+      )
+    }
   }
 
   /**
@@ -4124,8 +4130,8 @@ class AttachmentTable(
     val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
     readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
+      .select(DATA_HASH_END, REMOTE_KEY)
+      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
       .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL${buildMessageIncludedInBackupClause(messageInclusionCutoffTime)}")
       .groupBy("$DATA_HASH_END, $REMOTE_KEY")
       .run()
@@ -4659,6 +4665,8 @@ class AttachmentTable(
       return "attachmentId=${attachment.attachmentId}, mediaId=$mediaId, messageId=${attachment.mmsId}, isThumbnail=$isThumbnail, contentType=${attachment.contentType}, quote=${attachment.quote}, wallpaper=$isWallpaper, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}, dateSent=${messageRecord?.dateSent}, messageType=${messageRecord?.type}, messageFrom=${messageRecord?.fromRecipient?.id}, messageTo=${messageRecord?.toRecipient?.id}, expiresIn=${messageRecord?.expiresIn}, expireStarted=${messageRecord?.expireStarted}"
     }
   }
+
+  private data class MediaIdMatch(val attachmentId: AttachmentId, val mediaId: ByteString, val isThumbnail: Boolean)
 
   /**
    * The base64 [DATA_HASH_END] and [REMOTE_KEY] that a [MediaName] is derived from.
