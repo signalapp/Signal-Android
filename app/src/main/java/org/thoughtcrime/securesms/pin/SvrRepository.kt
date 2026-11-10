@@ -22,8 +22,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
-import org.thoughtcrime.securesms.jobs.Svr2MirrorJob
-import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.resetPinReminders
 import org.thoughtcrime.securesms.megaphone.Megaphones
@@ -35,8 +33,6 @@ import org.whispersystems.signalservice.api.successOrThrow
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
-import org.whispersystems.signalservice.api.svr.SecureValueRecovery.SvrVersion
-import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -47,30 +43,15 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
-  private val svr2Legacy: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY)
-  private val svr2: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
-  private val svr3: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
-
-  /** An ordered list of SVR implementations to read from. They should be in priority order, with the most important one listed first. */
-  private val readImplementations: List<SecureValueRecovery> = if (Svr3Migration.shouldReadFromSvr3) {
-    listOf(svr3, svr2)
+  private val svr2Legacy: SecureValueRecovery? = if (BuildConfig.SVR2_MRENCLAVE_LEGACY.isNullOrEmpty() || BuildConfig.SVR2_MRENCLAVE_LEGACY == BuildConfig.SVR2_MRENCLAVE) {
+    null
   } else {
-    listOf(svr2, svr2Legacy)
+    AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY)
   }
+  private val svr2: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
 
-  /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
-  private val writeImplementations: List<SecureValueRecovery>
-    get() {
-      val implementations = mutableListOf<SecureValueRecovery>()
-      if (Svr3Migration.shouldWriteToSvr3) {
-        implementations += svr3
-      }
-      if (Svr3Migration.shouldWriteToSvr2) {
-        implementations += svr2
-        implementations += svr2Legacy
-      }
-      return implementations
-    }
+  /** An ordered list of SVR implementations to read from and write to. They should be in priority order, with the most important one listed first. */
+  private val svr2Implementations: List<SecureValueRecovery> = listOfNotNull(svr2, svr2Legacy)
 
   /**
    * A lock that ensures that only one thread at a time is altering the various pieces of SVR state.
@@ -97,27 +78,12 @@ object SvrRepository {
     operationLock.withLock {
       Log.i(TAG, "restoreMasterKeyPreRegistration()", true)
 
-      val operations: List<Pair<SecureValueRecovery, () -> RestoreResponse>> = if (Svr3Migration.shouldReadFromSvr3) {
-        listOf(
-          svr3 to { restoreMasterKeyPreRegistrationFromV3(credentials.svr3, userPin) },
-          svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) }
-        )
-      } else {
-        listOf(
-          svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) },
-          svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) }
-        )
-      }
-
-      for ((implementation, operation) in operations) {
-        when (val response: RestoreResponse = operation()) {
+      for (implementation in svr2Implementations) {
+        when (val response: RestoreResponse = restoreMasterKeyPreRegistrationFromV2(implementation, credentials.svr2, userPin)) {
           is RestoreResponse.Success -> {
             Log.i(TAG, "[restoreMasterKeyPreRegistration] Successfully restored master key. $implementation", true)
 
-            when (implementation.svrVersion) {
-              SvrVersion.SVR2 -> SignalStore.svr.appendSvr2AuthTokenToList(response.authorization.asBasic())
-              SvrVersion.SVR3 -> SignalStore.svr.appendSvr3AuthTokenToList(response.authorization.asBasic())
-            }
+            SignalStore.svr.appendSvr2AuthTokenToList(response.authorization.asBasic())
 
             return response.masterKey
           }
@@ -164,7 +130,7 @@ object SvrRepository {
     val stopwatch = Stopwatch("pin-submission")
 
     operationLock.withLock {
-      for (implementation in readImplementations) {
+      for (implementation in svr2Implementations) {
         when (val response: RestoreResponse = implementation.restoreDataPostRegistration(userPin)) {
           is RestoreResponse.Success -> {
             Log.i(TAG, "[restoreMasterKeyPostRegistration] Successfully restored master key. $implementation", true)
@@ -179,24 +145,13 @@ object SvrRepository {
             SignalStore.svr.isRegistrationLockEnabled = false
             SignalStore.pin.resetPinReminders()
 
-            when (implementation.svrVersion) {
-              SvrVersion.SVR2 -> SignalStore.svr.appendSvr2AuthTokenToList(response.authorization.asBasic())
-              SvrVersion.SVR3 -> SignalStore.svr.appendSvr3AuthTokenToList(response.authorization.asBasic())
-            }
+            SignalStore.svr.appendSvr2AuthTokenToList(response.authorization.asBasic())
 
             AppDependencies.jobManager.add(ResetSvrGuessCountJob())
             stopwatch.split("metadata")
 
             runBlocking { StorageServiceRestore.restore() }
             stopwatch.split("restore-account")
-
-            if (implementation.svrVersion != SvrVersion.SVR2 && Svr3Migration.shouldWriteToSvr2) {
-              AppDependencies.jobManager.add(Svr2MirrorJob())
-            }
-
-            if (implementation.svrVersion != SvrVersion.SVR3 && Svr3Migration.shouldWriteToSvr3) {
-              AppDependencies.jobManager.add(Svr3MirrorJob())
-            }
 
             stopwatch.stop(TAG)
 
@@ -243,9 +198,7 @@ object SvrRepository {
     return operationLock.withLock {
       val masterKey: MasterKey = SignalStore.svr.masterKey
 
-      val writeTargets = writeImplementations
-
-      val responses: List<BackupResponse> = writeTargets
+      val responses: List<BackupResponse> = svr2Implementations
         .map { it.setPin(userPin, masterKey) }
         .map { it.execute() }
 
@@ -273,12 +226,7 @@ object SvrRepository {
         SignalStore.svr.setPin(userPin)
         responses
           .filterIsInstance<BackupResponse.Success>()
-          .forEach {
-            when (it.svrVersion) {
-              SvrVersion.SVR2 -> SignalStore.svr.appendSvr2AuthTokenToList(it.authorization.asBasic())
-              SvrVersion.SVR3 -> SignalStore.svr.appendSvr3AuthTokenToList(it.authorization.asBasic())
-            }
-          }
+          .forEach { SignalStore.svr.appendSvr2AuthTokenToList(it.authorization.asBasic()) }
 
         SignalStore.pin.resetPinReminders()
 
@@ -420,20 +368,8 @@ object SvrRepository {
   @Throws(IOException::class)
   fun refreshAndStoreAuthorization() {
     try {
-      var newToken = if (Svr3Migration.shouldWriteToSvr3) {
-        val credentials: AuthCredentials = svr3.authorization()
-        SignalStore.svr.appendSvr3AuthTokenToList(credentials.asBasic())
-      } else {
-        false
-      }
-
-      newToken = newToken ||
-        if (Svr3Migration.shouldWriteToSvr2) {
-          val credentials: AuthCredentials = svr2.authorization()
-          SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
-        } else {
-          false
-        }
+      val credentials: AuthCredentials = svr2.authorization()
+      val newToken = SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
 
       if (newToken && SignalStore.svr.hasPin()) {
         BackupManager(AppDependencies.application).dataChanged()
@@ -454,16 +390,6 @@ object SvrRepository {
       RestoreResponse.Missing
     } else {
       svr.restoreDataPreRegistration(credentials, shareSet = null, userPin)
-    }
-  }
-
-  @WorkerThread
-  @VisibleForTesting
-  fun restoreMasterKeyPreRegistrationFromV3(credentials: Svr3Credentials?, userPin: String): RestoreResponse {
-    return if (credentials?.shareSet == null) {
-      RestoreResponse.Missing
-    } else {
-      svr3.restoreDataPreRegistration(credentials.authCredentials, credentials.shareSet, userPin)
     }
   }
 
