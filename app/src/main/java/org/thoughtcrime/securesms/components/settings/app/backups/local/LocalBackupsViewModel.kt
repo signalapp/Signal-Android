@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -77,6 +78,22 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
         internalSettingsState.update { it.copy(progress = progress) }
       }
     }
+  }
+
+  /**
+   * Keeps access to [uri], the folder the user picked for on-device backups, and makes it the backup location. A null
+   * [uri] means the picker was cancelled.
+   */
+  fun onBackupDirectorySelected(context: Context, uri: Uri?) {
+    if (uri == null) {
+      Log.w(TAG, "Unified backup location selection cancelled or failed")
+      return
+    }
+
+    Log.i(TAG, "Backup location selected: $uri")
+    val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+    context.contentResolver.takePersistableUriPermission(uri, takeFlags)
+    SignalStore.backup.newLocalBackupsDirectory = uri.toString()
   }
 
   fun refreshSettingsState() {

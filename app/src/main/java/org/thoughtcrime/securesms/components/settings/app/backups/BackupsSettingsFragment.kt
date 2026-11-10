@@ -12,8 +12,7 @@ import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Environment
+import org.thoughtcrime.securesms.components.settings.app.backups.local.usesOnDeviceBackupsScreen
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -40,7 +39,7 @@ class BackupsSettingsFragment : ComposeFragment() {
     when (route) {
       is AppSettingsRoute.BackupsRoute.Remote -> findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_remoteBackupsSettingsFragment)
       is AppSettingsRoute.BackupsRoute.Local -> {
-        if (SignalStore.account.isLinkedDevice || SignalStore.backup.newLocalBackupsEnabled || (Environment.Backups.isNewFormatSupportedForLocalBackup() && !SignalStore.settings.isBackupEnabled)) {
+        if (route.usesOnDeviceBackupsScreen()) {
           findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_localBackupsFragment)
         } else {
           findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_backupsPreferenceFragment)

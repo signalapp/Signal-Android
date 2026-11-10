@@ -20,7 +20,7 @@ sealed interface AppSettingsNavigationEvent {
    * @param popUpTo screens to close before [route] opens. Naming a screen that is already on top of what is left, such
    *   as [route] itself, goes back to it as it was rather than opening it again.
    */
-  data class NavigateToScreen(
+  data class NavigateToScreen @JvmOverloads constructor(
     val route: AppSettingsRoute,
     val replacesDetail: Boolean = false,
     val popUpTo: PopUpTo? = null
@@ -32,7 +32,7 @@ sealed interface AppSettingsNavigationEvent {
    * @param popUpTo the screens to close instead of only the top one, for a screen that has to close itself whatever is
    *   open above it. Nothing is closed when no such screen is open.
    */
-  data class NavigateBack(val popUpTo: PopUpTo? = null) : AppSettingsNavigationEvent
+  data class NavigateBack @JvmOverloads constructor(val popUpTo: PopUpTo? = null) : AppSettingsNavigationEvent
 }
 
 /**

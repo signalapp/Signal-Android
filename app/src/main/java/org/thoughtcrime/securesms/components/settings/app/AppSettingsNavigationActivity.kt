@@ -17,6 +17,7 @@ import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.core.ui.compose.WindowOverlayHost
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -148,6 +149,11 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
     super.onNewIntent(intent)
     finish()
     startActivity(intent)
+  }
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
   @Suppress("DEPRECATION")

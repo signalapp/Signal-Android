@@ -22,11 +22,14 @@ import androidx.compose.ui.platform.ComposeView;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
+import org.signal.appsettings.routes.AppSettingsNavigationEvent;
+import org.signal.appsettings.routes.AppSettingsRoute;
+import org.signal.appsettings.routes.AppSettingsRouter;
 import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.ui.util.StorageUtil;
 import org.signal.core.util.NoExternalStorageException;
@@ -37,6 +40,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupDialog;
 import org.thoughtcrime.securesms.backup.BackupEvent;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsRouterDelegateKt;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -51,6 +55,7 @@ import java.time.LocalTime;
 import java.util.Locale;
 import java.util.Objects;
 
+import kotlin.Lazy;
 import kotlin.Pair;
 import kotlin.Unit;
 
@@ -75,6 +80,23 @@ public class BackupsPreferenceFragment extends Fragment {
 
   private final NumberFormat formatter = NumberFormat.getInstance();
 
+  private final Lazy<AppSettingsRouter> appSettingsRouter = AppSettingsRouterDelegateKt.appSettingsRouter(
+      this,
+      popUpTo -> {
+        NavHostFragment.findNavController(this).popBackStack();
+        return Unit.INSTANCE;
+      },
+      route -> {
+        if (route instanceof AppSettingsRoute.BackupsRoute.Local) {
+          NavHostFragment.findNavController(this)
+                         .navigate(BackupsPreferenceFragmentDirections.actionBackupsPreferenceFragmentToLocalBackupsFragment()
+                                                                      .setTriggerUpdateFlow(((AppSettingsRoute.BackupsRoute.Local) route).getTriggerUpdateFlow()));
+          return Unit.INSTANCE;
+        }
+        throw new IllegalStateException("Unexpected route: " + route.getClass().getName());
+      }
+  );
+
   private BackupsPreferenceViewModel viewModel;
   private EventBus.Subscription      backupEventSubscription;
 
@@ -86,7 +108,7 @@ public class BackupsPreferenceFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     Toolbar toolbar = view.findViewById(R.id.toolbar);
-    toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+    toolbar.setNavigationOnClickListener(v -> navigateBack());
 
     create          = view.findViewById(R.id.fragment_backup_create);
     folder          = view.findViewById(R.id.fragment_backup_folder);
@@ -228,9 +250,7 @@ public class BackupsPreferenceFragment extends Fragment {
   private void setUpdateState() {
     if (SignalStore.settings().isBackupEnabled() && Environment.Backups.isNewFormatSupportedForLocalBackup()) {
       UpgradeLocalBackupCard.bind(upgradeCard, () -> {
-        Navigation.findNavController(requireView())
-                  .navigate(BackupsPreferenceFragmentDirections.actionBackupsPreferenceFragmentToLocalBackupsFragment()
-                                                               .setTriggerUpdateFlow(true));
+        appSettingsRouter.getValue().onEvent(new AppSettingsNavigationEvent.NavigateToScreen(new AppSettingsRoute.BackupsRoute.Local(true)));
         return Unit.INSTANCE;
       });
       upgradeCard.setVisibility(View.VISIBLE);
@@ -239,8 +259,12 @@ public class BackupsPreferenceFragment extends Fragment {
     }
 
     if (SignalStore.backup().getNewLocalBackupsEnabled()) {
-      Navigation.findNavController(requireView()).popBackStack();
+      navigateBack();
     }
+  }
+
+  private void navigateBack() {
+    appSettingsRouter.getValue().onEvent(new AppSettingsNavigationEvent.NavigateBack());
   }
 
   private void onToggleClicked() {

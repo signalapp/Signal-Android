@@ -175,7 +175,7 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     ) : BackupsRoute
 
     @Serializable
-    data class Local(val triggerUpdateFlow: Boolean = false) : BackupsRoute
+    data class Local @JvmOverloads constructor(val triggerUpdateFlow: Boolean = false) : BackupsRoute
 
     @Serializable
     data class Remote(val forQuickRestore: Boolean = false) : BackupsRoute

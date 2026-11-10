@@ -10,17 +10,18 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.routes.UsernameEditMode
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.NavGraphHostActivity
+import org.thoughtcrime.securesms.components.settings.app.backups.local.usesOnDeviceBackupsScreen
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val START_ROUTE = "app.settings.args.START_ROUTE"
@@ -46,7 +47,7 @@ class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
       when (val appSettingsRoute: AppSettingsRoute? = intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)) {
         AppSettingsRoute.Empty -> null
         is AppSettingsRoute.BackupsRoute.Local -> {
-          if (SignalStore.backup.newLocalBackupsEnabled || (Environment.Backups.isNewFormatSupportedForLocalBackup() && (!SignalStore.settings.isBackupEnabled || appSettingsRoute.triggerUpdateFlow))) {
+          if (appSettingsRoute.usesOnDeviceBackupsScreen()) {
             AppSettingsFragmentDirections.actionDirectToLocalBackupsFragment()
               .setTriggerUpdateFlow(appSettingsRoute.triggerUpdateFlow)
           } else {
@@ -109,6 +110,11 @@ class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
   override fun resolveNavGraphId(): Int = R.navigation.app_settings_with_change_number
 
   override fun resolveStartBundle(): Bundle? = null
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
 
   @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
