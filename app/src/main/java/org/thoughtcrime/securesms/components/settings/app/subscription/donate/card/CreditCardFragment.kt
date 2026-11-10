@@ -61,7 +61,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment), InAppPayment
 
     binding.toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
     SystemWindowInsetsSetter.attach(binding.toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
-    SystemWindowInsetsSetter.attach(binding.continueButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
+    SystemWindowInsetsSetter.attach(binding.continueButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars() or WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
       val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
