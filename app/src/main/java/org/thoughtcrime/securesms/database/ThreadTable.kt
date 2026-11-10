@@ -1036,6 +1036,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     var recipientIds: List<RecipientId> = emptyList()
 
     writableDatabase.withinTransaction { db ->
+      if (archive && getPinnedThreadIds().any { it in threadIds }) {
+        recipients.markNeedsSync(Recipient.self().id)
+      }
+
       for (threadId in threadIds) {
         val values = ContentValues().apply {
           if (archive) {
@@ -1417,7 +1421,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     // Phase 3: Final lightweight transaction (deactivate threads, clear drafts, update cache)
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
     Log.d(TAG, "[deleteConversations] Deactivating threads and cleaning up")
-    writableDatabase.withinTransaction { db ->
+    val unpinnedThreads = writableDatabase.withinTransaction { db ->
+      val unpinned = getPinnedThreadIds().any { it in selectedConversations }
+
       for (query in queries) {
         db.deactivateThread(query)
       }
@@ -1429,6 +1435,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           threadIdCache.remove(recipientId)
         }
       }
+
+      unpinned
+    }
+
+    if (unpinnedThreads) {
+      recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
 
     Log.d(TAG, "[deleteConversations] Enqueue jobs and notify listeners")
@@ -1456,7 +1469,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   @SuppressLint("DiscouragedApi")
   fun deleteAllConversations() {
-    writableDatabase.withinTransaction { db ->
+    val unpinnedThreads = writableDatabase.withinTransaction { db ->
+      val unpinned = getPinnedThreadIds().isNotEmpty()
       messageLog.deleteAll()
       messages.deleteAllThreads()
       drafts.clearAllDrafts()
@@ -1465,6 +1479,12 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       synchronized(threadIdCache) {
         threadIdCache.clear()
       }
+      unpinned
+    }
+
+    if (unpinnedThreads) {
+      recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
 
     AppDependencies.jobManager.add(GroupDeletedBackfillWorkerJob())
@@ -1694,7 +1714,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           }
         } else if (pinned.groupMasterKey != null) {
           try {
-            Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(pinned.groupMasterKey!!.toByteArray())))
+            val groupId = GroupId.v2(GroupMasterKey(pinned.groupMasterKey!!.toByteArray()))
+            if (groups.groupExists(groupId)) {
+              Recipient.externalGroupExact(groupId)
+            } else {
+              Log.w(TAG, "Pinned group $groupId has no local group entry. Not pinning it.")
+              null
+            }
           } catch (e: InvalidInputException) {
             Log.w(TAG, "Failed to parse pinned groupV2 master key!", e)
             null

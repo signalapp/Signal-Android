@@ -144,11 +144,11 @@ object StorageSyncModels {
     val releaseChannelId = SignalStore.releaseChannel.releaseChannelRecipientId
     return records
       .filter { it.recipientType == RecipientType.GV1 || it.recipientType == RecipientType.GV2 || it.registered == RecipientTable.RegisteredState.REGISTERED || it.id == releaseChannelId }
-      .map { localToRemotePinnedConversation(it, releaseChannelId) }
+      .mapNotNull { localToRemotePinnedConversation(it, releaseChannelId) }
   }
 
   @JvmStatic
-  private fun localToRemotePinnedConversation(settings: RecipientRecord, releaseChannelId: RecipientId?): AccountRecord.PinnedConversation {
+  private fun localToRemotePinnedConversation(settings: RecipientRecord, releaseChannelId: RecipientId?): AccountRecord.PinnedConversation? {
     if (settings.id == releaseChannelId) {
       return AccountRecord.PinnedConversation(releaseNotes = AccountRecord.PinnedConversation.ReleaseNotes())
     }
@@ -168,8 +168,13 @@ object StorageSyncModels {
         )
       }
       RecipientType.GV2 -> {
+        val masterKey = settings.syncExtras.groupMasterKey
+        if (masterKey == null) {
+          Log.w(TAG, "Pinned GV2 recipient ${settings.id} is missing master key. Skipping.")
+          return null
+        }
         AccountRecord.PinnedConversation(
-          groupMasterKey = settings.syncExtras.groupMasterKey!!.serialize().toByteString()
+          groupMasterKey = masterKey.serialize().toByteString()
         )
       }
       else -> throw AssertionError("Unexpected group type!")
