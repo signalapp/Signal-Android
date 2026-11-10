@@ -3705,7 +3705,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Gemini જેવી AI આસિસ્ટન્ટ ઍપ તમારા Signal કન્ટેન્ટને સ્કેન કરી શકે છે. આને રોકવા માટે, સ્ક્રીન સુરક્ષા સક્ષમ કરવામાં આવી છે. આ સ્ક્રીનશૉટને પણ અક્ષમ કરશે.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">સ્ક્રીન સુરક્ષા સક્ષમ છે</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3713,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">સ્ક્રીન સુરક્ષા બંધ કરવી છે?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">જો આ બંધ કરવામાં આવે, તો તેનાથી Google Gemini જેવા AI આસિસ્ટન્ટને Signalનું કન્ટેન્ટ સ્કેન કરવાની અને તેનો ઉપયોગ એવા ફીચર માટે કરવાની છૂટ મળી શકે છે જે કદાચ ખાનગી ન હોય.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">બંધ કરો</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -5272,7 +5272,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">%2$d પૈકી %1$d રંગ</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">શેર કરો</string>
@@ -7999,7 +7999,7 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">પ્રોક્સી</string>
     <!-- Overflow menu item in MainToolbar that opens donation settings -->
-    <string name="MainToolbar__donate_to_signal">Signal માટે ફાળો આપો</string>
+    <string name="MainToolbar__donate">દાન કરો</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

@@ -3705,7 +3705,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Gemini போன்ற AI அசிஸ்டெண்ட் செயலிகள் உங்கள் Signal உள்ளடக்கத்தை ஸ்கேன் செய்யலாம். இதைத் தடுக்க, திரை பாதுகாப்பு இயக்கப்பட்டது. இது ஸ்கிரீன்ஷாட்களையும் முடக்கும்.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">திரைப் பாதுகாப்பு செயல்படுத்தப்பட்டுள்ளது</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3713,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">திரைப் பாதுகாப்பை ஆஃப் செய்யவா?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">ஆஃப் செய்யப்பட்டிருந்தால், இது Google Gemini போன்ற AI அசிஸ்டெண்ட்டுகளைச் சிக்னல் உள்ளடக்கத்தை ஸ்கேன் செய்து தனிப்பட்டதாக இல்லாத அம்சங்களுக்குப் பயன்படுத்த அனுமதிக்கலாம்.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">அணைக்க</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -5272,7 +5272,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">%2$d இல் %1$d நிறம்</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">பகிர்</string>
@@ -7999,7 +7999,7 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">பதிலி</string>
     <!-- Overflow menu item in MainToolbar that opens donation settings -->
-    <string name="MainToolbar__donate_to_signal">Signalக்கு நன்கொடை அளிக்கவும்</string>
+    <string name="MainToolbar__donate">நன்கொடையளிக்கவும்</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

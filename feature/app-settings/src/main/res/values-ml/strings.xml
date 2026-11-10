@@ -316,9 +316,9 @@
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
     <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">നിങ്ങളുടെ \"%1$s\" എന്ന ഉപയോക്തൃനാമം ഉൾപ്പെടെയുള്ള അക്കൗണ്ട് വിവരങ്ങളും പ്രൊഫൈൽ ഫോട്ടോയും ഇല്ലാതാക്കുക</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
-    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">നിങ്ങളുടെ അക്കൗണ്ട് ID-യും വീണ്ടെടുക്കൽ കീയും ഇല്ലാതാക്കുക</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
-    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">നിങ്ങളുടെ അക്കൗണ്ട് വീണ്ടും രജിസ്റ്റർ ചെയ്യുന്നതിലോ വീണ്ടെടുക്കുന്നതിലോ നിന്ന് നിങ്ങളെ തടയും</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
     <string name="DeleteAccountScreen__this_action_can_not_be_undone">ഈ പ്രവൃത്തി പഴയപടിയാക്കാനാകില്ല</string>
     <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
@@ -711,7 +711,7 @@
     <string name="ChatsSettingsScreen__go_back">മടങ്ങിപ്പോവുക</string>
 
     <!-- StorageUsageOverview -->
-    <string name="preferences_storage__photos">ചിത്രങ്ങൾ</string>
+    <string name="preferences_storage__photos">ഫോട്ടോകൾ</string>
     <string name="preferences_storage__videos">വീഡിയോ</string>
     <string name="preferences_storage__files">ഫയലുകൾ</string>
     <string name="preferences_storage__audio">ഓഡിയോ</string>
@@ -769,7 +769,7 @@
     <string name="preferences_storage__six_months">6 മാസം</string>
     <string name="preferences_storage__thirty_days">30 ദിവസം</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">തിരഞ്ഞെടുത്ത സമയത്തിലും പഴയ സന്ദേശങ്ങൾ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">തിരഞ്ഞെടുത്ത സമയത്തേക്കാൾ പഴയ സന്ദേശങ്ങൾ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും.</string>
     <string name="preferences_storage__delete_older_messages">പഴയ സന്ദേശങ്ങൾ ഇല്ലാതാക്കണോ?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">നിങ്ങളുടെ ഉപകരണത്തിലെ %1$s-ൽ കൂടുതൽ പഴക്കമുള്ള എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും ഇത് ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
     <!-- Dialog action that confirms deleting older messages -->
@@ -785,7 +785,7 @@
     <string name="preferences_storage__none">ഒന്നുമില്ല</string>
     <string name="preferences_storage__custom">ഇഷ്‌ടാനുസൃതം</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">തിരഞ്ഞെടുത്ത ദൈർഘ്യത്തിൽ കൂടുതലുള്ള സന്ദേശങ്ങൾ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">തിരഞ്ഞെടുത്ത ദൈർഘ്യത്തേക്കാൾ കൂടുതലുള്ള സന്ദേശങ്ങൾ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="one">ഇത് എല്ലാ ചാറ്റുകളും ഏറ്റവും പുതിയ സന്ദേശങ്ങളിലേക്ക് ശാശ്വതമായി ട്രിം ചെയ്യും.</item>

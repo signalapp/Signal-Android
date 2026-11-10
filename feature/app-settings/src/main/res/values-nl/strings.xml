@@ -713,7 +713,7 @@
     <!-- StorageUsageOverview -->
     <string name="preferences_storage__photos">Afbeeldingen</string>
     <string name="preferences_storage__videos">Video\'s</string>
-    <string name="preferences_storage__files">Do­cu­men­ten</string>
+    <string name="preferences_storage__files">Documenten</string>
     <string name="preferences_storage__audio">Audio</string>
     <!-- Storage usage legend label for the size of the main message database -->
     <string name="preferences_storage__messages">Berichten</string>
@@ -770,7 +770,7 @@
     <string name="preferences_storage__thirty_days">30 dagen</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
     <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Berichten die ouder zijn dan de geselecteerde bewaartermijn worden permanent verwijderd.</string>
-    <string name="preferences_storage__delete_older_messages">Oude berichten verwijderen?</string>
+    <string name="preferences_storage__delete_older_messages">Oudere berichten verwijderen?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle chatgeschiedenis en media ouder dan %1$s permanent van dit apparaat verwijderen.</string>
     <!-- Dialog action that confirms deleting older messages -->
     <string name="preferences_storage__delete">Verwijderen</string>
@@ -783,7 +783,7 @@
     </plurals>
     <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">Geen limiet</string>
-    <string name="preferences_storage__custom">Zelf ingesteld</string>
+    <string name="preferences_storage__custom">Aangepast</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Berichten die het geselecteerde maximale aantal berichten per chat overschrijden, worden permanent verwijderd.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
@@ -1040,13 +1040,13 @@
     <string name="ManageStorageSettingsFragment_delete_message_history">Chatgeschiedenis wissen</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
     <string name="preferences_storage__delete_message_history">Chatgeschiedenis wissen?</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal al je chatgeschiedenis en media van dit apparaat permanent verwijderen.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal je hele chatgeschiedenis en alle media van dit apparaat permanent verwijderen.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Hiermee worden alle chatgeschiedenis en media permanent van dit apparaat en alle gekoppelde apparaten verwijderd.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle chatgeschiedenis wilt verwijderen?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle chatgeschiedenis zal permanent worden verwijderd. Dit kan niet ongedaan worden gemaakt.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Dit zal je hele chatgeschiedenis en alle media permanent van dit apparaat en alle gekoppelde apparaten verwijderen.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je je hele chatgeschiedenis wilt verwijderen?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Je hele chatgeschiedenis zal permanent worden verwijderd. Dit kan niet ongedaan worden gemaakt.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Alle chatgeschiedenis wordt permanent verwijderd van alle apparaten. Dit kan niet ongedaan worden gemaakt.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Je hele chatgeschiedenis wordt permanent verwijderd van alle apparaten. Dit kan niet ongedaan worden gemaakt.</string>
     <string name="preferences_storage__delete_all_now">Nu alles verwijderen</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Opslagoptimalisatie kan alleen worden gebruikt met een betaald abonnement op Signal Secure Backups. Je back-upabonnement wordt nog verwerkt en is nog niet actief. Probeer het later opnieuw.</string>
@@ -1059,17 +1059,17 @@
 
     <!-- MutedNotificationsScreen -->
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Speel beltoon af en ontvang meldingen wanneer een oproep wordt gestart terwijl deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__calls_body">Speel beltoon af en ontvang meldingen wanneer een oproep wordt gestart terwijl deze chat is gedempt.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Speel beltoon af en ontvang meldingen wanneer een oproep wordt gestart in een gedempte chat</string>
+    <string name="MutedNotificationsFragment__calls_body_global">Speel beltoon af en ontvang meldingen wanneer een oproep wordt gestart in een gedempte chat.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Ontvang meldingen wanneer je wordt vermeld terwijl deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__mentions_body">Ontvang meldingen wanneer je wordt vermeld terwijl deze chat is gedempt.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Ontvang meldingen wanneer je wordt vermeld in een gedempte chat</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">Ontvang meldingen wanneer je wordt vermeld in een gedempte chat.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Ontvang meldingen wanneer iemand op je bericht antwoordt terwijl deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__replies_body">Ontvang meldingen wanneer iemand op je bericht antwoordt terwijl deze chat is gedempt.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Ontvang meldingen wanneer iemand op je bericht antwoordt in een gedempte chat</string>
+    <string name="MutedNotificationsFragment__replies_body_global">Ontvang meldingen wanneer iemand op je bericht antwoordt in een gedempte chat.</string>
     <!-- Header to describe screen that shows while muted settings -->
     <string name="MutedNotificationsFragment__while">Indien gedempt</string>
     <!-- Title for toggle row to control call settings while muted -->
@@ -1089,7 +1089,7 @@
     <string name="NotificationsSettingsFragment__calls">Oproepen</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Nieuwe contacten op Signal</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Maak een meldingsprofiel aan om tijdens een ingestelde periode alleen van bepaalde personen of groepen meldingen te krijgen</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Maak een meldingsprofiel aan om tijdens een ingestelde periode alleen van bepaalde personen of groepen meldingen te krijgen.</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">Ontvang een melding wanneer een telefooncontact lid wordt van Signal</string>
     <!-- Option to reset their notification settings -->

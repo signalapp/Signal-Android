@@ -3705,7 +3705,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Gemini ਵਰਗੀਆਂ AI ਅਸਿਸਟੈਂਟ ਐਪਾਂ ਤੁਹਾਡੀ Signal ਦੀ ਸਮੱਗਰੀ ਨੂੰ ਸਕੈਨ ਕਰ ਸਕਦੀਆਂ ਹਨ। ਇਸਨੂੰ ਰੋਕਣ ਲਈ, ਸਕ੍ਰੀਨ ਸੁਰੱਖਿਆ ਨੂੰ ਚਾਲੂ ਕੀਤਾ ਗਿਆ ਹੈ। ਇਸ ਲਈ ਹੁਣ ਸਕ੍ਰੀਨਸ਼ਾਟ ਲੈਣ ਦੀ ਸਹੂਲਤ ਨੂੰ ਵੀ ਅਸਮਰੱਥ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">ਸਕ੍ਰੀਨ ਸੁਰੱਖਿਆ ਸਮਰੱਥ ਹੈ</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3713,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">ਕੀ ਸਕ੍ਰੀਨ ਸੁਰੱਖਿਆ ਬੰਦ ਕਰਨੀ ਹੈ?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">ਜੇਕਰ ਬੰਦ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਤਾਂ ਇਹ Google Gemini ਵਰਗੇ AI ਅਸਿਸਟੈਂਟ ਨੂੰ Signal ਦੀ ਸਮੱਗਰੀ ਸਕੈਨ ਕਰਨ ਅਤੇ ਅਜਿਹੇ ਫੀਚਰਾਂ ਦੀ ਵਰਤੋਂ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦੇ ਸਕਦਾ ਹੈ ਜੋ ਸ਼ਾਇਦ ਪ੍ਰਾਈਵੇਟ ਨਾ ਹੋਣ।</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">ਬੰਦ ਕਰੋ</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -5272,7 +5272,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">ਰੰਗ %2$d ਵਿੱਚੋਂ %1$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">ਸਾਂਝਾ ਕਰੋ</string>
@@ -7999,7 +7999,7 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">ਪ੍ਰੌਕਸੀ</string>
     <!-- Overflow menu item in MainToolbar that opens donation settings -->
-    <string name="MainToolbar__donate_to_signal">Signal ਨੂੰ ਦਾਨ ਦਿਓ</string>
+    <string name="MainToolbar__donate">ਦਾਨ ਦਿਓ</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

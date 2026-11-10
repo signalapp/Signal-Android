@@ -785,7 +785,7 @@
     <string name="preferences_storage__none">Sin límite</string>
     <string name="preferences_storage__custom">Personalizado</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Los mensajes que excedan la cantidad seleccionada se eliminarán de forma permanente.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Los mensajes que excedan la longitud seleccionada se eliminarán de forma permanente.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="one">Se eliminarán de forma permanente los mensajes de todos los chats, excepto el mensaje más reciente de cada conversación.</item>
@@ -1043,13 +1043,13 @@
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Se eliminarán de forma permanente todos los mensajes y archivos multimedia de tu dispositivo.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Se eliminará de forma permanente todo el historial de mensajes y todos los archivos multimedia de este dispositivo y de cualquier otro dispositivo vinculado.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Seguro que quieres eliminar todo tu historial de mensajes?</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Confirmas que quieres eliminar todo tu historial de mensajes?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Todo el historial de mensajes se eliminará de forma permanente. Esta acción no se puede deshacer.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">El historial completo de mensajes se eliminará de forma permanente de todos tus dispositivos. Esta acción no se puede deshacer.</string>
     <string name="preferences_storage__delete_all_now">Eliminar todo</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede usar con el nivel de pago de Copias Seguras de Signal. Tu suscripción a las copias de seguridad se está procesando y todavía no está activa. Inténtalo de nuevo más tarde.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede usar con la versión de pago de Copias Seguras de Signal. Tu suscripción a las copias de seguridad se está procesando y todavía no está activa. Inténtalo de nuevo más tarde.</string>
     <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
     <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Se eliminarán los archivos multimedia de tu copia de seguridad local</string>
     <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
@@ -1089,7 +1089,7 @@
     <string name="NotificationsSettingsFragment__calls">Llamadas</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Nuevos contactos en Signal</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Crea un perfil para recibir notificaciones solo de las personas y los grupos que tú decidas.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Crea un perfil para recibir notificaciones únicamente de las personas y los grupos que quieras.</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">Mostrar una notificación cuando un contacto de tu teléfono se una a Signal.</string>
     <!-- Option to reset their notification settings -->
@@ -1099,7 +1099,7 @@
     <!-- Confirmation button to reset dialog -->
     <string name="NotificationsSettingsFragment__reset_confirm">Restablecer</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Se restablecerán los ajustes de notificaciones a su configuración por defecto, incluidos los ajustes personalizados de tus chats.</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">Restablecer los ajustes de notificaciones predeterminados, incluidos los ajustes personalizados de tus chats.</string>
     <!-- Notification header for sounds -->
     <string name="NotificationsSettingsFragment__sounds">Sonidos</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Tono de llamada desconocido</string>
