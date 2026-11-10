@@ -623,7 +623,7 @@ private fun StickerPreviewSheet(
   isPackInstalled: Boolean,
   onEvent: (StickerPackPreviewEvent) -> Unit
 ) {
-  val sheetState = rememberModalBottomSheetState()
+  val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
   val scope = rememberCoroutineScope()
 
   BottomSheets.BottomSheet(
