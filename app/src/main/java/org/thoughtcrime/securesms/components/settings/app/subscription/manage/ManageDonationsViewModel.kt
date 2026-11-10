@@ -10,7 +10,12 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
@@ -51,21 +56,24 @@ class ManageDonationsViewModel : ViewModel() {
       }
 
     viewModelScope.launch(Dispatchers.Default) {
+      @OptIn(ExperimentalCoroutinesApi::class)
       InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.RECURRING_DONATION)
         .asFlow()
-        .collect { redemptionStatus ->
+        .flatMapLatest { redemptionStatus ->
           val latestPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION)
-
-          val activeSubscription: InAppPaymentTable.InAppPayment? = latestPayment?.let {
-            if (it.data.cancellation == null) it else null
+          if (latestPayment == null) {
+            flowOf(redemptionStatus to null)
+          } else {
+            InAppPaymentsRepository.observeUpdates(latestPayment.id).asFlow().map { redemptionStatus to it }
           }
-
-          store.update { manageDonationsState ->
-            manageDonationsState.copy(
+        }
+        .collect { (redemptionStatus, payment) ->
+          store.update { state ->
+            state.copy(
               isLoaded = true,
-              nonVerifiedMonthlyDonation = if (redemptionStatus is DonationRedemptionJobStatus.PendingExternalVerification) redemptionStatus.nonVerifiedMonthlyDonation else null,
+              nonVerifiedMonthlyDonation = (redemptionStatus as? DonationRedemptionJobStatus.PendingExternalVerification)?.nonVerifiedMonthlyDonation,
               subscriptionRedemptionState = deriveRedemptionState(redemptionStatus),
-              activeSubscription = activeSubscription
+              activeSubscription = payment?.takeIf { it.data.cancellation == null }
             )
           }
         }
