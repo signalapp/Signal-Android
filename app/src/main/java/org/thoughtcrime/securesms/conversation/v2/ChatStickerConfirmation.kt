@@ -12,6 +12,7 @@ import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -48,6 +49,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
@@ -192,6 +194,14 @@ private fun StickerConfirmationPanel(
       .pointerInput(Unit) {}
       .windowInsetsPadding(WindowInsets.navigationBarsCompat.only(WindowInsetsSides.Bottom))
   ) {
+    // Allows the background to dismiss the confirmation as well
+    Box(
+      modifier = Modifier
+        .matchParentSize()
+        .clearAndSetSemantics {}
+        .clickable(interactionSource = null, indication = null, onClick = onBack)
+    )
+
     Box(
       modifier = Modifier
         .fillMaxWidth()
@@ -245,6 +255,7 @@ private fun StickerConfirmationPanel(
       modifier = Modifier
         .size(StickerSize)
         .align(Alignment.Center)
+        .pointerInput(Unit) {}
     )
 
     StickerActionsPill(
@@ -283,6 +294,7 @@ private fun StickerActionsPill(
     modifier = modifier
       .clip(CircleShape)
       .background(MaterialTheme.colorScheme.primaryContainer)
+      .pointerInput(Unit) {}
   ) {
     if (favoritesEnabled) {
       IconButton(
