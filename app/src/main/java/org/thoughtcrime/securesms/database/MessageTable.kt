@@ -3272,7 +3272,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
     }
 
-    if (retrieved.attachments.isEmpty() && editedMessage?.id != null && attachments.getAttachmentsForMessage(editedMessage.id).isNotEmpty()) {
+    if (editedMessage?.id != null && attachments.getAttachmentsForMessage(editedMessage.id).isNotEmpty()) {
       val linkPreviewAttachmentIds = editedMessage.linkPreviews.mapNotNull { it.attachmentId?.id }.toSet()
       val textAttachmentIds = editedMessage.slideDeck.asAttachments().filter { it.contentType == MediaUtil.LONG_TEXT }.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.id }.toSet()
       val excludeIds = linkPreviewAttachmentIds + textAttachmentIds
