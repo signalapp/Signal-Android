@@ -69,15 +69,17 @@ public final class StreamingTranscoder {
       throw new VideoSourceException("Unable to read datasource", e);
     }
 
+    final long sourceDuration = getDuration(mediaMetadataRetriever);
+
     if (options != null && options.endTimeUs != 0) {
       this.duration = TimeUnit.MICROSECONDS.toMillis(options.endTimeUs - options.startTimeUs);
     } else {
-      this.duration = getDuration(mediaMetadataRetriever);
+      this.duration = sourceDuration;
     }
 
     this.inSize         = dataSource.getSize();
     this.inputBitRate   = TranscodingQuality.bitRate(inSize, duration);
-    this.targetQuality  = TranscodingQuality.createFromQualityTiers(configs, duration);
+    this.targetQuality  = TranscodingQuality.createFromQualityTiers(configs, duration).cappedTo(SourceVideoRepository.readLimits(dataSource, inSize, sourceDuration));
     this.upperSizeLimit = upperSizeLimit;
 
     this.transcodeRequired = inputBitRate >= targetQuality.getTargetTotalBitRate() * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null || muteAudio || !isH264(dataSource);

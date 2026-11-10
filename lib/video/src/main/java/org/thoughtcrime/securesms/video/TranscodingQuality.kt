@@ -34,6 +34,10 @@ class TranscodingQuality private constructor(@VideoCodec val codec: String, val 
       return TranscodingQuality(codec, outputShortEdge, videoBitrate, audioBitrate, durationMs)
     }
 
+    private const val MIN_OUTPUT_RESOLUTION = 240
+    private const val MIN_VIDEO_BIT_RATE = 64 * VideoConstants.KB
+    private const val MIN_AUDIO_BIT_RATE = 32 * VideoConstants.KB
+
     @JvmStatic
     fun bitRate(bytes: Long, durationMs: Long): Int {
       return (bytes * 8 / (durationMs / 1000f)).toInt()
@@ -42,6 +46,27 @@ class TranscodingQuality private constructor(@VideoCodec val codec: String, val 
 
   val targetTotalBitRate = targetVideoBitRate + targetAudioBitRate
   val byteCountEstimate = ((targetTotalBitRate / 8f) * (durationMs / 1000f)).toInt()
+
+  /**
+   * Returns a quality that never exceeds the resolution or bitrates of the source, so that transcoding a low quality video cannot make it larger.
+   */
+  fun cappedTo(source: SourceVideoLimits): TranscodingQuality {
+    return TranscodingQuality(
+      codec = codec,
+      outputResolution = cap(outputResolution, source.shortEdge, MIN_OUTPUT_RESOLUTION),
+      targetVideoBitRate = cap(targetVideoBitRate, source.videoBitRate, MIN_VIDEO_BIT_RATE),
+      targetAudioBitRate = if (source.audioBitRate == 0) 0 else cap(targetAudioBitRate, source.audioBitRate, MIN_AUDIO_BIT_RATE),
+      durationMs = durationMs
+    )
+  }
+
+  private fun cap(target: Int, sourceValue: Int?, floor: Int): Int {
+    return if (sourceValue == null) {
+      target
+    } else {
+      target.coerceAtMost(sourceValue.coerceAtLeast(floor))
+    }
+  }
 
   override fun toString(): String {
     return "Quality{codec=$codec, targetVideoBitRate=$targetVideoBitRate, targetAudioBitRate=$targetAudioBitRate, duration=$durationMs, filesize=$byteCountEstimate}"
