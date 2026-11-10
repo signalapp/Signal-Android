@@ -234,9 +234,6 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     data class Receipt(val id: Long) : DonationsRoute
 
     @Serializable
-    data object LearnMore : DonationsRoute
-
-    @Serializable
     data object Featured : DonationsRoute
   }
 
