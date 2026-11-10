@@ -22,14 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
@@ -77,16 +75,19 @@ fun FallbackAvatarImage(
       }
 
       is FallbackAvatar.Text -> {
-        val widthPx = DimensionUnit.DP.toPixels(maxWidth.value)
-        val textSize = DimensionUnit.PIXELS.toDp(Avatars.getTextSizeForLength(context, fallbackAvatar.content, widthPx * 0.8f, widthPx * 0.45f))
+        val density = LocalDensity.current
+        val widthPx = with(density) { maxWidth.toPx() }
+        val textSize = with(density) { Avatars.getTextSizeForLength(context, fallbackAvatar.content, widthPx * 0.8f, widthPx * 0.45f).toSp() }
 
         // TODO [alex] -- Handle emoji
 
         Text(
           text = fallbackAvatar.content,
           color = Color(colorPair.foregroundColor),
-          fontSize = TextUnit(textSize, TextUnitType.Sp),
-          fontFamily = FontFamily(AvatarRenderer.getTypeface(context))
+          fontSize = textSize,
+          fontFamily = FontFamily(AvatarRenderer.getTypeface(context)),
+          maxLines = 1,
+          softWrap = false
         )
       }
       FallbackAvatar.Transparent -> {}
