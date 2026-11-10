@@ -1035,14 +1035,14 @@
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_title">Appliquer ces limites aux appareils associés</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">Si vous activez cette option, les limites de stockage s’appliqueront aussi à vos appareils associés : les messages qui y sont stockés seront également supprimés.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Si vous activez cette option, les limites de stockage s\'appliqueront aussi à vos appareils associés : les messages qui y sont stockés seront également supprimés.</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
     <string name="ManageStorageSettingsFragment_delete_message_history">Supprimer l\'historique des messages</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Supprimer l’historique des messages ?</string>
+    <string name="preferences_storage__delete_message_history">Supprimer l\'historique des messages ?</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tous vos messages et médias seront définitivement supprimés de votre appareil.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Cela supprimera définitivement tout l’historique des messages et tous les fichiers de cet appareil et des appareils associés.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Cela supprimera définitivement tout l\'historique des messages et tous les fichiers de cet appareil et des appareils associés.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Voulez-vous vraiment supprimer tout l\'historique des messages ?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tous vos messages seront définitivement supprimés. Cette action est irréversible.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->

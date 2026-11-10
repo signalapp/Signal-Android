@@ -316,9 +316,9 @@
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
     <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Kustuta oma konto teave ja foto, sh oma kasutajanimi „%1$s“</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
-    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Kustutab sinu konto ID ja taastevõtme</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
-    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Selle tulemusena ei saa sa uuesti registreeruda ega oma kontot taastada</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
     <string name="DeleteAccountScreen__this_action_can_not_be_undone">Seda toimingut ei saa tagasi võtta</string>
     <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
@@ -1039,21 +1039,21 @@
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
     <string name="ManageStorageSettingsFragment_delete_message_history">Kustuta sõnumiajalugu</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Kas tühjendada sõnumiajalugu?</string>
+    <string name="preferences_storage__delete_message_history">Kas kustutada sõnumiajalugu?</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Sellega kustutad seadmest püsivalt kõik sõnumid ja meediafailid.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Sellega kustutad seadmest ja kõigist lingitud seadmetest püsivalt kogu sõnumiajaloo ja meedia.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Kas soovid tõesti kogu sõnumiajalugu kustutada?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Kogu sõnumiajalugu kustutatakse püsivalt. Seda tegevust ei saa tagasi võtta.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Sellega kustutad seadmest ja kõigist lingitud seadmetest jäädavalt kogu sõnumiajaloo ja meedia.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Kas soovid tõesti kogu sõnumiajaloo kustutada?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Kogu sõnumiajalugu kustutatakse jäädavalt. Seda toimingut ei saa tagasi võtta.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Kogu sõnumiajalugu kustutatakse püsivalt. Seda toimingut ei saa tagasi võtta.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Kogu sõnumiajalugu kustutatakse jäädavalt. Seda toimingut ei saa tagasi võtta.</string>
     <string name="preferences_storage__delete_all_now">Kustuta kõik kohe</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Salvestusruumi saab optimeerida ainult Signali tasulise turvaliste varukoopiate tasemega. Sinu varukoopiate tellimus on töötlemisel ega ole veel aktiivne. Proovi hiljem uuesti.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Salvestusruumi saab optimeerida ainult tasulisel Signali turvaliste varukoopiate tasemel. Sinu varukoopiate tellimus on töötlemisel ega ole veel aktiivne. Proovi hiljem uuesti.</string>
     <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
     <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Meedia eemaldatakse sinu seadmesisesest varukoopiast</string>
     <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Kui lülitad sisse „Optimeeri Signali salvestusruumi“, teisaldatakse meedia sinu seadmest seadmevälisesse varukoopiasse. Saad seda alati uuesti alla laadida. Samuti eemaldab see vana meedia sinu seadmesisest varukoopiast.</string>
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Kui lülitad sisse „Optimeeri Signali salvestusruumi“, teisaldatakse meedia sinu seadmest seadmevälisesse varukoopiasse. Saad seda alati uuesti alla laadida. Samuti eemaldab see vana meedia sinu seadmesisesest varukoopiast.</string>
     <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
     <string name="ManageStorageSettingsFragment__turn_on">Lülita sisse</string>
 
@@ -1061,7 +1061,7 @@
     <!-- Description for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls_body">Helise või teavita kõne alustamisest, kui see vestlus on vaigistatud.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Helise või teavita, kui vaigistatud vestlustes kõne alustatakse.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">Helise või teavita, kui vaigistatud vestlustes kõnet alustatakse.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions_body">Teavita, kui sind selles vaigistatud vestluses mainitakse.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
@@ -1089,17 +1089,17 @@
     <string name="NotificationsSettingsFragment__calls">Kõned</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt liitub Signaliga</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Loo profiil, et saada teavitusi ainult oma valitud inimestelt ja gruppidelt.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Loo profiil, et saada teavitusi ainult enda poolt valitud inimestelt ja gruppidelt.</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">Näita teavitust, kui telefoni kontakt Signaliga liitub</string>
     <!-- Option to reset their notification settings -->
     <string name="NotificationsSettingsFragment__reset">Taasta teavituste sätted</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Kas taastada kõigi vestluste teavituste sätted vaikimisi sätetele?</string>
+    <string name="NotificationsSettingsFragment__reset_body">Kas lähtestada kõigi vestluste teavituste sätted vaikimisi sätetele?</string>
     <!-- Confirmation button to reset dialog -->
     <string name="NotificationsSettingsFragment__reset_confirm">Lähtesta</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Taasta teavitute sätted vaikimisi sätetele, sh sinu vestlustega seotud valikulised sätted</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">Lähtesta teavitute sätted vaikimisi sätetele, sh sinu vestlustega seotud valikulised sätted</string>
     <!-- Notification header for sounds -->
     <string name="NotificationsSettingsFragment__sounds">Helid</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Tundmatu helin</string>
@@ -1141,7 +1141,7 @@
     <string name="preferences__normal">Keskmine</string>
     <string name="preferences__one_time">Üks kord</string>
     <string name="preferences__orange">Oranž</string>
-    <string name="preferences__pref_led_blink_title">LEDi välkumismuster</string>
+    <string name="preferences__pref_led_blink_title">LEDi vilkumismuster</string>
     <string name="preferences__red">Punane</string>
     <string name="preferences__repeat_alerts">Korda teateid</string>
     <string name="preferences__slow">Aeglane</string>
