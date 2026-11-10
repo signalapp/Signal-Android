@@ -13,7 +13,7 @@ data class StickerPageState(
   val selectedPackId: String? = null,
   val scrollTargetPackId: String? = null,
   val allowAnimation: Boolean = true,
-  val favoritesEnabled: Boolean = true,
+  val moveToTopEnabled: Boolean = true,
   val confirmRemovePack: ConfirmRemovePack? = null,
   val confirmRemoveFavorite: KeyboardSticker? = null,
   val showSearchField: Boolean = true,

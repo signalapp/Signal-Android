@@ -369,7 +369,7 @@ private fun StickerGrid(
               StickerCell(
                 sticker = sticker,
                 isInFavorites = pack.id == StickerKeyboardRepository.FAVORITES_PACK_ID,
-                favoritesEnabled = state.favoritesEnabled,
+                moveToTopEnabled = state.moveToTopEnabled,
                 longPressMenu = longPressMenu,
                 allowAnimation = state.allowAnimation,
                 cellSize = cellSize,
@@ -537,7 +537,7 @@ private fun StickerPackHeaderPreview() {
 private fun StickerCell(
   sticker: KeyboardSticker,
   isInFavorites: Boolean,
-  favoritesEnabled: Boolean,
+  moveToTopEnabled: Boolean,
   longPressMenu: Boolean,
   allowAnimation: Boolean,
   cellSize: Dp,
@@ -577,7 +577,7 @@ private fun StickerCell(
       StickerCellMenu(
         sticker = sticker,
         isInFavorites = isInFavorites,
-        favoritesEnabled = favoritesEnabled,
+        moveToTopEnabled = moveToTopEnabled,
         controller = controller,
         onEvent = onEvent
       )
@@ -589,7 +589,7 @@ private fun StickerCell(
 private fun StickerCellMenu(
   sticker: KeyboardSticker,
   isInFavorites: Boolean,
-  favoritesEnabled: Boolean,
+  moveToTopEnabled: Boolean,
   controller: DropdownMenus.MenuController,
   onEvent: (StickerPageScreenEvents) -> Unit
 ) {
@@ -617,7 +617,7 @@ private fun StickerCellMenu(
       }
     )
 
-    if (isInFavorites) {
+    if (moveToTopEnabled && isInFavorites) {
       DropdownMenus.ItemWithIcon(
         menuController = controller,
         imageVector = SignalIcons.Transfer.imageVector,
@@ -628,7 +628,7 @@ private fun StickerCellMenu(
       )
     }
 
-    if (favoritesEnabled && sticker.isFavorite) {
+    if (sticker.isFavorite) {
       DropdownMenus.ItemWithIcon(
         menuController = controller,
         imageVector = SignalIcons.FavoriteOff.imageVector,
@@ -637,7 +637,7 @@ private fun StickerCellMenu(
           onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesClicked(sticker))
         }
       )
-    } else if (favoritesEnabled) {
+    } else {
       DropdownMenus.ItemWithIcon(
         menuController = controller,
         imageVector = SignalIcons.Favorite.imageVector,

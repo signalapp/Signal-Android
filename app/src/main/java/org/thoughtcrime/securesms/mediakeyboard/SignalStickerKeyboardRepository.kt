@@ -22,7 +22,6 @@ import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.mediakeyboard.data.KeyboardSticker
 import org.signal.mediakeyboard.data.KeyboardStickerPack
 import org.signal.mediakeyboard.data.StickerKeyboardRepository
-import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -96,19 +95,14 @@ class SignalStickerKeyboardRepository(
 
     val packs = loadInstalledPackRecords().map { it.toKeyboardStickerPack() }
 
-    val favoritesPack = if (RemoteConfig.internalUser) {
-      val favoriteStickers = StickerRecordReader(stickerTable.getFavoriteStickers()).use { reader -> reader.asSequence().toList() }
-
-      KeyboardStickerPack(
-        id = StickerKeyboardRepository.FAVORITES_PACK_ID,
-        packKey = null,
-        title = null,
-        cover = null,
-        stickers = favoriteStickers.map { it.toKeyboardSticker() }
-      )
-    } else {
-      null
-    }
+    val favoriteStickers = StickerRecordReader(stickerTable.getFavoriteStickers()).use { reader -> reader.asSequence().toList() }
+    val favoritesPack = KeyboardStickerPack(
+      id = StickerKeyboardRepository.FAVORITES_PACK_ID,
+      packKey = null,
+      title = null,
+      cover = null,
+      stickers = favoriteStickers.map { it.toKeyboardSticker() }
+    )
 
     val recentStickers = StickerRecordReader(stickerTable.getRecentlyUsedStickers(RECENT_LIMIT)).use { reader -> reader.asSequence().toList() }
     if (recentStickers.isEmpty()) {

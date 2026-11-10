@@ -137,7 +137,7 @@ fun ChatStickerConfirmation(
     StickerConfirmationPanel(
       confirmation = shown,
       sendColor = controller.sendColor,
-      favoritesEnabled = controller.favoritesEnabled,
+      moveToTopEnabled = controller.moveToTopEnabled,
       onBack = controller::dismiss,
       onSend = controller::send,
       onToggleFavorite = controller::toggleFavorite,
@@ -178,7 +178,7 @@ private fun ConfirmRemoveFavoriteDialog(controller: ChatStickerConfirmationContr
 private fun StickerConfirmationPanel(
   confirmation: StickerConfirmation,
   sendColor: Color,
-  favoritesEnabled: Boolean,
+  moveToTopEnabled: Boolean,
   onBack: () -> Unit,
   onSend: () -> Unit,
   onToggleFavorite: () -> Unit,
@@ -260,7 +260,7 @@ private fun StickerConfirmationPanel(
 
     StickerActionsPill(
       sticker = confirmation.sticker,
-      favoritesEnabled = favoritesEnabled,
+      moveToTopEnabled = moveToTopEnabled,
       canMoveToTop = confirmation.isInFavorites && confirmation.sticker.isFavorite,
       onToggleFavorite = onToggleFavorite,
       onMoveFavoriteToTop = onMoveFavoriteToTop,
@@ -275,7 +275,7 @@ private fun StickerConfirmationPanel(
 @Composable
 private fun StickerActionsPill(
   sticker: KeyboardSticker,
-  favoritesEnabled: Boolean,
+  moveToTopEnabled: Boolean,
   canMoveToTop: Boolean,
   onToggleFavorite: () -> Unit,
   onMoveFavoriteToTop: () -> Unit,
@@ -296,27 +296,25 @@ private fun StickerActionsPill(
       .background(MaterialTheme.colorScheme.primaryContainer)
       .pointerInput(Unit) {}
   ) {
-    if (favoritesEnabled) {
-      IconButton(
-        onClick = onToggleFavorite,
-        colors = buttonColors,
-        modifier = Modifier.size(ButtonSize)
-      ) {
-        if (sticker.isFavorite) {
-          Icon(
-            imageVector = SignalIcons.FavoriteOff.imageVector,
-            contentDescription = stringResource(CoreUiR.string.StickerFavorites__remove_from_favorites)
-          )
-        } else {
-          Icon(
-            imageVector = SignalIcons.Favorite.imageVector,
-            contentDescription = stringResource(CoreUiR.string.StickerFavorites__add_to_favorites)
-          )
-        }
+    IconButton(
+      onClick = onToggleFavorite,
+      colors = buttonColors,
+      modifier = Modifier.size(ButtonSize)
+    ) {
+      if (sticker.isFavorite) {
+        Icon(
+          imageVector = SignalIcons.FavoriteOff.imageVector,
+          contentDescription = stringResource(CoreUiR.string.StickerFavorites__remove_from_favorites)
+        )
+      } else {
+        Icon(
+          imageVector = SignalIcons.Favorite.imageVector,
+          contentDescription = stringResource(CoreUiR.string.StickerFavorites__add_to_favorites)
+        )
       }
     }
 
-    if (favoritesEnabled && canMoveToTop) {
+    if (moveToTopEnabled && canMoveToTop) {
       IconButton(
         onClick = onMoveFavoriteToTop,
         colors = buttonColors,
@@ -376,7 +374,7 @@ private fun StickerConfirmationPanelPreview() {
   StickerConfirmationPanel(
     confirmation = StickerConfirmation(sticker = previewSticker, replyHeader = null),
     sendColor = Color(0xFF315FF4),
-    favoritesEnabled = true,
+    moveToTopEnabled = true,
     onBack = {},
     onSend = {},
     onToggleFavorite = {},
@@ -393,7 +391,7 @@ private fun StickerConfirmationPanelReplyPreview() {
   StickerConfirmationPanel(
     confirmation = StickerConfirmation(sticker = previewSticker.copy(isFavorite = true), replyHeader = "Reply to Maya Johnson", isInFavorites = true),
     sendColor = Color(0xFF315FF4),
-    favoritesEnabled = true,
+    moveToTopEnabled = true,
     onBack = {},
     onSend = {},
     onToggleFavorite = {},

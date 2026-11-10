@@ -38,7 +38,6 @@ import org.signal.core.ui.viewModel
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
-import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
@@ -115,7 +114,7 @@ class StickerPreviewBottomSheet : ComposeBottomSheetDialogFragment() {
           openPack(sticker)
           dismissAllowingStateLoss()
         },
-        isFavorite = state.isFavorite.takeIf { RemoteConfig.internalUser },
+        isFavorite = state.isFavorite,
         onFavoriteClick = { viewModel.onEvent(StickerPreviewEvent.FavoriteClicked) }
       )
     }

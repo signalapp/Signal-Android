@@ -82,7 +82,6 @@ import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.decryptableuri.DecryptableUri
-import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
@@ -635,7 +634,7 @@ private fun StickerPreviewSheet(
       sticker = sticker,
       canForward = isPackInstalled,
       onForwardClick = { sheetState.dismissWithAnimation(scope, onComplete = { onEvent(StickerPackPreviewEvent.StickerSent(sticker)) }) },
-      isFavorite = if (isPackInstalled && RemoteConfig.internalUser) isFavorite else null,
+      isFavorite = if (isPackInstalled) isFavorite else null,
       onFavoriteClick = { sheetState.dismissWithAnimation(scope, onComplete = { onEvent(StickerPackPreviewEvent.FavoriteClicked(sticker, isFavorite)) }) }
     )
   }

@@ -14,7 +14,7 @@ import org.signal.mediakeyboard.data.KeyboardSticker
 /**
  * Holds the sticker waiting on the user to confirm it.
  *
- * @param favoritesEnabled Whether the sticker can be added to or removed from favorites from here.
+ * @param moveToTopEnabled Whether a favorite sticker can be moved to the top of the favorites from here.
  * @param onToggleFavorite Called to flip the sticker's favorite state, once the user has confirmed a
  *   removal. The host reports the outcome back through [onFavoriteChanged].
  * @param onMoveFavoriteToTop Called to move a favorite sticker to the top of the favorites.
@@ -23,7 +23,7 @@ import org.signal.mediakeyboard.data.KeyboardSticker
  *   input panel out of the way while one shows.
  */
 class ChatStickerConfirmationController(
-  val favoritesEnabled: Boolean,
+  val moveToTopEnabled: Boolean,
   private val onSend: (KeyboardSticker) -> Unit,
   private val onToggleFavorite: (KeyboardSticker) -> Unit,
   private val onMoveFavoriteToTop: (KeyboardSticker) -> Unit,

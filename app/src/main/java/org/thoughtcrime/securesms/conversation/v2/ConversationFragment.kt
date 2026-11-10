@@ -696,7 +696,7 @@ class ConversationFragment :
 
   private val stickerConfirmation: ChatStickerConfirmationController by lazy(LazyThreadSafetyMode.NONE) {
     ChatStickerConfirmationController(
-      favoritesEnabled = RemoteConfig.internalUser,
+      moveToTopEnabled = RemoteConfig.internalUser,
       onSend = { sticker ->
         mediaKeyboardRepository.stickers.onStickerUsed(sticker)
         sendKeyboardSticker(sticker)

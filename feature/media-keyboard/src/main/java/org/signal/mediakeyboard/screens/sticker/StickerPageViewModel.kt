@@ -45,7 +45,7 @@ class StickerPageViewModel(
    */
   val searchFieldState = TextFieldState()
 
-  private val _state = MutableStateFlow(StickerPageState(allowAnimation = repository.allowStickerAnimation, favoritesEnabled = RemoteConfig.internalUser))
+  private val _state = MutableStateFlow(StickerPageState(allowAnimation = repository.allowStickerAnimation, moveToTopEnabled = RemoteConfig.internalUser))
   val state: StateFlow<StickerPageState> = _state.asStateFlow()
 
   init {
