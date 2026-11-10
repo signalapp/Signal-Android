@@ -3705,7 +3705,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Gemini-এর মতো AI অ্যাসিস্ট্যান্ট অ্যাপগুলো আপনার Signal-এর কন্টেন্ট স্ক্যান করতে পারে। এটি প্রতিরোধ করতে \'স্ক্রিন সিকিউরিটি\' চালু করা হয়েছে। এর ফলে স্ক্রিনশটও আর নেওয়া যাবে না।</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">স্ক্রিন সিকিউরিটি চালু আছে</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3713,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">স্ক্রিন সিকিউরিটি বন্ধ করতে চান?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">এটি বন্ধ করা হলে, Google Gemini-এর মতো AI অ্যাসিস্ট্যান্টগুলো Signal-এর কন্টেন্ট স্ক্যান করতে পারে এবং এমন সব ফিচারের জন্য তা ব্যবহার করতে পারে যা হয়তো গোপনীয়তা বজায় রাখে না।</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">বন্ধ করুন</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -5272,7 +5272,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">রঙ %2$d এর মধ্যে %1$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">শেয়ার করুন</string>
@@ -7999,7 +7999,7 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">প্রক্সি</string>
     <!-- Overflow menu item in MainToolbar that opens donation settings -->
-    <string name="MainToolbar__donate_to_signal">Signal-এ ডোনেট করুন</string>
+    <string name="MainToolbar__donate">ডোনেট করুন</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

@@ -731,7 +731,7 @@
     <string name="preferences_storage__other">أخرى</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
     <string name="preferences_storage__calculating">جارٍ الحساب…</string>
-    <string name="preferences_storage__review_storage">مراجعة سعة التخزين</string>
+    <string name="preferences_storage__review_storage">مراجعة مساحة التخزين</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -777,7 +777,7 @@
     <string name="preferences_storage__six_months">6 أشهر</string>
     <string name="preferences_storage__thirty_days">30 يومًا</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">ستُحذَف الرسائل الأقدم من الوقت المُحدَّد بصفة نهائية.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">ستُحذَف الرسائل الأقدم من الوقت المُحدَّد بشكل نهائي.</string>
     <string name="preferences_storage__delete_older_messages">هل ترغبُ بحذف الرسائل القديمة؟</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">سيحذف هذا بشكلٍ دائم جميع سجلات الرسائل والوسائط الأقدم من %1$s من جهازك.</string>
     <!-- Dialog action that confirms deleting older messages -->
@@ -800,12 +800,12 @@
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">ستُحذَف الرسائل التي تتجاوز الطول المُحدَّد بصفة نهائية.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="zero">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالة.</item>
-        <item quantity="one">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالة.</item>
-        <item quantity="two">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالتين.</item>
-        <item quantity="few">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسائل.</item>
-        <item quantity="many">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالة.</item>
-        <item quantity="other">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="zero">سَيتمُّ تقليل جميع الدردشات بشكلٍ دائم إلى أحدث %1$s رسالة.</item>
+        <item quantity="one">سَيتمُّ تقليل جميع الدردشات بشكلٍ دائم إلى أحدث رسالة.</item>
+        <item quantity="two">سَيتمُّ تقليل جميع الدردشات بشكلٍ دائم إلى أحدث %1$s رسالتين.</item>
+        <item quantity="few">سَيتمُّ تقليل جميع الدردشات بشكلٍ دائم إلى أحدث %1$s رسائل.</item>
+        <item quantity="many">سَيتمُّ تقليل جميع الدردشات بشكلٍ دائم إلى أحدث %1$s رسالة.</item>
+        <item quantity="other">سَيتمُّ تقليل جميع الدردشات بشكلٍ دائم إلى أحدث %1$s رسالة.</item>
     </plurals>
 
     <!-- EditAboutScreen -->
