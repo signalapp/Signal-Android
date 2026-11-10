@@ -20,6 +20,8 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentRedemptionJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.requireGiftBadge
@@ -118,7 +120,11 @@ class ViewReceivedGiftViewModel(
         }
       }
 
-      AppDependencies.jobManager.add(InAppPaymentRedemptionJob.create(MessageId(messageId), setAsPrimary))
+      AppDependencies.jobManager
+        .startChain(InAppPaymentRedemptionJob.create(MessageId(messageId), setAsPrimary))
+        .then(RefreshOwnProfileJob())
+        .then(MultiDeviceProfileContentUpdateJob())
+        .enqueue()
       AppDependencies.databaseObserver.registerMessageUpdateObserver(messageObserver)
       emitter.setCancellable {
         AppDependencies.databaseObserver.unregisterObserver(messageObserver)
