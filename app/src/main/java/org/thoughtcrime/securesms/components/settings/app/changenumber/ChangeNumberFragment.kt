@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -34,6 +35,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import kotlin.time.Duration.Companion.milliseconds
@@ -42,12 +44,14 @@ import org.signal.core.ui.R as CoreUiR
 
 class ChangeNumberFragment : ComposeFragment() {
 
+  private val appSettingsRouter by appSettingsRouter()
+
   @Composable
   override fun FragmentContent() {
     val navController: NavController = remember { findNavController() }
     ChangeNumberScreen(
       onNavigationIconClick = {
-        navController.popBackStack()
+        (appSettingsRouter::onEvent).navigateBack()
       },
       onContinueClick = {
         val remainingWaitSeconds = remainingPostRegistrationWaitSeconds()

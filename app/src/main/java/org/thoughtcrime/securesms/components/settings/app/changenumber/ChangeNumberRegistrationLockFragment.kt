@@ -23,6 +23,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
+import org.thoughtcrime.securesms.components.settings.insetForSafeAreaWithKeyboard
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationLockBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequ
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
-import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.concurrent.TimeUnit
 
@@ -53,7 +53,7 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD)
+    insetForSafeAreaWithKeyboard(view)
     RegistrationViewDelegate.setDebugLogSubmitMultiTapView(view.findViewById(R.id.kbs_lock_pin_title))
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.setNavigationOnClickListener { navigateUp() }

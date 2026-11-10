@@ -17,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.core.os.bundleOf
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
 import androidx.navigation3.runtime.EntryProviderScope
@@ -24,13 +25,14 @@ import androidx.navigation3.runtime.NavKey
 import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.thoughtcrime.securesms.MainNavigator
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
 import org.thoughtcrime.securesms.compose.FragmentBackPressedState
+import org.thoughtcrime.securesms.compose.GraphNavHostFragment
 import org.thoughtcrime.securesms.main.MainDetailRoute
 import org.thoughtcrime.securesms.stories.archive.StoryArchiveScreen
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
 import org.thoughtcrime.securesms.stories.my.MyStoriesFragment
-import org.thoughtcrime.securesms.stories.settings.StorySettingsNavHostFragment
 
 fun EntryProviderScope<NavKey>.registerStoriesTabDetailRoutes() {
   detailEntry<MainDetailRoute.Stories.Archive>(
@@ -102,8 +104,12 @@ private fun StoryPrivacySettingsEntry() {
   informNavigatorWeAreReady()
 
   AndroidFragment(
-    clazz = StorySettingsNavHostFragment::class.java,
+    clazz = GraphNavHostFragment::class.java,
     fragmentState = fragmentState,
+    arguments = GraphNavHostFragment.createArgs(
+      graphId = R.navigation.story_privacy_settings,
+      startArgs = bundleOf("title_id" to R.string.StoriesPrivacySettingsFragment__story_privacy)
+    ),
     modifier = Modifier
       .fillMaxSize()
       .background(MaterialTheme.colorScheme.background)

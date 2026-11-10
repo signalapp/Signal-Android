@@ -428,32 +428,5 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
   sealed interface ChangeNumberRoute : AppSettingsRoute {
     @Serializable
     data object Start : ChangeNumberRoute
-
-    @Serializable
-    data object EnterPhoneNumber : ChangeNumberRoute
-
-    @Serializable
-    data object Confirm : ChangeNumberRoute
-
-    @Serializable
-    data object CountryPicker : ChangeNumberRoute
-
-    @Serializable
-    data object Verify : ChangeNumberRoute
-
-    @Serializable
-    data object Captcha : ChangeNumberRoute
-
-    @Serializable
-    data object EnterCode : ChangeNumberRoute
-
-    @Serializable
-    data object RegistrationLock : ChangeNumberRoute
-
-    @Serializable
-    data object AccountLocked : ChangeNumberRoute
-
-    @Serializable
-    data object PinDiffers : ChangeNumberRoute
   }
 }

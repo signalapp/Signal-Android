@@ -23,6 +23,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
+import org.thoughtcrime.securesms.components.settings.insetForSafeAreaWithKeyboard
 import org.thoughtcrime.securesms.databinding.FragmentChangeNumberEnterCodeBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomShe
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
 import org.thoughtcrime.securesms.registration.sms.ReceivedSmsEvent
-import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -59,7 +59,7 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD)
+    insetForSafeAreaWithKeyboard(view)
 
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.title = viewModel.number.fullFormattedNumber
