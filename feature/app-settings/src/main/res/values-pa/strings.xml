@@ -316,9 +316,9 @@
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
     <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">ਆਪਣੇ ਵਰਤੋਂਕਾਰ ਨਾਂ \"%1$s\" ਸਮੇਤ ਆਪਣੀ ਖਾਤਾ ਜਾਣਕਾਰੀ ਅਤੇ ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ ਨੂੰ ਮਿਟਾਓ</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
-    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">ਤੁਹਾਡਾ ਖਾਤਾ ID ਅਤੇ ਰਿਕਵਰੀ ਕੁੰਜੀ ਮਿਟਾ ਦਿੱਤੀ ਜਾਵੇਗੀ</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
-    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">ਤੁਹਾਨੂੰ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਦੁਬਾਰਾ ਰਜਿਸਟਰ ਜਾਂ ਰੀਸਟੋਰ ਕਰਨ ਤੋਂ ਰੋਕਿਆ ਜਾਵੇਗਾ</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
     <string name="DeleteAccountScreen__this_action_can_not_be_undone">ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਅਣਕੀਤਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
     <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
@@ -618,7 +618,7 @@
     <!-- Description for the payment lock toggle in privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">ਫੰਡ ਟ੍ਰਾਂਸਫਰ ਕਰਨ ਲਈ Android ਸਕ੍ਰੀਨ ਲੌਕ ਜਾਂ ਫਿੰਗਰਪ੍ਰਿੰਟ ਨੂੰ ਲਾਜ਼ਮੀ ਬਣਾਓ</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ਤੁਹਾਡੇ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਗਾਇਬ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ ਦਾ ਡਿਫੌਲਟ ਟਾਈਮਰ ਸੈੱਟ ਕਰੋ।</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ, ਹਮੇਸ਼ਾ ਕਾਲਾਂ ਨੂੰ ਰੀਲੇਅ ਕਰੋ, ਅਤੇ ਸੀਲਬੰਦ ਭੇਜਣ ਵਾਲਾ</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ, ਹਮੇਸ਼ਾ ਕਾਲਾਂ ਨੂੰ ਰੀਲੇਅ ਕਰੋ, ਅਤੇ ਗੁਪਤ ਭੇਜਣ ਵਾਲਾ</string>
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">ਬੰਦ</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ਇੱਕ ਨਿਸ਼ਚਿਤ ਸਮੇਂ ਤੱਕ ਅਕਿਰਿਆਸ਼ੀਲ ਰਹਿਣ ਤੋਂ ਬਾਅਦ Signal ਨੂੰ ਆਟੋ-ਲੌਕ ਕਰੋ</string>
@@ -713,7 +713,7 @@
     <!-- StorageUsageOverview -->
     <string name="preferences_storage__photos">ਫ਼ੋਟੋ</string>
     <string name="preferences_storage__videos">ਵੀਡੀਓ</string>
-    <string name="preferences_storage__files">ਫਾਇਲਾਂ</string>
+    <string name="preferences_storage__files">ਫ਼ਾਈਲਾਂ</string>
     <string name="preferences_storage__audio">ਆਡੀਓ</string>
     <!-- Storage usage legend label for the size of the main message database -->
     <string name="preferences_storage__messages">ਸੁਨੇਹੇ</string>
@@ -723,7 +723,7 @@
     <string name="preferences_storage__other">ਕੁਝ ਹੋਰ</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
     <string name="preferences_storage__calculating">ਗਣਨਾ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
-    <string name="preferences_storage__review_storage">ਸਟੋਰੇਜ਼ ਦੀ ਝਲਕ</string>
+    <string name="preferences_storage__review_storage">ਸਟੋਰੇਜ ਦੀ ਸਮੀਖਿਆ ਕਰੋ</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -788,8 +788,8 @@
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">ਚੁਣੀ ਗਈ ਲੰਬਾਈ ਤੋਂ ਲੰਮੇ ਸੁਨੇਹੇ ਸਥਾਈ ਤੌਰ \'ਤੇ ਮਿਟਾ ਦਿੱਤੇ ਜਾਣਗੇ।</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">ਅਜਿਹਾ ਕਰਨ ਨਾਲ ਸਾਰੀਆਂ ਚੈਟਾਂ ਨੂੰ ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਸੁਨੇਹਿਆਂ ਤੱਕ ਸਥਾਈ ਤੌਰ ’ਤੇ ਟ੍ਰਿਮ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
-        <item quantity="other">ਅਜਿਹਾ ਕਰਨ ਨਾਲ ਸਾਰੀਆਂ ਚੈਟਾਂ ਨੂੰ ਸਭ ਤੋਂ ਤਾਜ਼ਾ %1$s ਸੁਨੇਹਿਆਂ ਤੱਕ ਸਥਾਈ ਤੌਰ ’ਤੇ ਟ੍ਰਿਮ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
+        <item quantity="one">ਅਜਿਹਾ ਕਰਨ ਨਾਲ ਸਾਰੀਆਂ ਚੈਟਾਂ ਨੂੰ ਸਭ ਤੋਂ ਹਾਲੀਆ ਸੁਨੇਹੇ ਤੱਕ ਸਥਾਈ ਤੌਰ ’ਤੇ ਟ੍ਰਿਮ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
+        <item quantity="other">ਅਜਿਹਾ ਕਰਨ ਨਾਲ ਸਾਰੀਆਂ ਚੈਟਾਂ ਨੂੰ ਸਭ ਤੋਂ ਹਾਲੀਆ %1$s ਸੁਨੇਹਿਆਂ ਤੱਕ ਸਥਾਈ ਤੌਰ ’ਤੇ ਟ੍ਰਿਮ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
     </plurals>
 
     <!-- EditAboutScreen -->
@@ -1022,14 +1022,14 @@
     <string name="UsernameLinkSettingsScreen__camera_needed">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਤੱਕ ਪਹੁੰਚ ਚਾਹੀਦੀ ਹੈ</string>
 
     <!-- ManageStorageSettingsScreen -->
-    <string name="preferences__storage">ਸਟੋਰੇਜ਼</string>
-    <string name="preferences_storage__storage_usage">ਸਟੋਰੇਜ਼ ਦੀ ਵਰਤੋਂ</string>
+    <string name="preferences__storage">ਸਟੋਰੇਜ</string>
+    <string name="preferences_storage__storage_usage">ਸਟੋਰੇਜ ਦੀ ਵਰਤੋਂ</string>
     <!-- Setting section title header for storage optimization -->
     <string name="ManageStorageSettingsFragment__on_device_storage">Signal ਸਟੋਰੇਜ</string>
     <!-- Setting row title for storage optimization -->
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal ਸਟੋਰੇਜ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ਵਰਤਿਆ ਨਾ ਜਾਣ ਵਾਲਾ ਮੀਡੀਆ ਔਫਲੋਡ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ, ਪਰ ਉਹ ਮੀਡੀਆ ਕਿਸੇ ਵੀ ਸਮੇਂ ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚੋਂ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ਵਰਤਿਆ ਨਾ ਜਾਣ ਵਾਲਾ ਮੀਡੀਆ ਆਫਲੋਡ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ, ਪਰ ਉਹ ਮੀਡੀਆ ਕਿਸੇ ਵੀ ਸਮੇਂ ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚੋਂ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।</string>
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">ਚੈਟ ਦੀਆਂ ਸੀਮਾਵਾਂ</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
@@ -1044,7 +1044,7 @@
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">ਅਜਿਹਾ ਕਰਨ \'ਤੇ ਇਸ ਡਿਵਾਈਸ ਅਤੇ ਕਿਸੇ ਵੀ ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸ ਵਿੱਚੋਂ ਸਾਰੇ ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਸਥਾਈ ਤੌਰ \'ਤੇ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ਕੀ ਤੁਸੀਂ ਪੱਕਾ ਸਾਰੇ ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ਸਾਰੇ ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਸਥਾਈ ਤੌਰ \'ਤੇ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਤੁਸੀਂ ਅਣ-ਕੀਤਾ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ਸਾਰੇ ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਸਥਾਈ ਤੌਰ \'ਤੇ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਤੁਸੀਂ ਅਣਕੀਤਾ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">ਸਾਰੇ ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਸਾਰੇ ਡਿਵਾਈਸਾਂ ਵਿੱਚੋਂ ਸਥਾਈ ਤੌਰ \'ਤੇ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਤੁਸੀਂ ਅਣਕੀਤਾ ਨਹੀਂ ਕਰ ਸਕਦੇ।</string>
     <string name="preferences_storage__delete_all_now">ਹੁਣੇ ਸਭ ਮਿਟਾਓ</string>
@@ -1081,15 +1081,15 @@
 
     <!-- NotificationsSettingsScreen -->
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">ਚੋਣਕਾਰ ਖੋਲ੍ਹਣ ਲਈ ਅਸਫ਼ਲ ਹੈ।</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">ਚੋਣਕਾਰ ਨੂੰ ਖੋਲ੍ਹਣਾ ਅਸਫਲ ਰਿਹਾ।</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ, Signal ਨੂੰ ਉਹਨਾਂ ਨੂੰ ਦਿਖਾਉਣ ਦੀ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਸਮਰੱਥ ਕਰਨ ਲਈ, Signal ਨੂੰ ਉਹਨਾਂ ਨੂੰ ਦਿਖਾਉਣ ਦੀ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">ਚਾਲੂ ਕਰੋ</string>
     <string name="NotificationsSettingsFragment__calls">ਕਾਲਾਂ</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">ਸੰਪਰਕ Signal ਉੱਤੇ ਆਇਆ</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">ਸੰਪਰਕ Signal ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਤੇ ਗਰੁੱਪਾਂ, ਜਿੰਨਾਂ ਤੋਂ ਤੁਸੀਂ ਨੋਟੀਫਿਕੇਸ਼ਨ ਲੈਣੇ ਚਾਹੁੰਦੇ ਹੋ, ਲਈ ਪ੍ਰੋਫ਼ਾਈਲ ਬਣਾਓ।</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">ਜਿੰਨਾਂ ਲੋਕਾਂ ਅਤੇ ਗਰੁੱਪਾਂ ਤੋਂ ਤੁਸੀਂ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ, ਸਿਰਫ਼ ਉਨ੍ਹਾਂ ਲਈ ਪ੍ਰੋਫ਼ਾਈਲ ਬਣਾਓ।</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">ਜਦੋਂ ਫ਼ੋਨ ਦੀ ਸੰਪਰਕ ਸੂਚੀ ਵਿੱਚ ਮੌਜੂਦ ਕੋਈ ਵਿਅਕਤੀ Signal ਵਿੱਚ ਸ਼ਾਮਲ ਹੁੰਦਾ ਹੈ ਤਾਂ ਇੱਕ ਸੂਚਨਾ ਦਿਖਾਓ</string>
     <!-- Option to reset their notification settings -->
@@ -1108,19 +1108,19 @@
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="NotificationsSettingsScreen__mentions">ਜ਼ਿਕਰ</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsScreen__notification_profiles">ਨੋਟੀਫਿਕੇਸ਼ਨ ਪਰੋਫਾਈਲ</string>
+    <string name="NotificationsSettingsScreen__notification_profiles">ਸੂਚਨਾ ਪ੍ਰੋਫ਼ਾਈਲਾਂ</string>
     <string name="NotificationsSettingsScreen__notifications">ਸੂਚਨਾਵਾਂ</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="NotificationsSettingsScreen__replies">ਜਵਾਬ</string>
-    <string name="NotificationsSettingsScreen__silent">ਚੁੱਪ</string>
+    <string name="NotificationsSettingsScreen__silent">ਸਾਈਲੈਂਟ</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="NotificationsSettingsScreen__unread_reminders">ਨਹੀਂ ਪੜ੍ਹੇ ਰਿਮਾਈਂਡਰ</string>
+    <string name="NotificationsSettingsScreen__unread_reminders">ਨਹੀਂ ਪੜ੍ਹੇ ਰੀਮਾਈਂਡਰ</string>
     <string name="arrays__default">ਡਿਫੌਲਟ</string>
-    <string name="arrays__high">ਉੱਚਾ</string>
+    <string name="arrays__high">ਉੱਚ</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">ਅਧਿਕਤਮ</string>
     <string name="arrays__name_and_message">ਨਾਂ ਅਤੇ ਸੁਨੇਹਾ</string>
-    <string name="arrays__name_only">ਸਿਰਫ ਨਾਮ</string>
+    <string name="arrays__name_only">ਸਿਰਫ਼ ਨਾਂ</string>
     <string name="arrays__no_name_or_message">ਕੋਈ ਨਾਂ ਜਾਂ ਸੁਨੇਹਾ ਨਹੀਂ ਹੈ</string>
     <string name="preferences__blue">ਨੀਲਾ</string>
     <!-- Preference header for call notifications -->
@@ -1131,17 +1131,17 @@
     <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">ਡਿਫੌਲਟ</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">ਸੂਚਨਾਵਾਂ ਸਮਰੱਥ ਕਰੋ</string>
+    <string name="preferences__enable_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਸਮਰੱਥ ਕਰੋ</string>
     <string name="preferences__fast">ਤੇਜ਼</string>
     <string name="preferences__five_times">ਪੰਜ ਵਾਰ</string>
     <string name="preferences__green">ਹਰਾ</string>
-    <string name="preferences__led_color">LED ਰੰਗ</string>
+    <string name="preferences__led_color">LED ਦਾ ਰੰਗ</string>
     <string name="preferences__magenta">ਮਜੈਂਟਾ</string>
     <string name="preferences__never">ਕਦੇ ਨਹੀਂ</string>
     <string name="preferences__normal">ਆਮ</string>
     <string name="preferences__one_time">ਇੱਕ ਵਾਰ</string>
-    <string name="preferences__orange">ਸੰਤਰਾ</string>
-    <string name="preferences__pref_led_blink_title">LED ਝਪਕੋ ਪੈਟਰਨ</string>
+    <string name="preferences__orange">ਸੰਤਰੀ</string>
+    <string name="preferences__pref_led_blink_title">LED ਬਲਿੰਕ ਪੈਟਰਨ</string>
     <string name="preferences__red">ਲਾਲ</string>
     <string name="preferences__repeat_alerts">ਚੇਤਾਵਨੀ ਦੁਹਰਾਓ</string>
     <string name="preferences__slow">ਹੌਲੀ</string>

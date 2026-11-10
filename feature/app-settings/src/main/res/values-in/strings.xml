@@ -316,9 +316,9 @@
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
     <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Hapus info akun dan foto profil, termasuk nama pengguna Anda \"%1$s\"</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
-    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Hapus ID akun dan kunci pemulihan Anda</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
-    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Mencegah Anda mendaftarkan ulang atau memulihkan akun</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
     <string name="DeleteAccountScreen__this_action_can_not_be_undone">Tindakan ini tidak bisa diurungkan</string>
     <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
@@ -769,7 +769,7 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
     <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Pesan yang sudah melewati batas waktu yang dipilih akan dihapus permanen.</string>
     <string name="preferences_storage__delete_older_messages">Hapus pesan-pesan lama?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus secara permanen dari perangkat Anda semua riwayat pesan dan media yang lebih lama dari %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tindakan ini akan menghapus semua riwayat pesan dan media yang lebih lama dari %1$s secara permanen dari perangkat Anda.</string>
     <!-- Dialog action that confirms deleting older messages -->
     <string name="preferences_storage__delete">Hapus</string>
 
@@ -785,7 +785,7 @@
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Pesan yang melebihi batas panjang obrolan yang dipilih akan dihapus permanen.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="other">Ini akan secara permanen memangkas semua obrolan ke %1$s pesan terbaru.</item>
+        <item quantity="other">Tindakan ini akan secara permanen memangkas semua chat ke %1$s pesan terbaru.</item>
     </plurals>
 
     <!-- EditAboutScreen -->
@@ -1036,11 +1036,11 @@
     <string name="ManageStorageSettingsFragment_delete_message_history">Hapus riwayat pesan</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
     <string name="preferences_storage__delete_message_history">Hapus riwayat pesan?</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan menghapus semua riwayat pesan dan media secara permanen dari perangkat Anda.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tindakan ini akan menghapus semua riwayat pesan dan media secara permanen dari perangkat Anda.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Ini akan menghapus secara permanen semua riwayat pesan dan media dari perangkat ini dan perangkat terhubung lainnya.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Tindakan ini akan menghapus semua riwayat pesan dan media secara permanen dari perangkat ini dan perangkat terhubung lainnya.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Yakin ingin menghapus semua riwayat pesan?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus secara permanen. Tindakan ini tidak dapat diurungkan.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus secara permanen. Tindakan ini tidak dapat dibatalkan.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Semua riwayat pesan akan dihapus dari semua perangkat secara permanen. Tindakan ini tidak dapat dibatalkan.</string>
     <string name="preferences_storage__delete_all_now">Hapus semua sekarang</string>
@@ -1111,7 +1111,7 @@
     <string name="NotificationsSettingsScreen__silent">Diam</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="NotificationsSettingsScreen__unread_reminders">Pengingat pesan belum dibaca</string>
-    <string name="arrays__default">Standar</string>
+    <string name="arrays__default">Default</string>
     <string name="arrays__high">Tinggi</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">Maks</string>
@@ -1125,7 +1125,7 @@
     <string name="preferences__customize">Kustomisasi</string>
     <string name="preferences__cyan">Cyan</string>
     <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Standar</string>
+    <string name="preferences__default">Default</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">Aktifkan notifikasi</string>
     <string name="preferences__fast">Cepat</string>

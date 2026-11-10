@@ -584,7 +584,7 @@ private fun DonateDropdownItem(callback: MainToolbarCallback, onOptionSelected: 
     leadingIconResId = R.drawable.symbol_heart_24,
     text = {
       Text(
-        text = stringResource(R.string.MainToolbar__donate_to_signal)
+        text = stringResource(R.string.MainToolbar__donate)
       )
     },
     onClick = {
