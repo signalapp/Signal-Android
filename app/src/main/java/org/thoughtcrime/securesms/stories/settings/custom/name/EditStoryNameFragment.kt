@@ -13,11 +13,13 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
+import org.thoughtcrime.securesms.components.settings.insetForSafeAreaWithKeyboard
 import org.thoughtcrime.securesms.database.model.DistributionListId
-import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
 
 class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment) {
@@ -35,6 +37,7 @@ class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment
     get() = EditStoryNameFragmentArgs.fromBundle(requireArguments()).name
 
   private val lifecycleDisposable = LifecycleDisposable()
+  private val appSettingsRouter by appSettingsRouter(onNavigateBack = { findNavController().popBackStack() })
 
   private lateinit var saveButton: CircularProgressMaterialButton
   private lateinit var storyName: EditText
@@ -43,11 +46,11 @@ class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     lifecycleDisposable.bindTo(viewLifecycleOwner)
 
-    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD)
+    insetForSafeAreaWithKeyboard(view)
 
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.navigationIcon?.colorFilter = SimpleColorFilter(ContextCompat.getColor(requireContext(), R.color.signal_icon_tint_primary))
-    toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+    toolbar.setNavigationOnClickListener { (appSettingsRouter::onEvent).navigateBack() }
 
     storyNameWrapper = view.findViewById(R.id.story_name_wrapper)
     storyName = view.findViewById(R.id.story_name)
@@ -79,13 +82,15 @@ class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment
 
   override fun onPause() {
     super.onPause()
-    ViewUtil.hideKeyboard(requireContext(), storyName)
+    // A Nav3 host detaches the view before pausing, which leaves only the activity window to hide the keyboard from.
+    val keyboardOwner = if (storyName.isAttachedToWindow) storyName else requireActivity().window.decorView
+    ViewUtil.hideKeyboard(requireContext(), keyboardOwner)
   }
 
   private fun onSaveClicked() {
     saveButton.isClickable = false
     lifecycleDisposable += viewModel.save(storyName.text).subscribeBy(
-      onComplete = { findNavController().popBackStack() },
+      onComplete = { (appSettingsRouter::onEvent).navigateBack() },
       onError = {
         saveButton.isClickable = true
         storyNameWrapper.error = getString(R.string.CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name)

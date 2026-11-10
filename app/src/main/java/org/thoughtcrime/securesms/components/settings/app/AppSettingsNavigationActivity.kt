@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.main.EmptyDetailScreen
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.profiles.manage.editprofile.registerEditProfileScreens
+import org.thoughtcrime.securesms.stories.settings.registerStoriesRoutes
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity
@@ -113,6 +114,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
               registerUsernameLinkScreens(router::onEvent)
               registerInternalRoutes(router::onEvent)
               registerLinkDeviceRoutes(router::onEvent)
+              registerStoriesRoutes()
             }
           )
         }

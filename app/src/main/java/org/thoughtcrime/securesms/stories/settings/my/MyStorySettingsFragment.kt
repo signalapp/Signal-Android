@@ -8,10 +8,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.stories.settings.connections.ViewAllSignalConnectionsFragment
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -21,6 +24,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class MyStorySettingsFragment : ComposeFragment() {
 
   private val viewModel: MyStorySettingsViewModel by viewModels()
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   override fun onResume() {
     super.onResume()
@@ -43,9 +47,17 @@ class MyStorySettingsFragment : ComposeFragment() {
     when (action) {
       MyStorySettingsAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
       MyStorySettingsAction.ShowAllSignalConnections -> ViewAllSignalConnectionsFragment.Dialog.show(childFragmentManager)
-      MyStorySettingsAction.NavigateToAllExcept -> findNavController().safeNavigate(R.id.action_myStorySettings_to_allExceptFragment)
-      MyStorySettingsAction.NavigateToOnlyShareWith -> findNavController().safeNavigate(R.id.action_myStorySettings_to_onlyShareWithFragment)
-      MyStorySettingsAction.ShowSignalConnectionsEducation -> findNavController().safeNavigate(R.id.action_myStorySettings_to_signalConnectionsBottomSheet)
+      MyStorySettingsAction.NavigateToAllExcept -> (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.StoriesRoute.AllExcept)
+      MyStorySettingsAction.NavigateToOnlyShareWith -> (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.StoriesRoute.OnlyShareWith)
+      MyStorySettingsAction.ShowSignalConnectionsEducation -> SignalConnectionsBottomSheetDialogFragment().show(childFragmentManager, null)
+    }
+  }
+
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.StoriesRoute.AllExcept -> findNavController().safeNavigate(R.id.action_myStorySettings_to_allExceptFragment)
+      AppSettingsRoute.StoriesRoute.OnlyShareWith -> findNavController().safeNavigate(R.id.action_myStorySettings_to_onlyShareWithFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 

@@ -15,12 +15,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.viewModel
 import org.signal.core.util.dp
 import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
+import org.thoughtcrime.securesms.components.settings.isInsetByHost
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.contacts.paged.ChatType
@@ -36,6 +39,8 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
   private val viewModel: BaseStoryRecipientSelectionViewModel by viewModel {
     BaseStoryRecipientSelectionViewModel(distributionListId)
   }
+
+  private val appSettingsRouter by appSettingsRouter(onNavigateBack = { findNavController().popBackStack() })
 
   protected open val toolbarTitleId: Int = R.string.CreateStoryViewerSelectionFragment__choose_viewers
   abstract val actionButtonLabel: Int
@@ -58,9 +63,11 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     toolbar.setTitle(toolbarTitleId)
 
     toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
-    SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
-    SystemWindowInsetsSetter.attach(view.findViewById(R.id.contacts_container), viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
-    SystemWindowInsetsSetter.attach(actionButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
+    if (!isInsetByHost()) {
+      SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+      SystemWindowInsetsSetter.attach(view.findViewById(R.id.contacts_container), viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
+      SystemWindowInsetsSetter.attach(actionButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
+    }
 
     actionButton.setText(actionButtonLabel)
 
@@ -131,7 +138,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
   private fun exitFlow() {
     val callback = findListener<Callback>()
     if (callback == null) {
-      findNavController().popBackStack()
+      (appSettingsRouter::onEvent).navigateBack()
     } else {
       callback.exitFlow()
     }

@@ -147,9 +147,6 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     @Serializable
     data object AllExcept : StoriesRoute
 
-    @Serializable
-    data object SignalConnections : StoriesRoute
-
     /** [distributionListId] is a serialized `DistributionListId`. */
     @Serializable
     data class EditName(val distributionListId: Long, val name: String) : StoriesRoute

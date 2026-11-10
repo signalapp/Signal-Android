@@ -44,6 +44,15 @@ fun Fragment.isInsetByHost(): Boolean {
 }
 
 /**
+ * Keeps [view] clear of the system bars and keyboard. A host that already insets for the system bars ([isInsetByHost])
+ * leaves only the keyboard to [view].
+ */
+fun Fragment.insetForSafeAreaWithKeyboard(view: View) {
+  val insetTypes = if (isInsetByHost()) WindowInsetsCompat.Type.ime() else SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD
+  SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, insetTypes)
+}
+
+/**
  * Pads [toolbar] for the status bar and grows it by the same amount, so its tint reaches behind the status bar while
  * its content keeps the height it was laid out with. Grown rather than wrapped, which can measure the bar's content
  * shorter than the bar itself after a relaunch.

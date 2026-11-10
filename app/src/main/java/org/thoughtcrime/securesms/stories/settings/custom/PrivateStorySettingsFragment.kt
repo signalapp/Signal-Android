@@ -1,9 +1,7 @@
 package org.thoughtcrime.securesms.stories.settings.custom
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
@@ -28,6 +26,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.appsettings.AppSettingsLazyColumn
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -42,6 +44,7 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
@@ -65,6 +68,23 @@ class PrivateStorySettingsFragment : ComposeFragment() {
 
   private val distributionListId: DistributionListId
     get() = PrivateStorySettingsFragmentArgs.fromBundle(requireArguments()).distributionListId
+
+  private val appSettingsRouter by appSettingsRouter(
+    onNavigateBack = { findNavController().popBackStack() },
+    onNavigateToScreen = ::navigateToScreen
+  )
+
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      is AppSettingsRoute.StoriesRoute.EditName -> {
+        findNavController().navigate(PrivateStorySettingsFragmentDirections.actionPrivateStorySettingsToEditStoryNameFragment(DistributionListId.from(route.distributionListId), route.name))
+      }
+      is AppSettingsRoute.StoriesRoute.AddViewers -> {
+        findNavController().safeNavigate(PrivateStorySettingsFragmentDirections.actionPrivateStorySettingsToEditStoryViewers(DistributionListId.from(route.distributionListId)))
+      }
+      else -> error("Unexpected route: ${route.javaClass.name}")
+    }
+  }
 
   override fun onResume() {
     super.onResume()
@@ -95,12 +115,11 @@ class PrivateStorySettingsFragment : ComposeFragment() {
     }
 
     override fun onEditClick() {
-      val action = PrivateStorySettingsFragmentDirections.actionPrivateStorySettingsToEditStoryNameFragment(distributionListId, viewModel.getName())
-      findNavController().navigate(action)
+      (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.StoriesRoute.EditName(distributionListId.toLong(), viewModel.getName()))
     }
 
     override fun onAddViewerClick() {
-      findNavController().safeNavigate(PrivateStorySettingsFragmentDirections.actionPrivateStorySettingsToEditStoryViewers(distributionListId))
+      (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.StoriesRoute.AddViewers(distributionListId.toLong()))
     }
 
     override fun onRepliesAndReactionsToggle(enabled: Boolean) {
@@ -109,7 +128,7 @@ class PrivateStorySettingsFragment : ComposeFragment() {
 
     override fun onDeleteStoryClick(storyName: String) {
       StoryDialogs.deleteDistributionList(requireContext(), storyName) {
-        viewModel.delete().subscribe { findNavController().popBackStack() }
+        viewModel.delete().subscribe { (appSettingsRouter::onEvent).navigateBack() }
       }
     }
 
@@ -154,11 +173,10 @@ private fun PrivateStorySettingsScreen(
           contentDescription = stringResource(R.string.EditPrivateStoryNameFragment__edit_story_name)
         )
       }
-    }
+    },
+    expandableTitle = state.privateStory != null
   ) { paddingValues ->
-    LazyColumn(
-      modifier = Modifier.padding(paddingValues)
-    ) {
+    AppSettingsLazyColumn(scaffoldPadding = paddingValues) {
       if (state.privateStory != null) {
         item {
           Texts.SectionHeader(text = stringResource(R.string.MyStorySettingsFragment__who_can_view_this_story))
