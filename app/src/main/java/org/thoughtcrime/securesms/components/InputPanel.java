@@ -215,7 +215,8 @@ public class InputPanel extends ConstraintLayout
     linkPreview.setMaxDescriptionHeight(LinkPreviewView.NO_MAX_DESCRIPTION_HEIGHT);
     super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
 
-    int overflow          = getMeasuredHeight() - (MeasureSpec.getSize(heightMeasureSpec) - reservedTopSpace);
+    int settledHeight     = getMeasuredHeight() - linkPreview.getMeasuredHeight() + linkPreview.getContentHeight();
+    int overflow          = settledHeight - (MeasureSpec.getSize(heightMeasureSpec) - reservedTopSpace);
     int descriptionHeight = linkPreview.getDescriptionHeight();
     if (overflow > 0 && descriptionHeight > 0) {
       linkPreview.setMaxDescriptionHeight(descriptionHeight - overflow);
@@ -376,34 +377,48 @@ public class InputPanel extends ConstraintLayout
   }
 
   public boolean hasLinkPreview() {
-    return linkPreviewStub.getVisibility() == View.VISIBLE;
+    return linkPreviewStub.getVisibility() == View.VISIBLE && !linkPreviewStub.get().isAnimatingOut();
   }
 
   public void setLinkPreviewLoading() {
-    LinkPreviewView linkPreview = requireLinkPreview();
-    linkPreview.setVisibility(View.VISIBLE);
+    LinkPreviewView linkPreview = showLinkPreview();
     linkPreview.setLoading();
   }
 
   public void setLinkPreviewNoPreview(@Nullable LinkPreviewRepository.Error customError) {
-    LinkPreviewView linkPreview = requireLinkPreview();
-    linkPreview.setVisibility(View.VISIBLE);
+    LinkPreviewView linkPreview = showLinkPreview();
     linkPreview.setNoPreview(customError);
   }
 
   public void setLinkPreview(@NonNull RequestManager requestManager, @NonNull Optional<LinkPreview> preview) {
     if (preview.isPresent()) {
-      LinkPreviewView linkPreview = requireLinkPreview();
-      linkPreview.setVisibility(View.VISIBLE);
+      LinkPreviewView linkPreview = showLinkPreview();
       linkPreview.setLinkPreview(requestManager, preview.get(), true);
-    } else {
-      linkPreviewStub.setVisibility(View.GONE);
+    } else if (linkPreviewStub.resolved()) {
+      LinkPreviewView linkPreview = linkPreviewStub.get();
+      if (isLaidOut()) {
+        linkPreview.animateOut();
+      } else {
+        linkPreview.cancelSizeAnimation();
+        linkPreview.setVisibility(View.GONE);
+      }
     }
 
     if (linkPreviewStub.resolved()) {
       int cornerRadius = quoteViewStub.getVisibility() == VISIBLE ? readDimen(R.dimen.message_corner_collapse_radius) : readDimen(R.dimen.message_corner_radius);
       linkPreviewStub.get().setCorners(cornerRadius, cornerRadius);
     }
+  }
+
+  private @NonNull LinkPreviewView showLinkPreview() {
+    LinkPreviewView linkPreview = requireLinkPreview();
+    if (isLaidOut()) {
+      linkPreview.animateToContentHeight();
+    } else {
+      linkPreview.cancelSizeAnimation();
+    }
+    linkPreview.setVisibility(View.VISIBLE);
+    return linkPreview;
   }
 
   private @NonNull LinkPreviewView requireLinkPreview() {

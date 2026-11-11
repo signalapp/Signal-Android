@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -14,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.bumptech.glide.RequestManager;
 
@@ -49,6 +53,8 @@ public class LinkPreviewView extends FrameLayout {
 
   public static final int NO_MAX_DESCRIPTION_HEIGHT = -1;
 
+  private static final long SIZE_ANIMATION_DURATION_MILLIS = 150;
+
   private ViewGroup                   container;
   private Stub<OutlinedThumbnailView> thumbnail;
   private TextView                    title;
@@ -64,6 +70,12 @@ public class LinkPreviewView extends FrameLayout {
   private CornerMask                    cornerMask;
   private CloseClickedListener          closeClickedListener;
   private LinkPreviewViewThumbnailState thumbnailState = new LinkPreviewViewThumbnailState();
+
+  private @Nullable ValueAnimator sizeAnimator;
+  private           float         sizeAnimationFraction;
+  private           int           sizeAnimationStartHeight;
+  private           boolean       animatingOut;
+  private           int           contentHeight;
 
   public LinkPreviewView(Context context) {
     super(context);
@@ -115,11 +127,119 @@ public class LinkPreviewView extends FrameLayout {
   }
 
   @Override
-  protected void dispatchDraw(Canvas canvas) {
-    super.dispatchDraw(canvas);
-    if (type == TYPE_COMPOSE) return;
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    if (sizeAnimator == null) {
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      contentHeight = getMeasuredHeight();
+      return;
+    }
 
+    int contentHeightSpec = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED) : heightMeasureSpec;
+    super.onMeasure(widthMeasureSpec, contentHeightSpec);
+    contentHeight = getMeasuredHeight();
+
+    int targetHeight = animatingOut ? 0 : contentHeight;
+    int height       = Math.round(sizeAnimationStartHeight + (targetHeight - sizeAnimationStartHeight) * sizeAnimationFraction);
+    setMeasuredDimension(getMeasuredWidth(), height);
+  }
+
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
+    if (type == TYPE_COMPOSE) {
+      int save = canvas.save();
+      canvas.clipRect(0, 0, getWidth(), getHeight());
+      super.dispatchDraw(canvas);
+      canvas.restoreToCount(save);
+      return;
+    }
+
+    super.dispatchDraw(canvas);
     cornerMask.mask(canvas);
+  }
+
+  /**
+   * Animates from the currently displayed height to the height of whatever content is set next. Call before making the
+   * view visible and before changing its content.
+   */
+  public void animateToContentHeight() {
+    startSizeAnimation(false);
+  }
+
+  /**
+   * Animates the view down to nothing and then hides it.
+   */
+  public void animateOut() {
+    if (getVisibility() != VISIBLE || animatingOut) {
+      return;
+    }
+
+    startSizeAnimation(true);
+  }
+
+  /**
+   * True while {@link #animateOut()} is running, when the view is still visible but on its way to being hidden.
+   */
+  public boolean isAnimatingOut() {
+    return animatingOut;
+  }
+
+  /**
+   * The height the view will settle at once any size animation finishes.
+   */
+  public int getContentHeight() {
+    return contentHeight;
+  }
+
+  public void cancelSizeAnimation() {
+    if (sizeAnimator != null) {
+      sizeAnimator.cancel();
+    }
+  }
+
+  private void startSizeAnimation(boolean out) {
+    int startHeight = getVisibility() == VISIBLE && isLaidOut() ? getHeight() : 0;
+
+    cancelSizeAnimation();
+
+    sizeAnimationStartHeight = startHeight;
+    sizeAnimationFraction    = 0f;
+    animatingOut             = out;
+
+    ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+    animator.setDuration(SIZE_ANIMATION_DURATION_MILLIS);
+    animator.setInterpolator(new FastOutSlowInInterpolator());
+    animator.addUpdateListener(animation -> {
+      sizeAnimationFraction = (float) animation.getAnimatedValue();
+      requestLayout();
+    });
+    animator.addListener(new AnimatorListenerAdapter() {
+      private boolean canceled;
+
+      @Override
+      public void onAnimationCancel(Animator animation) {
+        canceled = true;
+      }
+
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        if (sizeAnimator != animation) {
+          return;
+        }
+
+        sizeAnimator = null;
+        animatingOut = false;
+
+        if (out && !canceled) {
+          setVisibility(GONE);
+        }
+
+        requestLayout();
+      }
+    });
+
+    sizeAnimator = animator;
+    animator.start();
+    requestLayout();
   }
 
   public void setLoading() {
