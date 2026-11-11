@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Nagka-error sa pagkonekta sa server!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Required ang PIN para sa registration lock. Para mag-disable ng PIN, paki disable muna ang registration lock.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">Nalikha na ang PIN.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">Naka-disable ang PIN.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">I-record ang payments recovery phrase</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">I-record ang phrase</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Bago mo ma-disable ang iyong PIN, kinakailangan mong i-record ang payments recovery phrase mo para masiguradong mare-recover mo ang iyong payments account.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Gumawa ng bagong recovery key</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Kailangan mong gumawa at i-record ang panibagong recovery key mo bago mo ma-disable ang iyong PIN.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Gumawa ng key</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">Binura ni %1$s ang message na ito</string>
     <string name="ConversationItem_you_deleted_this_message">Binura mo ang message na ito</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Burahin para sa lahat?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Binura ni admin %1$s ang message na ito</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Binubura ang mga mensahe…</string>
     <string name="ConversationFragment_delete_for_me">Burahin sa \'kin</string>
     <string name="ConversationFragment_delete_for_everyone">Burahin sa lahat</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Burahin ang piniling message?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">I-lock ang Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Ikaw</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Hindi suportadong uri ng media</string>
-    <string name="MediaPreviewActivity_draft">Draft</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Burahin ang message?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Permanente nitong buburahin ang message na ito.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s hanggang %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">You to %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s to you</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Hindi na available ang media.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Hindi ma-play ang media.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Nagka-error sa paghahanap ng message.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Walang makitang app na pwedeng mag-share ng media na ito.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Isara</string>
     <string name="MediaPreviewFragment_edit_media_error">Media Error</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Nagka-error sa Pag-delete ng Message, Maaaring Narito Pa Ito</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Magbasa pa</string>
     <string name="MediaPreviewFragment_share">I-share</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Mga Notipikasyon</string>
     <string name="preferences__led_color_unknown">Hindi alam</string>
     <string name="preferences__silent">Tahimik</string>
-    <string name="preferences__advanced">Advanced</string>
     <string name="preferences__donate_to_signal">Mag-donate sa Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
     <string name="preferences__payments">Payments</string>
     <string name="preferences__linked_devices">Mga naka-link na device</string>
-    <string name="preferences__disable_pin">I-disable ang PIN</string>
-    <string name="preferences__enable_pin">I-enable ang PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Kung idi-disable mo ang iyong PIN, mawawala ang lahat ng data kapag ikaw ay nag-register ulit sa Signal unless manually kang nag-back up and restore. Hindi mo pwedeng i-turn on ang Registration Lock habang naka-disable ang PIN.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs keep information stored with Signal encrypted kaya ikaw lang ang may access dito. Ang iyong profile, settings, at contacts ay mare-restore when you reinstall. Hindi mo kailangan ng PIN para i-open ang app.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__submit_debug_log">Isumite ang debug log</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Padaanin sa server ng Signal ang lahat ng tawag upang maiwasang mailantad ang iyong IP address sa kontak mo. Bababa ang kalidad ng tawag kapag naka-enable.</string>
-    <string name="preferences_advanced__always_relay_calls">Laging padaain ang tawag sa server ng Signal</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Unread reminders</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Censorship circumvention</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Censorship circumvention</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Kung gumagana, susubukin ng Signal na ikutan ang censorship. Huwag paganahin ang feature na ito maliban na lang kung ika\'y nasa lugar na naka-censor ang Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Ang censorship circumvention ay activated base sa phone number ng account mo.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ang pag-ikot sa censorship ay manu-mano mong hindi pinagana.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Ang pag-ikot sa censorship ay hindi kailangan; kunektado ka na sa serbisyo ng Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Ang pag-ikot sa censorship ay mapapagana lamang kapag kunektado sa internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Sealed na Tagapagpadala</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Payagan ang mula sa sinuman</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">I-enable ang sealed na tagapagpadala para sa mga paparating na mensahe mula sa mga hindi kontak at tao kung kanino mo hindi pa naibabahagi ang iyong profile</string>
     <string name="preferences_proxy_address">Proxy address</string>
     <string name="preferences_only_use_a_proxy_if">Gumamit lang ng proxy kung hindi ka maka-connect sa Signal gamit ang mobile data o Wi-Fi.</string>
     <string name="preferences_share">Ibahagi</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Success</string>
     <string name="preferences_failed_to_connect">Failed to connect</string>
     <string name="preferences_enter_proxy_address">I-enter ang proxy address</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatic Key Verification</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Kapag naka-enable ito, susubukan ng Signal na i-verify automatically ang encryption ng 1:1 chats.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Matuto pa</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">I-save</string>
-    <string name="media_preview__edit_title">I-edit</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Preview ng media</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Hindi kailanman</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Hindi alam</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Bigo na paganahin ang registration lock.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Bigo na patayin ang registration lock?</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Kailangan mong ilagay ang iyong Lock PIN sa Pagpaparehistro</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Ang iyong PIN ay may bilang na hindi bababa sa %1$d numero o mga character</string>
     <string name="RegistrationActivity_too_many_attempts">Masyadong maraming pagtatangka</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Magpakita ng icon sa message details when they were delivered gamit ang sealed sender.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kapag naka-enable ito, mawawala ang bagong messages na na-send at na-receive sa sinimulan mong bagong chats kapag na-seen na nila ang mga ito.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kapag naka-enable ito, mawawala ang bagong messages na na-send at na-receive sa chat na ito kapag na-seen na niya ito.</string>
-    <string name="ExpireTimerSettingsFragment__off">Off</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 day</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 hour</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
-    <string name="ExpireTimerSettingsFragment__save">I-save</string>
 
 
     <!-- ChatColorSelectionFragment -->

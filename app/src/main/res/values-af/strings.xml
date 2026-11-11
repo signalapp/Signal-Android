@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kon nie aan die bediener konnekteer nie!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN’s word vereis vir registrasieslot. Om PIN’s te deaktiveer, deaktiveer eers die registrasieslot.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN geskep.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN gedeaktiveer</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Neem betalingherwinningsfrase op</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Neem frase op</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Voor jy jou PIN kan deaktiveer moet jy jou betalingsherwinfrase opneem om te verseker dat jy jou betalingsrekening kan herwin.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Skep \'n nuwe herwinsleutel</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Jy moet \'n nuwe herwinsleutel skep en aanteken voordat jy jou PIN kan deaktiveer.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Skep sleutel</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s het hierdie boodskap geskrap</string>
     <string name="ConversationItem_you_deleted_this_message">Jy het hierdie boodskap geskrap</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Skrap vir almal?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s het hierdie boodskap geskrap</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Skrap tans boodskappe…</string>
     <string name="ConversationFragment_delete_for_me">Skrap vir my</string>
     <string name="ConversationFragment_delete_for_everyone">Skrap vir almal</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Skrap geselekteerde boodskap?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Sluit Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Jy</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Ongesteunde lêertipe</string>
-    <string name="MediaPreviewActivity_draft">Konsep</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Skrap boodskap?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Die aksie sal hierdie boodskap permanent skrap.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s na %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Jy aan %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s aan jou</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media nie meer beskikbaar nie.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Kan nie media speel nie.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Fout met vind van boodskap.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Kan nie \'n toepassing vind wat hierdie media kan deel nie.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Maak toe</string>
     <string name="MediaPreviewFragment_edit_media_error">Mediafout</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Fout met skrap van boodskap, boodskap mag dalk nog bestaan</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Lees Meer</string>
     <string name="MediaPreviewFragment_share">Deel</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Kennisgewings</string>
     <string name="preferences__led_color_unknown">Onbekend</string>
     <string name="preferences__silent">Stilte</string>
-    <string name="preferences__advanced">Gevorderd</string>
     <string name="preferences__donate_to_signal">Skenk aan Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
     <string name="preferences__payments">Betalings</string>
     <string name="preferences__linked_devices">Gekoppelde toestelle</string>
-    <string name="preferences__disable_pin">Deaktiveer PIN</string>
-    <string name="preferences__enable_pin">Aktiveer PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Indien jy die PIN deaktiveer sal jy alle data verloor wanneer jy Signal herregistreer, tensy jy met die hand \'n rugsteun maak en dit herwin. Jy kan nie Registrasiesluiting aanskakel terwyl die PIN gedeaktiveer is nie.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN’s sorg dat inligting wat met Signal geberg word, geënkripteer is sodat jy alleen toegang daartoe het. Jou profiel, instellings en kontakte sal teruggestel word wanneer jy herinstalleer. Jou PIN sal nie benodig word om die toepassing oop te maak nie.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Gevorderde PIN-instellings</string>
     <string name="preferences__submit_debug_log">Dien ontfout-log in</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Herlei alle oproepe deur die Signal-bediener om te verhoed dat jou IP-adres aan jou kontak bekend gemaak word. Aktivering sal oproepgehalte verlaag.</string>
-    <string name="preferences_advanced__always_relay_calls">Herlei altyd oproepe</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Ongeleesde herinnerings</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Sensuuromseiling</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Sensuuromseiling</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Indien geaktiveer, sal Signal poog om sensuur te omseil. Moenie hierdie funksie aktiveer nie tensy jy op ’n plek is waar Signal gesensureer word.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Sensuuromseiling word geaktiveer volgens jou rekening se telefoonnommer.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Jy het sensuuromseiling handmatig gedeaktiveer.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Sensuuromseiling is nie nodig nie; jy is reeds aan die Signal-diens gekoppel.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Sensuuromseiling kan slegs geaktiveer word as dit aan die internet gekoppel is.</string>
-    <string name="preferences_communication__category_sealed_sender">Verseëlde afsender</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Laat van enigiemand af toe</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiveer verseëlde afsender vir inkomende boodskappe van nie-kontakte en mense met wie jy nie jou profiel gedeel het nie.</string>
     <string name="preferences_proxy_address">Tussengangeradres</string>
     <string name="preferences_only_use_a_proxy_if">Gebruik slegs \'n tussenganger as jy nie op mobiele data of Wi-Fi met Signal kan verbind nie.</string>
     <string name="preferences_share">Deel</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Sukses</string>
     <string name="preferences_failed_to_connect">Kon nie verbind nie</string>
     <string name="preferences_enter_proxy_address">Sleutel tussengangeradres in</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Outomatiese sleutelverifiëring</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Wanneer dit geaktiveer is, sal Signal probeer om die enkriptering van 1:1-kletsgesprekke outomaties te verifieer.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Vind meer uit</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Stoor</string>
-    <string name="media_preview__edit_title">Wysig</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Media-voorskou</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Nooit</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Onbekend</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Kon nie registrasieslot aktiveer nie.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Kon nie registrasieslot deaktiveer nie.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Jy moet jou registrasieslot-PIN invoer</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Jou PIN het ten minste %1$d syfers of karakters nodig</string>
     <string name="RegistrationActivity_too_many_attempts">Te veel pogings</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Toon statusikoon</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Toon ’n ikoon in boodskapdetails wanneer dit d.m.v. verseëlde afsender afgelewer is.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Indien geaktiveer, sal nuwe boodskappe wat in nuwe kletse wat u begin gestuur en ontvang is, verdwyn nadat dit gesien is.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien geaktiveer, sal nuwe boodskappe wat in hierdie klets gestuur en ontvang is, verdwyn nadat dit gesien is.</string>
-    <string name="ExpireTimerSettingsFragment__off">Af</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 weke</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 dag</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 uur</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 uur</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minute</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekondes</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Pasgemaakte tyd</string>
-    <string name="ExpireTimerSettingsFragment__save">Stoor</string>
 
 
     <!-- ChatColorSelectionFragment -->

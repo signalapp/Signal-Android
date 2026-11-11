@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">சர்வருடன் இணைவதில் பிழை!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">பதிவு பூட்டுக்கு PIN தேவை. PIN-ஐ முடக்க, முதலில் பதிவு பூட்டை முடக்கவும்.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN உருவாக்கப்பட்டது.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN முடக்கப்பட்டது.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">பதிவு செலுத்துதல் மீட்பு சொற்றொடர்</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">பதிவு சொற்றொடர்</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">உங்களால் முடியும் முன் முடக்கு உங்கள் பின், உங்கள் கொடுப்பனவுகளை மீட்டெடுக்க முடியும் என்பதை உறுதிப்படுத்த உங்கள் கொடுப்பனவு மீட்பு சொற்றொடரை நீங்கள் பதிவு செய்ய வேண்டும் கணக்கு.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">புதிய மீட்பு குறியீட்டை உருவாக்கவும்</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">உங்கள் பின்-ஐ முடக்குவதற்கு முன், புதிய மீட்புக் குறியீட்டை உருவாக்கிப் பதிவு செய்ய வேண்டும்.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">குறியீட்டை உருவாக்குக</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$sஇந்த மெசேஜை நீக்கினார்</string>
     <string name="ConversationItem_you_deleted_this_message">நீங்கள் இந்த மெசேஜை நீக்கினீர்</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">அனைவருக்கும் நீக்கவா?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">நிர்வாகி %1$s இந்த மெசேஜை நீக்கினார்</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">செய்திகள் நீக்கப்படுகிறது…</string>
     <string name="ConversationFragment_delete_for_me">எனக்கு மட்டும் நீக்கு</string>
     <string name="ConversationFragment_delete_for_everyone">அனைவருக்கும் நீக்கு</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்க வேண்டுமா?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Signal ஐ பூட்டு</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">நீங்கள்</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
-    <string name="MediaPreviewActivity_draft">வரைவு</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">செய்தியை நீக்க வேண்டுமா?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">இது இந்த செய்தியை நிரந்தரமாக நீக்கும்.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">உங்களிடமிருந்து %1$s-க்கு</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s இடமிருந்து உங்களுக்கு</string>
     <string name="MediaPreviewActivity_media_no_longer_available">இந்த ஊடகம் சேமிப்பகத்தில் இல்லை.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">மீடியாவை இயக்க முடியவில்லை.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">செய்தியைக் கண்டறிவதில் பிழை.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">இந்த மீடியாவைப் பகிரக்கூடிய பயன்பாட்டைக் கண்டுபிடிக்க முடியவில்லை.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">நெருக்கமான</string>
     <string name="MediaPreviewFragment_edit_media_error">மீடியா பிழை</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">செய்தியை நீக்குவதில் பிழை, செய்தி இன்னும் இருக்கலாம்</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">மேலும் வாசிக்க</string>
     <string name="MediaPreviewFragment_share">பகிர்</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">அறிவிப்புகள்</string>
     <string name="preferences__led_color_unknown">முன் தெரிந்திராத</string>
     <string name="preferences__silent">அமைதி</string>
-    <string name="preferences__advanced">மேம்பட்ட</string>
     <string name="preferences__donate_to_signal">Signalக்கு நன்கொடை அளிக்கவும்</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">ஸ்டோரீஸ்</string>
     <string name="preferences__payments">பணம் செலுத்தல்</string>
     <string name="preferences__linked_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
-    <string name="preferences__disable_pin">PIN-ஐ முடக்கு</string>
-    <string name="preferences__enable_pin">பின்னை மீண்டும் திறக்கவும்</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் Signal PIN-ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் Signal-ஐ மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். PIN முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் PIN தேவைப்படாது.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">மேம்பட்ட பின் அமைப்புகள்</string>
     <string name="preferences__submit_debug_log">பிழைத்திருத்த பதிவுகளை சமர்ப்பி</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">உங்கள் ஐபி முகவரியை உங்கள் தொடர்புக்கு வெளிப்படுத்தாமல் இருக்க Signal சேவையகம் மூலம் அனைத்து அழைப்புகளையும் ரிலே செய்யவும். இயக்குவது அழைப்பு தரத்தை குறைக்கும்.</string>
-    <string name="preferences_advanced__always_relay_calls">எப்போதும் அழைப்புகளை ரிலே செய்யவும் </string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">படிக்காதவைக்கான நினைவூட்டல்கள்</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">தணிக்கையை மீறி செயலாற்றுதல்</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">தணிக்கையை மீறி செயலாற்றுதல்</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">இயக்கப்பட்டால், தணிக்கை தவிர்க்க Signal முயற்சிக்கும். நீங்கள் Signal தணிக்கை செய்யப்பட்ட இடத்தில் இல்லாவிட்டால் இந்த அம்சத்தை இயக்க வேண்டாம்.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">உங்கள் கணக்கு தொலைபேசி எண்ணின் அடிப்படையில் தணிக்கை சுற்றளவு செயல்படுத்தப்பட்டுள்ளது.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">நீங்கள் தணிக்கை சுற்றளவை கைமுறையாக முடக்கியுள்ளீர்கள்.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">தணிக்கை சுற்றளவு தேவையில்லை; நீங்கள் ஏற்கனவே Signal சேவையுடன் இணைக்கப்பட்டுள்ளீர்கள்.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">இணையத்துடன் இணைக்கப்படும்போது மட்டுமே தணிக்கை சுற்றறிக்கை செயல்படுத்தப்படும்.</string>
-    <string name="preferences_communication__category_sealed_sender">சீல் அனுப்பியவர்</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">யாரிடமிருந்தும் அனுமதிக்கவும்</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">தொடர்புகள் அல்லாதவர்களிடமிருந்தும், உங்கள் சுயவிவரத்தைப் பகிராத நபர்களிடமிருந்தும் உள்வரும் செய்திகளுக்கு சீல் அனுப்பியவரை இயக்கவும்.</string>
     <string name="preferences_proxy_address">பதிலி முகவரி</string>
     <string name="preferences_only_use_a_proxy_if">ஒரு மட்டுமே பயன்படுத்தவும் பதிலி உங்களால் இணைக்க முடியவில்லை என்றால் Signal ஆன் மொபைல் தரவு அல்லது வைஃபை.</string>
     <string name="preferences_share">பகிர்</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">வெற்றி</string>
     <string name="preferences_failed_to_connect">இணைப்பது இயலவில்லை.</string>
     <string name="preferences_enter_proxy_address">பதிலி முகவரியைப் பதியவும்</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">தானியங்கி குறியீடு சரிபார்ப்பு</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">இது செயல்படுத்தப்படும்போது, 1:1 அரட்டைகளின் மறைகுறியாக்கத்தைத் தானாகச் சரிபார்க்க சிக்னல் முயற்சிக்கும்.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">மேலும் அறிக</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">சேமி</string>
-    <string name="media_preview__edit_title">தொகு</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">மீடியா முன்னோட்டம்</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">ஒருபோதுமில்லை</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">முன் தெரிந்திராத</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">பதிவு பூட்டை இயக்குவதில் தோல்வி.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">பதிவு பூட்டை முடக்குவதில் தோல்வி.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">உங்கள் பதிவு பூட்டு பின்னை உள்ளிட வேண்டும்</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">உங்கள் PIN இல் குறைந்தது %1$d இலக்கங்கள் அல்லது எழுத்துக்கள் இருக்க வேண்டும்</string>
     <string name="RegistrationActivity_too_many_attempts">மிக அதிக முயற்சிகள்</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">நிலை ஐகானைக் காட்டு</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">செய்தியில் ஒரு ஐகானைக் காட்டு விவரங்கள் அவை பயன்படுத்தி வழங்கப்பட்டபோது சீல் அனுப்பியவர்.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">இயக்கப்பட்டால், நீங்கள் தொடங்கிய புதிய சாட்களில் அனுப்பப்பட்ட மற்றும் பெறப்பட்ட புதிய மெசேஜ்கள் அவை பார்த்த பிறகு மறைந்துவிடும்.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">இயக்கப்பட்டால், இந்த சாட்டில் அனுப்பப்பட்ட மற்றும் பெறப்பட்ட புதிய மெசேஜ்கள் அவை பார்த்த பிறகு மறைந்துவிடும்.</string>
-    <string name="ExpireTimerSettingsFragment__off">அணை</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 வாரங்கள்</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 வாரம்</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 நாள்</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 மணி நேரம்</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 மணி நேரம்</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 நிமிடம்</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 வினாடிகள்</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">விருப்ப நேரம்</string>
-    <string name="ExpireTimerSettingsFragment__save">சேமி</string>
 
 
     <!-- ChatColorSelectionFragment -->

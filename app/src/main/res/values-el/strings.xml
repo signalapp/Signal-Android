@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Σφάλμα κατά τη σύνδεση με τον διακομιστή!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Τα PIN χρειάζονται για το κλείδωμα εγγραφής. Για να απενεργοποιήσεις τα PIN, πρέπει πρώτα να απενεργοποιήσεις το κλείδωμα εγγραφής.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">Το PIN δημιουργήθηκε.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">Το PIN απενεργοποιήθηκε.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ηχογραφήστε το συνθηματικό της αποκατάστασης πληρωμών</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Καταγραφή φράσης</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Πριν μπορέσετε να απενεργοποιήσετε το PIN σας, πρέπει να καταγράψετε τη φράση ανάκτησης πληρωμών για να διασφαλίσετε ότι μπορείτε να ανακτήσετε τον λογαριασμό πληρωμών σας.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Δημιουργία νέου κλειδιού ανάκτησης</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Πρέπει να δημιουργήσεις και να καταγράψεις ένα νέο κλειδί ανάκτησης προτού απενεργοποιήσεις το PIN σου.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Δημιουργία κλειδιού</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">Ο χρήστης %1$s διέγραψε αυτό το μήνυμα</string>
     <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Διαγραφή για όλους;</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Ο διαχειριστής %1$s διέγραψε αυτό το μήνυμα</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων…</string>
     <string name="ConversationFragment_delete_for_me">Διαγραφή για μένα</string>
     <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Διαγραφή επιλεγμένου μηνύματος;</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Κλείδωμα του Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Εσύ</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Μη υποστηριζόμενος τύπος πολυμέσων</string>
-    <string name="MediaPreviewActivity_draft">Πρόχειρο</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Διαγραφή μηνύματος;</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Αυτή η επιλογή θα διαγράψει οριστικά αυτό το μήνυμα.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s προς %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Εσύ προς %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s προς εσένα</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Το πολυμέσο δεν είναι πια διαθέσιμο.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Μη δυνατότητα αναπαραγωγής πολυμέσων.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Σφάλμα κατά την εύρεση του μηνύματος.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Δεν βρέθηκε εφαρμογή που να μπορεί να διαμοιραστεί αυτό το πολυμέσο.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Κλείσιμο</string>
     <string name="MediaPreviewFragment_edit_media_error">Σφάλμα πολυμέσων</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Σφάλμα κατά τη διαγραφή του μηνύματος, το μήνυμα μπορεί να υπάρχει ακόμα</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Διάβασε Περισσότερα</string>
     <string name="MediaPreviewFragment_share">Μοιράσου</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Ειδοποιήσεις</string>
     <string name="preferences__led_color_unknown">Άγνωστο</string>
     <string name="preferences__silent">Σε σίγαση</string>
-    <string name="preferences__advanced">Για προχωρημένους</string>
     <string name="preferences__donate_to_signal">Κάνε μια δωρεά στο Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Ιστορίες</string>
     <string name="preferences__payments">Πληρωμές</string>
     <string name="preferences__linked_devices">Συνδεμένες συσκευές</string>
-    <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
-    <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσύ έχεις πρόσβαση σε αυτές. Το προφίλ σου, οι ρυθμίσεις και οι επαφές να επαναφερθούν όταν επανεγκαταστήσεις το Signal. Δεν θα χρειάζεται να γράψεις το PIN για να ανοίξεις την εφαρμογή.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Ρυθμίσεις PIN για προχωρημένους</string>
     <string name="preferences__submit_debug_log">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Αναμετάδοση όλων των κλήσεων μέσω του σέρβερ Signal για να αποφύγεις την αποκάλυψη της διεύθυνσης IP σου στην επαφή. Η ενεργοποίηση θα ρίξει την ποιότητα των κλήσεων.</string>
-    <string name="preferences_advanced__always_relay_calls">Αναμετάδοση κλήσεων πάντα</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Μη αναγνωσμένες υπενθυμίσεις</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Παράκαμψη λογοκρισίας</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Παράκαμψη λογοκρισίας</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Αν είναι ενεργοποιημένο, το Signal θα προσπαθήσει να παρακάμψει την λογοκρισία. Μην ενεργοποιήσεις αυτή την επιλογή εκτός και αν βρίσκεσαι σε περιοχή όπου το Signal έχει λογοκριθεί/μπλοκαριστεί.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Η παράκαμψη λογοκρισίας ενεργοποιήθηκε βάσει του αριθμού τηλεφώνου του λογαριασμού σου.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Απενεργοποίησες χειροκίνητα την παράκαμψη λογοκρισίας.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Η παράκαμψη λογοκρισίας δεν είναι απαραίτητη, είσαι ήδη συνδεμένος/η στις υπηρεσίες του Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Η παράκαμψη λογοκρισίας μπορεί να ενεργοποιηθεί μόνο όταν υπάρχει σύνδεση στο διαδίκτυο.</string>
-    <string name="preferences_communication__category_sealed_sender">Προστατευμένος αποστολέας</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Να επιτρέπεται από οποιονδήποτε</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ενεργοποίηση του προστατευμένου αποστολέα για εισερχόμενα μηνύματα από άτομα που δεν έχεις στις επαφές σου και άτομα με τα οποία δεν έχεις μοιραστεί το προφίλ σου.</string>
     <string name="preferences_proxy_address">Διεύθυνση proxy</string>
     <string name="preferences_only_use_a_proxy_if">Χρησιμοποίησε proxy μόνο αν δεν μπορείς να συνδεθείς στο Signal από δεδομένα κινητής ή Wi-Fi.</string>
     <string name="preferences_share">Μοιράσου</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Επιτυχία</string>
     <string name="preferences_failed_to_connect">Αποτυχία σύνδεσης</string>
     <string name="preferences_enter_proxy_address">Εισαγωγή διεύθυνσης proxy</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Αυτόματη επαλήθευση κλειδιού</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Όταν είναι ενεργοποιημένο, το Signal θα επιχειρήσει να επαληθεύσει αυτόματα την κρυπτογράφηση των προσωπικών συνομιλιών.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Μάθε περισσότερα</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Αποθήκευση</string>
-    <string name="media_preview__edit_title">Eπεξεργασία</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Προεπισκόπιση</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Ποτέ</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Άγνωστο</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Αποτυχία ενεργοποίησης Κλειδώματος εγγραφής.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Αποτυχία απενεργοποίησης Κλειδώματος εγγραφής.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Πρέπει να εισάγεις το PIN Κλειδώματος εγγραφής σου</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Το PIN έχει τουλάχιστον %1$d ψηφία ή χαρακτήρες</string>
     <string name="RegistrationActivity_too_many_attempts">Υπερβολικά πολλές προσπάθειες</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Εμφάνιση εικονιδίου κατάστασης</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Εμφάνιση εικονιδίου στις λεπτομέρειες μηνύματος όταν αυτά έχουν παραδοθεί με χρήση του προστατευμένου αποστολέα.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Όταν ενεργοποιηθεί, τα νέα μηνύματα που στέλνονται και λαμβάνονται σε σε νέες συνομιλίες που ξεκινάς εσύ θα εξαφανίζονται αφού διαβαστούν.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Όταν ενεργοποιηθεί, τα νέα μηνύματα που στέλνονται και λαμβάνονται σε αυτή τη συνομιλία θα εξαφανίζονται αφού διαβαστούν.</string>
-    <string name="ExpireTimerSettingsFragment__off">Ανενεργό</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 εβδομάδες</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 εβδομάδα</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 ημέρα</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 ώρες</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 ώρα</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 λεπτά</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 δευτερόλεπτα</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Προσαρμοσμένος χρόνος</string>
-    <string name="ExpireTimerSettingsFragment__save">Αποθήκευση</string>
 
 
     <!-- ChatColorSelectionFragment -->

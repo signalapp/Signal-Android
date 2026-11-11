@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">S\'ha produït un error en connectar amb el servidor.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Els PIN són necessaris per al bloqueig de registre. Per desactivar-los, primer desactiveu el bloqueig de registre.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN creat.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivat.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registra la frase de recuperació de pagaments</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Registra la frase</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Abans de poder desactivar el PIN, heu de registrar la frase de recuperació de pagaments per assegurar-vos que podeu recuperar el compte de pagaments.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Crear una nova clau de recuperació</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Has de crear i registrar una nova clau de recuperació abans de poder desactivar el teu PIN.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Crea una clau</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s ha eliminat aquest missatge</string>
     <string name="ConversationItem_you_deleted_this_message">Has eliminat aquest missatge</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Eliminar per a tothom?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">%1$s (admin) ha eliminat aquest missatge</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Se suprimeixen missatges…</string>
     <string name="ConversationFragment_delete_for_me">Esborrar per a mi</string>
     <string name="ConversationFragment_delete_for_everyone">Esborrar per a tothom</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Vols suprimir el missatge seleccionat?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Bloca el Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Jo</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Tipus de fitxer no compatible</string>
-    <string name="MediaPreviewActivity_draft">Esborrany</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Vols esborrar el missatge?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Aquest missatge s\'esborrarà permanentment.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s a %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Vós a %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s a vós</string>
     <string name="MediaPreviewActivity_media_no_longer_available">El contingut ja no està disponible.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">No s\'ha pogut reproduir l\'arxiu.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Error trobant el missatge.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">No es pot trobar cap aplicació que pugui compartir aquest contingut.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Tanca</string>
     <string name="MediaPreviewFragment_edit_media_error">Error d\'arxius</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Error en eliminar el missatge, el missatge encara pot existir</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Llegiu-ne més.</string>
     <string name="MediaPreviewFragment_share">Comparteix</string>
 
     <!-- MessageNotifier -->
@@ -3705,7 +3680,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Les apps d\'assistents d\'IA com Gemini poden escanejar el teu contingut de Signal. Per prevenir-ho, s\'ha activat la seguretat de la pantalla. Això també desactiva les captures de pantalla.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Seguretat de la pantalla activada</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3688,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Desactivar la seguretat de la pantalla?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Si desactives aquesta opció, podries permetre que assistents d\'IA com ara Gemini de Google escanegin el contingut de Signal i l\'utilitzin per funcions que poden no ser privades.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Desactiva</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Notificacions</string>
     <string name="preferences__led_color_unknown">Desconegut</string>
     <string name="preferences__silent">Silenciós</string>
-    <string name="preferences__advanced">Avançat</string>
     <string name="preferences__donate_to_signal">Fer una donació a Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Històries</string>
     <string name="preferences__payments">Pagaments</string>
     <string name="preferences__linked_devices">Dispositius enllaçats</string>
-    <string name="preferences__disable_pin">Desactiva el PIN</string>
-    <string name="preferences__enable_pin">Activa el PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si desactiveu el PIN, perdreu totes les dades quan torneu a registrar-vos al Signal, si no és que en feu una còpia de seguretat i una restauració manualment. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu. No necessitareu el PIN per obrir l\'aplicació.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Configuració avançada del PIN</string>
     <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Retransmet totes les trucades a través del servidor del Signal per evitar revelar l\'adreça IP al contacte. Activar-ho reduirà la qualitat de la trucada.</string>
-    <string name="preferences_advanced__always_relay_calls">Retransmet sempre les trucades</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Recordatoris de missatges no llegits</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Elusió de la censura</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Elusió de la censura</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">En activar-ho, el Signal provarà d\'eludir la censura. No activeu aquesta característica si no sou a una ubicació on el Signal és censurat.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">L\'elusió de la censura s\'ha activat basant-se en el número de telèfon del vostre compte.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Heu desactivat manualment l’elusió de la censura.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">L\'elusió de la censura no és necessària: ja esteu connectat al servei del Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">L\'elusió de la censura només es pot activar si esteu connectat a internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Remitent segellat</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Permet-ho per a tothom</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa el remitent segellat per a missatges rebuts de persones que no teniu als contactes o de persones amb qui no heu compartit el vostre perfil.</string>
     <string name="preferences_proxy_address">Adreça intermediària</string>
     <string name="preferences_only_use_a_proxy_if">Useu un servidor intermediari només si no sou capaç de connectar-vos al Signal per les dades mòbils o sense fil.</string>
     <string name="preferences_share">Comparteix-lo</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Correcte</string>
     <string name="preferences_failed_to_connect">Ha fallat la connexió.</string>
     <string name="preferences_enter_proxy_address">Introduïu l\'adreça del servidor intermediari</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Verificació automàtica de clau</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Quan aquesta opció està habilitada, Signal intentarà verificar automàticament l\'encriptació dels xats individuals.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Més informació</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Desa</string>
-    <string name="media_preview__edit_title">Edita</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Previsualització multimèdia</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Mai</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Desconegut</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Ha fallat activar el bloqueig de registre.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Ha fallat desactivar el bloqueig de registre.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Heu d\'escriure el PIN de bloqueig del registre</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">El PIN té un mínim de %1$d dígits o caràcters.</string>
     <string name="RegistrationActivity_too_many_attempts">Massa intents</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostra la icona d\'estat</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostra una icona als detalls del missatge quan es lliuri mitjançant un remitent segellat.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Quan s\'activa, els nous missatges enviats i rebuts als nous xats que hagis iniciat desapareixeran després de ser vistos.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Quan s\'activa, els nous missatges enviats i rebuts en aquest xat desapareixeran després de ser vistos.</string>
-    <string name="ExpireTimerSettingsFragment__off">Inactiu</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 setmanes</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 setmana</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 dia</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 hores</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 hora</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minuts</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 segons</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Temps personalitzat</string>
-    <string name="ExpireTimerSettingsFragment__save">Desa</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5272,7 +5196,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d de %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Comparteix-lo</string>

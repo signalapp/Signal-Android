@@ -1220,7 +1220,7 @@
     <!-- AccountSettingsScreen -->
     <!-- Snackbar shown after the user creates a PIN -->
     <string name="AccountSettingsScreen__pin_created">PIN created.</string>
-    <!-- Snackbar shown when wiping all of the app's data on this device fails -->
+    <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Failed to delete data</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Failed to enable registration lock.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Failed to disable registration lock.</string>

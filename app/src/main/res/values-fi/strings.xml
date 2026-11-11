@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Virhe yhdistettäessä palvelimeen!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Rekisteröintiesto vaatii tunnusluvun. Poista rekisteröintiesto käytöstä ennen tunnusluvun poistamista.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">Tunnusluku on luotu.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">Tunnusluku on poistettu käytöstä.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Tallenna maksujen palautuslause</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Tallenna lause</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Ennen tunnusluvun ottamista pois käytöstä tallenna palautuslause. Sitä tarvitaan maksutilin palauttamiseen.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Luo uusi palautusavain</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Sinun on luotava ja tallennettava uusi palautusavain ennen kuin voit poistaa PIN-koodin käytöstä.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Luo avain</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s poisti viestin</string>
     <string name="ConversationItem_you_deleted_this_message">Poistit tämän viestin</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Poistetaanko kaikilta?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Ylläpitäjä %1$s poisti viestin</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Viestejä poistetaan…</string>
     <string name="ConversationFragment_delete_for_me">Poista minulta</string>
     <string name="ConversationFragment_delete_for_everyone">Poista kaikilta</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Poistetaanko valittu viesti?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Lukitse Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Sinä</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Median tyyppiä ei tueta</string>
-    <string name="MediaPreviewActivity_draft">Luonnos</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Poistetaanko viesti?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Viesti poistetaan pysyvästi.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s käyttäjälle %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Sinulta käyttäjälle %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s sinulle</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media ei ole enää saatavilla.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Mediasisältöä ei voi toistaa.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Virhe etsittäessä viestiä.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Mikään sovellus ei tue tämän median jakamista.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Sulje</string>
     <string name="MediaPreviewFragment_edit_media_error">Mediavirhe</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Virhe poistettaessa viestiä, viesti voi edelleen olla olemassa</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Lue lisää</string>
     <string name="MediaPreviewFragment_share">Jaa</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Ilmoitukset</string>
     <string name="preferences__led_color_unknown">Tuntematon</string>
     <string name="preferences__silent">Ei ääntä</string>
-    <string name="preferences__advanced">Lisäasetukset</string>
     <string name="preferences__donate_to_signal">Lahjoita Signalille</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Tarinat</string>
     <string name="preferences__payments">Maksut</string>
     <string name="preferences__linked_devices">Yhdistetyt laitteet</string>
-    <string name="preferences__disable_pin">Poista tunnusluku käytöstä</string>
-    <string name="preferences__enable_pin">Ota tunnusluku käyttöön</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jos poistat tunnusluvun käytöstä, menetät kaikki tietosi rekisteröityessäsi Signaliin uudelleen, ellet varmuuskopioi tietojasi käsin. Et voi myöskään ottaa rekisteröintiestoa käyttöön, jos tunnusluku on pois päältä.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Tunnusluvulla salataan Signaliin tallentamasi tiedot, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautetaan, kun asennat Signalin uudelleen. Tunnuslukua ei tarvita sovelluksen avaamiseen.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Tunnusluvun lisäasetukset</string>
     <string name="preferences__submit_debug_log">Lähetä virheenkorjausloki</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kaikki puhelut välitetään Signalin palvelimen kautta, jotta IP-osoitteesi ei paljastu yhteystiedollesi. Heikentää puhelun laatua.</string>
-    <string name="preferences_advanced__always_relay_calls">Välitä aina kaikki puhelut</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Lukemattomat muistutukset</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Sensuurin kiertäminen</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Sensuurin kiertäminen</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Signal yrittää kiertää sensuuria toiminnon ollessa käytössä. Käytä toimintoa vain paikassa, jossa Signal on sensuroitu.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Puhelinnumerosi sijaintiin perustuva sensuurin kiertäminen otettu käyttöön.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Olet manuaalisesti poistanut käytöstä sensuurin kiertämisen.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Sensuurin kiertäminen ei ole tarpeellista, sillä laite on jo yhdistetty Signal-palvelimeen.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Sensuurin kiertäminen toimii ainoastaan laitteen ollessa Internet-yhteydessä.</string>
-    <string name="preferences_communication__category_sealed_sender">Lähettäjäsinetti</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Hyväksy kaikilta</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ota lähettäjäsinetti käyttöön saapuville viesteille henkilöiltä, jotka eivät ole yhteystiedoissasi tai joiden kanssa et ole jakanut profiiliasi.</string>
     <string name="preferences_proxy_address">Välityspalvelimen osoite</string>
     <string name="preferences_only_use_a_proxy_if">Käytä välityspalvelinta vain, jos et saa yhteyttä Signaliin mobiiliverkolla tai Wi-Fi:llä.</string>
     <string name="preferences_share">Jaa</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Onnistui</string>
     <string name="preferences_failed_to_connect">Yhteyden muodostaminen epäonnistui</string>
     <string name="preferences_enter_proxy_address">Syötä välityspalvelimen osoite</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automaattinen avaimen vahvistus</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Kun toiminto on käytössä, Signal yrittää automaattisesti varmistaa henkilökohtaisten keskustelujen salauksen.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Lue lisää</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Tallenna</string>
-    <string name="media_preview__edit_title">Muokkaa</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Median esikatselu</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">ei koskaan</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Tuntematon</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Rekisteröintiestoa ei voitu ottaa käyttöön.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Rekisteröintiestoa ei voitu poistaa käytöstä.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Rekisteröintieston tunnusluku vaaditaan</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Tunnusluvussa on vähintään %1$d numeroa tai merkkiä</string>
     <string name="RegistrationActivity_too_many_attempts">Liian monta yritystä</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Näytä tilailmaisin</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Näytä viestin lisätiedoissa kuvake niille viesteille, jotka toimitettiin lähettäjäsinetillä.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat uusista aloittamistasi keskusteluista, kun ne on nähty.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta, kun ne on nähty.</string>
-    <string name="ExpireTimerSettingsFragment__off">Ei käytössä</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 viikkoa</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 viikko</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 päivä</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 tuntia</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 tunti</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minuuttia</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekuntia</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Muu aika</string>
-    <string name="ExpireTimerSettingsFragment__save">Tallenna</string>
 
 
     <!-- ChatColorSelectionFragment -->

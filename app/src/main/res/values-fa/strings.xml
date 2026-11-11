@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام لازم هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">عبارت بازیابی پرداخت‌ها را ثبت کنید</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">ثبت عبارت</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل از اینکه قادر به غیرفعال کردن پین خود باشید، باید عبارت بازیابی پرداخت‌های خود را ثبت کنید تا مطمئن شوید که می‌توانید حساب کاربری پرداخت‌های خود را بازیابی کنید.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">رمز بازیابی جدید ایجاد کنید</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">باید قبل از غیرفعال کردن پین خود، رمز بازیابی جدیدی ایجاد و ثبت کنید.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">ایجاد رمز</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">‏%1$s این پیام را حذف کرد</string>
     <string name="ConversationItem_you_deleted_this_message">شما این پیام را حذف کردید</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">برای همه حذف شود؟</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">مدیر %1$s این پیام را حذف کرد</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">حذف پیام‌‌ها…</string>
     <string name="ConversationFragment_delete_for_me">پاک کردن برای من</string>
     <string name="ConversationFragment_delete_for_everyone">پاک کردن برای همه</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">پاک کردن پیام انتخاب شده؟</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">قفل کردن سیگنال</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">شما</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">نوع رسانه پشتیبانی نشده است</string>
-    <string name="MediaPreviewActivity_draft">پیش‌نویس</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">پاک کردن پیام؟</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">این گزینه این پیام را به طور دائم پاک خواهد کرد.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s به %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">شما به %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s به شما</string>
     <string name="MediaPreviewActivity_media_no_longer_available">رسانه دیگر در دسترس نیست.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">پخش رسانه امکان‌پذیر نیست.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">خطا در یافتن پیام.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">برنامه‌ای برای اشتراک‌گذاری این رسانه پیدا نشد.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">بستن</string>
     <string name="MediaPreviewFragment_edit_media_error">خطای رسانه</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">خطا در حذف پیام، ممکن است پیام همچنان وجود داشته باشد</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">بیشتر بخوانید</string>
     <string name="MediaPreviewFragment_share">اشتراک‌گذاری</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">اعلان‌ها</string>
     <string name="preferences__led_color_unknown">ناشناخته</string>
     <string name="preferences__silent">بی‌صدا</string>
-    <string name="preferences__advanced">پیشرفته</string>
     <string name="preferences__donate_to_signal">اهدای کمک مالی به سیگنال</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">استوری‌ها</string>
     <string name="preferences__payments">پرداخت‌ها</string>
     <string name="preferences__linked_devices">دستگاه‌های پیوند داده شده</string>
-    <string name="preferences__disable_pin">غیرفعال کردن پین</string>
-    <string name="preferences__enable_pin">فعال کردن پین</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در سیگنال ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازیابی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">پین‌ها اطلاعات ذخیره شدهٔ سمت سیگنال را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازیابی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">تنظیمات پیشرفتهٔ پین</string>
     <string name="preferences__submit_debug_log">ارسال گزارش عیب‌یابی</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور سیگنال به منظور جلوگیری از آشکار شدن نشانی اینترنتی شما برای مخاطبین‌تان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
-    <string name="preferences_advanced__always_relay_calls">عبور همیشگی تماس‌ها</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">یادآورهای خوانده‌نشده</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">عبور از فیلترینگ</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">عبور از فیلترینگ</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">اگر فعال شود، سیگنال اقدام به دور زدن فیلترینگ خواهد کرد. تنها در صورتی این قابلیت را فعال کنید که سیگنال در محل شما مسدود شده است.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">عبور از فیلترینگ بر اساس شماره تلفن شما فعال شد.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">شما عبور از فیلترینگ را به صورت دستی غیرفعال کردید.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">نیازی به دورزدن سانسور نیست؛ شما به سرویس سیگنال دسترسی مستقیم دارید.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">عبور از فیلترینگ تنها زمانی می‌تواند فعال شود که اینترنت متصل باشد.</string>
-    <string name="preferences_communication__category_sealed_sender">فرستندهٔ ناشناس</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های ورودی از غیرمخاطبین و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
     <string name="preferences_proxy_address">نشانی پروکسی</string>
     <string name="preferences_only_use_a_proxy_if">فقط در صورتی از پروکسی استفاده کنید که قادر به اتصال به سیگنال بر روی داده‌های تلفن همراه یا Wi-Fi نیستید.</string>
     <string name="preferences_share">اشتراک‌گذاری</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">موفقیت</string>
     <string name="preferences_failed_to_connect">اتصال موفق نبود</string>
     <string name="preferences_enter_proxy_address">نشانی پروکسی را وارد کنید</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">تأیید رمز خودکار</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">در صورت فعال بودن، سیگنال تلاش می‌کند رمزگذاری گفتگوهای فرد به فرد را به‌صورت خودکار تأیید کند.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">بیشتر بدانید</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">ذخیره</string>
-    <string name="media_preview__edit_title">ویرایش</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">پیش‌نمایش رسانه‌</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">هرگز</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">ناشناخته</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">فعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">غیرفعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">شما باید پین قفل ثبت‌نام خود را وارد کنید</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">پین حداقل شامل %1$d رقم یا نویسه است</string>
     <string name="RegistrationActivity_too_many_attempts">تلاش‌های بیش از حد</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">نمایش آیکون وضعیت</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">نمایش یک آیکون در جزئیات پیام وقتی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">وقتی فعال شد، در گفتگوهایی که شما آغاز می‌کنید پیام‌های ارسال و دریافت شدهٔ جدید پس از دیده شدن ناپدید خواهند شد.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">وقتی فعال شد، پیام‌های ارسال و دریافت شدهٔ جدید در این گفتگو پس از دیده شدن ناپدید خواهند شد.</string>
-    <string name="ExpireTimerSettingsFragment__off">خاموش</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">۴ هفته</string>
-    <string name="ExpireTimerSettingsFragment__1_week">۱ هفته</string>
-    <string name="ExpireTimerSettingsFragment__1_day">۱ روز</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">۸ ساعت</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">۱ ساعت</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">۵ دقیقه</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">۳۰ ثانیه</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">زمان سفارشی</string>
-    <string name="ExpireTimerSettingsFragment__save">ذخیره</string>
 
 
     <!-- ChatColorSelectionFragment -->

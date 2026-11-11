@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">שגיאה בהתחברות לשרת!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">קודי PIN נדרשים עבור נעילת הרשמה. כדי להשבית קודי PIN, אנא השבת תחילה נעילת הרשמה.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN נוצר.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN הושבת.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">תעד משפט השבה של תשלומים</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">תעד משפט</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">לפני שתוכל להשבית את ה־PIN שלך, אתה חייב לתעד את משפט ההשבה של התשלומים שלך כדי להבטיח שתוכל להשיב את חשבון התשלומים שלך.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">יצירת מפתח שחזור חדש</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">יש ליצור ולתעד מפתח שחזור חדש לפני שתהיה לך אפשרות להשבית את קוד ה–PIN שלך.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">יצירת מפתח</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -377,8 +365,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">ההודעה הזו נמחקה על ידי %1$s</string>
     <string name="ConversationItem_you_deleted_this_message">ההודעה הזו נמחקה על ידך</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">למחוק עבור כולם?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">ההודעה הזו נמחקה על ידי מנהל/ת הקבוצה %1$s</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -543,6 +529,8 @@
     <string name="ConversationFragment_deleting_messages">מוחק הודעות…</string>
     <string name="ConversationFragment_delete_for_me">מחיקה עבורי</string>
     <string name="ConversationFragment_delete_for_everyone">מחיקה עבור כולם</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">למחוק הודעה נבחרת?</item>
@@ -3131,28 +3119,15 @@
     <string name="KeyCachingService_lock">נעל את Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">אתה</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה בלתי נתמך</string>
-    <string name="MediaPreviewActivity_draft">טיוטה</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">למחוק הודעה?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">זה ימחק לצמיתות הודעה זו.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s אל %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">את/ה אל %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s אליך</string>
     <string name="MediaPreviewActivity_media_no_longer_available">מדיה אינה זמינה יותר.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">לא ניתן לנגן מדיה.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">שגיאה במציאת הודעה.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">לא ניתן למצוא יישום שמסוגל לשתף מדיה זו.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">סגור</string>
     <string name="MediaPreviewFragment_edit_media_error">שגיאת מדיה</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">שגיאה במחיקת הודעה, יתכן שההודעה עדיין קיימת</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">קרא עוד</string>
     <string name="MediaPreviewFragment_share">שתף</string>
 
     <!-- MessageNotifier -->
@@ -3947,40 +3922,15 @@
     <string name="preferences__notifications">התראות</string>
     <string name="preferences__led_color_unknown">בלתי ידוע</string>
     <string name="preferences__silent">שקט</string>
-    <string name="preferences__advanced">מתקדם</string>
     <string name="preferences__donate_to_signal">ביצוע תרומה ל–Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">סטוריז</string>
     <string name="preferences__payments">תשלומים</string>
     <string name="preferences__linked_devices">מכשירים מקושרים</string>
-    <string name="preferences__disable_pin">השבת PIN</string>
-    <string name="preferences__enable_pin">אפשר PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">אם תשבית את ה־PIN, תאבד את כל הנתונים כאשר תירשם מחדש אל Signal אלא אם תגבה ותשחזר באופן ידני. אינך יכול להפעיל נעילת הרשמה בזמן שה־PIN מושבת.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal. לא תצטרך את ה־PIN שלך כדי לפתוח את היישום.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">הגדרות PIN מתקדמות</string>
     <string name="preferences__submit_debug_log">הגש יומן ניפוי תקלים</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">שדר את כל השיחות דרך שרת Signal כדי להימנע מחשיפת כתובת ה־IP שלך לאיש הקשר שלך. אפשור יפחית איכות שיחה.</string>
-    <string name="preferences_advanced__always_relay_calls">שדר מחדש שיחות תמיד</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">תזכורות על הודעות שלא נקראו</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">עקיפת צנזורה</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">עקיפת צנזורה</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">אם מאופשר, Signal ינסה לעקוף צנזורה. אל תאפשר מאפיין זה אלא אם אתה במיקום שבו Signal מצונזר.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">עקיפת צנזורה הופעלה על סמך מספר הטלפון של החשבון שלך.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">הִשְׁבַּתָּ באופן ידני עקיפת צנזורה.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">עקיפת צנזורה אינה הכרחית; אתה מחובר כבר אל שירות Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">עקיפת צנזורה יכולה להיפעל בעת התחברות אל האינטרנט.</string>
-    <string name="preferences_communication__category_sealed_sender">שולח אטום</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">התר מכל אחד</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">אפשר שולח אטום עבור הודעות נכנסות מאת אי־אנשי קשר ומאת אנשים איתם לא שיתפת את הפרופיל שלך.</string>
     <string name="preferences_proxy_address">כתובת יפוי כוח</string>
     <string name="preferences_only_use_a_proxy_if">השתמש בייפוי כוח רק אם אינך מסוגל להתחבר אל Signal על נתונים סלולריים או Wi-Fi.</string>
     <string name="preferences_share">שתף</string>
@@ -3994,10 +3944,6 @@
     <string name="preferences_success">הצלחה</string>
     <string name="preferences_failed_to_connect">נכשל בהתחברות</string>
     <string name="preferences_enter_proxy_address">הכנס כתובת יפוי כוח</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">אימות מפתח אוטומטי</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">כשהאפשרות הזו מופעלת, Signal תנסה לאמת אוטומטית את ההצפנה של צ׳אטים אישיים.</string>
 
 
     <!-- Internal only preferences -->
@@ -4382,11 +4328,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">למידע נוסף</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">שמור</string>
-    <string name="media_preview__edit_title">ערוך</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">תצוגה מקדימה של מדיה</string>
@@ -4574,8 +4515,6 @@
     <string name="BackupUtil_never">אף פעם</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">בלתי ידוע</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">נכשל באיפשור נעילת הרשמה.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">נכשל בהשבתת נעילת הרשמה.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">אתה חייב להכניס את PIN נעילת ההרשמה שלך</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">לקוד ה־PIN שלך צריכים להיות לפחות %1$d ספרות או תווים</string>
     <string name="RegistrationActivity_too_many_attempts">יותר מדי ניסיונות</string>
@@ -5306,22 +5245,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">הראה איקון מעמד</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">הראה איקון בפרטי הודעה כאשר היא נשלחה ע״י שימוש בשולח אטום.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">כאשר אפשרות זו מופעלת, הודעות חדשות שנשלחות ומתקבלות בצ׳אטים חדשים שהותחלו על ידך ייעלמו לאחר שייראו.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">כאשר אפשרות זו מופעלת, הודעות חדשות שנשלחות ומתקבלות בצ׳אט זה ייעלמו לאחר שייראו.</string>
-    <string name="ExpireTimerSettingsFragment__off">כבוי</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 שבועות</string>
-    <string name="ExpireTimerSettingsFragment__1_week">שבוע</string>
-    <string name="ExpireTimerSettingsFragment__1_day">יום</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 שעות</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">שעה</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 דקות</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 שניות</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">זמן מותאם אישית</string>
-    <string name="ExpireTimerSettingsFragment__save">שמור</string>
 
 
     <!-- ChatColorSelectionFragment -->

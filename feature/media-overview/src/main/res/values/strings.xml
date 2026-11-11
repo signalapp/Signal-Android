@@ -113,13 +113,13 @@
   <string name="MediaOverviewScreen__type_file">File</string>
   <!-- Title of a voice message in a media overview list row, in place of a file name -->
   <string name="MediaOverviewScreen__voice_message">Voice Message</string>
-  <!-- Shown in a media overview list row for an item in the user's Note to Self chat, in place of who sent it -->
+  <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
   <string name="MediaOverviewScreen__note_to_self">Note to Self</string>
-  <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender's name -->
+  <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
   <string name="MediaOverviewScreen__sent_by_s">Sent by %1$s</string>
   <!-- Shown in a media overview list row for an item the user sent -->
   <string name="MediaOverviewScreen__sent_by_you">Sent by you</string>
-  <!-- Shown in a media overview list row when listing media from every chat, for an item someone else sent in a group. The first placeholder is the sender's name, the second is the group name -->
+  <!-- Shown in a media overview list row when listing media from every chat, for an item someone else sent in a group. The first placeholder is the sender\'s name, the second is the group name -->
   <string name="MediaOverviewScreen__sent_by_s_to_s">Sent by %1$s to %2$s</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item the user sent. The placeholder is the name of the chat it was sent to -->
   <string name="MediaOverviewScreen__sent_by_you_to_s">Sent by you to %1$s</string>

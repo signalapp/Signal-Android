@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN 碼是註冊鎖定所必需的。如要停用 PIN 碼，請先關閉註冊鎖定功能。</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN 碼已建立。</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN 碼已停用。</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">記錄付款回復短語</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">紀錄短語</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">在停用PIN碼之前，你必須記錄你的付款回復詞語以確保可以回復你的付款帳戶。</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">建立新的恢復金鑰</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">你必須先建立並記下新的恢復金鑰，才能停用 PIN 碼。</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">建立金鑰</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -371,8 +359,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s已刪除此訊息</string>
     <string name="ConversationItem_you_deleted_this_message">你已刪除此訊息</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">要為所有人刪除嗎？</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">管理員%1$s已刪除此訊息</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -522,6 +508,8 @@
     <string name="ConversationFragment_deleting_messages">刪除訊息中…</string>
     <string name="ConversationFragment_delete_for_me">為我刪除</string>
     <string name="ConversationFragment_delete_for_everyone">為大家刪除</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="other">刪除已選訊息？</item>
@@ -2840,28 +2828,15 @@
     <string name="KeyCachingService_lock">鎖定 Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">你</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
-    <string name="MediaPreviewActivity_draft">草稿</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">刪除訊息？</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">這將永久刪除此訊息。</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s到%2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">你給 %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s 給你</string>
     <string name="MediaPreviewActivity_media_no_longer_available">媒體已不存在。</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">無法播放多媒體。</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">查找訊息時發生錯誤。</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">找不到能夠分享此媒體檔案的應用程式。</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">關閉</string>
     <string name="MediaPreviewFragment_edit_media_error">多媒體錯誤</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">刪除訊息時發生錯誤，訊息可能仍然存在</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">閱讀更多</string>
     <string name="MediaPreviewFragment_share">分享</string>
 
     <!-- MessageNotifier -->
@@ -3608,40 +3583,15 @@
     <string name="preferences__notifications">通知</string>
     <string name="preferences__led_color_unknown">未知</string>
     <string name="preferences__silent">靜音</string>
-    <string name="preferences__advanced">進階</string>
     <string name="preferences__donate_to_signal">贊助 Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">動態</string>
     <string name="preferences__payments">付款</string>
     <string name="preferences__linked_devices">已連結裝置</string>
-    <string name="preferences__disable_pin">停用 PIN 碼</string>
-    <string name="preferences__enable_pin">啟用 PIN 碼</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果你停用 PIN 碼，則除非你進行手動備份和還原，否則當你重新註冊 Signal 時，將會遺失所有資料。停用 PIN 碼時無法開啟註冊鎖定。</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 碼用於加密在 Signal 中儲存的資訊，以確保只得你可以存取。當你重新安裝應用程式後，你的個人資料、設定和聯絡人將會還原。開啟應用程式不需要你的 PIN 碼。</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">進階 PIN 碼設定</string>
     <string name="preferences__submit_debug_log">送出偵錯日誌</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
-    <string name="preferences_advanced__always_relay_calls">永遠轉發通話</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">未讀提示</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">審查規避</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">審查規避</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">若啟用，Signal 將嘗試繞過網路審查，除非您所在的區域會封鎖 Signal，否則不要使用這項功能</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">根據您的電話號碼，我們已自動啟用網路審查規避</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">你已經手動關閉規避審查。</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">你已經連接上 Signal服務，所以不需要啟動審查規避功能。</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">審查規避只能在連上網路時啟動。</string>
-    <string name="preferences_communication__category_sealed_sender">密封發件人</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">允許任何人</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">啟用密封發件人對來自非聯絡人及其他你未分享過個人資料的人傳來的訊息。</string>
     <string name="preferences_proxy_address">代理伺服器位址</string>
     <string name="preferences_only_use_a_proxy_if">僅當你無法透過行動數據或 Wi-Fi 連接到 Signal 時才使用代理。</string>
     <string name="preferences_share">分享</string>
@@ -3655,10 +3605,6 @@
     <string name="preferences_success">成功</string>
     <string name="preferences_failed_to_connect">連接失敗</string>
     <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">自動金鑰驗證</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">啟用時，Signal 會嘗試自動驗證 1 對 1 聊天的加密。</string>
 
 
     <!-- Internal only preferences -->
@@ -4037,11 +3983,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">了解更多</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">儲存</string>
-    <string name="media_preview__edit_title">編輯</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">媒體預覽</string>
@@ -4208,8 +4149,6 @@
     <string name="BackupUtil_never">永不</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">未知</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">無法啟用註冊鎖。</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">無法停用註冊鎖。</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">你必須輸入你的註冊鎖定 PIN 碼</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">你的PIN碼至少要%1$d個字元或字母</string>
     <string name="RegistrationActivity_too_many_attempts">您已重複嘗試太多次</string>
@@ -4895,22 +4834,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">顯示狀態圖示</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">使用密封發件人傳送訊息時，在訊息詳細資訊中顯示一個圖示</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">啟用後，在你發起的新聊天中傳送和接收的新訊息將在看到後消失。</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">啟用後，在此聊天中傳送和接收的新訊息將在看完後消失。</string>
-    <string name="ExpireTimerSettingsFragment__off">關</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 週</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 週</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 天</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 小時</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 小時</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 分鐘</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 秒</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">自定義時間</string>
-    <string name="ExpireTimerSettingsFragment__save">儲存</string>
 
 
     <!-- ChatColorSelectionFragment -->

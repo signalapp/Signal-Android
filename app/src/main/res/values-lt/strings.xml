@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Klaida prisijungiant prie serverio!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN kodai yra reikalingi registracijos užraktui. Norėdami išjungti PIN kodus, iš pradžių, išjunkite registracijos užraktą.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN kodas sukurtas.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN kodas išjungtas.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Užsirašykite mokėjimų atkūrimo frazę</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Atkūrimo frazė</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Prieš tai, kai galėsite išjungti PIN kodą, privalote užsirašyti mokėjimų atkūrimo frazę, kad būtų užtikrinta, jog galėsite atkurti savo mokėjimų paskyrą.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Sukurkite naują atkūrimo raktą</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Prieš išjungdami PIN kodą, turite sukurti ir įrašyti naują atkūrimo raktą.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Sukurti raktą</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -377,8 +365,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s ištrynė šią žinutę</string>
     <string name="ConversationItem_you_deleted_this_message">Jūs ištrynėte šią žinutę</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Ištrinti visiems?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administratorius %1$s ištrynė šią žinutę</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -543,6 +529,8 @@
     <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės…</string>
     <string name="ConversationFragment_delete_for_me">Ištrinti man</string>
     <string name="ConversationFragment_delete_for_everyone">Ištrinti visiems</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Ištrinti pažymėtą žinutę?</item>
@@ -3131,28 +3119,15 @@
     <string name="KeyCachingService_lock">Užrakinti Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Jūs</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Nepalaikomas medijos tipas</string>
-    <string name="MediaPreviewActivity_draft">Juodraštis</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Ištrinti žinutę?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s naudotojui %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Jūs siuntėte gavėjui %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s siuntė jums</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Medija daugiau nebeprieinama.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Nepavyksta paleisti įrašo.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Klaida ieškant žinutės.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepavyksta rasti programėlės, galinčios bendrinti šią mediją.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Užverti</string>
     <string name="MediaPreviewFragment_edit_media_error">Įrašų klaida</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Klaida trinant žinutę. Ši žinutė gali būti išlikusi</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Skaityti daugiau</string>
     <string name="MediaPreviewFragment_share">Bendrinti</string>
 
     <!-- MessageNotifier -->
@@ -3947,40 +3922,15 @@
     <string name="preferences__notifications">Pranešimai</string>
     <string name="preferences__led_color_unknown">Nežinoma</string>
     <string name="preferences__silent">Tyliai</string>
-    <string name="preferences__advanced">Išplėstiniai</string>
     <string name="preferences__donate_to_signal">Paremk „Signal“</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Istorijos</string>
     <string name="preferences__payments">Mokėjimai</string>
     <string name="preferences__linked_devices">Susieti įrenginiai</string>
-    <string name="preferences__disable_pin">Išjungti PIN kodą</string>
-    <string name="preferences__enable_pin">Įjungti PIN kodą</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jei išjungsite PIN kodą, tuomet registruodamiesi iš naujo Signal programėlėje, prarasite visus duomenis, nebent rankiniu būdu pasidarysite atsarginę kopiją ir ją atkursite. Tol, kol PIN kodas yra išjungtas, negalėsite įjungti Registracijos užrakto.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal programėlėje, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti. Norint atverti programėlę jums nereikės įvesti PIN kodo.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Išplėstiniai PIN kodo nustatymai</string>
     <string name="preferences__submit_debug_log">Pateikti derinimo žurnalą</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Retransliuoti visus skambučius per Signal serverį, kad būtų išvengta jūsų IP adreso atskleidimo jūsų adresatui. Įjungus, pablogės skambučių kokybė.</string>
-    <string name="preferences_advanced__always_relay_calls">Visada retransliuoti skambučius</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Pranešimai apie neperskaitytas žinutes</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Cenzūravimo apėjimas</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Cenzūravimo apėjimas</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Jei įjungta, Signal bandys apeiti cenzūravimą. Neįjunkite šios ypatybės, nebent esate vietoje, kurioje Signal yra cenzūruojama.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Cenzūravimo apėjimas buvo aktyvuotas pagal jūsų paskyros telefono numerį.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Jūs esate rankiniu būdu išjungę cenzūros apėjimą.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Cenzūravimo apėjimas nėra būtinas; jūs jau esate prisijungę prie Signal paslaugos.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Cenzūravimo apėjimas gali būti aktyvuotas tik prisijungus prie interneto.</string>
-    <string name="preferences_communication__category_sealed_sender">Užantspauduotas siuntėjas</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Leisti nuo bet ko</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Įjungti užantspauduotą siuntėją gaunamosioms žinutėms nuo asmenų, kurių nėra adresatų sąraše ir žmonių su kuriais nebendrinote savo profilį.</string>
     <string name="preferences_proxy_address">Įgaliotojo serverio adresas</string>
     <string name="preferences_only_use_a_proxy_if">Naudokite įgaliotąjį serverį tik tuo atveju, jei negalite prisijungti prie Signal naudodamiesi mobiliaisiais duomenimis ar belaidžiu (Wi-Fi) tinklu.</string>
     <string name="preferences_share">Bendrinti</string>
@@ -3994,10 +3944,6 @@
     <string name="preferences_success">Pavyko</string>
     <string name="preferences_failed_to_connect">Nepavyko prisijungti</string>
     <string name="preferences_enter_proxy_address">Įveskite įgaliotojo serverio adresą</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatinis rakto patvirtinimas</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Įjungus, „Signal“ bandys automatiškai patvirtinti asmeninių pokalbių šifravimą.</string>
 
 
     <!-- Internal only preferences -->
@@ -4382,11 +4328,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Sužinoti daugiau</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Įrašyti</string>
-    <string name="media_preview__edit_title">Taisyti</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Medijos peržiūra</string>
@@ -4574,8 +4515,6 @@
     <string name="BackupUtil_never">Niekada</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Nežinoma</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Nepavyko įjungti registracijos užrakto.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Nepavyko išjungti registracijos užrakto.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Privalote įvesti savo Registracijos užrakto PIN</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Jūsų PIN kode yra bent %1$d skaitmenys ar simboliai</string>
     <string name="RegistrationActivity_too_many_attempts">Per daug bandymų</string>
@@ -5306,22 +5245,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Rodyti būsenos piktogramą</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Išsamesnėje žinučių informacijoje rodyti piktogramą tais atvejais, kai jos buvo pristatytos naudojant užantspauduotą siuntėją.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kai įjungta, jūsų pradėtuose naujuose pokalbiuose naujos išsiųstos ir gautos žinutės išnyks po to, kai bus perskaitytos.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kai įjungta, šiame pokalbyje naujos išsiųstos ir gautos žinutės išnyks po to, kai bus perskaitytos.</string>
-    <string name="ExpireTimerSettingsFragment__off">Išjungta</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 savaitės</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 savaitė</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 diena</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 valandos</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 valanda</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutės</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundžių</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Tinkintas laikas</string>
-    <string name="ExpireTimerSettingsFragment__save">Įrašyti</string>
 
 
     <!-- ChatColorSelectionFragment -->

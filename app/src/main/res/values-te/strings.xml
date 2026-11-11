@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">సర్వర్ కి కలిపినపుడు లోపం!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">రిజిస్ట్రేషన్ లాక్ కోసం పిన్లు అవసరం. పిన్‌లను నిలిపివేయడానికి, దయచేసి మొదట రిజిస్ట్రేషన్ లాక్‌ని నిలిపివేయండి.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">పిన్ సృష్టించబడింది.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">పిన్ నిలిపివేయబడింది.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">రికార్డ్ చెల్లింపులు రికవరీ పదబంధం</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">రికార్డ్ పదబంధం</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">మీరు మీ పిన్ను నిలిపివేయడానికి ముందు, మీరు మీ చెల్లింపుల ఖాతాను తిరిగి పొందగలరని నిర్ధారించుకోవడానికి మీ చెల్లింపుల రికవరీ పదబంధాన్ని రికార్డ్ చేయాలి.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">కొత్త రికవరీ కీని సృష్టించండి</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">మీరు మీ PIN ను నిలిపివేయడానికి ముందు తప్పనిసరిగా కొత్త రికవరీ కీని సృష్టించాలి మరియు రికార్డ్ చేయాలి.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">కీని సృష్టించండి</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s ఈ సందేశాన్ని తొలగించారు</string>
     <string name="ConversationItem_you_deleted_this_message">మీరు ఈ సందేశాన్ని తొలగించారు</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">ప్రతి ఒక్కరి కొరకు తొలగించాలా?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">అడ్మిన్ %1$s ఈ సందేశాన్ని తొలగించారు</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">సందేశాలను తొలగిస్తోంది …</string>
     <string name="ConversationFragment_delete_for_me">నాకు తొలగించండి</string>
     <string name="ConversationFragment_delete_for_everyone">ప్రతిఒక్కరికీ తొలగించండి</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">ఎంచుకున్న సందేశాన్ని తొలగించేదా?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">లాక్ Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">మీరు</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">మద్ధతు లేనటువంటి ప్రసార మాధ్యమం</string>
-    <string name="MediaPreviewActivity_draft">చిత్తు పత్రం</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">సందేశాన్ని తొలగించేదా?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">ఈ సందేశాన్ని ఇది శాశ్వతంగా తొలగిస్తుంది.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$sకు%2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">మీ నుంచి %1$sకు</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s నుంచి మీకు</string>
     <string name="MediaPreviewActivity_media_no_longer_available">మీడియా ఇకపై అందుబాటులో లేదు.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">మీడియాను ప్లే చేయలేకపోయింది.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">సందేశాన్ని కనుగొనడంలో లోపం.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ఈ మీడియాను భాగస్వామ్యం చేయగల అనువర్తనాన్ని కనుగొనలేకపోయాము.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">మూసివెయ్యి</string>
     <string name="MediaPreviewFragment_edit_media_error">మీడియా లోపం</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">సందేశాన్ని తొలగించడంలో లోపం. సందేశం ఇప్పటికీ ఉండవచ్చు</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">ఇంకా చదవండి</string>
     <string name="MediaPreviewFragment_share">పంచుకోండి</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">ప్రకటనలు</string>
     <string name="preferences__led_color_unknown">తెలియని</string>
     <string name="preferences__silent">మౌనం</string>
-    <string name="preferences__advanced">ఆధునిక</string>
     <string name="preferences__donate_to_signal">Signal కు విరాళం ఇవ్వండి</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">స్టోరీస్</string>
     <string name="preferences__payments">చెల్లింపులు</string>
     <string name="preferences__linked_devices">పరికరాలు అనుసంధానించు</string>
-    <string name="preferences__disable_pin">పిన్‌ను ఆపివేయి</string>
-    <string name="preferences__enable_pin">పిన్ ప్రారంభించండి</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">మీరు పిన్‌ను నిలిపివేస్తే, మీరు మాన్యువల్‌గా ప్రత్యామ్నాయం చేసి పునరుద్ధరించకపోతే సిగ్నల్‌ను తిరిగి నమోదు చేసినప్పుడు మీరు మొత్తం డేటాను కోల్పోతారు. పిన్ నిలిపివేయబడినప్పుడు మీరు రిజిస్ట్రేషన్ లాక్‌ని ఆన్ చేయలేరు.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">పిన్‌లు Signal గుప్తీకరించిన సమాచారాన్ని నిల్వ చేస్తాయి కాబట్టి మీరు మాత్రమే దీన్ని యాక్సెస్ చేయవచ్చు. మీరు మళ్లీ ఇన్‌స్టాల్ చేసినప్పుడు మీ ప్రొఫైల్, సెట్టింగ్‌లు మరియు పరిచయాలు పునరుద్ధరించబడతాయి. అనువర్తనాన్ని తెరవడానికి మీకు మీ పిన్ అవసరం లేదు.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">అధునాతన పిన్ సెట్టింగ్‌లు</string>
     <string name="preferences__submit_debug_log">డీబగ్ లాగ్ను సమర్పించండి</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">మీ పరిచయం మీ IP చిరునామా బహిర్గతం నివారించేందుకు Signal సర్వర్ ద్వారా అన్ని కాల్స్ ప్రసారం. సమర్ధించే కాల్ నాణ్యత తగ్గిస్తుంది.</string>
-    <string name="preferences_advanced__always_relay_calls">ఎల్లప్పుడూ కాల్స్ రిలే</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">చదవని రిమైండర్‌లు</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">సెన్సార్‌షిప్ మోసం</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">సెన్సార్‌షిప్ మోసం</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">ప్రారంభించబడితే, Signal ప్రదర్శన నిషేధం తప్పించుకోవడానికి ప్రయత్నిస్తుంది. మీరు Signal నిషేధించ చేయబడిన ప్రదేశంలో ఉంటే తప్ప ఈ లక్షణాన్ని ప్రారంభించవద్దు.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">మీ ఖాతా ఫోన్ నంబర్ ఆధారంగా ప్రదర్శన వంచన నిషేధం సక్రియం చేయబడింది.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">మీరు మానవీయంగా ప్రదర్శన వంచన నిషేధం చుట్టుకొలతను నిలిపివేశారు.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ప్రదర్శన వంచన నిషేధం అవసరం లేదు; మీరు ఇప్పటికే Signal సేవకు కనెక్ట్ అయ్యారు.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ఇంటర్నెట్‌కు కనెక్ట్ అయినప్పుడు మాత్రమే ప్రదర్శన వంచన నిషేధం సక్రియం అవుతుంది.</string>
-    <string name="preferences_communication__category_sealed_sender">సీల్ పంపినవారు</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">ఎవరి నుండి అయినా అనుమతించు</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">మీరు మీ రూపం భాగస్వామ్యం చేయని పరిచయాలు మరియు వ్యక్తుల నుండి ఇన్కమింగ్ సందేశాల కోసం మూసివేసిన పంపేవారిని ప్రారంభించండి.</string>
     <string name="preferences_proxy_address">ప్రాక్సీ చిరునామా</string>
     <string name="preferences_only_use_a_proxy_if">మీరు మొబైల్ డేటా లేదా Wi-Fiపై Signal కు కనెక్ట్ చేయలేకపోతేనే ప్రాక్సీని ఉపయోగించండి.</string>
     <string name="preferences_share">పంచుకోండి</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">విజయం</string>
     <string name="preferences_failed_to_connect">కలవడం కుదరట్లేదు</string>
     <string name="preferences_enter_proxy_address">ప్రాక్సీ చిరునామాను నమోదు చేయండి</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">ఆటోమేటిక్ కీ ధృవీకరణ</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">ప్రారంభించబడినప్పుడు, Signal 1:1 చాట్‌ల గుప్తీకరణను స్వయంచాలకంగా ధృవీకరించడానికి ప్రయత్నిస్తుంది.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">మరింత తెలుసుకోండి</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">భద్రపరుచు</string>
-    <string name="media_preview__edit_title">సరిచేయు</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">మీడియా పూర్వప్రదర్శన</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">ఎప్పుడూ</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">తెలియని</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">రిజిస్ట్రేషన్ లాక్‌ని ప్రారంభించడంలో విఫలమైంది.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">రిజిస్ట్రేషన్ లాక్‌ను నిలిపివేయడంలో విఫలమైంది.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">మీరు మీ నమోదు లాక్ పిన్ నమోదు చేయాలి</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">మీ పిన్‌లో కనీసం %1$d అంకెలు లేదా అక్షరాలు ఉన్నాయి</string>
     <string name="RegistrationActivity_too_many_attempts">మితిమీరిన ప్రయత్నాలు</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">స్టేటస్ ఐకాన్‌ని చూపించడం</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">సీల్డ్ సెండర్‌ని ఉపయోగించి అవి డెలివరీ చేయబడినప్పుడు సందేశం వివరాల్లో ఐకాన్‌ని చూపించండి.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">ప్రారంభించినప్పుడు, మీచే ప్రారంభించబడిన కొత్త చాట్‌లలో పంపబడిన మరియు అందుకున్న కొత్త సందేశాలు వాటిని చూసిన తరువాత అదృశ్యం అవుతాయి.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">ప్రారంభించబడినప్పుడు, ఈ చాట్‌లో పంపబడిన మరియు అందుకున్న క్రొత్త సందేశాలు వాటిని చూసిన తరువాత అదృశ్యం అవుతాయి.</string>
-    <string name="ExpireTimerSettingsFragment__off">ఆఫ్</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 వారాలు</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 వారం</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 రోజు</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 గంటలు</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 గంట</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 నిముషాలు</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30సెకన్లు</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">అనుకూల సమయం</string>
-    <string name="ExpireTimerSettingsFragment__save">భద్రపరుచు</string>
 
 
     <!-- ChatColorSelectionFragment -->

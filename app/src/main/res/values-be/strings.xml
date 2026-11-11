@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Памылка падключэння да сервера!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Для блакіроўкі рэгістрацыі патрэбны PIN-коды. Каб адключыць PIN-коды, спачатку адключыце блакіроўку рэгістрацыі.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN-код створаны.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN-код адключаны.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Запісаць фразу для аднаўлення плацяжоў</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Запісаць фразу</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перш чым адключыць PIN-код, вы павінны запісаць фразу для аднаўлення плацяжоў, каб мець магчымасць аднавіць свой плацежны ўліковы запіс.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Стварыце новы код для аднаўлення</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Перш чым адключыць свой PIN-код, вам трэба стварыць і запісаць новы код для аднаўлення.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Стварыць новы код</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -377,8 +365,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s выдаліў(-ла) гэтае паведамленне</string>
     <string name="ConversationItem_you_deleted_this_message">Вы выдалілі гэтае паведамленне</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Выдаліць для ўсіх?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Адміністратар %1$s выдаліў гэтае паведамленне</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -543,6 +529,8 @@
     <string name="ConversationFragment_deleting_messages">Выдаленне паведамленняў…</string>
     <string name="ConversationFragment_delete_for_me">Выдаліць для сябе</string>
     <string name="ConversationFragment_delete_for_everyone">Выдаліць для ўсіх</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Выдаліць выбранае паведамленне?</item>
@@ -3131,28 +3119,15 @@
     <string name="KeyCachingService_lock">Заблакаваць Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Вы</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Тып медыяфайла не падтрымліваецца</string>
-    <string name="MediaPreviewActivity_draft">Чарнавік</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Выдаліць паведамленне?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Гэтае паведамленне будзе выдалена назаўсёды.</string>
-    <string name="MediaPreviewActivity_s_to_s">Ад %1$s да %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Вы адправілі %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s адправіў(-ла) вам</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Медыяфайл больш недаступны.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Не атрымалася прайграць медыяфайл.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Памылка пошуку паведамлення.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не знойдзена праграма, якая зможа абагуліць гэты медыяфайл.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Закрыць</string>
     <string name="MediaPreviewFragment_edit_media_error">Памылка медыяфайла</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Памылка пры выдаленні паведамлення, паведамленне можа па-ранейшаму існаваць</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Чытаць далей</string>
     <string name="MediaPreviewFragment_share">Абагуліць</string>
 
     <!-- MessageNotifier -->
@@ -3947,40 +3922,15 @@
     <string name="preferences__notifications">Апавяшчэнні</string>
     <string name="preferences__led_color_unknown">Невядома</string>
     <string name="preferences__silent">Без гука</string>
-    <string name="preferences__advanced">Пашыраныя</string>
     <string name="preferences__donate_to_signal">Ахвяраваць для Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Гісторыі</string>
     <string name="preferences__payments">Плацяжы</string>
     <string name="preferences__linked_devices">Звязаныя прылады</string>
-    <string name="preferences__disable_pin">Адключыць PIN-код</string>
-    <string name="preferences__enable_pin">Уключыць PIN-код</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Калі адключыць PIN-код, вы страціце ўсе даныя пры паўторнай рэгістрацыі ў Signal, таму загадзя зрабіце ўручную рэзервовае капіраванне і аднаўленне. Пакуль PIN-код адключаны, нельга будзе ўключыць блакіроўку рэгістрацыі.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды трымаюць інфармацыю, што захоўваецца ў Signal, зашыфраванай, таму толькі вы можаце атрымаць да яе доступ. Ваш профіль, налады і кантакты будуць адноўлены, калі вы зробіце паўторнае ўсталяванне. Вам не спатрэбіцца PIN-код, каб адкрыць праграму.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Пашыраныя налады PIN-кода</string>
     <string name="preferences__submit_debug_log">Адправіць журнал адладкі</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прапускаць усе званкі праз сервер Signal, каб не раскрываць ваш IP-адрас кантакту. Якасць званка пагоршыцца.</string>
-    <string name="preferences_advanced__always_relay_calls">Заўсёды рэтрансляваць званкі</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Непрачытаныя напаміны</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Абыход цэнзуры</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Абыход цэнзуры</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Калі ўключыць гэтую опцыю, Signal будзе спрабаваць абысці цэнзуру (блакіроўку правайдарам). Не ўключайце яе, калі там, дзе вы знаходзіцеся, Signal не блакуецца.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Абыход цэнзуры аўтаматычна актываваны на аснове нумара тэлефона вашага ўліковага запісу.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Вы ўручную адключылі абыход цэнзуры.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Абыход цэнзуры не патрэбны; вы ўжо падключаны да сэрвісу Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Абыход цэнзуры можа быць актываваны толькі пры падключэнні да інтэрнэту.</string>
-    <string name="preferences_communication__category_sealed_sender">Запячатаны адпраўнік</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Дазволіць ад усіх</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Дазволіць запячатанага адпраўніка для ўваходных паведамленняў ад людзей, якіх няма ў вашых кантактах і якім вы яшчэ не раскрывалі свой профіль.</string>
     <string name="preferences_proxy_address">Адрас проксі</string>
     <string name="preferences_only_use_a_proxy_if">Выкарыстоўваць проксі, толькі калі немагчыма падключыцца да Signal праз мабільныя даныя або Wi-Fi.</string>
     <string name="preferences_share">Абагуліць</string>
@@ -3994,10 +3944,6 @@
     <string name="preferences_success">Паспяхова</string>
     <string name="preferences_failed_to_connect">Не атрымалася падключыцца</string>
     <string name="preferences_enter_proxy_address">Увесці адрас проксі</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Аўтаматычная праверка ключоў</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Калі гэта функцыя ўключана, Signal будзе спрабаваць аўтаматычна правяраць шыфраванне прыватных чатаў.</string>
 
 
     <!-- Internal only preferences -->
@@ -4382,11 +4328,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Даведацца больш</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Захаваць</string>
-    <string name="media_preview__edit_title">Рэдагаваць</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Папярэдні прагляд медыяфайла</string>
@@ -4574,8 +4515,6 @@
     <string name="BackupUtil_never">Ніколі</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Невядома</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Не атрымалася ўключыць блакіроўку рэгістрацыі.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Не атрымалася адключыць блакіроўку рэгістрацыі.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Вам патрэбна ўвесьці свой PIN-код блакіроўкі рэгістрацыі</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Ваш PIN-код мае прынамсі %1$d лічбаў або сімвалаў</string>
     <string name="RegistrationActivity_too_many_attempts">Занадта шмат спроб</string>
@@ -5306,22 +5245,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Паказваць значок статусу</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Паказваць значок у «Звесткі аб паведамленні», калі яны былі дастаўлены з дапамогай запячатанага адпраўніка.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Калі гэта функцыя ўключаная, новыя паведамленні, што былі адпраўлены і атрыманы ў новых чатах, якія вы стварылі, знікнуць пасля прагляду.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Калі гэта функцыя ўключаная, новыя паведамленні, што былі адпраўлены і атрыманы ў гэтым чаце, знікнуць пасля прагляду.</string>
-    <string name="ExpireTimerSettingsFragment__off">Адкл.</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 тыдні</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 тыдзень</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 дзень</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 гадзін</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 гадзіна</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 хвілін</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 секунд</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Персаналізаваны час</string>
-    <string name="ExpireTimerSettingsFragment__save">Захаваць</string>
 
 
     <!-- ChatColorSelectionFragment -->

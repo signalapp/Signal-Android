@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba při připojování k serveru!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je vyžadován pro zámek registrace. Nejprve prosím zakažte zámek registrace, aby bylo možné PIN deaktivovat.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN vytvořen.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN zakázán.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Záznam fráze pro obnovení plateb</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Záznam fráze</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Než budete moci deaktivovat svůj PIN, musíte si zaznamenat frázi pro obnovení plateb, abyste zajistili, že můžete obnovit svůj platební účet.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Vytvořit nový klíč pro obnovení</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Než budete moci vypnout PIN, musíte vytvořit a nahrát nový klíč pro obnovení.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Vytvořit klíč</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -377,8 +365,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s tuto zprávu odstranil/a</string>
     <string name="ConversationItem_you_deleted_this_message">Tuto zprávu jste odstranili</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Odstranit pro všechny?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Správce %1$s tuto zprávu odstranil</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -543,6 +529,8 @@
     <string name="ConversationFragment_deleting_messages">Mažu zprávy…</string>
     <string name="ConversationFragment_delete_for_me">Odstranit pro mě</string>
     <string name="ConversationFragment_delete_for_everyone">Odstranit pro všechny</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Odstranit označenou zprávu?</item>
@@ -3131,28 +3119,15 @@
     <string name="KeyCachingService_lock">Zamknout Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Vy</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ dat</string>
-    <string name="MediaPreviewActivity_draft">Koncept</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Odstranit zprávu?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto tuto zprávu trvale odstraníte.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s pro %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Odesláno uživateli %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s pro vás</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Média již nejsou k dispozici.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Médium nelze přehrát.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Při hledání zprávy došlo k chybě.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nebyla nalezena žádná aplikace pro sdílení tohoto média.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Zavřít</string>
     <string name="MediaPreviewFragment_edit_media_error">Chyba médií</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Při odstraňování zprávy došlo k chybě; zpráva může stále existovat</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Číst dál</string>
     <string name="MediaPreviewFragment_share">Sdílet</string>
 
     <!-- MessageNotifier -->
@@ -3947,40 +3922,15 @@
     <string name="preferences__notifications">Upozornění</string>
     <string name="preferences__led_color_unknown">Neznámý</string>
     <string name="preferences__silent">Ticho</string>
-    <string name="preferences__advanced">Rozšířené možnosti</string>
     <string name="preferences__donate_to_signal">Podpořte Signal finančně</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Příběhy</string>
     <string name="preferences__payments">Platby</string>
     <string name="preferences__linked_devices">Propojená zařízení</string>
-    <string name="preferences__disable_pin">Deaktivovat PIN</string>
-    <string name="preferences__enable_pin">Povolit PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN uchovává informace uložené v Signal zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Rozšířené nastavení PIN</string>
     <string name="preferences__submit_debug_log">Odeslat ladicí log</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Přenášet všechna volání přes servery Signal, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.</string>
-    <string name="preferences_advanced__always_relay_calls">Vždy předávat hovory</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Připomínky nepřečtených zpráv</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Obcházení cenzury</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Obcházení cenzury</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Pokud je povoleno, Signal se pokusí obejít cenzuru. Nepovolujte v místech, kde Signal není cenzurován.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Obcházení cenzury bylo aktivováno na základě vašeho telefonního čísla.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ručně jste zakázal(a) obcházení cenzury.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Obcházení cenzury není nutné; již jste připojeni ke službě Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Obcházení cenzury může být povoleno pouze pokud jste připojeni k internetu.</string>
-    <string name="preferences_communication__category_sealed_sender">Utajený odesílatel</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Povolit od kohokoliv</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Povolit utajené odesílatele pro příchozí zprávy od lidí, které nemáte kontaktech a se kterými nesdílíte váš profil.</string>
     <string name="preferences_proxy_address">Proxy adresa</string>
     <string name="preferences_only_use_a_proxy_if">Proxy používat pouze v případě, kdy se nelze připojit k Signal prostřednictvím mobilní sítě nebo WiFi.</string>
     <string name="preferences_share">Sdílet</string>
@@ -3994,10 +3944,6 @@
     <string name="preferences_success">Úspěch</string>
     <string name="preferences_failed_to_connect">Připojení selhalo</string>
     <string name="preferences_enter_proxy_address">Zadat adresu proxy</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatické ověření klíče</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Pokud je tato funkce povolena, služba Signal se pokusí automaticky ověřit šifrování 1:1 chatů.</string>
 
 
     <!-- Internal only preferences -->
@@ -4382,11 +4328,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Více informací</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Uložit</string>
-    <string name="media_preview__edit_title">Upravit</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Náhled multimedií</string>
@@ -4574,8 +4515,6 @@
     <string name="BackupUtil_never">Nikdy</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Neznámý</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivace zámku registrace se nezdařila.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Zablokování zámku registrace se nezdařilo.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musíte zadat PIN zámku registrace</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Váš PIN má alespoň %1$d číslic nebo znaků</string>
     <string name="RegistrationActivity_too_many_attempts">Příliš mnoho pokusů</string>
@@ -5306,22 +5245,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Zobrazit stavovou ikonu</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Zobrazení ikony v podrobnostech zprávy, pokud byla doručena pomocí utajeného odesílatele.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Pokud je tato funkce povolena, nové zprávy odeslané a přijaté v nových chatech, které jste zahájili, po zobrazení zmizí.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Pokud je tato funkce povolena, nové zprávy odeslané a přijaté v tomto chatu po zobrazení zmizí.</string>
-    <string name="ExpireTimerSettingsFragment__off">Vyp.</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 týdny</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 týden</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 den</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 hodin</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 hodina</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minut</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekund</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Vlastní čas</string>
-    <string name="ExpireTimerSettingsFragment__save">Uložit</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -8369,7 +8293,7 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
     <!-- Overflow menu item in MainToolbar that opens donation settings -->
-    <string name="MainToolbar__donate">Přispějte</string>
+    <string name="MainToolbar__donate">Přispět</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

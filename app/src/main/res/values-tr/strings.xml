@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Sunucuya bağlanırken hata!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kayıt kilidi için PIN gereklidir. PIN\'i devre dışı bırakmak için, lütfen ilk önce kayıt kilidini devre dışı bırakın.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN oluşturuldu.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN devre dışı.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödemeleri kurtarma parolasını kaydet</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Parolayı kaydet</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN\'inizi devre dışı bırakmadan önce, ödemeler hesabınızın kurtarılmasını güvence altına almak için ödemeler kurtarma parolanızı kaydetmeniz gerekiyor.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Yeni bir kurtarma anahtarı oluştur</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PIN\'ini devre dışı bırakmadan önce, yeni bir kurtarma anahtarı oluşturup kaydetmen gerekir.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Anahtar oluştur</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s bu mesajı sildi</string>
     <string name="ConversationItem_you_deleted_this_message">Bu mesajı sildin</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Herkesten silinsin mi?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Yönetici %1$s bu mesajı sildi</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">İletiler siliniyor…</string>
     <string name="ConversationFragment_delete_for_me">Benden sil</string>
     <string name="ConversationFragment_delete_for_everyone">Herkesten sil</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Seçilen iletileri sil?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Signal\'i Kilitle</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Siz</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Desteklenmeyen içerik türü</string>
-    <string name="MediaPreviewActivity_draft">Taslak</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">İletiyi sil?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu eylem bu iletiyi kalıcı olarak silecektir.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s --&gt; %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Senden %1$s\'ye</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s\'den sana</string>
     <string name="MediaPreviewActivity_media_no_longer_available">İçerik artık mevcut değil.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Medya oynatılamıyor.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Mesaj bulma hatası.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Bu içeriği paylaşabilen bir uygulama bulunamadı.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Kapat</string>
     <string name="MediaPreviewFragment_edit_media_error">Medya Hatası</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Mesaj Silinirken Hata Oluştu, Mesaj Hâlâ Silinmemiş Olabilir</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Devamını Oku</string>
     <string name="MediaPreviewFragment_share">Paylaş</string>
 
     <!-- MessageNotifier -->
@@ -3705,7 +3680,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Gemini gibi AI asistan uygulamaları Signal içeriğini tarayabilir. Bunu önlemek için ekran güvenliği etkinleştirilmiştir. Güvenlik, ekran resimlerini de devre dışı bırakacaktır.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Ekran güvenliği etkinleştirildi</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3688,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Ekran güvenliği kapatılsın mı?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Kapatılırsa, Google Gemini gibi AI asistanlarının Signal içeriğini taramasına ve bunu gizli olmayabilecek özellikler için kullanmasına imkân tanıyabilir.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Kapat</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Bildirimler</string>
     <string name="preferences__led_color_unknown">Bilinmeyen</string>
     <string name="preferences__silent">Sessiz</string>
-    <string name="preferences__advanced">Gelişmiş</string>
     <string name="preferences__donate_to_signal">Signal\'e Bağış Yap</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Hikayeler</string>
     <string name="preferences__payments">Ödemeler</string>
     <string name="preferences__linked_devices">Bağlı cihazlar</string>
-    <string name="preferences__disable_pin">PIN\'i devre dışı bırak</string>
-    <string name="preferences__enable_pin">PIN\'i etkinleştir</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN\'i devre dışı bırakırsanız, elle yedekleyip geri yüklemediğiniz sürece Signal\'i yeniden kaydettiğinizde tüm verilerinizi kaybedersiniz. PIN devre dışı iken Kayıt Kilidini açamazsınız.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir. Uygulamayı açmak için PIN\'inize ihtiyacınız yoktur.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Gelişmiş PIN ayarları</string>
     <string name="preferences__submit_debug_log">Hata ayıklama günlüğünü gönder</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP adresinizi kişinize göstermekten kaçınmak için tüm aramaları Signal sunucusundan aktarın. Etkinleştirildiğinde arama kalitesi düşecektir.</string>
-    <string name="preferences_advanced__always_relay_calls">Aramaları her zaman aktar</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Okunmamış hatırlatmalar</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Sansür atlatma</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Sansür atlatma</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Etkinleştirildiğinde, Signal sansürü atlatmaya çalışacaktır. Signal\'in sansürlendiği bir konumda olmadığınız sürece bu özelliği etkinleştirmeyin.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Sansür atlatma hesabınızın telefon numarasına bağlı olarak etkinleştirildi.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Sansür atlatma özelliğini devre dışı bıraktınız.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Sansür atlatma gerekli değil; zaten Signal hizmetine bağlandınız.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Sansür atlatma sadece internete bağlıyken etkinleştirilebilir.</string>
-    <string name="preferences_communication__category_sealed_sender">Gizli Gönderici</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Herkesten al</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Kişileriniz arasında bulunmayan ve profilinizi paylaşmadığınız kişilerden göndereninin gizli olduğu iletilerin alınmasını etkinleştir.</string>
     <string name="preferences_proxy_address">Vekil adres</string>
     <string name="preferences_only_use_a_proxy_if">Vekil sunucuyu yalnızca mobil veri veya kablosuz üzerinden Signal\'e bağlanamıyorsanız kullanın.</string>
     <string name="preferences_share">Paylaş</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Başarılı</string>
     <string name="preferences_failed_to_connect">Bağlanılamadı</string>
     <string name="preferences_enter_proxy_address">Vekil sunucu adresi girin</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Otomatik anahtar doğrulama</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Etkinleştirildiğinde, Signal bire bir sohbetlerin şifrelemesini otomatik olarak doğrulamaya çalışacaktır.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Daha fazlasını öğren</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Kaydet</string>
-    <string name="media_preview__edit_title">Düzenle</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">İçerik önizlemesi</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Asla</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Bilinmiyor</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Kayıt kilidi etkinleştirme başarısız oldu</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Kayıt kilidi devredışı bırakma başarısız oldu</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Kaydolma Kilidi PIN\'inizi girmek zorundasınız</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN\'iniz en az %1$d haneli veya karakterli</string>
     <string name="RegistrationActivity_too_many_attempts">Çok fazla deneme yapıldı</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Durum simgesi göster</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">İletiler gizli gönderici kullanılarak gönderildiğinde ileti detaylarında simge göster.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Etkinleştirildiğinde, senin tarafından başlatılan yeni sohbetlerde gönderilen ve alınan yeni mesajlar görüldükten sonra kaybolur.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Etkinleştirildiğinde, bu sohbette gönderilen ve alınan yeni mesajlar görüldükten sonra kaybolur.</string>
-    <string name="ExpireTimerSettingsFragment__off">Kapalı</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 hafta</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 hafta</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 gün</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 saat</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 saat</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 dakika</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 saniye</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Özel zaman</string>
-    <string name="ExpireTimerSettingsFragment__save">Kaydet</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5272,7 +5196,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Renk %1$d / %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Paylaş</string>

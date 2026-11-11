@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при свързване със сървъра!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ПИН кодовете са задължителни за заключване на регистрацията. За да деактивирате ПИН кодовете, моля първо деактивирайте заключването на регистрацията.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">ПИН кодът е създаден.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">ПИН кодът е деактивиран.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Записване на фраза за възстановяване на плащания</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Записване на фраза</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Преди да можете да деактивирате своя PIN, трябва да запишете фразата си за възстановяване на плащания, за да можете да възстановите своя акаунт за плащания.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Създаване на нов ключ за възстановяване</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Трябва да създадете и да запишете нов ключ за възстановяване, преди да можете да деактивирате своя ПИН код.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Създаване на нов ключ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s изтри това съобщение</string>
     <string name="ConversationItem_you_deleted_this_message">Изтрихте това съобщение</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Изтриване за всички?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Администраторът %1$s изтри това съобщение</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Изтриване на съобщения…</string>
     <string name="ConversationFragment_delete_for_me">Изтриване за мен</string>
     <string name="ConversationFragment_delete_for_everyone">Изтриване за всички</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Изтриване на избраното съобщение?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Заключване на Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Ти</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Неподдържан медиен формат.</string>
-    <string name="MediaPreviewActivity_draft">Чернова</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Изтриване на съобщението?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Това ще изтрие перманентно текущото съобщение.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s до %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">От вас към %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">От %1$s към вас</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Тази мултимедия вече не е налична.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Неуспешно възпроизвеждане на мултимедия.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Грешка при намиране на съобщение.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не може да бъде намерено приложение, което да може да споделя тази мултимедия.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Затвори</string>
     <string name="MediaPreviewFragment_edit_media_error">Грешка с мултимедия</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Грешка при изтриване на съобщение, съобщението може още да съществува</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
     <string name="MediaPreviewFragment_share">Споделяне</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Известия</string>
     <string name="preferences__led_color_unknown">Непознат</string>
     <string name="preferences__silent">Тих</string>
-    <string name="preferences__advanced">Допълнителни</string>
     <string name="preferences__donate_to_signal">Дарете на Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Истории</string>
     <string name="preferences__payments">Плащания</string>
     <string name="preferences__linked_devices">Свързани устройства</string>
-    <string name="preferences__disable_pin">Деактивиране на ПИН</string>
-    <string name="preferences__enable_pin">Активиране на ПИН</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако деактивирате ПИН кода, ще загубите всички данни, когато пререгистрирате Signal, освен ако не направите ръчно архивиране и възстановяване. Не можете да включите Регистрационно заключване, докато ПИН кодът е деактивиран.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">ПИН кодовете съхраняват информацията, съхранявана със Signal, криптирана, така че само вие да имате достъп до нея. Вашите профил, настройки и контакти ще се възстановят, когато преинсталирате. Няма да ви е необходим вашия ПИН, за да отворите приложението.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Разширени настройки за ПИН</string>
     <string name="preferences__submit_debug_log">Изпращане на доклад</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Signal сървърва, за да се прикрие IP адресът Ви от контакта Ви. Активирането ще намали качеството на връзката.</string>
-    <string name="preferences_advanced__always_relay_calls">Винаги да се използва прехвърляне на обажданията</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Непрочетени напомняния</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Заобикаляне на цензурата</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Заобикаляне на цензурата</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ако е активирано, Signal ще се опита да заобиколи цензурата. Не разрешавайте тази функция, освен ако не сте на място, където Signal е цензуриран.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Заобикалянето на цензурата е активирано въз основа на телефонния номер на профила Ви.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Вие ръчно забранихте заобикалянето на цензура.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Не е необходимо заобикаляне на цензурата; вече сте свързани към услугата за Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Заобикалянето на цензура може да се активира, само когато е свързано към интернет.</string>
-    <string name="preferences_communication__category_sealed_sender">Скрит изпращач</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Разреши от всеки</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Активиране на скрит изпращач за входящи съобщения от хора, които не са Ваши контакти, и хора, с които не сте споделяли своят профил.</string>
     <string name="preferences_proxy_address">Прокси адрес</string>
     <string name="preferences_only_use_a_proxy_if">Използвайте прокси, само ако не можете да се свържете към Signal чрез мобилни данни или Wi-Fi.</string>
     <string name="preferences_share">Споделяне</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Успех</string>
     <string name="preferences_failed_to_connect">Неуспешна връзка</string>
     <string name="preferences_enter_proxy_address">Въведи прокси адрес</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Автоматична проверка на ключа</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Когато е активирано, Signal ще се опита автоматично да провери криптирането на чатовете 1:1.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Научете повече</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Запази</string>
-    <string name="media_preview__edit_title">Редакция</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Преглед на медията</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Никога</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Непознат</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Неуспешно активиране на регистрационно заключване.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Неуспешно деактивиране на регистрационно заключване.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Трябва да въведете своя ПИН код за регистрационно заключване</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Вашият ПИН код има поне %1$d цифри или знаци</string>
     <string name="RegistrationActivity_too_many_attempts">Прекалено много опити</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Показване на икона за статуса</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Показване на икона в подробностите за съобщенията, когато те са доставени със запечатан подател.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Когато е включено, нови съобщения, изпратени и получени в нови чатове, започнати от вас, ще изчезват след като са прочетени.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Когато е включено, нови съобщения, изпратени и получени в този чат, ще изчезват след като са прочетени.</string>
-    <string name="ExpireTimerSettingsFragment__off">Деактивирани</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 седмици</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 седмица</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 ден</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 часа</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 минути</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Специфично време</string>
-    <string name="ExpireTimerSettingsFragment__save">Запази</string>
 
 
     <!-- ChatColorSelectionFragment -->

@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kļūda savienojoties ar serveri!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN kodi ir nepieciešami reģistrācijas bloķēšanai. Lai atspējotu PIN, vispirms atspējojiet reģistrācijas bloķēšanu.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN izveidots.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN atspējots.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ierakstīt maksājumu atkopšanas frāzi</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Ierakstīt frāzi</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Pirms PIN atspējošanas ir jāieraksta maksājumu atkopšanas frāze, lai nodrošinātu iespēju atgūt savu maksājumu kontu.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Izveidot jaunu atkopšanas atslēgu</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Pirms PIN koda atslēgšanas ir jāizveido un jāreģistrē jauna atkopšanas atslēga.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Izveidot atslēgu</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -375,8 +363,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s izdzēsa šo ziņu</string>
     <string name="ConversationItem_you_deleted_this_message">Jūs izdzēsāt ziņu</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Dzēst visiem?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administrators %1$s izdzēsa šo ziņu</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -536,6 +522,8 @@
     <string name="ConversationFragment_deleting_messages">Dzēš ziņas…</string>
     <string name="ConversationFragment_delete_for_me">Dzēst man</string>
     <string name="ConversationFragment_delete_for_everyone">Dzēst visiem</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="zero">Vai izdzēst izvēlētās ziņas?</item>
@@ -3034,28 +3022,15 @@
     <string name="KeyCachingService_lock">Noslēgt Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Jūs</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Neatbalstīts faila tips</string>
-    <string name="MediaPreviewActivity_draft">Melnraksts</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Izdzēst ziņu?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Šis neatgriezeniski izdzēsīs ziņu.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Jūs %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s jums</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Mediju fails vairs nav pieejams</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Nevar atskaņot multivides failu.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Meklējot ziņu, radās kļūda.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nevar atrast lietotni, kas varētu kopīgot šo multivides saturu.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Aizvērt</string>
     <string name="MediaPreviewFragment_edit_media_error">Multivides faila kļūda</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Dzēšot ziņu, radās kļūda. Ziņa var nebūt izdzēsta</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Lasīt vairāk.</string>
     <string name="MediaPreviewFragment_share">Kopīgot</string>
 
     <!-- MessageNotifier -->
@@ -3834,40 +3809,15 @@
     <string name="preferences__notifications">Paziņojumi</string>
     <string name="preferences__led_color_unknown">Nezināms</string>
     <string name="preferences__silent">Klusums</string>
-    <string name="preferences__advanced">Papildu</string>
     <string name="preferences__donate_to_signal">Ziedot Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stāsti</string>
     <string name="preferences__payments">Maksājumi</string>
     <string name="preferences__linked_devices">Piesaistās ierīces</string>
-    <string name="preferences__disable_pin">Atspējot PIN</string>
-    <string name="preferences__enable_pin">Iespējot PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ja atspējosiet PIN, jūs zaudēsiet visus datus, atkārtoti reģistrējoties lietotnē Signal, ja vien manuāli tos nedublēsiet un neatjaunosiet. Reģistrācijas bloķēšanu nevar ieslēgt, kamēr PIN ir atspējots.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN kodos ir informācija, kas lietotnē Signal ir šifrēta, lai šai informācijai varētu piekļūt tikai jūs. Veicot atkārtotu instalēšanu, jūsu profils, iestatījumi un kontaktpersonas tiks atjaunotas. Lai atvērtu lietotni, PIN kods nebūs nepieciešams.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advancētie PIN iestatījumi</string>
     <string name="preferences__submit_debug_log">Iesniegt kļūdas labošanas ierakstu.</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Pārraidiet visus zvanus caur Signal serveri, lai izvairītos no IP adreses atklāšanas kontaktpersonai. Aktivizēšana samazinās zvanu kvalitāti.</string>
-    <string name="preferences_advanced__always_relay_calls">Vienmēr pārslēgt zvanus</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Neizlasīti atgādinājumi</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Cenzūras apiešana</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Cenzūras apiešana</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ja šī funkcija ir iespējota, Signal mēģinās apiet cenzūru. Neieslēdziet šo funkciju, ja atrodaties vietā, kur Signal tiek cenzēta.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Cenzūras apiešana ir aktivizēta, pamatojoties uz jūsu konta tālruņa numuru.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Jūs manuāli atspējojāt cenzūras apiešanu.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Cenzūras apiešana nav nepieciešama; jūs jau izveidojāt savienojumu ar Signal pakalpojumu.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Cenzūras apiešanu var aktivizēt tikai tad, kad ir izveidots savienojums ar internetu.</string>
-    <string name="preferences_communication__category_sealed_sender">Aizzīmogots sūtītājs</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Atļaut no visiem</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Iespējot slēptā sūtītāja funkciju ienākošajām ziņām no cilvēkiem ārpus kontaktpersonu loka, un cilvēkiem, kuriem nav redzams jūsu profils</string>
     <string name="preferences_proxy_address">Starpniekservera adrese</string>
     <string name="preferences_only_use_a_proxy_if">Izmantojiet starpniekserveri tikai tad, ja, lietojot mobilos datus vai Wi-Fi, nevar izveidot savienojumu ar Signal.</string>
     <string name="preferences_share">Kopīgot</string>
@@ -3881,10 +3831,6 @@
     <string name="preferences_success">Sekmīgi darīts</string>
     <string name="preferences_failed_to_connect">Neizdevās pievienoties</string>
     <string name="preferences_enter_proxy_address">Ievadīt starpniekservera adresi</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automātiskā atslēgas verifikācija</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Pēc tās iespējošanas Signal mēģinās automātiski verificēt 1:1 sarunu šifrēšanu.</string>
 
 
     <!-- Internal only preferences -->
@@ -4267,11 +4213,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Lasīt vairāk</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Saglabāt</string>
-    <string name="media_preview__edit_title">Rediģēt</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Multivides priekšskatījums</string>
@@ -4452,8 +4393,6 @@
     <string name="BackupUtil_never">Nekad</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Nezināms</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Reģistrācijas bloķēšanas iestatīšanas laikā notikusi kļūda.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Reģistrācijas bloķēšanas atiestatīšanas laikā notikusi kļūda.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Jums ir jāievada savs reģistrācijas bloķēšanas PIN</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Jūsu PIN ir ne īsāks par %1$d cipariem vai rakstzīmēm</string>
     <string name="RegistrationActivity_too_many_attempts">Par daudz mēģinājumu</string>
@@ -5169,22 +5108,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Rādīt statusa ikonu</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Parādiet ikonu ziņas informācijā, kad tā tika piegādāta, izmantojot šifrētu sūtītāju.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Ja šī funkcija ir iespējota, nosūtītās un saņemtās jaunās ziņas jūsu sāktājās sarunās pēc to izlasīšanas izgaisīs.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Ja šī funkcija ir iespējota, šajā sarunā nosūtītās un saņemtās ziņas pēc to izlasīšanas izgaisīs.</string>
-    <string name="ExpireTimerSettingsFragment__off">Nav</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 nedēļas</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 nedēļa</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 diena</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 stundas</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 stunda</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minūtes</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundes</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Pielāgots laiks</string>
-    <string name="ExpireTimerSettingsFragment__save">Saglabāt</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -8184,7 +8108,7 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Starpniekserveris</string>
     <!-- Overflow menu item in MainToolbar that opens donation settings -->
-    <string name="MainToolbar__donate">Ziedojiet</string>
+    <string name="MainToolbar__donate">Ziedot</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

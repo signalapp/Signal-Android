@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Serveriga ühendumisel tekkis viga!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koode on registreerimisluku jaoks vaja. PIN-koodide keelamiseks keela kõigepealt registreerimislukk.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN-kood loodud.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kood keelatud.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Salvesta maksete kontroll-lause</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Salvesta lause</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Enne kui saad oma PIN-koodi desaktiveerida, pead salvestama oma maksete kontroll-lause, tagamaks, et saad oma maksekonto taastada.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Loo uus varukoopia võti</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Enne PIN-koodi väljalülitamist pead looma ja salvestama uue varukoopia võtme.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Loo võti</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s kustutas selle sõnumi</string>
     <string name="ConversationItem_you_deleted_this_message">Sa kustutasid selle sõnumi</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Kas kustutada kõigi jaoks?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administraator %1$s kustutas selle sõnumi</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Sõnumite kustutamine…</string>
     <string name="ConversationFragment_delete_for_me">Kustuta minu jaoks</string>
     <string name="ConversationFragment_delete_for_everyone">Kustuta kõigi jaoks</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Kustutad valitud sõnumi?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Lukusta Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Sina</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Mittetoetatud meediatüüp</string>
-    <string name="MediaPreviewActivity_draft">Mustand</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Kustutad sõnumi?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">See kustutab püsivalt valitud sõnumi.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s saajale %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Sinult kasutajale %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">Kasutajalt %1$s sinule</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Meedia ei ole enam saadaval.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Meediat ei saa esitada.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Viga sõnumi leidmisel.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ei leia rakendust, mis oleks võimeline seda meediafaili jagama.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Sulge</string>
     <string name="MediaPreviewFragment_edit_media_error">Meedia viga</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Viga sõnumi kustutamisel, sõnum võib endiselt alles olla</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Loe rohkem</string>
     <string name="MediaPreviewFragment_share">Jaga</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Teavitused</string>
     <string name="preferences__led_color_unknown">Tundmatu</string>
     <string name="preferences__silent">Vaikne</string>
-    <string name="preferences__advanced">Täpsem</string>
     <string name="preferences__donate_to_signal">Anneta Signalile</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Lood</string>
     <string name="preferences__payments">Maksed</string>
     <string name="preferences__linked_devices">Lingitud seadmed</string>
-    <string name="preferences__disable_pin">Keela PIN</string>
-    <string name="preferences__enable_pin">Luba PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Kui keelad PIN-koodi, siis kaotad kõik andmed, kui eemaldad Signal rakenduse ja pole seda käsitsi varundanud ja taastanud. Registreerimislukku pole võimalik sisse lülitada, kui PIN-kood on keelatud.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koodid hoiavad Signalis salvestatud teabe krüptituna, seega ainult sinul on sellele juurdepääs. Kui paigaldad Signali uuesti, siis sinu profiil, sätted ja kontaktid taastatakse. Rakenduse avamiseks pole PIN-koodi vaja.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Täpsemad PIN-koodi sätted</string>
     <string name="preferences__submit_debug_log">Saada silumislogi</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vahenda kõik kõned Signali serveri kaudu, et vältida oma IP-aadressi levitamist oma kontaktile. Lubamine vähendab kõnekvaliteeti.</string>
-    <string name="preferences_advanced__always_relay_calls">Alati vahenda kõned</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Lugemata meeldetuletused</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Tsensuuri vältimine</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Tsensuuri vältimine</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Kui on lubatud, siis püüab Signal tsenseerimisest mööda hiilida. Luba see funktsioon vaid siis, kui oled kohas, kus Signal on tsenseeritud.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Tsenseerimisest möödahiilimine on aktiveeritud sinu konto telefoninumbri järgi.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Sa oled käsitsi keelanud tsenseerimisest möödahiilimise</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Tsenseerimisest möödahiilimine pole vajalik, sa oled juba Signali teenusega ühendatud.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Tsenseerimisest möödahiilimist saab aktiveerida ainult Internetis olles.</string>
-    <string name="preferences_communication__category_sealed_sender">Kaetud saatja</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Luba kõigilt</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Luba kaetud saatja sissetulevate sõnumite juures mitte-kontaktidelt ja isikutelt, kellega sa pole enda profiili jaganud.</string>
     <string name="preferences_proxy_address">Puhverserveri aadress</string>
     <string name="preferences_only_use_a_proxy_if">Kasuta puhverserverit ainult siis, kui Signaliga ühendumine pole võimalik mobiilvõrgu ega Wi-Fi kaudu.</string>
     <string name="preferences_share">Jaga</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Õnnestus</string>
     <string name="preferences_failed_to_connect">Ühendumine ei õnnestunud</string>
     <string name="preferences_enter_proxy_address">Sisesta puhverserveri aadress</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Võtme automaatne kontroll</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Kui see on lubatud, proovib Signal automaatselt kontrollida üks-ühele vestluste krüptimist.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Rohkem teavet</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Salvesta</string>
-    <string name="media_preview__edit_title">Muuda</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Meedia eelvaade</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Mitte kunagi</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Tundmatu</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Registreerimisluku lubamine ei õnnestunud.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Registreerimisluku keelamine ei õnnestunud.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Sa pead sisestama oma registreerimisluku PIN-koodi</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Sinu PIN-koodil on vähemalt %1$d numbrit või tähemärki</string>
     <string name="RegistrationActivity_too_many_attempts">Liiga palju katseid</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Näita olekuikooni</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Kui sõnum saadeti turvatud saatja funktsiooni kasutades, näita sõnumi andmete all vastavat ikooni.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kui see on sisse lülitatud, kustuvad saadetud ja vastu võetud sõnumid sinu alustatud vestlustes pärast seda, kui neid on nähtud.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kui lubatud, siis kaovad selle vestluse saadetud ja saadud sõnumid pärast nende nägemist.</string>
-    <string name="ExpireTimerSettingsFragment__off">Väljas</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 nädalat</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 nädal</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 päev</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 tundi</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 tund</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutit</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundit</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Kohandatud aeg</string>
-    <string name="ExpireTimerSettingsFragment__save">Salvesta</string>
 
 
     <!-- ChatColorSelectionFragment -->

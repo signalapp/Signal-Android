@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Podczas łączenia z serwerem wystąpił błąd</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN jest wymagany przez blokadę rejestracji. Aby zrezygnować z PIN-u, wyłącz najpierw blokadę rejestracji.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN utworzony.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN wyłączony.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ustaw frazę odzyskiwania płatności</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Ustaw frazę</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Zanim wyłączysz PIN, musisz ustawić frazę odzyskiwania, czyli klucz do portfela płatności. Dzięki temu możesz mieć pewność, że gdy zajdzie taka potrzeba, odzyskasz swoje konto płatności.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Utwórz nowy kod odzyskiwania</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Aby wyłączyć PIN, musisz najpierw utworzyć nowy kod odzyskiwania.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Utwórz kod</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -377,8 +365,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">Wiadomość usunął uczestnik czatu (%1$s)</string>
     <string name="ConversationItem_you_deleted_this_message">Wiadomość została przez Ciebie usunięta</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Usunąć u wszystkich?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administrator %1$s usunął wiadomość</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -543,6 +529,8 @@
     <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości…</string>
     <string name="ConversationFragment_delete_for_me">Usuń u mnie</string>
     <string name="ConversationFragment_delete_for_everyone">Usuń u wszystkich</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Usunąć zaznaczoną wiadomość?</item>
@@ -3131,28 +3119,15 @@
     <string name="KeyCachingService_lock">Zablokuj Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Ty</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Nieobsługiwany typ multimediów</string>
-    <string name="MediaPreviewActivity_draft">Wersja robocza</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Usunąć wiadomość?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Wiadomość zostanie trwale usunięta.</string>
-    <string name="MediaPreviewActivity_s_to_s">Nadawca: %1$s, odbiorca: %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Nadawca: Ty, odbiorca: %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">Nadawca: %1$s, odbiorca: Ty</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Multimedia nie są już dostępne.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Nie można odtworzyć multimediów.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Podczas wyszukiwania wiadomości wystąpił błąd.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nie udało się znaleźć aplikacji, w której można by udostępnić te multimedia.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Zamknij</string>
     <string name="MediaPreviewFragment_edit_media_error">Błąd multimediów</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Wystąpił błąd i wiadomość mogła nie zostać usunięta</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Czytaj dalej</string>
     <string name="MediaPreviewFragment_share">Udostępnij</string>
 
     <!-- MessageNotifier -->
@@ -3931,7 +3906,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Aplikacje z asystentami AI, takie jak Gemini, mogą uzyskać dostęp do treści Signal. Aby temu zapobiec, włączono Ochronę ekranu. Spowoduje to również wyłączenie możliwości robienia zrzutów ekranu.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Ochrona ekranu jest włączona</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3939,7 +3914,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Wyłączyć ochronę ekranu?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Po wyłączeniu tej opcji asystenci AI, jak np. Google Gemini, mogą odczytywać treści w aplikacji Signal i wykorzystywać je w funkcjach, które niekoniecznie gwarantują prywatność.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Wyłącz</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -3947,40 +3922,15 @@
     <string name="preferences__notifications">Powiadomienia</string>
     <string name="preferences__led_color_unknown">Nieznany</string>
     <string name="preferences__silent">Wyciszony</string>
-    <string name="preferences__advanced">Zaawansowane</string>
     <string name="preferences__donate_to_signal">Wesprzyj Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Relacje</string>
     <string name="preferences__payments">Płatności</string>
     <string name="preferences__linked_devices">Połączone urządzenia</string>
-    <string name="preferences__disable_pin">Wyłącz PIN</string>
-    <string name="preferences__enable_pin">Włącz PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jeśli wyłączysz PIN, przy ponownej rejestracji w aplikacji Signal stracisz wszystkie dane (chyba że masz utworzoną ręcznie kopię zapasową do przywrócenia). Gdy PIN jest wyłączony, nie można też korzystać z funkcji blokady rejestracji.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Dzięki PIN-owi dane przechowywane w aplikacji Signal są szyfrowane i tylko Ty masz do nich dostęp. PIN pozwoli Ci przywrócić profil, ustawienia i kontakty, gdy ponownie zainstalujesz Signal. Nie potrzebujesz PIN-u, aby otwierać aplikację.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Zaawansowane ustawienia PIN-u</string>
     <string name="preferences__submit_debug_log">Prześlij dziennik debugowania</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Aby nie ujawniać swojego adresu IP kontaktom, realizuj wszystkie połączenia za pośrednictwem serwera Signal. Gdy ta opcja jest włączona, połączenia mają gorszą jakość.</string>
-    <string name="preferences_advanced__always_relay_calls">Zawsze pośrednicz w połączeniach</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Przypomnienia o nieprzeczytanych</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Obchodzenie cenzury</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Obchodzenie cenzury</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Gdy ta opcja jest włączona, Signal w miarę możliwości korzysta z mechanizmów obchodzenia cenzury. Nie włączaj tej opcji, jeśli znajdujesz się w miejscu, w którym aplikacja Signal nie jest blokowana.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Na podstawie numeru telefonu na Twoim koncie zostało włączone obchodzenie cenzury.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Obchodzenie cenzury zostało przez Ciebie wyłączone.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Obchodzenie cenzury nie jest konieczne. Masz połączenie z usługą Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Aby włączyć obchodzenie cenzury, musisz mieć połączenie z internetem.</string>
-    <string name="preferences_communication__category_sealed_sender">Zaszyfrowany nadawca</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Zezwól wszystkim</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Zezwól na opcję zaszyfrowanego nadawcy w przypadku wiadomości otrzymywanych od osób spoza Twoich kontaktów oraz od osób, którym nie udostępniasz jeszcze swojego profilu.</string>
     <string name="preferences_proxy_address">Adres proxy</string>
     <string name="preferences_only_use_a_proxy_if">Używaj proxy tylko wtedy, gdy nie możesz się połączyć z usługą Signal przez sieć komórkową ani Wi-Fi.</string>
     <string name="preferences_share">Udostępnij</string>
@@ -3994,10 +3944,6 @@
     <string name="preferences_success">Połączono</string>
     <string name="preferences_failed_to_connect">Nie udało się połączyć</string>
     <string name="preferences_enter_proxy_address">Podaj adres proxy</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatyczna weryfikacja kluczy</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Gdy ta opcja jest włączona, Signal w miarę możliwości automatycznie weryfikuje szyfrowanie czatów prywatnych.</string>
 
 
     <!-- Internal only preferences -->
@@ -4382,11 +4328,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Dowiedz się więcej</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Zapisz</string>
-    <string name="media_preview__edit_title">Edytuj</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Podgląd multimediów</string>
@@ -4574,8 +4515,6 @@
     <string name="BackupUtil_never">Nigdy</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Data nieznana</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Nie udało się włączyć blokady rejestracji.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Nie udało się wyłączyć blokady rejestracji.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musisz podać PIN do blokady rejestracji</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN składa się z co najmniej %1$d cyfr lub liter</string>
     <string name="RegistrationActivity_too_many_attempts">Zbyt wiele prób</string>
@@ -5306,22 +5245,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pokaż ikonę</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Pokaż ikonę w szczegółach wiadomości, jeśli została dostarczona przy użyciu funkcji zaszyfrowanego nadawcy.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Gdy ta opcja jest włączona, nowe wiadomości wysłane i otrzymane w czatach rozpoczętych przez Ciebie znikają po odczytaniu.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Gdy ta opcja jest włączona, nowe wiadomości wysłane i otrzymane w tym czacie znikają po odczytaniu.</string>
-    <string name="ExpireTimerSettingsFragment__off">Wyłączone</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 tygodnie</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 tydzień</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 dzień</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 godzin</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 godzina</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minut</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekund</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Własny czas</string>
-    <string name="ExpireTimerSettingsFragment__save">Zapisz</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5554,7 +5478,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Kolor %1$d z %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Udostępnij</string>

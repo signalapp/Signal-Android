@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">સર્વર સાથે કનેક્ટ થવામાં ભૂલ</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">રજીસ્ટ્રેશન લૉક માટે પિન આવશ્યક છે. પિન અક્ષમ કરવા માટે, કૃપા કરીને પહેલા રજીસ્ટ્રેશન લૉકને અક્ષમ કરો.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">પિન બનાવ્યો.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">પિન અક્ષમ કરેલ છે.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">પેમેન્ટ રિકવરી કરવા માટે વાક્ય રેકોર્ડ કરો</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">વાક્ય રેકોર્ડ કરો</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">તમે તમારો પિન અક્ષમ કરી શકો તે પહેલાં, તમે તમારા પેમેન્ટ એકાઉન્ટને રિકવરી કરી શકો છો તેની ખાતરી કરવા માટે તમારે તમારા પેમેન્ટ રિકવરી વાક્યને રેકોર્ડ કરવું આવશ્યક છે.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">નવી રિકવરી કી બનાવો</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">તમારો પિન અક્ષમ કરો તે પહેલાં તમારે એક નવી રિકવરી કી બનાવવી અને રેકોર્ડ કરવી આવશ્યક છે.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">કી બનાવો</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$sએ આ મેસેજ ડિલીટ કર્યો</string>
     <string name="ConversationItem_you_deleted_this_message">તમે આ મેસેજ ડિલીટ કર્યો</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">બધા માટે ડિલીટ કરવું છે?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">એડમિન %1$sએ આ મેસેજ ડિલીટ કર્યો</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">મેસેજ કાઢી નાખો…</string>
     <string name="ConversationFragment_delete_for_me">મારા માટે ડિલીટ કરો</string>
     <string name="ConversationFragment_delete_for_everyone">મારા માટે ડિલીટ કરો</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">પસંદ કરેલા મેસેજ ડિલીટ કરવા છે?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Signal લૉક</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">તમે</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">અસમર્થિત મીડિયા પ્રકાર</string>
-    <string name="MediaPreviewActivity_draft">ડ્રાફ્ટ</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">મેસેજ ડિલીટ કરવો છે?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">આ મેસેજ ને કાયમી ધોરણે ડિલીટ કરવામાં આવશે.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$sતરફ%2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">તમે %1$sને</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$sએ તમને</string>
     <string name="MediaPreviewActivity_media_no_longer_available">મીડિયા હવે ઉપલબ્ધ નથી.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">મીડિયા ચલાવવામાં અસમર્થ.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">મેસેજ શોધવામાં ભૂલ.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">આ મીડિયાને શેર કરવા માટે સક્ષમ એપ્લિકેશન શોધી શકાતી નથી.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">બંધ</string>
     <string name="MediaPreviewFragment_edit_media_error">મીડિયા એરર</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">મેસેજ ડિલીટ કરવામાં ભૂલ, મેસેજ હજી પણ અસ્તિત્વમાં હોઈ શકે છે</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">વધુ વાંચો</string>
     <string name="MediaPreviewFragment_share">શેર કરો</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">સૂચનાઓ</string>
     <string name="preferences__led_color_unknown">અજાણ્યું</string>
     <string name="preferences__silent">મૌન</string>
-    <string name="preferences__advanced">વધુ</string>
     <string name="preferences__donate_to_signal">Signal માટે ફાળો આપો</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">સ્ટોરી</string>
     <string name="preferences__payments">પેમેંટ્સ</string>
     <string name="preferences__linked_devices">લિંક થયેલ ડિવાઇસ</string>
-    <string name="preferences__disable_pin">PIN અક્ષમ કરો</string>
-    <string name="preferences__enable_pin">PIN ને અક્ષમ કરો</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">જો તમે PIN ને અક્ષમ કરો છો, તો જ્યારે તમે Signal ને ફરીથી રજીસ્ટર કરશો ત્યારે તમે તમામ ડેટા ગુમાવશો જ્યાં સુધી તમે તેને મેન્યુઅલી સ્થાનાંતરિત ન કરો. જ્યારે PIN અક્ષમ હોય ત્યારે તમે રજીસ્ટ્રેશન લૉક ચાલુ કરી શકતા નથી.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN એન્ક્રિપ્ટ થયેલ Signal સાથે માહિતીને સંગ્રહિત રાખે છે જેથી ફક્ત તમે જ તેનો ઉપયોગ કરી શકો. જ્યારે તમે ફરીથી ઇન્સ્ટોલ કરો ત્યારે તમારી પ્રોફાઇલ, સેટિંગ્સ અને સંપર્કો રિસ્ટોર થશે. એપ ખોલવા માટે તમારે તમારા PIN ની જરૂર નહીં પડે.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">વિગતવાર પિન સેટિંગ્સ</string>
     <string name="preferences__submit_debug_log">ડિબગ લૉગ સબમિટ કરો</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">તમારા સંપર્કમાં તમારું IP સરનામું જણાવવાનું ટાળવા માટે Signal સર્વર દ્વારા બધા કૉલ્સ રિલે કરો. સક્ષમ કરવાથી કૉલની ગુણવત્તામાં ઘટાડો થશે.</string>
-    <string name="preferences_advanced__always_relay_calls">હંમેશા રિલે કૉલ્સ</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">ન વાંચેલ રિમાઇન્ડર</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">સેન્સરશીપ પ્રયુક્તિ</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">સેન્સરશીપ પ્રયુક્તિ</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">જો સક્ષમ હોય, તો Signal સેન્સરશીપને અવળું કરવાનો પ્રયાસ કરશે. જ્યાં સુધી તમે Signal સેન્સર કરેલ નથી ત્યાં સુધી આ સુવિધાને સક્ષમ કરશો નહીં.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">તમારા એકાઉન્ટના ફોન નંબરના આધારે સેન્સરશીપ પ્રયુક્તિ સક્રિય કરવામાં આવી છે.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">તમે જાતે સેન્સરશિપ પ્રયુક્તિને અક્ષમ કરી છે.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">સેન્સરશિપ પ્રયુક્તિ જરૂરી નથી; તમે પહેલેથી જ Signal સેવા સાથે જોડાયેલા છો.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">જ્યારે ઇન્ટરનેટથી કનેક્ટેડ હોય ત્યારે જ સેન્સરશિપ પ્રયુક્તિ સક્રિય કરી શકાય છે.</string>
-    <string name="preferences_communication__category_sealed_sender">સીલ કરી મોકલનાર</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">કોઈની પાસેથી મંજૂરી આપો</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">બિન-સંપર્કો અને જેની સાથે તમે તમારી પ્રોફાઇલ શેર કરી નથી તેવા લોકો તરફથી આવતા મેસેજ માટે સીલ કરેલા મોકલનાર સક્ષમ કરો.</string>
     <string name="preferences_proxy_address">પ્રોક્સી એડ્રેસ</string>
     <string name="preferences_only_use_a_proxy_if">જો તમે મોબાઇલ ડેટા અથવા Wi-Fi પર Signal સાથે જોડાવા માટે સક્ષમ ન હોવ તો જ પ્રોક્સીનો ઉપયોગ કરો.</string>
     <string name="preferences_share">શેર કરો</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">સફળતા</string>
     <string name="preferences_failed_to_connect">કનેક્ટ કરવામાં નિષ્ફળ</string>
     <string name="preferences_enter_proxy_address">પ્રોક્સી એડ્રેસ ઉમેરો</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">ઓટોમેટિક કી વેરિફિકેશન</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">જ્યારે સક્ષમ હશે, ત્યારે Signal 1:1 ચેટના એન્ક્રિપ્શનને આપમેળે વેરિફાય કરવાનો પ્રયાસ કરશે.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">વધુ જાણો</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">સેવ કરો</string>
-    <string name="media_preview__edit_title">ફેરફાર કરો</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">મીડિયા પ્રિવ્યુ</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">ક્યારેય નહિ</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">અજાણ્યું</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">રજીસ્ટ્રેશન લૉક ને સક્ષમ કરવામાં નિષ્ફળ.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">રજીસ્ટ્રેશન લૉકને અક્ષમ કરવામાં નિષ્ફળ.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">તમારે તમારો રજીસ્ટ્રેશન લૉક PIN દાખલ કરવો આવશ્યક છે</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">તમારા પિનમાં ઓછામાં ઓછા %1$d અંકો અથવા અક્ષરો છે</string>
     <string name="RegistrationActivity_too_many_attempts">ઘણા બધા પ્રયત્નો</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">સ્ટેટસ આઇકૉન બતાવો</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">મેસેજની વિગતોમાં એક ચિહ્ન બતાવો જ્યારે તેઓ સીલ કરેલા પ્રેષકનો ઉપયોગ કરીને વિતરિત કરવામાં આવે.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">જ્યારે સક્ષમ કરવામાં આવે ત્યારે, તમારા દ્વારા શરૂ કરવામાં આવેલી નવી ચેટમાં મોકલવામાં આવેલા અને પ્રાપ્ત થયેલા નવા મેસેજ જોયા પછી અદૃશ્ય થઈ જશે.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">જ્યારે સક્ષમ કરવામાં આવે છે, ત્યારે આ ચેટમાં મોકલવામાં આવેલા અને પ્રાપ્ત થયેલા નવા મેસેજ જોવાઈ ગયા પછી અદૃશ્ય થઈ જશે.</string>
-    <string name="ExpireTimerSettingsFragment__off">બંધ</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 અઠવાડિયા</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 અઠવાડિયું</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 દિવસ</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 કલાક</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 કલાક</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 મિનિટ</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 સેકન્ડ</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">કસ્ટમ સમય</string>
-    <string name="ExpireTimerSettingsFragment__save">સેવ કરો</string>
 
 
     <!-- ChatColorSelectionFragment -->

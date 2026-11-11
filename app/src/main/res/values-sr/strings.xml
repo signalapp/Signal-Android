@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка приликом повезивања на сервер!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN је неопходан за закључавање регистрације. Да бисте искључили PIN, прво морате да искључите закључавање регистрације.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN је креиран.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN је искључен.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Снимите фразу за опоравак за плаћања</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Сними фразу</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Пре него што искључите PIN, морате да снимите фразу за опоравак за плаћања да бисте могли да повратите свој налог за плаћања.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Креирајте нови кључ за опоравак</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Пре деактивирања PIN-а морате да креирате и сачувате нови кључ за опоравак.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Креирај кључ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">Корисник %1$s је избрисао ову поруку</string>
     <string name="ConversationItem_you_deleted_this_message">Избрисали сте ову поруку</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Избриши свима?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Администратор %1$s је избрисао ову поруку</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Брисање порука…</string>
     <string name="ConversationFragment_delete_for_me">Избриши мени</string>
     <string name="ConversationFragment_delete_for_everyone">Избриши свима</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Желите ли да избришете изабрану поруку?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Закључај Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Ви</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Неподржан тип медија</string>
-    <string name="MediaPreviewActivity_draft">Нацрт</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Желите ли да избришете поруку?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Овим ћете трајно избрисати ову поруку.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s за: %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Ви за: %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s за вас</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Медиј више није доступан.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Није могуће пустити медиј.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Грешка приликом тражења поруке.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Није пронађена апликација која може да подели овај медиј.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Затвори</string>
     <string name="MediaPreviewFragment_edit_media_error">Грешка у медију</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Грешка приликом брисања поруке – порука можда није избрисана</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Прочитајте више</string>
     <string name="MediaPreviewFragment_share">Поделите</string>
 
     <!-- MessageNotifier -->
@@ -3705,7 +3680,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Асистенти који користе вештачку интелигенцију, попут Gemini-ја, могу да скенирају ваш садржај на Signal-у. Опција безбедности екрана је укључена како до тога не би дошло. Овиме ће и снимци екрана бити онемогућени.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Безбедност екрана је укључена</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3688,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Желите ли да искључите безбедност екрана?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Ако је ова опција искључена, то асистентима који користе вештачку интелигенцију, попут Google Gemini-ја, аутоматски омогућава да скенирају садржај са Signal-а и користе га за функције које можда нису приватне.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Искључи</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Обавештења</string>
     <string name="preferences__led_color_unknown">Непознато</string>
     <string name="preferences__silent">Без звука</string>
-    <string name="preferences__advanced">Напредно</string>
     <string name="preferences__donate_to_signal">Донирајте Signal-у</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Приче</string>
     <string name="preferences__payments">Плаћања</string>
     <string name="preferences__linked_devices">Повезани уређаји</string>
-    <string name="preferences__disable_pin">Искључи PIN</string>
-    <string name="preferences__enable_pin">Укључи PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако искључите PIN, изгубићете све податке када поново региструјете Signal, осим ако ручно не направите резервне копије и вратите податке. Не можете укључити закључавање регистрације док је PIN искључен.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Подаци које Signal складишти се шифрују помоћу PIN-а, тако да им само ви можете приступити. Ваш налог, подешавања и контакти ће бити враћени када поново инсталирате Signal. Неће бити потребан PIN да бисте отворили апликацију.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Напредна подешавања PIN-а</string>
     <string name="preferences__submit_debug_log">Пошаљи извештај о грешкама</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Преусмерава све позиве преко Signal-овог сервера да би се избегло откривање ваше IP адресе вашем контакту. Умањује квалитет позива.</string>
-    <string name="preferences_advanced__always_relay_calls">Увек преусмеравај позиве</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Непрочитани подсетници</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Заобилазак цензуре</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Заобилазак цензуре</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ако је ова опција укључена, Signal ће покушати да заобиђе цензуру. Немојте да укључујете ову функционалност ако се не налазите негде где је Signal цензурисан.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Заобилазак цензуре је активиран на основу броја телефона повезаног са вашим налогом.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ручно сте искључили заобилазак цензуре.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Заобилазак цензуре није потребан. Већ сте повезани на Signal-ов сервис.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Заобилазак цензуре може да се активира само када сте повезани на интернет.</string>
-    <string name="preferences_communication__category_sealed_sender">Запечаћени пошиљалац</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Дозволи од свакога</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Укључите опцију запечаћеног пошиљаоца за дописивање са особама које нису ваши контакти и са којима нисте поделили свој профил.</string>
     <string name="preferences_proxy_address">Адреса прокси сервера</string>
     <string name="preferences_only_use_a_proxy_if">Користите прокси сервер само ако не можете да се повежете са Signal-ом преко мобилног интернета или Wi-Fi мреже.</string>
     <string name="preferences_share">Поделите</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Успешно</string>
     <string name="preferences_failed_to_connect">Повезивање није успело.</string>
     <string name="preferences_enter_proxy_address">Унесите адресу прокси сервера</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Аутоматска верификација кључа</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Када је та опција омогућена, Signal ће покушати да аутоматски потврди шифровање ћаскања један на један.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Сазнајте више</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Сачувај</string>
-    <string name="media_preview__edit_title">Уреди</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Приказ медија</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Никад</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Непознато</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Догодила се грешка приликом укључивања закључавања регистрације.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Догодила се грешка приликом искључивања закључавања регистрације.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Морате унети PIN за закључавање регистрације</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Минималан број цифара или знакова које ваш PIN садржи је %1$d</string>
     <string name="RegistrationActivity_too_many_attempts">Превише покушаја</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи икону за статус</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Прикажи икону у детаљима поруке када су испоручене преко запечаћеног пошиљаоца.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Када је омогућено, послате и примљене поруке у нова ћаскања што сте ви започели ће нестати након што буду приказане.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Када је омогућено, послате и примљене поруке у овој преписци ће нестати након што буду приказане.</string>
-    <string name="ExpireTimerSettingsFragment__off">Искључено</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 недеље</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 недеља</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 дан</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 сати</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 сат</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 минута</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Одређено време</string>
-    <string name="ExpireTimerSettingsFragment__save">Сачувај</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5272,7 +5196,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Боја %1$d од %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Поделите</string>

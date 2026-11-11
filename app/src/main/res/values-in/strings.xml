@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Gagal terhubung ke server!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Anda perlu PIN untuk kunci registrasi. Nonaktifkan kunci registrasi dulu untuk menonaktifkan PIN.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN berhasil dibuat.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN dinonaktifkan.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekam frasa pemulihan pembayaran</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Rekam frasa</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Sebelum menonaktifkan PIN, Anda harus merekam frasa pemulihan pembayaran Anda agar dapat memulihkan rekening/akun pembayaran Anda.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Buat kunci pemulihan baru</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Anda harus membuat dan mencatat kunci pemulihan yang baru agar dapat menonaktifkan PIN.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Buat kunci</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -371,8 +359,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s menghapus pesan ini</string>
     <string name="ConversationItem_you_deleted_this_message">Anda menghapus pesan ini</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Hapus untuk semua?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s menghapus pesan ini</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -522,6 +508,8 @@
     <string name="ConversationFragment_deleting_messages">Menghapus pesan …</string>
     <string name="ConversationFragment_delete_for_me">Hapus untuk saya</string>
     <string name="ConversationFragment_delete_for_everyone">Hapus untuk semua</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="other">Hapus pesan terpilih?</item>
@@ -2840,28 +2828,15 @@
     <string name="KeyCachingService_lock">Kunci Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Anda</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Tipe media tidak didukung</string>
-    <string name="MediaPreviewActivity_draft">Draf</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Hapus pesan?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Ini akan menghapus pesan secara permanen.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s hingga %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Anda ke %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s ke Anda</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media tidak tersedia.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Tidak dapat memutar media.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Eror saat menemukan pesan.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Tidak dapat menemukan aplikasi untuk berbagi media ini.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Tutup</string>
     <string name="MediaPreviewFragment_edit_media_error">Kesalahan Media</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Eror Saat Menghapus Pesan, Pesan Mungkin Masih Ada</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Baca Lebih Lanjut</string>
     <string name="MediaPreviewFragment_share">Bagikan</string>
 
     <!-- MessageNotifier -->
@@ -3608,40 +3583,15 @@
     <string name="preferences__notifications">Notifikasi</string>
     <string name="preferences__led_color_unknown">Tidak dikenal</string>
     <string name="preferences__silent">Diam</string>
-    <string name="preferences__advanced">Lanjutan</string>
     <string name="preferences__donate_to_signal">Donasi ke Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Cerita</string>
     <string name="preferences__payments">Pembayaran</string>
     <string name="preferences__linked_devices">Perangkat terhubung</string>
-    <string name="preferences__disable_pin">Nonaktifkan PIN</string>
-    <string name="preferences__enable_pin">Aktifkan PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jika Anda menonaktifkan PIN, Anda akan kehilangan data saat Anda mendaftar ulang Signal kecuali Anda melakukan pencadangan manual dan memulihkannya. Anda tidak dapat menyalakan Kunci Pendaftaran saat PIN dinonaktifkan.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN menjaga informasi yang disimpan dengan Signal terenkripsi sehingga hanya Anda yang dapat mengaksesnya. Profil Anda, pengaturan, dan kontak-kontak akan dipulihkan saat Anda memasang ulang aplikasi. Anda tidak memerlukan PIN untuk membuka aplikasinya.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Pengaturan PIN lanjutan</string>
     <string name="preferences__submit_debug_log">Kirim log awakutu</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Sampaikan semua panggilan melalui peladen Signal untuk menghindari pengungkapan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
-    <string name="preferences_advanced__always_relay_calls">Selalu relay panggilan</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Pengingat pesan belum dibaca</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Hindari penyensoran</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Hindari penyensoran</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Jika diaktifkan, Signal akan menggagalkan penyensoran. Jangan nonaktifkan fitur ini kecuali Anda berada di lokasi di mana Signal disensor.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Pengelabuan Penyensoran telah diaktifkan berdasarkan nomor telepon Anda.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Anda telah menonaktifkan pengelakan sensor secara manual.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Pengelabuan penyensoran tidak diperlukan; Anda telah terhubung dengan layanan Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Penghindar penyensoran hanya dapat diaktifkan ketika terkoneksi dengan internet</string>
-    <string name="preferences_communication__category_sealed_sender">Pengirim Tertutup</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Izinkan dari semua orang</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktifkan pengirim tertutup untuk pesan masuk dari non-kontak dan orang yang tidak Anda beri profil.</string>
     <string name="preferences_proxy_address">Alamat proksi</string>
     <string name="preferences_only_use_a_proxy_if">Gunakan proksi hanya ketika Anda tidak dapat tersambung ke Signal menggunakan data seluler atau Wi-Fi.</string>
     <string name="preferences_share">Bagikan</string>
@@ -3655,10 +3605,6 @@
     <string name="preferences_success">Sukses</string>
     <string name="preferences_failed_to_connect">Gagal menyambungkan</string>
     <string name="preferences_enter_proxy_address">Masukkan alamat proxy</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Verifikasi kunci otomatis</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Jika diaktifkan, Signal akan mencoba proses verifikasi enkripsi chat 1:1 secara otomatis.</string>
 
 
     <!-- Internal only preferences -->
@@ -4037,11 +3983,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Selengkapnya</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Simpan</string>
-    <string name="media_preview__edit_title">Edit</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Pratinjau media</string>
@@ -4208,8 +4149,6 @@
     <string name="BackupUtil_never">Tidak pernah</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Tidak dikenal</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Gagal mengaktifkan kunci pendaftaran.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Gagal menonaktifkan kunci pendaftaran.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Anda harus memasukkan PIN Kunci Pendaftaran Anda</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN Anda harus terdiri dari minimal %1$d digit atau karakter</string>
     <string name="RegistrationActivity_too_many_attempts">Terlalu banyak mencoba</string>
@@ -4895,22 +4834,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Tampilkan ikon status</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Tampilkan ikon pada detail pesan saat terkirim menggunakan pengirim tertutup.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Jika diaktifkan, pesan baru yang dikirim dan diterima pada obrolan baru yang Anda mulai akan hilang setelah dibaca.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Jika diaktifkan, pesan baru yang dikirim dan diterima dalam obrolan ini akan hilang setelah dilihat.</string>
-    <string name="ExpireTimerSettingsFragment__off">Mati</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 minggu</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 minggu</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 hari</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 jam</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 jam</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 menit</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 detik</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Waktu kustom</string>
-    <string name="ExpireTimerSettingsFragment__save">Simpan</string>
 
 
     <!-- ChatColorSelectionFragment -->

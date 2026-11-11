@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバ接続中にエラーが発生しました！</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">登録ロックを使うにはPINが必要です。PINを無効にするには、まず登録ロックを無効にしてください。</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PINを作成しました。</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PINを無効にしました。</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">決済機能リカバリーフレーズの保管</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">フレーズを記録</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PINを無効にする前に、口座を回復するためのリカバリーフレーズを保管しなければなりません。</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">新しいリカバリーキーを作成する</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PINを無効にする前に、新しい回復キーを作成・記録する必要があります。</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">キーを作成</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -371,8 +359,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$sがこのメッセージを消去しました</string>
     <string name="ConversationItem_you_deleted_this_message">メッセージを消去しました</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">全員に対して消去しますか？</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">管理者の%1$sがこのメッセージを消去しました</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -522,6 +508,8 @@
     <string name="ConversationFragment_deleting_messages">メッセージを削除しています…</string>
     <string name="ConversationFragment_delete_for_me">自分の分だけ消去</string>
     <string name="ConversationFragment_delete_for_everyone">全員分を消去</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="other">選択したメッセージを消去しますか？</item>
@@ -2840,28 +2828,15 @@
     <string name="KeyCachingService_lock">Signalをロック</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">あなた</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディアタイプ</string>
-    <string name="MediaPreviewActivity_draft">下書き</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">メッセージを消去しますか？</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">このメッセージを完全に消去します。</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s から %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">あなたから %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s からあなた</string>
     <string name="MediaPreviewActivity_media_no_longer_available">メディアが存在しません。</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">メディアを再生できません。</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">メッセージ検索中にエラーが発生しました。</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">このメディアを共有できるアプリが見つかりません。</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">閉じる</string>
     <string name="MediaPreviewFragment_edit_media_error">メディアエラー</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">メッセージ削除中にエラーが発生しました。メッセージが削除されていない可能性があります</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">さらに表示</string>
     <string name="MediaPreviewFragment_share">共有</string>
 
     <!-- MessageNotifier -->
@@ -3608,40 +3583,15 @@
     <string name="preferences__notifications">通知</string>
     <string name="preferences__led_color_unknown">不明</string>
     <string name="preferences__silent">無音</string>
-    <string name="preferences__advanced">詳細設定</string>
     <string name="preferences__donate_to_signal">Signalへの寄付</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">ストーリー</string>
     <string name="preferences__payments">決済機能</string>
     <string name="preferences__linked_devices">リンク済み端末</string>
-    <string name="preferences__disable_pin">PINを無効化</string>
-    <string name="preferences__enable_pin">PINを有効化</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PINを無効にすると、自身でバックアップと復元を行わない限り、Signalに再登録する際すべてのデータが失われます。PINを無効にしている間は登録ロックは使用できません。</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Signal内に保存された情報は、PINにより暗号化を保持されるため、あなたのみアクセスできます。PINを使うことで、Signalの再インストール時にあなたのプロフィール、設定および連絡先が復元されます。アプリを開く際にはPINは必要はありません。</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">PINの詳細設定</string>
     <string name="preferences__submit_debug_log">デバッグログの提出</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバで中継して、相手にIPアドレスを知られることを防ぎます。ただし通話の品質は下がります。</string>
-    <string name="preferences_advanced__always_relay_calls">通話を常に中継する</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">未読リマインダー</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">閲覧回避</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">閲覧回避</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">有効にすると、Signalは検閲回避を試行します。Signalが検閲される場所にいない場合は、有効にしないでください。</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">アカウントの電話番号に基づいた、検閲回避が有効になりました。</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">検閲回避を手動で無効にしました。</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">すでにSignalサービスに接続しているため、検問回避は不要です。</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">検閲回避は、インターネットに接続されている場合にのみ有効です。</string>
-    <string name="preferences_communication__category_sealed_sender">送信者の秘匿化</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">全員を許可する</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザーからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
     <string name="preferences_proxy_address">プロキシアドレス</string>
     <string name="preferences_only_use_a_proxy_if">Wi-FiやモバイルデータでSignalに接続できない場合のみ、プロキシを使用してください。</string>
     <string name="preferences_share">共有</string>
@@ -3655,10 +3605,6 @@
     <string name="preferences_success">成功</string>
     <string name="preferences_failed_to_connect">接続に失敗しました</string>
     <string name="preferences_enter_proxy_address">プロキシアドレスを入力してください</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">自動キー確認</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">有効にすると、Signalは1対1のチャットの暗号化を自動的に確認します。</string>
 
 
     <!-- Internal only preferences -->
@@ -4037,11 +3983,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">詳しく見る</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">保存</string>
-    <string name="media_preview__edit_title">編集</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">メディアのプレビュー</string>
@@ -4208,8 +4149,6 @@
     <string name="BackupUtil_never">なし</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">不明</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">登録ロックを有効にすることに失敗しました。</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">登録ロックを無効にすることに失敗しました</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">登録ロックPINの入力が必要です</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">あなたのPINは%1$d字以上です</string>
     <string name="RegistrationActivity_too_many_attempts">試行回数が多すぎます</string>
@@ -4895,22 +4834,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">ステータスアイコンを表示する</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">送信者を秘匿化して届けられたメッセージの詳細で、アイコンを表示します。</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">有効にすると、あなたの新規チャットで新たに送受信されるメッセージは、閲覧後に消えます。</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">有効にすると、このチャットで新たに送受信されたメッセージは、閲覧後に消えます。</string>
-    <string name="ExpireTimerSettingsFragment__off">オフ</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4週間</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1週間</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1日</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8時間</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1時間</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5分</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30秒</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">カスタム時間</string>
-    <string name="ExpireTimerSettingsFragment__save">保存</string>
 
 
     <!-- ChatColorSelectionFragment -->

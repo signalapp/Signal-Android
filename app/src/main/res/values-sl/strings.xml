@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je potreben za zaklep registracije. Če ga želite odstraniti, morate najprej izklopiti zaklep registracije.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN je bil ustvarjen.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN je bil izklopljen.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Shrani obnovitveno frazo za plačila</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Shrani frazo</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Preden onemogočite svoj PIN, morate shraniti obnovitveno frazo za plačila, da jih boste lahko kasneje obnovili.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Ustvarite nov obnovitveni ključ</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Preden lahko onemogočite PIN, morate ustvariti in zabeležiti nov obnovitveni ključ.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Ustvari ključ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -377,8 +365,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s je izbrisal_a sporočilo</string>
     <string name="ConversationItem_you_deleted_this_message">Izbrisali ste to sporočilo</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Želite izbrisati za vse?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administrator_ka %1$s je izbrisal_a to sporočilo</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -543,6 +529,8 @@
     <string name="ConversationFragment_deleting_messages">Izbris sporočil …</string>
     <string name="ConversationFragment_delete_for_me">Izbriši zame</string>
     <string name="ConversationFragment_delete_for_everyone">Izbriši za vse</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Izbrišem izbrano sporočilo?</item>
@@ -3131,28 +3119,15 @@
     <string name="KeyCachingService_lock">Zakleni Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Vi</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Nepodprt medij</string>
-    <string name="MediaPreviewActivity_draft">Osnutek</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Izbrišem sporočilo?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Sporočilo bo nepovratno izbrisano.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s do %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Vi za uporabnika_co %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s za vas</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Medijsko sporočilo ni več na voljo.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Ni mogoče predvajati medijev.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Napaka pri iskanju sporočila.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ne najdem ustrezne aplikacije za delitev tega medija.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Zapri</string>
     <string name="MediaPreviewFragment_edit_media_error">Medijska napaka</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Napaka pri brisanju sporočila, sporočilo morda še obstaja</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Več o tem</string>
     <string name="MediaPreviewFragment_share">Deli</string>
 
     <!-- MessageNotifier -->
@@ -3931,7 +3906,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Aplikacije s pomočniki umetne inteligence, kot je Gemini, lahko pregledujejo vsebino aplikacije Signal. Da bi to preprečili, je bila omogočena zaščita zaslona. S tem bodo onemogočeni tudi posnetki zaslona.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Zaščita zaslona je omogočena</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3939,7 +3914,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Želite onemogočiti zaščito zaslona?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Če to možnost izklopite, lahko s pomočnikom umetne inteligence, kot je Google Gemini, omogočite pregledovanje vsebine aplikacije Signal in njeno uporabo za funkcije, pri katerih vaša zasebnost morda ne bo zagotovljena.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Onemogoči</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -3947,40 +3922,15 @@
     <string name="preferences__notifications">Obvestila</string>
     <string name="preferences__led_color_unknown">Neznano</string>
     <string name="preferences__silent">Tiho</string>
-    <string name="preferences__advanced">Napredno</string>
     <string name="preferences__donate_to_signal">Podprite Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Zgodbe</string>
     <string name="preferences__payments">Plačila</string>
     <string name="preferences__linked_devices">Povezane naprave</string>
-    <string name="preferences__disable_pin">Izklop PINa</string>
-    <string name="preferences__enable_pin">Vklopi PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Z izklopom PINa boste ob ponovni prijavi v svoj račun Signal izgubili vse tam shranjene podatke, razen če prej sami ne ustvarite varnostne kopije. Brez PINa tudi ne morete vklopiti zaklepa registracije.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">S kodo PIN zavarujete podatke shranjene na Signalu s šifriranjem, tako da so dostopni le vam. Vaš profil, nastavitve in stiki bodo ob ponovni namestitvi aplikacije Signal obnovljeni. Vnos PINa ob vsakokratnem zagonu aplikacije ne bo potreben.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Napredne nastavite PIN</string>
     <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vsi klici bodo posredovani preko strežnika Signal. S tem boste klicani strani onemogočili, da bi odkrila vaš naslov IP. Kvaliteta klica bo zaradi tega slabša.</string>
-    <string name="preferences_advanced__always_relay_calls">Posredovanje klicev</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Opomniki za neprebrana sporočila</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Zaščita pred cenzuro</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Zaščita pred cenzuro</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ob vklopu bo aplikacija Signal skušala zaobiti cenzuro. Ne vklapljajte, če niste na lokaciji, kjer je aplikacija Signal blokirana.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Zaščita pred cenzuro je bila vklopljena v povezavi s telefonsko številko vašega računa.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Izkopili ste zaščito pred cenzuro.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Zaščita pred cenzuro ni potrebna, saj je naprava že uspešno povezana s strežniki Signal</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Zaščito pred cenzuro je mogoče vklopiti le, kadar ste povezani z internetom.</string>
-    <string name="preferences_communication__category_sealed_sender">Zakriti pošiljatelj</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Dovoli za vse pošiljatelje</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Vklop zakritega pošiljatelja za dohodna sporočila uporabnikov_ic, ki niso v imeniku in tistih, s katerimi ne delite svojega profila.</string>
     <string name="preferences_proxy_address">Naslov proksi</string>
     <string name="preferences_only_use_a_proxy_if">Proksi uporabite samo, če se ne morete povezati na Signal preko mobilnega omrežja ali Wi-Fija.</string>
     <string name="preferences_share">Deli</string>
@@ -3994,10 +3944,6 @@
     <string name="preferences_success">Uspeh</string>
     <string name="preferences_failed_to_connect">Povezovanje ni uspelo</string>
     <string name="preferences_enter_proxy_address">Vnesite naslov proksi</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Samodejno preverjanje ključa</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Ko je omogočeno, bo Signal poskušal samodejno preveriti šifriranje klepetov 1:1.</string>
 
 
     <!-- Internal only preferences -->
@@ -4382,11 +4328,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Preberite več</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Shrani</string>
-    <string name="media_preview__edit_title">Uredi</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Ogled medija</string>
@@ -4574,8 +4515,6 @@
     <string name="BackupUtil_never">Nikoli</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Neznano</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Neuspešen vklop zaklepa registracije.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Neuspešen izklop zaklepa registracije.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Vnesti morate kodo PIN za prijavo v omrežje</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Vaš PIN vsebuje vsaj %1$d številk ali znakov</string>
     <string name="RegistrationActivity_too_many_attempts">Preveč poskusov</string>
@@ -5306,22 +5245,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaži statusno ikono</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaz ikone v detajlih sporočil, kadar so ta dostavljena s pomočjo zakritega pošiljatelja.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Nova sporočila, poslana in prejeta v novih klepetih, ki ste jih pričeli sami, bodo izginila, ko bodo videna s strani prejemnika_ce.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nova sporočila, poslana in prejeta v tem klepetu, bodo izginila, ko bodo videna s strani prejemnika_ce.</string>
-    <string name="ExpireTimerSettingsFragment__off">Izklopljen</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 tedne</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 teden</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 dan</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 ur</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 ura</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minut</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekund</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Čas po meri</string>
-    <string name="ExpireTimerSettingsFragment__save">Shrani</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5554,7 +5478,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Barva %1$d od %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Deli</string>
@@ -8369,7 +8293,7 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proksi</string>
     <!-- Overflow menu item in MainToolbar that opens donation settings -->
-    <string name="MainToolbar__donate">Doniraj</string>
+    <string name="MainToolbar__donate">Donirajte</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

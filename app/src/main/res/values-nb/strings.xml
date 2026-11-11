@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til server!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder er påkrevet for registreringslås. For å deaktivere PIN-koder, vær vennlig å deaktivere registreringslås.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN laget.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kode deaktivert.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Angi gjenopprettingspassord for betalinger</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Angi passord</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere PIN-koden din, må du registrere betalingsgjenopprettingsfrasen for å sikre at du kan gjenopprette betalingskontoen din.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Lag en ny sikkerhetskode</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Du må lage og registrere en ny sikkerhetskode før du kan deaktivere PIN-koden din.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Lag kode</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s slettet denne meldingen</string>
     <string name="ConversationItem_you_deleted_this_message">Du slettet denne meldingen</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Vil du slette for alle?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administratoren %1$s slettet denne meldingen</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Sletter meldinger…</string>
     <string name="ConversationFragment_delete_for_me">Slett for meg</string>
     <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Vil du slette meldingen?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Lås Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Deg</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Ustøttet medietype</string>
-    <string name="MediaPreviewActivity_draft">Utkast</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Vil du slette denne meldingen?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldingen blir slettet for godt.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Fra deg til %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">Fra %1$s til deg</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media er ikke lenger tilgjengelig.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Kan ikke spille av videoen.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Kunne ikke finne meldingen.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Kan ikke finne app som er i stand til å dele dette mediet.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Lukk</string>
     <string name="MediaPreviewFragment_edit_media_error">Mediefeil</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Kunne ikke slette meldingen. Meldingen kan fremdeles finnes.</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Les mer</string>
     <string name="MediaPreviewFragment_share">Del</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Varsler</string>
     <string name="preferences__led_color_unknown">Ukjent</string>
     <string name="preferences__silent">Stille</string>
-    <string name="preferences__advanced">Avansert</string>
     <string name="preferences__donate_to_signal">Gi penger til Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Storyer</string>
     <string name="preferences__payments">Betalinger</string>
     <string name="preferences__linked_devices">Koblede enheter</string>
-    <string name="preferences__disable_pin">Deaktiver PIN-kode</string>
-    <string name="preferences__enable_pin">Aktiver PIN-kode</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all informasjon når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koder holder informasjon lagret i Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Signal på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Avanserte innstillinger for PIN-kode</string>
     <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle anrop gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vil redusere samtalekvaliteten.</string>
-    <string name="preferences_advanced__always_relay_calls">Omdiriger alle telefonsamtaler</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Uleste meldinger</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Omgåelse av sensur</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Omgå sensur</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Når slått på, vil Signal forsøke å unngå sensurforsøk. Ikke skru på denne funksjonen om du ikke er i et område hvor Signal blir forsøkt sensurert.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Sensur-omgåelse har blitt aktivert basert på telefonnummeret som kontoen er registrert med.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Du har manuelt deaktivert censur kringgående.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Omgåelse av sensur er ikke nødvendig; du er allerede koblet til Signal tjenesten.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Sensur-omgåelse kan bare bli skrudd på når telefonen er koblet til internett.</string>
-    <string name="preferences_communication__category_sealed_sender">Forseglet Avsender</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat fra hvem som helst</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiver forseglet avsender for innkommende meldinger fra avsendere og personer du ikke har delt profilen din med.</string>
     <string name="preferences_proxy_address">Proxy-adresse</string>
     <string name="preferences_only_use_a_proxy_if">Bruk en proxy kun hvis du ikke kan koble til Signal med mobildata eller Wi-Fi.</string>
     <string name="preferences_share">Del</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Suksess</string>
     <string name="preferences_failed_to_connect">Tilkobling mislyktes</string>
     <string name="preferences_enter_proxy_address">Skriv inn proxy-adressen</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatisk kodebekreftelse</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Når dette er aktivert, vil Signal forsøke å bekrefte krypteringen i personlige samtaler automatisk.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Les mer</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Lagre</string>
-    <string name="media_preview__edit_title">Rediger</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Forhåndsvisning av medier</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Aldri</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Ukjent</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Kunne ikke skru på registreringslås.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Kunne ikke skru av registreringslås.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du må skrive inn registrerings-PIN-koden</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-koden har minst %1$d sifre eller tegn</string>
     <string name="RegistrationActivity_too_many_attempts">For mange forsøk</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis status-ikon</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et statusikon i meldingsdetaljer når de ble levert ved bruk av forseglet avsender.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Når aktivert vil sendte og mottatte meldinger, i nye samtaler du starter, forsvinne etter at de har blitt sett.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Når aktivert vil meldinger sendt og mottatt i denne samtalen forsvinne etter at de har blitt sett.</string>
-    <string name="ExpireTimerSettingsFragment__off">Av</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 uker</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 uke</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 dag</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 timer</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 time</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutter</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekunder</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Selvvalgt tid</string>
-    <string name="ExpireTimerSettingsFragment__save">Lagre</string>
 
 
     <!-- ChatColorSelectionFragment -->

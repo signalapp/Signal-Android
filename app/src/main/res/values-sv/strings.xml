@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fel vid anslutning till server!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder krävs för registreringslås. För att inaktivera PIN-koder, inaktivera först registreringslåset.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN-kod skapad.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kod inaktiverad.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrera återställningsfras för betalningar</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Registrera fras</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Innan du kan inaktivera din PIN-kod måste du registrera din återställningsfras för betalningar för att säkerställa att du kan återställa ditt betalningskonto.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Skapa en ny återställningsnyckel</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Du måste skapa och registrera en ny återställningsnyckel innan du kan inaktivera din pinkod.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Skapa nyckel</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s tog bort det här meddelandet</string>
     <string name="ConversationItem_you_deleted_this_message">Du tog bort detta meddelande</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Ta bort för alla?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s tog bort detta meddelande</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Tar bort meddelanden…</string>
     <string name="ConversationFragment_delete_for_me">Ta bort för mig</string>
     <string name="ConversationFragment_delete_for_everyone">Ta bort för alla</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Ta bort valt meddelande?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Lås Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Du</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds inte</string>
-    <string name="MediaPreviewActivity_draft">Utkast</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Ta bort meddelande?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Detta tar bort detta meddelande permanent.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s till %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Du till %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s till dig</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media är inte längre tillgängligt.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Det gick inte att spela upp media.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Fel vid sökning av meddelande</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Det går inte att hitta en app som kan dela detta medium.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Stäng</string>
     <string name="MediaPreviewFragment_edit_media_error">Mediefel</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Fel vid borttagning av meddelande. Meddelandet kan fortfarande finnas</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Läs mer</string>
     <string name="MediaPreviewFragment_share">Dela</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Aviseringar</string>
     <string name="preferences__led_color_unknown">Okänd</string>
     <string name="preferences__silent">Tyst</string>
-    <string name="preferences__advanced">Avancerat</string>
     <string name="preferences__donate_to_signal">Donera till Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
     <string name="preferences__payments">Betalningar</string>
     <string name="preferences__linked_devices">Länkade enheter</string>
-    <string name="preferences__disable_pin">Inaktivera PIN-koden</string>
-    <string name="preferences__enable_pin">Aktivera PIN-koden</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Om du inaktiverar PIN-koden kommer du att förlora alla data när du registrerar om Signal om du inte säkerhetskopierar och återställer manuellt. Du kan inte aktivera registreringslåset medan PIN-koden är inaktiverad.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koden håller information lagrad hos Signal krypterad så att du bara kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om. Du behöver inte din PIN-kod för att öppna appen.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Avancerade PIN-kodsinställningar</string>
     <string name="preferences__submit_debug_log">Skicka in felsökningslogg</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Slussa alla samtal via Signal-servern för att undvika att avslöja din IP-adress för din kontakt. Aktivering försämrar samtalskvaliteten.</string>
-    <string name="preferences_advanced__always_relay_calls">Slussa alltid samtal</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Påminnelser om olästa</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Censur kringgående</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Censur kringgående</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Om påslaget så kommer Signal försöka kringgå censur. Slå bara på denna funktion om du är på en plats där Signal censureras.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Kringgå censur har aktiverats baserat på ditt kontos telefonnummer</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Du har manuellt inaktiverat kringgående av censur.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Kringgå censur är inte nödvändigt; du är redan ansluten till Signal-tjänsten.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Kringgå censur kan bara aktiveras när då internet är tillgängligt</string>
-    <string name="preferences_communication__category_sealed_sender">Dold avsändare</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillåt från alla</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivera dold avsändare för inkommande meddelanden från icke-kontakter och personer som du inte har delat din profil med.</string>
     <string name="preferences_proxy_address">Proxyadress</string>
     <string name="preferences_only_use_a_proxy_if">Använd endast en proxy om du inte kan ansluta till Signal på mobildata eller Wi-Fi.</string>
     <string name="preferences_share">Dela</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Lyckades</string>
     <string name="preferences_failed_to_connect">Det gick inte att ansluta</string>
     <string name="preferences_enter_proxy_address">Ange proxyadress</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatisk nyckelverifiering</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">När den är aktiverad kommer Signal försöka att automatiskt verifiera krypteringen av 1:1-chattar.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Läs mer</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Spara</string>
-    <string name="media_preview__edit_title">Ändra</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Mediaförhandsgranskning</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Aldrig</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Okänd</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Det gick inte att aktivera registreringslåset.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Det gick inte att inaktivera registreringslåset.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du måste ange din PIN-kod för registreringslåset</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Din PIN-kod måste vara minst %1$d siffror eller tecken</string>
     <string name="RegistrationActivity_too_many_attempts">För många försök</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Visa statusikon</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Visa en ikon i meddelandedetaljer när de levererades med dold avsändare.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">När det är aktiverat försvinner nya meddelanden som skickas och tas emot i nya chattar som du startat efter att de har setts.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">När det är aktiverat försvinner nya meddelanden som skickas och tas emot i denna chatt när de har setts.</string>
-    <string name="ExpireTimerSettingsFragment__off">Av</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 veckor</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 vecka</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 dag</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 timmar</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 timme</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minuter</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekunder</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Anpassad tid</string>
-    <string name="ExpireTimerSettingsFragment__save">Spara</string>
 
 
     <!-- ChatColorSelectionFragment -->

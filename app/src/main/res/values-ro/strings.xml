@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Codurile PIN sunt necesare pentru blocarea înregistrării. Pentru a dezactiva codurile PIN, te rugăm să dezactivezi mai întâi blocarea înregistrării.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN creat.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN dezactivat.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Transcrie fraza de recuperare plăți</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Transcrie frază</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Înainte de a putea dezactiva PIN-ul, trebuie să transcrii fraza de recuperare pentru a te asigura că poți recăpăta accesul la plățile contului.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Creează un nou cod de recuperare</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Trebuie să creezi și să înregistrezi un nou cod de recuperare înainte de a putea dezactiva codul PIN.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Creează codul</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -375,8 +363,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s a eliminat acest mesaj</string>
     <string name="ConversationItem_you_deleted_this_message">Ai eliminat acest mesaj</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Elimini pentru toată lumea?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administratorul %1$s a eliminat acest mesaj</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -536,6 +522,8 @@
     <string name="ConversationFragment_deleting_messages">Se șterg mesajele…</string>
     <string name="ConversationFragment_delete_for_me">Șterge doar pentru mine</string>
     <string name="ConversationFragment_delete_for_everyone">Șterge pentru toată lumea</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Șterg mesajul selectat?</item>
@@ -3034,28 +3022,15 @@
     <string name="KeyCachingService_lock">Blochează Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Tu</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
-    <string name="MediaPreviewActivity_draft">Ciornă</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Șterg mesajul?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s la %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Tu către %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s către tine</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media nu mai este disponibilă.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Nu s-a putut porni fișierul media.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Eroare la găsirea mesajului.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nu pot găsi o aplicație pentru a distribui acest tip media.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Închide</string>
     <string name="MediaPreviewFragment_edit_media_error">Eroare Media</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Eroare la Ștergerea Mesajului, Mesajul Încă Poate Să Existe</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Citește mai mult</string>
     <string name="MediaPreviewFragment_share">Distribuie</string>
 
     <!-- MessageNotifier -->
@@ -3818,7 +3793,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Aplicațiile cu asistenți AI, precum Gemini, pot analiza conținutul tău din Signal. Pentru a preveni acest lucru, s-a activat protecția ecranului. Această setare va dezactiva și capturile de ecran.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Securitatea ecranului este activată</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3826,7 +3801,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Dezactivezi securitatea ecranului?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Dacă această opțiune este dezactivată, este posibil ca asistenții AI, precum Google Gemini, să poată scana conținutul din Signal și să îl utilizeze pentru funcții care ar putea să nu fie confidențiale.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Dezactivare</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -3834,40 +3809,15 @@
     <string name="preferences__notifications">Notificări</string>
     <string name="preferences__led_color_unknown">Necunoscut</string>
     <string name="preferences__silent">Silențios</string>
-    <string name="preferences__advanced">Avansat</string>
     <string name="preferences__donate_to_signal">Donează pentru Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Povești</string>
     <string name="preferences__payments">Plăți</string>
     <string name="preferences__linked_devices">Dispozitive asociate</string>
-    <string name="preferences__disable_pin">Dezactivare PIN</string>
-    <string name="preferences__enable_pin">Activare PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Dacă dezactivezi codul PIN, vei pierde toate datele când te vei înregistra din nou la Signal, cu excepția cazului în care faci backup și restaurezi manual. Nu vei putea activa Blocarea înregistrării cât timp codul PIN este dezactivat.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalezi Signal. Nu ai nevoie de PIN pentru a deschide aplicația.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Setări PIN avansate</string>
     <string name="preferences__submit_debug_log">Trimite jurnalul de depanare</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționează toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contactul tău. Activarea va reduce calitatea apelului.</string>
-    <string name="preferences_advanced__always_relay_calls">Redirecționează întotdeauna apelurile</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Remindere necitite</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Ocolire cenzură</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Ocolire cenzură</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Dacă este activată, Signal va încerca să ocolească cenzura. Nu activa această funcționalitate doar dacă ești într-o locație unde Signal este cenzurat.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Ocolirea cenzurii a fost activată pe baza numărului tău de telefon.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ai dezactivat manual ocolirea cenzurii.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Ocolirea cenzurii nu este necesară; ești deja conectat la serviciul Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Ocolirea cenzurii poate fi activată numai atunci când ești conectat la internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Expeditor Ascuns</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Permite oricui</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activează funcția de expeditor ascuns pentru mesaje primite de la non-contacte și persoane cu care nu ai partajat profilul tău.</string>
     <string name="preferences_proxy_address">Adresă proxy</string>
     <string name="preferences_only_use_a_proxy_if">Folosește un proxy numai dacă nu te poți conecta la Signal pe date mobile sau Wi-Fi.</string>
     <string name="preferences_share">Distribuie</string>
@@ -3881,10 +3831,6 @@
     <string name="preferences_success">Succes</string>
     <string name="preferences_failed_to_connect">Conexiunea a eșuat</string>
     <string name="preferences_enter_proxy_address">Introdu adresa proxy</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Verificare automată a codului</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Când este activat, Signal va încerca să verifice automat criptarea conversațiilor 1:1.</string>
 
 
     <!-- Internal only preferences -->
@@ -4267,11 +4213,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Află mai multe</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Salvează</string>
-    <string name="media_preview__edit_title">Editează</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Previzualizare media</string>
@@ -4452,8 +4393,6 @@
     <string name="BackupUtil_never">Niciodată</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Necunoscut</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Activarea blocării înregistrării a eșuat.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Dezactivarea blocării înregistrării a eșuat.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Trebuie să introduci PIN-ul de blocare al înregistrării</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-ul tău are cel puțin %1$d cifre sau caractere</string>
     <string name="RegistrationActivity_too_many_attempts">Prea multe încercări</string>
@@ -5169,22 +5108,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Afișare icon de status</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Afișează un icon de status în detaliile mesajului când a fost trimis folosind funcția expeditor ascuns.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Când e activată opțiunea, mesajele noi trimise și primite în conversații noi începute de tine vor dispărea după ce au fost vizualizate.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Cu opțiunea activă, mesajele trimise și primite în conversație vor dispărea după ce sunt văzute.</string>
-    <string name="ExpireTimerSettingsFragment__off">Dezactivat</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 săptămâni</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 săptămână</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 zi</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 ore</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 oră</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minute</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 secunde</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Timp personalizat</string>
-    <string name="ExpireTimerSettingsFragment__save">Salvează</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5413,7 +5337,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Culoarea %1$d din %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Distribuie</string>

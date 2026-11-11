@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없습니다</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">등록 잠금을 위해 PIN이 필요합니다. PIN을 비활성화하려면 먼저 등록 잠금을 비활성화하세요.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 비활성화되었습니다.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">결제 복원 문구 기록</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">문구 기록</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN 번호를 비활성화하기 전, 결제 계정을 안전하게 복구할 수 있도록 복원 문구를 미리 기록해 두시기 바랍니다.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">새 복구 키 만들기</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PIN을 비활성화하려면 먼저 새 복구 키를 만들고 기록해 두어야 합니다.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">키 만들기</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -371,8 +359,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s 님이 이 메시지를 삭제했습니다.</string>
     <string name="ConversationItem_you_deleted_this_message">내가 이 메시지를 삭제했습니다.</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">모두에게서 삭제할까요?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">관리자 %1$s 님이 메시지를 삭제했습니다.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -522,6 +508,8 @@
     <string name="ConversationFragment_deleting_messages">메시지 삭제 중…</string>
     <string name="ConversationFragment_delete_for_me">나에게서 삭제</string>
     <string name="ConversationFragment_delete_for_everyone">모두에게서 삭제</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="other">선택한 메시지를 삭제할까요?</item>
@@ -2840,28 +2828,15 @@
     <string name="KeyCachingService_lock">Signal 잠금 걸기</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">나</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">지원되지 않는 미디어 형식</string>
-    <string name="MediaPreviewActivity_draft">임시 저장</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">메시지를 삭제할까요?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">메시지를 영구적으로 삭제합니다.</string>
-    <string name="MediaPreviewActivity_s_to_s">보낸 사람: %1$s 님, 받는 사람: %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">보낸 사람: 나, 받는 사람: %1$s 님</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">보낸 사람: %1$s 님, 받는 사람: 나</string>
     <string name="MediaPreviewActivity_media_no_longer_available">미디어를 더 이상 이용할 수 없습니다.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">미디어를 재생할 수 없습니다.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">메시지 검색 중 오류가 발생했습니다.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">미디어를 공유할 수 있는 앱을 찾을 수 없습니다.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">닫기</string>
     <string name="MediaPreviewFragment_edit_media_error">미디어 오류</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">메시지 삭제 오류: 메시지가 여전히 남아있을 수 있습니다</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">더 보기</string>
     <string name="MediaPreviewFragment_share">공유</string>
 
     <!-- MessageNotifier -->
@@ -3608,40 +3583,15 @@
     <string name="preferences__notifications">알림</string>
     <string name="preferences__led_color_unknown">알 수 없음</string>
     <string name="preferences__silent">무음</string>
-    <string name="preferences__advanced">고급</string>
     <string name="preferences__donate_to_signal">Signal 후원하기</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">스토리</string>
     <string name="preferences__payments">결제</string>
     <string name="preferences__linked_devices">연동 기기</string>
-    <string name="preferences__disable_pin">PIN 비활성화</string>
-    <string name="preferences__enable_pin">PIN 활성화</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN을 비활성화하면 수동으로 백업 및 복원하지 않는 한, Signal 재가입 시 모든 데이터가 삭제됩니다. PIN이 비활성화된 상태에서는 등록 잠금 기능을 사용할 수 없습니다.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN은 Signal에 저장된 정보를 암호화하여 본인만 접근할 수 있도록 보호합니다. 앱을 재설치해도 프로필, 설정, 연락처가 자동으로 복원되며, 평소 앱을 열 때는 PIN을 입력하지 않아도 됩니다.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">PIN 고급 설정</string>
     <string name="preferences__submit_debug_log">디버그 로그 제출</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">상대방에게 IP 주소가 노출되지 않도록 모든 통화를 Signal 서버로 경유합니다. 통화 품질이 다소 저하될 수 있습니다.</string>
-    <string name="preferences_advanced__always_relay_calls">통화 시 항상 서버 경유</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">읽지 않은 메시지 알림</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">검열 우회</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">검열 우회</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">이 기능을 활성화하면 Signal이 검열을 우회하려고 시도합니다. Signal이 차단된 지역에 있는 경우에만 이 기능을 사용하세요.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">계정의 전화번호를 기반으로 검열 우회 기능이 활성화되었습니다.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">검열 우회 기능을 직접 비활성화했습니다.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">이미 Signal에 연결되어 있어 검열 우회 설정을 켤 필요가 없습니다.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">검열 우회는 인터넷에 연결되었을 때만 활성화할 수 있습니다.</string>
-    <string name="preferences_communication__category_sealed_sender">발신자 암호화</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">모두에게 허용</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">연락처에 없거나 프로필을 공유하지 않은 상대가 보내는 메시지에 발신자 암호화 기능을 적용합니다.</string>
     <string name="preferences_proxy_address">프록시 주소</string>
     <string name="preferences_only_use_a_proxy_if">모바일 데이터 또는 Wi-Fi에서 Signal에 연결할 수 없는 경우에만 프록시를 사용하세요.</string>
     <string name="preferences_share">공유</string>
@@ -3655,10 +3605,6 @@
     <string name="preferences_success">성공</string>
     <string name="preferences_failed_to_connect">연결 실패함</string>
     <string name="preferences_enter_proxy_address">프록시 주소 입력하기</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">자동 키 인증</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">이 기능을 활성화하면 Signal이 1:1 대화의 암호화를 자동으로 인증하려고 시도합니다.</string>
 
 
     <!-- Internal only preferences -->
@@ -4037,11 +3983,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">자세히 알아보기</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">저장</string>
-    <string name="media_preview__edit_title">수정</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">미디어 미리보기</string>
@@ -4208,8 +4149,6 @@
     <string name="BackupUtil_never">없음</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">알 수 없음</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">등록 잠금을 활성화하지 못했습니다.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">등록 잠금을 비활성화하지 못했습니다.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">등록 잠금 번호를 입력해야 합니다.</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN은 최소 %1$d자여야 합니다.</string>
     <string name="RegistrationActivity_too_many_attempts">시도 횟수를 초과했습니다</string>
@@ -4895,22 +4834,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">상태 아이콘 표시하기</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">발신자 암호화 기능이 적용된 메시지 상세 정보에 아이콘을 표시합니다.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">이 기능을 활성화하면 내가 시작한 새 대화에서 주고받은 메시지는 확인 후 자동 삭제됩니다.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">이 기능을 켤 경우, 대화에서 주고받는 새 메시지는 확인 후 자동 삭제됩니다.</string>
-    <string name="ExpireTimerSettingsFragment__off">꺼짐</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4주</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1주</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1일</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8시간</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1시간</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5분</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30초</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">맞춤 시간</string>
-    <string name="ExpireTimerSettingsFragment__save">저장</string>
 
 
     <!-- ChatColorSelectionFragment -->

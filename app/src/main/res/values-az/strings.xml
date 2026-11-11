@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Serverə qoşulma xətası!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-lər qeydiyyat kilidi üçün tələb olunur. PIN-ləri sıradan çıxartmaq üçün əvvəlcə zəhmət olmasa qeydiyyat kilidini sıradan çıxardın.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN yaradıldı.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN sıradan çıxarıldı.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödənişlərin bərpa parolunu qeyd edin</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Parolu qeyd edin</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN-inizi sıradan çıxartmazdan əvvəl, ödəniş hesabınızı bərpa edə biləcəyinizə əmin olmaq üçün ödəniş bərpa parolunuzu qeyd edin.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Yeni bir bərpa şifrəsi yaradın</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PIN kodunuzu qeyri-aktiv etməzdən əvvəl, yeni bir bərpa şifrəsi yaratmalı və qeyd etməlisiniz.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Şifrə yarat</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s bu mesajı sildi</string>
     <string name="ConversationItem_you_deleted_this_message">Bu mesajı sildiniz</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Hər kəsdən silinsin?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s bu mesajı sildi</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Mesajlar silinir…</string>
     <string name="ConversationFragment_delete_for_me">Mənim üçün sil</string>
     <string name="ConversationFragment_delete_for_everyone">Hər kəs üçün sil</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Seçilmiş mesaj silinsin?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Signal-ı kilidlə</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Siz</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Dəstəklənməyən media növü</string>
-    <string name="MediaPreviewActivity_draft">Qaralama</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Mesaj silinsin?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu, mesajı birdəfəlik siləcək.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s - %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Göndərdiniz: %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s sizə göndərildi</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media artıq mövcud deyil.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Media faylını açmaq mümkün olmadı.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Mesaj tapma xətası.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Bu medianı paylaşmaq üçün bir tətbiq tapıla bilmir.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Bağla</string>
     <string name="MediaPreviewFragment_edit_media_error">Media xətası</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Mesaj silinərkən xəta baş verdi, mesaj hələ də silinməmiş ola bilər</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Daha çox oxu</string>
     <string name="MediaPreviewFragment_share">Paylaş</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Bildirişlər</string>
     <string name="preferences__led_color_unknown">Bilinmir</string>
     <string name="preferences__silent">Səssiz</string>
-    <string name="preferences__advanced">Qabaqcıl</string>
     <string name="preferences__donate_to_signal">Signal-a ianə verin</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Hekayələr</string>
     <string name="preferences__payments">Ödənişlər</string>
     <string name="preferences__linked_devices">Əlaqə yaradılmış cihazlar</string>
-    <string name="preferences__disable_pin">PIN-i sıradan çıxart</string>
-    <string name="preferences__enable_pin">PIN-i fəallaşdır</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Əgər PIN-i sıradan çıxartsanız, manual olaraq nüsxələmə və geri yükləmə etmədiyiniz müddətcə Signal-da yenidən qeydiyyatdan keçəndə bütün verilənlərinizi itirəcəksiniz. PIN sıradan çıxarılanda, Qeydiyyat Kilidini aça bilməzsiniz.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-lər, Signal-da saxlanılan məlumatları şifrələnmiş olaraq tutur, beləcə yalnız siz müraciət edə bilirsiniz. Profiliniz, tənzimləmələriniz və əlaqələriniz, yenidən quraşdırılanda geri yüklənəcək. Tətbiqi açmaq üçün PIN-inizə ehtiyac olmayacaq.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Qabaqcıl PIN tənzimləmələri</string>
     <string name="preferences__submit_debug_log">Sazlama jurnalını göndər</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP ünvanınızı əlaqənizə göstərməmək üçün bütün zəngləri, Signal serveri üzərindən həyata keçirin. Fəallaşdırsanız, zəngin keyfiyyəti aşağı düşəcək.</string>
-    <string name="preferences_advanced__always_relay_calls">Zəngləri həmişə köçür</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">\"Oxunmamış mesaj\" xəbərdarlıqları</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Senzuradan yayınma</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Senzuradan yayınma</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Fəal olsa, Singal, senzuradan yayınmağa cəhd edəcək. Singal senzurasının olduğu bir yerdə deyilsəniz, bu özəlliyi fəallaşdırmayın.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Senzuradan yayınma, hesabınızın telefon nömrəsinə görə aktivləşdirildi.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Senzuradan yayınmanı əllə sıradan çıxartdınız.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Senzuradan yayınmağa ehtiyac yoxdur; artıq Signal xidmətinə bağlanmısınız.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Senzuradan yayınma, yalnız internetə bağlananda aktivləşdirilə bilər.</string>
-    <string name="preferences_communication__category_sealed_sender">Gizli Göndərən</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Hər kəsdən icazə ver</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Əlaqə kitabçanızda olmayan və profilinizi paylaşmadığınız əlaqələrdən gələn mesajlar üçün gizli göndərən seçimini fəallaşdırın.</string>
     <string name="preferences_proxy_address">Proksi ünvanı</string>
     <string name="preferences_only_use_a_proxy_if">Yalnız mobil verilənlər və ya Wi-Fi üzərindən Signal-a bağlana bilmədiyiniz halda proksini istifadə edin.</string>
     <string name="preferences_share">Paylaş</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Uğurlu</string>
     <string name="preferences_failed_to_connect">Bağlantı qurulmadı</string>
     <string name="preferences_enter_proxy_address">Proksi ünvanını daxil et</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Avtomatik şifrə yoxlaması</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Aktivləşdirildikdə, Signal 1:1 çatların şifrələməsini avtomatik yoxlamağa cəhd edəcək.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Daha ətraflı</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Saxla</string>
-    <string name="media_preview__edit_title">Düzəliş et</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Media önbaxışı</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Heç vaxt</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Bilinmir</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Qeydiyyat kilidi fəallaşdırılmadı.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Qeydiyyat kilidi sıradan çıxarılmadı.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Qeydiyyat Kilidi PIN-inizi daxil etməlisiniz</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-iniz ən azı %1$d rəqəm və ya simvoldan ibarət olmalıdır.</string>
     <string name="RegistrationActivity_too_many_attempts">Həddən çox cəhd edildi</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Status nişanını göstər</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Gizli göndərən istifadə edərək mesaj çatdırılanda təfsilatlarında bir nişan göstər.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Aktivləşdirildikdə, başlatdığınız yeni çatlarda göndərilən və alınan yeni mesajlar, baxıldıqdan sonra yox olacaq.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Aktivləşdirildikdə, bu çatda göndərilən və alınan mesajlar, baxıldıqdan sonra yox olacaq.</string>
-    <string name="ExpireTimerSettingsFragment__off">Bağlı</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 həftə</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 həftə</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 gün</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 saat</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 saat</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 dəqiqə</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 saniyə</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Özəl vaxt</string>
-    <string name="ExpireTimerSettingsFragment__save">Saxla</string>
 
 
     <!-- ChatColorSelectionFragment -->

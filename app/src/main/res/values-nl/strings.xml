@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Je pincode wordt gebruikt voor registratievergrendeling. Om je pincode uit te schakelen moet je eerst de registratievergrendeling uitzetten.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">Pincode uitgeschakeld.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Herstelzin voor betalingen vastleggen</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Herstelzin vastleggen</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Voordat je je pincode kunt uitschakelen, moet je je herstelzin voor betalingen vastleggen zodat je je betalingsaccount kunt herstellen.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Een nieuwe herstelsleutel aanmaken</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Je moet een nieuwe herstelsleutel aanmaken en vastleggen voordat je je pincode kunt uitschakelen.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Sleutel aanmaken</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s heeft dit bericht verwijderd</string>
     <string name="ConversationItem_you_deleted_this_message">Je hebt dit bericht verwijderd</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Verwijderen voor iedereen?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Beheerder %1$s heeft dit bericht verwijderd</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Berichten aan het verwijderen…</string>
     <string name="ConversationFragment_delete_for_me">Verwijderen voor mezelf</string>
     <string name="ConversationFragment_delete_for_everyone">Verwijderen voor iedereen</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Geselecteerd bericht verwijderen?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Vergrendel Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Jij</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
-    <string name="MediaPreviewActivity_draft">Concept</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht verwijderen?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal permanent worden verwijderd.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Jij naar %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s naar jou</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media niet langer beschikbaar.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Kan media niet afspelen.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Fout bij vinden van bericht.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Geen app gevonden waarmee dit bestand met anderen gedeeld kan worden.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Sluiten</string>
     <string name="MediaPreviewFragment_edit_media_error">Mediafout</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Fout bij verwijderen bericht, bericht kan nog bestaan</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Meer lezen</string>
     <string name="MediaPreviewFragment_share">Delen</string>
 
     <!-- MessageNotifier -->
@@ -3705,7 +3680,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">AI-assistenten zoals Gemini kunnen de inhoud van Signal scannen. Om dit te voorkomen, is schermbeveiliging ingeschakeld. Hierdoor kun je ook geen schermafbeeldingen maken.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Schermbeveiliging is ingeschakeld</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3688,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Schermbeveiliging uitschakelen?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Als je deze optie uitschakelt, kunnen AI-assistenten zoals Google Gemini mogelijk de inhoud van Signal scannen en gebruiken voor functies die mogelijk niet privé zijn.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Uitschakelen</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Meldingen</string>
     <string name="preferences__led_color_unknown">Onbekend</string>
     <string name="preferences__silent">Stil</string>
-    <string name="preferences__advanced">Geavanceerd</string>
     <string name="preferences__donate_to_signal">Aan Signal doneren</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Verhalen</string>
     <string name="preferences__payments">Betalingen</string>
     <string name="preferences__linked_devices">Gekoppelde apparaten</string>
-    <string name="preferences__disable_pin">Pincode uitschakelen</string>
-    <string name="preferences__enable_pin">Pincode inschakelen</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je handmatig een back-up maakt en herstelt. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signals servers zodat alleen jij er toegang toe hebt. Je kunt hiermee je profiel, instellingen en contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de pincode niet nodig om de app te openen.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Geav. pincode-instellingen</string>
     <string name="preferences__submit_debug_log">Foutopsporingslog indienen</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Leid alle oproepen om via de Signal-servers zodat je contacten je IP-adres niet kunnen achterhalen. Als je dit inschakelt, zal de gesprekskwaliteit verminderen.</string>
-    <string name="preferences_advanced__always_relay_calls">Alle oproepen omleiden</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Herinneringen ongelezen berichten</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Censuuromzeiling</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Censuuromzeiling</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Indien ingeschakeld zal Signal proberen censuur te omzeilen. Schakel deze functie niet in tenzij je je op een locatie bevindt waar Signal wordt gecensureerd.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Censuuromzeiling is automatisch ingeschakeld omdat je telefoonnummer bij een risicoregio hoort.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Je hebt censuuromzeiling handmatig uitgeschakeld.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Censuuromzeiling is voor jou op dit moment niet nodig, want je bent al verbonden met Signals servers.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censuuromzeiling kan alleen worden ingeschakeld als je apparaat met het internet is verbonden.</string>
-    <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Schakel verzegelde afzender in voor inkomende berichten van personen met wie je nog nooit eerder contact hebt gehad of je profiel hebt gedeeld.</string>
     <string name="preferences_proxy_address">Proxyadres</string>
     <string name="preferences_only_use_a_proxy_if">Gebruik alleen een proxy als je geen verbinding kunt maken met Signal via mobiele data of wifi.</string>
     <string name="preferences_share">Proxyadres delen</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Succesvol</string>
     <string name="preferences_failed_to_connect">Verbinding maken is mislukt</string>
     <string name="preferences_enter_proxy_address">Voer een proxyadres in</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatische sleutelverificatie</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Indien ingeschakeld, zal Signal proberen automatisch de versleuteling van 1-op-1-chats te verifiëren.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Meer informatie</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Opslaan</string>
-    <string name="media_preview__edit_title">Bewerken</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Mediavoorbeeld</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Nooit</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Onbekend</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Het is niet gelukt om registratievergrendeling in te schakelen.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je pincode voor registratievergrendeling invoeren</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Je pincode bestaat uit ten minste %1$d cijfers of karakters</string>
     <string name="RegistrationActivity_too_many_attempts">Te veel pogingen</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Hiermee stel je voor nieuwe chats die jij zelf begint in dat nieuwe verstuurde en ontvangen berichten worden gewist nadat ze zijn gezien en de timer is afgelopen.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, worden nieuwe berichten die in deze chat zijn verstuurd en ontvangen gewist nadat ze zijn gezien en de timer is afgelopen.</string>
-    <string name="ExpireTimerSettingsFragment__off">Uit</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 dag</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 uur</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 uur</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minuten</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 seconden</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Zelfgekozen tijd</string>
-    <string name="ExpireTimerSettingsFragment__save">Opslaan</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5272,7 +5196,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Kleur %1$d van %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Delen</string>

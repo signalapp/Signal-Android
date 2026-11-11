@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Tharla botún ag déanamh teagmháil leis an bhfreastalaí!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Tá UAP de dhíth chun glas clárúcháin a úsáid. Caithfidh tú an glas clárúcháin a dhíchumasú sula mbeidh tú in ann an UAP a dhíchumasú.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">Cruthaíodh an UAP.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">Díchumasaíodh an UAP.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Record Payments Recovery Phrase</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Déan an nath a thaifeadadh</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Before you can disable your PIN, you must record your payments recovery phrase to ensure you can recover your payments account.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Cruthaigh eochair athshlánaithe nua</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Ní mór duit eochair athshlánaithe nua a chruthú agus a thaifeadadh sular féidir leat do UAP a dhíchumasú.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Cruthaigh eochair</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -379,8 +367,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">Scrios %1$s an teachtaireacht seo</string>
     <string name="ConversationItem_you_deleted_this_message">Scrios tú an teachtaireacht seo</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Scrios do chách?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Scrios an riarthóir %1$s an teachtaireacht sin</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -550,6 +536,8 @@
     <string name="ConversationFragment_deleting_messages">Ag scriosadh teachtaireachtaí…</string>
     <string name="ConversationFragment_delete_for_me">Scrios domsa amháin</string>
     <string name="ConversationFragment_delete_for_everyone">Scrios do chách</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Scrios an teachtaireacht roghnaithe?</item>
@@ -3228,28 +3216,15 @@
     <string name="KeyCachingService_lock">Cuir Signal faoi ghlas</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Tusa</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Cineál meán nach dtugtar tacaíocht dó</string>
-    <string name="MediaPreviewActivity_draft">Dréacht</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Scrios an teachtaireacht?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Scriosfar an teachtaireacht seo go buan leis sin.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s chuig %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Uait chuig %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">Ó %1$s chugat</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Níl an meán sin ar fáil a thuilleadh.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Ní féidir meáin a sheinm.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Earráid leis an teachtaireacht a aimsiú.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ní féidir aip a aimsiú atá in ann an meán seo a chomhroinnt.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Dún</string>
     <string name="MediaPreviewFragment_edit_media_error">Earráid leis na Meáin</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Earráid leis an Teachtaireacht a Scriosadh, Seans go mBeidh an Teachtaireacht Ann Fós.</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Tuilleadh Eolais</string>
     <string name="MediaPreviewFragment_share">Comhroinn</string>
 
     <!-- MessageNotifier -->
@@ -4044,7 +4019,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Tá aipeanna cúntóra IS, amhail Gemini, in ann d\'ábhar Signal a scanadh. Le cosc a chur air sin, cumasaíodh slándáil scáileáin. Díchumasófar seatanna scáileáin leis sin freisin.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Tá slándáil scáileáin cumasaithe</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -4052,7 +4027,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Cas as an tslándáil scáileáin?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Má chastar as í, d\'fhéadfadh sé ceadú do chúntóirí IS, amhail Google Gemini, ábhar Signal a scanadh agus é a úsáid do ghnéithe nach mbeadh príobháideach, b\'fhéidir.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Múch</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -4060,40 +4035,15 @@
     <string name="preferences__notifications">Fógraí</string>
     <string name="preferences__led_color_unknown">Anaithnid</string>
     <string name="preferences__silent">Tostach</string>
-    <string name="preferences__advanced">Ardroghanna</string>
     <string name="preferences__donate_to_signal">Tabhair airgead do Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Scéalta</string>
     <string name="preferences__payments">Íocaíochtaí</string>
     <string name="preferences__linked_devices">Gléasanna nasctha</string>
-    <string name="preferences__disable_pin">Díchumasaigh an UAP</string>
-    <string name="preferences__enable_pin">Cumasaigh UAP</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Má dhíchumasaíonn tú an UAP, caillfidh tú na sonraí go léir nuair a athchláraíonn tú Signal mura ndéanann tú cúltacú agus aischur de láimh. Ní féidir leat Glasáil Clárúcháin a chasadh air leis an UAP díchumasaithe.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Úsáidtear UAPanna chun an fhaisnéis a stórálann tú le Signal a chriptiú, ionas nach mbeidh aon duine eile in ann í a fheiceáil.  Déanfar athchóiriú ar do phróifíl agus do chuid socruithe agus teagmhálaithe nuair a shuiteálfaidh tú Signal arís. Ní bheidh an UAP ag teastáil chun an aip a oscailt.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Ardroghanna UAP</string>
     <string name="preferences__submit_debug_log">Seol an Logchomhad Dífhabhtaithe</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Seol gach glao trí fhreastalaí Signal ionas nach nochtfar do sheoladh IP do do theagmhálaí. Laghdófar cáilíocht an ghlao má chumasaítear é sin.</string>
-    <string name="preferences_advanced__always_relay_calls">Cuir glaonna ar aghaidh i gcónaí</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Meabhrúcháin neamhléite</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Sárú na Cinsireachta</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Sárú na Cinsireachta</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Leis an rogha seo, déanfaidh Signal iarracht an chinsireacht a shárú. Ná húsáid an rogha seo mura bhfuil tú i dtír a dhéanann cinsireacht ar Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Cuireadh sárú na cinsireachta i bhfeidhm bunaithe ar an uimhir ghutháin atá agat.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Dhíchumasaigh tú sárú na cinsireachta de láimh.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Ní gá duit sárú na cinsireachta a chur i bhfeidhm; tá tú ceangailte le seirbhís Signal cheana féin.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Ní féidir sárú na cinsireachta a chur i bhfeidhm nuair nach bhfuil tú ceangailte leis an Idirlíon.</string>
-    <string name="preferences_communication__category_sealed_sender">Seoltóir Séalaithe</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Ceadaigh ó Dhuine ar bith</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tabhair cead do dhaoine nach teagmhálaithe iad agus do dhaoine nár chomhroinn tú do phróifíl leo teachtaireachtaí le seoltóirí séalaithe a chur chugat.</string>
     <string name="preferences_proxy_address">Seoladh Seachfhreastalaí</string>
     <string name="preferences_only_use_a_proxy_if">Ná húsáid seachfhreastalaí ach amháin mura bhfuil tú in ann nascadh le Signal ar shonraí móibíleacha nó Wi-Fi.</string>
     <string name="preferences_share">Comhroinn</string>
@@ -4107,10 +4057,6 @@
     <string name="preferences_success">D\'éirigh leis</string>
     <string name="preferences_failed_to_connect">Theip air nascadh leis</string>
     <string name="preferences_enter_proxy_address">Iontráil Seoladh Seachfhreastalaí</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Uathfhíorú eochrach</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Agus é cumasaithe, déanfaidh Signal iarracht criptiú comhráite 1:1 a fhíorú go huathoibríoch.</string>
 
 
     <!-- Internal only preferences -->
@@ -4497,11 +4443,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Tuilleadh faisnéise</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Cuir i dtaisce é</string>
-    <string name="media_preview__edit_title">Eagar</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Réamhamharc ar na meáin</string>
@@ -4696,8 +4637,6 @@
     <string name="BackupUtil_never">Choíche</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Anaithnid</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Níorbh fhéidir an glas clárúcháin a chumasú.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Níorbh fhéidir an glas clárúcháin a dhíchumasú.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Ní mór duit an UAP don Ghlas Clárúcháin a chur isteach</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Tá an líon seo digití nó carachtar ar a laghad i d\'UAP: %1$d</string>
     <string name="RegistrationActivity_too_many_attempts">An iomarca iarrachtaí</string>
@@ -5443,22 +5382,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show Status Icon</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Taispeáin deilbhín i sonraí na teachtaireachta nuair a seachadadh iad le seoltóir séalaithe.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Nuair a bheidh sé cumasaithe, imeoidh teachtaireachtaí nua, a sheoltar agus a fhaightear i gcomhráite nua a thosaigh tú, as radharc tar éis iad a fheiceáil.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in this chat will disappear after they have been seen.</string>
-    <string name="ExpireTimerSettingsFragment__off">As</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 seachtaine</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 seachtain amháin</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 lá amháin</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 uair an chloig</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 nóiméad</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 soicind</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Custom Time</string>
-    <string name="ExpireTimerSettingsFragment__save">Sábháil</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5695,7 +5619,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">Dath %1$d as %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Comhroinn</string>

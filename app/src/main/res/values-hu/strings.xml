@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba történt a kiszolgálóhoz történő kapcsolódás során!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">A regisztrációs zárhoz PIN-kódra van szükség. A PIN-kód letiltásához előbb ki kell kapcsolni a regisztrációs zárat.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN-kód létrehozva.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN letiltva.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Fizetési helyreállítási mondat rögzítése</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Mondat rögzítése</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Mielőtt letiltod a PIN-kódod, rögzítened kell egy fizetés-helyreállítási mondatot, hogy biztosítsd a fizetési fiókod helyreállíthatóságát.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Új helyreállítási kulcs létrehozása</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">A PIN-kód letiltása előtt létre kell hoznod és rögzítened kell egy új helyreállítási kulcsot.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Kulcs létrehozása</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s törölte ezt az üzenetet</string>
     <string name="ConversationItem_you_deleted_this_message">Törölted ezt az üzenetet</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Törlés mindenki számára?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">%1$s adminisztrátor törölte ezt az üzenetet</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Üzenetek törlése…</string>
     <string name="ConversationFragment_delete_for_me">Törlés számomra</string>
     <string name="ConversationFragment_delete_for_everyone">Törlés mindenki számára</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Kiválasztott üzenet törlése?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Signal zárolása</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Te</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Nem támogatott médiatípus</string>
-    <string name="MediaPreviewActivity_draft">Piszkozat</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Törlöd az üzenetet?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Ez véglegesen törölni fogja ezt az üzenetet.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s (címzett: %2$s)</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Tőled neki: %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">Feladó: %1$s</string>
     <string name="MediaPreviewActivity_media_no_longer_available">A médiafájl már nem érhető el</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Nem lehet lejátszani a médiát.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Hiba az üzenet keresése során.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nem található alkalmazás ezen médiafájl megnyitásához.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Bezárás</string>
     <string name="MediaPreviewFragment_edit_media_error">Médiahiba</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Hiba az üzenet törlése során, az üzenet továbbra is létezhet</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Koppints a teljeshez</string>
     <string name="MediaPreviewFragment_share">Megosztás</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Értesítések</string>
     <string name="preferences__led_color_unknown">Ismeretlen</string>
     <string name="preferences__silent">Csendes</string>
-    <string name="preferences__advanced">Haladó</string>
     <string name="preferences__donate_to_signal">Adomány a Signal számára</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Történetek</string>
     <string name="preferences__payments">Fizetések</string>
     <string name="preferences__linked_devices">Társított eszközök</string>
-    <string name="preferences__disable_pin">PIN letiltása</string>
-    <string name="preferences__enable_pin">PIN engedélyezése</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN kódod letiltásával egy esetleges újraregisztráció során az összes Signal adatod el fog veszni, kivéve ha azokat előtte külön lemented majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">A PIN-nek köszönhetően a Signal által tárolt információk titkosítva lesznek, így csak te férhetsz hozzájuk. Újratelepítés esetén profilod, beállításaid és kontaktjaid visszaállításra kerülnek. Az alkalmazás megnyitásához nincs szükség a PIN kódra.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">További PIN beállítások</string>
     <string name="preferences__submit_debug_log">Hibakeresési napló küldése</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">A hívások átjátszása a Signal szerverein annak érdekében, hogy IP címed telefonhívás során is rejtve maradjon partnered előtt. Engedélyezésével a hívások minősége gyengébb lesz.</string>
-    <string name="preferences_advanced__always_relay_calls">Összes hívás átjátszása</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Olvasatlan emlékeztetők</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Cenzúramegkerülés</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Cenzúramegkerülés</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ha engedélyezed, a Signal megpróbálja megkerülni a cenzúrát. Ne engedélyezd ezt a funkciót, ha tartózkodási helyeden nem cenzúrázzák a Signalt!</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Telefonszámod alapján bekapcsoltuk számodra a cenzúramegkerülés-funkciót.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Cenzúramegkerülés manuálisan letiltva.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">A cenzúramegkerülés használata nem szükséges, mert sikeresen csatlakoztál a Signal hálózatához.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">A cenzúramegkerülés csak aktív internetkapcsolat esetén aktiválható.</string>
-    <string name="preferences_communication__category_sealed_sender">Rejtett feladó</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Engedélyezés mindenkitől</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Rejtett feladóval érkező üzenetek engedélyezése olyan nem-kontaktoktól és személyektől is, akikkel nem osztottad meg a profilodat.</string>
     <string name="preferences_proxy_address">Proxy cím</string>
     <string name="preferences_only_use_a_proxy_if">Proxy használata csak abban az esetben, ha nem lehet a Signalhoz csatlakozni se mobilnet, se Wi-Fi használatával.</string>
     <string name="preferences_share">Megosztás</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Siker</string>
     <string name="preferences_failed_to_connect">Sikertelen kapcsolódás</string>
     <string name="preferences_enter_proxy_address">Proxy cím megadása</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatikus kulcsellenőrzés</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Ha engedélyezve van, a Signal megpróbálja automatikusan ellenőrizni az egyéni csevegések titkosítását.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Tudj meg többet!</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Mentés</string>
-    <string name="media_preview__edit_title">Szerkesztés</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Médiafájl előnézete</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Soha</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Ismeretlen</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Nem sikerült engedélyezni a regisztrációs zárat.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Nem sikerült kikapcsolni a regisztrációs zárat.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Meg kell adnod a regisztrációs zár PIN kódodat</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">A PIN kódnak legalább %1$d számjegyből vagy karakterből kell állnia.</string>
     <string name="RegistrationActivity_too_many_attempts">Túl sok próbálkozás</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Státusz ikon megjelenítése</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Jelenítsen meg egy státuszikont, ha az üzenet rejtett feladóval érkezett.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Amennyiben engedélyezed, akkor az új csevegésekben a kimenő és bejövő üzenetek el fognak tűnni a megtekintést követően.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Bekapcsolt állapotban az ebben a csevegésben küldött és fogadott üzenetek a megtekintésük után, a beállított időtartam leteltekor mindkét fél készülékén eltűnnek.</string>
-    <string name="ExpireTimerSettingsFragment__off">Ki</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 hét</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 hét</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 nap</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 óra</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 óra</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 perc</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 másodperc</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Egyedi érték</string>
-    <string name="ExpireTimerSettingsFragment__save">Mentés</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -7999,7 +7923,7 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
     <!-- Overflow menu item in MainToolbar that opens donation settings -->
-    <string name="MainToolbar__donate">Támogatás</string>
+    <string name="MainToolbar__donate">Adományozás</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

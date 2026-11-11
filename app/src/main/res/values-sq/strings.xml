@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ka ndodhur një gabim në lidhjen me serverin!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Numrat PIN kërkohen për kyçjen e regjistrimit. Për të çaktivizuar numrat PIN, së pari çaktivizo kyçjen e regjistrimit.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN-i u krijua.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN-i u çaktivizua.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Fraza për rikthimin e pagesave të regjistruara</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Regjistro frazën</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Përpara se të çaktivizosh numrin PIN, duhet të regjistrosh frazën për rikthimin e pagesave, për t\'u siguruar që mund të rikuperosh llogarinë e pagesave.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Krijo kod të ri rikthimi</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Duhet të krijosh dhe të regjistrosh një kod të ri rikthimi përpara se të çaktivizosh kodin PIN.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Krijo kod</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s e fshiu këtë mesazh</string>
     <string name="ConversationItem_you_deleted_this_message">E fshive këtë mesazh</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Të fshihet për të gjithë?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administratori %1$s e fshiu këtë mesazh</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Duke fshirë mesazhet…</string>
     <string name="ConversationFragment_delete_for_me">Fshije për mua</string>
     <string name="ConversationFragment_delete_for_everyone">Fshije për të gjithë</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Të fshihet mesazhi i përzgjedhur?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Kyçe Signal-in</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Ju</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Lloj media i pambuluar</string>
-    <string name="MediaPreviewActivity_draft">Skicë</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Të fshihet mesazhi?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Kjo do ta fshijë përgjithmonë këtë mesazh.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s për %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Ju për %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s për ju</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media s\\’është më e passhme.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Media nuk mund të luhet.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Gabim në gjetjen e mesazhit.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">S\\’gjendet dot një aplikacion për të ndarë me të tjerët këtë media.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Mbylle</string>
     <string name="MediaPreviewFragment_edit_media_error">Gabim në media</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Gabim gjatë fshirjes së mesazhit, mesazhi mund të ekzistojë ende</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Lexoni Më Tepër</string>
     <string name="MediaPreviewFragment_share">Ndajeni Me të Tjerë</string>
 
     <!-- MessageNotifier -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Njoftime</string>
     <string name="preferences__led_color_unknown">E panjohur</string>
     <string name="preferences__silent">Heshtazi</string>
-    <string name="preferences__advanced">Të mëtejshme</string>
     <string name="preferences__donate_to_signal">Dhuro për Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Postime të përkohshme</string>
     <string name="preferences__payments">Pagesa</string>
     <string name="preferences__linked_devices">Pajisje të lidhura</string>
-    <string name="preferences__disable_pin">Çaktivizoje PIN-in</string>
-    <string name="preferences__enable_pin">Aktivizoje PIN-in</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nëse çaktivizoni PIN-in, do të humbni krejt të dhënat, kur riregjistroni Signal-in, veç në i kopjeruajtshi dhe rikthefshi dorazi. S\\’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-et i mbajnë të koduara të dhëna e depozituara me Signal, që kështu të mund t’i përdorni. Profili, parametrat dhe kontaktet tuaja do të rikthehen, kur të riinstaloni Signal. S’do t’ju duhet PIN-i për të hapur aplikacionin.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Parametrat e mëtejshme të PIN</string>
     <string name="preferences__submit_debug_log">Parashtro regjistër diagnostikimi</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kaloji krejt thirrjet përmes shërbyesit Signal për të shmangur zbulimin e adresës tuaj IP nga kontakti juaj. Aktivizimi do të ulë cilësinë e thirrjes.</string>
-    <string name="preferences_advanced__always_relay_calls">Kaloji përherë thirrjet përmes releje</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Përkujtues për mesazhet e palexuara</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Anashkalim censurimi</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Anashkalim censurimi</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Në u aktivizoftë, Signal-i do të përpiqet të anashkalojë censurime. Mos e aktivizoni këtë veçori, po qe se nuk gjendeni diku ku Signal-i censurohet.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Anashkalimi i censurimit është aktivizuar për numrin e telefonit të llogarisë tuaj.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Anashkalimin e censurës e keni çaktivizuar dorazi.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Anashkalimi i censurimit s’është i nevojshëm; jeni tashmë i lidhur me shërbimin Signal.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Anashkalimi i censurimit mund të aktivizohet vetëm kur jeni i lidhur në internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Dërgues i Vulosur</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Lejoji prej kujtdo</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivizoni dërgues të vulosur për mesazhe ardhës nga persona që s\\’i keni në kontaktet dhe persona të cilëve s\\’u keni dhënë profilin tuaj.</string>
     <string name="preferences_proxy_address">Adresë ndërmjetësi</string>
     <string name="preferences_only_use_a_proxy_if">Përdorni një ndërmjetës vetëm nëse s\\’jeni në gjendje të lidheni me Signal-in në celular ose Wi-Fi.</string>
     <string name="preferences_share">Ndajeni Me të Tjerë</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Sukses</string>
     <string name="preferences_failed_to_connect">S\\’u arrit të lidhej</string>
     <string name="preferences_enter_proxy_address">Jepni adresë ndërmjetësi</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Verifikimi automatik i kodit</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Kur aktivizohet, Signal do të përpiqet të verifikojë automatikisht kodimin e bisedave 1:1.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Mëso më tepër</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Ruaje</string>
-    <string name="media_preview__edit_title">Përpunojeni</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Paraparje medie</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Kurrë</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">E panjohur</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">S\\’u arrit të aktivizohej kyçje regjistrimesh.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">S\\’u arrit të çaktivizohej kyçje regjistrimesh.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Duhet të jepni PIN-in tuaj të Kyçjes së Regjistrimit</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-i juaj ka të paktën %1$d shifra ose shenja</string>
     <string name="RegistrationActivity_too_many_attempts">Shumë përpjekje</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Shfaq ikonë gjendjesh</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Shfaq një ikonë te hollësi mesazhesh, kur këta janë dorëzuar duke përdorur dërgues të vulosur.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kur aktivizohet, mesazhet e reja të dërguara dhe të marra në bisedat e reja të nisura nga ti do të zhduken pasi të jenë parë.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kur aktivizohen, mesazhet e reja të dërguara dhe të marra në këtë bisedë, do të zhduken pasi të jenë parë.</string>
-    <string name="ExpireTimerSettingsFragment__off">Off</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 javë</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 javë</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 ditë</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 orë</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 orë</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minuta</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 sekonda</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Kohë vetjake</string>
-    <string name="ExpireTimerSettingsFragment__save">Ruaje</string>
 
 
     <!-- ChatColorSelectionFragment -->

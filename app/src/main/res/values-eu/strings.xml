@@ -38,18 +38,6 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errorea zerbitzariarekin konektatzerakoan!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINak beharrezkoak dira erregistratzeko blokeoa aktibatzeko. Pinak desaktibatzeko, mesedez, lehenago desaktibatu erregistratzeko blokeoa.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">Sortu da PINa.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PINa desaktibatuta</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Grabatu ordainketak berreskuratzeko esaldi bat</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Grabatu esaldi bat</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PINa desgaitu ahal izateko, ordainketak berreskuratzeko esaldi bat grabatu behar duzu, ordainketen kontua berreskura dezakezula ziurtatzeko.</string>
-    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Sortu beste berreskuratze-gako bat</string>
-    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PINa desgaitu ahal izateko, berreskuratze-gako bat sortu eta erregistratu beharko duzu.</string>
-    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Sortu gako bat</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -373,8 +361,6 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s(e)k mezu hau ezabatu du</string>
     <string name="ConversationItem_you_deleted_this_message">Mezu hau ezabatu duzu</string>
-    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Guztientzat ezabatu nahi duzu?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">%1$s adminak mezu hau ezabatu du</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -529,6 +515,8 @@
     <string name="ConversationFragment_deleting_messages">Mezuak ezabatzen…</string>
     <string name="ConversationFragment_delete_for_me">Ezabatu niretzat</string>
     <string name="ConversationFragment_delete_for_everyone">Ezabatu guztientzat</string>
+    <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
+    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Hautatutako mezua ezabatu nahi duzu?</item>
@@ -2937,28 +2925,15 @@
     <string name="KeyCachingService_lock">Blokeatu Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">Zu</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Multimedia fitxategi mota ez-onartua</string>
-    <string name="MediaPreviewActivity_draft">Zirriborroa</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Mezua ezabatu nahi duzu?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Behin betiko ezabatuko du mezua.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s tik %2$s ra</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">Zuk %1$s(r)i</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s(e)k zuri</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Medioa jada ez dago eskuragarri.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Ezin da erreproduzitu multimedia-edukia.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Errore bat gertatu da mezua bilatzean.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ez da topatu multimedia eduki hau partekatzeko gai den aplikaziorik.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Itxi</string>
     <string name="MediaPreviewFragment_edit_media_error">Multimedia-errorea</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Errore bat gertatu da mezua ezabatzean; baliteke mezua oraindik existitzea</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Irakurri Gehiago</string>
     <string name="MediaPreviewFragment_share">Partekatu</string>
 
     <!-- MessageNotifier -->
@@ -3705,7 +3680,7 @@
     </plurals>
 
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
-    <string name="AssistantScreenSecurityBottomSheet__body">AI assistant apps like Gemini can scan your Signal content. To prevent this, screen security has been enabled. This will also disable screenshots.</string>
+    <string name="AssistantScreenSecurityBottomSheet__body">Gemini bezalako AAko laguntzaileak diren aplikazioek ahal dute zure Signal-eko edukia eskaneatu. Hau ekiditeko, pantailaren segurtasuna gaitu da. Honek pantaila-argazkiak desgaituko ditu ere.</string>
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
     <string name="AssistantScreenSecurityBottomSheet__title">Segurtasun-pantaila gaituta dago</string>
     <!-- Bottom sheet button that turns screen security back off -->
@@ -3713,7 +3688,7 @@
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__title">Segurtasun-pantaila desaktibatu nahi duzu?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__body">If turned off, this may allow AI assistants such as Google Gemini to scan Signal content and use it for features that may not be private.</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__body">Desaktibatzen bada, baliteke Google Gemini bezalako AAko laguntzaileei ahalbidetzea Signal-eko edukia eskaneatzea eta agian pribatuak ez diren haren eginbideak erabiltzea.</string>
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Desaktibatu</string>
     <!-- Snackbar shown after the user turns off screen security -->
@@ -3721,40 +3696,15 @@
     <string name="preferences__notifications">Jakinarazpenak</string>
     <string name="preferences__led_color_unknown">Ezezaguna</string>
     <string name="preferences__silent">Isildu</string>
-    <string name="preferences__advanced">Aurreratua</string>
     <string name="preferences__donate_to_signal">Egin dohaintza bat Signal-i</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Istorioak</string>
     <string name="preferences__payments">Ordainketak</string>
     <string name="preferences__linked_devices">Lotutako gailuak</string>
-    <string name="preferences__disable_pin">Desaktibatu PINa</string>
-    <string name="preferences__enable_pin">Aktibatu PINa</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ez baduzu modu manualean segurtasun kopiak egiten, PINa desaktibatzen baduzu, datu guztiak galduko dituzu signal berriro erregistratzen duzunean. Ezin duzu erregistratzeko blokeoa aktibatu PINa desaktibatuta dagoen bitartean.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-ek zure Signal kontuarekin batera gordetako informazioa enkriptatuta mantentzen dute, zuk bakarrik eskuratu ahal izateko. Zure profila, ezarpenak eta kontaktuak Signal berrinstalatzen duzunean berreskuratuko dira. Ez duzu PINa behar aplikazioa irekitzeko.</string>
-    <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">PINarekin loturiko ezarpen aurreratuak</string>
     <string name="preferences__submit_debug_log">Arazketaren informazioa bidali</string>
 
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Birtransmititu dei guztiak Signal zerbitzari baten bitartez; horrela ez diozu erakutsiko zure IP helbidea kontaktuari. Aktibatzeak deiaren kalitatea gutxiagotuko du.</string>
-    <string name="preferences_advanced__always_relay_calls">Birtransmititu deiak beti</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Irakurri gabeko gogorarazpenak</string>
-    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Zentsura ekiditeko aukera</string>
-    <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Zentsura ekiditeko aukera</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Aukera aktibatuta egonez gero, Signal zentsura ekiditen saiatuko da. Ez aktibatu aukera hau Signal zentsuratuta dagoen kokaen batean egon ezik.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Zentsura ekiditeko aukera zure kontuaren telefono-zenbakian oinarrituta aktibatu da.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Zentsura ekideteko aukera manualki desaktibatu duzu.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Zentsura ekiditeko aukera ez da beharrezkoa; Signal zerbitzuarekin konektatuta zaude jada.</string>
-    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Zentsura ekiditeko aukera bakarrik aktiba daiteke internetera konektatuta bazaude.</string>
-    <string name="preferences_communication__category_sealed_sender">Igorle Zigilatuta</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Edozeinengandik onartu</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktibatu igorle zigilatuta zure kontaktuetan ez dauden edo zure profila partekatu ez duzun erabiltzaileek bidaltzen dituzten mezuetarako.</string>
     <string name="preferences_proxy_address">Proxyaren helbidea</string>
     <string name="preferences_only_use_a_proxy_if">Signal-era datu-konexio edo wifi bidez konektatu ezin bazara, erabili proxy bat.</string>
     <string name="preferences_share">Partekatu</string>
@@ -3768,10 +3718,6 @@
     <string name="preferences_success">Ondo</string>
     <string name="preferences_failed_to_connect">Konexioak huts egin du</string>
     <string name="preferences_enter_proxy_address">Idatzi proxyaren helbidea</string>
-    <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Gakoen egiaztapen automatikoa</string>
-    <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Gaitzen baduzu, Signal automatikoki saiatuko da banakako txaten enkriptatzea egiaztatzen.</string>
 
 
     <!-- Internal only preferences -->
@@ -4152,11 +4098,6 @@
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Informazio gehiago</string>
 
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Gorde</string>
-    <string name="media_preview__edit_title">Editatu</string>
-
-
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Multimediaren aurrebista</string>
@@ -4330,8 +4271,6 @@
     <string name="BackupUtil_never">Inoiz ez</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Ezezaguna</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Erresgistratzea blokeatzea aktibatzeak huts egin du.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Erresgistratzea blokeatzea desaktibatzeak huts egin du.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Erregistratzea blokeatzeko zure PINa idatzi behar duzu</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Zure PINak gutxienez %1$d zenbaki edo karaktere dauzka</string>
     <string name="RegistrationActivity_too_many_attempts">Saikera gehiegi</string>
@@ -5032,22 +4971,7 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Erakutsi ikono egoera</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Erakutsi ikono bat mezuen xehetasunetan bidaltzaile itxia erabiliz bidaltzen direnean.</string>
 
-    <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Gaituta dagoenean, zuk hasitako txat berrietan bidalitako eta jasotako mezu berriak desagertu egingo dira ikusi ondoren.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Gaituta dagoenean, txat honetan bidalitako eta jasotako mezu berriak desagertu egingo dira ikusi ondoren.</string>
-    <string name="ExpireTimerSettingsFragment__off">Desaktibatuta</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 aste</string>
-    <string name="ExpireTimerSettingsFragment__1_week">astebete</string>
-    <string name="ExpireTimerSettingsFragment__1_day">egun 1</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 ordu</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">ordubete</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutu</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 segundo</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Denbora pertsonalizatua</string>
-    <string name="ExpireTimerSettingsFragment__save">Gorde</string>
 
 
     <!-- ChatColorSelectionFragment -->
@@ -5272,7 +5196,7 @@
 
     <!-- AvatarColorGrid -->
     <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
-    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+    <string name="AvatarColorGrid__color_d_of_d">%1$d / %2$d kolorea</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Partekatu</string>
