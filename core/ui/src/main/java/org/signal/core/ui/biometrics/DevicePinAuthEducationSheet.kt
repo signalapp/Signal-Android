@@ -36,6 +36,7 @@ class DevicePinAuthEducationSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {
     const val REQUEST_KEY = "DevicePinAuthEducationSheet"
+    const val RESULT_CONTINUE = "result.continue"
 
     private const val ARG_TITLE = "arg.title"
 
@@ -52,8 +53,10 @@ class DevicePinAuthEducationSheet : ComposeBottomSheetDialogFragment() {
   private val title: String
     get() = requireArguments().getString(ARG_TITLE)!!
 
+  private var continuePressed = false
+
   override fun onDismiss(dialog: DialogInterface) {
-    setFragmentResult(REQUEST_KEY, Bundle())
+    setFragmentResult(REQUEST_KEY, Bundle().apply { putBoolean(RESULT_CONTINUE, continuePressed) })
     super.onDismiss(dialog)
   }
 
@@ -61,7 +64,10 @@ class DevicePinAuthEducationSheet : ComposeBottomSheetDialogFragment() {
   override fun SheetContent() {
     DevicePinAuthEducationSheet(
       title = title,
-      onClick = { dismissAllowingStateLoss() }
+      onClick = {
+        continuePressed = true
+        dismissAllowingStateLoss()
+      }
     )
   }
 }

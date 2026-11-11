@@ -214,8 +214,12 @@ fun rememberBiometricsAuthentication(
         host.fragmentManager.setFragmentResultListener(
           DevicePinAuthEducationSheet.REQUEST_KEY,
           host.resultLifecycleOwner
-        ) { _, _ ->
-          authenticateOrFallback(resolvedTitle)
+        ) { _, result ->
+          if (result.getBoolean(DevicePinAuthEducationSheet.RESULT_CONTINUE)) {
+            authenticateOrFallback(resolvedTitle)
+          } else {
+            pendingHolder.clearIf(pending)
+          }
         }
       } else {
         authenticateOrFallback(resolvedTitle)
