@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
+import org.thoughtcrime.securesms.groups.v2.processing.TriggeringMessage;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
@@ -855,12 +856,11 @@ final class GroupManagerV2 {
                                                   @NonNull Optional<GroupRecord> localRecord,
                                                   @Nullable GroupSecretParams groupSecretParams,
                                                   @Nullable byte[] signedGroupChange,
-                                                  @Nullable String serverGuid,
-                                                  @Nullable Long receivedTime)
+                                                  @Nullable TriggeringMessage triggeringMessage)
         throws IOException, GroupNotAMemberException
     {
       return GroupsV2StateProcessor.forGroup(serviceIds, groupMasterKey, groupSecretParams)
-                                   .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange), localRecord, serverGuid, receivedTime);
+                                   .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange), localRecord, triggeringMessage);
     }
 
     @WorkerThread

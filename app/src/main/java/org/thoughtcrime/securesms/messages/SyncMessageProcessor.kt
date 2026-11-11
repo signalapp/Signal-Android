@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.KeyTransparencyApi
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.v2.processing.TriggeringMessage
 import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
@@ -703,7 +704,7 @@ object SyncMessageProcessor {
       return
     }
 
-    if (MessageContentProcessor.updateGv2GroupFromServerOrP2PChange(context, envelope.clientTimestamp!!, dataMessage.groupV2!!, SignalDatabase.groups.getGroup(groupId)) == null) {
+    if (MessageContentProcessor.updateGv2GroupFromServerOrP2PChange(context, envelope.clientTimestamp!!, dataMessage.groupV2!!, SignalDatabase.groups.getGroup(groupId), triggeringMessage = TriggeringMessage(serverGuid = null, receivedTime = null, sentBySelf = true)) == null) {
       log(envelope.clientTimestamp!!, "Ignoring GV2 message for group we are not currently in $groupId")
     }
   }

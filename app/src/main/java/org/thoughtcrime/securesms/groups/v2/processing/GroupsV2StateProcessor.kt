@@ -179,8 +179,7 @@ class GroupsV2StateProcessor private constructor(
     timestamp: Long,
     signedGroupChange: DecryptedGroupChange? = null,
     groupRecord: Optional<GroupRecord> = SignalDatabase.groups.getGroup(groupId),
-    serverGuid: String? = null,
-    receivedTime: Long? = null
+    triggeringMessage: TriggeringMessage? = null
   ): GroupUpdateResult {
     if (localIsAtLeast(groupRecord, targetRevision)) {
       return GroupUpdateResult(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD, null)
@@ -189,14 +188,14 @@ class GroupsV2StateProcessor private constructor(
     val currentLocalState: DecryptedGroup? = groupRecord.filter { it.hasV2GroupProperties }.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (signedGroupChange != null && canApplyP2pChange(targetRevision, signedGroupChange, currentLocalState, groupRecord)) {
-      when (val p2pUpdateResult = updateViaPeerGroupChange(timestamp, serverGuid, signedGroupChange, currentLocalState!!, forceApply = false, receivedTime = receivedTime)) {
+      when (val p2pUpdateResult = updateViaPeerGroupChange(timestamp, triggeringMessage, signedGroupChange, currentLocalState!!, forceApply = false)) {
         InternalUpdateResult.NoUpdateNeeded -> return GroupUpdateResult.CONSISTENT_OR_AHEAD
         is InternalUpdateResult.Updated -> return GroupUpdateResult.updated(p2pUpdateResult.updatedLocalState)
         else -> Log.w(TAG, "$logPrefix P2P update was not successfully processed, falling back to server update")
       }
     }
 
-    val serverUpdateResult = updateViaServer(targetRevision, timestamp, serverGuid, groupRecord, receivedTime)
+    val serverUpdateResult = updateViaServer(targetRevision, timestamp, triggeringMessage, groupRecord)
 
     when (serverUpdateResult) {
       InternalUpdateResult.NoUpdateNeeded -> return GroupUpdateResult.CONSISTENT_OR_AHEAD
@@ -212,7 +211,7 @@ class GroupsV2StateProcessor private constructor(
         Log.w(TAG, "$logPrefix Server says we're not a member. Ignoring P2P group change because this change doesn't add or remove us.")
       } else {
         Log.i(TAG, "$logPrefix Server says we're not a member. Force applying P2P group change because it adds or removes us.")
-        when (val forcedP2pUpdateResult = updateViaPeerGroupChange(timestamp, serverGuid, signedGroupChange, currentLocalState, forceApply = true, receivedTime = receivedTime)) {
+        when (val forcedP2pUpdateResult = updateViaPeerGroupChange(timestamp, triggeringMessage, signedGroupChange, currentLocalState, forceApply = true)) {
           is InternalUpdateResult.Updated -> {
             if (forcedP2pUpdateResult.updatedLocalState.needsServerSnapshot) {
               Log.i(TAG, "$logPrefix Scheduling server update for force applied P2P group change")
@@ -281,11 +280,10 @@ class GroupsV2StateProcessor private constructor(
 
   private fun updateViaPeerGroupChange(
     timestamp: Long,
-    serverGuid: String?,
+    triggeringMessage: TriggeringMessage?,
     signedGroupChange: DecryptedGroupChange,
     currentLocalState: DecryptedGroup,
-    forceApply: Boolean,
-    receivedTime: Long? = null
+    forceApply: Boolean
   ): InternalUpdateResult {
     val updatedGroupState = try {
       if (forceApply) {
@@ -307,27 +305,25 @@ class GroupsV2StateProcessor private constructor(
 
     return saveGroupUpdate(
       timestamp = timestamp,
-      serverGuid = serverGuid,
+      triggeringMessage = triggeringMessage,
       groupStateDiff = groupStateDiff,
       groupSendEndorsements = null,
       forceSave = forceApply,
-      persistProfileKeys = !forceApply,
-      receivedTime = receivedTime
+      persistProfileKeys = !forceApply
     )
   }
 
   private fun updateViaServer(
     targetRevision: Int,
     timestamp: Long,
-    serverGuid: String?,
-    groupRecord: Optional<GroupRecord> = SignalDatabase.groups.getGroup(groupId),
-    receivedTime: Long? = null
+    triggeringMessage: TriggeringMessage?,
+    groupRecord: Optional<GroupRecord> = SignalDatabase.groups.getGroup(groupId)
   ): InternalUpdateResult {
     val currentLocalState: DecryptedGroup? = groupRecord.filter { it.hasV2GroupProperties }.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (targetRevision == LATEST && (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION)) {
       Log.i(TAG, "$logPrefix Latest revision only, update to latest directly")
-      return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = false, forceUpdate = false, receivedTime = receivedTime)
+      return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = false, forceUpdate = false, triggeringMessage = triggeringMessage)
     }
 
     Log.i(TAG, "$logPrefix Paging from server targetRevision: ${if (targetRevision == LATEST) "latest" else targetRevision}")
@@ -337,9 +333,8 @@ class GroupsV2StateProcessor private constructor(
       val result = updateViaServerChangeLogs(
         targetRevision = targetRevision,
         timestamp = timestamp,
-        serverGuid = serverGuid,
+        triggeringMessage = triggeringMessage,
         groupRecord = groupRecord,
-        receivedTime = receivedTime,
         initialLocalState = currentLocalState,
         initialLogsNeededFrom = currentLocalState.revision + 1,
         initialIncludeFirstState = false,
@@ -359,7 +354,7 @@ class GroupsV2StateProcessor private constructor(
       val joinedAtFailure = InternalUpdateResult.from(joinedAtResult.getCause()!!)
       if (joinedAtFailure is InternalUpdateResult.NotAMember) {
         Log.i(TAG, "$logPrefix Not a member, try to update to latest directly")
-        return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = currentLocalState != null, forceUpdate = true, receivedTime = receivedTime)
+        return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = currentLocalState != null, forceUpdate = true, triggeringMessage = triggeringMessage)
       } else {
         return joinedAtFailure
       }
@@ -383,9 +378,8 @@ class GroupsV2StateProcessor private constructor(
     return updateViaServerChangeLogs(
       targetRevision = targetRevision,
       timestamp = timestamp,
-      serverGuid = serverGuid,
+      triggeringMessage = triggeringMessage,
       groupRecord = groupRecord,
-      receivedTime = receivedTime,
       initialLocalState = currentLocalState,
       initialLogsNeededFrom = logsNeededFrom,
       initialIncludeFirstState = includeFirstState,
@@ -399,9 +393,8 @@ class GroupsV2StateProcessor private constructor(
   private fun updateViaServerChangeLogs(
     targetRevision: Int,
     timestamp: Long,
-    serverGuid: String?,
+    triggeringMessage: TriggeringMessage?,
     groupRecord: Optional<GroupRecord>,
-    receivedTime: Long?,
     initialLocalState: DecryptedGroup?,
     initialLogsNeededFrom: Int,
     initialIncludeFirstState: Boolean,
@@ -455,11 +448,11 @@ class GroupsV2StateProcessor private constructor(
 
       Log.i(TAG, "$logPrefix Saving updated group state at revision: ${updatedGroupState.revision}")
 
-      saveGroupState(remoteGroupStateDiff, updatedGroupState, groupOperations.receiveGroupSendEndorsements(serviceIds.aci, updatedGroupState, remoteGroupStateDiff.groupSendEndorsementsResponse))
+      saveGroupState(remoteGroupStateDiff, updatedGroupState, groupOperations.receiveGroupSendEndorsements(serviceIds.aci, updatedGroupState, remoteGroupStateDiff.groupSendEndorsementsResponse), triggeringMessage)
 
       if (addMessagesForAllUpdates) {
         Log.d(TAG, "$logPrefix Inserting group changes into chat history")
-        runningTimestamp = profileAndMessageHelper.insertUpdateMessages(runningTimestamp, currentLocalState, applyGroupStateDiffResult.processedLogEntries, serverGuid, receivedTime)
+        runningTimestamp = profileAndMessageHelper.insertUpdateMessages(runningTimestamp, currentLocalState, applyGroupStateDiffResult.processedLogEntries, triggeringMessage?.serverGuid, triggeringMessage?.receivedTime)
       }
 
       remoteGroupStateDiff
@@ -490,7 +483,7 @@ class GroupsV2StateProcessor private constructor(
 
     if (!addMessagesForAllUpdates) {
       Log.i(TAG, "$logPrefix Inserting single update message for restore placeholder")
-      profileAndMessageHelper.insertUpdateMessages(runningTimestamp, null, setOf(AppliedGroupChangeLog(currentLocalState!!, null)), serverGuid, receivedTime)
+      profileAndMessageHelper.insertUpdateMessages(runningTimestamp, null, setOf(AppliedGroupChangeLog(currentLocalState!!, null)), triggeringMessage?.serverGuid, triggeringMessage?.receivedTime)
     }
 
     profileAndMessageHelper.persistLearnedProfileKeys(profileKeys)
@@ -507,7 +500,7 @@ class GroupsV2StateProcessor private constructor(
     return InternalUpdateResult.Updated(currentLocalState!!)
   }
 
-  private fun updateToLatestViaServer(timestamp: Long, currentLocalState: DecryptedGroup?, reconstructChange: Boolean, forceUpdate: Boolean, receivedTime: Long? = null): InternalUpdateResult {
+  private fun updateToLatestViaServer(timestamp: Long, currentLocalState: DecryptedGroup?, reconstructChange: Boolean, forceUpdate: Boolean, triggeringMessage: TriggeringMessage? = null): InternalUpdateResult {
     val result = groupsApi.getGroupAsResult(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(serviceIds, groupSecretParams))
 
     val groupResponse = if (result is NetworkResult.Success) {
@@ -521,11 +514,10 @@ class GroupsV2StateProcessor private constructor(
 
     return saveGroupUpdate(
       timestamp = timestamp,
-      serverGuid = null,
+      triggeringMessage = triggeringMessage?.copy(serverGuid = null),
       groupStateDiff = remoteGroupStateDiff,
       groupSendEndorsements = groupOperations.receiveGroupSendEndorsements(serviceIds.aci, groupResponse.group, groupResponse.groupSendEndorsementsResponse),
-      forceSave = forceUpdate && groupResponse.group.members.asSequence().mapNotNull { ACI.parseOrNull(it.aciBytes) }.any { serviceIds.matches(it) },
-      receivedTime = receivedTime
+      forceSave = forceUpdate && groupResponse.group.members.asSequence().mapNotNull { ACI.parseOrNull(it.aciBytes) }.any { serviceIds.matches(it) }
     )
   }
 
@@ -660,12 +652,11 @@ class GroupsV2StateProcessor private constructor(
 
   private fun saveGroupUpdate(
     timestamp: Long,
-    serverGuid: String?,
+    triggeringMessage: TriggeringMessage?,
     groupStateDiff: GroupStateDiff,
     groupSendEndorsements: ReceivedGroupSendEndorsements?,
     forceSave: Boolean,
-    persistProfileKeys: Boolean = true,
-    receivedTime: Long? = null
+    persistProfileKeys: Boolean = true
   ): InternalUpdateResult {
     val currentLocalState: DecryptedGroup? = groupStateDiff.previousGroupState
     val applyGroupStateDiffResult = GroupStatePatcher.applyGroupStateDiff(groupStateDiff, GroupStatePatcher.LATEST)
@@ -686,15 +677,15 @@ class GroupsV2StateProcessor private constructor(
       Log.i(TAG, "$logPrefix Local state (revision: ${currentLocalState?.revision}) does not match, updating to ${updatedGroupState.revision}")
     }
 
-    saveGroupState(groupStateDiff, updatedGroupState, groupSendEndorsements)
+    saveGroupState(groupStateDiff, updatedGroupState, groupSendEndorsements, triggeringMessage)
 
     if (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION) {
       if (!updatedGroupState.terminated) {
         Log.i(TAG, "$logPrefix Inserting single update message for no local state or restore placeholder")
-        profileAndMessageHelper.insertUpdateMessages(timestamp, null, setOf(AppliedGroupChangeLog(updatedGroupState, null)), null, receivedTime)
+        profileAndMessageHelper.insertUpdateMessages(timestamp, null, setOf(AppliedGroupChangeLog(updatedGroupState, null)), null, triggeringMessage?.receivedTime)
       }
     } else {
-      profileAndMessageHelper.insertUpdateMessages(timestamp, currentLocalState, applyGroupStateDiffResult.processedLogEntries, serverGuid, receivedTime)
+      profileAndMessageHelper.insertUpdateMessages(timestamp, currentLocalState, applyGroupStateDiffResult.processedLogEntries, triggeringMessage?.serverGuid, triggeringMessage?.receivedTime)
     }
 
     if (persistProfileKeys) {
@@ -718,7 +709,8 @@ class GroupsV2StateProcessor private constructor(
   private fun saveGroupState(
     groupStateDiff: GroupStateDiff,
     updatedGroupState: DecryptedGroup,
-    groupSendEndorsements: ReceivedGroupSendEndorsements?
+    groupSendEndorsements: ReceivedGroupSendEndorsements?,
+    triggeringMessage: TriggeringMessage?
   ) {
     val previousGroupState = groupStateDiff.previousGroupState
 
@@ -792,13 +784,13 @@ class GroupsV2StateProcessor private constructor(
       profileAndMessageHelper.scheduleStorageServiceSync()
     }
 
-    profileAndMessageHelper.setProfileSharing(groupStateDiff, updatedGroupState, needsAvatarFetch)
+    profileAndMessageHelper.setProfileSharing(groupStateDiff, updatedGroupState, needsAvatarFetch, triggeringMessage?.sentBySelf == true)
   }
 
   @VisibleForTesting
   internal class ProfileAndMessageHelper(private val aci: ACI, private val masterKey: GroupMasterKey, private val groupId: GroupId.V2) {
 
-    fun setProfileSharing(groupStateDiff: GroupStateDiff, newLocalState: DecryptedGroup, needsAvatarFetch: Boolean) {
+    fun setProfileSharing(groupStateDiff: GroupStateDiff, newLocalState: DecryptedGroup, needsAvatarFetch: Boolean, sentBySelf: Boolean = false) {
       val previousGroupState = groupStateDiff.previousGroupState
 
       if (previousGroupState != null && DecryptedGroupUtil.findMemberByAci(previousGroupState.members, aci).isPresent) {
@@ -831,8 +823,10 @@ class GroupsV2StateProcessor private constructor(
             Log.i(TAG, "Added by a blocked user. Leaving group.")
             AppDependencies.jobManager.add(LeaveGroupV2Job(groupId))
             return
-          } else if ((addedBy.isSystemContact || addedBy.isProfileSharing) && !addedBy.isHidden) {
-            Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact + ", profileSharing: " + addedBy.isProfileSharing)
+          } else if (addedBy.isSelf && !sentBySelf) {
+            Log.i(TAG, "Group 'adder' is self. Not using self to auto-enable profile sharing.")
+          } else if (addedBy.isSelf || ((addedBy.isSystemContact || addedBy.isProfileSharing) && !addedBy.isHidden)) {
+            Log.i(TAG, "Group 'adder' is trusted. self: " + addedBy.isSelf + ", contact: " + addedBy.isSystemContact + ", profileSharing: " + addedBy.isProfileSharing)
             Log.i(TAG, "Added to a group and auto-enabling profile sharing and redownloading avatar if needed")
             SignalDatabase.recipients.setProfileSharing(Recipient.externalGroupExact(groupId).id, true)
             if (needsAvatarFetch) {

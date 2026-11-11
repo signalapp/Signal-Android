@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult.UpdateStatus
+import org.thoughtcrime.securesms.groups.v2.processing.TriggeringMessage
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob
 import org.thoughtcrime.securesms.jobs.ResendMessageJob
@@ -251,7 +252,7 @@ open class MessageContentProcessor(private val context: Context) {
       receivedTime: Long? = null
     ): Gv2PreProcessResult {
       val preUpdateGroupRecord = batchCache?.groupRecordCache[groupId] ?: SignalDatabase.groups.getGroup(groupId)
-      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams, serverGuid, receivedTime)
+      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams, TriggeringMessage(serverGuid, receivedTime, sentBySelf = senderRecipient.isSelf))
       if (groupUpdateResult == null) {
         log(timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
         return Gv2PreProcessResult.IGNORE
@@ -304,14 +305,13 @@ open class MessageContentProcessor(private val context: Context) {
       groupV2: GroupContextV2,
       localRecord: Optional<GroupRecord>,
       groupSecretParams: GroupSecretParams? = null,
-      serverGuid: String? = null,
-      receivedTime: Long? = null
+      triggeringMessage: TriggeringMessage? = null
     ): GroupUpdateResult? {
       return try {
         val signedGroupChange: ByteArray? = if (groupV2.hasSignedGroupChange) groupV2.signedGroupChange else null
         val updatedTimestamp = if (signedGroupChange != null) timestamp else timestamp + 1
         if (groupV2.revision != null) {
-          GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, localRecord, groupSecretParams, groupV2.revision!!, updatedTimestamp, signedGroupChange, serverGuid, receivedTime)
+          GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, localRecord, groupSecretParams, groupV2.revision!!, updatedTimestamp, signedGroupChange, triggeringMessage)
         } else {
           warn(timestamp, "Ignore group update message without a revision")
           null

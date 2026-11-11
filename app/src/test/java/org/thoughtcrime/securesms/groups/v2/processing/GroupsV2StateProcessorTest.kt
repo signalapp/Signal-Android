@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.groups.v2.processing
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.net.Uri
 import assertk.assertThat
 import assertk.assertions.any
 import assertk.assertions.contains
@@ -393,7 +394,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = 6,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
 
     assertThat(result.latestServer)
@@ -432,7 +433,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = 6,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
 
     assertThat(result.latestServer)
@@ -481,7 +482,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = 2,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
 
     assertThat(result.updateStatus, "local should update to server")
@@ -523,7 +524,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = 2,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
   }
 
@@ -551,7 +552,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = GroupsV2StateProcessor.LATEST,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
 
     assertThat(result.updateStatus, "local should update to server")
@@ -1189,7 +1190,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = 6,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
 
     assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
@@ -1224,7 +1225,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = 6,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
 
     assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
@@ -1309,7 +1310,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = 6,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
 
     assertThat(result.updateStatus, "terminated group should not accept P2P changes")
@@ -1371,7 +1372,7 @@ class GroupsV2StateProcessorTest {
         targetRevision = 3,
         timestamp = 0,
         signedGroupChange = signedChange,
-        serverGuid = UUID.randomUUID().toString()
+        triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
       )
     } finally {
       verify(exactly = 0) { groupTable.update(any<GroupMasterKey>(), any<DecryptedGroup>(), any(), any()) }
@@ -1404,7 +1405,7 @@ class GroupsV2StateProcessorTest {
       targetRevision = 3,
       timestamp = 0,
       signedGroupChange = signedChange,
-      serverGuid = UUID.randomUUID().toString()
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = false)
     )
 
     assertThat(result.updateStatus, "local should force-apply the kick")
@@ -1856,6 +1857,56 @@ class GroupsV2StateProcessorTest {
   }
 
   @Test
+  fun `when triggering message is sent by self, then setProfileSharing receives sentBySelf true`() {
+    givenFreshRev0GroupEditedBySelf()
+
+    processor.updateLocalGroupToRevision(
+      targetRevision = 0,
+      timestamp = 0,
+      triggeringMessage = TriggeringMessage(serverGuid = UUID.randomUUID().toString(), receivedTime = null, sentBySelf = true)
+    )
+
+    verify { profileAndMessageHelper.setProfileSharing(any(), any(), any(), true) }
+    unmockkStatic(StorageSyncHelper::class)
+  }
+
+  @Test
+  fun `when there is no triggering message, then setProfileSharing receives sentBySelf false`() {
+    givenFreshRev0GroupEditedBySelf()
+
+    processor.updateLocalGroupToRevision(
+      targetRevision = 0,
+      timestamp = 0
+    )
+
+    verify { profileAndMessageHelper.setProfileSharing(any(), any(), any(), false) }
+    unmockkStatic(StorageSyncHelper::class)
+  }
+
+  private fun givenFreshRev0GroupEditedBySelf() {
+    given {
+      changeSet {
+        changeLog(0) {
+          fullSnapshot(title = "Fresh", members = selfAndOthers)
+          change {
+            editorServiceIdBytes = selfAci.toByteString()
+          }
+        }
+      }
+      apiCallParameters(requestedRevision = 0, includeFirst = true)
+      joinedAtRevision = 0
+      expectTableCreate = true
+    }
+
+    every { recipientTable.getOrInsertFromGroupId(groupId) } returns RecipientId.from(100)
+    justRun { recipientTable.rotateStorageId(any()) }
+    justRun { profileAndMessageHelper.setProfileSharing(any(), any(), any(), any()) }
+    every { groupTable.create(any<GroupMasterKey>(), any<DecryptedGroup>(), any<ReceivedGroupSendEndorsements>(), any<ByteArray>()) } returns groupId
+    mockkStatic(StorageSyncHelper::class)
+    justRun { StorageSyncHelper.scheduleSyncForDataChange() }
+  }
+
+  @Test
   fun `when another member is editor of a fresh rev 0 group, then create is called without a verified name hash`() {
     given {
       changeSet {
@@ -1902,5 +1953,75 @@ class GroupsV2StateProcessorTest {
 
     verify { recipientTable.isProfileSharing(groupId) }
     verify(exactly = 0) { recipientTable.setProfileSharing(any(), any()) }
+  }
+
+  @Test
+  fun `when self is the editor at joinedAtRevision, then setProfileSharing does not enable profile sharing`() {
+    val joinedAtRevision = 1
+    val newLocalState = DecryptedGroup(
+      revision = joinedAtRevision,
+      members = listOf(member(otherAci), member(selfAci, joinedAt = joinedAtRevision))
+    )
+    val addedBySelfChange = DecryptedGroupChange(
+      revision = joinedAtRevision,
+      editorServiceIdBytes = selfAci.toByteString()
+    )
+    val groupStateDiff = GroupStateDiff(previousGroupState = null, changedGroupState = newLocalState, change = addedBySelfChange)
+
+    mockkObject(Recipient)
+    every { Recipient.externalPush(selfAci) } returns Recipient(id = RecipientId.from(2), isSelf = true, isProfileSharing = true)
+    every { Recipient.externalGroupExact(groupId) } returns Recipient(id = RecipientId.from(3))
+
+    profileAndMessageHelper.setProfileSharing(groupStateDiff, newLocalState, needsAvatarFetch = false)
+
+    verify(exactly = 0) { recipientTable.setProfileSharing(any(), any()) }
+  }
+
+  @Test
+  fun `when self is the editor at joinedAtRevision and sent by self, then setProfileSharing enables profile sharing`() {
+    val joinedAtRevision = 1
+    val groupRecipientId = RecipientId.from(3)
+    val newLocalState = DecryptedGroup(
+      revision = joinedAtRevision,
+      members = listOf(member(otherAci), member(selfAci, joinedAt = joinedAtRevision))
+    )
+    val addedBySelfChange = DecryptedGroupChange(
+      revision = joinedAtRevision,
+      editorServiceIdBytes = selfAci.toByteString()
+    )
+    val groupStateDiff = GroupStateDiff(previousGroupState = null, changedGroupState = newLocalState, change = addedBySelfChange)
+
+    mockkObject(Recipient)
+    every { Recipient.externalPush(selfAci) } returns Recipient(id = RecipientId.from(2), isSelf = true, isProfileSharing = true)
+    every { Recipient.externalGroupExact(groupId) } returns Recipient(id = groupRecipientId)
+    justRun { recipientTable.setProfileSharing(groupRecipientId, true) }
+
+    profileAndMessageHelper.setProfileSharing(groupStateDiff, newLocalState, needsAvatarFetch = false, sentBySelf = true)
+
+    verify(exactly = 1) { recipientTable.setProfileSharing(groupRecipientId, true) }
+  }
+
+  @Test
+  fun `when a system contact is the editor at joinedAtRevision, then setProfileSharing enables profile sharing`() {
+    val joinedAtRevision = 1
+    val groupRecipientId = RecipientId.from(3)
+    val newLocalState = DecryptedGroup(
+      revision = joinedAtRevision,
+      members = listOf(member(otherAci), member(selfAci, joinedAt = joinedAtRevision))
+    )
+    val addedByContactChange = DecryptedGroupChange(
+      revision = joinedAtRevision,
+      editorServiceIdBytes = otherAci.toByteString()
+    )
+    val groupStateDiff = GroupStateDiff(previousGroupState = null, changedGroupState = newLocalState, change = addedByContactChange)
+
+    mockkObject(Recipient)
+    every { Recipient.externalPush(otherAci) } returns Recipient(id = RecipientId.from(2), contactUri = Uri.parse("content://contacts/2"))
+    every { Recipient.externalGroupExact(groupId) } returns Recipient(id = groupRecipientId)
+    justRun { recipientTable.setProfileSharing(groupRecipientId, true) }
+
+    profileAndMessageHelper.setProfileSharing(groupStateDiff, newLocalState, needsAvatarFetch = false)
+
+    verify(exactly = 1) { recipientTable.setProfileSharing(groupRecipientId, true) }
   }
 }
