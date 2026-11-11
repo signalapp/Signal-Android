@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragme
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.signal.core.util.ByteUnit;
-import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Environment;
 import org.signal.core.util.ServiceUtil;
@@ -147,7 +146,6 @@ public final class Megaphones {
       put(Event.SET_UP_YOUR_USERNAME, shouldShowSetUpYourUsernameMegaphone(records) ? ALWAYS : NEVER);
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
       put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
-      put(Event.INACTIVE_PRIMARY, shouldShowInactivePrimaryMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
     }};
   }
 
@@ -213,8 +211,6 @@ public final class Megaphones {
         return buildSignalLoginReminderMegaphone();
       case USE_NEW_ON_DEVICE_BACKUPS:
         return buildUseNewOnDeviceBackupsMegaphone();
-      case INACTIVE_PRIMARY:
-        return buildInactivePrimaryMegaphone();
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -576,23 +572,6 @@ public final class Megaphones {
         .build();
   }
 
-  private static @NonNull Megaphone buildInactivePrimaryMegaphone() {
-    return new Megaphone.Builder(Event.INACTIVE_PRIMARY, Megaphone.Style.BASIC)
-        .setImage(R.drawable.megaphone_inactive_primary)
-        .setTitle(R.string.InactivePrimary__title)
-        .setBody(R.string.InactivePrimary__body)
-        .setActionButton(R.string.InactivePrimary__got_it, (megaphone, controller) -> {
-          controller.onMegaphoneSnooze(Event.INACTIVE_PRIMARY);
-        })
-        .setSecondaryButton(R.string.InactivePrimary__learn_more, ((megaphone, controller) -> {
-          CommunicationActions.openBrowserLink(
-              controller.getMegaphoneActivity(),
-              controller.getMegaphoneActivity().getString(R.string.inactive_primary_support)
-          );
-        }))
-        .build();
-  }
-
   private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {
     return SignalStore.account().isPrimaryDevice() && SignalStore.onboarding().hasOnboarding();
   }
@@ -659,10 +638,6 @@ public final class Megaphones {
 
   private static boolean shouldShowPnpLaunchMegaphone() {
     return SignalStore.account().isPrimaryDevice() && TextUtils.isEmpty(SignalStore.account().getUsername()) && !SignalStore.uiHints().hasCompletedUsernameOnboarding();
-  }
-
-  private static boolean shouldShowInactivePrimaryMegaphone() {
-    return SignalStore.account().isLinkedDevice() && SignalStore.account().hasInactivePrimaryDeviceAlert();
   }
 
   private static boolean shouldShowGenericBackupsMegaphone(@NonNull Context context) {
@@ -827,7 +802,6 @@ public final class Megaphones {
     BACKUP_LOW_STORAGE_UPSELL("backup_storage_upsell"),
     VERIFY_BACKUP_KEY("verify_backup_key"),
     USE_NEW_ON_DEVICE_BACKUPS("use_new_on_device_backups"),
-    INACTIVE_PRIMARY("inactive_primary"),
     TWO_FACTOR_REMINDER("two_factor_reminder"),
     SIGNAL_LOGIN_REMINDER("signal_login_reminder");
 

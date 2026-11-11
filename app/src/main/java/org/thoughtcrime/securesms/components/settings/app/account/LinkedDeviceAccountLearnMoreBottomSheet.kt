@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.components.settings.app.account
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -106,29 +105,20 @@ private fun LinkedDeviceAccountLearnMoreSheet() {
         .padding(bottom = 20.dp)
     )
 
-    BulletRow(stringResource(R.string.LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop))
-    BulletRow(stringResource(R.string.LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages))
-    BulletRow(stringResource(R.string.LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings))
-  }
-}
-
-@Composable
-private fun BulletRow(text: String) {
-  Row(
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(bottom = 12.dp),
-    verticalAlignment = Alignment.Top
-  ) {
     Text(
-      text = "\u2022",
+      text = stringResource(R.string.LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop),
       style = MaterialTheme.typography.bodyLarge,
-      modifier = Modifier.padding(end = 8.dp)
+      modifier = Modifier.fillMaxWidth()
     )
-
     Text(
-      text = text,
-      style = MaterialTheme.typography.bodyLarge
+      text = stringResource(R.string.LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages),
+      style = MaterialTheme.typography.bodyLarge,
+      modifier = Modifier.fillMaxWidth()
+    )
+    Text(
+      text = stringResource(R.string.LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings),
+      style = MaterialTheme.typography.bodyLarge,
+      modifier = Modifier.fillMaxWidth()
     )
   }
 }
