@@ -649,6 +649,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val values = ContentValues().apply {
         put(GROUP_ID, groupId.toString())
         put(AVATAR_COLOR, AvatarColorHash.forGroupId(groupId).serialize())
+        if (groupId.isMms) {
+          put(TYPE, RecipientType.MMS.id)
+        } else {
+          put(TYPE, if (groupId.isV2) RecipientType.GV2.id else RecipientType.GV1.id)
+          put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
+        }
       }
 
       val id = writableDatabase.insert(TABLE_NAME, null, values)
@@ -662,26 +668,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           throw AssertionError("Failed to insert recipient!")
         }
       } else {
-        val groupUpdates = ContentValues().apply {
-          if (groupId.isMms) {
-            put(TYPE, RecipientType.MMS.id)
-          } else {
-            if (groupId.isV2) {
-              put(TYPE, RecipientType.GV2.id)
-            } else {
-              put(TYPE, RecipientType.GV1.id)
-            }
-            put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
-          }
-        }
-
         val recipientId = RecipientId.from(id)
-        val updateSuccess = update(recipientId, groupUpdates)
-
-        if (!updateSuccess) {
-          Log.w(TAG, "Failed to update newly-created record for $recipientId")
-        }
-
         Log.i(TAG, "Group $groupId was newly-inserted as $recipientId")
 
         return recipientId
@@ -1362,7 +1349,18 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         Log.w(TAG, "Needed to repair storageId for $recipientId (group $id)")
         rotateStorageId(existing.id, logFailure = true)
         existing = getRecordForSync(recipientId) ?: throw AssertionError("Failed to find recipient record for second fetch!")
-        key = existing.storageId ?: throw AssertionError("StorageId not present immediately after setting it!")
+        key = existing.storageId
+
+        if (key == null) {
+          Log.w(TAG, "Rotation did not set a storageId for $recipientId (group $id), forcing GV2 type", true)
+          repairGroupV2RecipientType(recipientId, id)
+          key = getRecordForSync(recipientId)?.storageId
+        }
+
+        if (key == null) {
+          Log.w(TAG, "Unable to repair storageId for $recipientId (group $id), skipping", true)
+          continue
+        }
       }
 
       out[recipientId] = StorageId.forGroupV2(key)
@@ -4450,6 +4448,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
         Log.w(TAG, "[rotateStorageId] No records updated for $recipientId, exists=${typeRegistered != null} type=${typeRegistered?.first} registered=${typeRegistered?.second}")
       }
+    }
+  }
+
+  /**
+   * A group row left with the default type is never matched by [rotateStorageId].
+   */
+  private fun repairGroupV2RecipientType(recipientId: RecipientId, groupId: GroupId.V2) {
+    val updateCount = writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        TYPE to RecipientType.GV2.id,
+        STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+      )
+      .where("$ID = ? AND $GROUP_ID = ?", recipientId, groupId.toString())
+      .run()
+
+    if (updateCount > 0) {
+      Recipient.live(recipientId).refresh()
     }
   }
 

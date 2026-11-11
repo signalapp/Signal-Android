@@ -27,12 +27,15 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.CursorUtil
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientCreator
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import java.util.UUID
+import kotlin.random.Random
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -443,6 +446,33 @@ class RecipientTableTest {
 
     assertTrue(contact in storageIds)
     assertFalse(releaseNotes in storageIds)
+  }
+
+  @Test
+  fun givenANewGroupV2Id_whenIGetOrInsertIt_thenIExpectGv2TypeAndAStorageId() {
+    val groupId = GroupId.v2(GroupMasterKey(Random.nextBytes(GroupMasterKey.SIZE)))
+
+    val recipientId = SignalDatabase.recipients.getOrInsertFromGroupId(groupId)
+
+    assertEquals(RecipientTable.RecipientType.GV2, SignalDatabase.recipients.getRecord(recipientId).recipientType)
+    assertNotNull(SignalDatabase.recipients.getRecord(recipientId).storageId)
+  }
+
+  @Test
+  fun givenAGroupV2RecipientLeftWithTheDefaultTypeAndNoStorageId_whenIGetContactStorageSyncIds_thenIExpectItToBeRepaired() {
+    val recipientId = recipients.createGroup().recipientId
+
+    SignalDatabase.recipients.writableDatabase
+      .update(RecipientTable.TABLE_NAME)
+      .values(RecipientTable.TYPE to RecipientTable.RecipientType.INDIVIDUAL.id, RecipientTable.STORAGE_SERVICE_ID to null)
+      .where("${RecipientTable.ID} = ?", recipientId)
+      .run()
+
+    val storageIds = SignalDatabase.recipients.getContactStorageSyncIdsMap()
+
+    assertTrue(recipientId in storageIds)
+    assertEquals(RecipientTable.RecipientType.GV2, SignalDatabase.recipients.getRecord(recipientId).recipientType)
+    assertTrue(SignalDatabase.recipients.getRecord(recipientId).storageId!!.contentEquals(storageIds[recipientId]!!.raw))
   }
 
   private fun recipientFor(id: RecipientId) = RecipientCreator.forRecord(SignalDatabase.recipients.getRecord(id))
