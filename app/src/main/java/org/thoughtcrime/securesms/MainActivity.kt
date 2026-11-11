@@ -101,7 +101,6 @@ import org.signal.core.ui.viewModel
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
-import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
@@ -207,7 +206,6 @@ class MainActivity :
     private val TAG = Log.tag(MainActivity::class)
 
     private const val KEY_STARTING_TAB = "STARTING_TAB"
-    private const val KEY_DETAIL_LOCATION = "DETAIL_LOCATION"
     private const val KEY_EXIT_DETAIL = "EXIT_DETAIL"
 
     /** Width the navigation rail occupies inside the list pane. */
@@ -225,11 +223,6 @@ class MainActivity :
     @JvmStatic
     fun clearTopAndOpenTab(context: Context, startingTab: MainListRoute): Intent {
       return clearTop(context).putExtra(KEY_STARTING_TAB, startingTab)
-    }
-
-    @JvmStatic
-    fun clearTopAndOpenDetail(context: Context, location: MainDetailRoute): Intent {
-      return clearTop(context).putExtra(KEY_DETAIL_LOCATION, location)
     }
 
     /**
@@ -252,7 +245,7 @@ class MainActivity :
     get() = mediaController
 
   private val mainNavigationViewModel: MainNavigationViewModel by viewModel {
-    val startingTab = intent.extras?.getSerializableCompat(KEY_STARTING_TAB, MainListRoute::class.java)
+    val startingTab = if (isTrustedIntent(intent)) intent.extras?.getSerializableCompat(KEY_STARTING_TAB, MainListRoute::class.java) else null
     MainNavigationViewModel(it.createSavedStateHandle(), startingTab ?: MainListRoute.Chats)
   }
 
@@ -708,14 +701,13 @@ class MainActivity :
 
     val extras = intent.extras ?: return
 
-    if (extras.getBoolean(KEY_EXIT_DETAIL, false)) {
-      mainNavigationViewModel.onEvent(MainNavigationEvents.ExitDetail)
+    if (!isTrustedIntent(intent)) {
+      Log.w(TAG, "Received navigation extras through an exported entry point. Ignoring them.")
       return
     }
 
-    val detailLocation = extras.getParcelableCompat(KEY_DETAIL_LOCATION, MainDetailRoute::class.java)
-    if (detailLocation != null) {
-      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(detailLocation))
+    if (extras.getBoolean(KEY_EXIT_DETAIL, false)) {
+      mainNavigationViewModel.onEvent(MainNavigationEvents.ExitDetail)
       return
     }
 
@@ -937,7 +929,7 @@ class MainActivity :
 
   private fun handleConversationIntent(intent: Intent) {
     if (ConversationIntents.isConversationIntent(intent)) {
-      if (!isTrustedConversationIntent(intent)) {
+      if (!isTrustedIntent(intent)) {
         Log.w(TAG, "Received a conversation intent through an exported entry point. Ignoring its extras.")
         intent.action = null
         setIntent(intent)
@@ -1029,10 +1021,11 @@ class MainActivity :
   }
 
   /**
-   * While MainActivity isn't exporting, we have launcher aliases that are, so we verify that someone isn't launching us through those befre
-   * respecting various intent attributes.
+   * While MainActivity isn't exported, we have launcher aliases that are, so we verify that someone isn't launching us through those before
+   * respecting various intent attributes. Only intents addressed directly to MainActivity can come from our own code, since other apps are
+   * unable to target a non-exported component.
    */
-  private fun isTrustedConversationIntent(intent: Intent): Boolean {
+  private fun isTrustedIntent(intent: Intent): Boolean {
     return intent.component?.className == MainActivity::class.java.name
   }
 

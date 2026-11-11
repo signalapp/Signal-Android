@@ -251,29 +251,6 @@ class MainNavigationLaunchTest {
     }
   }
 
-  /**
-   * Locks down present cold-launch behaviour for KEY_DETAIL_LOCATION: today it is only
-   * consumed by onNewIntent. If a future change starts handling it on cold launch, this
-   * test should fail and force a deliberate decision.
-   */
-  @Test
-  fun coldLaunch_detailLocationIntent_isNoOpToday() {
-    val intent = detailLocationIntent(MainDetailRoute.Chats.ConversationSettings(recipient))
-    launchSync(intent).use { launched ->
-      val recorder = launched.recorder
-      Thread.sleep(1500)
-      check(recorder.createdArgs.isEmpty()) {
-        "KEY_DETAIL_LOCATION is currently only handled by onNewIntent. If a future change " +
-          "starts handling it on cold launch, update or delete this test. Got: ${recorder.allCreated}"
-      }
-      val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
-      val staged = runOnMainSync { vm.navigator[MainListRoute.Chats].filterIsInstance<MainDetailRoute>() }
-      check(staged.isEmpty()) {
-        "Expected no detail to be staged on the chats back stack, got $staged"
-      }
-    }
-  }
-
   @Test
   fun coldLaunch_deepLinkIntent_reachesChatsList() {
     val intent = deepLinkIntent(Uri.parse("https://signal.org/test-not-a-real-deeplink"))
@@ -342,7 +319,7 @@ class MainNavigationLaunchTest {
   }
 
   /**
-   * Mid-conversation onNewIntent with `KEY_DETAIL_LOCATION = Empty` — the contract used
+   * Mid-conversation onNewIntent with `KEY_EXIT_DETAIL`, the contract used
    * by [ConversationSettingsFragment.goToConversationList] to drop back to the chat list
    * on phones. No new ConversationFragment should be added.
    */
@@ -578,11 +555,6 @@ class MainNavigationLaunchTest {
   private fun tabIntent(tab: MainListRoute): Intent {
     return Intent(context, MainActivity::class.java)
       .putExtra("STARTING_TAB", tab)
-  }
-
-  private fun detailLocationIntent(location: MainDetailRoute): Intent {
-    return Intent(context, MainActivity::class.java)
-      .putExtra("DETAIL_LOCATION", location)
   }
 
   private fun realBlob(bytes: ByteArray, mimeType: String): Uri {
