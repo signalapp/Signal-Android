@@ -243,7 +243,10 @@ object BackupRepository {
     BackupMessagesJob.enqueue()
   }
 
-  private fun refreshMasterKeyDependents() {
+  /**
+   * Re-uploads everything keyed by the master key (SVR2, linked device keys, storage service). Call after the AEP changes.
+   */
+  fun refreshMasterKeyDependents() {
     val jobs = buildList {
       add(Svr2MirrorJob())
       if (SignalStore.account.isMultiDevice) {
