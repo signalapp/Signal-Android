@@ -201,7 +201,7 @@ open class MessageContentProcessor(private val context: Context) {
         val isContentMessage = !isGv2Update && !isExpireMessage && (isTextMessage || isMediaMessage)
         val isGroupActive = threadRecipient.isActiveGroup
 
-        isContentMessage && !isGroupActive || senderRecipient.isBlocked && !isGv2Update
+        isContentMessage && !isGroupActive || senderRecipient.isBlocked
       } else {
         senderRecipient.isBlocked
       }
