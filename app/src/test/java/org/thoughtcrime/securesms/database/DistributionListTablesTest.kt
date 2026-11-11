@@ -2,8 +2,12 @@ package org.thoughtcrime.securesms.database
 
 import android.app.Application
 import assertk.assertThat
+import assertk.assertions.isFalse
+import assertk.assertions.isNotEqualTo
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
+import assertk.assertions.isTrue
+import okio.ByteString.Companion.toByteString
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -11,14 +15,21 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.delete
 import org.signal.core.database.update
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.recipients.RecipientId
+import org.signal.core.util.UuidUtil
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.database.model.StoryType
+import org.thoughtcrime.securesms.storage.StorageRecordUpdate
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
+import org.whispersystems.signalservice.api.push.DistributionId
+import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.internal.storage.protos.StoryDistributionListRecord
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 
@@ -167,6 +178,78 @@ class DistributionListTablesTest {
 
     assertThat(storageIdOf(deleted)).isNull()
     assertThat(storageIdOf(myStory)).isNotNull()
+  }
+
+  @Test
+  fun `deleteList refuses to delete My Story`() {
+    val deleted = distributionDatabase.deleteList(DistributionListId.MY_STORY)
+
+    assertThat(deleted).isFalse()
+    assertThat(distributionDatabase.getList(DistributionListId.MY_STORY)).isNotNull()
+  }
+
+  @Test
+  fun `deleteList refuses to delete My Story when it is not at the expected id`() {
+    val myStoryId = moveMyStoryOffExpectedId()
+
+    val deleted = distributionDatabase.deleteList(myStoryId)
+
+    assertThat(deleted).isFalse()
+    assertThat(distributionDatabase.getList(myStoryId)).isNotNull()
+  }
+
+  @Test
+  fun `deleteList deletes a custom list`() {
+    val listId = distributionDatabase.createList("custom", emptyList())!!
+
+    val deleted = distributionDatabase.deleteList(listId)
+
+    assertThat(deleted).isTrue()
+    assertThat(distributionDatabase.getList(listId)).isNull()
+  }
+
+  @Test
+  fun `storage sync update undeletes My Story when the remote is not deleted`() {
+    setDeletionTimestamp(DistributionListId.MY_STORY, System.currentTimeMillis())
+
+    distributionDatabase.applyStorageSyncStoryDistributionListUpdate(storageUpdate(DistributionId.MY_STORY))
+
+    assertThat(distributionDatabase.getList(DistributionListId.MY_STORY)).isNotNull()
+  }
+
+  @Test
+  fun `storage sync update does not undelete a custom list`() {
+    val distributionId = DistributionId.from(UUID.randomUUID())
+    val listId = distributionDatabase.createList("custom", emptyList(), distributionId = distributionId)!!
+    distributionDatabase.deleteList(listId)
+
+    distributionDatabase.applyStorageSyncStoryDistributionListUpdate(storageUpdate(distributionId))
+
+    assertThat(distributionDatabase.getList(listId)).isNull()
+  }
+
+  private fun moveMyStoryOffExpectedId(): DistributionListId {
+    distributionDatabase.writableDatabase
+      .delete(DistributionListTables.ListTable.TABLE_NAME)
+      .where("${DistributionListTables.ListTable.DISTRIBUTION_ID} = ?", DistributionId.MY_STORY.toString())
+      .run()
+
+    distributionDatabase.createList("other", emptyList())
+    val myStoryId = distributionDatabase.createList(DistributionId.MY_STORY.toString(), emptyList(), distributionId = DistributionId.MY_STORY)!!
+    assertThat(myStoryId).isNotEqualTo(DistributionListId.MY_STORY)
+
+    return myStoryId
+  }
+
+  private fun storageUpdate(distributionId: DistributionId): StorageRecordUpdate<SignalStoryDistributionListRecord> {
+    val proto = StoryDistributionListRecord(
+      identifier = UuidUtil.toByteArray(distributionId.asUuid()).toByteString(),
+      name = "",
+      allowsReplies = true,
+      isBlockList = true
+    )
+    val record = SignalStoryDistributionListRecord(StorageId.forStoryDistributionList(StorageSyncHelper.generateKey()), proto)
+    return StorageRecordUpdate(record, record)
   }
 
   private fun createRecipients(count: Int): List<RecipientId> {

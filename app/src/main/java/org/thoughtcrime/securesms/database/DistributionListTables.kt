@@ -566,23 +566,35 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     Log.d(TAG, "Deleted recipient: $deleted")
   }
 
-  fun deleteList(distributionListId: DistributionListId, deletionTimestamp: Long = System.currentTimeMillis()) {
-    writableDatabase.update(
-      ListTable.TABLE_NAME,
-      contentValuesOf(
-        ListTable.NAME to createUniqueNameForDeletedStory(),
-        ListTable.ALLOWS_REPLIES to false,
-        ListTable.DELETION_TIMESTAMP to deletionTimestamp
-      ),
-      ID_WHERE,
-      SqlUtil.buildArgs(distributionListId)
-    )
+  /**
+   * Marks the list as deleted. Refuses to delete My Story.
+   *
+   * @return true if the list was deleted, otherwise false.
+   */
+  fun deleteList(distributionListId: DistributionListId, deletionTimestamp: Long = System.currentTimeMillis()): Boolean {
+    return writableDatabase.withinTransaction { db ->
+      val updated = db
+        .update(ListTable.TABLE_NAME)
+        .values(
+          ListTable.NAME to createUniqueNameForDeletedStory(),
+          ListTable.ALLOWS_REPLIES to false,
+          ListTable.DELETION_TIMESTAMP to deletionTimestamp
+        )
+        .where("${ListTable.ID} = ? AND ${ListTable.DISTRIBUTION_ID} != ?", distributionListId, DistributionId.MY_STORY)
+        .run()
 
-    writableDatabase.delete(
-      MembershipTable.TABLE_NAME,
-      "${MembershipTable.LIST_ID} = ?",
-      SqlUtil.buildArgs(distributionListId)
-    )
+      if (updated == 0) {
+        Log.w(TAG, "Did not delete $distributionListId. It is either My Story or does not exist.")
+        return@withinTransaction false
+      }
+
+      db
+        .delete(MembershipTable.TABLE_NAME)
+        .where("${MembershipTable.LIST_ID} = ?", distributionListId)
+        .run()
+
+      true
+    }
   }
 
   /**
@@ -737,6 +749,10 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
         ListTable.IS_UNKNOWN to false,
         ListTable.PRIVACY_MODE to privacyMode.serialize()
       )
+
+      if (distributionId == DistributionId.MY_STORY) {
+        listTableValues.put(ListTable.DELETION_TIMESTAMP, 0L)
+      }
 
       writableDatabase.update(
         ListTable.TABLE_NAME,

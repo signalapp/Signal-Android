@@ -60,8 +60,9 @@ class ContactSearchRepository {
   @CheckResult
   fun deletePrivateStory(distributionListId: DistributionListId): Completable {
     return Completable.fromAction {
-      SignalDatabase.distributionLists.deleteList(distributionListId)
-      Stories.onStorySettingsChanged(distributionListId)
+      if (SignalDatabase.distributionLists.deleteList(distributionListId)) {
+        Stories.onStorySettingsChanged(distributionListId)
+      }
     }.subscribeOn(Schedulers.io())
   }
 }

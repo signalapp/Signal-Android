@@ -26,7 +26,9 @@ class PrivateStorySettingsRepository {
 
   fun delete(distributionListId: DistributionListId): Completable {
     return Completable.fromAction {
-      SignalDatabase.distributionLists.deleteList(distributionListId)
+      if (!SignalDatabase.distributionLists.deleteList(distributionListId)) {
+        return@fromAction
+      }
       Stories.onStorySettingsChanged(distributionListId)
 
       val recipientId = SignalDatabase.recipients.getOrInsertFromDistributionListId(distributionListId)

@@ -7,13 +7,17 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.app.Application
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isNull
+import assertk.assertions.isTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.archive.proto.DistributionList
 import org.signal.core.util.UuidUtil
 import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ExportState
@@ -45,6 +49,30 @@ class DistributionListArchiveExporterTest {
     val exported = export().single { UuidUtil.fromByteString(it.distributionId) == DistributionId.MY_STORY.asUuid() }
 
     assertThat(exported.distributionList!!.name).isEqualTo("")
+  }
+
+  @Test
+  fun `My Story marked as deleted is exported as a live list`() {
+    SignalDatabase.distributionLists.createList(name = DistributionId.MY_STORY.toString(), members = emptyList(), distributionId = DistributionId.MY_STORY, deletionTimestamp = 1000L)
+
+    val exported = export().single { UuidUtil.fromByteString(it.distributionId) == DistributionId.MY_STORY.asUuid() }
+
+    assertThat(exported.deletionTimestamp).isNull()
+    assertThat(exported.distributionList!!.name).isEqualTo("")
+    assertThat(exported.distributionList!!.allowReplies).isTrue()
+    assertThat(exported.distributionList!!.privacyMode).isEqualTo(DistributionList.PrivacyMode.ALL)
+    assertThat(exported.distributionList!!.memberRecipientIds).isEmpty()
+  }
+
+  @Test
+  fun `deleted custom list is exported as deleted`() {
+    val distributionId = DistributionId.from(UUID.randomUUID())
+    SignalDatabase.distributionLists.createList(name = "Close friends", members = emptyList(), distributionId = distributionId, deletionTimestamp = 1000L)
+
+    val exported = export().single { UuidUtil.fromByteString(it.distributionId) == distributionId.asUuid() }
+
+    assertThat(exported.deletionTimestamp).isEqualTo(1000L)
+    assertThat(exported.distributionList).isNull()
   }
 
   @Test

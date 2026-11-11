@@ -62,7 +62,18 @@ class DistributionListArchiveExporter(
       privacyMode = privacyMode
     )
 
-    val distributionListItem = if (record.deletedAtTimestamp != 0L) {
+    val distributionListItem = if (record.distributionId == DistributionId.MY_STORY && record.deletedAtTimestamp != 0L) {
+      Log.w(TAG, ExportOddities.myStoryMarkedDeleted())
+      DistributionListItem(
+        distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
+        distributionList = DistributionList(
+          name = "",
+          allowReplies = true,
+          privacyMode = DistributionList.PrivacyMode.ALL,
+          memberRecipientIds = emptyList()
+        )
+      )
+    } else if (record.deletedAtTimestamp != 0L) {
       DistributionListItem(
         distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
         deletionTimestamp = record.deletedAtTimestamp
