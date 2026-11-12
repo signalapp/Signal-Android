@@ -58,6 +58,7 @@ class PrivacySettingsViewModelTest {
   private var screenSecurity = false
   private var incognitoKeyboard = false
   private var paymentLock = false
+  private var hiddenContactsAvailable = false
   private var deviceSecure = true
   private var passphraseEnabled = false
   private var passphraseInitialized = true
@@ -71,6 +72,8 @@ class PrivacySettingsViewModelTest {
     mockkObject(PrivacySettingsRepository)
 
     coEvery { PrivacySettingsRepository.getBlockedCount() } returns 4
+    every { PrivacySettingsRepository.isHiddenContactsAvailable() } answers { hiddenContactsAvailable }
+    coEvery { PrivacySettingsRepository.getHiddenCount() } returns 7
     every { PrivacySettingsRepository.hasPhoneNumber() } returns true
     every { PrivacySettingsRepository.isDeviceSecure() } answers { deviceSecure }
     every { PrivacySettingsRepository.isReadReceiptsEnabled() } answers { readReceipts }
@@ -366,6 +369,37 @@ class PrivacySettingsViewModelTest {
     viewModel.onEvent(PrivacySettingsEvent.NavigateBackClicked)
 
     assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
+  }
+
+  @Test
+  fun `hidden contacts are left out while the feature is off`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(PrivacySettingsEvent.ScreenResumed)
+
+    assertThat(viewModel.state.value.showHiddenContacts).isFalse()
+    assertThat(viewModel.state.value.hiddenCount).isEqualTo(0)
+    coVerify(exactly = 0) { PrivacySettingsRepository.getHiddenCount() }
+  }
+
+  @Test
+  fun `ScreenResumed loads the hidden count while the feature is on`() = runTest(testDispatcher) {
+    hiddenContactsAvailable = true
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(PrivacySettingsEvent.ScreenResumed)
+
+    assertThat(viewModel.state.value.showHiddenContacts).isTrue()
+    assertThat(viewModel.state.value.hiddenCount).isEqualTo(7)
+  }
+
+  @Test
+  fun `HiddenContactsClicked navigates to the hidden contacts`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(PrivacySettingsEvent.HiddenContactsClicked)
+
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.PrivacyRoute.HiddenContacts))
   }
 
   @Test

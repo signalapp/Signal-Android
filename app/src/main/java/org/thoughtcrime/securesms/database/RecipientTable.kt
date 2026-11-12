@@ -740,6 +740,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .readToList { RecipientTableCursorUtil.getRecord(context, it) }
   }
 
+  fun getHiddenIds(): List<RecipientId> {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$HIDDEN != ? AND $TYPE = ?", Recipient.HiddenState.NOT_HIDDEN.serialize(), RecipientType.INDIVIDUAL.id)
+      .run()
+      .readToList { RecipientId.from(it.requireLong(ID)) }
+  }
+
+  fun getHiddenCount(): Int {
+    return readableDatabase
+      .select("COUNT(*)")
+      .from(TABLE_NAME)
+      .where("$HIDDEN != ? AND $TYPE = ?", Recipient.HiddenState.NOT_HIDDEN.serialize(), RecipientType.INDIVIDUAL.id)
+      .run()
+      .readToSingleInt()
+  }
+
   fun readerForBlocked(cursor: Cursor): RecipientReader {
     return RecipientReader(cursor)
   }

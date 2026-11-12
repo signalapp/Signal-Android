@@ -303,6 +303,9 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     data object BlockedUsers : PrivacyRoute
 
     @Serializable
+    data object HiddenContacts : PrivacyRoute
+
+    @Serializable
     data object Advanced : PrivacyRoute
 
     @Serializable

@@ -46,6 +46,9 @@ class PrivacySettingsViewModel(
       PrivacySettingsEvent.ScreenResumed -> {
         refresh()
         _state.update { it.copy(blockedCount = PrivacySettingsRepository.getBlockedCount()) }
+        if (_state.value.showHiddenContacts) {
+          _state.update { it.copy(hiddenCount = PrivacySettingsRepository.getHiddenCount()) }
+        }
       }
 
       PrivacySettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
@@ -55,6 +58,8 @@ class PrivacySettingsViewModel(
       PrivacySettingsEvent.PhoneNumberClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.PrivacyRoute.PhoneNumberPrivacy)
 
       PrivacySettingsEvent.BlockedClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.PrivacyRoute.BlockedUsers)
+
+      PrivacySettingsEvent.HiddenContactsClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.PrivacyRoute.HiddenContacts)
 
       is PrivacySettingsEvent.ReadReceiptsToggled -> {
         PrivacySettingsRepository.setReadReceiptsEnabled(event.enabled)
@@ -149,6 +154,7 @@ class PrivacySettingsViewModel(
     _state.update {
       it.copy(
         hasPhoneNumber = PrivacySettingsRepository.hasPhoneNumber(),
+        showHiddenContacts = PrivacySettingsRepository.isHiddenContactsAvailable(),
         readReceipts = PrivacySettingsRepository.isReadReceiptsEnabled(),
         typingIndicators = PrivacySettingsRepository.isTypingIndicatorsEnabled(),
         universalExpireTimer = PrivacySettingsRepository.getUniversalExpireTimer(),

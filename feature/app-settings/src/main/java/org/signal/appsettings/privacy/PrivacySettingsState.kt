@@ -14,6 +14,8 @@ import kotlin.time.Duration.Companion.minutes
 data class PrivacySettingsState(
   val hasPhoneNumber: Boolean = true,
   val blockedCount: Int = 0,
+  val showHiddenContacts: Boolean = false,
+  val hiddenCount: Int = 0,
   val readReceipts: Boolean = false,
   val typingIndicators: Boolean = false,
   val universalExpireTimer: Duration = Duration.ZERO,

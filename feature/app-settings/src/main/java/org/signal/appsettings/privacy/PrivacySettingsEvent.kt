@@ -27,6 +27,9 @@ sealed interface PrivacySettingsEvent {
   /** The user tapped the blocked row. */
   data object BlockedClicked : PrivacySettingsEvent
 
+  /** The user tapped the hidden contacts row. */
+  data object HiddenContactsClicked : PrivacySettingsEvent
+
   /** The user flipped the read receipts switch. */
   data class ReadReceiptsToggled(val enabled: Boolean) : PrivacySettingsEvent
 

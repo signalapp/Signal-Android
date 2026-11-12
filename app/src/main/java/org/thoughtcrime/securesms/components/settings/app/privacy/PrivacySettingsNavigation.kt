@@ -13,6 +13,7 @@ import org.signal.core.ui.compose.split.detailEntry
 import org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsEntry
 import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireTimerSettingsEntry
 import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireTimerSettingsViewModel
+import org.thoughtcrime.securesms.components.settings.app.privacy.hidden.HiddenContactsEntry
 import org.thoughtcrime.securesms.components.settings.app.privacy.pnp.PhoneNumberPrivacySettingsEntry
 import org.thoughtcrime.securesms.components.settings.app.privacy.screenlock.ScreenLockSettingsEntry
 
@@ -26,6 +27,10 @@ fun EntryProviderScope<NavKey>.registerPrivacyRoutes(parentEventEmitter: (AppSet
 
   detailEntry<AppSettingsRoute.PrivacyRoute.PhoneNumberPrivacy> {
     PhoneNumberPrivacySettingsEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.PrivacyRoute.HiddenContacts> {
+    HiddenContactsEntry(parentEventEmitter = parentEventEmitter)
   }
 
   detailEntry<AppSettingsRoute.PrivacyRoute.ScreenLock> {

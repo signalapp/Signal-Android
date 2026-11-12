@@ -51,6 +51,7 @@ import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -367,7 +368,10 @@ private fun UserMessagesHost(
 
     is UserMessage.Info.RecipientRemoved -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
-        message = resources.getString(R.string.NewConversationActivity__s_has_been_removed, userMessage.recipient.getDisplayName(context))
+        message = resources.getString(
+          if (RemoteConfig.contactDelete) R.string.NewConversationActivity__s_has_been_hidden else R.string.NewConversationActivity__s_has_been_removed,
+          userMessage.recipient.getDisplayName(context)
+        )
       )
       onDismiss(userMessage)
     }
@@ -407,9 +411,12 @@ private fun UserMessagesHost(
     }
 
     is UserMessage.Prompt.ConfirmRemoveRecipient -> Dialogs.SimpleAlertDialog(
-      title = stringResource(R.string.NewConversationActivity__remove_s, userMessage.recipient.getShortDisplayName(context)),
+      title = stringResource(
+        if (RemoteConfig.contactDelete) R.string.NewConversationActivity__hide_s else R.string.NewConversationActivity__remove_s,
+        userMessage.recipient.getShortDisplayName(context)
+      ),
       body = stringResource(R.string.NewConversationActivity__you_wont_see_this_person),
-      confirm = stringResource(R.string.NewConversationActivity__remove),
+      confirm = stringResource(if (RemoteConfig.contactDelete) R.string.NewConversationActivity__hide else R.string.NewConversationActivity__remove),
       dismiss = stringResource(android.R.string.cancel),
       onConfirm = { onRemoveConfirmed(userMessage.recipient) },
       onDismiss = { onDismiss(userMessage) }

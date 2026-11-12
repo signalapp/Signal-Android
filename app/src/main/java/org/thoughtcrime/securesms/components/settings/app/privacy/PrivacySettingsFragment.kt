@@ -21,6 +21,7 @@ class PrivacySettingsFragment : ComposeFragment() {
     when (route) {
       AppSettingsRoute.PrivacyRoute.PhoneNumberPrivacy -> findNavController().safeNavigate(R.id.action_privacySettingsFragment_to_phoneNumberPrivacySettingsFragment)
       AppSettingsRoute.PrivacyRoute.BlockedUsers -> findNavController().safeNavigate(R.id.action_privacySettingsFragment_to_blockedUsersActivity)
+      AppSettingsRoute.PrivacyRoute.HiddenContacts -> findNavController().safeNavigate(R.id.action_privacySettingsFragment_to_hiddenContactsFragment)
       AppSettingsRoute.PrivacyRoute.ExpiringMessages -> findNavController().safeNavigate(R.id.action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment)
       AppSettingsRoute.PrivacyRoute.ScreenLock -> findNavController().safeNavigate(R.id.action_privacySettingsFragment_to_screenLockSettingsFragment)
       AppSettingsRoute.PrivacyRoute.Advanced -> findNavController().safeNavigate(R.id.action_privacySettingsFragment_to_advancedPrivacySettingsFragment)

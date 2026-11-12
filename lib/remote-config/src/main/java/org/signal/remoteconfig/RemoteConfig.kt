@@ -1645,5 +1645,12 @@ object RemoteConfig {
     defaultValue = false,
     hotSwappable = true
   )
+
+  /** Whether contacts can be hidden, listed and unhidden, and deleted outright. */
+  val contactDelete: Boolean by remoteBoolean(
+    key = "android.contactDelete",
+    defaultValue = false,
+    hotSwappable = true
+  )
   // endregion
 }

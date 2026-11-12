@@ -62,6 +62,7 @@ object PrivacySettingsTestTags {
   const val SCROLLER = "scroller"
   const val ROW_PHONE_NUMBER = "row-phone-number"
   const val ROW_BLOCKED = "row-blocked"
+  const val ROW_HIDDEN = "row-hidden"
   const val ROW_READ_RECEIPTS = "row-read-receipts"
   const val ROW_TYPING_INDICATORS = "row-typing-indicators"
   const val ROW_DEFAULT_TIMER = "row-default-timer"
@@ -144,6 +145,17 @@ fun PrivacySettingsScreen(
           onClick = { onEvent(PrivacySettingsEvent.BlockedClicked) },
           modifier = Modifier.testTag(PrivacySettingsTestTags.ROW_BLOCKED)
         )
+      }
+
+      if (state.showHiddenContacts) {
+        item {
+          Rows.TextRow(
+            text = stringResource(R.string.PrivacySettingsScreen__hidden),
+            label = pluralStringResource(R.plurals.PrivacySettingsScreen__d_hidden_contacts, state.hiddenCount, state.hiddenCount),
+            onClick = { onEvent(PrivacySettingsEvent.HiddenContactsClicked) },
+            modifier = Modifier.testTag(PrivacySettingsTestTags.ROW_HIDDEN)
+          )
+        }
       }
 
       item {

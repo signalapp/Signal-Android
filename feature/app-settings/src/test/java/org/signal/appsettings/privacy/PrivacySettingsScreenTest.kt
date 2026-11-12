@@ -83,6 +83,23 @@ class PrivacySettingsScreenTest {
   }
 
   @Test
+  fun `the hidden row is left out unless hidden contacts are shown`() {
+    setContent(PrivacySettingsState(showHiddenContacts = false))
+
+    composeTestRule.onNodeWithTag(PrivacySettingsTestTags.ROW_HIDDEN).assertDoesNotExist()
+  }
+
+  @Test
+  fun `the hidden row shows the hidden count and emits HiddenContactsClicked`() {
+    setContent(PrivacySettingsState(showHiddenContacts = true, hiddenCount = 2))
+
+    composeTestRule.onNodeWithText("2 contacts").assertIsDisplayed()
+    composeTestRule.onNodeWithTag(PrivacySettingsTestTags.ROW_HIDDEN).performClick()
+
+    assertThat(interactionEvents).containsExactly(PrivacySettingsEvent.HiddenContactsClicked)
+  }
+
+  @Test
   fun `toggling read receipts emits ReadReceiptsToggled`() {
     setContent(PrivacySettingsState(readReceipts = true))
 

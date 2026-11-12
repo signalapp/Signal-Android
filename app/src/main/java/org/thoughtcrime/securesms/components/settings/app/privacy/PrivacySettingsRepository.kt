@@ -4,6 +4,7 @@ import android.content.Intent
 import kotlinx.coroutines.withContext
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.concurrent.SignalDispatchers
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -24,6 +25,14 @@ object PrivacySettingsRepository {
   suspend fun getBlockedCount(): Int {
     return withContext(SignalDispatchers.Default) {
       SignalDatabase.recipients.getBlocked().size
+    }
+  }
+
+  fun isHiddenContactsAvailable(): Boolean = RemoteConfig.contactDelete
+
+  suspend fun getHiddenCount(): Int {
+    return withContext(SignalDispatchers.Default) {
+      SignalDatabase.recipients.getHiddenCount()
     }
   }
 
