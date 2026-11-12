@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.components.settings.app.privacy.registerPrivac
 import org.thoughtcrime.securesms.components.settings.app.storage.registerDataAndStorageRoutes
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.registerDonationsRoutes
 import org.thoughtcrime.securesms.components.settings.app.updates.registerAppUpdatesRoutes
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
@@ -80,6 +81,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
     enableSettingsEdgeToEdge()
     super.onCreate(savedInstanceState, ready)
     dynamicTheme.onCreate(this)
+    lifecycle.addObserver(InAppPaymentsBottomSheetDelegate(supportFragmentManager, this))
 
     val startRoute = intent.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)
     if (savedInstanceState == null && startRoute != null && startRoute != AppSettingsRoute.Empty) {

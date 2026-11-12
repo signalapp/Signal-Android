@@ -12,6 +12,7 @@ import androidx.navigation3.runtime.NavKey
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.Fragments
 import org.signal.core.ui.compose.split.detailEntry
+import org.thoughtcrime.securesms.components.settings.DSLSettingsFragmentEntry
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.stories.settings.custom.PrivateStorySettingsFragment
@@ -33,8 +34,7 @@ import org.thoughtcrime.securesms.stories.settings.story.StoriesPrivacySettingsF
  */
 fun EntryProviderScope<NavKey>.registerStoriesRoutes() {
   detailEntry<AppSettingsRoute.StoriesRoute.Privacy> { route ->
-    Fragments.Fragment<StoriesPrivacySettingsFragment>(
-      modifier = Modifier.fillMaxSize(),
+    DSLSettingsFragmentEntry<StoriesPrivacySettingsFragment>(
       arguments = StoriesPrivacySettingsFragmentArgs.Builder(route.titleId).build().toBundle()
     )
   }
@@ -52,8 +52,7 @@ fun EntryProviderScope<NavKey>.registerStoriesRoutes() {
   }
 
   detailEntry<AppSettingsRoute.StoriesRoute.GroupStory> { route ->
-    Fragments.Fragment<GroupStorySettingsFragment>(
-      modifier = Modifier.fillMaxSize(),
+    DSLSettingsFragmentEntry<GroupStorySettingsFragment>(
       arguments = GroupStorySettingsFragmentArgs.Builder(GroupId.parseOrThrow(route.groupId)).build().toBundle()
     )
   }

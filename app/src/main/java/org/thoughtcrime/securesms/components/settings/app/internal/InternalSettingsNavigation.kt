@@ -13,6 +13,7 @@ import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.Fragments
 import org.signal.core.ui.compose.split.detailEntry
+import org.thoughtcrime.securesms.components.settings.DSLSettingsFragmentEntry
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundFragment
 import org.thoughtcrime.securesms.components.settings.app.internal.conversation.springboard.InternalConversationSpringboardFragment
 import org.thoughtcrime.securesms.components.settings.app.internal.conversation.test.InternalConversationTestFragment
@@ -31,7 +32,7 @@ import org.thoughtcrime.securesms.components.settings.app.internal.svr.InternalS
  */
 fun EntryProviderScope<NavKey>.registerInternalRoutes(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
   detailEntry<AppSettingsRoute.InternalRoute.Internal> {
-    Fragments.Fragment<InternalSettingsFragment>(modifier = Modifier.fillMaxSize())
+    DSLSettingsFragmentEntry<InternalSettingsFragment>()
   }
 
   detailEntry<AppSettingsRoute.InternalRoute.RemoteConfig> {

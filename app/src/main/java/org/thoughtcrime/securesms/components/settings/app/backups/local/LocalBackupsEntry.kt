@@ -33,6 +33,7 @@ import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Launchers
 import org.signal.core.ui.compose.requireFragmentActivity
+import org.signal.core.ui.navigation.ResultEffect
 import org.signal.core.ui.util.StorageUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyEducationScreen
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyEdu
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordMode
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordScreen
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyVerifyScreen
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyRotated
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
 import kotlin.time.Duration.Companion.milliseconds
@@ -77,6 +79,10 @@ fun LocalBackupsEntry(
     } else {
       parentEventEmitter.navigateBack()
     }
+  }
+
+  ResultEffect<BackupKeyRotated> {
+    viewModel.refreshSettingsState()
   }
 
   NavDisplay(

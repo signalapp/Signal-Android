@@ -33,6 +33,14 @@ abstract class DSLSettingsFragment(
   protected var layoutManagerProducer: (Context) -> RecyclerView.LayoutManager = { context -> LinearLayoutManager(context) }
 ) : LoggingFragment(layoutId) {
 
+  companion object {
+    /**
+     * False for hosts that close this screen some other way, like a split-pane detail root that is closed by picking
+     * something else from the list. Read when the view is created, so the icon never shows.
+     */
+    const val ARG_SHOWS_NAVIGATION_ICON = "dsl_settings_shows_navigation_icon"
+  }
+
   protected var recyclerView: RecyclerView? = null
     private set
 
@@ -60,6 +68,9 @@ abstract class DSLSettingsFragment(
   @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     toolbar = view.findViewById(R.id.toolbar)
+    if (arguments?.getBoolean(ARG_SHOWS_NAVIGATION_ICON, true) == false) {
+      toolbar?.navigationIcon = null
+    }
 
     if (titleId != -1) {
       toolbar?.setTitle(titleId)
