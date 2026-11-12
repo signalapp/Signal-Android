@@ -94,7 +94,7 @@ fun AppSettingsScreen(
   state: AppSettingsState,
   onEvent: (AppSettingsEvent) -> Unit,
   modifier: Modifier = Modifier,
-  containerColor: Color = if (rememberIsSplitPaneSettings()) SignalTheme.colors.colorSurface4 else MaterialTheme.colorScheme.background,
+  containerColor: Color = if (rememberIsSplitPaneSettings()) SignalTheme.colors.colorSurface1 else MaterialTheme.colorScheme.background,
   contentColor: Color = MaterialTheme.colorScheme.contentColorFor(containerColor).takeOrElse { MaterialTheme.colorScheme.onSurface },
   selectedRoute: AppSettingsRoute? = null,
   avatar: @Composable () -> Unit = {},
@@ -118,6 +118,7 @@ fun AppSettingsScreen(
     },
     containerColor = containerColor,
     contentColor = contentColor,
+    scrolledContainerColor = if (rememberIsSplitPaneSettings()) SignalTheme.colors.colorSurface1 else SignalTheme.colors.colorSurface2,
     expandableTitle = true,
     modifier = modifier
   ) { contentPadding ->
@@ -560,7 +561,7 @@ private fun ProfileRow(
         onClick = { onEvent(AppSettingsEvent.UsernameLinkClicked) },
         size = 36.dp,
         colors = IconButtons.iconButtonColors(
-          containerColor = SignalTheme.colors.colorSurface4
+          containerColor = SignalTheme.colors.colorSecondaryContainer1
         ),
         modifier = Modifier.testTag(AppSettingsTestTags.BUTTON_USERNAME_LINK)
       ) {

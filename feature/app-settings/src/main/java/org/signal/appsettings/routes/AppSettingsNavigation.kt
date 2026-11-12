@@ -132,7 +132,7 @@ fun AppSettingsNavigation(
   BoxWithConstraints(
     modifier = modifier
       .fillMaxSize()
-      .background(if (isSplitPane) SignalTheme.colors.colorSurface4 else MaterialTheme.colorScheme.background)
+      .background(if (isSplitPane) SignalTheme.colors.colorSurface1 else MaterialTheme.colorScheme.background)
       .then(insetsModifier)
   ) {
     // Settings screens are shared with the fragment host, which keeps their current look until it goes away.

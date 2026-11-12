@@ -167,6 +167,7 @@ object Scaffolds {
     navigationContentDescription: String? = null,
     containerColor: Color = MaterialTheme.colorScheme.background,
     contentColor: Color = MaterialTheme.colorScheme.contentColorFor(containerColor).takeOrElse { MaterialTheme.colorScheme.onSurface },
+    scrolledContainerColor: Color = SignalTheme.colors.colorSurface2,
     titleContent: @Composable (Float, String) -> Unit = { _, title ->
       Text(text = title, style = MaterialTheme.typography.titleLarge.copy(hyphens = Hyphens.Auto))
     },
@@ -196,6 +197,7 @@ object Scaffolds {
             navigationIcon = visibleNavigationIcon,
             navigationContentDescription = navigationContentDescription,
             containerColor = containerColor,
+            scrolledContainerColor = scrolledContainerColor,
             actions = actions,
             scrollBehavior = scrollBehavior
           )
@@ -207,6 +209,7 @@ object Scaffolds {
             navigationIcon = visibleNavigationIcon,
             navigationContentDescription = navigationContentDescription,
             containerColor = containerColor,
+            scrolledContainerColor = scrolledContainerColor,
             actions = actions,
             scrollBehavior = scrollBehavior
           )
@@ -232,6 +235,7 @@ object Scaffolds {
     scrollBehavior: TopAppBarScrollBehavior,
     navigationContentDescription: String? = null,
     containerColor: Color = MaterialTheme.colorScheme.background,
+    scrolledContainerColor: Color = SignalTheme.colors.colorSurface2,
     actions: @Composable RowScope.() -> Unit = {}
   ) {
     LargeTopAppBar(
@@ -256,7 +260,7 @@ object Scaffolds {
       scrollBehavior = scrollBehavior,
       colors = TopAppBarDefaults.topAppBarColors(
         containerColor = containerColor,
-        scrolledContainerColor = SignalTheme.colors.colorSurface2
+        scrolledContainerColor = scrolledContainerColor
       )
     )
   }
@@ -272,6 +276,7 @@ object Scaffolds {
     navigationIcon: ImageVector?,
     navigationContentDescription: String? = null,
     containerColor: Color = MaterialTheme.colorScheme.surface,
+    scrolledContainerColor: Color = SignalTheme.colors.colorSurface2,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
   ) {
@@ -279,6 +284,7 @@ object Scaffolds {
       title = title,
       titleContent = titleContent,
       containerColor = containerColor,
+      scrolledContainerColor = scrolledContainerColor,
       navigationIconContent = {
         if (navigationIcon != null) {
           IconButton(
@@ -306,6 +312,7 @@ object Scaffolds {
     titleContent: @Composable (Float, String) -> Unit,
     navigationIconContent: @Composable () -> Unit,
     containerColor: Color = MaterialTheme.colorScheme.surface,
+    scrolledContainerColor: Color = SignalTheme.colors.colorSurface2,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
   ) {
@@ -315,7 +322,7 @@ object Scaffolds {
       scrollBehavior = scrollBehavior,
       colors = TopAppBarDefaults.topAppBarColors(
         containerColor = containerColor,
-        scrolledContainerColor = SignalTheme.colors.colorSurface2
+        scrolledContainerColor = scrolledContainerColor
       ),
       actions = actions
     )
