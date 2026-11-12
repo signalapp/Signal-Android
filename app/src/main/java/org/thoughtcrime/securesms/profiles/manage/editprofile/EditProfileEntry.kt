@@ -5,8 +5,6 @@
 
 package org.thoughtcrime.securesms.profiles.manage.editprofile
 
-import android.content.Intent
-import androidx.activity.compose.LocalActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -35,7 +33,6 @@ import org.signal.core.ui.compose.LocalSharedTransitionScope
 import org.signal.core.ui.compose.WindowOverlay
 import org.signal.core.ui.navigation.ResultEffect
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerResult
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageLarge
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
@@ -53,7 +50,6 @@ fun EditProfileEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
   val self = remember { Recipient.self() }
   val featuredBadge by rememberRecipientField(self) { featuredBadge?.takeIf { it.visible && !it.isExpired() } }
   val context = LocalContext.current
-  val activity = LocalActivity.current
   val sharedTransitionScope = checkNotNull(LocalSharedTransitionScope.current) { "EditProfileEntry needs a WindowOverlayHost above it." }
 
   ResultEffect<AvatarPickerResult> { result ->
@@ -67,10 +63,6 @@ fun EditProfileEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
 
   CollectActions(viewModel.actions) { action ->
     when (action) {
-      EditProfileAction.OpenSubscriptions -> {
-        activity?.finish()
-        context.startActivity(AppSettingsActivity.subscriptions(context).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
-      }
       EditProfileAction.OpenAppUpdate -> PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context)
       EditProfileAction.StartReregistration -> context.startActivity(RegistrationIntents.newIntentForReRegistration(context))
     }

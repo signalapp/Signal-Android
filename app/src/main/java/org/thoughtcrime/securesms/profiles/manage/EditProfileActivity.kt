@@ -18,6 +18,7 @@ import org.signal.core.ui.compose.WindowOverlayHost
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.navigation.NavRouter
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.profiles.manage.editprofile.EditProfileNavigation
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
@@ -70,11 +71,23 @@ class EditProfileActivity : PassphraseRequiredActivity() {
         WindowOverlayHost {
           EditProfileNavigation(
             router = router,
-            onClose = ::finish
+            onClose = ::finish,
+            tryLaunchActivity = ::tryLaunchActivity
           )
         }
       }
     }
+  }
+
+  private fun tryLaunchActivity(route: AppSettingsRoute): Boolean {
+    val intent = when (route) {
+      is AppSettingsRoute.DonationsRoute.Donations -> AppSettingsActivity.subscriptions(this).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+      else -> return false
+    }
+
+    finish()
+    startActivity(intent)
+    return true
   }
 
   override fun onResume() {

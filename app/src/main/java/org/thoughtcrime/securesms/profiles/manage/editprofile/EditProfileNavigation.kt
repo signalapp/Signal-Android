@@ -35,13 +35,17 @@ import org.thoughtcrime.securesms.profiles.manage.username.UsernameEditEntry
  * Edit profile and everything it opens, one screen at a time, on [router]'s back stack.
  *
  * @param onClose called when a screen asks to navigate back from the bottom of the stack.
+ * @param tryLaunchActivity called for each route navigated to before it is opened. Returns true when the host has
+ *   opened it outside of edit profile instead, for routes this stack doesn't register.
  */
 @Composable
 fun EditProfileNavigation(
   router: NavRouter<AppSettingsRoute>,
-  onClose: () -> Unit
+  onClose: () -> Unit,
+  tryLaunchActivity: (AppSettingsRoute) -> Boolean = { false }
 ) {
   val currentOnClose by rememberUpdatedState(onClose)
+  val currentTryLaunchActivity by rememberUpdatedState(tryLaunchActivity)
 
   LaunchedEffect(router) {
     router.exitRequests.collect { currentOnClose() }
@@ -50,7 +54,9 @@ fun EditProfileNavigation(
   val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit = remember(router) {
     { event ->
       when (event) {
-        is AppSettingsNavigationEvent.NavigateToScreen -> router.navigateTo(event.route)
+        is AppSettingsNavigationEvent.NavigateToScreen -> if (!currentTryLaunchActivity(event.route)) {
+          router.navigateTo(event.route)
+        }
         is AppSettingsNavigationEvent.NavigateBack -> router.navigateBack()
         AppSettingsNavigationEvent.Close -> currentOnClose()
       }

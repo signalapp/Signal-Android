@@ -24,6 +24,7 @@ import org.signal.appsettings.routes.navigateTo
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 
 /**
@@ -83,7 +84,7 @@ class EditProfileViewModel(
       }
       EditProfileEvent.BecomeASustainerClicked -> {
         _state.update { it.copy(dialog = EditProfileState.Dialog.None) }
-        _actions.send(EditProfileAction.OpenSubscriptions)
+        parentEventEmitter.navigateTo(AppSettingsRoute.DonationsRoute.Donations(directToCheckoutType = InAppPaymentType.RECURRING_DONATION))
       }
       EditProfileEvent.UsernameClicked -> ifEditable {
         if (EditProfileRepository.getUsername() != null) {

@@ -10,9 +10,6 @@ package org.signal.appsettings.editprofile
  */
 sealed interface EditProfileAction {
 
-  /** Leave the profile for the screen where the user can start a monthly donation. */
-  data object OpenSubscriptions : EditProfileAction
-
   /** Open the app store, or the download page for builds that don't come from one. */
   data object OpenAppUpdate : EditProfileAction
 
