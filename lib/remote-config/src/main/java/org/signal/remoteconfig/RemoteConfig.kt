@@ -1587,7 +1587,7 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  const val APP_SETTINGS_NAVIGATION_KEY = "android.appSettingsNavigation"
+  const val APP_SETTINGS_NAVIGATION_KEY = "android.appSettingsNavigation.1"
 
   /** Whether to host app settings in the new navigation activity in place of the fragment nav graph. */
   val useAppSettingsNavigation: Boolean by remoteBoolean(
