@@ -46,6 +46,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -252,6 +253,7 @@ private fun StickerConfirmationPanel(
     GlideImage(
       model = confirmation.sticker.image,
       enableApngAnimation = true,
+      contentScale = ContentScale.Fit,
       modifier = Modifier
         .size(StickerSize)
         .align(Alignment.Center)
