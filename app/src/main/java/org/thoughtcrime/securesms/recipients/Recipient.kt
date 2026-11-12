@@ -19,7 +19,6 @@ import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.UsernameUtil.isValidUsernameForSearch
 import org.signal.core.util.Util
-import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
@@ -1098,28 +1097,6 @@ class Recipient(
       }
 
       return resolved
-    }
-
-    /**
-     * A safety wrapper around [.external] for when you know you're using an
-     * identifier for a system contact, and therefore always want to prevent interpreting it as a
-     * UUID. This will crash if given a UUID.
-     *
-     * (This may seem strange, but apparently some devices are returning valid UUIDs for contacts)
-     */
-    @JvmStatic
-    @WorkerThread
-    fun externalContact(identifier: String): Recipient? {
-      val id: RecipientId = if (UuidUtil.isUuid(identifier)) {
-        throw AssertionError("UUIDs are not valid system contact identifiers!")
-      } else if (NumberUtil.isValidEmail(identifier)) {
-        SignalDatabase.recipients.getOrInsertFromEmail(identifier)
-      } else {
-        val e164 = SignalE164Util.formatNonShortCodeAsE164(identifier) ?: return null
-        SignalDatabase.recipients.getOrInsertFromE164(e164)
-      }
-
-      return resolved(id)
     }
 
     /**

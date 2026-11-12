@@ -11,6 +11,7 @@ import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -59,6 +60,16 @@ class ContactDiscoveryTest {
   }
 
   @Test
+  fun `refreshAll does not create recipients for system contacts that are not registered`() {
+    systemContacts.add(ALICE, "Alice")
+
+    ContactDiscovery.refreshAll(context, notifyOfNewUsers = false)
+
+    assertTrue(ALICE in cds.requests.single().newE164s)
+    assertFalse(SignalDatabase.recipients.getByE164(ALICE).isPresent)
+  }
+
+  @Test
   fun `refreshAll creates a registered recipient with system info for a registered system contact`() {
     val account = cds.register(BOB)
     systemContacts.add(BOB, "Bob", "Builder")
@@ -103,6 +114,39 @@ class ContactDiscoveryTest {
   }
 
   @Test
+  fun `refreshAll creates a recipient once a previously unregistered system contact registers`() {
+    systemContacts.add(ALICE, "Alice")
+    ContactDiscovery.refreshAll(context, notifyOfNewUsers = false)
+    assertFalse(SignalDatabase.recipients.getByE164(ALICE).isPresent)
+
+    cds.register(ALICE)
+    ContactDiscovery.refreshAll(context, notifyOfNewUsers = false)
+
+    val secondRequest = cds.requests[1]
+    assertTrue(ALICE in secondRequest.previousE164s)
+    assertFalse(ALICE in secondRequest.newE164s)
+
+    val record = SignalDatabase.recipients.getRecord(SignalDatabase.recipients.getByE164(ALICE).get())
+    assertEquals(RegisteredState.REGISTERED, record.registered)
+    assertEquals(ProfileName.asGiven("Alice"), record.systemProfileName)
+  }
+
+  @Test
+  fun `refreshAll inserts a contact joined message when a system contact newly registers`() {
+    every { recipients.signalStore.settings.isNotifyWhenContactJoinsSignal } returns true
+    systemContacts.add(ALICE, "Alice")
+    ContactDiscovery.refreshAll(context, notifyOfNewUsers = true)
+
+    cds.register(ALICE)
+    ContactDiscovery.refreshAll(context, notifyOfNewUsers = true)
+
+    val id = SignalDatabase.recipients.getByE164(ALICE).get()
+    val threadId = SignalDatabase.threads.getThreadIdFor(id)
+    assertNotNull(threadId)
+    assertEquals(1, SignalDatabase.messages.getMessageCountForThread(threadId!!))
+  }
+
+  @Test
   fun `refreshAll does not insert a contact joined message on the first directory fetch`() {
     every { recipients.signalStore.settings.isNotifyWhenContactJoinsSignal } returns true
     cds.register(ALICE)
@@ -113,6 +157,16 @@ class ContactDiscoveryTest {
     val id = SignalDatabase.recipients.getByE164(ALICE).get()
     assertNull(SignalDatabase.threads.getThreadIdFor(id))
     assertTrue(cdsState.hasSuccessfullyRetrievedDirectory)
+  }
+
+  @Test
+  fun `syncRecipientInfoWithSystemContacts does not create recipients`() {
+    systemContacts.add(ALICE, "Alice")
+
+    ContactDiscovery.syncRecipientInfoWithSystemContacts(context)
+
+    assertFalse(SignalDatabase.recipients.getByE164(ALICE).isPresent)
+    assertTrue(cds.requests.isEmpty())
   }
 
   @Test
