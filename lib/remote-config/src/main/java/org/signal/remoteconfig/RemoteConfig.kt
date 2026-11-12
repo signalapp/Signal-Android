@@ -630,6 +630,7 @@ object RemoteConfig {
     defaultValue: Set<String>,
     hotSwappable: Boolean,
     active: Boolean = true,
+    elementTransform: ((String) -> String)? = null,
     onChangeListener: OnFlagChange? = null
   ): Config<Set<String>> {
     return remoteValue(
@@ -639,7 +640,8 @@ object RemoteConfig {
       active = active,
       onChangeListener = onChangeListener,
       transformer = { value ->
-        value?.let { SignalJson.decode<Set<String>>(it.toString()).getOrNull() } ?: defaultValue
+        val set = value?.let { SignalJson.decode<Set<String>>(it.toString()).getOrNull() } ?: defaultValue
+        if (elementTransform != null) set.map(elementTransform).toSet() else set
       }
     )
   }
@@ -1364,7 +1366,8 @@ object RemoteConfig {
   val enableSoftwareVp9EncodeSoCList: Set<String> by remoteStringSet(
     key = "android.calling.enableSoftwareVp9EncodeSocList",
     defaultValue = setOf(),
-    hotSwappable = true
+    hotSwappable = true,
+    elementTransform = { it.lowercase() }
   )
 
   /**
@@ -1376,7 +1379,8 @@ object RemoteConfig {
   val enableSoftwareVp9DecodeSoCList: Set<String> by remoteStringSet(
     key = "android.calling.enableSoftwareVp9DecodeSoCList",
     defaultValue = setOf(),
-    hotSwappable = true
+    hotSwappable = true,
+    elementTransform = { it.lowercase() }
   )
 
   /**
@@ -1398,7 +1402,8 @@ object RemoteConfig {
   val disableHardwareVp9EncodeSocList: Set<String> by remoteStringSet(
     key = "android.calling.disableHardwareVp9EncodeSocList",
     defaultValue = setOf(),
-    hotSwappable = true
+    hotSwappable = true,
+    elementTransform = { it.lowercase() }
   )
 
   /**
@@ -1409,7 +1414,43 @@ object RemoteConfig {
   val disableHardwareVp9DecodeSocList: Set<String> by remoteStringSet(
     key = "android.calling.disableHardwareVp9DecodeSocList",
     defaultValue = setOf(),
+    hotSwappable = true,
+    elementTransform = { it.lowercase() }
+  )
+
+  /**
+   * Enables hardware H265 encode support for 1:1 calls
+   */
+  @JvmStatic
+  @get:JvmName("enableHardwareH265Encode")
+  val enableHardwareH265Encode: Boolean by remoteBoolean(
+    key = "android.calling.enableHardwareH265Encode",
+    defaultValue = false,
     hotSwappable = true
+  )
+
+  /**
+   * List of devices to skip hardware H265 encode on due to reliability issues
+   */
+  @JvmStatic
+  @get:JvmName("disableHardwareH265EncodeSocList")
+  val disableHardwareH265EncodeSocList: Set<String> by remoteStringSet(
+    key = "android.calling.disableHardwareH265EncodeSocList",
+    defaultValue = setOf(),
+    hotSwappable = true,
+    elementTransform = { it.lowercase() }
+  )
+
+  /**
+   * List of devices to skip hardware H265 decode on due to reliability issues
+   */
+  @JvmStatic
+  @get:JvmName("disableHardwareH265DecodeSocList")
+  val disableHardwareH265DecodeSocList: Set<String> by remoteStringSet(
+    key = "android.calling.disableHardwareH265DecodeSocList",
+    defaultValue = setOf(),
+    hotSwappable = true,
+    elementTransform = { it.lowercase() }
   )
 
   /**

@@ -56,13 +56,16 @@ object RingRtcDynamicConfiguration {
       return videoConfig
     }
 
-    val (manufacturer, model) = getSoCInfo()
-    val soc = "${manufacturer.lowercase()}-${model.lowercase()}"
+    val (socManufacturer, socModel) = getSoCInfo()
+    val model = socModel.lowercase()
+    val soc = "${socManufacturer.lowercase()}-$model"
     val videoConfig = VideoConfig()
     videoConfig.enableHardwareVp9Encode = !RemoteConfig.disableHardwareVp9EncodeSocList.contains(soc) && !RemoteConfig.disableHardwareVp9EncodeSocList.contains(model)
     videoConfig.enableHardwareVp9Decode = !RemoteConfig.disableHardwareVp9DecodeSocList.contains(soc) && !RemoteConfig.disableHardwareVp9DecodeSocList.contains(model)
     videoConfig.enableSoftwareVp9Encode = RemoteConfig.enableSoftwareVp9EncodeSoCList.contains(soc) || RemoteConfig.enableSoftwareVp9EncodeSoCList.contains(model)
     videoConfig.enableSoftwareVp9Decode = RemoteConfig.enableSoftwareVp9Decode || RemoteConfig.enableSoftwareVp9DecodeSoCList.contains(soc) || RemoteConfig.enableSoftwareVp9DecodeSoCList.contains(model)
+    videoConfig.enableHardwareH265Encode = RemoteConfig.enableHardwareH265Encode && !RemoteConfig.disableHardwareH265EncodeSocList.contains(soc) && !RemoteConfig.disableHardwareH265EncodeSocList.contains(model)
+    videoConfig.enableHardwareH265Decode = !RemoteConfig.disableHardwareH265DecodeSocList.contains(soc) && !RemoteConfig.disableHardwareH265DecodeSocList.contains(model)
 
     return videoConfig
   }
