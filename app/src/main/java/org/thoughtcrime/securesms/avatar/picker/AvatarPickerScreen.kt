@@ -247,9 +247,11 @@ private fun CurrentAvatar(
         if (canClear) {
           IconButtons.IconButton(
             onClick = onClearClick,
+            size = 32.dp,
             modifier = Modifier
-              .testTag(AvatarPickerTestTags.CLEAR_AVATAR_BUTTON)
-              .padding(4.dp)
+              .padding(8.dp)
+              .size(32.dp)
+              .testTag(AvatarPickerTestTags.CLEAR_AVATAR_BUTTON).padding(4.dp)
               .background(
                 color = MaterialTheme.colorScheme.secondaryContainer,
                 shape = CircleShape
