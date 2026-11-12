@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
+import org.thoughtcrime.securesms.jobs.IndividualSendJobV2;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
@@ -296,6 +297,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                        .addReservedJobRunner(new FactoryJobPredicate(AttachmentUploadJob.KEY, AttachmentCompressionJob.KEY))
                                        .addReservedJobRunner(new FactoryJobPredicate(
                                            IndividualSendJob.KEY,
+                                           IndividualSendJobV2.KEY,
                                            PushGroupSendJob.KEY,
                                            ReactionSendJob.KEY,
                                            TypingSendJob.KEY,
