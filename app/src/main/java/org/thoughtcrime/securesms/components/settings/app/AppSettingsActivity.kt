@@ -36,59 +36,57 @@ class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    if (savedInstanceState == null && RemoteConfig.useAppSettingsNavigation) {
+      openInNavigationActivity()
+      return
+    }
+
     super.onCreate(savedInstanceState, ready)
 
-    val startingAction: NavDirections? = if (intent?.categories?.contains(NOTIFICATION_CATEGORY) == true) {
-      AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
-    } else if (Build.VERSION.SDK_INT >= 34 && getLaunchedFromUid() != Process.myUid()) {
-      Log.w(TAG, "Settings was launched by an external process. Ignoring starting route.")
-      null
-    } else {
-      when (val appSettingsRoute: AppSettingsRoute? = intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)) {
-        AppSettingsRoute.Empty -> null
-        is AppSettingsRoute.BackupsRoute.Local -> {
-          if (appSettingsRoute.usesOnDeviceBackupsScreen()) {
-            AppSettingsFragmentDirections.actionDirectToLocalBackupsFragment()
-              .setTriggerUpdateFlow(appSettingsRoute.triggerUpdateFlow)
-          } else {
-            AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
-          }
-        }
-        is AppSettingsRoute.HelpRoute.Help -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
-          .setStartCategoryIndex(appSettingsRoute.startCategoryIndex)
-        AppSettingsRoute.DataAndStorageRoute.Proxy -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
-        AppSettingsRoute.NotificationsRoute.Notifications -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
-        AppSettingsRoute.ChangeNumberRoute.Start -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
-        is AppSettingsRoute.DonationsRoute.Donations -> AppSettingsFragmentDirections.actionDirectToManageDonations().setDirectToCheckoutType(appSettingsRoute.directToCheckoutType)
-        AppSettingsRoute.NotificationsRoute.MutedNotifications -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
-        AppSettingsRoute.NotificationsRoute.NotificationProfiles -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
-        is AppSettingsRoute.NotificationsRoute.EditProfile -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()
-        is AppSettingsRoute.NotificationsRoute.ProfileDetails -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
-          appSettingsRoute.profileId
-        )
-
-        AppSettingsRoute.PrivacyRoute.Privacy -> AppSettingsFragmentDirections.actionDirectToPrivacy()
-        AppSettingsRoute.LinkDeviceRoute.LinkDevice -> AppSettingsFragmentDirections.actionDirectToDevices()
-        AppSettingsRoute.UsernameLinkRoute.UsernameLink -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
-        is AppSettingsRoute.AccountRoute.Username -> AppSettingsFragmentDirections.actionDirectToUsernameRecovery()
-        is AppSettingsRoute.BackupsRoute.Remote -> AppSettingsFragmentDirections.actionDirectToRemoteBackupsSettingsFragment().setForQuickRestore(appSettingsRoute.forQuickRestore)
-        AppSettingsRoute.ChatFoldersRoute.ChatFolders -> AppSettingsFragmentDirections.actionDirectToChatFoldersFragment()
-        is AppSettingsRoute.ChatFoldersRoute.CreateChatFolders -> AppSettingsFragmentDirections.actionDirectToCreateFoldersFragment(
-          appSettingsRoute.folderId,
-          appSettingsRoute.threadIds
-        )
-
-        AppSettingsRoute.ChatsRoute.Chats -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
-        is AppSettingsRoute.BackupsRoute.Backups -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment().setLaunchCheckoutFlow(appSettingsRoute.launchCheckoutFlow)
-        AppSettingsRoute.Invite -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
-        AppSettingsRoute.DataAndStorageRoute.DataAndStorage -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
-        AppSettingsRoute.AccountRoute.Account -> if (SignalStore.account.isPrimaryDevice) {
-          AppSettingsFragmentDirections.actionDirectToAccountSettingsFragment()
+    val startingAction: NavDirections? = when (val appSettingsRoute: AppSettingsRoute? = resolveStartRoute()) {
+      null, AppSettingsRoute.Empty -> null
+      is AppSettingsRoute.BackupsRoute.Local -> {
+        if (appSettingsRoute.usesOnDeviceBackupsScreen()) {
+          AppSettingsFragmentDirections.actionDirectToLocalBackupsFragment()
+            .setTriggerUpdateFlow(appSettingsRoute.triggerUpdateFlow)
         } else {
-          AppSettingsFragmentDirections.actionDirectToLinkedDeviceAccountSettingsFragment()
+          AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
         }
-        else -> error("Unsupported start location: ${appSettingsRoute?.javaClass?.name}")
       }
+      is AppSettingsRoute.HelpRoute.Help -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
+        .setStartCategoryIndex(appSettingsRoute.startCategoryIndex)
+      AppSettingsRoute.DataAndStorageRoute.Proxy -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
+      AppSettingsRoute.NotificationsRoute.Notifications -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
+      AppSettingsRoute.ChangeNumberRoute.Start -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
+      is AppSettingsRoute.DonationsRoute.Donations -> AppSettingsFragmentDirections.actionDirectToManageDonations().setDirectToCheckoutType(appSettingsRoute.directToCheckoutType)
+      AppSettingsRoute.NotificationsRoute.MutedNotifications -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
+      AppSettingsRoute.NotificationsRoute.NotificationProfiles -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
+      is AppSettingsRoute.NotificationsRoute.EditProfile -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()
+      is AppSettingsRoute.NotificationsRoute.ProfileDetails -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
+        appSettingsRoute.profileId
+      )
+
+      AppSettingsRoute.PrivacyRoute.Privacy -> AppSettingsFragmentDirections.actionDirectToPrivacy()
+      AppSettingsRoute.LinkDeviceRoute.LinkDevice -> AppSettingsFragmentDirections.actionDirectToDevices()
+      AppSettingsRoute.UsernameLinkRoute.UsernameLink -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
+      is AppSettingsRoute.AccountRoute.Username -> AppSettingsFragmentDirections.actionDirectToUsernameRecovery()
+      is AppSettingsRoute.BackupsRoute.Remote -> AppSettingsFragmentDirections.actionDirectToRemoteBackupsSettingsFragment().setForQuickRestore(appSettingsRoute.forQuickRestore)
+      AppSettingsRoute.ChatFoldersRoute.ChatFolders -> AppSettingsFragmentDirections.actionDirectToChatFoldersFragment()
+      is AppSettingsRoute.ChatFoldersRoute.CreateChatFolders -> AppSettingsFragmentDirections.actionDirectToCreateFoldersFragment(
+        appSettingsRoute.folderId,
+        appSettingsRoute.threadIds
+      )
+
+      AppSettingsRoute.ChatsRoute.Chats -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
+      is AppSettingsRoute.BackupsRoute.Backups -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment().setLaunchCheckoutFlow(appSettingsRoute.launchCheckoutFlow)
+      AppSettingsRoute.Invite -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
+      AppSettingsRoute.DataAndStorageRoute.DataAndStorage -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
+      AppSettingsRoute.AccountRoute.Account -> if (SignalStore.account.isPrimaryDevice) {
+        AppSettingsFragmentDirections.actionDirectToAccountSettingsFragment()
+      } else {
+        AppSettingsFragmentDirections.actionDirectToLinkedDeviceAccountSettingsFragment()
+      }
+      else -> error("Unsupported start location: ${appSettingsRoute.javaClass.name}")
     }
 
     intent = intent.putExtra(START_ROUTE, AppSettingsRoute.Empty)
@@ -100,6 +98,39 @@ class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
     recreateOnThemeChange()
     performActionOnCreate(savedInstanceState)
   }
+
+  /**
+   * Hands this launch to [AppSettingsNavigationActivity] before anything is drawn, for launches that still reach this
+   * activity directly, such as the system's notification settings for the app or a notification posted before the
+   * flag changed.
+   */
+  private fun openInNavigationActivity() {
+    val navigationIntent = AppSettingsNavigationActivity.createIntent(this, resolveStartRoute() ?: AppSettingsRoute.Empty)
+      .addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+
+    if (!isExternalLaunch()) {
+      intent.getStringExtra(EXTRA_PERFORM_ACTION_ON_CREATE)?.let { navigationIntent.putExtra(EXTRA_PERFORM_ACTION_ON_CREATE, it) }
+    }
+
+    startActivity(navigationIntent)
+    finish()
+    @Suppress("DEPRECATION")
+    overridePendingTransition(0, 0)
+  }
+
+  /** The route this launch asked to open, or null to open on the settings home. */
+  private fun resolveStartRoute(): AppSettingsRoute? {
+    return when {
+      intent?.categories?.contains(NOTIFICATION_CATEGORY) == true -> AppSettingsRoute.NotificationsRoute.Notifications
+      isExternalLaunch() -> {
+        Log.w(TAG, "Settings was launched by an external process. Ignoring starting route.")
+        null
+      }
+      else -> intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)
+    }
+  }
+
+  private fun isExternalLaunch(): Boolean = Build.VERSION.SDK_INT >= 34 && getLaunchedFromUid() != Process.myUid()
 
   override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
