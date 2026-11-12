@@ -77,12 +77,18 @@ data class ListDetailPaneMetrics(
  *   inset the list itself. Ignored in a single-pane window, which has no padding.
  */
 @Composable
-fun rememberListDetailPaneMetrics(listPaddingStart: Dp = 0.dp): ListDetailPaneMetrics {
+fun rememberListDetailPaneMetrics(
+  listPaddingStart: Dp = 0.dp,
+  partitionWidthProvider: (WindowBreakpoint) -> Dp = { breakpoint ->
+    if (breakpoint is WindowBreakpoint.Large) 24.dp else 13.dp
+  }
+): ListDetailPaneMetrics {
   val resources = LocalResources.current
   val breakpoint = resources.getWindowBreakpoint()
   val isSplitPane = resources.rememberIsSplitPane()
+  val partitionWidth = partitionWidthProvider(breakpoint)
 
-  return remember(breakpoint, isSplitPane, listPaddingStart) {
+  return remember(breakpoint, isSplitPane, listPaddingStart, partitionWidth) {
     val corners = if (breakpoint is WindowBreakpoint.Large) EXTENDED_CONTENT_CORNERS else MEDIUM_CONTENT_CORNERS
 
     if (!isSplitPane) {
@@ -97,7 +103,7 @@ fun rememberListDetailPaneMetrics(listPaddingStart: Dp = 0.dp): ListDetailPaneMe
       ListDetailPaneMetrics(
         shape = RoundedCornerShape(corners),
         navigationBarShape = RoundedCornerShape(0.dp, 0.dp, corners, corners),
-        partitionWidth = if (breakpoint is WindowBreakpoint.Large) 24.dp else 13.dp,
+        partitionWidth = partitionWidth,
         listPaddingStart = listPaddingStart,
         detailPaddingEnd = if (breakpoint is WindowBreakpoint.Large) 24.dp else 12.dp
       )

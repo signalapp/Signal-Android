@@ -29,15 +29,18 @@ import androidx.compose.ui.node.ModifierNodeElement
 import androidx.compose.ui.node.invalidateDraw
 import androidx.compose.ui.node.requireLayoutCoordinates
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.R
 
 /**
  * Thin divider lines for separating content.
  */
 object Dividers {
   /**
-   * A horizontal line across the content, or across the whole of an enclosing [fullWidthDividers] component.
+   * A horizontal line across the content, or across an enclosing [fullWidthDividers] component inside its horizontal
+   * gutters.
    */
   @Composable
   fun Default(modifier: Modifier = Modifier) {
@@ -46,7 +49,7 @@ object Dividers {
         .padding(vertical = 16.25.dp)
         .fillMaxWidth()
         .height(1.5.dp)
-        .then(FullWidthLineElement(MaterialTheme.colorScheme.surfaceVariant))
+        .then(FullWidthLineElement(MaterialTheme.colorScheme.surfaceVariant, dimensionResource(R.dimen.gutter)))
     )
   }
 
@@ -70,7 +73,7 @@ object Dividers {
 }
 
 /**
- * Draws the [Dividers.Default] within this component across its whole width, for a component whose content is inset
+ * Draws the [Dividers.Default] within this component across its whole width, less the horizontal gutters, for a component whose content is inset
  * from its edges, such as a list kept to a max width in the middle of a wide window.
  */
 fun Modifier.fullWidthDividers(): Modifier = this then FullWidthDividersElement
@@ -93,16 +96,17 @@ private class FullWidthDividersNode : Modifier.Node(), ModifierLocalModifierNode
   }
 }
 
-private data class FullWidthLineElement(val color: Color) : ModifierNodeElement<FullWidthLineNode>() {
-  override fun create() = FullWidthLineNode(color)
+private data class FullWidthLineElement(val color: Color, val gutter: Dp) : ModifierNodeElement<FullWidthLineNode>() {
+  override fun create() = FullWidthLineNode(color, gutter)
 
   override fun update(node: FullWidthLineNode) {
     node.color = color
+    node.gutter = gutter
     node.invalidateDraw()
   }
 }
 
-private class FullWidthLineNode(var color: Color) : Modifier.Node(), DrawModifierNode, ModifierLocalModifierNode, GlobalPositionAwareModifierNode {
+private class FullWidthLineNode(var color: Color, var gutter: Dp) : Modifier.Node(), DrawModifierNode, ModifierLocalModifierNode, GlobalPositionAwareModifierNode {
   override fun onGloballyPositioned(coordinates: LayoutCoordinates) {
     invalidateDraw()
   }
@@ -114,8 +118,10 @@ private class FullWidthLineNode(var color: Color) : Modifier.Node(), DrawModifie
       return
     }
 
-    val left = -container.localPositionOf(requireLayoutCoordinates(), Offset.Zero).x
-    drawRect(color = color, topLeft = Offset(left, 0f), size = Size(container.size.width.toFloat(), size.height))
+    val inset = gutter.toPx()
+    val left = -container.localPositionOf(requireLayoutCoordinates(), Offset.Zero).x + inset
+    val width = (container.size.width - 2 * inset).coerceAtLeast(0f)
+    drawRect(color = color, topLeft = Offset(left, 0f), size = Size(width, size.height))
   }
 }
 

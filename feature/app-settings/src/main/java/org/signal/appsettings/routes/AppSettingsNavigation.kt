@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.EntryProviderScope
@@ -51,6 +52,7 @@ import org.signal.core.ui.compose.split.hasDetail
 import org.signal.core.ui.compose.split.listEntry
 import org.signal.core.ui.compose.split.rememberCurrentDecoratedNavEntries
 import org.signal.core.ui.compose.split.rememberListDetailPaneLayout
+import org.signal.core.ui.compose.split.rememberListDetailPaneMetrics
 import org.signal.core.ui.compose.systemBarsCompat
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.navigation.LocalResultEventBus
@@ -175,7 +177,10 @@ fun AppSettingsNavigation(
           paneAnchor = PaneAnchor.SPLIT,
           maxWidth = maxWidth,
           onAnchorSelected = {},
-          isResizable = false
+          isResizable = false,
+          metrics = rememberListDetailPaneMetrics(
+            partitionWidthProvider = { 0.dp }
+          )
         ),
         emptyDetailContent = emptyDetailContent
       )
