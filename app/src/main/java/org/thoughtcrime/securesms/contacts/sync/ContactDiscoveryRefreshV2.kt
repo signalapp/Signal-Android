@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.contacts.sync
 
 import android.content.Context
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.core.models.recipients.RecipientId
@@ -39,7 +40,8 @@ object ContactDiscoveryRefreshV2 {
    * So we need to be careful about making it too large.
    * If a request size is over this limit, we will always fall back to a full sync.
    */
-  private const val MAXIMUM_ONE_OFF_REQUEST_SIZE = 3
+  @VisibleForTesting
+  const val MAXIMUM_ONE_OFF_REQUEST_SIZE = 3
 
   @Throws(IOException::class)
   @WorkerThread
