@@ -52,6 +52,7 @@ fun EditProfileNavigation(
       when (event) {
         is AppSettingsNavigationEvent.NavigateToScreen -> router.navigateTo(event.route)
         is AppSettingsNavigationEvent.NavigateBack -> router.navigateBack()
+        AppSettingsNavigationEvent.Close -> currentOnClose()
       }
     }
   }

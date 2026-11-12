@@ -81,8 +81,8 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
   }
 
   /**
-   * Applies [event] to [navigator]. Returns false when it asks to go back out of app settings altogether, which is up
-   * to the host.
+   * Applies [event] to [navigator]. Returns false when it asks to leave app settings altogether, which is up to the
+   * host.
    *
    * @param isSplitPane whether the list is showing beside the detail, so that backing out of the detail's last screen
    *   would leave an empty pane.
@@ -128,6 +128,8 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
           }
         }
       }
+
+      AppSettingsNavigationEvent.Close -> return false
     }
 
     return true

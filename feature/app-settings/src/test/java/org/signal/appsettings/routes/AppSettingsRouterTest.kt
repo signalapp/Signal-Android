@@ -109,6 +109,15 @@ class AppSettingsRouterTest {
   }
 
   @Test
+  fun `given a screen open within a section, when closing, then it is left to the host`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
+
+    assertThat(router.navigate(AppSettingsNavigationEvent.Close, isSplitPane = true)).isFalse()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatFoldersRoute.ChatFolders)
+  }
+
+  @Test
   fun `when navigating from within a section to another section's screen, then it stacks on top`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.AccountRoute.ManageProfile))
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.UsernameLinkRoute.UsernameLink))

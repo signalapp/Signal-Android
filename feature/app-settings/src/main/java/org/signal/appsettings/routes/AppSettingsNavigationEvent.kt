@@ -33,6 +33,11 @@ sealed interface AppSettingsNavigationEvent {
    *   open above it. Nothing is closed when no such screen is open.
    */
   data class NavigateBack @JvmOverloads constructor(val popUpTo: PopUpTo? = null) : AppSettingsNavigationEvent
+
+  /**
+   * Leave app settings altogether, whatever screens are open.
+   */
+  data object Close : AppSettingsNavigationEvent
 }
 
 /**
@@ -53,6 +58,13 @@ fun ((AppSettingsNavigationEvent) -> Unit).navigateTo(route: AppSettingsRoute, p
  */
 fun ((AppSettingsNavigationEvent) -> Unit).openSection(route: AppSettingsRoute) {
   this(AppSettingsNavigationEvent.NavigateToScreen(route, replacesDetail = true))
+}
+
+/**
+ * Convenience function to emit an event that leaves app settings altogether.
+ */
+fun ((AppSettingsNavigationEvent) -> Unit).close() {
+  this(AppSettingsNavigationEvent.Close)
 }
 
 /**

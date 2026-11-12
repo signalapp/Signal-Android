@@ -16,7 +16,7 @@ import org.signal.appsettings.home.AppSettingsState.Snackbar
 import org.signal.appsettings.home.BackupFailureState
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
-import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.close
 import org.signal.appsettings.routes.openSection
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
@@ -68,7 +68,7 @@ class AppSettingsViewModel(
   override suspend fun processEvent(event: AppSettingsEvent) {
     when (event) {
       AppSettingsEvent.ScreenResumed -> refresh()
-      AppSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      AppSettingsEvent.NavigateBackClicked -> parentEventEmitter.close()
       AppSettingsEvent.ProfileClicked -> parentEventEmitter.openSection(AppSettingsRoute.AccountRoute.ManageProfile)
       AppSettingsEvent.UsernameLinkClicked -> parentEventEmitter.openSection(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
       AppSettingsEvent.BackupWarningClicked -> onBackupWarningClicked()
