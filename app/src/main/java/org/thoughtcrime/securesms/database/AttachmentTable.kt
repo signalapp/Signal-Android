@@ -295,6 +295,7 @@ class AttachmentTable(
     private const val DATA_FILE_INDEX = "attachment_data_index"
     private const val DATA_HASH_REMOTE_KEY_INDEX = "attachment_media_name_index"
     private const val ARCHIVE_TRANSFER_STATE_INDEX = "attachment_archive_transfer_state"
+    const val MEDIA_OVERVIEW_SIZE_INDEX = "attachment_media_overview_size_index"
 
     /** How many media names fit in one statement. Each binds two args, so this has to stay under half of [SqlUtil.MAX_QUERY_ARGS]. */
     const val ARCHIVE_MEDIA_KEY_BATCH_SIZE = 400
@@ -315,7 +316,7 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS $ARCHIVE_TRANSFER_STATE_INDEX ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);",
       "CREATE INDEX IF NOT EXISTS attachment_metadata_id ON $TABLE_NAME ($METADATA_ID);",
-      "CREATE INDEX IF NOT EXISTS attachment_media_overview_size ON $TABLE_NAME ($DATA_SIZE DESC, $DISPLAY_ORDER DESC) WHERE $QUOTE = 0 AND $STICKER_PACK_ID IS NULL AND $DATA_FILE IS NOT NULL",
+      "CREATE INDEX IF NOT EXISTS $MEDIA_OVERVIEW_SIZE_INDEX ON $TABLE_NAME ($DATA_SIZE, $DISPLAY_ORDER, $ID, $CONTENT_TYPE) WHERE $QUOTE = 0 AND $STICKER_PACK_ID IS NULL",
       "CREATE INDEX IF NOT EXISTS attachment_archive_thumbnail_transfer_state ON $TABLE_NAME ($ARCHIVE_THUMBNAIL_TRANSFER_STATE)",
       "CREATE INDEX IF NOT EXISTS attachment_thumbnail_file_index ON $TABLE_NAME ($THUMBNAIL_FILE) WHERE $THUMBNAIL_FILE IS NOT NULL",
       "CREATE INDEX IF NOT EXISTS attachment_uuid_index ON $TABLE_NAME ($ATTACHMENT_UUID) WHERE $ATTACHMENT_UUID IS NOT NULL"

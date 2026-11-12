@@ -27,6 +27,10 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -212,21 +216,19 @@ private fun SmallThumbnail(item: MediaOverviewItem, modifier: Modifier = Modifie
       .background(SignalTheme.colors.colorSurface3)
   ) {
     if (!LocalInspectionMode.current) {
-      if (item.blurHash != null) {
-        GlideImage(
-          model = item.blurHash,
-          scaleType = GlideImageScaleType.CENTER_CROP,
-          diskCacheStrategy = DiskCacheStrategy.NONE,
-          modifier = Modifier.fillMaxSize()
-        )
+      val displayUri = item.displayUri
+      var imageLoaded by remember(displayUri) { mutableStateOf(false) }
+
+      if (!imageLoaded) {
+        item.blurHash?.let { BlurHashImage(blurHash = it, modifier = Modifier.fillMaxSize()) }
       }
 
-      val displayUri = item.displayUri
       if (displayUri != null) {
         GlideImage(
           model = DecryptableUri(displayUri, 0, if (item.uri != null) item.contentType else null),
           scaleType = GlideImageScaleType.CENTER_CROP,
           diskCacheStrategy = DiskCacheStrategy.RESOURCE,
+          onLoadCompleted = { imageLoaded = true },
           modifier = Modifier.fillMaxSize()
         )
       }

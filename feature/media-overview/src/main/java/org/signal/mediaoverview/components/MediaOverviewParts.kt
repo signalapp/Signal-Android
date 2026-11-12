@@ -17,14 +17,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.signal.blurhash.BlurHash
+import org.signal.blurhash.BlurHashDecoder
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -33,6 +38,23 @@ import org.signal.mediaoverview.MediaOverviewItem
 import org.signal.mediaoverview.MediaOverviewTestTags
 import org.signal.mediaoverview.R
 import org.signal.core.ui.R as CoreUiR
+
+private const val BLUR_HASH_SIZE_PX = 20
+
+/**
+ * Draws [blurHash] right away. Skips Glide to avoid the decoding queueing behind other images.
+ */
+@Composable
+internal fun BlurHashImage(blurHash: BlurHash, modifier: Modifier = Modifier) {
+  val bitmap = remember(blurHash) { BlurHashDecoder.decode(blurHash.hash, BLUR_HASH_SIZE_PX, BLUR_HASH_SIZE_PX)?.asImageBitmap() } ?: return
+
+  Image(
+    bitmap = bitmap,
+    contentDescription = null,
+    contentScale = ContentScale.Crop,
+    modifier = modifier
+  )
+}
 
 /**
  * The play button over a video thumbnail, the error icon over a thumbnail that failed for good, and

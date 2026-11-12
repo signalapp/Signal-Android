@@ -1580,6 +1580,15 @@ object RemoteConfig {
     durationUnit = DurationUnit.SECONDS
   )
 
+  /** Whether to use the compose media overview in place of the original one. */
+  @JvmStatic
+  @get:JvmName("useNewMediaOverview")
+  val useNewMediaOverview: Boolean by remoteBoolean(
+    key = "android.newMediaOverview",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   /** Whether to automatically turn on screen security when an assistant app requests the contents of the screen. */
   val automaticScreenSecurity: Boolean by remoteBoolean(
     key = "android.automaticScreenSecurity.2",

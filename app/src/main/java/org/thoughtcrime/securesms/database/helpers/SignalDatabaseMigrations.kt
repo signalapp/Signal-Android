@@ -185,6 +185,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V329_AddStickerFavo
 import org.thoughtcrime.securesms.database.helpers.migration.V330_AddHiddenPackColumns
 import org.thoughtcrime.securesms.database.helpers.migration.V331_AddMessageThreadDateSentIndex
 import org.thoughtcrime.securesms.database.helpers.migration.V332_WidenAttachmentMediaNameIndex
+import org.thoughtcrime.securesms.database.helpers.migration.V333_AddMediaOverviewIndexes
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -377,10 +378,11 @@ object SignalDatabaseMigrations {
     329 to V329_AddStickerFavoriteColumns,
     330 to V330_AddHiddenPackColumns,
     331 to V331_AddMessageThreadDateSentIndex,
-    332 to V332_WidenAttachmentMediaNameIndex
+    332 to V332_WidenAttachmentMediaNameIndex,
+    333 to V333_AddMediaOverviewIndexes
   )
 
-  const val DATABASE_VERSION = 332
+  const val DATABASE_VERSION = 333
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

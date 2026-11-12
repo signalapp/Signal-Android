@@ -12,6 +12,7 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.signal.core.models.database.AttachmentId
+import java.time.YearMonth
 
 /**
  * Sample data for previews and screen tests.
@@ -95,7 +96,7 @@ object MediaOverviewPreviewFixtures {
     return when (tab) {
       MediaOverviewState.Tab.MEDIA -> {
         section(MediaOverviewState.SectionHeader.Today, item(1), item(2, kind = MediaOverviewItem.Kind.VIDEO, isOutgoing = true), item(3), item(4)) +
-          section(MediaOverviewState.SectionHeader.Month(year = 2023, month = 10), item(5), item(6, isOffloaded = true))
+          section(MediaOverviewState.SectionHeader.Month(YearMonth.of(2023, 11)), item(5), item(6, isOffloaded = true))
       }
       MediaOverviewState.Tab.ALL -> {
         section(

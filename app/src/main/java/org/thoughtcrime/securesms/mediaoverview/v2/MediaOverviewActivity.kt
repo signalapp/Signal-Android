@@ -13,6 +13,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.getValue
@@ -75,6 +76,7 @@ class MediaOverviewActivity : PassphraseRequiredActivity() {
 
   private lateinit var voiceNoteMediaController: VoiceNoteMediaController
   private val sharedElements = MediaOverviewSharedElements()
+  private var transitionThumbnail: ImageView? = null
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
@@ -181,6 +183,8 @@ class MediaOverviewActivity : PassphraseRequiredActivity() {
     }
 
     MediaPreviewCache.drawable = thumbnail.drawable
+    transitionThumbnail?.transitionName = null
+    transitionThumbnail = thumbnail
     thumbnail.transitionName = MediaViewerActivity.SHARED_ELEMENT_TRANSITION_NAME
     val options = ActivityOptions.makeSceneTransitionAnimation(this, thumbnail, MediaViewerActivity.SHARED_ELEMENT_TRANSITION_NAME)
     startActivity(action.intent, options.toBundle())

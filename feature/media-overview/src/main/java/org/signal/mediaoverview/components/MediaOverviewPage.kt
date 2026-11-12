@@ -42,8 +42,7 @@ import org.signal.mediaoverview.MediaOverviewSharedElements
 import org.signal.mediaoverview.MediaOverviewState
 import org.signal.mediaoverview.MediaOverviewTestTags
 import org.signal.mediaoverview.R
-import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 private const val MIN_COLUMNS = 4
@@ -236,12 +235,7 @@ private fun headerText(header: MediaOverviewState.SectionHeader): String {
     }
     is MediaOverviewState.SectionHeader.Month -> {
       val locale = ConfigurationCompat.getLocales(LocalConfiguration.current)[0] ?: Locale.ROOT
-      val calendar = Calendar.getInstance().apply {
-        set(Calendar.YEAR, header.year)
-        set(Calendar.MONTH, header.month)
-        set(Calendar.DAY_OF_MONTH, 1)
-      }
-      SimpleDateFormat("MMMM, yyyy", locale).format(calendar.time)
+      DateTimeFormatter.ofPattern("MMMM, yyyy", locale).format(header.yearMonth)
     }
   }
 }

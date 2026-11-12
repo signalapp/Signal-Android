@@ -320,6 +320,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     private const val INDEX_COLLAPSED_STATE = "message_collapsed_state_index"
     private const val INDEX_DATE_SENT_FROM_TO_THREAD = "message_date_sent_from_to_thread_index"
     private const val INDEX_THREAD_DATE_SENT = "message_thread_date_sent_index"
+    const val INDEX_LINK_PREVIEW_DATE = "message_link_preview_date_index"
     private const val INDEX_THREAD_COUNT = "message_thread_count_index"
     private const val INDEX_THREAD_UNREAD_COUNT = "message_thread_unread_count_index"
     private const val INDEX_STORY_TYPE = "message_story_type_index"
@@ -368,7 +369,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       "CREATE INDEX IF NOT EXISTS message_view_once_index ON $TABLE_NAME ($VIEW_ONCE) WHERE $VIEW_ONCE > 0",
       "CREATE INDEX IF NOT EXISTS $INDEX_RATE_LIMITED ON $TABLE_NAME ($ID) WHERE ($TYPE & ${MessageTypes.MESSAGE_RATE_LIMITED_BIT}) != 0",
       "CREATE INDEX IF NOT EXISTS $INDEX_SCHEDULED_NON_STORY ON $TABLE_NAME ($SCHEDULED_DATE) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE != -1",
-      "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_DATE_SENT ON $TABLE_NAME ($THREAD_ID, $DATE_SENT) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL"
+      "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_DATE_SENT ON $TABLE_NAME ($THREAD_ID, $DATE_SENT) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL",
+      "CREATE INDEX IF NOT EXISTS $INDEX_LINK_PREVIEW_DATE ON $TABLE_NAME ($DATE_RECEIVED, $THREAD_ID, $FROM_RECIPIENT_ID) WHERE $LINK_PREVIEWS IS NOT NULL AND $STORY_TYPE = 0 AND $SCHEDULED_DATE < 0 AND $LATEST_REVISION_ID IS NULL AND $VIEW_ONCE = 0"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(

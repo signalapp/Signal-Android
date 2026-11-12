@@ -5,8 +5,12 @@
 
 package org.signal.mediaoverview.components
 
+import android.content.Context
+import android.graphics.drawable.Drawable
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -26,7 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
@@ -37,12 +40,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.ByteSize
-import org.signal.glide.compose.GlideImage
-import org.signal.glide.compose.GlideImageScaleType
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.glide.load.SignalDownsampleStrategy
 import org.signal.mediaoverview.MediaOverviewEvent
@@ -53,6 +58,7 @@ import org.signal.mediaoverview.R
 
 private const val SELECTED_SCALE = 0.83f
 private const val SELECTION_ANIMATION_MILLIS = 150
+private const val FADE_DURATION_MS = 250
 
 /**
  * A square thumbnail in the media grid.
@@ -148,24 +154,29 @@ private fun GridThumbnail(
   }
 
   var imageView: ImageView? by remember { mutableStateOf(null) }
+  var imageState by remember(item.displayUri) { mutableStateOf(ImageState.LOADING) }
+  val blurHashAlpha by animateFloatAsState(
+    targetValue = if (imageState == ImageState.LOADING) 1f else 0f,
+    animationSpec = if (imageState == ImageState.FADING_IN) tween(FADE_DURATION_MS) else snap(),
+    label = "blur-hash-alpha"
+  )
 
-  Box(modifier = modifier.background(if (item.displayUri == null) SignalTheme.colors.colorSurface3 else Color.Transparent)) {
-    if (item.blurHash != null) {
-      GlideImage(
-        model = item.blurHash,
-        scaleType = GlideImageScaleType.CENTER_CROP,
-        diskCacheStrategy = DiskCacheStrategy.NONE,
-        modifier = Modifier.fillMaxSize()
+  Box(modifier = modifier.background(if (item.displayUri == null) SignalTheme.colors.colorSurface3 else SignalTheme.colors.colorSurface2)) {
+    val blurHash = item.blurHash
+    if (blurHash != null && blurHashAlpha > 0f) {
+      BlurHashImage(
+        blurHash = blurHash,
+        modifier = Modifier
+          .fillMaxSize()
+          .alpha(blurHashAlpha)
       )
     }
 
     AndroidView(
-      factory = { context ->
-        ImageView(context).apply {
-          scaleType = ImageView.ScaleType.CENTER_CROP
-        }.also { imageView = it }
-      },
-      update = { view ->
+      factory = { context -> ThumbnailContainer(context) },
+      update = { container ->
+        val view = container.imageView
+        imageView = view
         val displayUri = item.displayUri
         if (view.tag != displayUri) {
           view.tag = displayUri
@@ -178,17 +189,27 @@ private fun GridThumbnail(
               .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
               .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
               .dontAnimate()
-              .transition(DrawableTransitionOptions.withCrossFade())
+              .transition(DrawableTransitionOptions.withCrossFade(FADE_DURATION_MS))
+              .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean = false
+
+                override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                  imageState = if (dataSource == DataSource.MEMORY_CACHE) ImageState.SHOWN else ImageState.FADING_IN
+                  return false
+                }
+              })
               .centerCrop()
               .into(view)
           }
         }
       },
-      onReset = { view ->
+      onReset = { container ->
+        val view = container.imageView
         Glide.with(view).clear(view)
         view.tag = null
+        view.transitionName = null
       },
-      onRelease = { view -> Glide.with(view).clear(view) },
+      onRelease = { container -> Glide.with(container.imageView).clear(container.imageView) },
       modifier = Modifier.fillMaxSize()
     )
   }
@@ -204,5 +225,25 @@ private fun GridThumbnail(
         sharedElements.unregister(item.key, view)
       }
     }
+  }
+}
+
+private enum class ImageState {
+  LOADING,
+  FADING_IN,
+  SHOWN
+}
+
+/**
+ * Activity transitions hide the shared element by changing its visibility and then invalidating its parent. Compose
+ * ignores invalidations of an AndroidView's root, so the image needs a parent that Compose does observe.
+ */
+private class ThumbnailContainer(context: Context) : FrameLayout(context) {
+  val imageView = ImageView(context).apply {
+    scaleType = ImageView.ScaleType.CENTER_CROP
+  }
+
+  init {
+    addView(imageView, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
   }
 }

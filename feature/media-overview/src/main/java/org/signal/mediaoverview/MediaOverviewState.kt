@@ -6,6 +6,7 @@
 package org.signal.mediaoverview
 
 import android.net.Uri
+import java.time.YearMonth
 
 /**
  * Everything [MediaOverviewScreen] needs to render.
@@ -74,8 +75,7 @@ data class MediaOverviewState(
     data object ThisWeek : SectionHeader
     data object ThisMonth : SectionHeader
 
-    /** [month] is zero-based, as in [java.util.Calendar]. */
-    data class Month(val year: Int, val month: Int) : SectionHeader
+    data class Month(val yearMonth: YearMonth) : SectionHeader
     data object Small : SectionHeader
     data object Medium : SectionHeader
     data object Large : SectionHeader
