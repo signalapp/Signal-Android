@@ -309,4 +309,68 @@ class AppSettingsRouterTest {
 
     assertThat(router.selectedRoute.value).isNull()
   }
+
+  private val pickPrivacy = AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.PrivacyRoute.Privacy, replacesDetail = true)
+
+  @Test
+  fun `given an edit session, then picking another section or leaving settings loses edits`() {
+    startEditingChatFolders()
+
+    assertThat(router.losesEdits(pickPrivacy)).isTrue()
+    assertThat(router.losesEdits(AppSettingsNavigationEvent.Close)).isTrue()
+  }
+
+  @Test
+  fun `given an edit session, then stacking or going back doesn't lose edits`() {
+    startEditingChatFolders()
+
+    assertThat(router.losesEdits(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChooseChats(includeChats = true)))).isFalse()
+    assertThat(router.losesEdits(AppSettingsNavigationEvent.NavigateBack())).isFalse()
+  }
+
+  @Test
+  fun `given no edit session, then picking another section doesn't lose edits`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
+
+    assertThat(router.losesEdits(pickPrivacy)).isFalse()
+  }
+
+  @Test
+  fun `given an edit session, when a screen opens on top of the edited one, then picking another section still loses edits`() {
+    startEditingChatFolders()
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChooseChats(includeChats = true)))
+
+    assertThat(router.losesEdits(pickPrivacy)).isTrue()
+  }
+
+  @Test
+  fun `given an ended edit session, then picking another section doesn't lose edits`() {
+    startEditingChatFolders()
+    router.navigate(AppSettingsNavigationEvent.EndEditSession)
+
+    assertThat(router.losesEdits(pickPrivacy)).isFalse()
+  }
+
+  @Test
+  fun `given discarded edits, then picking another section doesn't lose edits`() {
+    startEditingChatFolders()
+    router.discardEdits()
+
+    assertThat(router.losesEdits(pickPrivacy)).isFalse()
+  }
+
+  @Test
+  fun `given an edit session, when the edited screen is closed, then the session ends with it`() {
+    startEditingChatFolders()
+    router.navigate(AppSettingsNavigationEvent.NavigateBack(), isSplitPane = true)
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
+
+    assertThat(router.losesEdits(pickPrivacy)).isFalse()
+  }
+
+  private fun startEditingChatFolders() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
+    router.navigate(AppSettingsNavigationEvent.BeginEditSession)
+  }
 }

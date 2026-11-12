@@ -1244,4 +1244,11 @@
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN created.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabled.</string>
+
+    <!-- Title of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
+    <string name="AppSettingsNavigation__discard_changes">Discard changes?</string>
+    <!-- Body of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
+    <string name="AppSettingsNavigation__you_will_lose_changes">You\'ll lose the changes you\'ve made.</string>
+    <!-- Button in a dialog that throws away unsaved edits and leaves the screen they were made on in settings -->
+    <string name="AppSettingsNavigation__discard">Discard</string>
 </resources>

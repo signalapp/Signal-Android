@@ -24,18 +24,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
+import org.signal.appsettings.R
 import org.signal.appsettings.chats.ChatsSettingsScreen
 import org.signal.appsettings.chats.chatsSettingsPreviewState
 import org.signal.appsettings.home.AppSettingsScreen
 import org.signal.appsettings.home.PreviewAvatar
 import org.signal.appsettings.home.appSettingsPreviewState
 import org.signal.core.ui.compose.BreakpointPreviews
+import org.signal.core.ui.compose.DialogResult
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.LocalSplitPaneSettingsEnabled
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.navigationBarsCompat
@@ -97,7 +101,28 @@ fun AppSettingsNavigation(
   }
 
   LaunchedEffect(router) {
-    router.events.collect(navigate)
+    router.events.collect { event ->
+      if (router.losesEdits(event)) {
+        if (router.discardEditsDialog.show(Unit) != DialogResult.POSITIVE) {
+          return@collect
+        }
+        router.discardEdits()
+      }
+
+      navigate(event)
+    }
+  }
+
+  router.discardEditsDialog.Content { _, onDismissRequest, onConfirm, _, onDeny ->
+    Dialogs.SimpleAlertDialog(
+      title = stringResource(R.string.AppSettingsNavigation__discard_changes),
+      body = stringResource(R.string.AppSettingsNavigation__you_will_lose_changes),
+      confirm = stringResource(R.string.AppSettingsNavigation__discard),
+      dismiss = stringResource(android.R.string.cancel),
+      onConfirm = onConfirm,
+      onDeny = onDeny,
+      onDismissRequest = onDismissRequest
+    )
   }
 
   LaunchedEffect(isSplitPane, defaultDetailRoute) {

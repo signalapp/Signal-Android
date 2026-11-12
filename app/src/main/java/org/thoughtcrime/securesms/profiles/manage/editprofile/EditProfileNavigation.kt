@@ -59,6 +59,7 @@ fun EditProfileNavigation(
         }
         is AppSettingsNavigationEvent.NavigateBack -> router.navigateBack()
         AppSettingsNavigationEvent.Close -> currentOnClose()
+        AppSettingsNavigationEvent.BeginEditSession, AppSettingsNavigationEvent.EndEditSession -> Unit
       }
     }
   }

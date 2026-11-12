@@ -51,6 +51,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.beginEditSession
+import org.signal.appsettings.routes.endEditSession
 import org.signal.appsettings.routes.navigateBack
 import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.Buttons
@@ -128,6 +130,14 @@ fun CreateFoldersEntry(
     viewModel.showConfirmationDialog(true)
   }
 
+  LaunchedEffect(hasUnsavedChanges) {
+    if (hasUnsavedChanges) {
+      parentEventEmitter.beginEditSession()
+    } else {
+      parentEventEmitter.endEditSession()
+    }
+  }
+
   LaunchedEffect(Unit) {
     if (viewModel.shouldSetInitialFolder()) {
       viewModel.setCurrentFolderId(folderId)
@@ -177,6 +187,7 @@ fun CreateFoldersEntry(
       onDeleteClicked = { viewModel.showDeleteDialog(true) },
       onDeleteConfirmed = {
         viewModel.deleteFolder(context)
+        parentEventEmitter.endEditSession()
         parentEventEmitter.navigateBack()
       },
       onDeleteDismissed = {
@@ -188,11 +199,13 @@ fun CreateFoldersEntry(
         } else {
           viewModel.updateFolder(context)
         }
+        parentEventEmitter.endEditSession()
         parentEventEmitter.navigateBack()
       },
       onCreateDismissed = { shouldExit ->
         viewModel.showConfirmationDialog(false)
         if (shouldExit) {
+          parentEventEmitter.endEditSession()
           parentEventEmitter.navigateBack()
         }
       },

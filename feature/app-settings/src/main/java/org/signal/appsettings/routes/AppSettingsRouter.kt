@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.split.ListDetailBackStack
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.ListDetailNavigator
@@ -35,6 +36,7 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
   companion object {
     private const val BACK_STACK_KEY = "app_settings_back_stack"
     private const val OPENED_DIRECTLY_KEY = "app_settings_opened_directly"
+    private const val EDIT_SESSION_KEY = "app_settings_edit_session"
   }
 
   private val _events = Channel<AppSettingsNavigationEvent>(Channel.BUFFERED)
@@ -68,6 +70,36 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
       savedStateHandle[OPENED_DIRECTLY_KEY] = value
     }
 
+  /** The screen with unsaved edits, from [AppSettingsNavigationEvent.BeginEditSession], while it is still open. */
+  private var editSessionRoute: AppSettingsRoute?
+    get() = savedStateHandle[EDIT_SESSION_KEY]
+    set(value) {
+      savedStateHandle[EDIT_SESSION_KEY] = value
+    }
+
+  /** Asks whether to throw away the edit session's changes before navigation that would lose them. */
+  val discardEditsDialog = DialogController<Unit>()
+
+  /**
+   * Whether [event] would throw away the changes of an edit session, so that the user should agree to it first through
+   * [discardEditsDialog]. Ends a session whose screen has since been closed.
+   */
+  internal fun losesEdits(event: AppSettingsNavigationEvent): Boolean {
+    endClosedEditSession()
+    return editSessionRoute != null && event.leavesDetail()
+  }
+
+  /** Ends the edit session, for changes the user agreed to throw away. */
+  internal fun discardEdits() {
+    editSessionRoute = null
+  }
+
+  private fun endClosedEditSession() {
+    if (editSessionRoute?.let { it !in navigator[AppSettingsHomeRoute] } == true) {
+      editSessionRoute = null
+    }
+  }
+
   /** Opens [route] on its own, for a link into settings from elsewhere in the app. */
   fun openDirectly(route: AppSettingsRoute) {
     navigate(AppSettingsNavigationEvent.NavigateToScreen(route, replacesDetail = true))
@@ -88,6 +120,9 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
    *   would leave an empty pane.
    */
   internal fun navigate(event: AppSettingsNavigationEvent, isSplitPane: Boolean = false): Boolean {
+    endClosedEditSession()
+    val stack = navigator[AppSettingsHomeRoute]
+
     when (event) {
       is AppSettingsNavigationEvent.NavigateToScreen -> Snapshot.withMutableSnapshot {
         if (event.replacesDetail || event.route == AppSettingsRoute.Empty) {
@@ -96,7 +131,6 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
         }
 
         if (event.popUpTo != null) {
-          val stack = navigator[AppSettingsHomeRoute]
           stack.retainedSize(event.popUpTo)?.let { stack.dropTo(it) }
         }
 
@@ -106,7 +140,6 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
       }
 
       is AppSettingsNavigationEvent.NavigateBack -> {
-        val stack = navigator[AppSettingsHomeRoute]
         val retainedSize = if (event.popUpTo != null) {
           stack.retainedSize(event.popUpTo) ?: return true
         } else {
@@ -130,9 +163,24 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
       }
 
       AppSettingsNavigationEvent.Close -> return false
+
+      AppSettingsNavigationEvent.BeginEditSession -> editSessionRoute = stack.lastOrNull() as? AppSettingsRoute
+
+      AppSettingsNavigationEvent.EndEditSession -> editSessionRoute = null
     }
 
     return true
+  }
+}
+
+/** Whether this replaces the screens open in the detail pane, rather than stacking on or going back from them. */
+private fun AppSettingsNavigationEvent.leavesDetail(): Boolean {
+  return when (this) {
+    is AppSettingsNavigationEvent.NavigateToScreen -> replacesDetail || route == AppSettingsRoute.Empty
+    AppSettingsNavigationEvent.Close -> true
+    is AppSettingsNavigationEvent.NavigateBack,
+    AppSettingsNavigationEvent.BeginEditSession,
+    AppSettingsNavigationEvent.EndEditSession -> false
   }
 }
 
