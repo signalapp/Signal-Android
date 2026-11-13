@@ -1,17 +1,26 @@
 package org.thoughtcrime.securesms.components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.view.animation.Transformation;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -34,12 +43,20 @@ public class DeliveryStatusView extends AppCompatImageView {
   private static final String STATE_KEY = "DeliveryStatusView.STATE";
   private static final String ROOT_KEY  = "DeliveryStatusView.ROOT";
 
+  private static final long CROSSFADE_DURATION = 100;
+
   private final int widePadding   = (int) DimensionUnit.DP.toPixels(2);
   private final int narrowPadding = (int) DimensionUnit.DP.toPixels(8);
 
   private RotateAnimation rotationAnimation;
 
   private State state = State.NONE;
+
+  private boolean       animateStateChanges;
+  private Drawable      fadingDrawable;
+  private final Matrix  fadingMatrix = new Matrix();
+  private float         crossfadeFraction;
+  private ValueAnimator crossfadeAnimator;
 
   public DeliveryStatusView(Context context) {
     this(context, null);
@@ -133,7 +150,38 @@ public class DeliveryStatusView extends AppCompatImageView {
     rotationAnimation = null;
   }
 
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    endCrossfade();
+  }
+
+  @Override
+  protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
+
+    if (fadingDrawable != null) {
+      int saveCount = canvas.save();
+      canvas.concat(fadingMatrix);
+      fadingDrawable.setAlpha(Math.round(255 * (1f - crossfadeFraction)));
+      fadingDrawable.draw(canvas);
+      canvas.restoreToCount(saveCount);
+    }
+  }
+
+  /**
+   * When enabled, changes into sent, delivered, or read crossfade instead of swapping instantly. Callers should
+   * only enable this when the view is being rebound to the same message.
+   */
+  public void setAnimateStateChanges(boolean animate) {
+    animateStateChanges = animate;
+    if (!animate) {
+      endCrossfade();
+    }
+  }
+
   public void setNone() {
+    endCrossfade();
     state = State.NONE;
     clearAnimation();
     setVisibility(View.GONE);
@@ -147,6 +195,7 @@ public class DeliveryStatusView extends AppCompatImageView {
   public void setPending() {
     boolean wasPending = state == State.PENDING;
 
+    endCrossfade();
     state = State.PENDING;
     setVisibility(View.VISIBLE);
     ViewUtil.setPaddingStart(this, narrowPadding);
@@ -160,33 +209,84 @@ public class DeliveryStatusView extends AppCompatImageView {
   }
 
   public void setSent() {
-    state = State.SENT;
-    setVisibility(View.VISIBLE);
-    ViewUtil.setPaddingStart(this, narrowPadding);
-    ViewUtil.setPaddingEnd(this, 0);
-    clearAnimation();
-    setImageResource(R.drawable.symbol_messagestatus_sent_24);
-    updateContentDescription();
+    setSettledState(State.SENT, narrowPadding, R.drawable.symbol_messagestatus_sent_24);
   }
 
   public void setDelivered() {
-    state = State.DELIVERED;
-    setVisibility(View.VISIBLE);
-    ViewUtil.setPaddingStart(this, widePadding);
-    ViewUtil.setPaddingEnd(this, 0);
-    clearAnimation();
-    setImageResource(R.drawable.symbol_messagestatus_delivered_24);
-    updateContentDescription();
+    setSettledState(State.DELIVERED, widePadding, R.drawable.symbol_messagestatus_delivered_24);
   }
 
   public void setRead() {
-    state = State.READ;
+    setSettledState(State.READ, widePadding, R.drawable.symbol_messagestatus_read_24);
+  }
+
+  private void setSettledState(State newState, int paddingStart, @DrawableRes int icon) {
+    boolean crossfade = animateStateChanges &&
+                        newState != state &&
+                        state != State.NONE &&
+                        isLaidOut() &&
+                        getDrawable() != null;
+
+    if (newState != state) {
+      endCrossfade();
+    }
+
+    if (crossfade) {
+      fadingDrawable    = getDrawable().mutate();
+      fadingMatrix.set(getImageMatrix());
+      fadingMatrix.postTranslate(getPaddingLeft(), getPaddingTop());
+
+      if (rotationAnimation != null) {
+        Transformation rotation = new Transformation();
+        rotationAnimation.getTransformation(AnimationUtils.currentAnimationTimeMillis(), rotation);
+        fadingMatrix.postConcat(rotation.getMatrix());
+      }
+    }
+
+    state = newState;
     setVisibility(View.VISIBLE);
-    ViewUtil.setPaddingStart(this, widePadding);
+    ViewUtil.setPaddingStart(this, paddingStart);
     ViewUtil.setPaddingEnd(this, 0);
     clearAnimation();
-    setImageResource(R.drawable.symbol_messagestatus_read_24);
+    setImageResource(icon);
     updateContentDescription();
+
+    if (crossfade) {
+      startCrossfade();
+    }
+  }
+
+  private void startCrossfade() {
+    crossfadeFraction = 0f;
+    setImageAlpha(0);
+
+    crossfadeAnimator = ValueAnimator.ofFloat(0f, 1f);
+    crossfadeAnimator.setDuration(CROSSFADE_DURATION);
+    crossfadeAnimator.addUpdateListener(animation -> {
+      crossfadeFraction = (float) animation.getAnimatedValue();
+      setImageAlpha(Math.round(255 * crossfadeFraction));
+    });
+    crossfadeAnimator.addListener(new AnimatorListenerAdapter() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        endCrossfade();
+      }
+    });
+    crossfadeAnimator.start();
+  }
+
+  private void endCrossfade() {
+    if (crossfadeAnimator != null) {
+      crossfadeAnimator.removeAllUpdateListeners();
+      crossfadeAnimator.removeAllListeners();
+      crossfadeAnimator.cancel();
+      crossfadeAnimator = null;
+    }
+
+    if (fadingDrawable != null) {
+      fadingDrawable = null;
+      setImageAlpha(255);
+    }
   }
 
   public void setTint(int color) {

@@ -214,22 +214,6 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       bodyBubbleLayoutTransition
     }
 
-    val isSameMessage = this::conversationMessage.isInitialized &&
-      model is ConversationMessageElement &&
-      model.conversationMessage.messageRecord.id == conversationMessage.messageRecord.id
-    val animateContentChanges = isSameMessage && !conversationContext.isParentInScroll
-
-    val rootLayoutTransition = if (animateContentChanges) footerFadeTransition else null
-    if (binding.root.layoutTransition !== rootLayoutTransition) {
-      binding.root.layoutTransition = rootLayoutTransition
-    }
-
-    if (animateContentChanges) {
-      bubbleBoundsAnimator.animateNextLayout()
-    } else {
-      bubbleBoundsAnimator.cancel()
-    }
-
     if (ConversationAdapterBridge.PAYLOAD_PARENT_SCROLLING in payload) {
       if (payload.size == 1) {
         return
@@ -237,6 +221,23 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         hasProcessedSupportedPayload = true
       }
     }
+
+    val isSameMessage = this::conversationMessage.isInitialized &&
+      model is ConversationMessageElement &&
+      model.conversationMessage.messageRecord.id == conversationMessage.messageRecord.id
+
+    val rootLayoutTransition = if (isSameMessage) footerFadeTransition else null
+    if (binding.root.layoutTransition !== rootLayoutTransition) {
+      binding.root.layoutTransition = rootLayoutTransition
+    }
+
+    if (isSameMessage) {
+      bubbleBoundsAnimator.animateNextLayout()
+    } else {
+      bubbleBoundsAnimator.cancel()
+    }
+
+    binding.deliveryStatus?.setAnimateStateChanges(isSameMessage)
 
     check(model is ConversationMessageElement)
 
