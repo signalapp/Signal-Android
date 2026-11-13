@@ -5,6 +5,7 @@
 
 package org.signal.core.ui.compose.keyboard
 
+import android.os.Build
 import androidx.activity.compose.PredictiveBackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -63,12 +64,15 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
@@ -80,6 +84,7 @@ import kotlinx.coroutines.flow.dropWhile
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.LEGACY_INSET_SDK
 import org.signal.core.ui.compose.safeDrawingCompat
 import org.signal.core.ui.compose.systemBarsCompat
 import org.signal.core.ui.getWindowSizeClass
@@ -171,15 +176,25 @@ fun KeyboardSheetScaffold(
 
   val activeKey = controller.current?.takeIf { registry.isEnabled(it) }
 
+  // Legacy APIs only deliver the IME target here, measured from the window bottom rather than ours.
+  val isLegacyInsets = Build.VERSION.SDK_INT <= LEGACY_INSET_SDK
+  val view = LocalView.current
+  var windowBottomGapPx by remember { mutableIntStateOf(0) }
+  val imeInsetMissing = { isLegacyInsets && imeInsets.getBottom(density) == 0 }
+  val imeTargetBottomPx = {
+    val gapPx = if (isLegacyInsets) windowBottomGapPx else 0
+    (imeAnimationTarget.getBottom(density) - gapPx).coerceAtLeast(0)
+  }
+
   // The target, so a hide reads as gone the moment it is asked for rather than a whole animation later.
-  val systemKeyboardVisible = imeAnimationTarget.getBottom(density) > 0
+  val systemKeyboardVisible = imeTargetBottomPx() > 0
 
   // Whether the live inset has yet to catch up with the target. Deliberately not imeAnimationSource,
   // which the platform leaves behind whenever an animation ends without a duration to run down, and
   // which would then read as animating until the next keyboard came and went. Derived, so the frames
   // the live inset walks through are not each a recomposition.
   val systemKeyboardAnimating by remember(imeInsets, imeAnimationTarget, density) {
-    derivedStateOf { imeInsets.getBottom(density) != imeAnimationTarget.getBottom(density) }
+    derivedStateOf { !imeInsetMissing() && imeInsets.getBottom(density) != imeAnimationTarget.getBottom(density) }
   }
 
   SideEffect {
@@ -215,7 +230,7 @@ fun KeyboardSheetScaffold(
       return@LaunchedEffect
     }
 
-    snapshotFlow { imeAnimationTarget.getBottom(density) }
+    snapshotFlow { imeTargetBottomPx() }
       .filter { it > minimumHeightPx }
       .distinctUntilChanged()
       .collect {
@@ -462,7 +477,9 @@ fun KeyboardSheetScaffold(
   val systemKeyboardTakingOverSpace = activeKey == null && controller.awaitingSystemKeyboard
 
   val claimedBottomPx = {
-    if (systemKeyboardTakingOverSpace || handingOverFromSystemKeyboard) {
+    if (activeKey == null && systemKeyboardVisible && imeInsetMissing()) {
+      imeTargetBottomPx()
+    } else if (systemKeyboardTakingOverSpace || handingOverFromSystemKeyboard) {
       heightPx
     } else if (activeKey != null || visibleKey != null) {
       // Tracks the sheet rather than its resting height, so content rides along with a drag.
@@ -555,6 +572,13 @@ fun KeyboardSheetScaffold(
     modifier = modifier
       .fillMaxSize()
       .onSizeChanged { scaffoldHeightPx = it.height }
+      .then(
+        if (isLegacyInsets) {
+          Modifier.onGloballyPositioned { windowBottomGapPx = (view.rootView.height - it.boundsInWindow().bottom.roundToInt()).coerceAtLeast(0) }
+        } else {
+          Modifier
+        }
+      )
   ) {
     Box(
       modifier = Modifier

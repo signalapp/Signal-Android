@@ -11,6 +11,7 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.navigationBars
@@ -20,6 +21,10 @@ import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.union
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
@@ -32,7 +37,7 @@ import androidx.core.view.WindowInsetsCompat
  * The last API level that lays out edge-to-edge through the legacy system UI flags, and the last one
  * that hands a composition an empty inset while the bars are on screen.
  */
-private const val LEGACY_INSET_SDK = 29
+internal const val LEGACY_INSET_SDK = 29
 
 private const val STATUS_BAR_HEIGHT = "status_bar_height"
 private const val NAVIGATION_BAR_HEIGHT = "navigation_bar_height"
@@ -105,10 +110,55 @@ private fun legacySystemBarInsets(): WindowInsets {
   val dispatchedTop = WindowInsets.systemBars.getTop(density)
   val dispatchedBottom = WindowInsets.systemBars.getBottom(density)
 
-  return remember(view, configuration, dispatchedTop, dispatchedBottom) {
+  // A composition hosted inside the window, like a pane's, only reaches the bars along the edges it touches.
+  val distanceFromWindowEdges by rememberDistanceFromWindowEdges(view)
+
+  return remember(view, configuration, dispatchedTop, dispatchedBottom, distanceFromWindowEdges) {
     val insets = measureSystemBars(view)
-    WindowInsets(left = insets.left, top = insets.top, right = insets.right, bottom = insets.bottom)
+    WindowInsets(
+      left = (insets.left - distanceFromWindowEdges.left).coerceAtLeast(0),
+      top = (insets.top - distanceFromWindowEdges.top).coerceAtLeast(0),
+      right = (insets.right - distanceFromWindowEdges.right).coerceAtLeast(0),
+      bottom = (insets.bottom - distanceFromWindowEdges.bottom).coerceAtLeast(0)
+    )
   }
+}
+
+@Composable
+private fun rememberDistanceFromWindowEdges(view: View): State<Insets> {
+  val distance = remember(view) { mutableStateOf(view.distanceFromWindowEdges()) }
+
+  DisposableEffect(view) {
+    val listener = ViewTreeObserver.OnGlobalLayoutListener { distance.value = view.distanceFromWindowEdges() }
+    val observer = view.viewTreeObserver
+    observer.addOnGlobalLayoutListener(listener)
+    onDispose {
+      if (observer.isAlive) {
+        observer.removeOnGlobalLayoutListener(listener)
+      } else {
+        view.viewTreeObserver.removeOnGlobalLayoutListener(listener)
+      }
+    }
+  }
+
+  return distance
+}
+
+private fun View.distanceFromWindowEdges(): Insets {
+  if (!isAttachedToWindow) {
+    return Insets.NONE
+  }
+
+  val location = IntArray(2)
+  getLocationInWindow(location)
+  val root = rootView
+
+  return Insets.of(
+    location[0].coerceAtLeast(0),
+    location[1].coerceAtLeast(0),
+    (root.width - location[0] - width).coerceAtLeast(0),
+    (root.height - location[1] - height).coerceAtLeast(0)
+  )
 }
 
 @Suppress("DEPRECATION")
