@@ -229,13 +229,6 @@ public class ConversationItemFooter extends ConstraintLayout {
     return dateView;
   }
 
-  /**
-   * Measured width, widened to include the space the delivery status will need once the message is delivered or read.
-   */
-  public int getReservedWidth() {
-    return getMeasuredWidth() + deliveryStatusView.getReservedWidth() - deliveryStatusView.getMeasuredWidth();
-  }
-
   private void notifyTouchDelegateChanged(@NonNull Rect rect, @NonNull View touchDelegate) {
     if (onTouchDelegateChangedListener != null) {
       onTouchDelegateChangedListener.onTouchDelegateChanged(rect, touchDelegate);
@@ -375,7 +368,7 @@ public class ConversationItemFooter extends ConstraintLayout {
 
   @SuppressLint("StaticFieldLeak")
   private void presentTimer(@NonNull final MessageRecord messageRecord) {
-    if (messageRecord.getExpiresIn() > 0 && !messageRecord.isPending()) {
+    if (messageRecord.getExpiresIn() > 0) {
       this.timerView.setVisibility(View.VISIBLE);
       this.timerView.setPercentComplete(0);
 

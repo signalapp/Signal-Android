@@ -13,7 +13,6 @@ import org.signal.core.ui.view.Stub
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.DeliveryStatusView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.visible
@@ -149,9 +148,9 @@ class V2FooterPositionDelegate private constructor(
     }
 
     val (left, right) = if (bodyContainer.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
-      0 to (getFooterWidth() - 8.dp)
+      0 to (getFooterWidth() - 6.dp)
     } else {
-      (getFooterWidth() - 8.dp) to 0
+      (getFooterWidth() - 6.dp) to 0
     }
 
     body.padding(right = right, left = left, bottom = 0)
@@ -183,11 +182,7 @@ class V2FooterPositionDelegate private constructor(
   }
 
   private fun getFooterWidth(): Int {
-    return footerViews.sumOf { it.footerWidth() + ViewUtil.getLeftMargin(it) + ViewUtil.getRightMargin(it) }
-  }
-
-  private fun View.footerWidth(): Int {
-    return if (this is DeliveryStatusView) reservedWidth else measuredWidth
+    return footerViews.filter { it.visibility != View.GONE }.sumOf { it.measuredWidth + ViewUtil.getLeftMargin(it) + ViewUtil.getRightMargin(it) }
   }
 
   private enum class DisplayState {

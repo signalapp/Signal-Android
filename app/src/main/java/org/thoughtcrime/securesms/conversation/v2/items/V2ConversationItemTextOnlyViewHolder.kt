@@ -510,7 +510,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private fun presentFooterExpiry() {
     val timer = binding.footerExpiry
     val record = conversationMessage.messageRecord
-    if (record.expiresIn > 0 && !record.isPending) {
+    if (record.expiresIn > 0) {
       timer.setColorFilter(themeDelegate.getFooterForegroundColor(conversationMessage), PorterDuff.Mode.SRC_IN)
 
       timer.visible = true
