@@ -71,6 +71,7 @@ import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.ServiceUtil;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.LifecycleDisposable;
+import org.signal.core.util.concurrent.RxExtensions;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.eventbus.EventBus;
@@ -998,8 +999,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
     Class<? extends ConversationListViewModel> viewModelClass = isArchived() ? ConversationListViewModel.ArchivedConversationListViewModel.class : ConversationListViewModel.UnarchivedConversationListViewModel.class;
     viewModel = new ViewModelProvider(requireActivity(), new ConversationListViewModel.Factory(isArchived())).get(viewModelClass);
 
-    lifecycleDisposable.add(viewModel.getConversationsState().subscribe(this::onConversationListChanged));
-    lifecycleDisposable.add(viewModel.getHasNoConversations().subscribe(this::updateEmptyState));
+    RxExtensions.subscribeWhileStarted(viewModel.getConversationsState(), getViewLifecycleOwner(), this::onConversationListChanged);
+    RxExtensions.subscribeWhileStarted(viewModel.getHasNoConversations(), getViewLifecycleOwner(), this::updateEmptyState);
     lifecycleDisposable.add(viewModel.getWebSocketState().subscribe(pipeState -> requireCallback().updateProxyStatus(pipeState)));
     lifecycleDisposable.add(viewModel.getChatFolderState().subscribe(this::onChatFoldersChanged));
 
