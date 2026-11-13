@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.stream
 
+import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -24,6 +25,7 @@ import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Util
+import org.signal.core.util.writeVarInt32
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import java.io.ByteArrayOutputStream
 import java.util.Random
@@ -37,6 +39,7 @@ class EncryptedBackupReaderWriterTest {
     private const val IV_BYTES = 16
     private const val MAC_BYTES = 32
     private const val MINIMUM_ENCRYPTED_BACKUP_BYTES = MINIMUM_BACKUP_BYTES + AES_BLOCK_BYTES + IV_BYTES + MAC_BYTES
+    private const val MAX_FRAME_BYTES = 25 * 1024 * 1024
 
     private fun chatItem(index: Int, body: String = "message number $index, on my way"): ChatItem {
       return ChatItem(
@@ -119,6 +122,41 @@ class EncryptedBackupReaderWriterTest {
     for (i in 0 until chatItemCount) {
       assertEquals(chatItem(i), frames[recipientCount + 2 + i].chatItem)
     }
+  }
+
+  @Test
+  fun `the contents of frames that are too large are skipped, not read as frames`() {
+    val key = MessageBackupKey(Util.getSecretBytes(32))
+    val aci = ACI.from(UUID.randomUUID())
+
+    val nestedFrame = Frame(account = AccountData(username = "nested")).encode()
+    val oversizedFrame = Frame(
+      unknownFields = ByteArrayOutputStream().apply {
+        writeVarInt32(nestedFrame.size)
+        write(nestedFrame)
+        writeVarInt32(MAX_FRAME_BYTES)
+        write(ByteArray(MAX_FRAME_BYTES))
+      }.toByteArray().toByteString()
+    )
+
+    val outputStream = ByteArrayOutputStream()
+
+    EncryptedBackupWriter.createForLocalOrLinking(key, aci, outputStream, append = { outputStream.write(it) }).use { writer ->
+      writer.write(BackupInfo(version = 1, backupTimeMs = 1000L))
+      writer.write(Frame(account = AccountData(username = "before")))
+      repeat(4) {
+        writer.write(oversizedFrame)
+      }
+      writer.write(Frame(account = AccountData(username = "after")))
+    }
+
+    val ciphertext: ByteArray = outputStream.toByteArray()
+
+    val frames: List<Frame> = EncryptedBackupReader.createForLocalOrLinking(key, aci, ciphertext.size.toLong()) { ciphertext.inputStream() }.use { reader ->
+      reader.asSequence().toList()
+    }
+
+    assertEquals(listOf("before", "after"), frames.map { it.account?.username })
   }
 
   @Test
