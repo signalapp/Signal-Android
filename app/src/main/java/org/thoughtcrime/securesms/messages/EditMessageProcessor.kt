@@ -152,7 +152,6 @@ object EditMessageProcessor {
       serverTimeMillis = envelope.serverTimestamp!!,
       receivedTimeMillis = targetMessage.dateReceived,
       expiresIn = targetMessage.expiresIn,
-      isViewOnce = message.isViewOnce == true,
       isUnidentified = metadata.sealedSender,
       body = message.body,
       groupId = groupId,

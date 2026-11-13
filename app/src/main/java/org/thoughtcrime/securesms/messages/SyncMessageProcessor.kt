@@ -373,7 +373,7 @@ object SyncMessageProcessor {
         AppDependencies.earlyMessageCache.store(senderRecipientId, targetSentTimestamp, earlyMessageCacheEntry)
         batchCache.requiresEarlyMessageProcessing()
       }
-    } else if (MessageConstraintsUtil.isValidEditMessageReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!)) {
+    } else if (!targetMessage.isViewOnce && MessageConstraintsUtil.isValidEditMessageReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!)) {
       val message: DataMessage = editMessage.dataMessage!!
       val toRecipient: Recipient = if (message.hasGroupContext) {
         val groupRecipient = Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.groupV2!!.groupMasterKey))
@@ -392,7 +392,7 @@ object SyncMessageProcessor {
         handleSynchronizeSentEditTextMessage(targetMessage, toRecipient, sent, message, envelope.clientTimestamp!!)
       }
     } else {
-      warn(envelope.clientTimestamp!!, "[handleSynchronizeSentEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${targetMessage.serverTimestamp}, sendAuthor: $senderRecipientId, targetAuthor: ${targetMessage.fromRecipient.id}")
+      warn(envelope.clientTimestamp!!, "[handleSynchronizeSentEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${targetMessage.serverTimestamp}, sendAuthor: $senderRecipientId, targetAuthor: ${targetMessage.fromRecipient.id}, targetViewOnce: ${targetMessage.isViewOnce}")
     }
   }
 
@@ -482,7 +482,6 @@ object SyncMessageProcessor {
     val sharedContacts: List<Contact> = DataMessageProcessor.getContacts(message)
     val previews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(message.preview, message.body ?: "", false)
     val mentions: List<Mention> = DataMessageProcessor.getMentions(message.bodyRanges)
-    val viewOnce: Boolean = message.isViewOnce == true
     val bodyRanges: BodyRangeList? = message.bodyRanges.toBodyRangeList()
 
     val syncAttachments = message.attachments.toPointersWithinLimit().filter {
@@ -497,7 +496,6 @@ object SyncMessageProcessor {
       timestamp = sent.timestamp!!,
       expiresIn = targetMessage.expiresIn,
       expireTimerVersion = targetMessage.expireTimerVersion,
-      viewOnce = viewOnce,
       quote = quote,
       contacts = sharedContacts,
       previews = previews,

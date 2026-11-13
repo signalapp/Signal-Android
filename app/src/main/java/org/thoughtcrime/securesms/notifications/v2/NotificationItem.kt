@@ -74,7 +74,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   abstract fun getThumbnailInfo(context: Context): ThumbnailInfo
   abstract fun canReply(context: Context): Boolean
 
-  protected fun getMessageContentType(messageRecord: MmsMessageRecord): String {
+  protected fun getMessageContentType(messageRecord: MmsMessageRecord): String? {
     val thumbnailSlide: Slide? = messageRecord.slideDeck.thumbnailSlide
 
     return if (thumbnailSlide == null) {
