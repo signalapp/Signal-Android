@@ -1183,73 +1183,73 @@
     <string name="SelectRecipientsScreen__allowed_notifications">Разрешённые уведомления</string>
 
     <!-- AdvancedPrivacySettingsScreen -->
-    <string name="preferences__advanced">Advanced</string>
-    <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
+    <string name="preferences__advanced">Расширенные</string>
+    <string name="preferences_advanced__always_relay_calls">Всегда ретранслировать звонки</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через сервер Signal, чтобы не раскрывать ваш IP-адрес собеседнику. Качество звонка ухудшится.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Censorship circumvention</string>
+    <string name="preferences_communication__category_censorship_circumvention">Обход цензуры</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Censorship circumvention</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">If enabled, Signal will attempt to circumvent censorship. Do not enable this feature unless you are in a location where Signal is censored.</string>
+    <string name="preferences_communication__censorship_circumvention">Обход цензуры</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Если включить эту опцию, Signal будет пытаться обойти цензуру (блокировку провайдером). Не включайте её, если там, где вы находитесь, Signal не блокируется.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Censorship circumvention has been activated based on your account\'s phone number.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Обход цензуры был автоматически активирован на основе номера телефона вашей учётной записи.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">You have manually disabled censorship circumvention.</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Вы вручную отключили обход цензуры.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Censorship circumvention is not necessary; you are already connected to the Signal service.</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Обход цензуры не требуется; вы уже подключены к сервису Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censorship circumvention can only be activated when connected to the internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Sealed Sender</string>
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Show an icon in message details when they were delivered using sealed sender.</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Allow from anyone</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people with whom you have not shared your profile.</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Обход цензуры (блокировки провайдером) может быть активирован, только когда есть подключение к интернету.</string>
+    <string name="preferences_communication__category_sealed_sender">Запечатанный отправитель</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Показывать значок статуса</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Показывать значок в «Подробностях сообщения», если сообщение было доставлено с использованием запечатанного отправителя.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone">Разрешить от всех</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить запечатанного отправителя для входящих сообщений от людей, которых нет в ваших контактах и кому вы ещё не открывали свой профиль.</string>
     <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatic key verification</string>
+    <string name="preferences_automatic_key_verification">Автоматическое подтверждение ключа</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">При включении Signal попытается автоматически подтвердить шифрование личных чатов.</string>
 
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
-    <string name="ExpireTimerSettingsScreen__disappearing_messages">Disappearing messages</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in new chats started by you will disappear after they have been seen.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in this chat will disappear after they have been seen.</string>
-    <string name="ExpireTimerSettingsFragment__off">Off</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 day</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 hour</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
-    <string name="ExpireTimerSettingsFragment__save">Save</string>
+    <string name="ExpireTimerSettingsScreen__disappearing_messages">Исчезающие сообщения</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">При включении этой настройки новые сообщения, отправленные и полученные в новых чатах, начатых вами, будут исчезать после прочтения.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">При включении этой настройки новые сообщения, отправленные и полученные в этом чате, будут исчезать после прочтения.</string>
+    <string name="ExpireTimerSettingsFragment__off">Отключено</string>
+    <string name="ExpireTimerSettingsFragment__4_weeks">4 недели</string>
+    <string name="ExpireTimerSettingsFragment__1_week">1 неделю</string>
+    <string name="ExpireTimerSettingsFragment__1_day">1 день</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">8 часов</string>
+    <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
+    <string name="ExpireTimerSettingsFragment__5_minutes">5 минут</string>
+    <string name="ExpireTimerSettingsFragment__30_seconds">30 секунд</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Пользовательское время</string>
+    <string name="ExpireTimerSettingsFragment__save">Сохранить</string>
 
     <!-- AccountSettingsScreen -->
     <!-- Snackbar shown after the user creates a PIN -->
-    <string name="AccountSettingsScreen__pin_created">PIN created.</string>
+    <string name="AccountSettingsScreen__pin_created">PIN-код создан.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
-    <string name="AccountSettingsScreen__delete_all_data_failed">Failed to delete data</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Failed to enable registration lock.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Failed to disable registration lock.</string>
+    <string name="AccountSettingsScreen__delete_all_data_failed">Не удалось удалить данные</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Не удалось включить блокировку регистрации.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Не удалось отключить блокировку регистрации.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
-    <string name="preferences__enable_pin">Enable PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs keep information stored with Signal encrypted so only you can access it. Your profile, settings, and contacts will restore when you reinstall. You won’t need your PIN to open the app.</string>
-    <string name="preferences__disable_pin">Disable PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs are required for registration lock. To disable PINs, please first disable registration lock.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Record payments recovery phrase</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Before you can disable your PIN, you must record your payments recovery phrase to ensure you can recover your payments account.</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Record phrase</string>
+    <string name="preferences__advanced_pin_settings_title">Расширенные настройки PIN-кода</string>
+    <string name="preferences__enable_pin">Включить PIN-код</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, чтобы только вы могли иметь в ней к ней доступ. Если вы переустановите Signal, ваши профиль, настройки и контакты будут восстановлены. Чтобы открыть приложение, PIN-код не понадобится.</string>
+    <string name="preferences__disable_pin">Отключить PIN-код</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вручную не создадите и не восстановите резервную копию). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коды необходимы для блокировки регистрации. Чтобы отключить PIN-коды, пожалуйста, сначала отключите блокировку регистрации.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Запишите платёжную фразу восстановления</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед тем, как отключить PIN-код, вы должны записать свою платёжную фразу восстановления, чтобы обеспечить возможность восстановления своей платёжной учётной записи при необходимости.</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Записать фразу</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Create a new recovery key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Создать новый ключ восстановления</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Вам нужно создать и записать новый ключ восстановления, прежде чем можно будет отключить Пин-код.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN created.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabled.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Создать ключ</string>
+    <string name="ApplicationPreferencesActivity_pin_created">PIN-код создан.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">PIN-код отключён.</string>
 </resources>

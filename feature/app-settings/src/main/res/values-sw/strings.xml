@@ -1175,73 +1175,73 @@
     <string name="SelectRecipientsScreen__allowed_notifications">Arifa zinazoruhusiwa</string>
 
     <!-- AdvancedPrivacySettingsScreen -->
-    <string name="preferences__advanced">Advanced</string>
-    <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
+    <string name="preferences__advanced">ya juu</string>
+    <string name="preferences_advanced__always_relay_calls">Wasilisha simu kila mara</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Wasilisha simu zote kupitia Signal seva kuzuia kutambulisha anwani yako ya IP kwa mwasiliani wako. Kuwezesha kutapunguza ubora wa simu</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Censorship circumvention</string>
+    <string name="preferences_communication__category_censorship_circumvention">Kukwepa udhibiti</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Censorship circumvention</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">If enabled, Signal will attempt to circumvent censorship. Do not enable this feature unless you are in a location where Signal is censored.</string>
+    <string name="preferences_communication__censorship_circumvention">Kukwepa udhibiti</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ikiwezeshwa, Signal itajaribu kukwepa udhibiti. Usiruhusu kipengele hiki ila ukiwa katika eneo ambalo Signal imedhibiitiwa.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Censorship circumvention has been activated based on your account\'s phone number.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Kukwepa udhibiti kumeamlishwa kulingana na nambari ya simu ya akaunti yako.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">You have manually disabled censorship circumvention.</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Umelemaza mwenyewe ukwepaji udhibiti.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Censorship circumvention is not necessary; you are already connected to the Signal service.</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Kukwepa udhibiti sio lazima; tayari umeunganishwa kwenye huduma ya Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censorship circumvention can only be activated when connected to the internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Sealed Sender</string>
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Show an icon in message details when they were delivered using sealed sender.</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Allow from anyone</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people with whom you have not shared your profile.</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Kukwepa udhibiti kunaweza tu kuamlishwa ikiwa umeunganishwa kwenye mtandao.</string>
+    <string name="preferences_communication__category_sealed_sender">Mtumaji mwenye muhuri</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Onyesha aikoni ya hali</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Onyesha aikoni katika maelezo ya ujumbe wakati uliwasilishwa kwa kutumia huduma ya kuficha ujumbe.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone">Ruhusu kutoka kwa kila mtu</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Wezesha mtumaji mwenye muhuri kwa jumbe zinazoingia kutoka kwa wasio wasiliani na watu ambao hukushiriki wasifu wako</string>
     <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatic key verification</string>
+    <string name="preferences_automatic_key_verification">Uthibitishaji wa Kiotomatiki wa Ufunguo</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">Ikiwezeshwa, Signal itajaribu kuthibitisha kiotomatiki usimbaji fiche wa magumzo ya 1:1.</string>
 
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
-    <string name="ExpireTimerSettingsScreen__disappearing_messages">Disappearing messages</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in new chats started by you will disappear after they have been seen.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in this chat will disappear after they have been seen.</string>
-    <string name="ExpireTimerSettingsFragment__off">Off</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 day</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 hour</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
-    <string name="ExpireTimerSettingsFragment__save">Save</string>
+    <string name="ExpireTimerSettingsScreen__disappearing_messages">Jumbe zinazotoweka</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Ukiwasha mipangilio hii, ujumbe mpya uliotumwa na kupokewa katika gumzo mapya ulizoanzisha utatoweka baada ya kuonekana.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Ukiwasha mipangilio hii, ujumbe mpya uliotumwa na kupokelewa katika gumzo hii utatoweka baada ya kuonekana.</string>
+    <string name="ExpireTimerSettingsFragment__off">Zima</string>
+    <string name="ExpireTimerSettingsFragment__4_weeks">Wiki 4</string>
+    <string name="ExpireTimerSettingsFragment__1_week">Wiki moja</string>
+    <string name="ExpireTimerSettingsFragment__1_day">Siku moja</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">Saa 8</string>
+    <string name="ExpireTimerSettingsFragment__1_hour">Saa moja</string>
+    <string name="ExpireTimerSettingsFragment__5_minutes">Dakika tano</string>
+    <string name="ExpireTimerSettingsFragment__30_seconds">Sekunde thelathini</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Wakati maalum</string>
+    <string name="ExpireTimerSettingsFragment__save">Hifadhi</string>
 
     <!-- AccountSettingsScreen -->
     <!-- Snackbar shown after the user creates a PIN -->
-    <string name="AccountSettingsScreen__pin_created">PIN created.</string>
+    <string name="AccountSettingsScreen__pin_created">PIN imeundwa.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
-    <string name="AccountSettingsScreen__delete_all_data_failed">Failed to delete data</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Failed to enable registration lock.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Failed to disable registration lock.</string>
+    <string name="AccountSettingsScreen__delete_all_data_failed">Imeshindwa kufuta data</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Imeshindwa kuwezesha kufuli ya usajili.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Imeshindwa kulemaza kufuli ya usajili.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
-    <string name="preferences__enable_pin">Enable PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs keep information stored with Signal encrypted so only you can access it. Your profile, settings, and contacts will restore when you reinstall. You won’t need your PIN to open the app.</string>
-    <string name="preferences__disable_pin">Disable PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs are required for registration lock. To disable PINs, please first disable registration lock.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Record payments recovery phrase</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Before you can disable your PIN, you must record your payments recovery phrase to ensure you can recover your payments account.</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Record phrase</string>
+    <string name="preferences__advanced_pin_settings_title">Mipangilio ya PIN ya Hali ya Juu</string>
+    <string name="preferences__enable_pin">Washa PIN</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN hutumiwa kuhakikisha maelezo yaliyohifadhiwa katika Signal yamesimbwa kwa njia fiche hivi kwamba ni wewe tu unayeweza kuyafikia. Wasifu wako, mipangilio, na waasilian wako wa watarejeshwa utakapoisakinisha upya. Hutahitaji PIN yako kufungua programu.</string>
+    <string name="preferences__disable_pin">Zima PIN</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ukizima PIN, utapoteza data yote utakaposajili upya Signal isipokuwa ukihifadhi nakala yake na kuirejesha mwenyewe. Huwezi kuwasha Kufuli ya Usajili wakati PIN imezimwa.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Nambari za Siri zinahitajika kwenye kufuli ya usajili. Ili kulemaza Nambari za Siri, tafadhali kwanza lemaza kufuli ya usajili.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekodi maneno ya kurejesha malipo</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Kabla ya kuzima PIN yako, lazima urekodi kifungu chako cha kurejesha malipo ili uhakikishe kuwa unaweza kurejesha akaunti yako ya malipo.</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Rekodi maneno</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Create a new recovery key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Unda ufunguo mpya wa kurejesha akaunti</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Ni lazima uunde na urekodi ufunguo mpya wa kurejesha akaunti kabla hujaondoa PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN created.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabled.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Unda ufunguo</string>
+    <string name="ApplicationPreferencesActivity_pin_created">PIN imeundwa.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">PIN imezimwa.</string>
 </resources>

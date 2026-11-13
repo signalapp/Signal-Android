@@ -1,136 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Section header in the media overview list, above items sent or received today -->
-  <string name="MediaOverviewScreen__today">Today</string>
+  <string name="MediaOverviewScreen__today">ယနေ့</string>
   <!-- Section header in the media overview list, above items sent or received yesterday -->
-  <string name="MediaOverviewScreen__yesterday">Yesterday</string>
+  <string name="MediaOverviewScreen__yesterday">မနေ့က</string>
   <!-- Section header in the media overview list, above items sent or received earlier this week -->
-  <string name="MediaOverviewScreen__this_week">This week</string>
+  <string name="MediaOverviewScreen__this_week">ဒီအပတ်</string>
   <!-- Section header in the media overview list, above items sent or received earlier this month -->
-  <string name="MediaOverviewScreen__this_month">This month</string>
+  <string name="MediaOverviewScreen__this_month">ဒီလ</string>
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
-  <string name="MediaOverviewScreen__large">Large</string>
+  <string name="MediaOverviewScreen__large">ကြီးသော</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
-  <string name="MediaOverviewScreen__medium">Medium</string>
+  <string name="MediaOverviewScreen__medium">အလယ်အလတ်</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
-  <string name="MediaOverviewScreen__small">Small</string>
+  <string name="MediaOverviewScreen__small">သေးငယ်သော</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
-  <string name="MediaOverviewScreen__tab_media">Media</string>
+  <string name="MediaOverviewScreen__tab_media">ရုပ်၊သံ၊ပုံ များ</string>
   <!-- Tab title in the media overview screen for documents and other files -->
-  <string name="MediaOverviewScreen__tab_files">Files</string>
+  <string name="MediaOverviewScreen__tab_files">ဖိုင်များ</string>
   <!-- Tab title in the media overview screen for voice messages and audio files -->
-  <string name="MediaOverviewScreen__tab_audio">Audio</string>
+  <string name="MediaOverviewScreen__tab_audio">အသံ</string>
   <!-- Tab title in the media overview screen for links sent in the chat -->
-  <string name="MediaOverviewScreen__tab_links">Links</string>
+  <string name="MediaOverviewScreen__tab_links">လင့်ခ်များ</string>
   <!-- Tab title in the media overview screen showing every kind of item together -->
-  <string name="MediaOverviewScreen__tab_all">All</string>
+  <string name="MediaOverviewScreen__tab_all">အားလုံး</string>
 
   <!-- Screen title when the media overview shows media from every chat, so the user can review what is using storage -->
-  <string name="MediaOverviewScreen__all_storage_use">All storage use</string>
+  <string name="MediaOverviewScreen__all_storage_use">သုံးနိုင်သော သိုလှောင်မှုအားလုံး</string>
   <!-- Screen title while selecting items in the media overview. The first placeholder is the number of selected items, the second is their combined file size (e.g. "3 selected (12 MB)") -->
   <plurals name="MediaOverviewScreen__d_selected_s">
-        <item quantity="other">%1$d selected (%2$s)</item>
+        <item quantity="other">%1$d ရွေးချယ်ခဲ့ပါသည် (%2$s)</item>
     </plurals>
   <!-- Shown in the middle of a media overview tab that has nothing in it -->
-  <string name="MediaOverviewScreen__no_media">No media</string>
+  <string name="MediaOverviewScreen__no_media">မီဒီယာမရှိပါ</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
-  <string name="MediaOverviewScreen__sort_by">Sort by</string>
+  <string name="MediaOverviewScreen__sort_by">၎င်းအလိုက်စီစဥ်ပါ</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the most recent items first -->
-  <string name="MediaOverviewScreen__newest">Newest</string>
+  <string name="MediaOverviewScreen__newest">အသစ်ဆုံး</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the earliest items first -->
-  <string name="MediaOverviewScreen__oldest">Oldest</string>
+  <string name="MediaOverviewScreen__oldest">အဟောင်းဆုံး</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the largest files first -->
-  <string name="MediaOverviewScreen__storage_used">Storage used</string>
+  <string name="MediaOverviewScreen__storage_used">အသုံးပြုထားသော သိုလှောင်မှု</string>
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->
-  <string name="MediaOverviewScreen__grid_view">Grid view</string>
+  <string name="MediaOverviewScreen__grid_view">အကွက်လိုက် ကြည့်ရန်</string>
   <!-- Accessibility description for the button that switches the media overview from a grid of thumbnails to a list with file details -->
-  <string name="MediaOverviewScreen__list_view">List view</string>
+  <string name="MediaOverviewScreen__list_view">စာရင်းလိုက်ကြည့်ရန်</string>
 
   <!-- Bottom bar button that saves the selected media to the device. Plural so the verb can agree with the number of selected items -->
   <plurals name="MediaOverviewScreen__save_plural">
-        <item quantity="other">Save</item>
+        <item quantity="other">သိမ်းရန်</item>
     </plurals>
   <!-- Bottom bar button that selects every item in the current media overview tab -->
-  <string name="MediaOverviewScreen__select_all">Select all</string>
+  <string name="MediaOverviewScreen__select_all">အားလုံးရွေးရန်</string>
   <!-- Bottom bar button that deletes the selected media. Plural so the verb can agree with the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_plural">
-        <item quantity="other">Delete</item>
+        <item quantity="other">ဖျက်ရန်</item>
     </plurals>
 
   <!-- Menu item shown when long-pressing an item in the media overview. Opens a sheet to forward the item to other chats -->
-  <string name="MediaOverviewScreen__forward">Forward</string>
+  <string name="MediaOverviewScreen__forward">ထပ်ဆင့် ပေးပို့ရန်</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Shares the item with another app -->
-  <string name="MediaOverviewScreen__share">Share</string>
+  <string name="MediaOverviewScreen__share">ဝေမျှရန်</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Saves the item to the device -->
-  <string name="MediaOverviewScreen__save">Save</string>
+  <string name="MediaOverviewScreen__save">သိမ်းရန်</string>
   <!-- Menu item shown when long-pressing an item in the media overview, and the confirm button of the dialog asking whether to delete the selected items -->
-  <string name="MediaOverviewScreen__delete">Delete</string>
+  <string name="MediaOverviewScreen__delete">ဖျက်ရန်</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Starts selecting multiple items, beginning with this one -->
-  <string name="MediaOverviewScreen__select">Select</string>
+  <string name="MediaOverviewScreen__select">ရွေးရန်</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Opens the chat scrolled to the message the item was sent in -->
-  <string name="MediaOverviewScreen__jump_to_message">Jump to message</string>
+  <string name="MediaOverviewScreen__jump_to_message">မက်ဆေ့ချ်သို့ တိုက်ရိုက်သွားရန်</string>
 
   <!-- Title of the dialog confirming deletion of the selected media overview items -->
   <plurals name="MediaOverviewScreen__delete_confirm_title">
-        <item quantity="other">Delete selected items?</item>
+        <item quantity="other">ရွေးထားသည်များကို ဖျက်မည်လား။</item>
     </plurals>
   <!-- Body of the dialog confirming deletion of the selected media overview items. The placeholder is the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_confirm_message">
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="other">ရွေးထားသည့် ဖိုင် %1$d ခုကို အပြီးတိုင်ဖျက်သွားမည်။ ၎င်းအရာများနှင့် ဆက်စပ်နေသည့် စာသားမက်ဆေ့ချ်များကိုလည်း ဖျက်သွားပါမည်။</item>
     </plurals>
   <!-- Title of the progress dialog shown while the selected media overview items are being deleted -->
-  <string name="MediaOverviewScreen__deleting">Deleting</string>
+  <string name="MediaOverviewScreen__deleting">ဖျက်နေသည်</string>
   <!-- Progress shown below the title while deleting media overview items. The first placeholder is how many are done, the second is the total (e.g. "12 of 207") -->
-  <string name="MediaOverviewScreen__delete_progress_count">%1$d of %2$d</string>
+  <string name="MediaOverviewScreen__delete_progress_count">%1$d/%2$d</string>
 
   <!-- Title of the dialog shown when saving from the media overview, and every selected item has been removed from the device to save space -->
-  <string name="MediaOverviewScreen__cant_save_media">Can\'t save media</string>
+  <string name="MediaOverviewScreen__cant_save_media">မီဒီယာကို သိမ်းဆည်း၍မရပါ</string>
   <!-- Body of the dialog shown when saving from the media overview, and every selected item has been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__media_offloaded_message">This media has been offloaded from your device because \"Optimize Signal storage\" is turned on. You can download items one-by-one, or turn off \"Optimize Signal storage\" to download all media to your device.</string>
+  <string name="MediaOverviewScreen__media_offloaded_message">\"Signal သိုလှောင်မှု အကောင်းဆုံးချိန်ညှိရန်\" ကို ဖွင့်ထားသောကြောင့် ဤမီဒီယာကို သင့်စက်မှ Offload လုပ်လိုက်ပါပြီ။ တစ်ခုပြီးတစ်ခု ဒေါင်းလုဒ်လုပ်နိုင်သည် သို့မဟုတ် သင့်စက်ထဲသို့ မီဒီယာအားလုံးကို ဒေါင်းလုဒ်လုပ်ရန် \"Signal သိုလှောင်မှု အကောင်းဆုံးချိန်ညှိရန်\" ကို ပိတ်နိုင်သည်။</string>
   <!-- Title of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space -->
-  <string name="MediaOverviewScreen__cant_save_all_items">Can\'t save all items</string>
+  <string name="MediaOverviewScreen__cant_save_all_items">အားလုံးကို သိမ်းဆည်း၍မရပါ</string>
   <!-- Body of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize Signal storage\" is turned on. You can save items one-by-one, or turn off \"Optimize Signal storage\" to download all media to your device.</string>
+  <string name="MediaOverviewScreen__some_media_offloaded_message">\"Signal သိုလှောင်မှု အကောင်းဆုံးချိန်ညှိရန်\" ကို ဖွင့်ထားသောကြောင့် သင်ရွေးချယ်ထားသော မီဒီယာအချို့ကို သင့်စက်မှ Offload လုပ်လိုက်ပါသည်။ ဖိုင်များကို တစ်ခုချင်းစီ သိမ်းဆည်းနိုင်သည် သို့မဟုတ် သင့်စက်ထဲသို့ မီဒီယာအားလုံးကို ဒေါင်းလုဒ်လုပ်ရန် \"Signal သိုလှောင်မှု အကောင်းဆုံးချိန်ညှိရန်\" ကို ပိတ်နိုင်သည်။</string>
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
-  <string name="MediaOverviewScreen__view_storage_settings">View storage settings</string>
+  <string name="MediaOverviewScreen__view_storage_settings">ထားသိုမှုဆက်တင်ကို ကြည့်ရှုရန်</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->
-  <string name="MediaOverviewScreen__media_not_sent_yet">This media is not sent yet.</string>
+  <string name="MediaOverviewScreen__media_not_sent_yet">ဤမီဒီယာကို မပို့ရသေးပါ။</string>
 
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Image · Nov 3") -->
-  <string name="MediaOverviewScreen__type_image">Image</string>
+  <string name="MediaOverviewScreen__type_image">ပုံ</string>
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Video · Nov 3") -->
-  <string name="MediaOverviewScreen__type_video">Video</string>
+  <string name="MediaOverviewScreen__type_video">ဗီဒီယို</string>
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Audio · Nov 3") -->
-  <string name="MediaOverviewScreen__type_audio">Audio</string>
+  <string name="MediaOverviewScreen__type_audio">အသံ</string>
   <!-- File type shown in a media overview list row, between the file size and the date, for documents and other files (e.g. "2 MB · File · Nov 3") -->
-  <string name="MediaOverviewScreen__type_file">File</string>
+  <string name="MediaOverviewScreen__type_file">ဖိုင်</string>
   <!-- Title of a voice message in a media overview list row, in place of a file name -->
-  <string name="MediaOverviewScreen__voice_message">Voice Message</string>
+  <string name="MediaOverviewScreen__voice_message">အသံမက်ဆေ့ချ်</string>
   <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
-  <string name="MediaOverviewScreen__note_to_self">Note to Self</string>
+  <string name="MediaOverviewScreen__note_to_self">မိမိမှတ်စု</string>
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
-  <string name="MediaOverviewScreen__sent_by_s">Sent by %1$s</string>
+  <string name="MediaOverviewScreen__sent_by_s">%1$s မှ ပို့သည်</string>
   <!-- Shown in a media overview list row for an item the user sent -->
-  <string name="MediaOverviewScreen__sent_by_you">Sent by you</string>
+  <string name="MediaOverviewScreen__sent_by_you">သင်မှ ပို့ခဲ့သည်</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item someone else sent in a group. The first placeholder is the sender\'s name, the second is the group name -->
-  <string name="MediaOverviewScreen__sent_by_s_to_s">Sent by %1$s to %2$s</string>
+  <string name="MediaOverviewScreen__sent_by_s_to_s">%1$s မှ %2$s သို့ ပို့ခဲ့သည်</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item the user sent. The placeholder is the name of the chat it was sent to -->
-  <string name="MediaOverviewScreen__sent_by_you_to_s">Sent by you to %1$s</string>
+  <string name="MediaOverviewScreen__sent_by_you_to_s">သင်မှ %1$s သို့ ပို့ခဲ့သည်</string>
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__two_part_line" translatable="false">%1$s · %2$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__three_part_line" translatable="false">%1$s · %2$s · %3$s</string> -->
 
   <!-- Accessibility description for a photo or video thumbnail in the media overview grid -->
-  <string name="MediaOverviewScreen__media_preview">Media preview</string>
+  <string name="MediaOverviewScreen__media_preview">ရုပ်/သံ/ပုံပါ စာများကို အစမ်းကြည့်ခြင်း</string>
   <!-- Accessibility description for the play icon drawn over a video thumbnail in the media overview -->
-  <string name="MediaOverviewScreen__play_video">Play video</string>
+  <string name="MediaOverviewScreen__play_video">ဗီဒီယိုဖွင့်ပါ</string>
   <!-- Accessibility description for the check mark shown on a selected item in the media overview -->
-  <string name="MediaOverviewScreen__selected">Selected</string>
+  <string name="MediaOverviewScreen__selected">ရွေးချယ်ထားသော</string>
   <!-- Accessibility description for the button in a media overview list row that plays an audio file -->
-  <string name="MediaOverviewScreen__play">Play</string>
+  <string name="MediaOverviewScreen__play">ဖွင့်ရန်</string>
   <!-- Accessibility description for the button in a media overview list row that pauses an audio file that is playing -->
-  <string name="MediaOverviewScreen__pause">Pause</string>
+  <string name="MediaOverviewScreen__pause">ခဏရပ်ရန်</string>
   <!-- Accessibility description for the button in a media overview list row that downloads an audio file that is not on the device yet -->
-  <string name="MediaOverviewScreen__download">Download</string>
+  <string name="MediaOverviewScreen__download">ဒေါင်းလုဒ်လုပ်မည်</string>
 </resources>
