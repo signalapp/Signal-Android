@@ -459,8 +459,7 @@ fun KeyboardSheetScaffold(
     }
   }
 
-  val systemKeyboardTakingOverSpace = activeKey == null &&
-    (controller.awaitingSystemKeyboard || (systemKeyboardVisible && systemKeyboardAnimating))
+  val systemKeyboardTakingOverSpace = activeKey == null && controller.awaitingSystemKeyboard
 
   val claimedBottomPx = {
     if (systemKeyboardTakingOverSpace || handingOverFromSystemKeyboard) {
