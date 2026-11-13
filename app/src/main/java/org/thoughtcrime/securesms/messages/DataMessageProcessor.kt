@@ -1658,7 +1658,7 @@ object DataMessageProcessor {
     if (targetMessage == null) {
       warn(envelope.clientTimestamp!!, "[handlePollValidation] Could not find matching message! Putting it in the early message cache. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
       if (earlyMessageCacheEntry != null) {
-        AppDependencies.earlyMessageCache.store(senderRecipient.id, targetSentTimestamp, earlyMessageCacheEntry)
+        AppDependencies.earlyMessageCache.store(targetAuthor.id, targetSentTimestamp, earlyMessageCacheEntry)
         batchCache.requiresEarlyMessageProcessing()
       }
       return null
