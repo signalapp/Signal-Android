@@ -169,6 +169,16 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
   }
 
   /**
+   * Plays the animation from its first frame and keeps looping until it is stopped.
+   */
+  fun playForever() {
+    loopForever = true
+    rewindToStart()
+    playing = true
+    invalidateSelf()
+  }
+
+  /**
    * Stops the animation on its first frame. It will not play again until [play] is called.
    */
   fun stopAtStart() {

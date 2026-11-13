@@ -18,13 +18,13 @@ object StickerAnimationPolicy {
   fun allowAnimation(): Boolean = SignalStore.settings.isAutoplayStickersAndGifsEnabled
 
   /**
-   * Puts a sticker that has come into view in a conversation back into the state it starts in: playing a single
-   * playback when autoplay is enabled, and resting on its first frame otherwise.
+   * Puts a sticker that has come into view in a conversation back into the state it starts in: looping indefinitely
+   * when autoplay is enabled, and resting on its first frame otherwise.
    */
   @JvmStatic
   fun resetPlayback(drawable: ApngDrawable) {
     if (allowAnimation()) {
-      playSinglePlayback(drawable)
+      drawable.playForever()
     } else {
       drawable.stopAtStart()
     }

@@ -88,6 +88,29 @@ class ApngDrawableTest {
   }
 
   @Test
+  fun `playForever keeps looping past the file's play count`() {
+    drawable.play(1)
+    drawFrames(drawable.frameCount + 1)
+
+    drawable.playForever()
+    drawFrames(drawable.frameCount * 5)
+
+    assertTrue(drawable.isRunning)
+  }
+
+  @Test
+  fun `stopAtStart ends a playForever playback`() {
+    drawable.playForever()
+    drawFrames(3)
+
+    drawable.stopAtStart()
+    drawable.start()
+
+    assertFalse(drawable.isRunning)
+    assertEquals(0, drawable.position)
+  }
+
+  @Test
   fun `drawing after recycle is a no-op`() {
     drawable.play(1)
     drawFrames(1)
