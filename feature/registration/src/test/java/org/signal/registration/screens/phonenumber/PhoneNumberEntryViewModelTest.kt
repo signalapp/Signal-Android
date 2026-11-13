@@ -590,6 +590,158 @@ class PhoneNumberEntryViewModelTest {
       .isEqualTo(listOf(RegistrationFlowEvent.E164Chosen("+31612345678")))
   }
 
+  // ==================== Ukrainian (+380) Number Entry Tests ====================
+
+  private val ukrainianOperatorCodes = listOf("39", "50", "63", "66", "67", "68", "73", "75", "77", "91", "92", "93", "94", "95", "96", "97", "98", "99")
+
+  /** Selects Ukraine the way the country picker does, so the view model's formatter is set up for it. */
+  private suspend fun selectUkraine(): PhoneNumberEntryState {
+    viewModel.applyEvent(PhoneNumberEntryState(), PhoneNumberEntryScreenEvents.CountrySelected(380, "UA", "Ukraine", ""), parentEventEmitter, stateEmitter)
+    return emittedStates.last().also { emittedStates.clear() }
+  }
+
+  /** Types [digits] one at a time, feeding back the formatted text like the text field does. */
+  private suspend fun typeDigits(initialState: PhoneNumberEntryState, digits: String): PhoneNumberEntryState {
+    var state = initialState
+    for (digit in digits) {
+      viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = state.formattedNumber, newValue = state.formattedNumber + digit), parentEventEmitter, stateEmitter)
+      state = emittedStates.last()
+    }
+    return state
+  }
+
+  private suspend fun paste(initialState: PhoneNumberEntryState, text: String): PhoneNumberEntryState {
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "", newValue = text), parentEventEmitter, stateEmitter)
+    return emittedStates.last()
+  }
+
+  private fun captureCreatedSessions(): MutableList<String> {
+    val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
+    val createdSessions = mutableListOf<String>()
+    coEvery { mockRepository.createSession(capture(createdSessions)) } returns RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns RequestResult.Success(sessionMetadata)
+    return createdSessions
+  }
+
+  @Test
+  fun `Ukrainian number typed without the trunk prefix is formatted, not left as a raw blob`() = runTest {
+    // Previously only "0501234567" got formatted ("050 123 4567"), which made it look like the 0 was required.
+    val state = typeDigits(selectUkraine(), "501234567")
+
+    assertThat(state.nationalNumber).isEqualTo("501234567")
+    assertThat(state.formattedNumber).isEqualTo("50 123 4567")
+    assertThat(state.isNumberPossible).isTrue()
+    assertThat(state.isNumberInvalid).isFalse()
+  }
+
+  @Test
+  fun `Ukrainian number typed with the trunk prefix keeps its national formatting`() = runTest {
+    val state = typeDigits(selectUkraine(), "0501234567")
+
+    assertThat(state.formattedNumber).isEqualTo("050 123 4567")
+    assertThat(state.isNumberPossible).isTrue()
+  }
+
+  @Test
+  fun `British number typed without the trunk prefix is formatted`() = runTest {
+    viewModel.applyEvent(PhoneNumberEntryState(), PhoneNumberEntryScreenEvents.CountrySelected(44, "GB", "United Kingdom", ""), parentEventEmitter, stateEmitter)
+    val gb = emittedStates.last()
+
+    val state = typeDigits(gb, "2079460958")
+
+    assertThat(state.formattedNumber).isEqualTo("20 7946 0958")
+  }
+
+  @Test
+  fun `Ukrainian numbers typed with or without the trunk prefix submit the same E164 for every operator code`() = runTest {
+    val createdSessions = captureCreatedSessions()
+    val expected = mutableListOf<String>()
+
+    for (operatorCode in ukrainianOperatorCodes) {
+      for (typed in listOf("${operatorCode}1234567", "0${operatorCode}1234567")) {
+        val state = typeDigits(selectUkraine(), typed)
+        assertThat(state.isNumberPossible).isTrue()
+
+        viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberConfirmed, parentEventEmitter, stateEmitter)
+        expected += "+380${operatorCode}1234567"
+      }
+    }
+
+    assertThat(createdSessions).isEqualTo(expected)
+  }
+
+  @Test
+  fun `Ukrainian numbers pasted in any common shape are split into the bare national number`() = runTest {
+    for (pasted in listOf("0501234567", "380501234567", "+380 50 123 4567", "80501234567", "050 123 45 67")) {
+      val state = paste(selectUkraine(), pasted)
+
+      assertThat(state.countryCode).isEqualTo("380")
+      assertThat(state.nationalNumber).isEqualTo("501234567")
+      assertThat(state.formattedNumber).isEqualTo("50 123 4567")
+    }
+  }
+
+  @Test
+  fun `Ukrainian number typed with the country code repeated is submittable and normalized on Next`() = runTest {
+    // "380..." retypes the whole country code, "80..." is the old Ukrainian "8 0XX" dialing habit.
+    for (typed in listOf("380501234567", "80501234567", "3800501234567")) {
+      val state = typeDigits(selectUkraine(), typed)
+      assertThat(state.isNumberInvalid).isFalse()
+      assertThat(state.isNumberPossible).isTrue()
+
+      emittedStates.clear()
+      viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.NextClicked, parentEventEmitter, stateEmitter)
+
+      val result = emittedStates.last()
+      assertThat(result.countryCode).isEqualTo("380")
+      assertThat(result.nationalNumber).isEqualTo("501234567")
+      assertThat(result.dialogs.confirmNumber).isTrue()
+    }
+  }
+
+  @Test
+  fun `Ukrainian number typed with the country code repeated submits the correct E164`() = runTest {
+    val createdSessions = captureCreatedSessions()
+
+    for (typed in listOf("380501234567", "80501234567")) {
+      val state = typeDigits(selectUkraine(), typed)
+      viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberConfirmed, parentEventEmitter, stateEmitter)
+    }
+
+    assertThat(createdSessions).isEqualTo(listOf("+380501234567", "+380501234567"))
+  }
+
+  @Test
+  fun `Ukrainian number with a doubled trunk prefix submits the correct E164`() = runTest {
+    val createdSessions = captureCreatedSessions()
+
+    val state = typeDigits(selectUkraine(), "00501234567")
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberConfirmed, parentEventEmitter, stateEmitter)
+
+    assertThat(createdSessions).isEqualTo(listOf("+380501234567"))
+  }
+
+  @Test
+  fun `Ukrainian number with a trunk prefix but a digit missing cannot be submitted and is not flagged as an error`() = runTest {
+    // "050123456" has a possible length for +380, but would go out as the invalid +380050123456. It is also exactly
+    // what the user has typed on the way to "0501234567", so it must not be shown as an error either.
+    val state = typeDigits(selectUkraine(), "050123456")
+
+    assertThat(state.isNumberPossible).isFalse()
+    assertThat(state.isNumberInvalid).isFalse()
+    assertThat(state.isNextEnabled).isFalse()
+  }
+
+  @Test
+  fun `Ukrainian autofilled E164 is shown formatted and auto-confirmed`() = runTest {
+    viewModel.applyEvent(selectUkraine(), PhoneNumberEntryScreenEvents.FullPhoneNumberEntered("+380501234567", autoConfirm = true), parentEventEmitter, stateEmitter)
+
+    val result = emittedStates.last()
+    assertThat(result.nationalNumber).isEqualTo("501234567")
+    assertThat(result.formattedNumber).isEqualTo("50 123 4567")
+    assertThat(result.dialogs.confirmNumber).isTrue()
+  }
+
   // ==================== FullPhoneNumberEntered Tests ====================
 
   @Test
