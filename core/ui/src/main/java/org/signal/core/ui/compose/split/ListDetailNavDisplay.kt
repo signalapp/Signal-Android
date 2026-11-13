@@ -108,6 +108,14 @@ fun ListDetailNavDisplay(
     listPaneChrome?.let { chrome -> movableContentOf { content: @Composable () -> Unit -> chrome(content) } }
   }
 
+  val listPaneChromeHost = remember(listPaneChrome, movableListPaneChrome) {
+    if (listPaneChrome != null && movableListPaneChrome != null) {
+      ListPaneChromeHost(chrome = listPaneChrome, movable = movableListPaneChrome)
+    } else {
+      null
+    }
+  }
+
   // Applied as a decorator so the chrome sits inside the entry's own movable slot, and is only ever placed by the
   // scene that nav3 hands the list entry to.
   val listPaneChromeDecorator = remember {
@@ -136,7 +144,7 @@ fun ListDetailNavDisplay(
   CompositionLocalProvider(
     LocalDetailPaneBack provides onBack,
     LocalListDetailPaneLayout provides layout,
-    LocalListPaneChrome provides movableListPaneChrome,
+    LocalListPaneChrome provides listPaneChromeHost,
     LocalEmptyDetailContent provides emptyDetailContent,
     LocalPendingDeferredEnter provides pendingDeferredEnter
   ) {

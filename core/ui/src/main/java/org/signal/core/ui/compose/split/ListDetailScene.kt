@@ -5,6 +5,7 @@
 
 package org.signal.core.ui.compose.split
 
+import androidx.compose.animation.EnterExitState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
@@ -46,6 +47,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.scene.Scene
 import androidx.navigation3.scene.SceneStrategy
 import androidx.navigation3.scene.SceneStrategyScope
+import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import org.signal.core.ui.R
 import kotlin.math.max
 
@@ -214,12 +216,13 @@ private fun Modifier.minContentWidth(minWidth: Dp): Modifier {
  */
 @Composable
 internal fun ListPaneContent(content: @Composable () -> Unit) {
-  val chrome = LocalListPaneChrome.current
+  val host = LocalListPaneChrome.current
+  val isInTargetScene = LocalNavAnimatedContentScope.current.transition.targetState == EnterExitState.Visible
 
-  if (chrome != null) {
-    chrome(content)
-  } else {
-    content()
+  when {
+    host == null -> content()
+    isInTargetScene -> host.movable(content)
+    else -> host.chrome(content)
   }
 }
 
