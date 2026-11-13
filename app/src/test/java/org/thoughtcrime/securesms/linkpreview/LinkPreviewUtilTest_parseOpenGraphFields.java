@@ -164,6 +164,23 @@ public class LinkPreviewUtilTest_parseOpenGraphFields {
           694051200000L,
           "https://images.com/my-image.jpg"},
 
+        // Markup is stripped
+        { "<title><font color=\"-\">Daily Bugle HTML</title>\n" +
+          "<meta content=\"https://images.com/my-image.jpg\" property=\"og:image\">",
+          "Daily Bugle HTML",
+          null,
+          0,
+          "https://images.com/my-image.jpg"},
+
+        // Encoded markup is stripped
+        { "<meta content=\"&lt;font color=&quot;-&quot;&gt;Daily Bugle\" property=\"og:title\">\n" +
+          "<meta content=\"Daily &amp;amp; &lt;b&gt;Weekly&lt;/b&gt; Bugle\" property=\"og:description\">\n" +
+          "<title>Daily Bugle HTML</title>",
+          "Daily Bugle",
+          "Daily & Weekly Bugle",
+          0,
+          null},
+
     });
   }
 
