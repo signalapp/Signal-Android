@@ -2170,13 +2170,29 @@ class AttachmentTable(
           .where("$ID = ? OR ($REMOTE_KEY = ? AND $DATA_HASH_END = ?)", attachmentId.id, existingPlaceholder.remoteKey, existingPlaceholder.dataHash!!)
           .run()
       } else {
-        // Update the current attachment, any attachments with the same data file (deduplication), and any attachments with the
-        // same UUID (e.g. edited messages)
+        // Update the current attachment, any attachments with the same data file (deduplication), and any other revisions of
+        // this message that share the attachment (e.g. edited messages)
         val whereClause: String
         val whereArgs: Array<String>
         if (existingPlaceholder.uuid != null) {
-          whereClause = "$ID = ? OR $DATA_FILE = ? OR ($ATTACHMENT_UUID = ? AND $REMOTE_LOCATION = ?)"
-          whereArgs = SqlUtil.buildArgs(attachmentId.id, dataFilePath, existingPlaceholder.uuid.toString(), existingPlaceholder.remoteLocation)
+          val originalMessageId = db
+            .select(MessageTable.ORIGINAL_MESSAGE_ID)
+            .from(MessageTable.TABLE_NAME)
+            .where("${MessageTable.ID} = ?", existingPlaceholder.mmsId)
+            .run()
+            .readToSingleLong(existingPlaceholder.mmsId)
+
+          whereClause = """
+            $ID = ? OR
+            $DATA_FILE = ? OR
+            (
+              $ATTACHMENT_UUID = ? AND
+              $REMOTE_LOCATION = ? AND
+              $DATA_FILE IS NULL AND
+              $MESSAGE_ID IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.ID} = ? OR ${MessageTable.ORIGINAL_MESSAGE_ID} = ?)
+            )
+          """
+          whereArgs = SqlUtil.buildArgs(attachmentId.id, dataFilePath, existingPlaceholder.uuid.toString(), existingPlaceholder.remoteLocation, originalMessageId, originalMessageId)
         } else {
           whereClause = "$ID = ? OR $DATA_FILE = ?"
           whereArgs = SqlUtil.buildArgs(attachmentId.id, dataFilePath)
