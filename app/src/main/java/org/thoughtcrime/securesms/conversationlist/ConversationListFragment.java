@@ -1306,7 +1306,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                                     .filter(r -> r.getMuteUntil() != until)
                                                     .map(Recipient::getId)
                                                     .collect(Collectors.toList());
-      SignalDatabase.recipients().setMuted(recipientIds, until);
+      if (recipientIds.isEmpty()) {
+        Log.i(TAG, "All " + conversations.size() + " conversation(s) already muted until " + until + ", skipping.");
+      } else {
+        SignalDatabase.recipients().setMuted(recipientIds, until);
+      }
       return null;
     }, unused -> {
       endActionModeIfActive();
