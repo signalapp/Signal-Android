@@ -1234,6 +1234,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun insertEditMessageInbox(mediaMessage: IncomingMessage, targetMessage: MmsMessageRecord, skipThreadUpdate: Boolean = false): Optional<InsertResult> {
+    // An edit can target an older revision than the one on screen, so take reactions and pins from the newest revision.
+    val previousLatestRevisionId = targetMessage.latestRevisionId?.id ?: targetMessage.id
     val insertResult = insertMessageInbox(retrieved = mediaMessage, editedMessage = targetMessage, notifyObservers = false, skipThreadUpdate = skipThreadUpdate)
 
     if (insertResult.isPresent) {
@@ -1248,8 +1250,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .where("$ID != ? AND ($ID = ? OR $LATEST_REVISION_ID = ? OR $ORIGINAL_MESSAGE_ID = ?)", messageId, targetMessage.id, targetMessage.id, targetMessage.getOriginalOrOwnMessageId().id)
         .run()
 
-      reactions.moveReactionsToNewMessage(newMessageId = messageId, previousId = targetMessage.id)
-      movePinnedDetailsToNewMessage(newMessageId = messageId, previousId = targetMessage.id)
+      reactions.moveReactionsToNewMessage(newMessageId = messageId, previousId = previousLatestRevisionId)
+      movePinnedDetailsToNewMessage(newMessageId = messageId, previousId = previousLatestRevisionId)
 
       notifyConversationListeners(targetMessage.threadId)
     }
