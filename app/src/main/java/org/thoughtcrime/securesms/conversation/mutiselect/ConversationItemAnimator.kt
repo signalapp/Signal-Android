@@ -3,7 +3,9 @@ package org.thoughtcrime.securesms.conversation.mutiselect
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
+import android.view.animation.Interpolator
 import androidx.core.animation.doOnEnd
+import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
@@ -127,7 +129,8 @@ class ConversationItemAnimator(
     for ((viewHolder, tweeningInfo) in pendingSlideAnimations) {
       val animator = ValueAnimator.ofFloat(0f, 1f)
       slideAnimations[viewHolder] = AnimationInfo(animator, tweeningInfo)
-      animator.duration = 150L
+      animator.duration = SLIDE_DURATION
+      animator.interpolator = SLIDE_INTERPOLATOR
       animator.addUpdateListener {
         if (viewHolder in slideAnimations) {
           viewHolder.itemView.translationY = tweeningInfo.lerp(it.animatedFraction)
@@ -194,5 +197,8 @@ class ConversationItemAnimator(
 
   companion object {
     private val TAG = Log.tag(ConversationItemAnimator::class.java)
+
+    const val SLIDE_DURATION = 250L
+    val SLIDE_INTERPOLATOR: Interpolator = PathInterpolatorCompat.create(0.2f, 0f, 0f, 1f)
   }
 }

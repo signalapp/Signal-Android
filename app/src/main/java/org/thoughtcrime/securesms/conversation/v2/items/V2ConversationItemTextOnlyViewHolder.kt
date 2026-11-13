@@ -116,6 +116,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private val footerDrawable = ChatColorsDrawable(conversationContext::getChatColorsData)
   private val senderDrawable = ChatColorsDrawable(conversationContext::getChatColorsData)
   private val bodyBubbleLayoutTransition = BodyBubbleLayoutTransition()
+  private val footerFadeTransition = V2FooterFadeTransition()
+  private val bubbleBoundsAnimator = V2BubbleBoundsAnimator(binding.bodyWrapper)
 
   private val gestureDetector = GestureDetector(
     context,
@@ -210,6 +212,22 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       null
     } else {
       bodyBubbleLayoutTransition
+    }
+
+    val isSameMessage = this::conversationMessage.isInitialized &&
+      model is ConversationMessageElement &&
+      model.conversationMessage.messageRecord.id == conversationMessage.messageRecord.id
+    val animateContentChanges = isSameMessage && !conversationContext.isParentInScroll
+
+    val rootLayoutTransition = if (animateContentChanges) footerFadeTransition else null
+    if (binding.root.layoutTransition !== rootLayoutTransition) {
+      binding.root.layoutTransition = rootLayoutTransition
+    }
+
+    if (animateContentChanges) {
+      bubbleBoundsAnimator.animateNextLayout()
+    } else {
+      bubbleBoundsAnimator.cancel()
     }
 
     if (ConversationAdapterBridge.PAYLOAD_PARENT_SCROLLING in payload) {
