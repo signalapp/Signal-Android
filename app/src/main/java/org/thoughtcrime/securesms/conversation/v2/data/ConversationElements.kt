@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2.data
 
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRecipientInfo
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
@@ -13,11 +14,21 @@ sealed interface ConversationMessageElement {
   val conversationMessage: ConversationMessage
 }
 
+/**
+ * Revisions of an edited message count as the same item so that an edit is treated as a change instead of an insert.
+ */
+private fun ConversationMessageElement.isSameMessageAs(other: ConversationMessageElement): Boolean {
+  return conversationMessage.messageRecord.originalOrOwnId == other.conversationMessage.messageRecord.originalOrOwnId
+}
+
+private val MessageRecord.originalOrOwnId: Long
+  get() = originalMessageId?.id ?: id
+
 data class ConversationUpdate(
   override val conversationMessage: ConversationMessage
 ) : ConversationMessageElement, MappingModel<ConversationUpdate> {
   override fun areItemsTheSame(newItem: ConversationUpdate): Boolean {
-    return conversationMessage.messageRecord.id == newItem.conversationMessage.messageRecord.id
+    return isSameMessageAs(newItem)
   }
 
   override fun areContentsTheSame(newItem: ConversationUpdate): Boolean {
@@ -29,7 +40,7 @@ data class OutgoingTextOnly(
   override val conversationMessage: ConversationMessage
 ) : ConversationMessageElement, MappingModel<OutgoingTextOnly> {
   override fun areItemsTheSame(newItem: OutgoingTextOnly): Boolean {
-    return conversationMessage.messageRecord.id == newItem.conversationMessage.messageRecord.id
+    return isSameMessageAs(newItem)
   }
 
   override fun areContentsTheSame(newItem: OutgoingTextOnly): Boolean {
@@ -41,7 +52,7 @@ data class OutgoingMedia(
   override val conversationMessage: ConversationMessage
 ) : ConversationMessageElement, MappingModel<OutgoingMedia> {
   override fun areItemsTheSame(newItem: OutgoingMedia): Boolean {
-    return conversationMessage.messageRecord.id == newItem.conversationMessage.messageRecord.id
+    return isSameMessageAs(newItem)
   }
 
   override fun areContentsTheSame(newItem: OutgoingMedia): Boolean {
@@ -53,7 +64,7 @@ data class IncomingTextOnly(
   override val conversationMessage: ConversationMessage
 ) : ConversationMessageElement, MappingModel<IncomingTextOnly> {
   override fun areItemsTheSame(newItem: IncomingTextOnly): Boolean {
-    return conversationMessage.messageRecord.id == newItem.conversationMessage.messageRecord.id
+    return isSameMessageAs(newItem)
   }
 
   override fun areContentsTheSame(newItem: IncomingTextOnly): Boolean {
@@ -65,7 +76,7 @@ data class IncomingMedia(
   override val conversationMessage: ConversationMessage
 ) : ConversationMessageElement, MappingModel<IncomingMedia> {
   override fun areItemsTheSame(newItem: IncomingMedia): Boolean {
-    return conversationMessage.messageRecord.id == newItem.conversationMessage.messageRecord.id
+    return isSameMessageAs(newItem)
   }
 
   override fun areContentsTheSame(newItem: IncomingMedia): Boolean {
