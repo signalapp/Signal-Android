@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -67,5 +68,11 @@ class ScheduledMessagesRepository {
 
   fun rescheduleMessage(threadId: Long, messageId: Long, scheduleTime: Long) {
     SignalDatabase.messages.rescheduleMessage(threadId, messageId, scheduleTime)
+  }
+
+  fun deleteScheduledMessage(messageId: Long) {
+    SignalExecutors.BOUNDED_IO.execute {
+      SignalDatabase.messages.deleteScheduledMessage(messageId)
+    }
   }
 }

@@ -10,6 +10,7 @@ interface ConversationBottomSheetCallback {
   fun getConversationAdapterListener(): ConversationAdapter.ItemClickListener
   fun jumpToMessage(messageRecord: MessageRecord)
   fun unpin(conversationMessage: ConversationMessage)
+  fun edit(conversationMessage: ConversationMessage)
   fun copy(conversationMessage: ConversationMessage)
   fun delete(conversationMessage: ConversationMessage)
   fun save(conversationMessage: ConversationMessage)
