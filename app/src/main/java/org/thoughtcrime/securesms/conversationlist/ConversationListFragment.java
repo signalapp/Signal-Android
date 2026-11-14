@@ -1670,7 +1670,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }
 
     if (oldIndex < newIndex) {
-      smoothScroller.setTargetPosition(Math.min(newIndex + 1, viewModel.getFolders().size()));
+      smoothScroller.setTargetPosition(Math.min(newIndex + 1, viewModel.getFolders().size() - 1));
     } else {
       smoothScroller.setTargetPosition(Math.max(newIndex - 1, 0));
     }
