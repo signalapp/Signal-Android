@@ -182,6 +182,8 @@ class ConversationViewModel(
   val isPushAvailable: Boolean
     get() = recipientSnapshot?.isRegistered == true && Recipient.self().isRegistered
 
+  internal var pendingInvisibleInkDraft: PendingInvisibleInkDraft? = null
+
   val wallpaper: Flow<ChatWallpaper?> = recipient.asFlow().map { it.wallpaper }.distinctUntilChanged()
 
   val wallpaperSnapshot: ChatWallpaper?

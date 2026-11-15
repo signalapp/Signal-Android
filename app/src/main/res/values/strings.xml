@@ -3282,6 +3282,10 @@
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Send</string>
+    <!-- Accessibility label for opening the Send button's long-press menu -->
+    <string name="conversation_activity__send_options">Send options</string>
+    <!-- Send button menu option to hide the entire message until the recipient taps it -->
+    <string name="conversation_activity__send_with_invisible_ink">Send with Invisible Ink</string>
     <string name="conversation_activity__compose_description">Message composition</string>
     <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
     <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>

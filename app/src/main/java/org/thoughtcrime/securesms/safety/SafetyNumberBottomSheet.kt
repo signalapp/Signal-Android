@@ -138,12 +138,15 @@ object SafetyNumberBottomSheet {
    *
    * @param identityRecords The list of untrusted records from the thrown error
    * @param destination The location the user was trying to send content
+   * @param invisibleInkConfirmationId Identifies the Invisible Ink draft awaiting confirmation, when applicable
    */
   @JvmStatic
-  fun forIdentityRecordsAndDestination(identityRecords: List<IdentityRecord>, destination: ContactSearchKey): Factory {
+  @JvmOverloads
+  fun forIdentityRecordsAndDestination(identityRecords: List<IdentityRecord>, destination: ContactSearchKey, invisibleInkConfirmationId: String? = null): Factory {
     val args = SafetyNumberBottomSheetArgs(
-      identityRecords.map { it.recipientId },
-      listOf(destination).filterIsInstance<ContactSearchKey.RecipientSearchKey>().map { it.requireRecipientSearchKey() }
+      untrustedRecipients = identityRecords.map { it.recipientId },
+      destinations = listOf(destination).filterIsInstance<ContactSearchKey.RecipientSearchKey>().map { it.requireRecipientSearchKey() },
+      invisibleInkConfirmationId = invisibleInkConfirmationId
     )
 
     return SheetFactory(args)
@@ -199,6 +202,11 @@ object SafetyNumberBottomSheet {
      * Invoked when the user presses "send anyway" and the parent should automatically perform a resend.
      */
     fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>)
+
+    /**
+     * Invoked when the user confirms an Invisible Ink send.
+     */
+    fun onConfirmedSendWithInvisibleInk(confirmationId: String) = Unit
 
     /**
      * Invoked when the user presses "send anyway" and a message was automatically resent.

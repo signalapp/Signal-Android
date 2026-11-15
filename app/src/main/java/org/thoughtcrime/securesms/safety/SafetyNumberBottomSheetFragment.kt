@@ -42,7 +42,13 @@ class SafetyNumberBottomSheetFragment : ComposeBottomSheetDialogFragment() {
           is SafetyNumberBottomSheetEffect.TrustCompleted -> {
             when (effect.result.result) {
               TrustAndVerifyResult.Result.TRUST_AND_VERIFY -> {
-                findListener<SafetyNumberBottomSheet.Callbacks>()?.sendAnywayAfterSafetyNumberChangedInBottomSheet(effect.destinations)
+                val callbacks = findListener<SafetyNumberBottomSheet.Callbacks>()
+                val confirmationId = args.invisibleInkConfirmationId
+                if (confirmationId != null) {
+                  callbacks?.onConfirmedSendWithInvisibleInk(confirmationId)
+                } else {
+                  callbacks?.sendAnywayAfterSafetyNumberChangedInBottomSheet(effect.destinations)
+                }
               }
 
               TrustAndVerifyResult.Result.TRUST_VERIFY_AND_RESEND -> {

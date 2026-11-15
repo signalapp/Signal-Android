@@ -75,6 +75,7 @@ import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isInvisible
@@ -235,6 +236,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
 import org.thoughtcrime.securesms.conversation.ConversationSearchViewModel
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
+import org.thoughtcrime.securesms.conversation.InvisibleInk
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MenuState
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -424,6 +426,7 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 import java.util.Locale
 import java.util.Optional
+import java.util.UUID
 import java.util.concurrent.ExecutionException
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -1491,12 +1494,26 @@ class ConversationFragment :
   }
 
   override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<RecipientSearchKey>) {
+    sendAfterSafetyNumberChange { sendMessage() }
+  }
+
+  override fun onConfirmedSendWithInvisibleInk(confirmationId: String) {
+    val pending = viewModel.pendingInvisibleInkDraft ?: return
+    if (pending.confirmationId != confirmationId) {
+      return
+    }
+
+    viewModel.pendingInvisibleInkDraft = null
+    sendAfterSafetyNumberChange { sendInvisibleInkMessage(pending.draft) }
+  }
+
+  private fun sendAfterSafetyNumberChange(onComplete: () -> Unit) {
     Log.d(TAG, "onSendAnywayAfterSafetyNumberChange")
     viewModel
       .updateIdentityRecords()
       .subscribeBy(
         onError = { t -> Log.w(TAG, "Error sending", t) },
-        onComplete = { sendMessage() }
+        onComplete = onComplete
       )
       .addTo(disposables)
   }
@@ -1506,7 +1523,9 @@ class ConversationFragment :
     viewModel.updateIdentityRecordsInBackground()
   }
 
-  override fun onCanceled() = Unit
+  override fun onCanceled() {
+    viewModel.pendingInvisibleInkDraft = null
+  }
 
   override fun onCallNotificationSettingsDialogDismissed() {
     adapter.notifyDataSetChanged()
@@ -1773,6 +1792,9 @@ class ConversationFragment :
       setPopupContainer(binding.root)
       setOnClickListener(sendButtonListener)
       setScheduledSendListener(sendButtonListener)
+      ViewCompat.replaceAccessibilityAction(this, AccessibilityActionCompat.ACTION_LONG_CLICK, getString(R.string.conversation_activity__send_options)) { view, _ ->
+        view.performLongClick()
+      }
       isEnabled = true
     }
 
@@ -3009,6 +3031,36 @@ class ConversationFragment :
       )
   }
 
+  private fun getInvisibleInkDraft(): InvisibleInkDraft? {
+    if (!viewModel.isPushAvailable || inputPanel.inEditMessageMode() || attachmentManager.isAttachmentPresent || isVoiceRecordingInFlight || draftViewModel.voiceNoteDraft != null) {
+      return null
+    }
+
+    val text = composeText.editableText?.trim() ?: return null
+    val mentions = MentionAnnotation.getMentionsFromAnnotations(text)
+    val bodyRanges = getStyling(text)
+    if (!InvisibleInk.isEligible(text, mentions.size, bodyRanges)) {
+      return null
+    }
+
+    return InvisibleInkDraft(text.toString(), mentions, bodyRanges, inputPanel.quote.orNull())
+  }
+
+  private fun sendInvisibleInkMessage(draft: InvisibleInkDraft) {
+    val currentDraft = getInvisibleInkDraft() ?: return
+    if (!draft.matches(currentDraft)) {
+      return
+    }
+
+    sendMessage(
+      body = draft.body,
+      mentions = draft.mentions,
+      bodyRanges = draft.bodyRanges,
+      quote = draft.quote,
+      sendWithInvisibleInk = true
+    )
+  }
+
   private fun sendMessage(
     body: String = composeText.editableText.toString().trim(),
     mentions: List<Mention> = composeText.mentions,
@@ -3023,6 +3075,7 @@ class ConversationFragment :
     preUploadResults: List<MessageSender.PreUploadResult> = emptyList(),
     bypassPreSendSafetyNumberCheck: Boolean = false,
     isViewOnce: Boolean = false,
+    sendWithInvisibleInk: Boolean = false,
     afterSendComplete: () -> Unit = {}
   ) {
     if (scheduledDate != -1L && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), childFragmentManager, null, scheduledDate)) {
@@ -3055,11 +3108,19 @@ class ConversationFragment :
 
     if (viewModel.identityRecordsState.hasRecentSafetyNumberChange() && !bypassPreSendSafetyNumberCheck) {
       Log.i(TAG, "Unable to send due to SNC")
-      handleRecentSafetyNumberChange(viewModel.identityRecordsState.getRecentSafetyNumberChangeRecords())
+      val confirmationId = if (sendWithInvisibleInk) {
+        val id = UUID.randomUUID().toString()
+        viewModel.pendingInvisibleInkDraft = PendingInvisibleInkDraft(id, InvisibleInkDraft(body, mentions, bodyRanges, quote))
+        id
+      } else {
+        null
+      }
+      handleRecentSafetyNumberChange(viewModel.identityRecordsState.getRecentSafetyNumberChangeRecords(), confirmationId)
       return
     }
 
     val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
+    val outgoingLinkPreviews = linkPreviews ?: linkPreviewViewModel.onSend()
 
     val send: Completable = viewModel.sendMessage(
       metricId = metricId,
@@ -3069,9 +3130,9 @@ class ConversationFragment :
       messageToEdit = messageToEdit,
       quote = quote,
       mentions = mentions,
-      bodyRanges = bodyRanges,
+      bodyRanges = if (sendWithInvisibleInk) InvisibleInk.bodyRanges(body, bodyRanges) else bodyRanges,
       contacts = contacts,
-      linkPreviews = linkPreviews ?: linkPreviewViewModel.onSend(),
+      linkPreviews = if (sendWithInvisibleInk) emptyList() else outgoingLinkPreviews,
       preUploadResults = preUploadResults,
       isViewOnce = isViewOnce
     )
@@ -3123,10 +3184,10 @@ class ConversationFragment :
     }
   }
 
-  private fun handleRecentSafetyNumberChange(changedRecords: List<IdentityRecord>) {
+  private fun handleRecentSafetyNumberChange(changedRecords: List<IdentityRecord>, invisibleInkConfirmationId: String?) {
     val recipient = viewModel.recipientSnapshot ?: return
     SafetyNumberBottomSheet
-      .forIdentityRecordsAndDestination(changedRecords, RecipientSearchKey(recipient.id, false))
+      .forIdentityRecordsAndDestination(changedRecords, RecipientSearchKey(recipient.id, false), invisibleInkConfirmationId)
       .show(childFragmentManager)
   }
 
@@ -5474,7 +5535,13 @@ class ConversationFragment :
         inputPanel.onSaveRecordDraft()
       }
 
-      ScheduleMessageContextMenu.show(sendButton, (conversationContent as ViewGroup)) { time ->
+      val invisibleInkAction = getInvisibleInkDraft()?.let { draft ->
+        ActionItem(CoreUiR.drawable.symbol_eyes_24, getString(R.string.conversation_activity__send_with_invisible_ink)) {
+          sendInvisibleInkMessage(draft)
+        }
+      }
+
+      ScheduleMessageContextMenu.show(sendButton, conversationContent as ViewGroup, invisibleInkAction) { time ->
         if (time == -1L) {
           showSchedule(childFragmentManager)
         } else {

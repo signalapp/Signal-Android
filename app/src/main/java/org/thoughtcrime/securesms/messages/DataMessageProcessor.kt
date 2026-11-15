@@ -105,6 +105,7 @@ import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
+import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
@@ -120,7 +121,7 @@ import kotlin.time.Duration.Companion.seconds
 
 object DataMessageProcessor {
 
-  internal const val BODY_RANGE_PROCESSING_LIMIT = 250
+  internal const val BODY_RANGE_PROCESSING_LIMIT = SignalServiceMessageLimits.MAX_BODY_RANGE_COUNT
   private const val POLL_QUESTION_CHARACTER_LIMIT = 200
   private const val POLL_CHARACTER_LIMIT = 100
   private const val POLL_OPTIONS_LIMIT = 10

@@ -13,5 +13,6 @@ import org.thoughtcrime.securesms.database.model.MessageId
 data class SafetyNumberBottomSheetArgs(
   val untrustedRecipients: List<RecipientId>,
   val destinations: List<ContactSearchKey.RecipientSearchKey>,
-  val messageId: MessageId? = null
+  val messageId: MessageId? = null,
+  val invisibleInkConfirmationId: String? = null
 ) : Parcelable

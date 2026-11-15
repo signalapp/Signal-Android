@@ -20,7 +20,7 @@ class ScheduleMessageContextMenu {
     private val presetHours = arrayOf(8, 12, 18, 21)
 
     @JvmStatic
-    fun show(anchor: View, container: ViewGroup, action: (Long) -> Unit): SignalContextMenu {
+    fun show(anchor: View, container: ViewGroup, additionalAction: ActionItem?, action: (Long) -> Unit): SignalContextMenu {
       val currentTime = System.currentTimeMillis()
       val scheduledTimes = getNextScheduleTimes(currentTime)
       val actionItems = scheduledTimes.map {
@@ -39,7 +39,7 @@ class ScheduleMessageContextMenu {
         .offsetX(12.dp)
         .offsetY(12.dp)
         .preferredVerticalPosition(SignalContextMenu.VerticalPosition.ABOVE)
-        .show(actionItems)
+        .show(listOfNotNull(additionalAction) + actionItems)
     }
 
     @DrawableRes

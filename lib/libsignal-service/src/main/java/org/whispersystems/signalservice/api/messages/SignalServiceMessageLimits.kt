@@ -12,6 +12,9 @@ object SignalServiceMessageLimits {
   @JvmField
   val MAX_INLINE_BODY_SIZE_BYTES: Int = 2.kibiBytes.bytes.toInt()
 
+  /** The maximum number of mentions and formatting ranges to process in a message body. */
+  const val MAX_BODY_RANGE_COUNT: Int = 250
+
   /** The maximum number of bars we'll accept in a sender-provided audio wave form. Each bar is one byte. */
   const val MAX_AUDIO_WAVEFORM_BAR_COUNT: Int = 100
 
