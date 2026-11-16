@@ -395,6 +395,13 @@ fun KeyboardSheetScaffold(
 
       // A gesture may already have carried it off screen; hold that until the hide completes.
       handingOverFromSystemKeyboard = false
+
+      // An expanded sheet comes down to where the system keyboard is expected first, so the content
+      // above it eases into place rather than dropping there.
+      if (controller.awaitingSystemKeyboard && sheetState.offset < sheetState.anchors.positionOf(SheetAnchor.PartiallyExpanded)) {
+        sheetState.animateTo(SheetAnchor.PartiallyExpanded, SHEET_MOTION)
+      }
+
       sheetState.animateTo(SheetAnchor.Hidden, SHEET_HIDE_MOTION)
       backProgress.snapTo(0f)
       visibleKey = null
@@ -479,7 +486,9 @@ fun KeyboardSheetScaffold(
   val claimedBottomPx = {
     if (activeKey == null && systemKeyboardVisible && imeInsetMissing()) {
       imeTargetBottomPx()
-    } else if (systemKeyboardTakingOverSpace || handingOverFromSystemKeyboard) {
+    } else if (systemKeyboardTakingOverSpace) {
+      maxOf(heightPx, visibleSheetHeightPx())
+    } else if (handingOverFromSystemKeyboard) {
       heightPx
     } else if (activeKey != null || visibleKey != null) {
       // Tracks the sheet rather than its resting height, so content rides along with a drag.
