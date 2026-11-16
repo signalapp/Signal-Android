@@ -18,6 +18,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberDecoratedNavEntries
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -56,7 +57,7 @@ class ListPaneChromeTest {
     composeTestRule.mainClock.advanceTimeBy(350)
 
     update { backStack.clear(); backStack += TestListKey.ROOT }
-    repeat(2) { composeTestRule.mainClock.advanceTimeByFrame() }
+    repeat(3) { composeTestRule.mainClock.advanceTimeByFrame() }
 
     assertEquals(1, chromeByList.getValue(TestListKey.PUSHED).size)
     assertEquals(original, chromeOf(TestListKey.ROOT))
@@ -65,6 +66,21 @@ class ListPaneChromeTest {
 
     assertEquals(emptyList<Int>(), chromeByList.getValue(TestListKey.PUSHED))
     assertEquals(original, chromeOf(TestListKey.ROOT))
+  }
+
+  @Test
+  fun `list keeps its chrome while animating out beneath a screen with no list`() {
+    setContent(TestListKey.ROOT)
+    val original = chromeOf(TestListKey.ROOT)
+
+    update { backStack += TestSubScreenKey(1, "settings") }
+    repeat(2) { composeTestRule.mainClock.advanceTimeByFrame() }
+
+    assertEquals(original, chromeOf(TestListKey.ROOT))
+
+    composeTestRule.mainClock.advanceTimeBy(1000)
+
+    assertEquals(emptyList<Int>(), chromeByList.getValue(TestListKey.ROOT))
   }
 
   private fun chromeOf(key: TestListKey): Int {
@@ -84,6 +100,7 @@ class ListPaneChromeTest {
     composeTestRule.setContent {
       val entries = rememberDecoratedNavEntries(
         backStack = backStack,
+        entryDecorators = listOf(rememberSaveableStateHolderNavEntryDecorator()),
         entryProvider = entryProvider {
           listEntry<TestListKey> { key ->
             val chromeId = LocalChromeId.current
@@ -94,6 +111,7 @@ class ListPaneChromeTest {
             Text("list $key")
           }
           detailEntry<TestDetailKey>(metadata = deferredEnterMetadata()) { Text("detail ${it.id}") }
+          detailEntry<TestSubScreenKey> { Text("sub screen ${it.id}") }
         }
       )
 

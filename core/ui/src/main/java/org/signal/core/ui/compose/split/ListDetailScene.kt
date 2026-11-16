@@ -28,8 +28,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -213,16 +216,29 @@ private fun Modifier.minContentWidth(minWidth: Dp): Modifier {
 
 /**
  * Renders [content] wrapped in the list pane chrome, if any has been provided.
+ *
+ * A list that has to hand the movable chrome to another list rebuilds [content] inside chrome of its own. That waits a
+ * frame, since the state [content] saved under its key is only released once the movable chrome has settled elsewhere.
  */
 @Composable
-internal fun ListPaneContent(content: @Composable () -> Unit) {
+internal fun ListPaneContent(contentKey: Any, content: @Composable () -> Unit) {
   val host = LocalListPaneChrome.current
   val isInTargetScene = LocalNavAnimatedContentScope.current.transition.targetState == EnterExitState.Visible
 
   when {
     host == null -> content()
-    isInTargetScene -> host.movable(content)
-    else -> host.chrome(content)
+    isInTargetScene || host.movableOwnerKey == null || host.movableOwnerKey == contentKey -> host.movable(content)
+    else -> {
+      var isReleased by remember { mutableStateOf(false) }
+
+      LaunchedEffect(Unit) {
+        isReleased = true
+      }
+
+      if (isReleased) {
+        host.chrome(content)
+      }
+    }
   }
 }
 
@@ -265,6 +281,21 @@ internal class SinglePaneScene(
  * sure that as we move between screens in either pane we are *only* animating that panes content and not the whole scene.
  */
 internal class ListDetailSceneStrategy(private val isSplitPane: Boolean) : SceneStrategy<NavKey> {
+
+  /**
+   * The list entry in the scene [calculateScene] builds for [entries], or null when that scene has no list.
+   */
+  fun listPaneEntry(entries: List<NavEntry<NavKey>>): NavEntry<NavKey>? {
+    val top = entries.lastOrNull() ?: return null
+
+    return when {
+      top.isFullScreen -> null
+      isSplitPane -> entries.lastOrNull { it.isListPane }
+      top.isListPane -> top
+      top.isDeferredEnter && entries.size > 1 -> entries[entries.size - 2].takeIf { it.isListPane }
+      else -> null
+    }
+  }
 
   override fun SceneStrategyScope<NavKey>.calculateScene(entries: List<NavEntry<NavKey>>): Scene<NavKey>? {
     val top = entries.lastOrNull() ?: return null

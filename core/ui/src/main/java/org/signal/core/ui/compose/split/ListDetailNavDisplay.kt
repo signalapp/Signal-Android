@@ -108,9 +108,13 @@ fun ListDetailNavDisplay(
     listPaneChrome?.let { chrome -> movableContentOf { content: @Composable () -> Unit -> chrome(content) } }
   }
 
-  val listPaneChromeHost = remember(listPaneChrome, movableListPaneChrome) {
+  val movableOwner = remember { ListPaneChromeOwner() }
+  sceneStrategy.listPaneEntry(entries)?.let { movableOwner.contentKey = it.contentKey }
+  val movableOwnerKey = movableOwner.contentKey
+
+  val listPaneChromeHost = remember(listPaneChrome, movableListPaneChrome, movableOwnerKey) {
     if (listPaneChrome != null && movableListPaneChrome != null) {
-      ListPaneChromeHost(chrome = listPaneChrome, movable = movableListPaneChrome)
+      ListPaneChromeHost(chrome = listPaneChrome, movable = movableListPaneChrome, movableOwnerKey = movableOwnerKey)
     } else {
       null
     }
@@ -121,7 +125,7 @@ fun ListDetailNavDisplay(
   val listPaneChromeDecorator = remember {
     NavEntryDecorator<NavKey> { entry ->
       if (entry.isListPane) {
-        ListPaneContent { entry.Content() }
+        ListPaneContent(contentKey = entry.contentKey) { entry.Content() }
       } else {
         entry.Content()
       }
@@ -158,4 +162,8 @@ fun ListDetailNavDisplay(
       modifier = modifier
     )
   }
+}
+
+private class ListPaneChromeOwner {
+  var contentKey: Any? = null
 }
