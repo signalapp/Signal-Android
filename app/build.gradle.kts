@@ -154,6 +154,9 @@ screenshotTests {
   imageDifferenceThreshold = 0.0001f
 }
 
+// Whether to ship translations as Play language splits.
+val languageSplits = true
+
 android {
   namespace = "org.thoughtcrime.securesms"
 
@@ -169,7 +172,7 @@ android {
 
   flavorDimensions += listOf("distribution", "environment")
 
-  android.bundle.language.enableSplit = false
+  android.bundle.language.enableSplit = languageSplits
 
   debugKeystorePropertiesProvider.get().takeIf { it.isNotEmpty() }?.let { properties ->
     signingConfigs.getByName("debug").apply {
@@ -299,6 +302,7 @@ android {
     buildConfigField("String", "GENERIC_SERVER_PUBLIC_PARAMS", "\"AeCO67P9mIv1yUHkdeZ9JF789GDbox61GvTqq3S4kYc1ADUWxWHQygU390tv1oRWt9WjkdZlU7mKkifF59ftjE+2ZlMmxns6I+ySiLpR8FEmfu+TGpVp3zYTjNV93obJJTyBCCsSHVETCyQRbKdCyb5TMa6LGrvcZaX0Q/VAavhuNA/m4kSiRMgSnYrUjGhVekdDnF+7xioo4wvFnxjIDh7uJQrYOWD6MloNGX7St5gbysTuQQ7i/HI38b9V8x8mKazuDSXxB//BKGZx/XHkK8cHX+QK1MPxYUVM1/CBI5oW\"")
     buildConfigField("String", "BACKUP_SERVER_PUBLIC_PARAMS", "\"AZwNSU55fsFCbgaxGRD11wO1juAs8Yr5GF8FPlGzzvdJJIKH5/4CC7ZJSOe3yL2vturVaRU2Cx0n751Vt8wkj1Y4pyiScu0/S10n647ipo+iq97JZQv+UOlwH8ThyNlGT5DfxXCwTqivxHuXvZpuezPgHk5Gxl5aC6xuNxOnwmFlmu4CeSgdhW8+Pp0vAJOQ1MsU2D0+/kzI+tU94nB3tybY/Ao1AcGW2q41uKQbnOJUWwmQaFT6s+xTISgzsg7CPox6oORGX8rnyk/9lic3DbGsUHctIVpMAl/ogJBb4aYC\"")
     buildConfigField("String[]", "LANGUAGES", "new String[]{ ${languagesForBuildConfigProvider.get()} }")
+    buildConfigField("boolean", "LANGUAGE_SPLITS", "$languageSplits")
     buildConfigField("int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode")
     buildConfigField("String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\"")
     buildConfigField("String", "GIPHY_API_KEY", "\"3o6ZsYH6U6Eri53TXy\"")
@@ -780,6 +784,7 @@ dependencies {
   }
   implementation(libs.google.play.services.maps)
   implementation(libs.google.play.services.auth)
+  implementation(libs.google.play.feature.delivery)
   implementation(libs.google.signin)
   implementation(libs.androidx.media)
   implementation(libs.bundles.media3)

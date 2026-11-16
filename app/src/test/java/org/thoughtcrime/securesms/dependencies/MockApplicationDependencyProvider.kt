@@ -11,6 +11,7 @@ import org.signal.donations.permits.DonationPermitsRepository
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.signal.locale.LanguageSplitRepository
 import org.signal.network.api.AccountApiV2
 import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
@@ -283,6 +284,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun providePinnedMessageManager(): PinnedMessageManager {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideLanguageSplitRepository(): LanguageSplitRepository {
     return mockk(relaxed = true)
   }
 

@@ -95,7 +95,7 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
   protected void onRun() throws Exception {
     Manifest manifest = downloadManifest();
 
-    Locale locale         = AppLocale.getResolvedLocale();
+    Locale locale         = AppLocale.getTargetLocale();
     String remoteLanguage = findMatchingLanguage(locale, manifest.getLanguages());
 
     if (manifest.getVersion() == SignalStore.emoji().getSearchVersion() &&

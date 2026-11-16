@@ -147,6 +147,73 @@ class AppearanceSettingsScreenTest {
   }
 
   @Test
+  fun `the language change dialog warns about the download when the language pack is missing`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.ConfirmLanguageChange("de", needsDownload = true)))
+
+    composeTestRule.onNodeWithText("Signal will download the language pack and then restart the app to apply the new language setting.").assertIsDisplayed()
+  }
+
+  @Test
+  fun `cancelling the language pack download emits DialogDismissed`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage))
+
+    composeTestRule.onNodeWithText("Downloading language pack…").assertIsDisplayed()
+    composeTestRule.onNodeWithText("Cancel").performClick()
+
+    assertThat(events).containsExactly(AppearanceSettingsEvent.DialogDismissed)
+  }
+
+  @Test
+  fun `dismissing the failed language pack download dialog emits DialogDismissed`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.RetryableError(errorCode = -6))))
+
+    composeTestRule.onNodeWithText("Couldn't download language pack (error -6). Check your connection and try again.").assertIsDisplayed()
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
+
+    assertThat(events).containsExactly(AppearanceSettingsEvent.DialogDismissed)
+  }
+
+  @Test
+  fun `retrying a failed language pack download emits LanguageDownloadRetried`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.Storage)))
+
+    composeTestRule.onNodeWithText("Couldn't download language pack. Free up space on your device and try again.").assertIsDisplayed()
+    composeTestRule.onNodeWithText("Try again").performClick()
+
+    assertThat(events).containsExactly(AppearanceSettingsEvent.LanguageDownloadRetried)
+  }
+
+  @Test
+  fun `a download Play refuses offers the website instead of a retry`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.PlayUnavailable)))
+
+    composeTestRule.onNodeWithText("Try again").assertDoesNotExist()
+    composeTestRule.onNodeWithText("Visit website").performClick()
+
+    assertThat(events).containsExactly(AppearanceSettingsEvent.LanguageUnavailableWebsiteClicked)
+  }
+
+  @Test
+  fun `a turned off Play Store offers its settings instead of the website`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.PlayStoreDisabled)))
+
+    composeTestRule.onNodeWithText("Visit website").assertDoesNotExist()
+    composeTestRule.onNodeWithText("Open settings").performClick()
+
+    assertThat(events).containsExactly(AppearanceSettingsEvent.PlayStoreSettingsClicked)
+  }
+
+  @Test
+  fun `a turned off Play Services offers its settings instead of the website`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.PlayServicesDisabled)))
+
+    composeTestRule.onNodeWithText("Visit website").assertDoesNotExist()
+    composeTestRule.onNodeWithText("Open settings").performClick()
+
+    assertThat(events).containsExactly(AppearanceSettingsEvent.PlayServicesSettingsClicked)
+  }
+
+  @Test
   fun `picking a size in the navigation bar size dialog emits NavigationBarSizeSelected`() {
     setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.NavigationBarSize(isCompact = false)))
 

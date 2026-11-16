@@ -11,6 +11,7 @@ import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
+import com.google.android.play.core.splitinstall.model.SplitInstallErrorCode
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
@@ -20,6 +21,8 @@ import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestScope
@@ -35,9 +38,12 @@ import org.signal.appsettings.appearance.AppearanceSettingsAction
 import org.signal.appsettings.appearance.AppearanceSettingsEvent
 import org.signal.appsettings.appearance.AppearanceSettingsState
 import org.signal.appsettings.appearance.AppearanceSettingsState.Dialog
+import org.signal.appsettings.appearance.AppearanceSettingsState.LanguageDownloadFailure
 import org.signal.appsettings.appearance.AppearanceSettingsState.Theme
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.locale.LanguageAvailability
+import org.signal.locale.LanguageInstallStatus
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -61,6 +67,8 @@ class AppearanceSettingsViewModelTest {
     every { AppearanceSettingsRepository.isCompactNavigationBar() } returns false
     every { AppearanceSettingsRepository.isSystemThemeAvailable() } returns true
     every { AppearanceSettingsRepository.isAppIconSupported() } returns true
+    every { AppearanceSettingsRepository.getLanguageAvailability(any()) } returns LanguageAvailability.Installed
+    every { AppearanceSettingsRepository.installLanguage(any()) } returns flowOf(LanguageInstallStatus.Installed)
     every { AppearanceSettingsRepository.applyLanguage(any()) } just Runs
     every { AppearanceSettingsRepository.setTheme(any()) } just Runs
     every { AppearanceSettingsRepository.setMessageFontSize(any()) } just Runs
@@ -126,6 +134,267 @@ class AppearanceSettingsViewModelTest {
     verify { AppearanceSettingsRepository.applyLanguage("de") }
     assertThat(viewModel.state.value.language).isEqualTo("de")
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `LanguageChangeConfirmed asks the installer for an installed language before applying it`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.installLanguage("de") } returns flowOf(LanguageInstallStatus.Installed)
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+
+    verify { AppearanceSettingsRepository.installLanguage("de") }
+    verify { AppearanceSettingsRepository.applyLanguage("de") }
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `an installed language shows the download dialog if Play downloads it after all`() = runTest(testDispatcher) {
+    val installStates = MutableSharedFlow<LanguageInstallStatus>()
+    every { AppearanceSettingsRepository.installLanguage("de") } returns installStates
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+
+    installStates.emit(LanguageInstallStatus.Downloading)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage)
+    verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
+
+    installStates.emit(LanguageInstallStatus.Installed)
+    verify { AppearanceSettingsRepository.applyLanguage("de") }
+  }
+
+  @Test
+  fun `LanguageSelected warns about the download when the language pack is missing`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.NeedsDownload
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmLanguageChange("de", needsDownload = true))
+    verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
+  }
+
+  @Test
+  fun `LanguageChangeConfirmed downloads a missing language pack before applying it`() = runTest(testDispatcher) {
+    val installStates = MutableSharedFlow<LanguageInstallStatus>()
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.NeedsDownload
+    every { AppearanceSettingsRepository.installLanguage("de") } returns installStates
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage)
+    verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
+
+    installStates.emit(LanguageInstallStatus.Downloading)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage)
+
+    installStates.emit(LanguageInstallStatus.Installed)
+    verify { AppearanceSettingsRepository.applyLanguage("de") }
+    assertThat(viewModel.state.value.language).isEqualTo("de")
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `a failed language pack download shows an error instead of applying the language`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.NeedsDownload
+    every { AppearanceSettingsRepository.installLanguage("de") } returns flowOf(LanguageInstallStatus.Failed(SplitInstallErrorCode.NETWORK_ERROR))
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.LanguageDownloadFailed("de", LanguageDownloadFailure.RetryableError(SplitInstallErrorCode.NETWORK_ERROR)))
+    assertThat(viewModel.state.value.language).isEqualTo("zz")
+    verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
+  }
+
+  @Test
+  fun `LanguageDownloadRetried downloads the same language pack again`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.NeedsDownload
+    every { AppearanceSettingsRepository.installLanguage("de") } returnsMany listOf(
+      flowOf(LanguageInstallStatus.Failed(SplitInstallErrorCode.INSUFFICIENT_STORAGE)),
+      flowOf(LanguageInstallStatus.Installed)
+    )
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.LanguageDownloadFailed("de", LanguageDownloadFailure.Storage))
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageDownloadRetried)
+
+    verify(exactly = 2) { AppearanceSettingsRepository.installLanguage("de") }
+    verify { AppearanceSettingsRepository.applyLanguage("de") }
+  }
+
+  @Test
+  fun `LanguageDownloadRetried does nothing without a failed download`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageDownloadRetried)
+
+    verify(exactly = 0) { AppearanceSettingsRepository.installLanguage(any()) }
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `a download that needs Play's confirmation asks the host to show it and keeps waiting`() = runTest(testDispatcher) {
+    val installStates = MutableSharedFlow<LanguageInstallStatus>()
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.NeedsDownload
+    every { AppearanceSettingsRepository.installLanguage("de") } returns installStates
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+    installStates.emit(LanguageInstallStatus.NeedsPlayConfirmation(sessionId = 7))
+
+    assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.ConfirmLanguageDownload(sessionId = 7)))
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage)
+
+    installStates.emit(LanguageInstallStatus.Installed)
+    verify { AppearanceSettingsRepository.applyLanguage("de") }
+  }
+
+  @Test
+  fun `declining Play's confirmation stops the language pack download`() = runTest(testDispatcher) {
+    val installStates = MutableSharedFlow<LanguageInstallStatus>()
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.NeedsDownload
+    every { AppearanceSettingsRepository.installLanguage("de") } returns installStates
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+    installStates.emit(LanguageInstallStatus.NeedsPlayConfirmation(sessionId = 7))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageDownloadConfirmationDeclined)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(installStates.subscriptionCount.value).isEqualTo(0)
+    verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
+  }
+
+  @Test
+  fun `a cancelled language pack download closes the dialog`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.NeedsDownload
+    every { AppearanceSettingsRepository.installLanguage("de") } returns flowOf(LanguageInstallStatus.Cancelled)
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
+  }
+
+  @Test
+  fun `DialogDismissed stops a language pack download`() = runTest(testDispatcher) {
+    val installStates = MutableSharedFlow<LanguageInstallStatus>()
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.NeedsDownload
+    every { AppearanceSettingsRepository.installLanguage("de") } returns installStates
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+    viewModel.onEvent(AppearanceSettingsEvent.DialogDismissed)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(installStates.subscriptionCount.value).isEqualTo(0)
+
+    installStates.emit(LanguageInstallStatus.Installed)
+    verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
+  }
+
+  @Test
+  fun `dismissing an unrelated dialog keeps a pending language request`() = runTest(testDispatcher) {
+    val installStates = MutableSharedFlow<LanguageInstallStatus>()
+    every { AppearanceSettingsRepository.installLanguage("de") } returns installStates
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
+    viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeClicked)
+    viewModel.onEvent(AppearanceSettingsEvent.DialogDismissed)
+
+    installStates.emit(LanguageInstallStatus.Installed)
+    verify { AppearanceSettingsRepository.applyLanguage("de") }
+  }
+
+  @Test
+  fun `LanguageSelected explains when the Play Store is missing instead of trying to download`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.PlayStoreMissing
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.LanguageDownloadFailed("de", LanguageDownloadFailure.PlayUnavailable))
+    verify(exactly = 0) { AppearanceSettingsRepository.installLanguage(any()) }
+  }
+
+  @Test
+  fun `LanguageSelected points to the Play Store settings when it is turned off`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.PlayStoreDisabled
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.LanguageDownloadFailed("de", LanguageDownloadFailure.PlayStoreDisabled))
+    verify(exactly = 0) { AppearanceSettingsRepository.installLanguage(any()) }
+  }
+
+  @Test
+  fun `PlayStoreSettingsClicked opens the Play Store settings and closes the dialog`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.PlayStoreDisabled
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.PlayStoreSettingsClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.OpenPlayStoreSettings))
+  }
+
+  @Test
+  fun `LanguageSelected points to the Play Services settings when it is turned off`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.PlayServicesDisabled
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.LanguageDownloadFailed("de", LanguageDownloadFailure.PlayServicesDisabled))
+    verify(exactly = 0) { AppearanceSettingsRepository.installLanguage(any()) }
+  }
+
+  @Test
+  fun `PlayServicesSettingsClicked opens the Play Services settings and closes the dialog`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.PlayServicesDisabled
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.PlayServicesSettingsClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.OpenPlayServicesSettings))
+  }
+
+  @Test
+  fun `LanguageUnavailableWebsiteClicked opens the APK download page and closes the dialog`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.getLanguageAvailability("de") } returns LanguageAvailability.PlayStoreMissing
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
+    viewModel.onEvent(AppearanceSettingsEvent.LanguageUnavailableWebsiteClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.OpenBrowserLink("https://signal.org/android/apk")))
   }
 
   @Test

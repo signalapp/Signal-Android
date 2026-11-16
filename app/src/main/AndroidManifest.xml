@@ -72,6 +72,11 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
+    <queries>
+        <!-- For checking whether Play Store is enabled. -->
+        <package android:name="com.android.vending" />
+    </queries>
+
     <application
         android:name=".ApplicationContext"
         android:allowBackup="true"

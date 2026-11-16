@@ -15,4 +15,16 @@ sealed interface AppearanceSettingsAction {
 
   /** The theme changed, so the activity's splash screen theme has to follow it. */
   data class ApplySplashScreenTheme(val theme: AppearanceSettingsState.Theme) : AppearanceSettingsAction
+
+  /** Opens [url] in the browser. */
+  data class OpenBrowserLink(val url: String) : AppearanceSettingsAction
+
+  /** Opens the system settings page of the Play Store app. */
+  data object OpenPlayStoreSettings : AppearanceSettingsAction
+
+  /** Opens the system settings page of the Play Services app. */
+  data object OpenPlayServicesSettings : AppearanceSettingsAction
+
+  /** Play wants the user to approve the language pack download; show its dialog for [sessionId]. */
+  data class ConfirmLanguageDownload(val sessionId: Int) : AppearanceSettingsAction
 }

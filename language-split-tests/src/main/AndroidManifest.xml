@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- The app under test is built in the same Gradle invocation as the instrumentation tests, so it carries .test_run. -->
+  <queries>
+    <package android:name="org.thoughtcrime.securesms.test_run" />
+  </queries>
+</manifest>

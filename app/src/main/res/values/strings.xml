@@ -1222,6 +1222,14 @@
         <item quantity="other">Cannot add members.</item>
     </plurals>
 
+    <!-- LanguagePackReadyBanner -->
+    <!-- Banner shown after a language finished downloading in the background. %1$s is the language's name written in that language, for example "Deutsch". -->
+    <string name="LanguagePackReadyBanner__body">The app language "%1$s" is ready to use. Restart Signal to switch to it.</string>
+    <!-- Button on the banner shown after a language finished downloading. Restarts the app so the language takes effect. -->
+    <string name="LanguagePackReadyBanner__restart">Restart</string>
+    <!-- Button on the banner shown after a language finished downloading. Hides the banner without restarting and applying the new language. -->
+    <string name="LanguagePackReadyBanner__not_now">Not now</string>
+
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">Leave group?</string>
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">You will no longer be able to send or receive messages in this group.</string>

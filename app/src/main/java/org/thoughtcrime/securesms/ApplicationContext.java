@@ -29,6 +29,7 @@ import androidx.annotation.WorkerThread;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.security.ProviderInstaller;
+import com.google.android.play.core.splitcompat.SplitCompat;
 
 import net.zetetic.database.Logger;
 
@@ -271,6 +272,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addPostRender(RestoreOptimizedMediaJob::enqueueIfNecessary)
               .addPostRender(() -> AppDependencies.getPinnedMessageManager().scheduleIfNecessary())
               .addPostRender(() -> AppDependencies.getUnreadReminderManager().scheduleIfNecessary())
+              .addPostRender(() -> AppDependencies.getLanguageSplitRepository().installMissingLanguagesIfNecessary(PlainTextKeyValueStore.getLanguage()))
               .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
@@ -668,8 +670,11 @@ public class ApplicationContext extends Application implements AppForegroundObse
   @Override
   protected void attachBaseContext(Context base) {
     PlainTextKeyValueStore.init(base, BuildConfig.VERSION_CODE);
-    AppLocale.initialize(base, BuildConfig.LANGUAGES, PlainTextKeyValueStore::getLanguage);
+    AppLocale.initialize(base, BuildConfig.LANGUAGES, BuildConfig.LANGUAGE_SPLITS, PlainTextKeyValueStore::getLanguage);
     super.attachBaseContext(base);
+    if (AppLocale.isSplitInstall()) {
+      SplitCompat.install(this);
+    }
   }
 
   @Override

@@ -6,8 +6,13 @@
 package org.thoughtcrime.securesms.components.settings.app.appearance
 
 import android.os.Build
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import kotlinx.coroutines.flow.Flow
 import org.signal.appsettings.appearance.AppearanceSettingsState
 import org.signal.core.util.AppUtil
+import org.signal.locale.LanguageAvailability
+import org.signal.locale.LanguageInstallStatus
 import org.signal.storage.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
@@ -21,6 +26,14 @@ import org.thoughtcrime.securesms.util.DynamicTheme
 object AppearanceSettingsRepository {
 
   fun getLanguage(): String = PlainTextKeyValueStore.language
+
+  fun getLanguageAvailability(language: String): LanguageAvailability = AppDependencies.languageSplitRepository.availability(language)
+
+  fun installLanguage(language: String): Flow<LanguageInstallStatus> = AppDependencies.languageSplitRepository.install(language)
+
+  fun confirmLanguageDownload(sessionId: Int, launcher: ActivityResultLauncher<IntentSenderRequest>) {
+    AppDependencies.languageSplitRepository.confirm(sessionId, launcher)
+  }
 
   /** Stores the new language and restarts the app so it takes effect. */
   fun applyLanguage(language: String) {
@@ -50,6 +63,14 @@ object AppearanceSettingsRepository {
   fun isSystemThemeAvailable(): Boolean = DynamicTheme.systemThemeAvailable()
 
   fun isAppIconSupported(): Boolean = Build.VERSION.SDK_INT >= 26
+}
+
+fun LanguageInstallStatus.Failed.toLanguageDownloadFailure(): AppearanceSettingsState.LanguageDownloadFailure {
+  return when {
+    isStorageFull -> AppearanceSettingsState.LanguageDownloadFailure.Storage
+    isPermanent -> AppearanceSettingsState.LanguageDownloadFailure.PlayUnavailable
+    else -> AppearanceSettingsState.LanguageDownloadFailure.RetryableError(playErrorCode)
+  }
 }
 
 fun SettingsValues.Theme.toAppearanceTheme(): AppearanceSettingsState.Theme {

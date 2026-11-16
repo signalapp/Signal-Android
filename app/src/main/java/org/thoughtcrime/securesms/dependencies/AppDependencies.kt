@@ -19,6 +19,7 @@ import org.signal.glide.SignalGlideDependencies
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.signal.locale.LanguageSplitRepository
 import org.signal.mediakeyboard.MediaKeyboardDependencies
 import org.signal.mediasend.MediaSendDependencies
 import org.signal.mediaviewer.MediaViewerDependencies
@@ -267,6 +268,11 @@ object AppDependencies {
   @JvmStatic
   val pinnedMessageManager: PinnedMessageManager by lazy {
     provider.providePinnedMessageManager()
+  }
+
+  @JvmStatic
+  val languageSplitRepository: LanguageSplitRepository by lazy {
+    provider.provideLanguageSplitRepository()
   }
 
   @JvmStatic
@@ -559,6 +565,7 @@ object AppDependencies {
     fun provideOkHttpClient(): OkHttpClient
     fun provideScheduledMessageManager(): ScheduledMessageManager
     fun providePinnedMessageManager(): PinnedMessageManager
+    fun provideLanguageSplitRepository(): LanguageSplitRepository
     fun provideUnreadReminderManager(): UnreadReminderManager
     fun provideLibsignalNetwork(config: SignalServiceConfiguration, proxyState: NetworkProxyState): Network
     fun provideBillingApi(): BillingApi

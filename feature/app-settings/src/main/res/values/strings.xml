@@ -440,8 +440,31 @@
     <string name="preferences_normal">Normal</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Compact</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+
+    <!-- AppearanceSettingsScreen -->
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user's new language setting.  -->
     <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <!-- Dialog message body shown when selecting a language that hasn't been downloaded yet, notifying the user that a download will happen and then restart. -->
+    <string name="preferences_language_change_download_confirmation_message">Signal will download the language pack and then restart the app to apply the new language setting.</string>
+    <!-- Dialog message shown while a language pack is being downloaded after the user picks a language. -->
+    <string name="preferences_language_change_downloading_message">Downloading language pack…</string>
+    <!-- Dialog message shown when downloading a language pack fails for a reason that trying again may fix. %1$d is Google Play's numeric error code, for example -6, shown so the user can report it. -->
+    <string name="preferences_language_change_download_failed_message">Couldn\'t download language pack (error %1$d). Check your connection and try again.</string>
+    <!-- Dialog message shown when downloading a language pack fails because the device is out of storage. -->
+    <string name="preferences_language_change_download_failed_storage_message">Couldn\'t download language pack. Free up space on your device and try again.</string>
+    <!-- Dialog message shown when a language pack can't be downloaded because the Google Play Store or Google Play services app is missing, or Google Play didn't install this copy of Signal. Directs the user to download a universal build with full language support from signal.org. "Google Play" is a product name and "signal.org" is a web address; do not translate either. -->
+    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play can\'t download language packs for this copy of Signal. Download an APK from signal.org to use all supported languages.</string>
+    <!-- Dialog message shown when a language pack can't be downloaded because the user turned off the Google Play Store app in system settings. "Google Play" is a product name; do not translate it. -->
+    <string name="preferences_language_change_download_failed_play_disabled_message">Language packs are downloaded through Google Play, which is turned off on this device. Enable it in settings to download this language.</string>
+    <!-- Dialog message shown when a language pack can't be downloaded because the user turned off the Google Play services app in system settings. "Google Play" is a product name; do not translate it. -->
+    <string name="preferences_language_change_download_failed_play_services_disabled_message">Language packs are downloaded through Google Play services, which is turned off on this device. Enable it in settings to download this language.</string>
+    <!-- Positive button label on the language pack download failure dialog when the Google Play Store or Google Play services app is turned off. Opens that app's page in system settings, where it can be turned on. -->
+    <string name="preferences_language_unavailable_open_settings">Open settings</string>
+    <!-- Positive button label on the language pack download failure dialog. Starts the download again. -->
+    <string name="preferences_language_change_download_retry">Try again</string>
+    <!-- Positive button label on the language pack download failure dialog when Google Play cannot download the pack. Opens signal.org/android/apk in a browser. -->
+    <string name="preferences_language_unavailable_visit_website">Visit website</string>
+
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Phone number</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->

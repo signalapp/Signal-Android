@@ -29,6 +29,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.ServerPublicParams;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
+import org.signal.locale.LanguageSplitRepository;
 import org.signal.network.api.AccountApiV2;
 import org.signal.network.api.ArchiveApiV2;
 import org.signal.network.api.AttachmentApi;
@@ -369,6 +370,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull PinnedMessageManager providePinnedMessageManager() {
     return new PinnedMessageManager(context);
+  }
+
+  @Override
+  public @NonNull LanguageSplitRepository provideLanguageSplitRepository() {
+    return new LanguageSplitRepository(context, BuildConfig.LANGUAGE_SPLITS);
   }
 
   @Override

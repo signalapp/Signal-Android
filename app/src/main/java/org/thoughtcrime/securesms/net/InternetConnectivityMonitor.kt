@@ -83,7 +83,7 @@ class InternetConnectivityMonitor(
      */
     private val NEW_NETWORK_BLOCKED_TIMEOUT = 500.milliseconds
 
-    /** How long an online state must survive before we report it, so a burst of per-network callbacks can't read as online mid-flight. Offline is reported immediately. */
+    /** How long an online state must survive before we report it, so a burst of per-network callbacks can't read as online mid-flight. Network is reported immediately. */
     private val ONLINE_SETTLE_TIMEOUT = 50.milliseconds
 
     /** How long proxy triggers must go quiet before we re-resolve, so a burst of network changes reads the settled system properties once instead of mid-transition. */

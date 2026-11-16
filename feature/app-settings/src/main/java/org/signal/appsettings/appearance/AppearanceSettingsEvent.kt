@@ -19,6 +19,21 @@ sealed interface AppearanceSettingsEvent {
   /** The user accepted restarting the app to apply the new language. */
   data object LanguageChangeConfirmed : AppearanceSettingsEvent
 
+  /** The user asked to visit the website from a dialog explaining that this copy of Signal cannot get the chosen language. */
+  data object LanguageUnavailableWebsiteClicked : AppearanceSettingsEvent
+
+  /** The user asked to open the Play Store's system settings to turn it back on. */
+  data object PlayStoreSettingsClicked : AppearanceSettingsEvent
+
+  /** The user asked to open Play Services' system settings to turn it back on. */
+  data object PlayServicesSettingsClicked : AppearanceSettingsEvent
+
+  /** Play's confirmation of the language pack download closed without the user accepting it. */
+  data object LanguageDownloadConfirmationDeclined : AppearanceSettingsEvent
+
+  /** The user asked to download the language pack again after a failure. */
+  data object LanguageDownloadRetried : AppearanceSettingsEvent
+
   /** The user picked a theme from the theme list. */
   data class ThemeSelected(val theme: AppearanceSettingsState.Theme) : AppearanceSettingsEvent
 

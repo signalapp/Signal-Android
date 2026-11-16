@@ -12,6 +12,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
@@ -26,7 +27,7 @@ public final class LocaleParserTest {
   @Test
   public void findBestMatchingLocale_all_supported_languages_can_be_resolved() {
     for (String lang : SUPPORTED) {
-      Locale locale = LocaleParser.findBestMatchingLocale(LanguageString.parseLocale(lang), getSystemLocales(), SUPPORTED);
+      Locale locale = LocaleParser.findBestMatchingLocale(LanguageString.parseLocale(lang), getSystemLocales(), SUPPORTED, null);
       assertEquals(lang, locale.toString());
     }
   }
@@ -35,14 +36,27 @@ public final class LocaleParserTest {
   @Config(qualifiers = "fr")
   public void findBestMatchingLocale_an_unsupported_language_defaults_to_device_value_which_is_supported_directly() {
     String unsupportedLanguage = getUnsupportedLanguage();
-    assertEquals(Locale.FRENCH, LocaleParser.findBestMatchingLocale(LanguageString.parseLocale(unsupportedLanguage), getSystemLocales(), SUPPORTED));
+    assertEquals(Locale.FRENCH, LocaleParser.findBestMatchingLocale(LanguageString.parseLocale(unsupportedLanguage), getSystemLocales(), SUPPORTED, null));
   }
 
   @Test
   @Config(qualifiers = "en-rCA")
   public void findBestMatchingLocale_an_unsupported_language_defaults_to_device_value_which_is_not_supported_directly() {
     String unsupportedLanguage = getUnsupportedLanguage();
-    assertEquals(Locale.CANADA, LocaleParser.findBestMatchingLocale(LanguageString.parseLocale(unsupportedLanguage), getSystemLocales(), SUPPORTED));
+    assertEquals(Locale.CANADA, LocaleParser.findBestMatchingLocale(LanguageString.parseLocale(unsupportedLanguage), getSystemLocales(), SUPPORTED, null));
+  }
+
+  @Test
+  @Config(qualifiers = "fr")
+  public void findBestMatchingLocale_a_supported_language_without_its_split_falls_back_to_the_system_locale() {
+    assertEquals(Locale.FRENCH, LocaleParser.findBestMatchingLocale(Locale.GERMAN, getSystemLocales(), SUPPORTED, new InstalledLanguages(new HashSet<>(Arrays.asList("fr")))));
+    assertEquals(Locale.GERMAN, LocaleParser.findBestMatchingLocale(Locale.GERMAN, getSystemLocales(), SUPPORTED, new InstalledLanguages(new HashSet<>(Arrays.asList("fr", "de")))));
+  }
+
+  @Test
+  @Config(qualifiers = "fr")
+  public void findBestMatchingLocale_english_is_kept_without_a_split() {
+    assertEquals(Locale.ENGLISH, LocaleParser.findBestMatchingLocale(Locale.ENGLISH, getSystemLocales(), SUPPORTED, new InstalledLanguages(new HashSet<>(Arrays.asList("fr")))));
   }
 
   private static String getUnsupportedLanguage() {

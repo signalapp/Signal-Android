@@ -152,9 +152,15 @@ fun AppearanceSettingsScreen(
     when (val dialog = state.dialog) {
       AppearanceSettingsState.Dialog.None -> Unit
       is AppearanceSettingsState.Dialog.ConfirmLanguageChange -> {
+        val body = if (dialog.needsDownload) {
+          R.string.preferences_language_change_download_confirmation_message
+        } else {
+          R.string.preferences_language_change_confirmation_message
+        }
+
         Dialogs.SimpleAlertDialog(
           title = "",
-          body = stringResource(R.string.preferences_language_change_confirmation_message),
+          body = stringResource(body),
           confirm = stringResource(android.R.string.ok),
           dismiss = stringResource(android.R.string.cancel),
           onConfirm = { onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed) },
@@ -162,12 +168,54 @@ fun AppearanceSettingsScreen(
           onDismissRequest = { onEvent(AppearanceSettingsEvent.DialogDismissed) }
         )
       }
+      is AppearanceSettingsState.Dialog.DownloadingLanguage -> {
+        Dialogs.ProgressDialog(
+          message = stringResource(R.string.preferences_language_change_downloading_message),
+          dismiss = stringResource(android.R.string.cancel),
+          onDismiss = { onEvent(AppearanceSettingsEvent.DialogDismissed) },
+          indeterminate = true,
+          progress = { 0f }
+        )
+      }
+      is AppearanceSettingsState.Dialog.LanguageDownloadFailed -> LanguageDownloadFailedDialog(dialog = dialog, onEvent = onEvent)
       is AppearanceSettingsState.Dialog.NavigationBarSize -> NavigationBarSizeDialog(dialog = dialog, onEvent = onEvent)
     }
   }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun LanguageDownloadFailedDialog(
+  dialog: AppearanceSettingsState.Dialog.LanguageDownloadFailed,
+  onEvent: (AppearanceSettingsEvent) -> Unit
+) {
+  val body = when (val reason = dialog.reason) {
+    is AppearanceSettingsState.LanguageDownloadFailure.RetryableError -> stringResource(R.string.preferences_language_change_download_failed_message, reason.errorCode)
+    AppearanceSettingsState.LanguageDownloadFailure.Storage -> stringResource(R.string.preferences_language_change_download_failed_storage_message)
+    AppearanceSettingsState.LanguageDownloadFailure.PlayUnavailable -> stringResource(R.string.preferences_language_change_download_failed_play_unavailable_message)
+    AppearanceSettingsState.LanguageDownloadFailure.PlayStoreDisabled -> stringResource(R.string.preferences_language_change_download_failed_play_disabled_message)
+    AppearanceSettingsState.LanguageDownloadFailure.PlayServicesDisabled -> stringResource(R.string.preferences_language_change_download_failed_play_services_disabled_message)
+  }
+
+  val (confirm, confirmEvent) = when (dialog.reason) {
+    is AppearanceSettingsState.LanguageDownloadFailure.RetryableError,
+    AppearanceSettingsState.LanguageDownloadFailure.Storage -> R.string.preferences_language_change_download_retry to AppearanceSettingsEvent.LanguageDownloadRetried
+    AppearanceSettingsState.LanguageDownloadFailure.PlayStoreDisabled -> R.string.preferences_language_unavailable_open_settings to AppearanceSettingsEvent.PlayStoreSettingsClicked
+    AppearanceSettingsState.LanguageDownloadFailure.PlayServicesDisabled -> R.string.preferences_language_unavailable_open_settings to AppearanceSettingsEvent.PlayServicesSettingsClicked
+    AppearanceSettingsState.LanguageDownloadFailure.PlayUnavailable -> R.string.preferences_language_unavailable_visit_website to AppearanceSettingsEvent.LanguageUnavailableWebsiteClicked
+  }
+
+  Dialogs.SimpleAlertDialog(
+    title = "",
+    body = body,
+    confirm = stringResource(confirm),
+    dismiss = stringResource(android.R.string.cancel),
+    onConfirm = { onEvent(confirmEvent) },
+    onDeny = { onEvent(AppearanceSettingsEvent.DialogDismissed) },
+    onDismissRequest = { onEvent(AppearanceSettingsEvent.DialogDismissed) }
+  )
+}
+
 @Composable
 private fun NavigationBarSizeDialog(
   dialog: AppearanceSettingsState.Dialog.NavigationBarSize,
@@ -265,6 +313,66 @@ private fun AppearanceSettingsScreenPreview() {
 private fun AppearanceSettingsScreenConfirmLanguagePreview() {
   AppearanceSettingsScreen(
     state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.ConfirmLanguageChange("de")),
+    onEvent = {}
+  )
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun AppearanceSettingsScreenConfirmLanguageDownloadPreview() {
+  AppearanceSettingsScreen(
+    state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.ConfirmLanguageChange("de", needsDownload = true)),
+    onEvent = {}
+  )
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun AppearanceSettingsScreenDownloadingLanguagePreview() {
+  AppearanceSettingsScreen(
+    state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage),
+    onEvent = {}
+  )
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun AppearanceSettingsScreenLanguageDownloadFailedPreview() {
+  AppearanceSettingsScreen(
+    state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.RetryableError(errorCode = -6))),
+    onEvent = {}
+  )
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun AppearanceSettingsScreenLanguageDownloadPlayStoreDisabledPreview() {
+  AppearanceSettingsScreen(
+    state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.PlayStoreDisabled)),
+    onEvent = {}
+  )
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun AppearanceSettingsScreenLanguageDownloadPlayServicesDisabledPreview() {
+  AppearanceSettingsScreen(
+    state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.PlayServicesDisabled)),
+    onEvent = {}
+  )
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun AppearanceSettingsScreenLanguageDownloadPlayUnavailablePreview() {
+  AppearanceSettingsScreen(
+    state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.LanguageDownloadFailed("de", AppearanceSettingsState.LanguageDownloadFailure.PlayUnavailable)),
     onEvent = {}
   )
 }
