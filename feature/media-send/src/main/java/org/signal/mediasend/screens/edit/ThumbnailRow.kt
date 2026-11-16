@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.screens.edit
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
@@ -34,8 +35,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -52,8 +53,8 @@ import org.signal.core.ui.compose.list.rememberReorderBuffer
 import org.signal.core.ui.compose.list.rememberReorderableListState
 import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.util.ContentTypeUtil
-import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.screens.MediaSendMetrics
+import org.signal.mediasend.screens.shared.SelectedMediaThumbnailImage
 import org.signal.mediasend.test.TestTags
 import kotlin.math.abs
 import kotlin.math.floor
@@ -76,7 +77,8 @@ internal fun ThumbnailRow(
   pagerState: PagerState,
   onThumbnailClick: (Int) -> Unit = {},
   onReorder: (fromIndex: Int, toIndex: Int) -> Unit = { _, _ -> },
-  enabled: Boolean = true
+  enabled: Boolean = true,
+  thumbnailOverride: (Uri) -> ImageBitmap? = { null }
 ) {
   val density = LocalDensity.current
   val scope = rememberCoroutineScope()
@@ -202,6 +204,7 @@ internal fun ThumbnailRow(
           ) {
             Thumbnail(
               media = media,
+              thumbnailOverride = thumbnailOverride(media.uri),
               modifier = Modifier
                 .padding(horizontal = padding)
                 .clickable(enabled = enabled) { onThumbnailClick(pageIndex) }
@@ -243,22 +246,14 @@ private fun DeleteBox(
 }
 
 @Composable
-private fun Thumbnail(media: Media, modifier: Modifier = Modifier) {
-  if (!LocalInspectionMode.current) {
-    GlideImage(
-      model = media.uri,
-      imageSize = MediaSendMetrics.SelectedMediaPreviewSize,
-      modifier = modifier
-        .size(MediaSendMetrics.SelectedMediaPreviewSize)
-        .clip(shape = MediaSendMetrics.SelectedMediaPreviewShape)
-    )
-  } else {
-    Box(
-      modifier = modifier
-        .size(MediaSendMetrics.SelectedMediaPreviewSize)
-        .background(color = Color.Gray, shape = MediaSendMetrics.SelectedMediaPreviewShape)
-    )
-  }
+private fun Thumbnail(media: Media, thumbnailOverride: ImageBitmap?, modifier: Modifier = Modifier) {
+  SelectedMediaThumbnailImage(
+    media = media,
+    thumbnailOverride = thumbnailOverride,
+    modifier = modifier
+      .size(MediaSendMetrics.SelectedMediaPreviewSize)
+      .clip(shape = MediaSendMetrics.SelectedMediaPreviewShape)
+  )
 }
 
 @DayNightPreviews
@@ -280,7 +275,8 @@ private fun ThumbnailRowPreview() {
 private fun ThumbnailPreview() {
   Previews.Preview {
     Thumbnail(
-      media = rememberPreviewMedia(1).first()
+      media = rememberPreviewMedia(1).first(),
+      thumbnailOverride = null
     )
   }
 }
@@ -291,7 +287,8 @@ private fun DeleteBoxPreview() {
   Previews.Preview {
     DeleteBox(enabled = true) {
       Thumbnail(
-        media = rememberPreviewMedia(1).first()
+        media = rememberPreviewMedia(1).first(),
+        thumbnailOverride = null
       )
     }
   }

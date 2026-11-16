@@ -119,7 +119,8 @@ internal fun MediaSendNavigation(
           MediaSelectScreen(
             state = state,
             onEvent = selectViewModel::onEvent,
-            selectionAdditions = selectViewModel.selectionAdditions
+            selectionAdditions = selectViewModel.selectionAdditions,
+            thumbnailOverride = viewModel.imageControllers::thumbnailOverride
           )
         }
 
@@ -139,7 +140,8 @@ internal fun MediaSendNavigation(
           MediaSelectScreen(
             state = state,
             onEvent = selectViewModel::onEvent,
-            selectionAdditions = selectViewModel.selectionAdditions
+            selectionAdditions = selectViewModel.selectionAdditions,
+            thumbnailOverride = viewModel.imageControllers::thumbnailOverride
           )
         }
 

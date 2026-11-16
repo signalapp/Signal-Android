@@ -7,14 +7,21 @@ package org.signal.mediasend.screens.edit
 
 import android.content.Context
 import android.graphics.Paint
+import android.graphics.Point
 import android.net.Uri
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
 import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.SelectableRenderer
@@ -22,12 +29,17 @@ import org.signal.imageeditor.core.TappableRenderer
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
+import org.signal.imageeditor.core.renderers.UriGlideRenderer
 import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.image.BrushWidthsState
 import org.signal.mediasend.screens.edit.image.FaceDetectionResult
 import org.signal.mediasend.screens.edit.image.HSVColorBarState
 import org.signal.mediasend.screens.edit.image.ImageEditorState
 import org.signal.mediasend.screens.edit.image.detectFaces
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Holds the editor state for a single image (modes, undo, selection, etc.).
@@ -45,13 +57,33 @@ internal class ImageController(
   companion object {
     /** Size of a new sticker, relative to the visible area of the image. */
     private const val STICKER_SCALE = 0.4f
+
+    /** Lets the model's own animations land before it is rendered for the rail. */
+    private val THUMBNAIL_SETTLE_DELAY = 250.milliseconds
+
+    /** How much longer than the rail's box a thumbnail may be, so a panorama is not rendered at its full length. */
+    private const val MAX_THUMBNAIL_ASPECT_RATIO = 4
   }
 
   val isUserInEdit: Boolean by derivedStateOf { mode.isEditing }
 
   val imageEditorState = ImageEditorState(editorModel).also {
-    it.onGestureCompleted = { drawSessionDirty = true }
+    it.onGestureCompleted = {
+      drawSessionDirty = true
+      committedEdits++
+    }
   }
+
+  /**
+   * The image as last committed, sized for the selected media rail, or null while it has no edits to show. Only ever
+   * the latest render, and only held in memory.
+   */
+  var thumbnailOverride: ImageBitmap? by mutableStateOf(null)
+    private set
+
+  /** Starts above [renderedEdits] for a model restored with edits, so it gets its thumbnail back. */
+  private var committedEdits: Int by mutableIntStateOf(if (editorModel.isChanged) 1 else 0)
+  private var renderedEdits: Int = 0
 
   var mode: Mode by mutableStateOf(Mode.NONE)
     private set
@@ -267,6 +299,10 @@ internal class ImageController(
       restingMode = newMode.asRestingMode
     }
 
+    if (mode.isEditing && !newMode.isEditing) {
+      committedEdits++
+    }
+
     mode = newMode
   }
 
@@ -436,6 +472,7 @@ internal class ImageController(
 
     editorModel.clearFaceRenderers()
     drawSessionDirty = true
+    committedEdits++
     imageEditorState.invalidate()
   }
 
@@ -450,6 +487,7 @@ internal class ImageController(
     cachedFaceDetection = result
     hasAppliedFaceMasks = true
     drawSessionDirty = true
+    committedEdits++
     imageEditorState.invalidate()
   }
 
@@ -747,6 +785,67 @@ internal class ImageController(
     initialDialScale = mainImage.localScaleX
   }
 
+  /**
+   * Keeps [thumbnailOverride] matching the committed edits for as long as the caller stays subscribed. Nothing is
+   * rendered mid-session or mid-gesture, so the rail only ever shows work the user has finished.
+   */
+  suspend fun keepThumbnailCurrent(context: Context, sizePx: Int) {
+    snapshotFlow {
+      val isSettled = !mode.isEditing && !imageEditorState.isGestureActive && isMainImageLoaded()
+      if (isSettled) committedEdits else null
+    }
+      .collectLatest { edits ->
+        if (edits == null || edits == renderedEdits) {
+          return@collectLatest
+        }
+
+        delay(THUMBNAIL_SETTLE_DELAY)
+
+        if (editorModel.isChanged) {
+          val rendered = renderThumbnail(context, sizePx)
+          if (rendered == null) {
+            return@collectLatest
+          }
+          thumbnailOverride = rendered
+        } else {
+          thumbnailOverride = null
+        }
+        renderedEdits = edits
+      }
+  }
+
+  private fun isMainImageLoaded(): Boolean {
+    // Reading the revision is what re-checks this once the image arrives.
+    imageEditorState.revision
+    val renderer = editorModel.mainImage?.renderer ?: return false
+    return renderer !is UriGlideRenderer || renderer.bitmap != null
+  }
+
+  /**
+   * Rendered on the calling thread: the model is not safe to read while it is being edited, and at this size the render
+   * is cheap. Bails without the main image, which a render would otherwise block to load.
+   */
+  private fun renderThumbnail(context: Context, sizePx: Int): ImageBitmap? {
+    if (!isMainImageLoaded()) {
+      return null
+    }
+
+    val output = editorModel.getOutputSizeMaxWidth(Int.MAX_VALUE)
+    val shortSide = min(output.x, output.y)
+    val longSide = max(output.x, output.y)
+    if (shortSide <= 0) {
+      return null
+    }
+
+    val scale = min(sizePx / shortSide.toFloat(), sizePx * MAX_THUMBNAIL_ASPECT_RATIO / longSide.toFloat())
+    val size = Point(
+      (output.x * scale).roundToInt().coerceAtLeast(1),
+      (output.y * scale).roundToInt().coerceAtLeast(1)
+    )
+
+    return editorModel.render(context, size, imageEditorState.typefaceProvider).asImageBitmap()
+  }
+
   enum class Mode {
     NONE,
     ZOOM,
@@ -789,6 +888,10 @@ internal class ImageController(
 
     fun remove(uri: Uri) {
       controllers.remove(uri)
+    }
+
+    fun thumbnailOverride(uri: Uri): ImageBitmap? {
+      return controllers[uri]?.thumbnailOverride
     }
   }
 }

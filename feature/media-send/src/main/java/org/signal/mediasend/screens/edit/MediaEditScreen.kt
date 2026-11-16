@@ -441,6 +441,7 @@ internal fun MediaEditScreen(
               selectedMedia = state.selectedMedia,
               pagerState = pagerState,
               enabled = !isInteracting,
+              thumbnailOverride = imageControllers::thumbnailOverride,
               onThumbnailClick = { index ->
                 if (pagerState.currentPage == index) {
                   onEvent(MediaEditScreenEvents.RemoveMedia(state.selectedMedia[index]))
