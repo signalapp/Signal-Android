@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.graphics.drawable.Drawable
+import android.os.Build
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Easing
 import androidx.compose.animation.core.animateFloatAsState
@@ -15,11 +16,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.imeAnimationTarget
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -30,12 +34,16 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.lerp
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -46,12 +54,16 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.integerResource
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.lerp
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import org.signal.core.ui.compose.navigationBarsCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationItem
@@ -60,11 +72,13 @@ import org.thoughtcrime.securesms.conversation.ReactionScrubber
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
 
 const val REACTION_EMOJI_COUNT = 7
 
 private const val GROW_DURATION_MS = 200
+private val KEYBOARD_RETURN_TIMEOUT = 1.seconds
 private const val GROW_SCALE = 1.5f
 private val EMOJI_WIDTH = 32.dp
 private val EMOJI_HEIGHT = 48.dp
@@ -110,6 +124,7 @@ data class ReactionOverlaySelection(
 /**
  * The long press reaction overlay, drawn above the keyboard scaffold.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ChatReactionOverlay(
   controller: ChatReactionOverlayController,
@@ -145,6 +160,9 @@ fun ChatReactionOverlay(
   }
 
   val overlayTop = remember { mutableFloatStateOf(0f) }
+
+  val imeInsets = WindowInsets.ime
+  val imeTargetInsets = WindowInsets.imeAnimationTarget
 
   BoxWithConstraints(
     modifier = modifier
@@ -223,6 +241,10 @@ fun ChatReactionOverlay(
     val snapshotX = remember(selection) { Animatable(selection.bubbleX) }
     val snapshotY = remember(selection) { Animatable(selection.bubbleY) }
     val snapshotScale = remember(selection) { Animatable(ConversationItem.LONG_PRESS_SCALE_FACTOR) }
+    val returnProgress = remember(selection) { Animatable(0f) }
+    var returnFrom by remember(selection) { mutableStateOf<Offset?>(null) }
+    var returnFromScale by remember(selection) { mutableFloatStateOf(1f) }
+    var returnTo by remember(selection) { mutableStateOf(Offset(selection.bubbleX, selection.bubbleY)) }
 
     DisposableEffect(Unit) {
       onDispose { controller.onHideFinished() }
@@ -251,13 +273,23 @@ fun ChatReactionOverlay(
           }
         }
       } else {
-        val returned = selection.returnPosition()
+        returnFrom = Offset(snapshotX.value, snapshotY.value)
+        returnFromScale = snapshotScale.value
+        returnTo = selection.returnPosition() ?: returnTo
+
+        val updateReturnTo = { returnTo = selection.returnPosition() ?: returnTo }
 
         coroutineScope {
           launch { shade.animateTo(0f, tween(hideDuration, easing = Decelerate)) }
-          launch { snapshotX.animateTo(returned?.x ?: selection.bubbleX, tween(hideDuration, easing = Decelerate)) }
-          launch { snapshotY.animateTo(returned?.y ?: selection.bubbleY, tween(hideDuration, easing = Decelerate)) }
-          launch { snapshotScale.animateTo(1f, tween(hideDuration, easing = Decelerate)) }
+          launch {
+            if (controller.isKeyboardReturning && Build.VERSION.SDK_INT >= 30) {
+              withTimeoutOrNull(KEYBOARD_RETURN_TIMEOUT) {
+                followKeyboard(imeInsets, imeTargetInsets, density, returnProgress, updateReturnTo)
+              }
+            }
+
+            returnProgress.animateTo(1f, tween(hideDuration, easing = Decelerate)) { updateReturnTo() }
+          }
           launch { indicatorReveal.animateTo(0f, tween(hideDuration, easing = Decelerate)) }
           launch { stripReveal.animateTo(0f, tween(hideDuration, easing = Decelerate)) }
 
@@ -283,14 +315,21 @@ fun ChatReactionOverlay(
       bitmap = selection.snapshot,
       contentDescription = null,
       modifier = Modifier
-        .absoluteOffset { IntOffset(snapshotX.value.roundToInt(), snapshotY.value.roundToInt()) }
+        .absoluteOffset {
+          val from = returnFrom
+          val position = if (from != null) lerp(from, returnTo, returnProgress.value) else Offset(snapshotX.value, snapshotY.value)
+
+          IntOffset(position.x.roundToInt(), position.y.roundToInt())
+        }
         .size(
           width = with(density) { selection.snapshot.width.toDp() },
           height = with(density) { selection.snapshot.height.toDp() }
         )
         .graphicsLayer {
-          scaleX = snapshotScale.value
-          scaleY = snapshotScale.value
+          val scale = if (returnFrom != null) lerp(returnFromScale, 1f, returnProgress.value) else snapshotScale.value
+
+          scaleX = scale
+          scaleY = scale
         }
     )
 
@@ -345,6 +384,40 @@ fun ChatReactionOverlay(
           }
         )
       }
+    }
+  }
+}
+
+/**
+ * Drives [progress] by how far the system keyboard has come in, so the return lands as the keyboard
+ * does. Returns early, leaving the rest to the caller, if the keyboard goes away again.
+ */
+private suspend fun followKeyboard(
+  imeInsets: WindowInsets,
+  imeTargetInsets: WindowInsets,
+  density: Density,
+  progress: Animatable<Float, *>,
+  onFrame: () -> Unit
+) {
+  snapshotFlow { imeTargetInsets.getBottom(density) }.first { it > 0 }
+
+  while (true) {
+    withFrameNanos { }
+    onFrame()
+
+    val target = imeTargetInsets.getBottom(density)
+    if (target <= 0) {
+      return
+    }
+
+    val fraction = (imeInsets.getBottom(density).toFloat() / target).coerceIn(0f, 1f)
+    progress.snapTo(fraction)
+
+    if (fraction >= 1f) {
+      // The row is laid out for the final inset a frame after the inset reports it.
+      withFrameNanos { }
+      onFrame()
+      return
     }
   }
 }

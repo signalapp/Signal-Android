@@ -47,7 +47,7 @@ class ChatReactionOverlayController(
   private val onReactionSelected: (MessageRecord, String) -> Unit,
   private val onCustomReactionSelected: (MessageRecord, Boolean) -> Unit,
   private val onActionSelected: (ReactionAction) -> Unit,
-  private val onStartHide: (View?) -> Unit,
+  private val onStartHide: (View?) -> Boolean,
   private val onHidden: () -> Unit
 ) {
 
@@ -58,6 +58,10 @@ class ChatReactionOverlayController(
     private set
 
   var selectedIndex: Int by mutableIntStateOf(ReactionScrubber.NO_SELECTION)
+    private set
+
+  /** Whether the hide in progress brought the system keyboard back, which moves the row it returns to. */
+  var isKeyboardReturning: Boolean by mutableStateOf(false)
     private set
 
   /** Read during composition to size the placement, so it has to be observable. */
@@ -131,6 +135,7 @@ class ChatReactionOverlayController(
     this.menu = ConversationContextMenu(menuAnchor(), builtMenu.items)
 
     selectedIndex = ReactionScrubber.NO_SELECTION
+    isKeyboardReturning = false
 
     // Holds window coordinates from a view a re-entered conversation has already replaced.
     scrubber.geometry = ReactionScrubber.Geometry()
@@ -162,7 +167,7 @@ class ChatReactionOverlayController(
     scrubber.close()
     menu?.dismiss()
 
-    onStartHide(if (pendingAction == ReactionAction.VIEW_INFO) null else focusedView)
+    isKeyboardReturning = onStartHide(if (pendingAction == ReactionAction.VIEW_INFO) null else focusedView)
   }
 
   /**
@@ -186,6 +191,7 @@ class ChatReactionOverlayController(
     menu = null
     pendingAction = null
     selectedIndex = ReactionScrubber.NO_SELECTION
+    isKeyboardReturning = false
 
     onHidden()
 
@@ -311,7 +317,8 @@ class ChatReactionOverlayController(
 
 /** What the overlay reports back as it goes away, matching the pair the view code had. */
 interface ReactionOverlayHideListener {
-  fun startHide(focusedView: View?)
+  /** @return Whether the system keyboard was asked back. */
+  fun startHide(focusedView: View?): Boolean
 
   fun onHide()
 }
