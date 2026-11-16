@@ -113,12 +113,13 @@ typealias ListPaneChrome = @Composable (content: @Composable () -> Unit) -> Unit
 
 /**
  * The chrome for the list pane, in two forms. [movable] carries its state from one list to the next, and so can only be
- * placed once: it goes to the list in the scene being navigated to. A different list still on screen in the scene
- * being navigated away from gets its own [chrome] for as long as it animates out.
+ * placed once: it goes to the list in the scene being navigated to. A list animating out keeps it only if it has
+ * [movableOwnerKey], which is the last list to have been navigated to, and otherwise gets its own [chrome].
  */
 internal class ListPaneChromeHost(
   val chrome: ListPaneChrome,
-  val movable: ListPaneChrome
+  val movable: ListPaneChrome,
+  val movableOwnerKey: Any?
 )
 
 internal val LocalListPaneChrome = compositionLocalOf<ListPaneChromeHost?> { null }
