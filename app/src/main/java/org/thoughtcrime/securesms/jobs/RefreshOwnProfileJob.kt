@@ -413,7 +413,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
       val whoAmIResponse = AppDependencies.signalServiceAccountManager.getWhoAmI()
       val remoteUsernameHash = whoAmIResponse.usernameHash
-      val localUsernameHash = if (localUsername != null) Base64.encodeUrlSafeWithoutPadding(Username(localUsername).getHash()) else null
+      val localUsernameHash = if (localUsername != null) Base64.encodeUrlSafeWithoutPadding(Username(localUsername).getHash().serialize()) else null
 
       if (TextUtils.isEmpty(localUsernameHash) && TextUtils.isEmpty(remoteUsernameHash)) {
         Log.d(TAG, "Local and remote username hash are both empty. Considering validated.")

@@ -37,6 +37,7 @@ import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.kem.KEMPublicKey
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
+import org.signal.libsignal.usernames.UsernameHash
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.delete
@@ -418,7 +419,7 @@ class AccountApiV2(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
    * @return The hash of the reserved username. It is available for confirmation for 5 minutes. A [UsernameNotAvailableException] means none of the provided
    *   hashes were available.
    */
-  suspend fun reserveUsername(usernameHashes: List<ByteArray>): RequestResult<ByteArray, UsernameNotAvailableException> {
+  suspend fun reserveUsername(usernameHashes: List<UsernameHash>): RequestResult<UsernameHash, UsernameNotAvailableException> {
     return authWebSocket.runCatchingWithChatConnection { connection ->
       AuthUsernamesService(connection).reserveUsernameHash(usernameHashes)
     }
@@ -449,7 +450,7 @@ class AccountApiV2(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
     val body = SignalJson.encode(
       ConfirmUsernameRequestBody.serializer(),
       ConfirmUsernameRequestBody(
-        usernameHash = username.hash,
+        usernameHash = username.hash.serialize(),
         zkProof = proof,
         encryptedUsername = link.encryptedUsername
       )

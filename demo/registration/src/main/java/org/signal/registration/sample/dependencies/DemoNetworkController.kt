@@ -1020,7 +1020,7 @@ class DemoNetworkController(
       return@withContext RequestResult.NonSuccess(ReserveUsernameError.NicknameInvalid)
     }
 
-    val hashes: List<String> = candidates.map { Base64.encodeUrlSafeWithoutPadding(it.hash) }
+    val hashes: List<String> = candidates.map { Base64.encodeUrlSafeWithoutPadding(it.hash.serialize()) }
 
     try {
       val credentials = okhttp3.Credentials.basic(authUsername(aci), password)
@@ -1038,7 +1038,7 @@ class DemoNetworkController(
         when (response.code) {
           200 -> {
             val reservedHash = json.decodeFromString<ReserveUsernameResponseJson>(response.body.string()).usernameHash
-            val reserved = candidates.firstOrNull { Base64.encodeUrlSafeWithoutPadding(it.hash) == reservedHash }
+            val reserved = candidates.firstOrNull { Base64.encodeUrlSafeWithoutPadding(it.hash.serialize()) == reservedHash }
             if (reserved == null) {
               Log.w(TAG, "[reserveUsername] The reserved hash was not one of our candidates.")
               RequestResult.NonSuccess(ReserveUsernameError.NicknameInvalid)
@@ -1085,7 +1085,7 @@ class DemoNetworkController(
       val credentials = okhttp3.Credentials.basic(authUsername(aci), password)
       val baseUrl = serviceConfiguration.signalServiceUrls[0].url
       val requestJson = ConfirmUsernameRequestJson(
-        usernameHash = Base64.encodeUrlSafeWithoutPadding(username.hash),
+        usernameHash = Base64.encodeUrlSafeWithoutPadding(username.hash.serialize()),
         zkProof = Base64.encodeUrlSafeWithoutPadding(username.generateProof()),
         encryptedUsername = Base64.encodeUrlSafeWithoutPadding(link.encryptedUsername)
       )
