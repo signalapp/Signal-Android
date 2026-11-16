@@ -1867,13 +1867,14 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       val isPinned by lazy { getPinnedThreadIds().contains(threadId) }
       val shouldDelete by lazy { allowDeletion && !isPinned && !messages.containsStories(threadId) }
+      val clearSnippetWhenEmpty by lazy { isPinned || allowDeletion }
 
       if (!meaningfulMessages) {
         if (shouldDelete) {
           Log.d(TAG, "Deleting thread $threadId because it has no meaningful messages.")
           deleteConversation(threadId, syncThreadDelete = syncThreadDelete)
           return@withinTransaction true
-        } else if (!isPinned) {
+        } else if (!clearSnippetWhenEmpty) {
           return@withinTransaction false
         }
       }
@@ -1893,7 +1894,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         Log.w(TAG, "Failed to get a conversation snippet for thread $threadId")
         if (shouldDelete) {
           deleteConversation(threadId)
-        } else if (isPinned) {
+        } else if (clearSnippetWhenEmpty) {
+          Log.d(TAG, "Clearing snippet for thread $threadId because it has no meaningful messages but cannot be deleted.")
           updateThread(
             threadId = threadId,
             messageId = 0,
@@ -1914,7 +1916,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             messageExtras = null
           )
         }
-        return@withinTransaction true
+        return@withinTransaction shouldDelete
       }
 
       if (hasMoreRecentDraft(threadId, record.timestamp)) {
