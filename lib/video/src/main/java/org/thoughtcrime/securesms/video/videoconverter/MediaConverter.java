@@ -179,13 +179,23 @@ public final class MediaConverter {
      */
     @WorkerThread
     public long convert() throws EncodingException, IOException {
-        final Set<String> excludedDecoders = new HashSet<>();
+        final Set<String> excludedDecoders    = new HashSet<>();
+        boolean           toneMappingDisabled = false;
 
         while (true) {
             mCancelled = false;
             try {
-                return convertWithWatchdog(excludedDecoders);
+                return convertWithWatchdog(excludedDecoders, toneMappingDisabled);
             } catch (EncodingException e) {
+                if (!(e instanceof TranscodeAbortedException)
+                        && e.toneMapApplied
+                        && !toneMappingDisabled
+                        && isFrameWaitTimeout(e)) {
+                    Log.w(TAG, "Decoder " + e.decoderName + " accepted HDR tone-mapping but never rendered a frame"
+                            + ", retrying with tone-mapping disabled");
+                    toneMappingDisabled = true;
+                    continue;
+                }
                 if (!(e instanceof TranscodeAbortedException)
                         && e.decoderName != null
                         && isRetryableMidStreamFailure(e)
@@ -198,6 +208,20 @@ public final class MediaConverter {
                 throw e;
             }
         }
+    }
+
+    /**
+     * Whether the failure was a decoded frame never arriving on the surface (see {@link OutputSurface#awaitNewImage()}).
+     */
+    private static boolean isFrameWaitTimeout(final @NonNull EncodingException e) {
+        Throwable cause = e.getCause();
+        while (cause != null) {
+            if (cause instanceof TranscodingException && OutputSurface.FRAME_WAIT_TIMEOUT_MESSAGE.equals(cause.getMessage())) {
+                return true;
+            }
+            cause = cause.getCause();
+        }
+        return false;
     }
 
     /**
@@ -230,13 +254,13 @@ public final class MediaConverter {
     }
 
     /**
-     * Runs {@link #doConvert(Set)} on a worker thread so that a worker blocked in a native GL or
+     * Runs {@link #doConvert(Set, boolean)} on a worker thread so that a worker blocked in a native GL or
      * codec call can still be aborted. A stall or cancellation force-releases the codecs to unwind
      * the worker. If it stays blocked past the grace period it is abandoned, which is why it gets a
      * dedicated thread rather than a shared executor.
      */
-    private long convertWithWatchdog(final @NonNull Set<String> excludedDecoders) throws EncodingException, IOException {
-        final FutureTask<Long> task   = new FutureTask<>(() -> doConvert(excludedDecoders));
+    private long convertWithWatchdog(final @NonNull Set<String> excludedDecoders, final boolean toneMappingDisabled) throws EncodingException, IOException {
+        final FutureTask<Long> task   = new FutureTask<>(() -> doConvert(excludedDecoders, toneMappingDisabled));
         final Thread           worker = new Thread(task, "media-converter");
 
         mLastProgressTime          = System.currentTimeMillis();
@@ -355,7 +379,7 @@ public final class MediaConverter {
         return builder.toString();
     }
 
-    private long doConvert(final @NonNull Set<String> excludedDecoders) throws EncodingException, IOException {
+    private long doConvert(final @NonNull Set<String> excludedDecoders, final boolean toneMappingDisabled) throws EncodingException, IOException {
         // Exception that may be thrown during release.
         Exception           exception           = null;
         Muxer               muxer               = null;
@@ -369,7 +393,7 @@ public final class MediaConverter {
         try {
             muxer = mOutput.createMuxer();
 
-            videoTrackConverter        = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec, excludedDecoders);
+            videoTrackConverter        = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec, excludedDecoders, toneMappingDisabled);
             mActiveVideoTrackConverter = videoTrackConverter;
             audioTrackConverter = mSkipAudio ? null : AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate, mAllowAudioRemux && muxer.supportsAudioRemux());
 

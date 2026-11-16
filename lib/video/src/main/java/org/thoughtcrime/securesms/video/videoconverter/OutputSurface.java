@@ -49,6 +49,9 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final String TAG = "OutputSurface";
     private static final boolean VERBOSE = false;
 
+    /** Message of the {@link TranscodingException} thrown when a rendered decoder frame never arrives on the surface. */
+    static final String FRAME_WAIT_TIMEOUT_MESSAGE = "Surface frame wait timed out";
+
     private static final int EGL_OPENGL_ES2_BIT = 4;
 
     private EGL10 mEGL;
@@ -248,7 +251,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
                     mFrameSyncObject.wait(TIMEOUT_MS);
 
                     if (!mFrameAvailable && System.currentTimeMillis() > expireTime) {
-                        throw new TranscodingException("Surface frame wait timed out");
+                        throw new TranscodingException(FRAME_WAIT_TIMEOUT_MESSAGE);
                     }
                 } catch (InterruptedException ie) {
                     // shouldn't happen
