@@ -137,6 +137,33 @@ class MainNavigationViewModel(
   val hasDetailContent: StateFlow<Boolean> = navigator.hasDetail
 
   /**
+   * The thread id of the chat the main window is displaying, or null while it displays something else or holds back
+   * a chat it was reopened for. [isDisplayingConversation] answers the same question synchronously.
+   */
+  val displayedConversationThreadId: StateFlow<Long?> = combine(
+    navigator.isHoldingEnter,
+    navigator.currentRoot,
+    navigator.snapshotsOf(MainListRoute.Chats) { activeConversation?.conversationArgs?.threadId }
+  ) { isHoldingEnter, currentRoot, threadId ->
+    displayedThreadId(isHoldingEnter, currentRoot, threadId)
+  }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+  /**
+   * Whether the main window is displaying the chat for [threadId]. See [displayedConversationThreadId].
+   */
+  fun isDisplayingConversation(threadId: Long): Boolean {
+    return displayedThreadId(
+      isHoldingEnter = navigator.isHoldingEnter.value,
+      currentRoot = navigator.currentRoot.value,
+      threadId = navigator[MainListRoute.Chats].activeConversation?.conversationArgs?.threadId
+    ) == threadId
+  }
+
+  private fun displayedThreadId(isHoldingEnter: Boolean, currentRoot: MainListRoute, threadId: Long?): Long? {
+    return if (!isHoldingEnter && currentRoot == MainListRoute.Chats) threadId else null
+  }
+
+  /**
    * This is Rx because these are still accessed from Java.
    */
   private val internalTabClickEvents: MutableSharedFlow<MainListRoute> = MutableSharedFlow()

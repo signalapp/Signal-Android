@@ -38,6 +38,13 @@ val ListDetailBackStack.activeRecipientId: RecipientId?
   }
 
 /**
+ * The chat displayed by the detail stack, beneath any sub-screens stacked above it, or null when the detail stack
+ * shows no chat. Pushing a chat drops the detail above the list first, so there is never more than one.
+ */
+val ListDetailBackStack.activeConversation: MainDetailRoute.Conversation?
+  get() = takeLastWhile { it !is ListNavKey }.firstNotNullOfOrNull { it as? MainDetailRoute.Conversation }
+
+/**
  * The call whose content is displayed by the topmost entry that has one.
  */
 val ListDetailBackStack.activeCallId: CallLogRow.Id?

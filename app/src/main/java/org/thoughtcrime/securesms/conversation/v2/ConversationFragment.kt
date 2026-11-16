@@ -1129,7 +1129,7 @@ class ConversationFragment :
       FullscreenHelper(requireActivity()).showSystemUI()
     }
 
-    markReadHelper = MarkReadHelper(ConversationId.forConversation(args.threadId), requireContext(), viewLifecycleOwner, args.isIncognito)
+    markReadHelper = MarkReadHelper(ConversationId.forConversation(args.threadId), requireContext(), viewLifecycleOwner, args.isIncognito, ::isDisplayedByHost)
     markReadHelper.ignoreViewReveals()
 
     attachmentManager = AttachmentManager(requireContext(), conversationContent, AttachmentManagerListener())
@@ -1733,6 +1733,15 @@ class ConversationFragment :
 
     collectFlowOnViewLifecycle(mainNavigationViewModel.conversationJumps.filter { it.threadId == args.threadId }) {
       moveToPosition(it.position)
+    }
+
+    if (activity is MainActivity) {
+      collectFlowOnViewLifecycle(
+        mainNavigationViewModel.displayedConversationThreadId.filter { it == args.threadId },
+        Lifecycle.State.RESUMED
+      ) {
+        MarkReadHelper.getLatestTimestamp(adapter, layoutManager).ifPresent(markReadHelper::onViewsRevealed)
+      }
     }
 
     disposables += viewModel.titleViewParticipants
@@ -3979,6 +3988,11 @@ class ConversationFragment :
         }
       }, SCROLL_HEADER_CLOSE_DELAY)
     }
+  }
+
+  /** Whether the host is displaying this chat. Only [MainActivity] can resume a chat it isn't about to show. */
+  private fun isDisplayedByHost(): Boolean {
+    return activity !is MainActivity || mainNavigationViewModel.isDisplayingConversation(args.threadId)
   }
 
   private inner class ScrollListener : RecyclerView.OnScrollListener() {
