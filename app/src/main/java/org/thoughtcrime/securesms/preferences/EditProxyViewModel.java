@@ -45,10 +45,10 @@ public class EditProxyViewModel extends ViewModel {
 
   void onToggleProxy(boolean enabled, String text) {
     if (enabled) {
-      SignalProxy currentProxy = SignalStore.proxy().getProxy();
+      String currentHost = SignalStore.proxy().getProxyHost();
 
-      if (currentProxy != null && !Util.isEmpty(currentProxy.getHost())) {
-        SignalProxyUtil.enableProxy(currentProxy);
+      if (!Util.isEmpty(currentHost)) {
+        SignalProxyUtil.enableProxy(new SignalProxy(currentHost, SignalStore.proxy().getProxyPort()));
       }
       uiState.onNext(UiState.ALL_ENABLED);
     } else if (Util.isEmpty(text)) {

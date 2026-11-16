@@ -50,7 +50,7 @@ final class ConfirmSvrPinViewModel extends ViewModel implements BaseSvrPinViewMo
       this.saveAnimation.setValue(SaveAnimation.LOADING);
 
       disposables.add(
-          Single.fromCallable(() -> SvrRepository.setPin(pinToConfirm.toString(), this.keyboard.getValue()))
+          Single.fromCallable(() -> SvrRepository.setPin(pinToConfirm.toString()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {

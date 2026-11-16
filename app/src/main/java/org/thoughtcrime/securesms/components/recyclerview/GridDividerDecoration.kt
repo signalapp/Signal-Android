@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.annotation.Px
 import androidx.recyclerview.widget.RecyclerView
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.signal.core.ui.util.ViewUtil
 
 /**
  * Decoration which will add an equal amount of space between each item in a grid.

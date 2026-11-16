@@ -27,6 +27,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
+import org.signal.core.ui.R as CoreUiR
 
 @Composable
 fun SoundsAndNotificationsSettingsScreen(
@@ -51,9 +52,9 @@ fun SoundsAndNotificationsSettingsScreen(
       // Custom notifications
       item {
         val summary = if (state.hasCustomNotificationSettings) {
-          stringResource(R.string.preferences_on)
+          stringResource(CoreUiR.string.preferences_on)
         } else {
-          stringResource(R.string.preferences_off)
+          stringResource(CoreUiR.string.preferences_off)
         }
 
         Rows.TextRow(
@@ -150,7 +151,7 @@ fun getMuteSummary(state: SoundsAndNotificationsSettingsState): String {
   return if (body.isNotEmpty()) {
     body.joinToString(", ")
   } else {
-    stringResource(R.string.preferences__none)
+    stringResource(CoreUiR.string.preferences__none)
   }
 }
 

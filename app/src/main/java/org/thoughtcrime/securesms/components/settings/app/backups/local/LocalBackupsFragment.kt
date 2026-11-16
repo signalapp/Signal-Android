@@ -4,194 +4,42 @@
  */
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
-import android.widget.Toast
-import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
-import androidx.activity.result.ActivityResultLauncher
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.compose.LifecycleResumeEffect
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavEntry
-import androidx.navigation3.runtime.NavKey
-import androidx.navigation3.runtime.rememberNavBackStack
-import androidx.navigation3.ui.NavDisplay
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
-import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.compose.Dialogs
-import org.signal.core.ui.compose.Launchers
-import org.signal.core.ui.util.StorageUtil
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyEducationScreen
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyEducationScreenMode
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordMode
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordScreen
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyVerifyScreen
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import kotlin.time.Duration.Companion.milliseconds
-
-private val TAG = Log.tag(LocalBackupsFragment::class)
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
- * On-device backups settings screen, replaces `BackupsPreferenceFragment` and contains the key upgrade flow.
+ * Hosts [LocalBackupsEntry] under the legacy nav graph.
  */
 class LocalBackupsFragment : ComposeFragment() {
 
   private val args: LocalBackupsFragmentArgs by navArgs()
 
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
+
   @Composable
   override fun FragmentContent() {
-    val initialStack = if (args.triggerUpdateFlow) {
-      arrayOf(LocalBackupsNavKey.IMPROVEMENTS)
-    } else {
-      arrayOf(LocalBackupsNavKey.SETTINGS)
-    }
-
-    val backstack = rememberNavBackStack(*initialStack)
-    val snackbarHostState = remember { SnackbarHostState() }
-    val viewModel = viewModel<LocalBackupsViewModel>()
-
     CompositionLocalProvider(LocalNavigationEventDispatcherOwner provides requireActivity()) {
-      NavDisplay(
-        backStack = backstack,
-        entryProvider = { key ->
-          when (key) {
-            LocalBackupsNavKey.SETTINGS -> NavEntry(key) {
-              val chooseBackupLocationLauncher = rememberChooseBackupLocationLauncher(backstack)
-              val state by viewModel.settingsState.collectAsStateWithLifecycle()
-              val callback: LocalBackupsSettingsCallback = remember(
-                chooseBackupLocationLauncher
-              ) {
-                DefaultLocalBackupsSettingsCallback(
-                  fragment = this,
-                  chooseBackupLocationLauncher = chooseBackupLocationLauncher,
-                  viewModel = viewModel
-                )
-              }
-
-              LifecycleResumeEffect(Unit) {
-                viewModel.refreshSettingsState()
-                onPauseOrDispose {}
-              }
-
-              LocalBackupsSettingsScreen(
-                state = state,
-                callback = callback,
-                snackbarHostState = snackbarHostState
-              )
-            }
-
-            LocalBackupsNavKey.IMPROVEMENTS -> NavEntry(key) {
-              val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current
-
-              LocalBackupsImprovementsScreen(
-                onNavigationClick = { backPressedDispatcher?.onBackPressedDispatcher?.onBackPressed() },
-                onContinueClick = { backstack.add(LocalBackupsNavKey.YOUR_RECOVERY_KEY) }
-              )
-            }
-
-            LocalBackupsNavKey.YOUR_RECOVERY_KEY -> NavEntry(key) {
-              val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current
-
-              MessageBackupsKeyEducationScreen(
-                onNavigationClick = { backPressedDispatcher?.onBackPressedDispatcher?.onBackPressed() },
-                onNextClick = { backstack.add(LocalBackupsNavKey.RECORD_RECOVERY_KEY) },
-                mode = if (args.triggerUpdateFlow) {
-                  MessageBackupsKeyEducationScreenMode.LOCAL_BACKUP_UPGRADE
-                } else if (SignalStore.backup.areBackupsEnabled) {
-                  MessageBackupsKeyEducationScreenMode.LOCAL_WITH_REMOTE_ENABLED
-                } else {
-                  MessageBackupsKeyEducationScreenMode.DEFAULT
-                }
-              )
-            }
-
-            LocalBackupsNavKey.RECORD_RECOVERY_KEY -> NavEntry(key) {
-              val state: LocalBackupsKeyState by viewModel.backupState.collectAsStateWithLifecycle()
-
-              MessageBackupsKeyRecordScreen(
-                backupKey = state.accountEntropyPool.displayValue,
-                keySaveState = state.keySaveState,
-                backupKeyCredentialManagerHandler = viewModel,
-                mode = MessageBackupsKeyRecordMode.Next {
-                  backstack.add(LocalBackupsNavKey.CONFIRM_RECOVERY_KEY)
-                }
-              )
-            }
-
-            LocalBackupsNavKey.CONFIRM_RECOVERY_KEY -> NavEntry(key) {
-              val state: LocalBackupsKeyState by viewModel.backupState.collectAsStateWithLifecycle()
-              val scope = rememberCoroutineScope()
-              val backupKeyUpdatedMessage = stringResource(R.string.OnDeviceBackupsFragment__recovery_key_updated)
-              var upgradeInProgress by remember { mutableStateOf(false) }
-
-              MessageBackupsKeyVerifyScreen(
-                backupKey = state.accountEntropyPool.displayValue,
-                onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
-                onNextClick = {
-                  scope.launch {
-                    upgradeInProgress = true
-                    viewModel.handleUpgrade(requireContext())
-                    upgradeInProgress = false
-
-                    if (!backstack.contains(LocalBackupsNavKey.SETTINGS)) {
-                      backstack.add(0, LocalBackupsNavKey.SETTINGS)
-                    }
-
-                    backstack.removeAll { it != LocalBackupsNavKey.SETTINGS }
-
-                    snackbarHostState.showSnackbar(
-                      message = backupKeyUpdatedMessage
-                    )
-                  }
-                }
-              )
-
-              Dialogs.IndeterminateProgressDialog(
-                visible = upgradeInProgress,
-                delayDuration = 100.milliseconds,
-                minimumDisplayDuration = 500.milliseconds
-              )
-            }
-
-            else -> error("Unknown key: $key")
-          }
-        }
+      LocalBackupsEntry(
+        parentEventEmitter = appSettingsRouter::onEvent,
+        triggerUpdateFlow = args.triggerUpdateFlow
       )
     }
   }
-}
 
-@SuppressLint("LocalContextGetResourceValueCall")
-@Composable
-private fun rememberChooseBackupLocationLauncher(backStack: NavBackStack<NavKey>): ActivityResultLauncher<Uri?> {
-  val context = LocalContext.current
-  return Launchers.rememberOpenDocumentTreeLauncher { uri ->
-    if (uri != null) {
-      Log.i(TAG, "Backup location selected: $uri")
-      val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-      context.contentResolver.takePersistableUriPermission(uri, takeFlags)
-      SignalStore.backup.newLocalBackupsDirectory = uri.toString()
-      backStack.add(LocalBackupsNavKey.YOUR_RECOVERY_KEY)
-
-      Toast.makeText(context, context.getString(R.string.OnDeviceBackupsFragment__directory_selected, StorageUtil.getDisplayPath(context, uri)), Toast.LENGTH_SHORT).show()
-    } else {
-      Log.w(TAG, "Unified backup location selection cancelled or failed")
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.AccountRoute.SignalLoginDetails -> findNavController().safeNavigate(R.id.action_localBackupsFragment_to_settingsSignalLoginDetailsFragment)
+      is AppSettingsRoute.BackupsRoute.DisplayKey -> findNavController().safeNavigate(R.id.action_backupsPreferenceFragment_to_backupKeyDisplayFragment)
+      AppSettingsRoute.DataAndStorageRoute.Storage -> findNavController().safeNavigate(R.id.action_direct_to_storagePreferenceFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 }

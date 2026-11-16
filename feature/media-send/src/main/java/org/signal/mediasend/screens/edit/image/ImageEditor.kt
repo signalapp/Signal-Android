@@ -66,6 +66,9 @@ internal fun ImageEditor(
   // Masks everything outside the image, so it has to match the surface the editor is drawn on to read as a background.
   val blackoutColor = MaterialTheme.colorScheme.surface.toArgb()
 
+  // Crop thumbs and selection guides are light-on-dark by default, which disappears against a light surface.
+  val decorationColor = MaterialTheme.colorScheme.onSurface.toArgb()
+
   DisposableEffect(state) {
     state.attach()
     onDispose { state.detach() }
@@ -96,6 +99,7 @@ internal fun ImageEditor(
       val nativeCanvas = drawContext.canvas.nativeCanvas
       val rendererContext = state.getOrCreateRendererContext(context, nativeCanvas)
       rendererContext.setBlackoutColor(blackoutColor)
+      rendererContext.setDecorationColor(decorationColor)
       rendererContext.save()
       try {
         rendererContext.canvasMatrix.initial(state.viewMatrix)

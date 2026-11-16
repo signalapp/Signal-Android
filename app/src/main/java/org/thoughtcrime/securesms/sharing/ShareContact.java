@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.sharing;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.signal.core.models.recipients.RecipientId;
 
 import java.util.Objects;
 import java.util.Optional;

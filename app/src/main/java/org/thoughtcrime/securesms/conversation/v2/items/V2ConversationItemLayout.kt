@@ -32,12 +32,12 @@ class V2ConversationItemLayout @JvmOverloads constructor(
   }
 
   override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-    onMeasureListeners.forEach { it.onPreMeasure() }
+    onMeasureListeners.forEach { it.onPreMeasure(widthMeasureSpec, heightMeasureSpec) }
     super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
     var remeasure = false
     onMeasureListeners.forEach {
-      remeasure = it.onPostMeasure() || remeasure
+      remeasure = it.onPostMeasure(widthMeasureSpec, heightMeasureSpec) || remeasure
     }
 
     if (remeasure) {
@@ -64,7 +64,7 @@ class V2ConversationItemLayout @JvmOverloads constructor(
     /**
      * Allows the view to be manipulated before super.onMeasure is called.
      */
-    fun onPreMeasure()
+    fun onPreMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int)
 
     /**
      * Custom onMeasure implementation. Use this to position views and set padding
@@ -72,6 +72,6 @@ class V2ConversationItemLayout @JvmOverloads constructor(
      *
      * @return true if super.onMeasure should be called again, false otherwise.
      */
-    fun onPostMeasure(): Boolean
+    fun onPostMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): Boolean
   }
 }

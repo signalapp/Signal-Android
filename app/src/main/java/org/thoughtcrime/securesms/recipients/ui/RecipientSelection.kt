@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.recipients.ui
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.PhoneNumber
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 sealed interface RecipientSelection {
   sealed interface HasId : RecipientSelection {

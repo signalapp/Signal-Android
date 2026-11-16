@@ -5,93 +5,98 @@
 
 package org.thoughtcrime.securesms.preferences
 
-import androidx.compose.material3.SnackbarHostState
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.pin.SvrRepository
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import org.signal.appsettings.advancedpin.AdvancedPinSettingsAction
+import org.signal.appsettings.advancedpin.AdvancedPinSettingsEvent
+import org.signal.appsettings.advancedpin.AdvancedPinSettingsState
+import org.signal.appsettings.advancedpin.AdvancedPinSettingsState.Dialog
+import org.signal.appsettings.advancedpin.AdvancedPinSettingsState.Snackbar
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 
-class AdvancedPinSettingsViewModel : ViewModel() {
+/**
+ * Drives [org.signal.appsettings.advancedpin.AdvancedPinSettingsScreen].
+ */
+class AdvancedPinSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<AdvancedPinSettingsEvent>(TAG) {
 
-  enum class Dialog {
-    NONE,
-    REGISTRATION_LOCK,
-    RECORD_PAYMENTS_RECOVERY_PHRASE,
-    ROTATE_AEP
+  companion object {
+    private val TAG = Log.tag(AdvancedPinSettingsViewModel::class)
   }
 
-  enum class Event {
-    SHOW_BACKUPS_DISABLED_OPT_OUT_DIALOG,
-    LAUNCH_PIN_CREATION_FLOW,
-    LAUNCH_RECOVERY_PHRASE_HANDLING,
-    SHOW_PIN_DISABLED_SNACKBAR
+  private val _state = MutableStateFlow(AdvancedPinSettingsState(hasOptedOutOfPin = AdvancedPinSettingsRepository.hasOptedOutOfPin()))
+  private val _actions = Channel<AdvancedPinSettingsAction>(Channel.BUFFERED)
+
+  val state: StateFlow<AdvancedPinSettingsState> = _state.asStateFlow()
+  val actions: Flow<AdvancedPinSettingsAction> = _actions.receiveAsFlow()
+
+  override suspend fun processEvent(event: AdvancedPinSettingsEvent) {
+    when (event) {
+      AdvancedPinSettingsEvent.ScreenResumed -> refresh()
+      AdvancedPinSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      AdvancedPinSettingsEvent.PinToggleClicked -> onPinToggleClicked()
+      AdvancedPinSettingsEvent.RecordRecoveryPhraseConfirmed -> {
+        dismissDialog()
+        _actions.send(AdvancedPinSettingsAction.LaunchRecoveryPhraseRecording)
+      }
+      AdvancedPinSettingsEvent.RotateBackupKeyConfirmed -> {
+        dismissDialog()
+        parentEventEmitter.navigateTo(AppSettingsRoute.BackupsRoute.DisplayKey(startWithKeyRotation = true))
+      }
+      AdvancedPinSettingsEvent.DialogDismissed -> dismissDialog()
+      AdvancedPinSettingsEvent.PinOptedOut -> {
+        refresh()
+        _state.update { it.copy(snackbar = Snackbar.PinDisabled) }
+      }
+      AdvancedPinSettingsEvent.PinCreated -> {
+        refresh()
+        _state.update { it.copy(snackbar = Snackbar.PinCreated) }
+      }
+      AdvancedPinSettingsEvent.BackupKeyRotated -> {
+        dismissDialog()
+        AdvancedPinSettingsRepository.optOutOfPinAfterKeyRotation()
+        refresh()
+        _state.update { it.copy(snackbar = Snackbar.PinDisabled) }
+      }
+      AdvancedPinSettingsEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = Snackbar.None) }
+    }
   }
 
-  private val internalDialog = MutableStateFlow(Dialog.NONE)
-  private val internalEvent = MutableSharedFlow<Event>()
-  private val internalHasOptedOutOfPin = MutableStateFlow(SignalStore.svr.hasOptedOut())
-
-  val dialog: StateFlow<Dialog> = internalDialog
-  val event: SharedFlow<Event> = internalEvent
-  val hasOptedOutOfPin: StateFlow<Boolean> = internalHasOptedOutOfPin
-  val snackbarHostState = SnackbarHostState()
-
-  fun refresh() {
-    internalHasOptedOutOfPin.value = SignalStore.svr.hasOptedOut()
-  }
-
-  fun setOptOut(enabled: Boolean) {
-    val hasRegistrationLock = SignalStore.svr.isRegistrationLockEnabled
+  /** Turning the PIN back on is always allowed; turning it off has to clear whatever depends on it first. */
+  private suspend fun onPinToggleClicked() {
+    if (_state.value.hasOptedOutOfPin) {
+      dismissDialog()
+      _actions.send(AdvancedPinSettingsAction.LaunchPinCreation)
+      return
+    }
 
     when {
-      !enabled && hasRegistrationLock -> {
-        internalDialog.value = Dialog.REGISTRATION_LOCK
-      }
-      !enabled && SignalStore.payments.mobileCoinPaymentsEnabled() && !SignalStore.payments.userConfirmedMnemonic -> {
-        internalDialog.value = Dialog.RECORD_PAYMENTS_RECOVERY_PHRASE
-      }
-      !enabled && SignalStore.backup.areBackupsEnabled -> {
-        internalDialog.value = Dialog.ROTATE_AEP
-      }
-      !enabled && !SignalStore.backup.areBackupsEnabled -> {
-        dismissDialog()
-        emitEvent(Event.SHOW_BACKUPS_DISABLED_OPT_OUT_DIALOG)
-      }
+      AdvancedPinSettingsRepository.isRegistrationLockEnabled() -> _state.update { it.copy(dialog = Dialog.RegistrationLockRequiresPin) }
+      AdvancedPinSettingsRepository.needsPaymentsRecoveryPhrase() -> _state.update { it.copy(dialog = Dialog.RecordPaymentsRecoveryPhrase) }
+      AdvancedPinSettingsRepository.areBackupsEnabled() -> _state.update { it.copy(dialog = Dialog.RotateBackupKey) }
       else -> {
         dismissDialog()
-        emitEvent(Event.LAUNCH_PIN_CREATION_FLOW)
+        _actions.send(AdvancedPinSettingsAction.ConfirmPinOptOut)
       }
     }
   }
 
-  fun launchRecoveryPhraseHandling() {
-    emitEvent(Event.LAUNCH_RECOVERY_PHRASE_HANDLING)
+  private fun refresh() {
+    _state.update { it.copy(hasOptedOutOfPin = AdvancedPinSettingsRepository.hasOptedOutOfPin()) }
   }
 
-  fun onPinOptOutSuccess() {
-    internalHasOptedOutOfPin.value = SignalStore.svr.hasOptedOut()
-  }
-
-  fun dismissDialog() {
-    internalDialog.value = Dialog.NONE
-  }
-
-  fun onAepRotatedForPinDisable() {
-    internalDialog.value = Dialog.NONE
-    viewModelScope.launch {
-      SvrRepository.optOutOfPin(rotateAep = false)
-      emitEvent(Event.SHOW_PIN_DISABLED_SNACKBAR)
-    }
-  }
-
-  private fun emitEvent(event: Event) {
-    viewModelScope.launch {
-      internalEvent.emit(event)
-    }
+  private fun dismissDialog() {
+    _state.update { it.copy(dialog = Dialog.None) }
   }
 }

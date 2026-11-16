@@ -22,6 +22,7 @@ dependencies {
   implementation(libs.kotlin.gradle.plugin)
   implementation(libs.android.library)
   implementation(libs.android.application)
+  implementation(testLibs.compose.screenshot.plugin)
   implementation(libs.ktlint)
   implementation(project(":tools"))
 

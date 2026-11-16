@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.signal.core.ui.permissions.Permissions;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public final class PaymentsTransferFragment extends LoggingFragment {

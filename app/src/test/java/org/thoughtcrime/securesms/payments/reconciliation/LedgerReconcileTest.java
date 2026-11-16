@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.payments.Direction;
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.payments.State;
 import org.thoughtcrime.securesms.payments.proto.MobileCoinLedger;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.signal.core.util.UuidUtil;

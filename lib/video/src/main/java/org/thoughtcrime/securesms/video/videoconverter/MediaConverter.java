@@ -29,10 +29,13 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.StringDef;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 import org.thoughtcrime.securesms.video.interfaces.Muxer;
+import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.TranscodeAbortedException;
 import org.thoughtcrime.securesms.video.videoconverter.muxer.StreamingMuxer;
 import org.thoughtcrime.securesms.video.videoconverter.utils.MediaCodecCompat;
 
@@ -47,6 +50,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @SuppressWarnings("WeakerAccess")
 public final class MediaConverter {
@@ -54,6 +61,10 @@ public final class MediaConverter {
     private static final boolean VERBOSE = false; // lots of logging
 
     private static final int STUCK_FRAME_THRESHOLD = 100;
+
+    private static final long WATCHDOG_POLL_MS  = TimeUnit.SECONDS.toMillis(1);
+    private static final long STALL_TIMEOUT_MS  = TimeUnit.SECONDS.toMillis(30);
+    private static final long ABORT_GRACE_MS    = TimeUnit.SECONDS.toMillis(5);
 
     // Describes when the annotation will be discarded
     @Retention(RetentionPolicy.SOURCE)
@@ -74,7 +85,11 @@ public final class MediaConverter {
     private boolean mSkipAudio = false;
 
     private Listener mListener;
-    private boolean mCancelled;
+    private TranscoderCancelationSignal mCancelationSignal;
+
+    private volatile boolean             mCancelled;
+    private volatile long                mLastProgressTime;
+    private volatile VideoTrackConverter mActiveVideoTrackConverter;
 
     public interface Listener {
         boolean onProgress(int percent);
@@ -145,6 +160,14 @@ public final class MediaConverter {
     }
 
     /**
+     * Polled by the watchdog so that a cancellation can abort a conversion whose worker thread is
+     * blocked and therefore never reaches {@link Listener#onProgress(int)}.
+     */
+    public void setCancelationSignal(final @Nullable TranscoderCancelationSignal cancelationSignal) {
+        mCancelationSignal = cancelationSignal;
+    }
+
+    /**
      * When set, the audio track of the input is dropped entirely and the output will be video-only.
      */
     public void setSkipAudio(boolean skipAudio) {
@@ -161,9 +184,10 @@ public final class MediaConverter {
         while (true) {
             mCancelled = false;
             try {
-                return doConvert(excludedDecoders);
+                return convertWithWatchdog(excludedDecoders);
             } catch (EncodingException e) {
-                if (e.decoderName != null
+                if (!(e instanceof TranscodeAbortedException)
+                        && e.decoderName != null
                         && isRetryableMidStreamFailure(e)
                         && excludedDecoders.add(e.decoderName)) {
                     Log.w(TAG, "Mid-stream codec failure with decoder " + e.decoderName
@@ -205,6 +229,132 @@ public final class MediaConverter {
         return false;
     }
 
+    /**
+     * Runs {@link #doConvert(Set)} on a worker thread so that a worker blocked in a native GL or
+     * codec call can still be aborted. A stall or cancellation force-releases the codecs to unwind
+     * the worker. If it stays blocked past the grace period it is abandoned, which is why it gets a
+     * dedicated thread rather than a shared executor.
+     */
+    private long convertWithWatchdog(final @NonNull Set<String> excludedDecoders) throws EncodingException, IOException {
+        final FutureTask<Long> task   = new FutureTask<>(() -> doConvert(excludedDecoders));
+        final Thread           worker = new Thread(task, "media-converter");
+
+        mLastProgressTime          = System.currentTimeMillis();
+        mActiveVideoTrackConverter = null;
+
+        worker.start();
+
+        String  abortReason      = null;
+        long    forceReleaseTime = 0;
+        long    cancelTime       = 0;
+        boolean interrupted      = false;
+
+        try {
+            while (true) {
+                try {
+                    final long result = task.get(WATCHDOG_POLL_MS, TimeUnit.MILLISECONDS);
+                    if (abortReason != null) {
+                        throw abortedException(abortReason, null);
+                    }
+                    return result;
+                } catch (TimeoutException ignored) {
+                } catch (InterruptedException e) {
+                    interrupted = true;
+                    if (abortReason == null) {
+                        abortReason      = "interrupted";
+                        forceReleaseTime = System.currentTimeMillis();
+                        forceRelease(worker, abortReason);
+                    }
+                } catch (ExecutionException e) {
+                    final Throwable cause = e.getCause();
+                    if (abortReason != null) {
+                        throw abortedException(abortReason, cause);
+                    } else if (cause instanceof EncodingException) {
+                        throw (EncodingException) cause;
+                    } else if (cause instanceof IOException) {
+                        throw (IOException) cause;
+                    } else if (cause instanceof RuntimeException) {
+                        throw (RuntimeException) cause;
+                    } else if (cause instanceof Error) {
+                        throw (Error) cause;
+                    } else {
+                        throw new EncodingException("Transcode failed", cause instanceof Exception ? (Exception) cause : null);
+                    }
+                }
+
+                final long now = System.currentTimeMillis();
+
+                if (forceReleaseTime > 0) {
+                    if (now - forceReleaseTime > ABORT_GRACE_MS) {
+                        Log.e(TAG, "Worker thread still blocked " + (now - forceReleaseTime) + "ms after forced release, abandoning it.\n" + describeThread(worker));
+                        throw abortedException(abortReason + " (worker abandoned)", null);
+                    }
+                    continue;
+                }
+
+                if (cancelTime > 0) {
+                    if (now - cancelTime > ABORT_GRACE_MS) {
+                        forceReleaseTime = now;
+                        forceRelease(worker, abortReason);
+                    }
+                    continue;
+                }
+
+                final long stallDuration = now - mLastProgressTime;
+
+                if (mCancelationSignal != null && mCancelationSignal.isCanceled()) {
+                    Log.w(TAG, "Transcode cancelled, waiting for worker to exit.");
+                    abortReason = "cancelled";
+                    cancelTime  = now;
+                    mCancelled  = true;
+                } else if (stallDuration > STALL_TIMEOUT_MS) {
+                    abortReason      = "no progress for " + stallDuration + "ms";
+                    forceReleaseTime = now;
+                    forceRelease(worker, abortReason);
+                }
+            }
+        } finally {
+            if (interrupted) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    private void forceRelease(final @NonNull Thread worker, final @NonNull String reason) {
+        Log.w(TAG, "Force releasing codecs (" + reason + "). Worker thread state: " + worker.getState() + "\n" + describeThread(worker));
+
+        mCancelled = true;
+
+        final VideoTrackConverter videoTrackConverter = mActiveVideoTrackConverter;
+        if (videoTrackConverter == null) {
+            Log.w(TAG, "No active video track converter to release.");
+            return;
+        }
+
+        // Releasing a wedged codec can itself block, so keep that off the calling thread too.
+        SignalExecutors.UNBOUNDED.execute(videoTrackConverter::forceRelease);
+    }
+
+    private static @NonNull TranscodeAbortedException abortedException(final @NonNull String reason, final @Nullable Throwable cause) {
+        final TranscodeAbortedException exception = new TranscodeAbortedException("Transcode aborted: " + reason, cause instanceof Exception ? (Exception) cause : null);
+        if (cause instanceof EncodingException) {
+            final EncodingException encodingCause = (EncodingException) cause;
+            exception.isHdrInput     = encodingCause.isHdrInput;
+            exception.toneMapApplied = encodingCause.toneMapApplied;
+            exception.decoderName    = encodingCause.decoderName;
+            exception.encoderName    = encodingCause.encoderName;
+        }
+        return exception;
+    }
+
+    private static @NonNull String describeThread(final @NonNull Thread thread) {
+        final StringBuilder builder = new StringBuilder();
+        for (StackTraceElement element : thread.getStackTrace()) {
+            builder.append("\tat ").append(element).append('\n');
+        }
+        return builder.toString();
+    }
+
     private long doConvert(final @NonNull Set<String> excludedDecoders) throws EncodingException, IOException {
         // Exception that may be thrown during release.
         Exception           exception           = null;
@@ -219,7 +369,8 @@ public final class MediaConverter {
         try {
             muxer = mOutput.createMuxer();
 
-            videoTrackConverter = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec, excludedDecoders);
+            videoTrackConverter        = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec, excludedDecoders);
+            mActiveVideoTrackConverter = videoTrackConverter;
             audioTrackConverter = mSkipAudio ? null : AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate, mAllowAudioRemux && muxer.supportsAudioRemux());
 
             if (videoTrackConverter == null && audioTrackConverter == null) {
@@ -246,6 +397,7 @@ public final class MediaConverter {
             Log.e(TAG, "error converting", e);
             exception = e;
         } finally {
+            mActiveVideoTrackConverter = null;
             if (VERBOSE) Log.d(TAG, "releasing extractor, decoder, encoder, and muxer");
             // Try to release everything we acquired, even if one of the releases fails, in which
             // case we save the first exception we got and re-throw at the end (unless something
@@ -338,6 +490,8 @@ public final class MediaConverter {
         while (!mCancelled &&
                 ((videoTrackConverter != null && !videoTrackConverter.mVideoEncoderDone) ||
                  (audioTrackConverter != null &&!audioTrackConverter.mAudioEncoderDone))) {
+
+            mLastProgressTime = System.currentTimeMillis();
 
             final MediaConverterState currentState = new MediaConverterState(videoTrackConverter != null ? videoTrackConverter.dumpState() : null, audioTrackConverter != null ? audioTrackConverter.dumpState() : null, muxing);
 

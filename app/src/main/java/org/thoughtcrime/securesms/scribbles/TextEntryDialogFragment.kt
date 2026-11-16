@@ -12,6 +12,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.SimpleColorFilter
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.getParcelableCompat
 import org.signal.imageeditor.core.HiddenEditText
 import org.signal.imageeditor.core.model.EditorElement
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 
 class TextEntryDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_image_editor_text_entry_fragment) {

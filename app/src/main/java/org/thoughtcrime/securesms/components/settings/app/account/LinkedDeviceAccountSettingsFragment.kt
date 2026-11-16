@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.account.LinkedDeviceAccountSettingsState.OneTimeEvent
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.signal.appsettings.R as AppSettingsR
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Account settings shown when the current device is a linked (non-primary) device. Account
@@ -163,7 +164,7 @@ private fun LinkedDeviceCallout(
         onClick = onLearnMoreClick,
         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondaryContainer, contentColor = MaterialTheme.colorScheme.onSecondaryContainer)
       ) {
-        Text(text = stringResource(R.string.LearnMoreTextView_learn_more))
+        Text(text = stringResource(CoreUiR.string.LearnMoreTextView_learn_more))
       }
     }
   }

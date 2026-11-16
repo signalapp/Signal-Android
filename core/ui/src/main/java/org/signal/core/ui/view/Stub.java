@@ -5,14 +5,25 @@ import android.view.View;
 import android.view.ViewStub;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Stub<T extends View> {
 
   private ViewStub viewStub;
   private T        view;
+  private Inflater inflater;
 
   public Stub(@NonNull ViewStub viewStub) {
+    this(viewStub, null);
+  }
+
+  /**
+   * @param inflater Replaces {@link ViewStub#inflate()} when the stub is first resolved, so callers can hand out a
+   *                 view that was inflated ahead of time.
+   */
+  public Stub(@NonNull ViewStub viewStub, @Nullable Inflater inflater) {
     this.viewStub = viewStub;
+    this.inflater = inflater;
   }
 
   public int getId() {
@@ -22,8 +33,9 @@ public class Stub<T extends View> {
   public T get() {
     if (view == null) {
       //noinspection unchecked
-      view     = (T) viewStub.inflate();
+      view     = (T) (inflater != null ? inflater.inflate(viewStub) : viewStub.inflate());
       viewStub = null;
+      inflater = null;
     }
 
     return view;
@@ -51,4 +63,7 @@ public class Stub<T extends View> {
     return getVisibility() == View.VISIBLE;
   }
 
+  public interface Inflater {
+    @NonNull View inflate(@NonNull ViewStub viewStub);
+  }
 }

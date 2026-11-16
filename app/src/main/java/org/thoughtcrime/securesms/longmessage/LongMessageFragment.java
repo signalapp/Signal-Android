@@ -135,7 +135,7 @@ public class LongMessageFragment extends FullScreenDialogFragment {
       text.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
 
       if (!message.get().getMessageRecord().isOutgoing()) {
-        text.setMentionBackgroundTint(ContextCompat.getColor(requireContext(), ThemeUtil.isDarkTheme(requireActivity()) ? R.color.core_grey_60 : R.color.core_grey_20));
+        text.setMentionBackgroundTint(ContextCompat.getColor(requireContext(), ThemeUtil.isDarkTheme(requireActivity()) ? org.signal.core.ui.R.color.core_grey_60 : org.signal.core.ui.R.color.core_grey_20));
       } else {
         text.setMentionBackgroundTint(ContextCompat.getColor(requireContext(), R.color.transparent_black_40));
       }

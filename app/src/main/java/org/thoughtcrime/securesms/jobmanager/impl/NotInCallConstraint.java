@@ -4,7 +4,7 @@ import android.app.job.JobInfo;
 
 import androidx.annotation.NonNull;
 
-import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.eventbus.EventBus;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.jobmanager.Constraint;
 

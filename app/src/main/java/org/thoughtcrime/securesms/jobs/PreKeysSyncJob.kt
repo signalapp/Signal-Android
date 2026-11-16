@@ -1,29 +1,32 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
+import arrow.core.raise.Raise
+import arrow.core.raise.merge
 import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.roundedString
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.InvalidKeyIdException
+import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.protocol.kem.KEMPublicKey
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SignalProtocolStore
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
-import org.signal.network.NetworkResult
-import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.api.KeysApiV2
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.PreKeysSyncJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.isRetryableIOException
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
-import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.push.ServiceIdType
 import java.io.IOException
 import java.net.ProtocolException
@@ -31,6 +34,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.DurationUnit
+import org.signal.libsignal.protocol.ServiceId as LibSignalServiceId
 
 /**
  * Regardless of the current state of affairs with respect to prekeys for either ACI or PNI identities, will
@@ -45,7 +49,7 @@ import kotlin.time.DurationUnit
 class PreKeysSyncJob private constructor(
   parameters: Parameters,
   private val forceRotationRequested: Boolean
-) : BaseJob(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY = "PreKeysSyncJob"
@@ -106,7 +110,14 @@ class PreKeysSyncJob private constructor(
     Parameters.Builder()
       .setQueue("PreKeysSyncJob")
       .addConstraint(NetworkConstraint.KEY)
-      .setMaxInstancesForFactory(1)
+      .apply {
+        if (forceRotation) {
+          setMaxInstancesForFactory(Parameters.UNLIMITED)
+          setMaxInstancesForQueue(2)
+        } else {
+          setMaxInstancesForFactory(1)
+        }
+      }
       .setMaxAttempts(Parameters.UNLIMITED)
       .setLifespan(TimeUnit.DAYS.toMillis(30))
       .build(),
@@ -119,54 +130,43 @@ class PreKeysSyncJob private constructor(
     return PreKeysSyncJobData(forceRotationRequested).encode()
   }
 
-  override fun onRun() {
+  override suspend fun doRun(): Result = merge {
+    doWork()
+    Result.success()
+  }
+
+  private suspend fun Raise<Result>.doWork() {
     if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
-      warn(TAG, "Not yet registered")
+      Log.w(TAG, "Not yet registered")
       return
     }
 
+    val forceRotation = shouldForceRotation(forceRotationRequested)
+
     val pniRotationOverride = SignalStore.misc.forcePniSignedPreKeyRotation
     if (pniRotationOverride) {
-      warn(TAG, ServiceIdType.PNI, "Forced PNI prekey rotation pending after PniChangeNumber sync. Bypassing dedup/interval gating for PNI.")
-    }
-
-    val forceRotation = if (forceRotationRequested) {
-      warn(TAG, "Forced rotation was requested.")
-      warn(TAG, ServiceIdType.ACI, "Active Signed EC: ${SignalStore.account.aciPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account.aciPreKeys.lastResortKyberPreKeyId}")
-      warn(TAG, ServiceIdType.PNI, "Active Signed EC: ${SignalStore.account.pniPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account.pniPreKeys.lastResortKyberPreKeyId}")
-
-      if (!checkPreKeyConsistency(ServiceIdType.ACI, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)) {
-        warn(TAG, ServiceIdType.ACI, "Prekey consistency check failed! Must rotate keys!")
-        true
-      } else if (AppDependencies.protocolStore.pniOrNull()?.let { !checkPreKeyConsistency(ServiceIdType.PNI, it, SignalStore.account.pniPreKeys) } == true) {
-        warn(TAG, ServiceIdType.PNI, "Prekey consistency check failed! Must rotate keys! (ACI consistency check must have passed)")
-        true
-      } else {
-        warn(TAG, "Forced rotation was requested, but the consistency checks passed!")
-        val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc.lastForcedPreKeyRefresh
-        // We check < 0 in case someone changed their clock and had a bad value set
-        timeSinceLastForcedRotation > RemoteConfig.preKeyForceRefreshInterval || timeSinceLastForcedRotation < 0
-      }
-    } else {
-      false
+      warn(ServiceIdType.PNI, "Forced PNI prekey rotation pending after PniChangeNumber sync. Bypassing dedup/interval gating for PNI.")
     }
 
     val forcePniRotation = forceRotation || pniRotationOverride
 
     if (forcePniRotation) {
-      warn(TAG, "Forcing prekey rotation. ACI=$forceRotation PNI=$forcePniRotation")
+      Log.w(TAG, "Forcing prekey rotation. ACI=$forceRotation PNI=$forcePniRotation")
     } else if (forceRotationRequested) {
-      warn(TAG, "Forced prekey rotation was requested, but we already did a forced refresh ${System.currentTimeMillis() - SignalStore.misc.lastForcedPreKeyRefresh} ms ago. Ignoring.")
+      Log.w(TAG, "Forced prekey rotation was requested, but we already did a forced refresh ${System.currentTimeMillis() - SignalStore.misc.lastForcedPreKeyRefresh} ms ago. Ignoring.")
     }
 
-    syncPreKeys(ServiceIdType.ACI, SignalStore.account.aci, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys, forceRotation)
+    val preKeyCounts = bindOrRetry(SignalNetwork.keysApiV2.getPreKeyCounts(), "fetching prekey counts")
+
+    syncPreKeys(ServiceIdType.ACI, SignalStore.account.aci, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys, preKeyCounts.aciEcPreKeyCount, preKeyCounts.aciKemPreKeyCount, forceRotation)
 
     val pniProtocolStore = AppDependencies.protocolStore.pniOrNull()
     if (pniProtocolStore != null) {
-      syncPreKeys(ServiceIdType.PNI, SignalStore.account.pni, pniProtocolStore, SignalStore.account.pniPreKeys, forcePniRotation)
+      syncPreKeys(ServiceIdType.PNI, SignalStore.account.pni, pniProtocolStore, SignalStore.account.pniPreKeys, preKeyCounts.pniEcPreKeyCount, preKeyCounts.pniKemPreKeyCount, forcePniRotation)
     } else {
-      warn(TAG, ServiceIdType.PNI, "No PNI store. Skipping PNI prekey sync.")
+      warn(ServiceIdType.PNI, "No PNI store. Skipping PNI prekey sync.")
     }
+
     SignalStore.misc.lastFullPrekeyRefreshTime = System.currentTimeMillis()
 
     if (forcePniRotation) {
@@ -174,70 +174,72 @@ class PreKeysSyncJob private constructor(
     }
 
     if (pniRotationOverride) {
-      // Cleared only after both syncPreKeys calls completed without throwing; a thrown upload leaves the flag set for the next attempt.
+      // Cleared only after both syncPreKeys calls succeeded. A failed upload leaves the flag set for the next attempt.
       SignalStore.misc.forcePniSignedPreKeyRotation = false
     }
   }
 
-  private fun syncPreKeys(serviceIdType: ServiceIdType, serviceId: ServiceId?, protocolStore: SignalServiceAccountDataStore, metadataStore: PreKeyMetadataStore, forceRotation: Boolean) {
+  private suspend fun Raise<Result>.syncPreKeys(
+    serviceIdType: ServiceIdType,
+    serviceId: ServiceId?,
+    protocolStore: SignalServiceAccountDataStore,
+    metadataStore: PreKeyMetadataStore,
+    oneTimeEcPreKeyCount: Int,
+    oneTimeKyberPreKeyCount: Int,
+    forceRotation: Boolean
+  ) {
     if (serviceId == null) {
-      warn(TAG, serviceIdType, "AccountId not set!")
+      warn(serviceIdType, "AccountId not set!")
       return
     }
 
-    val availablePreKeyCounts = SignalNetwork.keys.getAvailablePreKeyCountsSync(serviceIdType).successOrThrow()
+    val signedPreKeyToUpload: SignedPreKeyRecord? = createSignedPreKeyForUploadingIfNeeded(serviceIdType, protocolStore, metadataStore, forceRotation)
 
-    val signedPreKeyToUpload: SignedPreKeyRecord? = signedPreKeyUploadIfNeeded(serviceIdType, protocolStore, metadataStore, forceRotation)
-
-    val oneTimeEcPreKeysToUpload: List<PreKeyRecord>? = if (forceRotation || availablePreKeyCounts.ecCount < ONE_TIME_PREKEY_MINIMUM) {
-      log(serviceIdType, "There are ${availablePreKeyCounts.ecCount} one-time EC prekeys available, which is less than our threshold. Need more. (Forced: $forceRotation)")
+    val oneTimeEcPreKeysToUpload: List<PreKeyRecord>? = if (forceRotation || oneTimeEcPreKeyCount < ONE_TIME_PREKEY_MINIMUM) {
+      log(serviceIdType, "There are $oneTimeEcPreKeyCount one-time EC prekeys available, which is less than our threshold. Need more. (Forced: $forceRotation)")
       PreKeyUtil.generateAndStoreOneTimeEcPreKeys(protocolStore, metadataStore)
     } else {
-      log(serviceIdType, "There are ${availablePreKeyCounts.ecCount} one-time EC prekeys available, which is enough.")
+      log(serviceIdType, "There are $oneTimeEcPreKeyCount one-time EC prekeys available, which is enough.")
       null
     }
 
     val lastResortKyberPreKeyToUpload: KyberPreKeyRecord? = lastResortKyberPreKeyUploadIfNeeded(serviceIdType, protocolStore, metadataStore, forceRotation)
 
-    val oneTimeKyberPreKeysToUpload: List<KyberPreKeyRecord>? = if (forceRotation || availablePreKeyCounts.kyberCount < ONE_TIME_PREKEY_MINIMUM) {
-      log(serviceIdType, "There are ${availablePreKeyCounts.kyberCount} one-time kyber prekeys available, which is less than our threshold. Need more. (Forced: $forceRotation)")
+    val oneTimeKyberPreKeysToUpload: List<KyberPreKeyRecord>? = if (forceRotation || oneTimeKyberPreKeyCount < ONE_TIME_PREKEY_MINIMUM) {
+      log(serviceIdType, "There are $oneTimeKyberPreKeyCount one-time kyber prekeys available, which is less than our threshold. Need more. (Forced: $forceRotation)")
       PreKeyUtil.generateAndStoreOneTimeKyberPreKeys(protocolStore, metadataStore)
     } else {
-      log(serviceIdType, "There are ${availablePreKeyCounts.kyberCount} one-time kyber prekeys available, which is enough.")
+      log(serviceIdType, "There are $oneTimeKyberPreKeyCount one-time kyber prekeys available, which is enough.")
       null
     }
 
     if (signedPreKeyToUpload != null || oneTimeEcPreKeysToUpload != null || lastResortKyberPreKeyToUpload != null || oneTimeKyberPreKeysToUpload != null) {
       log(serviceIdType, "Something to upload. SignedPreKey: ${signedPreKeyToUpload != null}, OneTimeEcPreKeys: ${oneTimeEcPreKeysToUpload != null}, LastResortKyberPreKey: ${lastResortKyberPreKeyToUpload != null}, OneTimeKyberPreKeys: ${oneTimeKyberPreKeysToUpload != null}")
-      SignalNetwork.keys.setPreKeysSync(
-        PreKeyUpload(
-          serviceIdType = serviceIdType,
-          signedPreKey = signedPreKeyToUpload,
-          oneTimeEcPreKeys = oneTimeEcPreKeysToUpload,
-          lastResortKyberPreKey = lastResortKyberPreKeyToUpload,
-          oneTimeKyberPreKeys = oneTimeKyberPreKeysToUpload
-        )
-      ).successOrThrow()
 
+      if (oneTimeEcPreKeysToUpload != null) {
+        bindOrRetry(SignalNetwork.keysApiV2.setOneTimeEcPreKeys(serviceIdType.toLibSignalKind(), oneTimeEcPreKeysToUpload), "uploading one-time EC prekeys", serviceIdType)
+        log(serviceIdType, "Successfully uploaded one-time EC prekeys.")
+      }
+
+      if (oneTimeKyberPreKeysToUpload != null) {
+        bindOrRetry(SignalNetwork.keysApiV2.setOneTimeKemPreKeys(serviceIdType.toLibSignalKind(), oneTimeKyberPreKeysToUpload), "uploading one-time kyber prekeys", serviceIdType)
+        log(serviceIdType, "Successfully uploaded one-time kyber prekeys.")
+      }
+
+      // Repeated-use keys go last: until both land, the consistency check keeps failing, so a retry after a partial failure is still forced.
       if (signedPreKeyToUpload != null) {
+        bindOrRetry(SignalNetwork.keysApiV2.setSignedEcPreKey(serviceIdType.toLibSignalKind(), signedPreKeyToUpload), "uploading signed prekey", serviceIdType)
         log(serviceIdType, "Successfully uploaded signed prekey.")
         metadataStore.activeSignedPreKeyId = signedPreKeyToUpload.id
         metadataStore.isSignedPreKeyRegistered = true
         metadataStore.lastSignedPreKeyRotationTime = System.currentTimeMillis()
       }
 
-      if (oneTimeEcPreKeysToUpload != null) {
-        log(serviceIdType, "Successfully uploaded one-time EC prekeys.")
-      }
-
       if (lastResortKyberPreKeyToUpload != null) {
+        bindOrRetry(SignalNetwork.keysApiV2.setLastResortKemPreKey(serviceIdType.toLibSignalKind(), lastResortKyberPreKeyToUpload), "uploading last-resort kyber prekey", serviceIdType)
         log(serviceIdType, "Successfully uploaded last-resort kyber prekey.")
         metadataStore.lastResortKyberPreKeyId = lastResortKyberPreKeyToUpload.id
         metadataStore.lastResortKyberPreKeyRotationTime = System.currentTimeMillis()
-      }
-
-      if (oneTimeKyberPreKeysToUpload != null) {
-        log(serviceIdType, "Successfully uploaded one-time kyber prekeys.")
       }
     } else {
       log(serviceIdType, "No prekeys to upload.")
@@ -249,7 +251,7 @@ class PreKeysSyncJob private constructor(
     PreKeyUtil.cleanOneTimePreKeys(protocolStore)
   }
 
-  private fun signedPreKeyUploadIfNeeded(serviceIdType: ServiceIdType, protocolStore: SignalProtocolStore, metadataStore: PreKeyMetadataStore, forceRotation: Boolean): SignedPreKeyRecord? {
+  private fun createSignedPreKeyForUploadingIfNeeded(serviceIdType: ServiceIdType, protocolStore: SignalProtocolStore, metadataStore: PreKeyMetadataStore, forceRotation: Boolean): SignedPreKeyRecord? {
     val signedPreKeyRegistered = metadataStore.isSignedPreKeyRegistered && metadataStore.activeSignedPreKeyId >= 0
     val timeSinceLastSignedPreKeyRotation = System.currentTimeMillis() - metadataStore.lastSignedPreKeyRotationTime
 
@@ -275,39 +277,93 @@ class PreKeysSyncJob private constructor(
     }
   }
 
-  @Throws(IOException::class)
-  private fun checkPreKeyConsistency(serviceIdType: ServiceIdType, protocolStore: SignalServiceAccountDataStore, metadataStore: PreKeyMetadataStore): Boolean {
-    val result: NetworkResult<Unit> = try {
-      SignalNetwork.keys.checkRepeatedUseKeysSync(
-        serviceIdType = serviceIdType,
-        identityKey = protocolStore.identityKeyPair.publicKey,
-        signedPreKeyId = metadataStore.activeSignedPreKeyId,
-        signedPreKey = protocolStore.loadSignedPreKey(metadataStore.activeSignedPreKeyId).keyPair.publicKey,
-        lastResortKyberKeyId = metadataStore.lastResortKyberPreKeyId,
-        lastResortKyberKey = protocolStore.loadKyberPreKey(metadataStore.lastResortKyberPreKeyId).keyPair.publicKey
-      )
-    } catch (e: InvalidKeyException) {
-      Log.w(TAG, "Unable to load keys.", e)
-      return false
-    } catch (e: InvalidKeyIdException) {
-      Log.w(TAG, "Unable to load keys.", e)
+  private suspend fun Raise<Result>.shouldForceRotation(forceRotationRequested: Boolean): Boolean {
+    if (!forceRotationRequested) {
       return false
     }
 
+    Log.w(TAG, "Forced rotation was requested.")
+    warn(ServiceIdType.ACI, "Active Signed EC: ${SignalStore.account.aciPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account.aciPreKeys.lastResortKyberPreKeyId}")
+    warn(ServiceIdType.PNI, "Active Signed EC: ${SignalStore.account.pniPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account.pniPreKeys.lastResortKyberPreKeyId}")
+
+    if (!isPreKeyConsistent(ServiceIdType.ACI, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)) {
+      warn(ServiceIdType.ACI, "Prekey consistency check failed! Must rotate keys!")
+      return true
+    }
+
+    val pniStore = AppDependencies.protocolStore.pniOrNull()
+    if (pniStore != null && !isPreKeyConsistent(ServiceIdType.PNI, pniStore, SignalStore.account.pniPreKeys)) {
+      warn(ServiceIdType.PNI, "Prekey consistency check failed! Must rotate keys! (ACI consistency check must have passed)")
+      return true
+    }
+
+    Log.w(TAG, "Forced rotation was requested, but the consistency checks passed!")
+    val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc.lastForcedPreKeyRefresh
+    // We check < 0 in case someone changed their clock and had a bad value set
+    return timeSinceLastForcedRotation > RemoteConfig.preKeyForceRefreshInterval || timeSinceLastForcedRotation < 0
+  }
+
+  private suspend fun Raise<Result>.isPreKeyConsistent(serviceIdType: ServiceIdType, protocolStore: SignalServiceAccountDataStore, metadataStore: PreKeyMetadataStore): Boolean {
+    val signedPreKey: ECPublicKey
+    val lastResortKyberPreKey: KEMPublicKey
+    try {
+      signedPreKey = protocolStore.loadSignedPreKey(metadataStore.activeSignedPreKeyId).keyPair.publicKey
+      lastResortKyberPreKey = protocolStore.loadKyberPreKey(metadataStore.lastResortKyberPreKeyId).keyPair.publicKey
+    } catch (e: InvalidKeyException) {
+      Log.w(TAG, "Unable to load keys. Reporting as mismatch.", e)
+      return false
+    } catch (e: InvalidKeyIdException) {
+      Log.w(TAG, "Unable to load keys. Reporting as mismatch.", e)
+      return false
+    }
+
+    val result = SignalNetwork.keysApiV2.checkRepeatedUseKeysConsistency(
+      serviceIdType = serviceIdType.toLibSignalKind(),
+      identityKey = protocolStore.identityKeyPair.publicKey,
+      signedPreKeyId = metadataStore.activeSignedPreKeyId,
+      signedPreKey = signedPreKey,
+      lastResortKyberKeyId = metadataStore.lastResortKyberPreKeyId,
+      lastResortKyberKey = lastResortKyberPreKey
+    )
+
     return when (result) {
-      is NetworkResult.Success -> true
-      is NetworkResult.NetworkError -> throw result.exception
-      is NetworkResult.ApplicationError -> throw result.throwable
-      is NetworkResult.StatusCodeError -> if (result.code == 409) {
-        false
-      } else {
-        throw NonSuccessfulResponseCodeException(result.code)
+      is RequestResult.Success -> {
+        true
       }
+      is RequestResult.NonSuccess -> {
+        when (result.error) {
+          is KeysApiV2.CheckRepeatedUseKeysError.Mismatch -> {
+            Log.w(TAG, "Server indicated that our keys do not match!")
+          }
+          is KeysApiV2.CheckRepeatedUseKeysError.UnknownError -> {
+            Log.w(TAG, "Non-successful response from checking repeated use: ${result.error}")
+          }
+        }
+        false
+      }
+      is RequestResult.RetryableNetworkError -> {
+        warn(serviceIdType, "Network error checking prekey consistency. Retrying.", result.networkError)
+        raise(Result.retry(result.retryAfter?.toMillis() ?: defaultBackoff()))
+      }
+      is RequestResult.ApplicationError -> raise(Result.fatalFailure(RuntimeException(result.cause)))
     }
   }
 
-  override fun onShouldRetry(e: Exception): Boolean {
-    return e.isRetryableIOException()
+  private fun <T> Raise<Result>.bindOrRetry(result: RequestResult<T, Nothing>, description: String, serviceIdType: ServiceIdType? = null): T {
+    return when (result) {
+      is RequestResult.Success -> result.result
+      is RequestResult.NonSuccess -> result.error
+      is RequestResult.RetryableNetworkError -> {
+        val message = "Network error $description. Retrying."
+        if (serviceIdType != null) {
+          warn(serviceIdType, message, result.networkError)
+        } else {
+          Log.w(TAG, message, result.networkError)
+        }
+        raise(Result.retry(result.retryAfter?.toMillis() ?: defaultBackoff()))
+      }
+      is RequestResult.ApplicationError -> raise(Result.fatalFailure(RuntimeException(result.cause)))
+    }
   }
 
   override fun onFailure() {
@@ -315,8 +371,19 @@ class PreKeysSyncJob private constructor(
     AppDependencies.jobManager.add(AccountConsistencyWorkerJob())
   }
 
+  private fun ServiceIdType.toLibSignalKind(): LibSignalServiceId.Kind {
+    return when (this) {
+      ServiceIdType.ACI -> LibSignalServiceId.Kind.ACI
+      ServiceIdType.PNI -> LibSignalServiceId.Kind.PNI
+    }
+  }
+
   private fun log(serviceIdType: ServiceIdType, message: String) {
     Log.i(TAG, "[$serviceIdType] $message")
+  }
+
+  private fun warn(serviceIdType: ServiceIdType, message: String, throwable: Throwable? = null) {
+    Log.w(TAG, "[$serviceIdType] $message", throwable)
   }
 
   class Factory : Job.Factory<PreKeysSyncJob> {

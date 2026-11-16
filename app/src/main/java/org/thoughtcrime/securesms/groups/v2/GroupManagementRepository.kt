@@ -5,20 +5,20 @@ import androidx.core.util.Consumer
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.groups.GroupChangeBusyException
+import org.signal.core.util.groups.GroupChangeException
+import org.signal.core.util.groups.GroupChangeFailedException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
-import org.thoughtcrime.securesms.groups.GroupChangeException
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import java.io.IOException
 
 private val TAG: String = Log.tag(GroupManagementRepository::class.java)
@@ -49,6 +49,7 @@ class GroupManagementRepository @JvmOverloads constructor(private val context: C
         recipients.forEach { Recipient.live(it.id).refresh() }
       } catch (e: IOException) {
         consumer.accept(GroupAddMembersResult.Failure(GroupChangeFailureReason.NETWORK))
+        return@execute
       }
 
       consumer.accept(

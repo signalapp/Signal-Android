@@ -40,4 +40,8 @@ sealed interface MediaSendRoute : NavKey {
 
   @Serializable
   data object Send : MediaSendRoute
+
+  /** The app's sticker picker, opened from the image editor on top of [Edit]. */
+  @Serializable
+  data object StickerSelect : MediaSendRoute
 }

@@ -16,17 +16,16 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
@@ -54,12 +53,9 @@ class SyncMessageProcessorTest_attachmentBackfill {
     SignalStore.account.deviceId = 2
 
     // Prevent AttachmentDownloadJob onAdded from async changing the attachment state.
-    TextSecurePreferences.getSharedPreferences(harness.application)
-      .edit()
-      .putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF, emptySet())
-      .putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF, emptySet())
-      .putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_ROAMING_PREF, emptySet())
-      .commit()
+    SignalStore.settings.wifiMediaDownloadAllowed = emptySet()
+    SignalStore.settings.mobileMediaDownloadAllowed = emptySet()
+    SignalStore.settings.roamingMediaDownloadAllowed = emptySet()
   }
 
   @After

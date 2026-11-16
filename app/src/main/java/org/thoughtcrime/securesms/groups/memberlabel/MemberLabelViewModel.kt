@@ -12,18 +12,18 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.StringUtil
 import org.signal.core.util.concurrent.SignalDispatchers
+import org.signal.core.util.groups.GroupInsufficientRightsException
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveState
 import org.thoughtcrime.securesms.groups.ui.GroupMemberOrder
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 private val MEMBER_ORDER: Comparator<GroupMemberWithLabel> = GroupMemberOrder.comparator(
   isSelf = { it.recipient.isSelf },

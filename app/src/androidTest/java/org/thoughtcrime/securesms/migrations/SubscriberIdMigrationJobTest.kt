@@ -7,7 +7,7 @@ import assertk.assertions.isNotNull
 import assertk.assertions.isTrue
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.core.util.count
+import org.signal.core.database.count
 import org.signal.core.util.readToSingleInt
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.database.InAppPaymentSubscriberTable

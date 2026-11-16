@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.stories.viewer.reply.tabs
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyFragment
 import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsFragment
 

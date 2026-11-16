@@ -36,6 +36,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
   private List<Data> data;
 
   private volatile boolean invalidated;
+  private          boolean hasLoadedAnything;
 
   FixedSizePagingController(@NonNull PagedDataSource<Key, Data> dataSource,
                             @NonNull PagingConfig config,
@@ -64,9 +65,10 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
       return;
     }
 
-    final int loadStart;
-    final int loadEnd;
-    final int totalSize;
+    final int     loadStart;
+    final int     loadEnd;
+    final int     totalSize;
+    final boolean firstLoad;
 
     synchronized (loadState) {
       if (loadState.size() == 0) {
@@ -74,12 +76,17 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
         return;
       }
 
+      firstLoad         = !hasLoadedAnything;
+      hasLoadedAnything = true;
+
       int leftPageBoundary  = (aroundIndex / config.pageSize()) * config.pageSize();
       int rightPageBoundary = leftPageBoundary + config.pageSize();
       int buffer            = config.bufferPages() * config.pageSize();
 
-      int leftLoadBoundary  = Math.max(0, leftPageBoundary - buffer);
-      int rightLoadBoundary = Math.min(loadState.size(), rightPageBoundary + buffer);
+      // The first load only covers the requested page and the one before it, which is what a reversed list shows
+      // around a jump target. The full buffer is filled in right after it is published.
+      int leftLoadBoundary  = Math.max(0, leftPageBoundary - (firstLoad ? config.pageSize() : buffer));
+      int rightLoadBoundary = Math.min(loadState.size(), rightPageBoundary + (firstLoad ? 0 : buffer));
 
       loadStart = loadState.getEarliestUnmarkedIndexInRange(leftLoadBoundary, rightLoadBoundary);
 
@@ -127,6 +134,10 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
       data = updated;
       dataStream.next(updated);
+
+      if (firstLoad) {
+        onDataNeededAroundIndex(aroundIndex);
+      }
     });
   }
 

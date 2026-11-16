@@ -15,7 +15,7 @@ import java.util.UUID
  *
  * @author Moxie Marlinspike
  */
-class SignalServiceAttachmentPointer(
+class SignalServiceAttachmentPointer @JvmOverloads constructor(
   val cdnNumber: Int,
   val remoteId: SignalServiceAttachmentRemoteId,
   contentType: String?,
@@ -34,7 +34,9 @@ class SignalServiceAttachmentPointer(
   val caption: Optional<String>,
   val blurHash: Optional<String>,
   val uploadTimestamp: Long,
-  val uuid: UUID?
+  val uuid: UUID?,
+  val audioWaveform: ByteArray? = null,
+  val audioDurationSeconds: Float? = null
 ) : SignalServiceAttachment(contentType) {
   override fun isStream() = false
   override fun isPointer() = true

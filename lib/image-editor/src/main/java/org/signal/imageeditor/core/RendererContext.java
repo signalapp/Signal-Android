@@ -57,6 +57,10 @@ public final class RendererContext {
   @Nullable
   private Integer blackoutColor;
 
+  @ColorInt
+  @Nullable
+  private Integer decorationColor;
+
   private List<EditorElement> children = Collections.emptyList();
   private Paint               maskPaint;
 
@@ -121,6 +125,22 @@ public final class RendererContext {
   @ColorInt
   public int resolveBlackoutColor(@ColorInt int modelColor) {
     return blackoutColor == null ? modelColor : ColorUtils.setAlphaComponent(blackoutColor, Color.alpha(modelColor));
+  }
+
+  /**
+   * Overrides the color the editor draws its chrome -- crop thumbs, guides -- with, for a caller whose background is
+   * not always dark. Pass null to fall back to the default light-on-dark chrome.
+   */
+  public void setDecorationColor(@ColorInt @Nullable Integer decorationColor) {
+    this.decorationColor = decorationColor;
+  }
+
+  /**
+   * Resolves a decoration color against any override set for this render, preserving the alpha the caller baked in.
+   */
+  @ColorInt
+  public int resolveDecorationColor(@ColorInt int defaultColor) {
+    return decorationColor == null ? defaultColor : ColorUtils.setAlphaComponent(decorationColor, Color.alpha(defaultColor));
   }
 
   /**

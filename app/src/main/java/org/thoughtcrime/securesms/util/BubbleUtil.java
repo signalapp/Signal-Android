@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.notifications.v2.NotificationFactory;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.stream.Stream;
 
@@ -116,6 +116,9 @@ public final class BubbleUtil {
       ConversationId conversationId = ConversationId.forConversation(threadId);
       SignalExecutors.BOUNDED.execute(() -> {
         if (canBubble(context, recipientId, threadId)) {
+          Recipient recipient = Recipient.resolved(recipientId);
+          ConversationUtil.ensureShortcutForRecipientSync(context, recipient);
+
           NotificationManager     notificationManager      = ServiceUtil.getNotificationManager(context);
           StatusBarNotification[] notifications            = notificationManager.getActiveNotifications();
           int                     threadNotificationId     = NotificationIds.getNotificationIdForThread(conversationId);
@@ -128,7 +131,6 @@ public final class BubbleUtil {
           if (activeThreadNotification != null && activeThreadNotification.deleteIntent != null) {
             AppDependencies.getMessageNotifier().forceBubbleNotification(context, conversationId);
           } else {
-            Recipient recipient = Recipient.resolved(recipientId);
             NotificationFactory.notifyToBubbleConversation(context, recipient, threadId);
           }
         }

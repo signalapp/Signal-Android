@@ -7,8 +7,6 @@ package org.signal.registration.screens.aepentry
 
 import androidx.annotation.VisibleForTesting
 import androidx.core.net.toUri
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,7 +46,7 @@ class EnterAepForLocalBackupViewModel(
   private val resultBus: ResultEventBus,
   private val resultKey: String,
   isPasswordManagerAvailable: Boolean = false
-) : EventDrivenViewModel<EnterAepEvents>(TAG) {
+) : EventDrivenViewModel<EnterAepEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(EnterAepForLocalBackupViewModel::class)
@@ -87,6 +85,12 @@ class EnterAepForLocalBackupViewModel(
       }
       is EnterAepEvents.DismissDifferentAccountDialog -> {
         stateEmitter(inputState.copy(showDifferentAccountDialog = false))
+      }
+      is EnterAepEvents.TryAnotherWay,
+      is EnterAepEvents.RecoveryKeyHelp,
+      is EnterAepEvents.ConfirmVerifyWithSms,
+      is EnterAepEvents.DismissVerifyWithSmsDialog -> {
+        error("Verify-with-SMS handling only exists for pre-registration remote backup restores.")
       }
     }
   }
@@ -176,7 +180,7 @@ class EnterAepForLocalBackupViewModel(
             error("[Submit] Device transfer possible. This should not happen with RRP-based registration.")
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[Submit] Unexpected registration error: $error")
             stateEmitter(
@@ -213,21 +217,6 @@ class EnterAepForLocalBackupViewModel(
     parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
     resultBus.sendResult(resultKey, EnterAepForLocalBackupResult.RegistrationDeferredToSms)
     parentEventEmitter.navigateBack()
-  }
-
-  class Factory(
-    private val isPreRegistration: Boolean,
-    private val backupUri: String?,
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val resultBus: ResultEventBus,
-    private val resultKey: String,
-    private val isPasswordManagerAvailable: Boolean = false
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return EnterAepForLocalBackupViewModel(isPreRegistration, backupUri, repository, parentState, parentEventEmitter, resultBus, resultKey, isPasswordManagerAvailable) as T
-    }
   }
 }
 

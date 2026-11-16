@@ -9,9 +9,23 @@ package org.signal.signallogin
  * Test tags for the composables in this module, so UI tests can find them.
  */
 object SignalLoginTestTags {
+  const val BETA_TAG = "signal_login_beta_tag"
+  const val BETA_DISCLAIMER = "signal_login_beta_disclaimer"
+
   const val CARD_VIEW_DETAILS_BUTTON = "signal_login_card_view_details_button"
 
   const val VIEW_DETAILS_SCREEN = "signal_login_view_details_screen"
   const val VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON = "signal_login_view_details_save_to_password_manager_button"
   const val VIEW_DETAILS_SAVE_AS_PDF_BUTTON = "signal_login_view_details_save_as_pdf_button"
+  const val VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON = "signal_login_view_details_reset_recovery_key_button"
+  const val VIEW_DETAILS_RESET_RECOVERY_KEY_SPINNER = "signal_login_view_details_reset_recovery_key_spinner"
+
+  const val KEY_DETAILS_ACCOUNT_ID_BLOCK = "signal_login_key_details_account_id_block"
+  const val KEY_DETAILS_RECOVERY_KEY_BLOCK = "signal_login_key_details_recovery_key_block"
+  const val KEY_DETAILS_ACCOUNT_ID_COPY_BUTTON = "signal_login_key_details_account_id_copy_button"
+  const val KEY_DETAILS_RECOVERY_KEY_COPY_BUTTON = "signal_login_key_details_recovery_key_copy_button"
+
+  const val DO_NOT_SHARE_SHEET = "signal_login_do_not_share_sheet"
+  const val DO_NOT_SHARE_GOT_IT_BUTTON = "signal_login_do_not_share_got_it_button"
+  const val DO_NOT_SHARE_LEARN_MORE_BUTTON = "signal_login_do_not_share_learn_more_button"
 }

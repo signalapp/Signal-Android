@@ -65,6 +65,9 @@ sealed class PhoneNumberEntryScreenEvents {
     override fun toString(): String = "LocalBackupRestoreCompleted(result=***)"
   }
 
+  /** The user chose to verify their number over SMS instead of entering their recovery key for a remote backup restore. */
+  data object RemoteBackupRestoreDeferredToSms : PhoneNumberEntryScreenEvents()
+
   /** The user dismissed the network error dialog. */
   data object NetworkErrorDialogDismissed : PhoneNumberEntryScreenEvents()
 
@@ -82,4 +85,13 @@ sealed class PhoneNumberEntryScreenEvents {
 
   /** The user dismissed the invalid phone number dialog. */
   data object InvalidPhoneNumberDialogDismissed : PhoneNumberEntryScreenEvents()
+
+  /** The user dismissed the captcha-not-accepted dialog. */
+  data object CaptchaNotAcceptedDialogDismissed : PhoneNumberEntryScreenEvents()
+
+  /** The user chose to contact support from the captcha-not-accepted dialog. */
+  data object CaptchaNotAcceptedContactSupport : PhoneNumberEntryScreenEvents()
+
+  /** The user finished or dismissed the contact support dialog. */
+  data object ContactSupportDialogDismissed : PhoneNumberEntryScreenEvents()
 }

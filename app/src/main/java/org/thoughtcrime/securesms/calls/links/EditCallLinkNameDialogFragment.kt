@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.calls.links
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.WindowManager
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.Column
@@ -51,6 +52,7 @@ import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsViewModel
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.signal.core.ui.R as CoreUiR
 
 class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
 
@@ -71,8 +73,13 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState)
     dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-    dialog.window?.enableEdgeToEdge()
     return dialog
+  }
+
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return super.onGetLayoutInflater(savedInstanceState).also {
+      dialog?.window?.enableEdgeToEdge()
+    }
   }
 
   @Preview
@@ -142,7 +149,7 @@ private fun EditCallLinkNameScreen(
     } else {
       null
     },
-    navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
   ) { paddingValues ->
     val focusRequester = remember { FocusRequester() }
     val breakIterator = remember { BreakIteratorCompat.getInstance() }

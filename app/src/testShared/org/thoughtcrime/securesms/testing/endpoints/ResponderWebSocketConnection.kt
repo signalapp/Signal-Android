@@ -89,8 +89,6 @@ class ResponderWebSocketConnection(
     return WebsocketResponse(status, body, headers, false)
   }
 
-  override fun sendKeepAlive() = Unit
-
   override fun readRequestIfAvailable(): Optional<WebSocketRequestMessage> = Optional.empty()
 
   override fun readRequest(timeoutMillis: Long): WebSocketRequestMessage {

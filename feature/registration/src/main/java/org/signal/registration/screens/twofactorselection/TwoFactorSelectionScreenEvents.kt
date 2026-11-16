@@ -15,4 +15,10 @@ sealed class TwoFactorSelectionScreenEvents {
 
   /** The user tapped the cancel button. */
   data object CancelClicked : TwoFactorSelectionScreenEvents()
+
+  /** The passkey ceremony the host ran produced nothing usable, for a reason the user can do nothing about. */
+  data object PasskeyCeremonyFailed : TwoFactorSelectionScreenEvents()
+
+  /** The user acknowledged the passkey error. */
+  data object PasskeyErrorDismissed : TwoFactorSelectionScreenEvents()
 }

@@ -7,9 +7,10 @@ package org.thoughtcrime.securesms.backup.v2.importer
 
 import androidx.core.content.contentValuesOf
 import org.signal.archive.proto.Chat
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.insertInto
 import org.signal.core.models.database.AttachmentId
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.insertInto
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.restoreWallpaperAttachment
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.wallpaper.UriChatWallpaper
 import kotlin.time.Duration.Companion.milliseconds
 

@@ -5,7 +5,6 @@
 
 package org.signal.registration.screens.shared
 
-import android.text.format.Formatter
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,11 +19,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.util.bytes
 import org.signal.registration.R
 
 /**
@@ -33,8 +32,6 @@ import org.signal.registration.R
  */
 @Composable
 fun RestoreProgressDialog(restoreProgress: RestoreProgress?) {
-  val context = LocalContext.current
-
   AlertDialog(
     onDismissRequest = {},
     confirmButton = {},
@@ -79,8 +76,8 @@ fun RestoreProgressDialog(restoreProgress: RestoreProgress?) {
           )
 
           if (restoreProgress != null && restoreProgress.phase != RestoreProgress.Phase.Finalizing && restoreProgress.totalBytes > 0) {
-            val progressBytes = Formatter.formatShortFileSize(context, restoreProgress.bytesCompleted)
-            val totalBytes = Formatter.formatShortFileSize(context, restoreProgress.totalBytes)
+            val progressBytes = restoreProgress.bytesCompleted.bytes.toUnitString()
+            val totalBytes = restoreProgress.totalBytes.bytes.toUnitString()
             Text(
               text = stringResource(R.string.RemoteRestoreScreen__s_of_s_s, progressBytes, totalBytes, "%.2f%%".format(restoreProgress.progress * 100)),
               style = MaterialTheme.typography.bodySmall,

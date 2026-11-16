@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /**
  * Dialogs that can be displayed and should override requests to continue playback of stories.

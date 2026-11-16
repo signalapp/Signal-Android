@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -48,7 +49,6 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.signal.core.ui.R as CoreUiR
 
 enum class MessageBackupsKeyEducationScreenMode {
@@ -330,7 +330,7 @@ private fun RemoteBackupWithLocalDisabledInfo() {
   )
 
   InfoRow(
-    R.drawable.symbol_error_circle_24,
+    CoreUiR.drawable.symbol_error_circle_24,
     R.string.MessageBackupsKeyEducationScreen__if_you_lose_it
   )
 }

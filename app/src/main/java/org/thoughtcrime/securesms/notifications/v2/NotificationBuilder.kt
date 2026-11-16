@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.Optional
 import androidx.core.app.Person as PersonCompat
 import org.signal.core.ui.R as CoreUiR
@@ -64,6 +63,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setDeleteIntent(deleteIntent: PendingIntent?)
   abstract fun setSortKey(sortKey: String)
   abstract fun setOnlyAlertOnce(onlyAlertOnce: Boolean)
+  abstract fun setSilent(silent: Boolean)
   abstract fun setGroupSummary(isGroupSummary: Boolean)
   abstract fun setSubText(subText: String)
   abstract fun setPriority(priority: Int)
@@ -176,7 +176,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     if (ledColor != "none") {
       var blinkPattern = SignalStore.settings.messageLedBlinkPattern
       if (blinkPattern == "custom") {
-        blinkPattern = TextSecurePreferences.getNotificationLedPatternCustom(context)
+        blinkPattern = SignalStore.settings.messageLedBlinkPatternCustom
       }
       val (onTime: Int, offTime: Int) = blinkPattern.parseBlinkPattern()
       setLights(Color.parseColor(ledColor), onTime, offTime)
@@ -236,7 +236,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         builder.addAction(replyAction)
 
         if (remoteReply != null) {
-          val wearableReplyAction = NotificationCompat.Action.Builder(R.drawable.symbol_reply_24, actionName, remoteReply)
+          val wearableReplyAction = NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_reply_24, actionName, remoteReply)
             .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
             .build()
 
@@ -484,6 +484,10 @@ sealed class NotificationBuilder(protected val context: Context) {
 
     override fun setOnlyAlertOnce(onlyAlertOnce: Boolean) {
       builder.setOnlyAlertOnce(onlyAlertOnce)
+    }
+
+    override fun setSilent(silent: Boolean) {
+      builder.setSilent(silent)
     }
 
     override fun setPriority(priority: Int) {

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.testing
 
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.toByteArray
@@ -11,7 +12,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
 import org.thoughtcrime.securesms.messages.TestMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
@@ -136,6 +136,26 @@ object MessageContentFuzzer {
                 }
               }
             )
+          }
+        }
+      ).build()
+  }
+
+  /**
+   * Create a 1:1 call event sync message.
+   */
+  fun syncCallEventMessage(callId: Long, timestamp: Long, peer: RecipientId, type: SyncMessage.CallEvent.Type, direction: SyncMessage.CallEvent.Direction, event: SyncMessage.CallEvent.Event): Content {
+    return Content
+      .Builder()
+      .syncMessage(
+        SyncMessage.Builder().buildWith {
+          callEvent = SyncMessage.CallEvent.Builder().buildWith {
+            this.conversationId = Recipient.resolved(peer).requireAci().toByteString()
+            this.callId = callId
+            this.timestamp = timestamp
+            this.type = type
+            this.direction = direction
+            this.event = event
           }
         }
       ).build()

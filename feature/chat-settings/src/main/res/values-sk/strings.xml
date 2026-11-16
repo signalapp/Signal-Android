@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Povolenia</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Ísť naspäť</string>
+  <string name="GroupPermissionsScreen__add_members">Pridať členov</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Upraviť informácie o skupine</string>
+  <string name="GroupPermissionsScreen__send_messages">Poslať správy</string>
+  <string name="GroupPermissionsScreen__all_members">Všetci členovia</string>
+  <string name="GroupPermissionsScreen__only_admins">Iba administrátori</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Kto môže pridávať nových členov?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Kto môže upraviť informácie o tejto skupine?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Kto môže odosielať správy a zahájiť hovory?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Pridať role používateľov</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Kto môže pridávať role používateľov?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Role používateľov budú vymazané</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Zmenou tohto povolenia na Iba administrátori sa vymažú role používateľov nastavené používateľmi, ktorí nie sú administrátori v tejto skupine."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Zmeniť povolenie</string>
+  <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
+  <string name="ShareableGroupLinkScreen__group_link">Odkaz na skupinu</string>
+  <string name="ShareableGroupLinkScreen__share">Zdieľať</string>
+  <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
+  <string name="ShareableGroupLinkScreen__reset_link">Resetovať odkaz</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">Vyžadovať schválenie administrátorom</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vyžadovať schválenie administrátorom pri nových členoch, ktorí sa pridajú prostredníctvom odkazu na skupinu.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Naozaj chcete resetovať odkaz na skupinu? Ľudia sa už viac nebudú môcť do skupiny pridať prostredníctvom aktuálneho odkazu.</string>
+  <!-- Content description of the button that navigates back off of the group link screen. -->
+  <string name="ShareableGroupLinkScreen__go_back">Ísť naspäť</string>
+</resources>

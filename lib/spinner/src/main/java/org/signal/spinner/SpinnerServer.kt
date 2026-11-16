@@ -8,9 +8,9 @@ import com.github.jknack.handlebars.Template
 import com.github.jknack.handlebars.helper.ConditionalHelpers
 import fi.iki.elonen.NanoHTTPD
 import fi.iki.elonen.NanoWSD
+import org.signal.core.database.ForeignKeyConstraint
+import org.signal.core.database.getForeignKeys
 import org.signal.core.util.ExceptionUtil
-import org.signal.core.util.ForeignKeyConstraint
-import org.signal.core.util.getForeignKeys
 import org.signal.core.util.logging.Log
 import org.signal.core.util.tracing.Tracer
 import org.signal.spinner.Spinner.DatabaseConfig

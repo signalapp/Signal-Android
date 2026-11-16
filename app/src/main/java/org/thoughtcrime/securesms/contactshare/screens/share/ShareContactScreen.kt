@@ -11,14 +11,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -30,7 +33,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,11 +43,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
@@ -52,17 +61,27 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarImage
+import org.thoughtcrime.securesms.contactshare.PHOTO_ID_ADDRESS_BOOK
+import org.thoughtcrime.securesms.contactshare.PHOTO_ID_NONE
+import org.thoughtcrime.securesms.contactshare.PHOTO_ID_SIGNAL_PROFILE
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactState.ContactPhoto
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactState.DetailLabel
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactState.DetailSelection
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.signal.core.ui.R as CoreUiR
 
 /** Width of the leading selection column, so every row's content shares one text margin. */
 private val SELECTION_COLUMN_WIDTH = 72.dp
 private val HORIZONTAL_PADDING = 24.dp
 private val AVATAR_SIZE = 72.dp
-private val PICKER_PHOTO_SIZE = 120.dp
+private val EDIT_BADGE_SIZE = 32.dp
+
+/** The badge sits off the avatar's corner rather than tucked inside it. */
+private val EDIT_BADGE_OVERHANG = 4.dp
+private val PICKER_PHOTO_SIZE = 96.dp
+private val PICKER_PHOTO_SPACING = 24.dp
 
 @Composable
 fun ShareContactScreen(
@@ -73,7 +92,7 @@ fun ShareContactScreen(
     title = stringResource(R.string.ShareContactScreen__share_contact),
     onNavigationClick = { onEvent(ShareContactEvent.BackClicked) },
     navigationIconRes = CoreUiR.drawable.symbol_arrow_start_24,
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
+    navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description)
   ) { contentPadding ->
     if (state.isLoading) {
       Box(
@@ -91,6 +110,8 @@ fun ShareContactScreen(
             item {
               AvatarRow(
                 avatar = state.avatar,
+                displayName = state.name?.displayName.orEmpty(),
+                isOrgOnly = state.name?.isOrgOnly == true,
                 onToggle = { onEvent(ShareContactEvent.AvatarToggled) },
                 onEditClick = { onEvent(ShareContactEvent.EditPhotoClicked) }
               )
@@ -129,6 +150,8 @@ fun ShareContactScreen(
   if (state.photoPicker != null) {
     PhotoPickerSheet(
       picker = state.photoPicker,
+      displayName = state.name?.displayName.orEmpty(),
+      isOrgOnly = state.name?.isOrgOnly == true,
       onPhotoSelected = { onEvent(ShareContactEvent.PhotoSelected(it)) },
       onConfirm = { onEvent(ShareContactEvent.PhotoPickerConfirmed) },
       onDismiss = { onEvent(ShareContactEvent.PhotoPickerDismissed) }
@@ -139,6 +162,8 @@ fun ShareContactScreen(
 @Composable
 private fun AvatarRow(
   avatar: ShareContactState.AvatarSelection,
+  displayName: String,
+  isOrgOnly: Boolean,
   onToggle: () -> Unit,
   onEditClick: () -> Unit
 ) {
@@ -155,6 +180,8 @@ private fun AvatarRow(
     Box {
       ContactPhotoImage(
         photo = avatar.photo,
+        displayName = displayName,
+        isOrgOnly = isOrgOnly,
         modifier = Modifier.size(AVATAR_SIZE)
       )
 
@@ -163,7 +190,8 @@ private fun AvatarRow(
           contentAlignment = Alignment.Center,
           modifier = Modifier
             .align(Alignment.BottomEnd)
-            .size(32.dp)
+            .offset(x = EDIT_BADGE_OVERHANG, y = EDIT_BADGE_OVERHANG)
+            .size(EDIT_BADGE_SIZE)
             .clip(CircleShape)
             .background(MaterialTheme.colorScheme.surfaceVariant)
             .testTag(ShareContactTestTags.EDIT_PHOTO_BUTTON)
@@ -192,7 +220,13 @@ private fun NameRow(
     modifier = Modifier
       .fillMaxWidth()
       .testTag(ShareContactTestTags.NAME_ROW)
-      .then(if (name.isToggleable) Modifier.clickable(onClick = onToggle) else Modifier)
+      .then(
+        when {
+          name.isToggleable -> Modifier.clickable(onClick = onToggle)
+          name.isEditable -> Modifier.clickable(onClick = onEditClick)
+          else -> Modifier
+        }
+      )
       .padding(vertical = 16.dp)
   ) {
     SelectionColumn(isSelected = name.isSelected)
@@ -311,6 +345,9 @@ private fun Footer(
 ) {
   val chatColor: Color? = recipientId?.let { LocalChatColorProvider.current(it.toLong()).value }
 
+  val sendBackground = chatColor ?: colorResource(CoreUiR.color.signal_light_colorPrimary)
+  val sendForeground = colorResource(R.color.conversation_send_button_tint)
+
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
@@ -329,22 +366,20 @@ private fun Footer(
       modifier = Modifier
         .size(40.dp)
         .clip(CircleShape)
-        .background(
-          if (canSend) chatColor ?: MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
-        )
+        .background(if (canSend) sendBackground else MaterialTheme.colorScheme.surfaceVariant)
         .testTag(ShareContactTestTags.SEND_BUTTON)
         .clickable(enabled = canSend, onClick = onSendClick)
     ) {
       if (isSending) {
         CircularProgressIndicator(
-          color = MaterialTheme.colorScheme.onPrimary,
+          color = sendForeground,
           modifier = Modifier.size(20.dp)
         )
       } else {
         Icon(
           painter = painterResource(CoreUiR.drawable.symbol_send_fill_24),
           contentDescription = stringResource(R.string.ShareContactScreen__send),
-          tint = if (canSend) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
+          tint = if (canSend) sendForeground else MaterialTheme.colorScheme.onSurfaceVariant
         )
       }
     }
@@ -354,6 +389,8 @@ private fun Footer(
 @Composable
 private fun PhotoPickerSheet(
   picker: ShareContactState.PhotoPicker,
+  displayName: String,
+  isOrgOnly: Boolean,
   onPhotoSelected: (String) -> Unit,
   onConfirm: () -> Unit,
   onDismiss: () -> Unit
@@ -369,23 +406,35 @@ private fun PhotoPickerSheet(
       modifier = Modifier.fillMaxWidth()
     )
 
-    Row(
-      horizontalArrangement = Arrangement.spacedBy(44.dp, Alignment.CenterHorizontally),
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(vertical = 24.dp)
-    ) {
-      picker.options.forEach { option ->
-        Box(modifier = Modifier.clickable { onPhotoSelected(option.id) }) {
-          ContactPhotoImage(
-            photo = option.photo,
-            modifier = Modifier.size(PICKER_PHOTO_SIZE)
-          )
+    BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
+      val photoSize = pickerPhotoSize(available = maxWidth, count = picker.options.size)
 
-          SelectionCheck(
-            isSelected = option.id == picker.selectedId,
-            modifier = Modifier.align(Alignment.BottomEnd)
-          )
+      Row(
+        horizontalArrangement = Arrangement.spacedBy(PICKER_PHOTO_SPACING, Alignment.CenterHorizontally),
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(vertical = 24.dp)
+      ) {
+        picker.options.forEach { option ->
+          Box(
+            modifier = Modifier.clickable(
+              interactionSource = remember { MutableInteractionSource() },
+              indication = ripple(bounded = false),
+              onClick = { onPhotoSelected(option.id) }
+            )
+          ) {
+            ContactPhotoImage(
+              photo = option.photo,
+              displayName = displayName,
+              isOrgOnly = isOrgOnly,
+              modifier = Modifier.size(photoSize)
+            )
+
+            SelectionCheck(
+              isSelected = option.id == picker.selectedId,
+              modifier = Modifier.align(Alignment.BottomEnd)
+            )
+          }
         }
       }
     }
@@ -402,9 +451,33 @@ private fun PhotoPickerSheet(
   }
 }
 
+/**
+ * Shrinks the photos on a narrow screen so that the row still fits, never growing them past the size
+ * the design calls for. The gaps hold their width, so only the circles give.
+ */
+private fun pickerPhotoSize(available: Dp, count: Int): Dp {
+  if (count <= 0) {
+    return PICKER_PHOTO_SIZE
+  }
+
+  val forPhotos = available - (HORIZONTAL_PADDING * 2) - (PICKER_PHOTO_SPACING * (count - 1))
+
+  return minOf(PICKER_PHOTO_SIZE, forPhotos / count)
+}
+
+/** A null [photo] is the "no photo" choice, drawn the way the receiver will draw it. */
 @Composable
-private fun ContactPhotoImage(photo: ContactPhoto, modifier: Modifier = Modifier) {
-  if (LocalInspectionMode.current) {
+private fun ContactPhotoImage(photo: ContactPhoto?, displayName: String, isOrgOnly: Boolean, modifier: Modifier = Modifier) {
+  if (photo == null) {
+    FallbackAvatarImage(
+      fallbackAvatar = if (isOrgOnly) {
+        FallbackAvatar.Resource.Organization(AvatarColor.A100)
+      } else {
+        FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100)
+      },
+      modifier = modifier
+    )
+  } else if (LocalInspectionMode.current) {
     Image(
       painter = painterResource(R.drawable.ic_avatar_abstract_02),
       contentDescription = null,
@@ -491,17 +564,46 @@ private fun ShareContactScreenLockedNamePreview() {
 @Composable
 private fun ShareContactScreenPhotoPickerPreview() {
   Previews.Preview {
+    ShareContactScreen(state = previewState(photoPicker = previewPicker()), onEvent = {})
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun ShareContactScreenNoPhotoPickedPreview() {
+  Previews.Preview {
+    ShareContactScreen(state = previewState(photoPicker = previewPicker(selectedId = PHOTO_ID_NONE)), onEvent = {})
+  }
+}
+
+/** What the row looks like once the no photo choice is committed. */
+@DayNightPreviews
+@Composable
+private fun ShareContactScreenNoPhotoPreview() {
+  Previews.Preview {
     ShareContactScreen(
-      state = previewState(
-        photoPicker = ShareContactState.PhotoPicker(
-          options = listOf(
-            ShareContactState.PhotoOption("address-book", ContactPhoto(uri = "", isProfile = false)),
-            ShareContactState.PhotoOption("signal-profile", ContactPhoto(uri = "", isProfile = true))
-          ),
-          selectedId = "address-book"
-        )
-      ),
+      state = previewState().let { it.copy(avatar = it.avatar?.copy(photo = null)) },
       onEvent = {}
     )
   }
+}
+
+/** Narrow enough that the photos have to give up width to fit. */
+@Preview(widthDp = 320)
+@Composable
+private fun ShareContactScreenNarrowPhotoPickerPreview() {
+  Previews.Preview {
+    ShareContactScreen(state = previewState(photoPicker = previewPicker()), onEvent = {})
+  }
+}
+
+private fun previewPicker(selectedId: String = PHOTO_ID_ADDRESS_BOOK): ShareContactState.PhotoPicker {
+  return ShareContactState.PhotoPicker(
+    options = listOf(
+      ShareContactState.PhotoOption(PHOTO_ID_ADDRESS_BOOK, ContactPhoto(uri = "", isProfile = false)),
+      ShareContactState.PhotoOption(PHOTO_ID_SIGNAL_PROFILE, ContactPhoto(uri = "", isProfile = true)),
+      ShareContactState.PhotoOption(PHOTO_ID_NONE, null)
+    ),
+    selectedId = selectedId
+  )
 }

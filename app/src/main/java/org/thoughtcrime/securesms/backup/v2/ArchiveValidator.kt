@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2
 
 import org.signal.core.models.backup.MessageBackupKey
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.messagebackup.MessageBackup
@@ -13,7 +14,6 @@ import org.signal.libsignal.messagebackup.ValidationError
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.isStory
 import org.thoughtcrime.securesms.util.isStoryReaction
 import java.io.File

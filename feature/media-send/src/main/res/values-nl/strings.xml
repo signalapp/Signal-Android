@@ -44,10 +44,6 @@
   <string name="AddAMessageRow__view_once_media">Eenmaligeweergave-media</string>
   <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
   <string name="AddAMessageRow__toggle_view_once">Eenmalige weergave inschakelen</string>
-  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-  <string name="SentMediaQuality__high">Hoog</string>
-  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-  <string name="SentMediaQuality__standard">Standaard</string>
   <!-- Label for our standard quality media conversion. -->
   <string name="QualitySelectorBottomSheetDialog__standard">Standaard</string>
   <!-- Description for our standard quality media conversion. -->
@@ -86,7 +82,7 @@
   <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Signal heeft toegang nodig om je foto\'s en video\'s te kunnen weergeven.</string>
 
   <!-- Label for the button that switches the capture screen to taking a photo. -->
-  <string name="MediaCaptureScreen__photo">Afbeelding</string>
+  <string name="MediaCaptureScreen__photo">Foto</string>
   <!-- Label for the button that switches the capture screen to recording a video. -->
   <string name="MediaCaptureScreen__video">Video</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
@@ -133,12 +129,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video-opname wordt niet ondersteund op je apparaat</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tik voor foto, houd vast voor video</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Opnemen</string>
-  <string name="CameraXFragment_change_camera_description">Camera wisselen</string>
-  <string name="CameraXFragment_open_gallery_description">Galerij openen</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Toegang geven</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,18 +163,10 @@
   <string name="CameraXFragment_photo_capture_failed">Foto maken mislukt. Probeer het opnieuw.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Foto verwerken mislukt. Probeer het opnieuw.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">Camera wisselen</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Flits uit</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Flits aan</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Flits automatisch</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Verzenden</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Gepauzeerd</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Meerdere opnamen</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal heeft toegang tot de microfoon en de camera nodig om video te kunnen opnemen, maar je hebt dit geweigerd. Ga naar de app-instellingen in je telefooninstellingen, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
 
@@ -246,6 +228,11 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Het lijkt erop dat je een Signal-apparaat probeert te koppelen. Tik op Doorgaan, vervolgens op ‘Een nieuw apparaat koppelen’ en scan de QR-code opnieuw.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Doorgaan</string>
+
+  <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">Kan account niet overzetten</string>
+  <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">Het apparaat waarnaar je gegevens overzet, is verouderd. Werk Signal op dat apparaat bij en probeer het opnieuw.</string>
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">

@@ -155,7 +155,7 @@ inline fun <T> Cursor.readToList(predicate: (T) -> Boolean = { true }, mapper: (
     while (moveToNext()) {
       val record = mapper(this)
       if (predicate(record)) {
-        list += mapper(this)
+        list += record
       }
     }
   }
@@ -190,7 +190,7 @@ inline fun <T> Cursor.readToSet(predicate: (T) -> Boolean = { true }, mapper: (C
     while (moveToNext()) {
       val record = mapper(this)
       if (predicate(record)) {
-        set += mapper(this)
+        set += record
       }
     }
   }

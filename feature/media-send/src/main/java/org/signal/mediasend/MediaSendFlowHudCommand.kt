@@ -21,9 +21,6 @@ sealed interface MediaSendFlowHudCommand {
     val isViewOnceAvailable: Boolean
   ) : MediaSendFlowHudCommand
 
-  /** Show the app's sticker picker. The pick is handed back via [MediaSendFlowViewModel.onStickerSelected]. */
-  data object SelectSticker : MediaSendFlowHudCommand
-
   /**
    * Show the app's date and time picker for a scheduled send. The pick is handed back via
    * [MediaSendFlowViewModel.onScheduledSendTimeSelected].

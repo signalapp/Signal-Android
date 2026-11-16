@@ -22,14 +22,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.viewmodel.compose.viewModel
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueCodeSelector
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueTypeSelector
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
@@ -42,37 +44,46 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
  */
 class InternalPendingOneTimeDonationConfigurationFragment : ComposeFragment() {
 
-  private val viewModel: InternalPendingOneTimeDonationConfigurationViewModel by viewModels()
+  private val appSettingsRouter by appSettingsRouter()
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state
-    Content(
-      state,
-      onNavigationClick = {
-        findNavController().popBackStack()
-      },
-      onAddError = {
-        viewModel.state.value = viewModel.state.value.copy(error = DonationErrorValue())
-      },
-      onClearError = {
-        viewModel.state.value = viewModel.state.value.copy(error = null)
-      },
-      onPaymentMethodTypeSelected = {
-        viewModel.state.value = viewModel.state.value.copy(paymentMethodType = it, error = null)
-      },
-      onErrorTypeSelected = {
-        viewModel.state.value = viewModel.state.value.copy(error = viewModel.state.value.error!!.copy(type = it))
-      },
-      onErrorCodeChanged = {
-        viewModel.state.value = viewModel.state.value.copy(error = viewModel.state.value.error!!.copy(code = it))
-      },
-      onSave = {
-        SignalStore.inAppPayments.setPendingOneTimeDonation(viewModel.state.value)
-        findNavController().popBackStack()
-      }
-    )
+    InternalPendingOneTimeDonationConfigurationEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
+}
+
+/**
+ * Configures the pending one-time donation, wired to its view model, leaving through [parentEventEmitter].
+ */
+@Composable
+fun InternalPendingOneTimeDonationConfigurationEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  val viewModel: InternalPendingOneTimeDonationConfigurationViewModel = viewModel()
+  val state by viewModel.state
+  Content(
+    state,
+    onNavigationClick = {
+      parentEventEmitter.navigateBack()
+    },
+    onAddError = {
+      viewModel.state.value = viewModel.state.value.copy(error = DonationErrorValue())
+    },
+    onClearError = {
+      viewModel.state.value = viewModel.state.value.copy(error = null)
+    },
+    onPaymentMethodTypeSelected = {
+      viewModel.state.value = viewModel.state.value.copy(paymentMethodType = it, error = null)
+    },
+    onErrorTypeSelected = {
+      viewModel.state.value = viewModel.state.value.copy(error = viewModel.state.value.error!!.copy(type = it))
+    },
+    onErrorCodeChanged = {
+      viewModel.state.value = viewModel.state.value.copy(error = viewModel.state.value.error!!.copy(code = it))
+    },
+    onSave = {
+      SignalStore.inAppPayments.setPendingOneTimeDonation(viewModel.state.value)
+      parentEventEmitter.navigateBack()
+    }
+  )
 }
 
 @Preview

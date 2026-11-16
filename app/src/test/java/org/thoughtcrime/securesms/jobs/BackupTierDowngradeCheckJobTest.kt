@@ -19,11 +19,11 @@ import org.junit.Test
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.network.service.ArchiveError
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.IOException
 import kotlin.time.Duration.Companion.minutes
 

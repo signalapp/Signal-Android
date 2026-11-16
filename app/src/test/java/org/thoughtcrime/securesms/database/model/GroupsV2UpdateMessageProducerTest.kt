@@ -5,6 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -16,6 +17,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.BidiUtil
 import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.AccessControl.AccessRequired
@@ -34,7 +36,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.resolved
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.whispersystems.signalservice.api.push.ServiceIds
 import java.util.UUID
 
@@ -49,11 +51,11 @@ class GroupsV2UpdateMessageProducerTest {
 
   @Before
   fun setup() {
-    mockkObject(RecipientId.Companion)
+    mockkStatic(RecipientIds::class)
     val aliceId = RecipientId.from(1)
     val bobId = RecipientId.from(2)
-    every { RecipientId.from(alice) } returns aliceId
-    every { RecipientId.from(bob) } returns bobId
+    every { RecipientIds.from(alice) } returns aliceId
+    every { RecipientIds.from(bob) } returns bobId
 
     mockkObject(Recipient.Companion)
     val aliceRecipient = recipientWithName(aliceId, "Alice")

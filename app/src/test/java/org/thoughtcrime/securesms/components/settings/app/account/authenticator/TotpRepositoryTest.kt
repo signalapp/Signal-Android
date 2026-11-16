@@ -7,18 +7,30 @@ package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
 import assertk.assertThat
 import assertk.assertions.contains
-import assertk.assertions.hasSize
-import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.startsWith
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
+import io.mockk.slot
 import kotlinx.coroutines.test.runTest
+import org.junit.Before
 import org.junit.Test
-import org.signal.appsettings.totpapplist.TotpApp
-import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository.AppsResult
+import org.signal.core.models.MasterKey
+import org.signal.libsignal.net.MfaMetadata
+import org.signal.libsignal.net.MfaNotVerifiedException
+import org.signal.libsignal.net.PendingTotpKey
+import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.TooManyMfaKeysException
+import org.signal.libsignal.net.TooManyTotpKeysException
+import org.signal.libsignal.net.TotpParameters
+import org.signal.network.api.AccountApiV2
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository.BeginSetupResult
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository.ConfirmResult
-import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository.UpdateResult
+import java.io.IOException
+import java.time.Duration
+import java.time.Instant
 
 class TotpRepositoryTest {
 
@@ -26,11 +38,26 @@ class TotpRepositoryTest {
     private const val NOW = 1_700_000_000_000L
     private const val ACCOUNT_NAME = "8B4A1F0C"
     private const val CODE = "123456"
+    private const val DEFAULT_NAME = "Authenticator"
+    private const val KEY_ID = 1
+
+    private val KEY = ByteArray(32) { it.toByte() }
+    private val MASTER_KEY = MasterKey(ByteArray(32) { (it + 100).toByte() })
+
+    /** What the service generates: a 256-bit key with HMAC-SHA1, six digits, thirty second steps. */
+    private val PARAMETERS = TotpParameters(algorithm = "HmacSHA1", passwordLength = 6, timeStep = Duration.ofSeconds(30))
+    private val PENDING_KEY = PendingTotpKey(key = KEY, parameters = PARAMETERS)
   }
 
-  private var now = NOW
-  private val api = InMemoryTotpApi()
-  private val repository = TotpRepository(api = api, clock = { now })
+  private val now = NOW
+  private val api = mockk<AccountApiV2>()
+  private val repository = TotpRepository(api = api, masterKeyProvider = { MASTER_KEY }, clock = { now }, defaultAppName = { DEFAULT_NAME })
+
+  @Before
+  fun setUp() {
+    coEvery { api.generateTotpKey() } returns RequestResult.Success(PENDING_KEY)
+    coEvery { api.confirmTotpKey(any(), any(), any()) } returns RequestResult.Success(KEY_ID)
+  }
 
   @Test
   fun `beginSetup returns a link and a key in both the forms the screen needs`() = runTest {
@@ -74,7 +101,7 @@ class TotpRepositoryTest {
   }
 
   @Test
-  fun `setup asks for the parameters every authenticator app supports`() = runTest {
+  fun `beginSetup writes out the parameters the service chose`() = runTest {
     val result = repository.beginSetup(ACCOUNT_NAME) as BeginSetupResult.Success
 
     assertThat(result.setupUri).contains("algorithm=SHA1")
@@ -82,97 +109,76 @@ class TotpRepositoryTest {
     assertThat(result.setupUri).contains("period=30")
   }
 
+  /** A link naming an algorithm the format doesn't define would pair an app whose codes never confirm, which is worse than not starting. */
   @Test
-  fun `an account at its limit is told rather than handed a key`() = runTest {
-    repeat(TotpApi.MAX_KEYS) { confirmNewApp() }
+  fun `a key with parameters a setup link can't describe fails setup rather than being handed out`() = runTest {
+    coEvery { api.generateTotpKey() } returns RequestResult.Success(
+      PendingTotpKey(key = KEY, parameters = TotpParameters(algorithm = "HmacMD5", passwordLength = 6, timeStep = Duration.ofSeconds(30)))
+    )
+
+    assertThat(repository.beginSetup(ACCOUNT_NAME)).isEqualTo(BeginSetupResult.NetworkFailure)
+  }
+
+  @Test
+  fun `an account at its TOTP key limit is told rather than handed a key`() = runTest {
+    coEvery { api.generateTotpKey() } returns RequestResult.NonSuccess(TooManyTotpKeysException("full"))
 
     assertThat(repository.beginSetup(ACCOUNT_NAME)).isEqualTo(BeginSetupResult.TooManyApps)
   }
 
   @Test
-  fun `a confirmed app shows up in the list with the time it was confirmed`() = runTest {
-    val appId = confirmNewApp()
+  fun `an account at its overall MFA key limit is told rather than handed a key`() = runTest {
+    coEvery { api.generateTotpKey() } returns RequestResult.NonSuccess(TooManyMfaKeysException("full"))
 
-    val apps = (repository.getTotpApps() as AppsResult.Success).apps
-
-    assertThat(apps).hasSize(1)
-    assertThat(apps.first().id).isEqualTo(appId)
-    assertThat(apps.first().createdAt).isEqualTo(NOW)
-  }
-
-  /** The service wants metadata at confirmation time, and the user hasn't been asked for a name yet. */
-  @Test
-  fun `a newly confirmed app starts out with no name`() = runTest {
-    confirmNewApp()
-
-    val apps = (repository.getTotpApps() as AppsResult.Success).apps
-
-    assertThat(apps.first().name).isEqualTo("")
+    assertThat(repository.beginSetup(ACCOUNT_NAME)).isEqualTo(BeginSetupResult.TooManyApps)
   }
 
   @Test
-  fun `naming a new app names it`() = runTest {
-    val appId = confirmNewApp()
+  fun `a service we couldn't reach fails setup`() = runTest {
+    coEvery { api.generateTotpKey() } returns RequestResult.RetryableNetworkError(IOException("offline"))
 
-    assertThat(repository.nameNewTotpApp(appId, "Aegis")).isEqualTo(UpdateResult.Success)
-
-    assertThat(listedApp(appId)?.name).isEqualTo("Aegis")
+    assertThat(repository.beginSetup(ACCOUNT_NAME)).isEqualTo(BeginSetupResult.NetworkFailure)
   }
 
   @Test
-  fun `renaming keeps the time the app was confirmed`() = runTest {
-    val appId = confirmNewApp()
-    repository.nameNewTotpApp(appId, "Aegis")
-    now += 60_000
+  fun `a code that isn't a number is reported as a wrong code without asking the service`() = runTest {
+    assertThat(repository.confirmPendingApp("abcdef")).isEqualTo(ConfirmResult.IncorrectCode)
 
-    assertThat(repository.renameTotpApp(listedApp(appId)!!, "Aegis on my tablet")).isEqualTo(UpdateResult.Success)
-
-    val app = listedApp(appId)
-    assertThat(app?.name).isEqualTo("Aegis on my tablet")
-    assertThat(app?.createdAt).isEqualTo(NOW)
+    coVerify(exactly = 0) { api.confirmTotpKey(any(), any(), any()) }
   }
 
   @Test
-  fun `renaming an app that isn't there is reported rather than creating one`() = runTest {
-    val gone = TotpApp(id = 7, name = "Aegis", createdAt = NOW)
+  fun `a code the service rejects is reported as a wrong code`() = runTest {
+    coEvery { api.confirmTotpKey(any(), any(), any()) } returns RequestResult.NonSuccess(MfaNotVerifiedException("nope"))
 
-    assertThat(repository.renameTotpApp(gone, "Aegis on my tablet")).isEqualTo(UpdateResult.AppNotFound)
-  }
-
-  @Test
-  fun `a removed app leaves the list`() = runTest {
-    val appId = confirmNewApp()
-
-    assertThat(repository.removeTotpApp(appId)).isEqualTo(UpdateResult.Success)
-    assertThat((repository.getTotpApps() as AppsResult.Success).apps).isEmpty()
-  }
-
-  /** The service can't tell a wrong code from a missing pending key, so neither can we. */
-  @Test
-  fun `confirming with nothing pending is just a wrong code`() = runTest {
     assertThat(repository.confirmPendingApp(CODE)).isEqualTo(ConfirmResult.IncorrectCode)
   }
 
   @Test
-  fun `a code that isn't a number is reported as a wrong code`() = runTest {
-    repository.beginSetup(ACCOUNT_NAME)
+  fun `an account that filled up while the key was pending is told so`() = runTest {
+    coEvery { api.confirmTotpKey(any(), any(), any()) } returns RequestResult.NonSuccess(TooManyMfaKeysException("full"))
 
-    assertThat(repository.confirmPendingApp("abcdef")).isEqualTo(ConfirmResult.IncorrectCode)
+    assertThat(repository.confirmPendingApp(CODE)).isEqualTo(ConfirmResult.TooManyApps)
   }
 
   @Test
-  fun `a code confirms the app`() = runTest {
-    repository.beginSetup(ACCOUNT_NAME)
+  fun `a code the service accepts confirms the app`() = runTest {
+    val result = repository.confirmPendingApp(CODE)
 
-    assertThat(repository.confirmPendingApp(CODE)).isInstanceOf(ConfirmResult.Success::class)
+    assertThat(result).isInstanceOf(ConfirmResult.Success::class)
+    assertThat((result as ConfirmResult.Success).appId).isEqualTo(KEY_ID.toLong())
+    assertThat(result.createdAt).isEqualTo(NOW)
   }
 
-  private suspend fun listedApp(appId: Long): TotpApp? {
-    return (repository.getTotpApps() as AppsResult.Success).apps.firstOrNull { it.id == appId }
-  }
+  /** The service wants metadata at confirmation time, and the user hasn't been asked for a name yet. */
+  @Test
+  fun `a key is confirmed with a default name, stamped with the time it was confirmed`() = runTest {
+    val metadata = slot<MfaMetadata>()
+    coEvery { api.confirmTotpKey(any(), capture(metadata), any()) } returns RequestResult.Success(KEY_ID)
 
-  private suspend fun confirmNewApp(): Long {
-    repository.beginSetup(ACCOUNT_NAME)
-    return (repository.confirmPendingApp(CODE) as ConfirmResult.Success).appId
+    repository.confirmPendingApp(CODE)
+
+    assertThat(metadata.captured.name).isEqualTo(DEFAULT_NAME)
+    assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
   }
 }

@@ -11,17 +11,21 @@ import org.signal.core.ui.R as CoreUiR
 
 /**
  * Scroll helper to manage the color state of the top bar and status bar.
+ *
+ * @param onSetToolbarColor Receives every animated frame, for scrims drawn outside the view hierarchy.
  */
 class ConversationToolbarOnScrollHelper(
   activity: FragmentActivity,
-  toolbarBackground: View,
+  toolbarBackgrounds: List<View>,
+  onSetToolbarColor: (Int) -> Unit,
   private val wallpaperProvider: () -> ChatWallpaper?,
   private val releaseNotesProvider: () -> Boolean,
   lifecycleOwner: LifecycleOwner,
   private val incognito: Boolean = false
 ) : Material3OnScrollHelper(
   activity = activity,
-  views = listOf(toolbarBackground),
+  views = toolbarBackgrounds,
+  onSetToolbarColor = onSetToolbarColor,
   lifecycleOwner = lifecycleOwner
 ) {
   override val activeColorSet: ColorSet

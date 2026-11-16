@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
 import org.signal.core.util.requireLong
+import org.signal.core.util.toLocalDateTime
+import org.signal.core.util.toMillis
 import org.signal.spinner.ColumnTransformer
 import org.signal.spinner.DefaultColumnTransformer
-import org.thoughtcrime.securesms.util.toLocalDateTime
-import org.thoughtcrime.securesms.util.toMillis
 import java.time.LocalDateTime
 
 object TimestampTransformer : ColumnTransformer {

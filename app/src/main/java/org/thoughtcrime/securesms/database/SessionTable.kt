@@ -1,17 +1,17 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.Context
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.select
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToSet
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
-import org.signal.core.util.select
 import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.SessionRecord

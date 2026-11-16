@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.megaphone
 
 import android.net.Uri
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.recipients.Recipient

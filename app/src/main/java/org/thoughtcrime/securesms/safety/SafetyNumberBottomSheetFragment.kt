@@ -11,10 +11,10 @@ import androidx.compose.runtime.remember
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
+import org.signal.core.ui.viewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.ui.error.TrustAndVerifyResult
 import org.thoughtcrime.securesms.util.fragments.findListener
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Displays a bottom sheet containing information about safety number changes and allows the user to
@@ -44,9 +44,11 @@ class SafetyNumberBottomSheetFragment : ComposeBottomSheetDialogFragment() {
               TrustAndVerifyResult.Result.TRUST_AND_VERIFY -> {
                 findListener<SafetyNumberBottomSheet.Callbacks>()?.sendAnywayAfterSafetyNumberChangedInBottomSheet(effect.destinations)
               }
+
               TrustAndVerifyResult.Result.TRUST_VERIFY_AND_RESEND -> {
                 findListener<SafetyNumberBottomSheet.Callbacks>()?.onMessageResentAfterSafetyNumberChangeInBottomSheet()
               }
+
               TrustAndVerifyResult.Result.UNKNOWN -> Log.w(TAG, "Unknown Result")
             }
             dismissAllowingStateLoss()

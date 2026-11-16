@@ -3,17 +3,17 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
-import org.signal.core.util.delete
-import org.signal.core.util.exists
+import org.signal.core.database.delete
+import org.signal.core.database.exists
+import org.signal.core.database.select
+import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
-import org.signal.core.util.select
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.RemappedRecordTables.SharedColumns.ID
 import org.thoughtcrime.securesms.database.RemappedRecordTables.SharedColumns.NEW_ID
 import org.thoughtcrime.securesms.database.RemappedRecordTables.SharedColumns.OLD_ID
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * The backing datastore for [RemappedRecords]. See that class for more details.

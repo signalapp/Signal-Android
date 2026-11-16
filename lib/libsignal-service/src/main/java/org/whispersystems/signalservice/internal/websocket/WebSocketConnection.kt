@@ -30,6 +30,9 @@ interface WebSocketConnection {
 
   fun isDead(): Boolean
 
+  /** Whether the connection is currently established directly, rather than through a reflector or proxy. False while not connected. */
+  fun isConnectedDirectly(): Boolean = false
+
   fun disconnect()
 
   /**
@@ -50,9 +53,6 @@ interface WebSocketConnection {
   suspend fun sendRequestSuspend(request: WebSocketRequestMessage, timeout: Duration = DEFAULT_SEND_TIMEOUT): WebsocketResponse {
     throw UnsupportedOperationException("This connection does not support suspend sendRequest")
   }
-
-  @Throws(IOException::class)
-  fun sendKeepAlive()
 
   fun readRequestIfAvailable(): Optional<WebSocketRequestMessage>
 

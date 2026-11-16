@@ -48,6 +48,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.DropdownMenus
@@ -64,7 +65,6 @@ import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDeta
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailKind
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.signal.core.ui.R as CoreUiR
 
 /** Matches the share screen, so icons and text line up across both. */
@@ -85,7 +85,7 @@ fun SharedContactDetailsScreen(
     title = null,
     onNavigationClick = { onEvent(SharedContactDetailsEvent.BackClicked) },
     navigationIconRes = CoreUiR.drawable.symbol_arrow_start_24,
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
+    navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description)
   ) { contentPadding ->
     if (state.isLoading) {
       Box(
@@ -148,7 +148,7 @@ private fun Header(
       .padding(horizontal = HORIZONTAL_PADDING)
       .padding(bottom = 24.dp)
   ) {
-    Avatar(photoUri = state.photoUri, displayName = state.displayName, hasPersonalName = state.hasPersonalName)
+    Avatar(photoUri = state.photoUri, displayName = state.displayName, isOrgOnly = state.isOrgOnly)
 
     Spacer(modifier = Modifier.height(16.dp))
 
@@ -175,7 +175,7 @@ private fun Header(
 
       Row(horizontalArrangement = Arrangement.spacedBy(32.dp)) {
         CallButton(
-          iconRes = R.drawable.symbol_chat_24,
+          iconRes = CoreUiR.drawable.symbol_chat_24,
           labelRes = R.string.SharedContactDetailsScreen__message,
           testTag = SharedContactDetailsTestTags.MESSAGE_BUTTON,
           onClick = { onEvent(SharedContactDetailsEvent.MessageClicked) }
@@ -198,14 +198,14 @@ private fun Header(
 }
 
 @Composable
-private fun Avatar(photoUri: String?, displayName: String, hasPersonalName: Boolean) {
+private fun Avatar(photoUri: String?, displayName: String, isOrgOnly: Boolean) {
   val modifier = Modifier.size(AVATAR_SIZE).clip(CircleShape)
 
   if (photoUri == null) {
-    val fallback = if (hasPersonalName) {
-      FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100)
+    val fallback = if (isOrgOnly) {
+      FallbackAvatar.Resource.Organization(AvatarColor.A100)
     } else {
-      FallbackAvatar.Resource.Person(AvatarColor.A100)
+      FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100)
     }
 
     FallbackAvatarImage(fallbackAvatar = fallback, modifier = Modifier.size(AVATAR_SIZE))
@@ -381,7 +381,7 @@ private fun LeadingIcon(iconRes: Int) {
 }
 
 private fun ContactAction.iconRes(): Int = when (this) {
-  ContactAction.INVITE_TO_SIGNAL -> R.drawable.symbol_invite_24
+  ContactAction.INVITE_TO_SIGNAL -> CoreUiR.drawable.symbol_invite_24
   ContactAction.ADD_TO_PHONE_CONTACTS -> CoreUiR.drawable.symbol_person_circle_24
   ContactAction.ADD_TO_GROUP -> R.drawable.symbol_plus_circle_24
 }
@@ -396,12 +396,12 @@ private fun DetailKind.iconRes(): Int = when (this) {
   DetailKind.PHONE -> CoreUiR.drawable.symbol_phone_24
   DetailKind.NICKNAME -> CoreUiR.drawable.symbol_edit_24
   DetailKind.NOTE -> R.drawable.symbol_note_24
-  DetailKind.EMAIL -> R.drawable.symbol_invite_24
+  DetailKind.EMAIL -> CoreUiR.drawable.symbol_invite_24
   DetailKind.ADDRESS -> R.drawable.symbol_pin_24
 }
 
 private fun DetailAction.iconRes(): Int = when (this) {
-  DetailAction.MESSAGE -> R.drawable.symbol_chat_24
+  DetailAction.MESSAGE -> CoreUiR.drawable.symbol_chat_24
   DetailAction.VIDEO_CALL -> R.drawable.symbol_video_24
   DetailAction.AUDIO_CALL -> CoreUiR.drawable.symbol_phone_24
   DetailAction.OPEN_IN_MAPS -> R.drawable.symbol_open_24
@@ -534,10 +534,11 @@ private fun previewState(
     displayName = "Paige Hall",
     photoUri = "",
     signalRecipientId = if (isOnSignal) RecipientId.from(1L) else null,
-    actions = buildList {
-      if (!isOnSignal) add(ContactAction.INVITE_TO_SIGNAL)
-      if (withDetails) add(ContactAction.ADD_TO_PHONE_CONTACTS)
-    },
+    actions = SharedContactDetailsViewModel.contactActionsFor(
+      isOnSignal = isOnSignal,
+      hasInviteTarget = withDetails,
+      hasAnythingToSave = withDetails
+    ),
     details = details
   )
 }

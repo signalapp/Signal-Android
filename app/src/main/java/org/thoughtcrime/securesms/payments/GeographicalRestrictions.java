@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.Util;
+import org.signal.remoteconfig.RemoteConfig;
 
 import java.util.Arrays;
 import java.util.List;

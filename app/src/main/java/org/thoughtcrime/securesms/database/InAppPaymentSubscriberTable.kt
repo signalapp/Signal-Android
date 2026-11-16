@@ -10,9 +10,12 @@ import android.content.Context
 import android.database.Cursor
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
-import org.signal.core.util.DatabaseSerializer
+import org.signal.core.database.DatabaseSerializer
+import org.signal.core.database.insertInto
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.Serializer
-import org.signal.core.util.insertInto
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToSingleObject
@@ -21,9 +24,6 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
-import org.signal.core.util.select
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore

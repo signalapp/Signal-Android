@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.service.webrtc;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.DeviceProperties;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -54,6 +55,20 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
     return currentState.builder()
                        .changeLocalDeviceState()
                        .setAudioDeviceChangePending(true)
+                       .build();
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleMicrophoneSilencedChanged(@NonNull WebRtcServiceState currentState, boolean silenced) {
+    Log.i(tag, "handleMicrophoneSilencedChanged(): silenced: " + silenced + " backgroundRestricted: " + DeviceProperties.isBackgroundRestricted());
+
+    if (!silenced) {
+      return currentState;
+    }
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setMicrophoneSilencedTimestamp(System.currentTimeMillis())
                        .build();
   }
 

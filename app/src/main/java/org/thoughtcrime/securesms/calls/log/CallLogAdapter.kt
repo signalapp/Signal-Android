@@ -8,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import com.bumptech.glide.Glide
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.databinding.CallLogCreateCallLinkItemBinding
 import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterBinding
 import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterEmptyBinding
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory

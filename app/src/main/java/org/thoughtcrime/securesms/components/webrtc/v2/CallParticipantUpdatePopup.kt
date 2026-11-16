@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
@@ -38,7 +39,6 @@ import org.thoughtcrime.securesms.components.webrtc.v2.CallParticipantUpdatePopu
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipantId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR

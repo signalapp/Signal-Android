@@ -6,9 +6,9 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -119,7 +119,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
           continue
         }
 
-        if (isWallpaper || shouldRestoreFullSize(message!!, restoreTime, SignalStore.backup.optimizeStorage)) {
+        if (isWallpaper || attachment.stickerId != -1 || shouldRestoreFullSize(message!!, restoreTime, SignalStore.backup.optimizeStorage)) {
           restoreFullAttachmentJobs += RestoreAttachmentJob.forInitialRestore(
             messageId = attachment.mmsId,
             attachmentId = attachment.attachmentId,
@@ -139,7 +139,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
         }
       }
 
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         // Mark not restorable thumbnails and attachments as failed
         SignalDatabase.attachments.setThumbnailRestoreState(notRestorable, AttachmentTable.ThumbnailRestoreState.PERMANENT_FAILURE)
         SignalDatabase.attachments.setRestoreTransferState(notRestorable, AttachmentTable.TRANSFER_PROGRESS_FAILED)

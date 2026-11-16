@@ -252,7 +252,8 @@ data class OutgoingMessage(
         isGroupUpdate = true,
         isSecure = true,
         messageExtras = messageExtras,
-        isSelfGroupAdd = isSelfGroupAdd
+        isSelfGroupAdd = isSelfGroupAdd,
+        isUrgent = !GroupV2UpdateMessageUtil.isJustATimerChange(groupContext)
       )
     }
 
@@ -285,7 +286,8 @@ data class OutgoingMessage(
         sharedContacts = contacts,
         linkPreviews = previews,
         mentions = mentions,
-        isSecure = true
+        isSecure = true,
+        isUrgent = !GroupV2UpdateMessageUtil.isJustATimerChange(groupContext)
       )
     }
 
@@ -322,7 +324,6 @@ data class OutgoingMessage(
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
         isRequestToActivatePayments = true,
-        isUrgent = false,
         isSecure = true
       )
     }
@@ -338,7 +339,6 @@ data class OutgoingMessage(
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
         isPaymentsActivated = true,
-        isUrgent = false,
         isSecure = true
       )
     }

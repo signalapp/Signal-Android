@@ -7,6 +7,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.ui.util.SpanUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -14,7 +15,7 @@ import org.thoughtcrime.securesms.lock.v2.ConfirmSvrPinViewModel.SaveAnimation
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.SpanUtil
+import org.signal.core.ui.R as CoreUiR
 
 internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel>() {
 
@@ -72,7 +73,7 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
       ConfirmSvrPinViewModel.LabelState.RE_ENTER_PIN -> label.setText(R.string.ConfirmKbsPinFragment__re_enter_your_pin)
       ConfirmSvrPinViewModel.LabelState.PIN_DOES_NOT_MATCH -> {
         label.text = SpanUtil.color(
-          ContextCompat.getColor(requireContext(), R.color.red_500),
+          ContextCompat.getColor(requireContext(), CoreUiR.color.red_500),
           getString(R.string.ConfirmKbsPinFragment__pins_dont_match)
         )
         input.text.clear()

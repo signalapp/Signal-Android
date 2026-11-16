@@ -4,11 +4,11 @@ import android.database.Cursor
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.requireString
+import org.signal.core.util.toLocalDateTime
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.signal.spinner.ColumnTransformer
 import org.signal.spinner.DefaultColumnTransformer
 import org.thoughtcrime.securesms.database.model.databaseprotos.ExpiringProfileKeyCredentialColumnData
-import org.thoughtcrime.securesms.util.toLocalDateTime
 import java.security.MessageDigest
 
 object ProfileKeyCredentialTransformer : ColumnTransformer {

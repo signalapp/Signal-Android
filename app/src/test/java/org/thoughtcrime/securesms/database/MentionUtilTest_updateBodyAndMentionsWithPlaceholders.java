@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.ParameterizedRobolectricTestRunner;
 import org.robolectric.ParameterizedRobolectricTestRunner.Parameters;
 import org.robolectric.annotation.Config;
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.database.model.Mention;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
 import java.util.Arrays;

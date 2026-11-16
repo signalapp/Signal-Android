@@ -13,6 +13,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,22 +29,24 @@ import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asObservable
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.ListDetailNavigator
 import org.signal.core.ui.compose.split.PaneAnchor
+import org.signal.core.ui.compose.split.detailLocation
 import org.signal.core.ui.compose.split.exitDetail
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
 import org.thoughtcrime.securesms.components.snackbars.SnackbarStateConsumerRegistry
+import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import java.util.Optional
 import kotlin.time.Duration.Companion.milliseconds
@@ -71,8 +75,6 @@ class MainNavigationViewModel(
   }
 
   private val megaphoneRepository = AppDependencies.megaphoneRepository
-
-  private var captureChatListSnapshot: (suspend () -> Unit)? = null
 
   /**
    * The stacks behind the main window, one per tab. The archive gets no stack of its own: it is a list
@@ -113,6 +115,9 @@ class MainNavigationViewModel(
 
   private val internalNavigationEvents = MutableSharedFlow<NavigationEvent>()
   val navigationEvents: Flow<NavigationEvent> = internalNavigationEvents
+
+  private val internalConversationJumps = Channel<ConversationJump>(Channel.BUFFERED)
+  val conversationJumps: Flow<ConversationJump> = internalConversationJumps.receiveAsFlow()
 
   private val notificationProfilesRepository: NotificationProfilesRepository = NotificationProfilesRepository()
 
@@ -171,11 +176,6 @@ class MainNavigationViewModel(
       is MainNavigationEvents.MegaphoneCompleted -> onMegaphoneCompleted(event.event)
       is MainNavigationEvents.ListDetailEvent -> navigator.processEvent(event.event)
     }
-  }
-
-  /** Set from the MainActivity composition, and cleared when it is disposed. */
-  fun setChatListSnapshotCaptureProvider(capture: (suspend () -> Unit)?) {
-    captureChatListSnapshot = capture
   }
 
   /**
@@ -238,23 +238,30 @@ class MainNavigationViewModel(
   }
 
   private suspend fun goToConversation(location: MainDetailRoute.Conversation) {
-    val captureSnapshot = captureChatListSnapshot
-
-    if (captureSnapshot == null) {
-      // share intent or process restore - there's no chat-list snapshot to capture and no need to preload a wallpaper
-      pushChatsDetailLocation(location)
-    } else {
-      captureSnapshot()
-      pushChatsDetailLocation(location.withPreloadedWallpaper())
+    val current = navigator[MainListRoute.Chats].detailLocation<MainDetailRoute.Conversation>()
+    if (current != null && location.conversationArgs.isJumpWithin(current.conversationArgs)) {
+      pushChatsDetailLocation(current)
+      internalConversationJumps.send(ConversationJump(current.conversationArgs.threadId, location.conversationArgs.startingPosition))
+      return
     }
+
+    pushChatsDetailLocation(location.withPreloadedWallpaper())
+  }
+
+  /** Whether these args only ask to move to a position in the [current] conversation, carrying nothing that needs a fresh screen. */
+  private fun ConversationArgs.isJumpWithin(current: ConversationArgs): Boolean {
+    return startingPosition >= 0 &&
+      threadId == current.threadId &&
+      conversationScreenType == current.conversationScreenType &&
+      canInitializeFromDatabase() &&
+      media.isNullOrEmpty() &&
+      stickerLocator == null &&
+      giftBadge == null &&
+      shareDataTimestamp == -1L &&
+      !isWithSearchOpen
   }
 
   private fun pushChatsDetailLocation(location: MainDetailRoute) {
-    val chatsBackStack = navigator[MainListRoute.Chats]
-    if (location is MainDetailRoute.Chats && chatsBackStack.activeRecipientId != location.controllerKey) {
-      chatsBackStack.exitDetail()
-    }
-
     navigator.processEvent(ListDetailEvents.Push(location, MainListRoute.Chats))
   }
 
@@ -305,6 +312,8 @@ class MainNavigationViewModel(
       }
     }
   }
+
+  data class ConversationJump(val threadId: Long, val position: Int)
 
   enum class NavigationEvent {
     STORY_CAMERA_FIRST

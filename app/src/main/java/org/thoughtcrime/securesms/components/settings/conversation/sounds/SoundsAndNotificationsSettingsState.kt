@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.components.settings.conversation.sounds
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 data class SoundsAndNotificationsSettingsState(
   val recipientId: RecipientId = Recipient.UNKNOWN.id,

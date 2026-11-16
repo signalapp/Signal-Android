@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.models.media.Media;
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.MainActivity;
-import org.thoughtcrime.securesms.badges.models.Badge;
+import org.signal.core.models.badges.Badge;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.signal.network.util.Preconditions;
 
@@ -70,8 +70,9 @@ public class ConversationIntents {
       return Single.just(createBuilderSync(context, recipientId, threadId));
     } else {
       return Single.fromCallable(() -> {
-        long newThreadId = SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
-        return createBuilderSync(context, recipientId, newThreadId);
+        Recipient recipient   = Recipient.resolved(recipientId);
+        long      newThreadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+        return createBuilderSync(context, recipient.getId(), newThreadId);
       }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
   }

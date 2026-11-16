@@ -10,8 +10,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.ServiceId
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.UUID
 
 class CrashConfigTest {

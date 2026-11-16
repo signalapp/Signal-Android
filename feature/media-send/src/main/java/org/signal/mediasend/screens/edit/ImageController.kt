@@ -249,7 +249,7 @@ internal class ImageController(
   private fun exitEditMode() {
     drawSessionSnapshot = null
     drawSessionDirty = false
-    selectedElement = null
+    clearSelection()
     transitionTo(Mode.NONE)
     imageEditorState.isDrawing = false
     imageEditorState.isBlur = false
@@ -634,9 +634,10 @@ internal class ImageController(
     editorModel.addElementCentered(element, STICKER_SCALE)
     drawSessionDirty = true
 
-    // Selecting first leaves the new sticker holding the touch, so a draw session resumed here does not paint over it.
-    selectElement(element)
+    // Selected after returning, since leaving an edit mode clears the selection. Selecting also resyncs a resumed draw
+    // session, so the new sticker holds the touch rather than being painted over.
     returnToRestingMode()
+    selectElement(element)
   }
 
   fun cancelStickerInsertion() {

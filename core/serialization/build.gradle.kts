@@ -7,6 +7,7 @@ plugins {
   id("java-library")
   id("org.jetbrains.kotlin.jvm")
   alias(libs.plugins.kotlinx.serialization)
+  id("java-test-fixtures")
   id("ktlint")
 }
 
@@ -23,9 +24,13 @@ kotlin {
 
 dependencies {
   implementation(project(":core:util-jvm"))
-  implementation(project(":core:models-jvm"))
 
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.libsignal.client)
   api(libs.arrow.core)
+
+  testFixturesImplementation(libs.kotlinx.serialization.json)
+  testFixturesImplementation(libs.jackson.core)
+  testFixturesImplementation(libs.jackson.module.kotlin)
+  testFixturesImplementation(testLibs.assertk)
 }

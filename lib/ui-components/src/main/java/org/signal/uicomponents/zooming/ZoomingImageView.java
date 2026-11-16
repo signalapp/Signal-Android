@@ -1,0 +1,291 @@
+package org.signal.uicomponents.zooming;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.net.Uri;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.exifinterface.media.ExifInterface;
+
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import com.davemorrissey.labs.subscaleview.decoder.DecoderFactory;
+import com.github.chrisbanes.photoview.PhotoView;
+
+import org.signal.core.util.ContentTypeUtil;
+import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.logging.Log;
+import org.signal.core.util.bitmaps.BitmapUtil;
+import org.signal.glide.ActionRequestListener;
+import org.signal.glide.common.io.InputStreamFactory;
+import org.signal.glide.decryptableuri.DecryptableUri;
+import org.signal.uicomponents.R;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+
+public class ZoomingImageView extends FrameLayout {
+
+  private static final String TAG = Log.tag(ZoomingImageView.class);
+
+  private static final int ZOOM_TRANSITION_DURATION = 300;
+
+  private static final float ZOOM_LEVEL_MIN = 1.0f;
+
+  private static final float LARGE_IMAGES_ZOOM_LEVEL_MID = 2.0f;
+  private static final float LARGE_IMAGES_ZOOM_LEVEL_MAX = 5.0f;
+
+  private static final int MAX_TILE_SIZE_PX = 2048;
+  private static final int MINIMUM_TILE_DPI = 160;
+
+  private static final float SMALL_IMAGES_ZOOM_LEVEL_MID = 3.0f;
+  private static final float SMALL_IMAGES_ZOOM_LEVEL_MAX = 8.0f;
+
+  private static final float ZOOM_EPSILON = 0.01f;
+
+  private final PhotoView                 gifView;
+  private final SubsamplingScaleImageView subsamplingImageView;
+
+  private @Nullable OnGainmapDetectedListener  gainmapDetectedListener;
+  private @Nullable OnZoomStateChangedListener zoomStateChangedListener;
+
+  private boolean lastReportedZoomedIn;
+
+  public ZoomingImageView(Context context) {
+    this(context, null);
+  }
+
+  public ZoomingImageView(Context context, AttributeSet attrs) {
+    this(context, attrs, 0);
+  }
+
+  public ZoomingImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+
+    inflate(context, R.layout.zooming_image_view, this);
+
+    this.gifView              = findViewById(R.id.image_view);
+    this.subsamplingImageView = findViewById(R.id.subsampling_image_view);
+
+    this.gifView.setZoomTransitionDuration(ZOOM_TRANSITION_DURATION);
+    this.gifView.setScaleLevels(ZOOM_LEVEL_MIN, SMALL_IMAGES_ZOOM_LEVEL_MID, SMALL_IMAGES_ZOOM_LEVEL_MAX);
+
+    this.subsamplingImageView.setDoubleTapZoomDuration(ZOOM_TRANSITION_DURATION);
+    this.subsamplingImageView.setDoubleTapZoomScale(LARGE_IMAGES_ZOOM_LEVEL_MID);
+    this.subsamplingImageView.setMaxScale(LARGE_IMAGES_ZOOM_LEVEL_MAX);
+    this.subsamplingImageView.setMaxTileSize(MAX_TILE_SIZE_PX);
+    this.subsamplingImageView.setMinimumTileDpi(MINIMUM_TILE_DPI);
+
+    this.gifView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
+    this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
+
+    // PhotoView reports a scale change before applying it, so the zoom check is deferred until it has.
+    this.gifView.setOnScaleChangeListener((scaleFactor, focusX, focusY) -> post(this::notifyZoomStateChanged));
+    this.subsamplingImageView.setOnStateChangedListener(new SubsamplingScaleImageView.DefaultOnStateChangedListener() {
+      @Override
+      public void onScaleChanged(float newScale, int origin) {
+        notifyZoomStateChanged();
+      }
+    });
+  }
+
+  @Override
+  public void setOnLongClickListener(@Nullable OnLongClickListener l) {
+    this.gifView.setOnLongClickListener(l);
+    this.subsamplingImageView.setOnLongClickListener(l);
+  }
+
+  /** Fired at most once per loaded image, if the decoded image carried an UltraHDR gain map. */
+  public void setOnGainmapDetectedListener(@Nullable OnGainmapDetectedListener listener) {
+    this.gainmapDetectedListener = listener;
+  }
+
+  public interface OnGainmapDetectedListener {
+    @MainThread
+    void onGainmapDetected();
+  }
+
+  /** Fired whenever the visible image becomes zoomed in past its minimum scale, or returns to it. */
+  public void setOnZoomStateChangedListener(@Nullable OnZoomStateChangedListener listener) {
+    this.zoomStateChangedListener = listener;
+  }
+
+  public interface OnZoomStateChangedListener {
+    @MainThread
+    void onZoomStateChanged(boolean isZoomedIn);
+  }
+
+  @SuppressLint("StaticFieldLeak")
+  public void setImageUri(@NonNull RequestManager requestManager, @NonNull Uri uri, @NonNull String contentType, @NonNull Runnable onMediaReady) {
+    if (ContentTypeUtil.isGif(contentType)) {
+      Log.i(TAG, "Loading in gif image view...");
+      setImageViewUri(requestManager, uri, onMediaReady);
+    } else {
+      Log.i(TAG, "Loading in subsampling image view...");
+      setSubsamplingImageViewUri(uri, contentType, onMediaReady);
+    }
+  }
+
+  private void setImageViewUri(@NonNull RequestManager requestManager, @NonNull Uri uri, @NonNull Runnable onMediaReady) {
+    gifView.setVisibility(View.VISIBLE);
+    subsamplingImageView.setVisibility(View.GONE);
+
+    requestManager.load(new DecryptableUri(uri))
+                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                 .dontTransform()
+                 .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                 .addListener(ActionRequestListener.onEither(() -> {
+                   post(this::notifyZoomStateChanged);
+                   onMediaReady.run();
+                 }))
+                 .into(gifView);
+  }
+
+  private void setSubsamplingImageViewUri(@NonNull Uri uri, @NonNull String contentType, @NonNull Runnable onMediaReady) {
+    final GainmapReporter reporter;
+    if (UltraHdrSupport.isEligible(uri, contentType)) {
+      Log.i(TAG, "Checking for an Ultra HDR gain map on this image.");
+      reporter = new GainmapLatch(this);
+    } else {
+      reporter = null;
+    }
+
+    subsamplingImageView.setBitmapDecoderFactory(new AttachmentBitmapDecoderFactory(reporter));
+    subsamplingImageView.setRegionDecoderFactory(new AttachmentRegionDecoderFactory(reporter));
+
+    subsamplingImageView.setVisibility(View.VISIBLE);
+    gifView.setVisibility(View.GONE);
+
+    // We manually set the orientation ourselves because using
+    // SubsamplingScaleImageView.ORIENTATION_USE_EXIF is unreliable:
+    // https://github.com/signalapp/Signal-Android/issues/11732#issuecomment-963203545
+    try {
+      final InputStream inputStream = InputStreamFactory.build(uri).create();
+      final int orientation = BitmapUtil.getExifOrientation(new ExifInterface(inputStream));
+      inputStream.close();
+      if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+        subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_90);
+      } else if (orientation == ExifInterface.ORIENTATION_ROTATE_180) {
+        subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_180);
+      } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+        subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_270);
+      } else {
+        subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_0);
+      }
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+
+    // Readiness must mean "pixels are about to be on screen": callers use it to remove covering
+    // placeholders, so firing before the base layer is decoded would reveal a blank background.
+    subsamplingImageView.setOnImageEventListener(new SubsamplingScaleImageView.DefaultOnImageEventListener() {
+      @Override
+      public void onReady() {
+        onMediaReady.run();
+      }
+
+      @Override
+      public void onImageLoadError(Exception e) {
+        Log.w(TAG, "Failed to load image.", e);
+        onMediaReady.run();
+      }
+    });
+
+    subsamplingImageView.setImage(ImageSource.uri(uri));
+    notifyZoomStateChanged();
+  }
+
+  public void cleanup() {
+    gifView.setImageDrawable(null);
+    subsamplingImageView.recycle();
+    notifyZoomStateChanged();
+  }
+
+  @MainThread
+  private void notifyZoomStateChanged() {
+    boolean zoomedIn = isZoomedIn();
+    if (zoomedIn == lastReportedZoomedIn) {
+      return;
+    }
+    lastReportedZoomedIn = zoomedIn;
+    if (zoomStateChangedListener != null) {
+      zoomStateChangedListener.onZoomStateChanged(zoomedIn);
+    }
+  }
+
+  @MainThread
+  private void notifyGainmapDetected() {
+    Log.i(TAG, "Ultra HDR gain map present in preview image.");
+    if (gainmapDetectedListener != null) {
+      gainmapDetectedListener.onGainmapDetected();
+    }
+  }
+
+  private static class GainmapLatch implements GainmapReporter {
+    private final ZoomingImageView view;
+    private final AtomicBoolean    reported = new AtomicBoolean(false);
+
+    GainmapLatch(@NonNull ZoomingImageView view) {
+      this.view = view;
+    }
+
+    @Override
+    public void onGainmapPresent() {
+      if (reported.compareAndSet(false, true)) {
+        ThreadUtil.runOnMain(view::notifyGainmapDetected);
+      }
+    }
+  }
+
+  private static class AttachmentBitmapDecoderFactory implements DecoderFactory<AttachmentBitmapDecoder> {
+    private final @Nullable GainmapReporter reporter;
+
+    AttachmentBitmapDecoderFactory(@Nullable GainmapReporter reporter) {
+      this.reporter = reporter;
+    }
+
+    @Override
+    public AttachmentBitmapDecoder make() throws IllegalAccessException, InstantiationException {
+      return new AttachmentBitmapDecoder(reporter);
+    }
+  }
+
+  private static class AttachmentRegionDecoderFactory implements DecoderFactory<AttachmentRegionDecoder> {
+    private final @Nullable GainmapReporter reporter;
+
+    AttachmentRegionDecoderFactory(@Nullable GainmapReporter reporter) {
+      this.reporter = reporter;
+    }
+
+    @Override
+    public AttachmentRegionDecoder make() throws IllegalAccessException, InstantiationException {
+      return new AttachmentRegionDecoder(reporter);
+    }
+  }
+
+  /** Whether the visible image is zoomed in past its minimum scale. */
+  public boolean isZoomedIn() {
+    if (gifView.getVisibility() == View.VISIBLE) {
+      return gifView.getScale() > gifView.getMinimumScale() + ZOOM_EPSILON;
+    } else {
+      return subsamplingImageView.isReady() && subsamplingImageView.getScale() > subsamplingImageView.getMinScale() + ZOOM_EPSILON;
+    }
+  }
+
+  @Override
+  public boolean onInterceptTouchEvent(MotionEvent event) {
+    getParent().requestDisallowInterceptTouchEvent(event.getPointerCount() > 1);
+    return false;
+  }
+}

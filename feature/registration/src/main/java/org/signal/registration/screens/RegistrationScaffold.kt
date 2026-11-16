@@ -102,8 +102,8 @@ object RegistrationScaffold {
       override val edgeInset: Dp,
       override val maxButtonWidth: Dp
     ) : Params {
-      fun panePadding(hasHeader: Boolean) = PaddingValues(
-        top = if (hasHeader) paneVerticalInset else headerSlotHeight + paneVerticalInset,
+      fun panePadding(hasHeader: Boolean, includeTopInset: Boolean = true) = PaddingValues(
+        top = (if (hasHeader) 0.dp else headerSlotHeight) + (if (includeTopInset) paneVerticalInset else 0.dp),
         bottom = paneVerticalInset,
         start = paneHorizontalInset,
         end = paneHorizontalInset
@@ -225,6 +225,7 @@ fun OnePaneRegistrationScaffold(
   params: RegistrationScaffold.Params.OnePane,
   topBar: (@Composable () -> Unit)? = null,
   footer: (@Composable () -> Unit)? = null,
+  includeTopInset: Boolean = true,
   content: @Composable (PaddingValues) -> Unit
 ) {
   RegistrationScaffold(
@@ -237,7 +238,7 @@ fun OnePaneRegistrationScaffold(
           .fillMaxSize()
           .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal))
       ) {
-        content(params.panePadding(hasHeader = topBar != null))
+        content(params.panePadding(hasHeader = topBar != null, includeTopInset = includeTopInset))
       }
     }
   )

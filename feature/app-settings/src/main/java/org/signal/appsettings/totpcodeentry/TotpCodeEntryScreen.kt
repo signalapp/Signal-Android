@@ -10,37 +10,33 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.uicomponents.codeentryfield.CodeEntryField
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldState
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object TotpCodeEntryTestTags {
-  const val CODE_INPUT = "code-input"
-  const val BUTTON_DONE = "button-done"
+  const val BUTTON_NEXT = "button-next"
   const val ERROR = "error"
 }
 
@@ -50,24 +46,22 @@ object TotpCodeEntryTestTags {
 @Composable
 fun TotpCodeEntryScreen(
   state: TotpCodeEntryState,
-  onEvent: (TotpCodeEntryEvent) -> Unit
+  onEvent: (TotpCodeEntryEvent) -> Unit,
+  modifier: Modifier = Modifier
 ) {
-  val focusRequester = remember { FocusRequester() }
-
-  LaunchedEffect(Unit) {
-    focusRequester.requestFocus()
-  }
-
   Scaffolds.Settings(
     title = stringResource(R.string.TotpCodeEntryScreen__enter_your_code),
     onNavigationClick = { onEvent(TotpCodeEntryEvent.NavigateBackClicked) },
-    navigationIcon = SignalIcons.ArrowStart.imageVector
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    modifier = modifier
   ) { contentPadding ->
     Column(
       modifier = Modifier
         .fillMaxSize()
         .padding(contentPadding)
-        .imePadding(),
+        .imePadding()
+        .appSettingsScreen(),
       horizontalAlignment = Alignment.End
     ) {
       Text(
@@ -76,34 +70,37 @@ fun TotpCodeEntryScreen(
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
           .fillMaxWidth()
-          .padding(horizontal = 24.dp, vertical = 16.dp)
+          .padding(start = 24.dp, end = 24.dp, top = 12.dp)
       )
+
+      Spacer(modifier = Modifier.height(24.dp))
 
       val errorMessage = state.error.message()
 
-      TextField(
-        value = state.code,
-        onValueChange = { onEvent(TotpCodeEntryEvent.CodeChanged(it)) },
-        label = { Text(text = stringResource(R.string.TotpCodeEntryScreen__code)) },
-        singleLine = true,
+      CodeEntryField(
+        state = state.codeEntry,
+        onEvent = { onEvent(TotpCodeEntryEvent.CodeEntryEvent(it)) },
         enabled = !state.submitting,
         isError = errorMessage != null,
-        supportingText = errorMessage?.let { message ->
-          { Text(text = message, modifier = Modifier.testTag(TotpCodeEntryTestTags.ERROR)) }
-        },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword, imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions(onDone = { if (state.canSubmit) onEvent(TotpCodeEntryEvent.DoneClicked) }),
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(horizontal = 24.dp)
-          .focusRequester(focusRequester)
-          .testTag(TotpCodeEntryTestTags.CODE_INPUT)
+        modifier = Modifier.padding(horizontal = 24.dp)
       )
+
+      if (errorMessage != null) {
+        Text(
+          text = errorMessage,
+          style = MaterialTheme.typography.bodySmall,
+          color = MaterialTheme.colorScheme.error,
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp, vertical = 8.dp)
+            .testTag(TotpCodeEntryTestTags.ERROR)
+        )
+      }
 
       Spacer(modifier = Modifier.weight(1f))
 
       Buttons.LargeTonal(
-        onClick = { onEvent(TotpCodeEntryEvent.DoneClicked) },
+        onClick = { onEvent(TotpCodeEntryEvent.NextClicked) },
         enabled = state.canSubmit,
         colors = ButtonDefaults.filledTonalButtonColors(
           containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -111,9 +108,9 @@ fun TotpCodeEntryScreen(
         ),
         modifier = Modifier
           .padding(horizontal = 24.dp, vertical = 24.dp)
-          .testTag(TotpCodeEntryTestTags.BUTTON_DONE)
+          .testTag(TotpCodeEntryTestTags.BUTTON_NEXT)
       ) {
-        Text(text = stringResource(R.string.TotpCodeEntryScreen__done))
+        Text(text = stringResource(R.string.TotpCodeEntryScreen__next))
       }
     }
   }
@@ -130,23 +127,24 @@ private fun TotpCodeEntryState.Error.message(): String? = when (this) {
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TotpCodeEntryScreenPreview() {
-  Previews.Preview {
-    TotpCodeEntryScreen(
-      state = TotpCodeEntryState(code = "123456"),
-      onEvent = {}
-    )
-  }
+  TotpCodeEntryScreen(
+    state = TotpCodeEntryState(codeEntry = CodeEntryFieldState(code = "123456")),
+    onEvent = {}
+  )
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TotpCodeEntryScreenErrorPreview() {
-  Previews.Preview {
-    TotpCodeEntryScreen(
-      state = TotpCodeEntryState(code = "123456", error = TotpCodeEntryState.Error.IncorrectCode),
-      onEvent = {}
-    )
-  }
+  TotpCodeEntryScreen(
+    state = TotpCodeEntryState(
+      codeEntry = CodeEntryFieldState(code = "123456"),
+      error = TotpCodeEntryState.Error.IncorrectCode
+    ),
+    onEvent = {}
+  )
 }

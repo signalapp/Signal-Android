@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database;
 
 import org.junit.Test;
 import org.signal.core.models.media.TransformProperties;
-import org.signal.mediasend.SentMediaQuality;
+import org.signal.core.models.media.SentMediaQuality;
 
 import static org.junit.Assert.assertEquals;
 import static org.thoughtcrime.securesms.database.TransformPropertiesUtilKt.parseTransformProperties;

@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceStorageSyncRequestJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * Just runs a storage sync. Useful if you've started syncing a new field to storage service.

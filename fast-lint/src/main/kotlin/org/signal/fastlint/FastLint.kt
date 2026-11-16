@@ -16,8 +16,11 @@ import com.intellij.psi.JavaRecursiveElementVisitor
 import com.intellij.psi.PsiClass
 import org.jetbrains.kotlin.K1Deprecation
 import org.jetbrains.kotlin.cli.common.messages.MessageCollector
+import org.jetbrains.kotlin.cli.extensionsStorage
 import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
+import org.jetbrains.kotlin.compiler.plugin.CompilerPluginRegistrar
+import org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi
 import org.jetbrains.kotlin.config.CommonConfigurationKeys
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -298,11 +301,12 @@ class FastLint(rules: List<Rule> = ALL_RULES) : AutoCloseable {
     // createForProduction is K1 API (opt-in, slated to become an error in Kotlin 2.3). We
     // deliberately use the parse-only K1 PSI environment (as ktlint does); migrating to the
     // Analysis API is unnecessary for syntax-only checks.
-    @OptIn(K1Deprecation::class)
+    @OptIn(K1Deprecation::class, CompilerConfiguration.Internals::class, ExperimentalCompilerApi::class)
     private fun createKotlinEnvironment(disposable: Disposable): KotlinCoreEnvironment {
       val config = CompilerConfiguration().apply {
         put(CommonConfigurationKeys.MODULE_NAME, "fastlint")
         put(CommonConfigurationKeys.MESSAGE_COLLECTOR_KEY, MessageCollector.NONE)
+        extensionsStorage = CompilerPluginRegistrar.ExtensionStorage()
       }
       return KotlinCoreEnvironment.createForProduction(disposable, config, EnvironmentConfigFiles.JVM_CONFIG_FILES)
     }

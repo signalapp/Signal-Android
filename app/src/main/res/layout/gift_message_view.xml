@@ -24,8 +24,6 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:maxLines="1"
         android:textAppearance="@style/Signal.Text.Body"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"

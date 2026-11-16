@@ -28,11 +28,11 @@ import androidx.media3.session.SessionToken
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import java.util.Optional
@@ -384,7 +384,7 @@ class VoiceNoteMediaController(val activity: FragmentActivity, private var postp
     ): VoiceNotePlaybackState {
       val speed = mediaController.playbackParameters.speed
       var duration = mediaController.contentDuration
-      val mediaMetadata = mediaController.mediaMetadata
+      val mediaExtras = mediaController.currentMediaItem?.mediaMetadata?.extras
       var position = mediaController.currentPosition
       val autoReset = mediaUri == VoiceNoteMediaItemFactory.NEXT_URI || mediaUri == VoiceNoteMediaItemFactory.END_URI
       if (previousState != null && mediaUri == previousState.uri) {
@@ -403,7 +403,7 @@ class VoiceNoteMediaController(val activity: FragmentActivity, private var postp
           autoReset,
           speed,
           mediaController.isPlaying,
-          getClipType(mediaMetadata.extras)
+          getClipType(mediaExtras)
         )
       } else {
         VoiceNotePlaybackState.NONE

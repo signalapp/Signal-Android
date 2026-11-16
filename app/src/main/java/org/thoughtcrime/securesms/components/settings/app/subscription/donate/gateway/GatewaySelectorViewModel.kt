@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import java.math.BigDecimal
+import java.util.Currency
 
 class GatewaySelectorViewModel(
   args: GatewaySelectorBottomSheetArgs,
@@ -36,15 +37,16 @@ class GatewaySelectorViewModel(
 
     disposables += Single.zip(inAppPayment, isGooglePayAvailable, gatewayConfiguration, ::Triple).subscribeBy { (inAppPayment, googlePayAvailable, gatewayConfiguration) ->
       SignalStore.inAppPayments.isGooglePayReady = googlePayAvailable
+      val currency = Currency.getInstance(inAppPayment.data.amount!!.currencyCode)
       store.update {
         GatewaySelectorState.Ready(
           gatewayOrderStrategy = GatewayOrderStrategy.getStrategy(),
           inAppPayment = inAppPayment,
-          isCreditCardAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.CreditCard, inAppPayment.type) && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.CARD),
-          isGooglePayAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.GooglePay, inAppPayment.type) && googlePayAvailable && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.GOOGLE_PAY),
-          isPayPalAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.PayPal, inAppPayment.type) && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.PAYPAL),
-          isSEPADebitAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.SEPADebit, inAppPayment.type) && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.SEPA_DEBIT),
-          isIDEALAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.IDEAL, inAppPayment.type) && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.IDEAL),
+          isCreditCardAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.CreditCard, inAppPayment.type, currency) && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.CARD),
+          isGooglePayAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.GooglePay, inAppPayment.type, currency) && googlePayAvailable && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.GOOGLE_PAY),
+          isPayPalAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.PayPal, inAppPayment.type, currency) && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.PAYPAL),
+          isSEPADebitAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.SEPADebit, inAppPayment.type, currency) && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.SEPA_DEBIT),
+          isIDEALAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.IDEAL, inAppPayment.type, currency) && gatewayConfiguration.availableGateways.contains(InAppPaymentData.PaymentMethodType.IDEAL),
           sepaEuroMaximum = gatewayConfiguration.sepaEuroMaximum
         )
       }

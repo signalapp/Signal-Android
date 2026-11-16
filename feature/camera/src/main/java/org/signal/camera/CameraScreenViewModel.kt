@@ -64,6 +64,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
@@ -130,6 +132,12 @@ class CameraScreenViewModel : ViewModel() {
 
   /** The in-flight animation to a level picked off the zoom bar. Anything else that moves the zoom cancels it. */
   private var zoomAnimation: Job? = null
+
+  /** Hides the shutter after a capture. Each capture restarts it, so a burst keeps the shutter up for its own full length. */
+  private var shutterJob: Job? = null
+
+  /** Hands photos over one at a time, in the order they were taken, however long each takes to process. */
+  private val photoDeliveryLock = Mutex()
 
   /**
    * A lock that arrived before the recorder reported the recording as started, applied by [startRecordingTimer] once it
@@ -246,7 +254,7 @@ class CameraScreenViewModel : ViewModel() {
   @androidx.annotation.OptIn(markerClass = [androidx.camera.core.ExperimentalGetImage::class])
   fun capturePhoto(
     context: Context,
-    onPhotoCaptured: (Bitmap) -> Unit
+    onPhotoCaptured: suspend (Bitmap) -> Unit
   ) {
     val state = _state.value
     val capture = imageCapture ?: run {
@@ -268,7 +276,7 @@ class CameraScreenViewModel : ViewModel() {
     context: Context,
     capture: ImageCapture,
     state: CameraScreenState,
-    onPhotoCaptured: (Bitmap) -> Unit
+    onPhotoCaptured: suspend (Bitmap) -> Unit
   ) {
     // Show selfie flash and maximize screen brightness
     _state.value = state.copy(showSelfieFlash = true)
@@ -286,7 +294,7 @@ class CameraScreenViewModel : ViewModel() {
     context: Context,
     capture: ImageCapture,
     state: CameraScreenState,
-    onPhotoCaptured: (Bitmap) -> Unit
+    onPhotoCaptured: suspend (Bitmap) -> Unit
   ) {
     // Vibrate for haptic feedback
     vibrate(context)
@@ -294,28 +302,31 @@ class CameraScreenViewModel : ViewModel() {
     capture.takePicture(
       ContextCompat.getMainExecutor(context),
       object : ImageCapture.OnImageCapturedCallback() {
+        override fun onCaptureStarted() {
+          triggerShutter()
+        }
+
         override fun onCaptureSuccess(imageProxy: ImageProxy) {
+          hideSelfieFlash()
+
           viewModelScope.launch {
-            try {
-              // Convert ImageProxy to Bitmap, mirroring for front camera to match preview
-              val mirrorImage = state.lensFacing == CameraSelector.LENS_FACING_FRONT
-              val bitmap = imageProxy.toBitmapWithTransforms(mirrorHorizontally = mirrorImage)
-              // Pass bitmap to callback
-              triggerShutter(state)
-              onPhotoCaptured(bitmap)
-            } catch (e: Exception) {
-              Log.e(TAG, "Failed to process image: ${e.message}", e)
-              _state.value = state.copy(captureError = CaptureError.PhotoCaptureFailed(e.message))
-            } finally {
-              imageProxy.close()
-              hideSelfieFlash()
+            photoDeliveryLock.withLock {
+              try {
+                // Convert ImageProxy to Bitmap, mirroring for front camera to match preview
+                val mirrorImage = state.lensFacing == CameraSelector.LENS_FACING_FRONT
+                val bitmap = imageProxy.use { it.toBitmapWithTransforms(mirrorHorizontally = mirrorImage) }
+                onPhotoCaptured(bitmap)
+              } catch (e: Exception) {
+                Log.e(TAG, "Failed to process image: ${e.message}", e)
+                _state.value = _state.value.copy(captureError = CaptureError.PhotoCaptureFailed(e.message))
+              }
             }
           }
         }
 
         override fun onError(e: ImageCaptureException) {
           Log.e(TAG, "Photo capture failed: ${e.message}", e)
-          _state.value = state.copy(captureError = CaptureError.PhotoCaptureFailed(e.message))
+          _state.value = _state.value.copy(captureError = CaptureError.PhotoCaptureFailed(e.message))
           hideSelfieFlash()
         }
       }
@@ -963,11 +974,11 @@ class CameraScreenViewModel : ViewModel() {
     _state.value = state.copy(zoomRatio = newZoomRatio)
   }
 
-  private fun triggerShutter(state: CameraScreenState) {
-    _state.value = state.copy(showShutter = true)
+  private fun triggerShutter() {
+    _state.value = _state.value.copy(showShutter = true)
 
-    // Hide flash after animation
-    viewModelScope.launch {
+    shutterJob?.cancel()
+    shutterJob = viewModelScope.launch {
       delay(200L)
       _state.value = _state.value.copy(showShutter = false)
     }

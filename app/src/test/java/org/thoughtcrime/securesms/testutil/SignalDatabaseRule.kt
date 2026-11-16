@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.RemappedRecordsTestHelper
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.testing.JdbcSqliteDatabase
 import org.thoughtcrime.securesms.testing.TestSignalDatabase
 import net.zetetic.database.sqlcipher.SQLiteDatabase as SQLCipherSQLiteDatabase
@@ -36,7 +36,7 @@ class SignalDatabaseRule : ExternalResource() {
   override fun before() {
     PartAuthorityUris.init(BuildConfig.APPLICATION_ID)
 
-    RecipientId.clearCache()
+    RecipientIds.clearCache()
     RemappedRecordsTestHelper.resetInstance()
     DatabaseTable.clearTableReferencesForTests()
 
@@ -66,7 +66,7 @@ class SignalDatabaseRule : ExternalResource() {
   override fun after() {
     unmockkObject(SignalDatabase)
     signalDatabase.close()
-    RecipientId.clearCache()
+    RecipientIds.clearCache()
     RemappedRecordsTestHelper.resetInstance()
     DatabaseTable.clearTableReferencesForTests()
   }

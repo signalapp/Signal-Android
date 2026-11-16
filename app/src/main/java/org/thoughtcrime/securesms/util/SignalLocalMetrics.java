@@ -266,6 +266,20 @@ public final class SignalLocalMetrics {
     }
 
   }
+
+  public static final class ProcessExit {
+    public static final String FORCE_STOP_EVENT = "process-exit-force-stop";
+
+    private static final String SPLIT_EVENT = "event";
+
+    public static void onForceStop() {
+      String id = FORCE_STOP_EVENT + System.currentTimeMillis();
+      LocalMetrics.getInstance().start(id, FORCE_STOP_EVENT);
+      LocalMetrics.getInstance().splitWithDuration(id, SPLIT_EVENT, 1);
+      LocalMetrics.getInstance().end(id);
+    }
+  }
+
   public static final class PushWebsocketFetch {
     public static final String SUCCESS_EVENT = "push-websocket-fetch";
     public static final String TIMEOUT_EVENT = "timed-out-fetch";

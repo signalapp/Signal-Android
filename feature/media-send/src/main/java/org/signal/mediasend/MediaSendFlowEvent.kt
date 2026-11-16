@@ -5,8 +5,10 @@
 
 package org.signal.mediasend
 
+import android.net.Uri
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.mediasend.screens.edit.ScheduleSendOption
 import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.video.VideoTrimData
@@ -33,6 +35,9 @@ internal sealed interface MediaSendFlowEvent {
    */
   data class MediaCaptured(val media: Media, val recordingDuration: Duration? = null) : MediaSendFlowEvent
 
+  /** Flips [MediaSendFlowState.isMultiCaptureEnabled]. */
+  data object ToggleMultiCapture : MediaSendFlowEvent
+
   /** Data read from a QR code. Every outcome of acting on it leaves the flow, so none of it is a screen's to handle. */
   data class QrCodeScanned(val data: String) : MediaSendFlowEvent
 
@@ -44,7 +49,7 @@ internal sealed interface MediaSendFlowEvent {
   data class SetMediaQuality(val quality: SentMediaQuality) : MediaSendFlowEvent
   data class SetBrushWidth(val tool: BrushTool, val fraction: Float) : MediaSendFlowEvent
   data class SetBlurFacesEnabled(val enabled: Boolean) : MediaSendFlowEvent
-  data class VideoTrimChanged(val videoTrimData: VideoTrimData, val editingComplete: Boolean) : MediaSendFlowEvent
+  data class VideoTrimChanged(val uri: Uri, val videoTrimData: VideoTrimData, val editingComplete: Boolean) : MediaSendFlowEvent
   data object ToggleViewOnce : MediaSendFlowEvent
   data object ToggleVideoMuted : MediaSendFlowEvent
 

@@ -25,7 +25,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 
-import org.greenrobot.eventbus.EventBus;
+import org.signal.core.models.recipients.RecipientId;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.signal.core.models.database.AttachmentId;
@@ -52,7 +53,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.CopyAttachmentToArchiveJob;
-import org.thoughtcrime.securesms.jobs.IndividualSendJob;
+import org.thoughtcrime.securesms.jobs.IndividualSendJobV2;
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
 import org.thoughtcrime.securesms.jobs.PushDistributionListSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
@@ -63,7 +64,6 @@ import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.signal.core.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -449,7 +449,7 @@ public class MessageSender {
       } else if (recipient.isDistributionList()) {
         jobManager.add(new PushDistributionListSendJob(messageId, recipient.getId(), true, Collections.emptySet()), messageDependsOnIds, recipient.getId().toQueueKey());
       } else {
-        jobManager.add(IndividualSendJob.create(messageId, recipient, true, false), messageDependsOnIds, recipient.getId().toQueueKey());
+        jobManager.add(IndividualSendJobV2.create(messageId, recipient, true, false), messageDependsOnIds, recipient.getId().toQueueKey());
       }
     }
   }
@@ -634,10 +634,10 @@ public class MessageSender {
     JobManager jobManager = AppDependencies.getJobManager();
 
     if (uploadJobIds.size() > 0) {
-      Job mediaSend = IndividualSendJob.create(messageId, recipient, true, false);
+      Job mediaSend = IndividualSendJobV2.create(messageId, recipient, true, false);
       jobManager.add(mediaSend, uploadJobIds);
     } else {
-      IndividualSendJob.enqueue(context, jobManager, messageId, recipient, false);
+      IndividualSendJobV2.enqueue(context, messageId, recipient, false);
     }
   }
 

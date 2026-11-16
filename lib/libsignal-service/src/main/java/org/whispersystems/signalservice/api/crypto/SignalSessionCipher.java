@@ -33,7 +33,7 @@ public class SignalSessionCipher {
     }
   }
 
-  public byte[] decrypt(PreKeySignalMessage ciphertext) throws DuplicateMessageException, LegacyMessageException, InvalidMessageException, InvalidKeyIdException, InvalidKeyException, org.signal.libsignal.protocol.UntrustedIdentityException {
+  public byte[] decrypt(PreKeySignalMessage ciphertext) throws DuplicateMessageException, LegacyMessageException, InvalidMessageException, InvalidKeyIdException, InvalidKeyException, InvalidVersionException, org.signal.libsignal.protocol.UntrustedIdentityException {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
       return cipher.decrypt(ciphertext);
     }

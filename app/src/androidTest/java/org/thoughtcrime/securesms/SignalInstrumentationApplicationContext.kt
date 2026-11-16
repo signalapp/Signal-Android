@@ -55,6 +55,12 @@ class SignalInstrumentationApplicationContext : ApplicationContext() {
   override fun beginJobLoop() = Unit
 
   /**
+   * Deleting abandoned pre-uploaded attachments runs asynchronously at startup and can race with tests
+   * that insert pre-upload attachments, deleting them out from under the test.
+   */
+  override fun initializeCleanup() = Unit
+
+  /**
    * Some of the jobs can interfere with some of the instrumentation tests.
    *
    * For example, we may try to create a release channel recipient while doing

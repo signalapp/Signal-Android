@@ -118,7 +118,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="60dp"
-        android:contentDescription="@string/Material3SearchToolbar__close"
+        android:contentDescription="@string/CloseButton__content_description"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

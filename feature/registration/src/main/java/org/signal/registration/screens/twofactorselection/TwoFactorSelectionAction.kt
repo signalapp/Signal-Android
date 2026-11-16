@@ -13,5 +13,5 @@ package org.signal.registration.screens.twofactorselection
 sealed interface TwoFactorSelectionAction {
 
   /** The user wants to authenticate with a passkey. The host should run the credential-manager flow. */
-  data object AuthenticateWithPasskey : TwoFactorSelectionAction
+  data class AuthenticateWithPasskey(val parameters: WebAuthnParameters) : TwoFactorSelectionAction
 }

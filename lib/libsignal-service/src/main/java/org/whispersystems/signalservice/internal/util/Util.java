@@ -100,17 +100,6 @@ public class Util {
     return new String(readFullyAsBytes(in));
   }
 
-  public static void readFully(InputStream in, byte[] buffer) throws IOException {
-    int offset = 0;
-
-    for (;;) {
-      int read = in.read(buffer, offset, buffer.length - offset);
-
-      if (read + offset < buffer.length) offset += read;
-      else                		           return;
-    }
-  }
-
   public static void copy(InputStream in, OutputStream out) throws IOException {
     byte[] buffer = new byte[4096];
     int read;

@@ -94,7 +94,7 @@ public enum MaterialColor {
     if (!outgoing) {
       return isDarkTheme(context) ? tintColor : shadeColor ;
     }
-    return R.color.core_white;
+    return org.signal.core.ui.R.color.core_white;
   }
 
   public @ColorInt int toQuoteBackgroundColor(@NonNull Context context, boolean outgoing) {

@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.badges.gifts.flow
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadgeAmounts
@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBa
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.util.Currency
 import java.util.Locale
@@ -44,7 +44,7 @@ class GiftFlowRepository {
   fun getGiftBadge(): Single<Pair<Int, Badge>> {
     return Single
       .fromCallable {
-        AppDependencies.donationsService
+        SignalNetwork.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
@@ -55,7 +55,7 @@ class GiftFlowRepository {
   fun getGiftPricing(): Single<Map<Currency, FiatMoney>> {
     return Single
       .fromCallable {
-        AppDependencies.donationsService
+        SignalNetwork.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .subscribeOn(Schedulers.io())

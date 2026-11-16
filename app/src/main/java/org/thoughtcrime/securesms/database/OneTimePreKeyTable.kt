@@ -2,14 +2,14 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import androidx.core.content.contentValuesOf
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.delete
+import org.signal.core.database.deleteAll
+import org.signal.core.database.update
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.delete
-import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.update
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey

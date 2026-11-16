@@ -6,6 +6,7 @@
 package org.signal.emoji
 
 import android.app.Application
+import androidx.annotation.VisibleForTesting
 import okhttp3.Response
 import org.signal.core.util.crypto.AttachmentSecretStore
 
@@ -22,6 +23,16 @@ object EmojiDependencies {
       return
     }
 
+    _application = application
+    _provider = provider
+  }
+
+  /**
+   * Replaces the dependencies even if they were already initialized, since [init] keeps the first ones it's given and
+   * tests can't control which test initializes them first.
+   */
+  @VisibleForTesting
+  fun testInject(application: Application, provider: Provider) {
     _application = application
     _provider = provider
   }

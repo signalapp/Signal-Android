@@ -1,0 +1,432 @@
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.appsettings.routes
+
+import android.os.Parcelable
+import androidx.annotation.StringRes
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.core.models.recipients.RecipientId
+import org.signal.core.ui.compose.split.DetailNavKey
+import org.signal.core.util.censor
+import org.signal.donations.InAppPaymentType
+
+/**
+ * Describes a route that the AppSettings screen can open. Every route listed here is displayed in
+ * the PRIMARY (detail) pane of the AppSettingsScreen.
+ */
+@Serializable
+@Parcelize
+sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
+
+  /**
+   * Empty state, displayed when there is no current route. In this case, the "top" of our
+   * scaffold navigator should be the SECONDARY (list) pane.
+   */
+  @Serializable
+  data object Empty : AppSettingsRoute
+
+  @Serializable
+  @Parcelize
+  sealed interface AccountRoute : AppSettingsRoute {
+    @Serializable
+    data object Account : AccountRoute
+
+    @Serializable
+    data object ManageProfile : AccountRoute
+
+    @Serializable
+    data object ProfileName : AccountRoute
+
+    @Serializable
+    data object About : AccountRoute
+
+    @Serializable
+    data object AvatarPicker : AccountRoute
+
+    /**
+     * [colorCode] is an `Avatars.ColorPair` code. [databaseId] is the saved avatar's row id, or -1 if it isn't saved.
+     */
+    @Serializable
+    data class TextAvatarEditor(val text: String, val colorCode: String, val databaseId: Long = -1L) : AccountRoute {
+      override fun toString(): String = "TextAvatarEditor"
+    }
+
+    /** [colorCode] is an `Avatars.ColorPair` code. [databaseId] is the saved avatar's row id, or -1 if it isn't saved. */
+    @Serializable
+    data class VectorAvatarEditor(val key: String, val colorCode: String, val databaseId: Long = -1L) : AccountRoute
+
+    @Serializable
+    data object AdvancedPinSettings : AccountRoute
+
+    @Serializable
+    data object DeleteAccount : AccountRoute
+
+    /** Picking the country for the number the user confirms when deleting their account. */
+    @Serializable
+    data object DeleteAccountCountryCode : AccountRoute
+
+    /** The account's Signal login: its username and recovery key. */
+    @Serializable
+    data object SignalLoginDetails : AccountRoute
+
+    /** Adding an authenticator app as a second factor. */
+    @Serializable
+    data object TotpSetup : AccountRoute
+
+    /** Entering a code from the authenticator app being added. */
+    @Serializable
+    data object TotpCodeEntry : AccountRoute
+
+    /** Adding a passkey as a second factor. */
+    @Serializable
+    data object PasskeySetup : AccountRoute
+
+    /** Naming the second factor identified by [methodId], which was just added and has no name of its own yet. */
+    @Serializable
+    data class NameNewTwoFactorMethod(
+      val methodId: Long,
+      val methodKind: TwoFactorMethod.Kind,
+      val methodCreatedAt: Long?
+    ) : AccountRoute
+
+    /** Renaming the second factor identified by [methodId], whose current details are carried so the screen needn't refetch them. */
+    @Serializable
+    data class RenameTwoFactorMethod(
+      val methodId: Long,
+      val methodKind: TwoFactorMethod.Kind,
+      val methodName: String?,
+      val methodCreatedAt: Long?
+    ) : AccountRoute {
+      override fun toString(): String = "RenameTwoFactorMethod(methodId=$methodId, methodKind=$methodKind, methodName=${methodName?.censor()}, methodCreatedAt=$methodCreatedAt)"
+    }
+
+    @Serializable
+    data object ExportAccountData : AccountRoute
+
+    @Serializable
+    data object OldDeviceTransfer : AccountRoute
+
+    @Serializable
+    data class Username(val mode: UsernameEditMode = UsernameEditMode.NORMAL) : AccountRoute
+  }
+
+  @Serializable
+  data object Payments : AppSettingsRoute
+
+  @Serializable
+  data object Invite : AppSettingsRoute
+
+  @Serializable
+  data object AppUpdates : AppSettingsRoute
+
+  @Serializable
+  @Parcelize
+  sealed interface StoriesRoute : AppSettingsRoute {
+    @Serializable
+    data class Privacy(@StringRes val titleId: Int) : StoriesRoute
+
+    @Serializable
+    data object MyStory : StoriesRoute
+
+    /** [distributionListId] is a serialized `DistributionListId`. */
+    @Serializable
+    data class PrivateStory(val distributionListId: Long) : StoriesRoute
+
+    /** [groupId] is a serialized `GroupId`. */
+    @Serializable
+    data class GroupStory(val groupId: String) : StoriesRoute
+
+    @Serializable
+    data object OnlyShareWith : StoriesRoute
+
+    @Serializable
+    data object AllExcept : StoriesRoute
+
+    /** [distributionListId] is a serialized `DistributionListId`. */
+    @Serializable
+    data class EditName(val distributionListId: Long, val name: String) : StoriesRoute
+
+    /** [distributionListId] is a serialized `DistributionListId`. */
+    @Serializable
+    data class AddViewers(val distributionListId: Long) : StoriesRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface UsernameLinkRoute : AppSettingsRoute {
+    @Serializable
+    data object UsernameLink : UsernameLinkRoute
+
+    @Serializable
+    data object QRColorPicker : UsernameLinkRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface BackupsRoute : AppSettingsRoute {
+    @Serializable
+    data class Backups(
+      val launchCheckoutFlow: Boolean = false
+    ) : BackupsRoute
+
+    @Serializable
+    data class Local @JvmOverloads constructor(val triggerUpdateFlow: Boolean = false) : BackupsRoute
+
+    @Serializable
+    data class Remote(val forQuickRestore: Boolean = false) : BackupsRoute
+
+    /** The backup key, optionally starting straight into rotating it when [startWithKeyRotation] is set. */
+    @Serializable
+    data class DisplayKey(val startWithKeyRotation: Boolean = false) : BackupsRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface NotificationsRoute : AppSettingsRoute {
+    @Serializable
+    data object Notifications : NotificationsRoute
+
+    @Serializable
+    data object MutedNotifications : NotificationsRoute
+
+    @Serializable
+    data object NotificationProfiles : NotificationsRoute
+
+    @Serializable
+    data class EditProfile(val profileId: Long = -1L) : NotificationsRoute
+
+    @Serializable
+    data class ProfileDetails(val profileId: Long) : NotificationsRoute
+
+    @Serializable
+    data class AddAllowedMembers(val profileId: Long) : NotificationsRoute
+
+    @Serializable
+    data class SelectRecipients(val profileId: Long, val currentSelection: List<RecipientId> = emptyList()) : NotificationsRoute
+
+    @Serializable
+    data class EditSchedule(val profileId: Long, val createMode: Boolean) : NotificationsRoute
+
+    @Serializable
+    data class Created(val profileId: Long) : NotificationsRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface DonationsRoute : AppSettingsRoute {
+    @Serializable
+    data class Donations(
+      val directToCheckoutType: InAppPaymentType = InAppPaymentType.UNKNOWN
+    ) : DonationsRoute
+
+    @Serializable
+    data object Badges : DonationsRoute
+
+    @Serializable
+    data object Receipts : DonationsRoute
+
+    @Serializable
+    data class Receipt(val id: Long) : DonationsRoute
+
+    @Serializable
+    data object Featured : DonationsRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface LabsRoute : AppSettingsRoute {
+    @Serializable
+    data object Labs : LabsRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface InternalRoute : AppSettingsRoute {
+    @Serializable
+    data object Internal : InternalRoute
+
+    @Serializable
+    data object DonorErrorConfiguration : InternalRoute
+
+    @Serializable
+    data object StoryDialogs : InternalRoute
+
+    @Serializable
+    data object Search : InternalRoute
+
+    @Serializable
+    data object SvrPlayground : InternalRoute
+
+    @Serializable
+    data object ChatSpringboard : InternalRoute
+
+    @Serializable
+    data object OneTimeDonationConfiguration : InternalRoute
+
+    @Serializable
+    data object TerminalDonationConfiguration : InternalRoute
+
+    @Serializable
+    data object BackupPlayground : InternalRoute
+
+    @Serializable
+    data object StorageServicePlayground : InternalRoute
+
+    @Serializable
+    data object SqlitePlayground : InternalRoute
+
+    @Serializable
+    data object ConversationTestFragment : InternalRoute
+
+    @Serializable
+    data object DataSeedingPlayground : InternalRoute
+
+    @Serializable
+    data object Issues : InternalRoute
+
+    @Serializable
+    data object RemoteConfig : InternalRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface PrivacyRoute : AppSettingsRoute {
+    @Serializable
+    data object Privacy : PrivacyRoute
+
+    @Serializable
+    data object BlockedUsers : PrivacyRoute
+
+    @Serializable
+    data object Advanced : PrivacyRoute
+
+    @Serializable
+    data object ExpiringMessages : PrivacyRoute
+
+    @Serializable
+    data object PhoneNumberPrivacy : PrivacyRoute
+
+    @Serializable
+    data object ScreenLock : PrivacyRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface DataAndStorageRoute : AppSettingsRoute {
+    @Serializable
+    data object DataAndStorage : DataAndStorageRoute
+
+    @Serializable
+    data object Storage : DataAndStorageRoute
+
+    @Serializable
+    data object Proxy : DataAndStorageRoute
+
+    @Serializable
+    data object KeepMessages : DataAndStorageRoute
+
+    @Serializable
+    data object ChatLengthLimit : DataAndStorageRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface HelpRoute : AppSettingsRoute {
+    /** The help section, listing the support center, contact form, debug log and licenses. */
+    @Serializable
+    data object Settings : HelpRoute
+
+    /** The contact form, with category [startCategoryIndex] preselected. */
+    @Serializable
+    data class Help(val startCategoryIndex: Int = 0) : HelpRoute
+
+    @Serializable
+    data object DebugLog : HelpRoute
+
+    @Serializable
+    data object Licenses : HelpRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface AppearanceRoute : AppSettingsRoute {
+    @Serializable
+    data object Appearance : AppearanceRoute
+
+    @Serializable
+    data object Wallpaper : AppearanceRoute
+
+    @Serializable
+    data object AppIconSelection : AppearanceRoute
+
+    @Serializable
+    data object AppIconTutorial : AppearanceRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface ChatsRoute : AppSettingsRoute {
+    @Serializable
+    data object Chats : ChatsRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface ChatFoldersRoute : AppSettingsRoute {
+    @Serializable
+    data object ChatFolders : ChatFoldersRoute
+
+    @Serializable
+    data class CreateChatFolders(
+      val folderId: Long,
+      val threadIds: LongArray
+    ) : ChatFoldersRoute {
+      override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as CreateChatFolders
+
+        if (folderId != other.folderId) return false
+        if (!threadIds.contentEquals(other.threadIds)) return false
+
+        return true
+      }
+
+      override fun hashCode(): Int {
+        var result = folderId.hashCode()
+        result = 31 * result + threadIds.contentHashCode()
+        return result
+      }
+    }
+
+    /** Picks the chats a folder includes, or with [includeChats] false, the ones it excludes. */
+    @Serializable
+    data class ChooseChats(val includeChats: Boolean) : ChatFoldersRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface LinkDeviceRoute : AppSettingsRoute {
+    @Serializable
+    data object LinkDevice : LinkDeviceRoute
+
+    @Serializable
+    data object EditName : LinkDeviceRoute
+
+    @Serializable
+    data object Add : LinkDeviceRoute
+  }
+
+  @Serializable
+  @Parcelize
+  sealed interface ChangeNumberRoute : AppSettingsRoute {
+    @Serializable
+    data object Start : ChangeNumberRoute
+  }
+}

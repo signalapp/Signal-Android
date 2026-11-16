@@ -1,12 +1,20 @@
 package org.thoughtcrime.securesms.keyvalue
 
 import org.signal.archive.proto.BackupDebugInfo
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.CallManager.DataMode
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.SignalStoreValueDelegate
+import org.signal.storage.keyvalue.SignalStoreValues
+import org.signal.storage.keyvalue.booleanValue
+import org.signal.storage.keyvalue.integerValue
+import org.signal.storage.keyvalue.map
+import org.signal.storage.keyvalue.protoValue
+import org.signal.storage.keyvalue.withPrecondition
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.keyvalue.protos.IssueNotifyTimes
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 class InternalValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
@@ -33,6 +41,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val CALLING_USE_SOFTWARE_VP9_DECODE: String = "internal.calling_use_software_vp9_decode"
     const val CALLING_ENABLE_SVC: String = "internal.calling_enable_svc"
     const val CALLING_STATS_INTERVAL_SECS: String = "internal.calling_stats_interval_secs"
+    const val CALLING_MINIMUM_CAPTURE_FPS: String = "internal.calling_minimum_capture_fps"
     const val SHAKE_TO_REPORT: String = "internal.shake_to_report"
     const val DISABLE_STORAGE_SERVICE: String = "internal.disable_storage_service"
     const val LAST_SCROLL_POSITION: String = "internal.last_scroll_position"
@@ -48,7 +57,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
 
   /**
    * Members will not be added directly to a GV2 even if they could be.
@@ -195,6 +205,11 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * How often, in seconds, RingRTC should report call stats. Zero means use the default interval.
    */
   var callingStatsIntervalSecs: Int by integerValue(CALLING_STATS_INTERVAL_SECS, 0).defaultForExternalUsers()
+
+  /**
+   * Minimum fps for the camera's capture framerate range. Zero means use default logic
+   */
+  var callingMinimumCaptureFps: Int by integerValue(CALLING_MINIMUM_CAPTURE_FPS, 0).defaultForExternalUsers()
 
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 

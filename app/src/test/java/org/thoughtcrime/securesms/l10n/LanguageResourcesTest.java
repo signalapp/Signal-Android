@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.R;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,8 +27,8 @@ public final class LanguageResourcesTest {
   @Test
   public void language_entries_match_language_values_in_length() {
     Resources resources = ApplicationProvider.getApplicationContext().getResources();
-    String[]  values    = resources.getStringArray(R.array.language_values);
-    String[]  entries   = resources.getStringArray(R.array.language_entries);
+    String[]  values    = resources.getStringArray(org.signal.appsettings.R.array.language_values);
+    String[]  entries   = resources.getStringArray(org.signal.appsettings.R.array.language_entries);
     assertEquals(values.length, entries.length);
   }
 
@@ -49,7 +48,7 @@ public final class LanguageResourcesTest {
 
   private static Set<String> languageEntries() {
     Resources resources = ApplicationProvider.getApplicationContext().getResources();
-    String[]  values    = resources.getStringArray(R.array.language_values);
+    String[]  values    = resources.getStringArray(org.signal.appsettings.R.array.language_values);
 
     List<String> tail = Arrays.asList(values).subList(1, values.length);
     Set<String>  set  = new HashSet<>(tail);

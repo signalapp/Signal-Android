@@ -5,194 +5,167 @@
 
 package org.thoughtcrime.securesms.components.settings.app.storage
 
-import androidx.compose.runtime.Immutable
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.appsettings.managestorage.ManageStorageSettingsAction
+import org.signal.appsettings.managestorage.ManageStorageSettingsEvent
+import org.signal.appsettings.managestorage.ManageStorageSettingsState
+import org.signal.appsettings.managestorage.ManageStorageSettingsState.Dialog
+import org.signal.appsettings.managestorage.ManageStorageSettingsState.OnDeviceStorageOptimizationState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.BackupUpgradeAvailabilityChecker
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
-import org.thoughtcrime.securesms.database.InAppPaymentTable
-import org.thoughtcrime.securesms.database.MediaTable
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
-import org.thoughtcrime.securesms.database.ThreadTable
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.BackupMessagesJob
-import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
-import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
-class ManageStorageSettingsViewModel : ViewModel() {
+/**
+ * Drives [org.signal.appsettings.managestorage.ManageStorageSettingsScreen].
+ */
+class ManageStorageSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
+  private val repository: ManageStorageSettingsRepository = ManageStorageSettingsRepository(),
+  private val storageUsageRepository: StorageUsageRepository = StorageUsageRepository.instance
+) : EventDrivenViewModel<ManageStorageSettingsEvent>(TAG, shouldLogEvents = true) {
 
-  private val store = MutableStateFlow(
-    ManageStorageState(
+  companion object {
+    private val TAG = Log.tag(ManageStorageSettingsViewModel::class)
+  }
+
+  private val _state = MutableStateFlow(
+    ManageStorageSettingsState(
       keepMessagesDuration = SignalStore.settings.keepMessagesDuration,
-      lengthLimit = if (SignalStore.settings.isTrimByLengthEnabled) SignalStore.settings.threadTrimLength else ManageStorageState.NO_LIMIT,
-      syncTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes(),
-      localBackupsEnabled = SignalStore.backup.newLocalBackupsEnabled,
-      isPrimary = SignalStore.account.isPrimaryDevice,
-      initialOptimizeStorage = SignalStore.backup.optimizeStorage
+      lengthLimit = repository.getLengthLimit(),
+      syncTrimDeletes = SignalStore.settings.syncThreadTrimDeletes,
+      isPrimaryDevice = SignalStore.account.isPrimaryDevice,
+      isMultiDevice = SignalStore.account.isMultiDevice
     )
   )
-  val state = store.asStateFlow()
+  private val _actions = Channel<ManageStorageSettingsAction>(Channel.BUFFERED)
+
+  val state: StateFlow<ManageStorageSettingsState> = _state.asStateFlow()
+  val actions: Flow<ManageStorageSettingsAction> = _actions.receiveAsFlow()
+
+  /** What optimized storage was when the screen opened, so we only kick off an offload or restore if it changed. */
+  private val initialOptimizeStorage = SignalStore.backup.optimizeStorage
+
+  /** One-time check on Play Billing to determine whether Optimize Storage can be offered. */
+  private var optimizeStorageAvailable = false
+
+  private val isPaidTierPending: StateFlow<Boolean> = repository.observeIsPaidTierPending()
+    .stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
   init {
-    viewModelScope.launch(Dispatchers.Default) {
-      InAppPaymentsRepository.observeLatestBackupPayment()
-        .collectLatest { payment ->
-          store.update { it.copy(isPaidTierPending = payment.state == InAppPaymentTable.State.PENDING) }
-        }
-    }
+    storageUsageRepository.usage
+      .onEach { usage -> _state.update { it.copy(storageUsage = usage) } }
+      .launchIn(viewModelScope)
 
     viewModelScope.launch {
-      store.update {
-        it.copy(onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState())
-      }
+      optimizeStorageAvailable = repository.isOptimizeStorageAvailable()
+      _state.update { it.copy(onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState()) }
     }
   }
 
-  fun refresh() {
-    viewModelScope.launch {
-      val breakdown: MediaTable.StorageBreakdown = media.getStorageBreakdown()
-      store.update { it.copy(breakdown = breakdown) }
+  override suspend fun processEvent(event: ManageStorageSettingsEvent) {
+    when (event) {
+      ManageStorageSettingsEvent.ScreenResumed -> refresh()
+      ManageStorageSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      ManageStorageSettingsEvent.ReviewStorageClicked -> _actions.send(ManageStorageSettingsAction.NavigateToReviewStorage)
+      is ManageStorageSettingsEvent.OptimizeStorageToggled -> applyOptimizeStorageToggled(event.enabled)
+      ManageStorageSettingsEvent.OptimizeStorageWithLocalBackupConfirmed -> applyOptimizeStorageWithLocalBackupConfirmed()
+      ManageStorageSettingsEvent.PaidTierUpgradeCompleted -> setOptimizeStorage(true)
+      ManageStorageSettingsEvent.KeepMessagesClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DataAndStorageRoute.KeepMessages)
+      ManageStorageSettingsEvent.ChatLengthLimitClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DataAndStorageRoute.ChatLengthLimit)
+      is ManageStorageSettingsEvent.SyncTrimDeletesToggled -> setSyncTrimDeletes(event.enabled)
+      ManageStorageSettingsEvent.DeleteChatHistoryClicked -> _state.update { it.copy(dialog = Dialog.ConfirmDeleteChatHistory) }
+      ManageStorageSettingsEvent.DeleteChatHistoryConfirmed -> applyDeleteChatHistoryConfirmed()
+      ManageStorageSettingsEvent.DialogDismissed -> _state.update { it.copy(dialog = Dialog.None) }
     }
   }
 
-  fun deleteChatHistory() {
-    SignalExecutors.BOUNDED_IO.execute {
-      SignalDatabase.threads.deleteAllConversations()
-      AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
+  override fun onCleared() {
+    when (_state.value.onDeviceStorageOptimizationState) {
+      OnDeviceStorageOptimizationState.ENABLED -> if (!initialOptimizeStorage) repository.offloadOptimizedMedia()
+      OnDeviceStorageOptimizationState.DISABLED -> if (initialOptimizeStorage) repository.restoreOptimizedMedia()
+      OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE, OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER -> Unit
     }
   }
 
-  fun setKeepMessagesDuration(newDuration: KeepMessagesDuration) {
-    SignalStore.settings.setKeepMessagesForDuration(newDuration)
-    AppDependencies.trimThreadsByDateManager.scheduleIfNecessary()
-
-    store.update { it.copy(keepMessagesDuration = newDuration) }
-  }
-
-  fun showConfirmKeepDurationChange(newDuration: KeepMessagesDuration): Boolean {
-    return newDuration.ordinal > state.value.keepMessagesDuration.ordinal
-  }
-
-  fun setChatLengthLimit(newLimit: Int) {
-    val restrictingChange = isRestrictingLengthLimitChange(newLimit)
-
-    SignalStore.settings.setThreadTrimByLengthEnabled(newLimit != ManageStorageState.NO_LIMIT)
-    SignalStore.settings.threadTrimLength = newLimit
-    store.update { it.copy(lengthLimit = newLimit) }
-
-    if (SignalStore.settings.isTrimByLengthEnabled && restrictingChange) {
-      SignalExecutors.BOUNDED.execute {
-        val keepMessagesDuration = SignalStore.settings.keepMessagesDuration
-
-        val trimBeforeDate = if (keepMessagesDuration != KeepMessagesDuration.FOREVER) {
-          System.currentTimeMillis() - keepMessagesDuration.duration
-        } else {
-          ThreadTable.NO_TRIM_BEFORE_DATE_SET
-        }
-
-        SignalDatabase.threads.trimAllThreads(newLimit, trimBeforeDate)
-      }
+  /** Re-reads what the chat limit screens may have changed while we were in the background, and recomputes usage. */
+  private fun refresh() {
+    storageUsageRepository.refresh()
+    _state.update {
+      it.copy(
+        keepMessagesDuration = SignalStore.settings.keepMessagesDuration,
+        lengthLimit = repository.getLengthLimit(),
+        isMultiDevice = SignalStore.account.isMultiDevice,
+        onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState()
+      )
     }
   }
 
-  fun showConfirmSetChatLengthLimit(newLimit: Int): Boolean {
-    return isRestrictingLengthLimitChange(newLimit)
-  }
-
-  fun setSyncTrimDeletes(syncTrimDeletes: Boolean) {
-    SignalStore.settings.setSyncThreadTrimDeletes(syncTrimDeletes)
-    store.update { it.copy(syncTrimDeletes = syncTrimDeletes) }
-  }
-
-  fun setOptimizeStorage(enabled: Boolean) {
-    viewModelScope.launch {
-      val storageState = getOnDeviceStorageOptimizationState()
-      if (storageState >= OnDeviceStorageOptimizationState.DISABLED) {
-        SignalStore.backup.optimizeStorage = enabled
-        store.update {
-          it.copy(
-            onDeviceStorageOptimizationState = if (enabled) OnDeviceStorageOptimizationState.ENABLED else OnDeviceStorageOptimizationState.DISABLED,
-            storageOptimizationStateChanged = enabled != it.initialOptimizeStorage
-          )
-        }
-      }
-    }
-  }
-
-  private fun isRestrictingLengthLimitChange(newLimit: Int): Boolean {
-    return state.value.lengthLimit == ManageStorageState.NO_LIMIT || (newLimit != ManageStorageState.NO_LIMIT && newLimit < state.value.lengthLimit)
-  }
-
-  private suspend fun getOnDeviceStorageOptimizationState(): OnDeviceStorageOptimizationState {
+  private fun getOnDeviceStorageOptimizationState(): OnDeviceStorageOptimizationState {
     return when {
-      !SignalStore.account.isPrimaryDevice -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
-      !SignalStore.backup.areBackupsEnabled || !BackupUpgradeAvailabilityChecker.isUpgradeAvailable(AppDependencies.application) -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
+      !optimizeStorageAvailable -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
       SignalStore.backup.backupTier != MessageBackupTier.PAID -> OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER
       SignalStore.backup.optimizeStorage -> OnDeviceStorageOptimizationState.ENABLED
       else -> OnDeviceStorageOptimizationState.DISABLED
     }
   }
 
-  override fun onCleared() {
-    if (state.value.storageOptimizationStateChanged) {
-      when (state.value.onDeviceStorageOptimizationState) {
-        OnDeviceStorageOptimizationState.DISABLED -> RestoreOptimizedMediaJob.enqueue()
-
-        // Backing up first guarantees a media snapshot exists to reconcile against, and the backup enqueues the offload for us once it succeeds
-        OnDeviceStorageOptimizationState.ENABLED -> BackupMessagesJob.enqueue()
-
-        else -> Unit
-      }
+  private suspend fun applyOptimizeStorageToggled(enabled: Boolean) {
+    when {
+      isPaidTierPending.value -> _state.update { it.copy(dialog = Dialog.PaidTierPending) }
+      _state.value.onDeviceStorageOptimizationState == OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER -> _actions.send(ManageStorageSettingsAction.ShowUpgradeToEnableOptimizedStorage)
+      enabled && SignalStore.backup.newLocalBackupsEnabled -> _state.update { it.copy(dialog = Dialog.ConfirmOptimizeStorageWithLocalBackup) }
+      else -> setOptimizeStorage(enabled)
     }
   }
 
-  enum class OnDeviceStorageOptimizationState {
-    /**
-     * The entire feature is not available and the option should not be displayed to the user.
-     */
-    FEATURE_NOT_AVAILABLE,
-
-    /**
-     * The feature is available, but the user is not on the paid backups plan.
-     */
-    REQUIRES_PAID_TIER,
-
-    /**
-     * The user is on the paid backups plan but optimized storage is disabled.
-     */
-    DISABLED,
-
-    /**
-     * The user is on the paid backups plan and optimized storage is enabled.
-     */
-    ENABLED
+  private fun applyOptimizeStorageWithLocalBackupConfirmed() {
+    if (_state.value.dialog != Dialog.ConfirmOptimizeStorageWithLocalBackup) return
+    _state.update { it.copy(dialog = Dialog.None) }
+    setOptimizeStorage(true)
   }
 
-  @Immutable
-  data class ManageStorageState(
-    val keepMessagesDuration: KeepMessagesDuration,
-    val lengthLimit: Int,
-    val syncTrimDeletes: Boolean,
-    val breakdown: MediaTable.StorageBreakdown? = null,
-    val onDeviceStorageOptimizationState: OnDeviceStorageOptimizationState = OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE,
-    val storageOptimizationStateChanged: Boolean = false,
-    val isPaidTierPending: Boolean = false,
-    val localBackupsEnabled: Boolean = false,
-    val isPrimary: Boolean = true,
-    val initialOptimizeStorage: Boolean = false
-  ) {
-    companion object {
-      const val NO_LIMIT = 0
+  private fun setOptimizeStorage(enabled: Boolean) {
+    val current = getOnDeviceStorageOptimizationState()
+    if (current != OnDeviceStorageOptimizationState.DISABLED && current != OnDeviceStorageOptimizationState.ENABLED) {
+      return
+    }
+
+    SignalStore.backup.optimizeStorage = enabled
+    _state.update { it.copy(onDeviceStorageOptimizationState = if (enabled) OnDeviceStorageOptimizationState.ENABLED else OnDeviceStorageOptimizationState.DISABLED) }
+  }
+
+  private fun setSyncTrimDeletes(enabled: Boolean) {
+    SignalStore.settings.syncThreadTrimDeletes = enabled
+    _state.update { it.copy(syncTrimDeletes = enabled) }
+  }
+
+  private fun applyDeleteChatHistoryConfirmed() {
+    when (_state.value.dialog) {
+      Dialog.ConfirmDeleteChatHistory -> {
+        _state.update { it.copy(dialog = Dialog.ReconfirmDeleteChatHistory) }
+      }
+      Dialog.ReconfirmDeleteChatHistory -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        repository.deleteAllConversations()
+      }
+      else -> Unit
     }
   }
 }

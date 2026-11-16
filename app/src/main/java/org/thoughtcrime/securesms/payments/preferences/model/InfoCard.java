@@ -99,7 +99,7 @@ public class InfoCard implements MappingModel<InfoCard> {
     if (paymentsValues.showAboutMobileCoinInfoCard()) {
       infoCards.add(new InfoCard(R.string.payment_info_card_about_mobilecoin,
                                  R.string.payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency,
-                                 R.string.LearnMoreTextView_learn_more,
+                                 org.signal.core.ui.R.string.LearnMoreTextView_learn_more,
                                  R.drawable.ic_about_mc_80,
                                  Type.ABOUT_MOBILECOIN,
                                  paymentsValues::dismissAboutMobileCoinInfoCard));
@@ -108,7 +108,7 @@ public class InfoCard implements MappingModel<InfoCard> {
     if (paymentsValues.showAddingToYourWalletInfoCard()) {
       infoCards.add(new InfoCard(R.string.payment_info_card_adding_funds,
                                  R.string.payment_info_card_you_can_add_funds_for_use_in,
-                                 R.string.LearnMoreTextView_learn_more,
+                                 org.signal.core.ui.R.string.LearnMoreTextView_learn_more,
                                  R.drawable.ic_add_money_80,
                                  Type.ADDING_TO_YOUR_WALLET,
                                  paymentsValues::dismissAddingToYourWalletInfoCard));
@@ -117,7 +117,7 @@ public class InfoCard implements MappingModel<InfoCard> {
     if (paymentsValues.showCashingOutInfoCard()) {
       infoCards.add(new InfoCard(R.string.payment_info_card_cashing_out,
                                  R.string.payment_info_card_you_can_cash_out_mobilecoin,
-                                 R.string.LearnMoreTextView_learn_more,
+                                 org.signal.core.ui.R.string.LearnMoreTextView_learn_more,
                                  R.drawable.ic_cash_out_80,
                                  Type.CASHING_OUT,
                                  paymentsValues::dismissCashingOutInfoCard));

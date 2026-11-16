@@ -3,16 +3,13 @@ package org.thoughtcrime.securesms.jobs
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.pad
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
-import org.whispersystems.signalservice.internal.push.Content
-import org.whispersystems.signalservice.internal.push.SyncMessage
-import java.io.IOException
-import java.util.Optional
+import org.thoughtcrime.securesms.util.OutgoingContent
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -20,7 +17,7 @@ import kotlin.time.Duration.Companion.days
  */
 class MultiDeviceUsernameChangeSyncJob private constructor(
   parameters: Parameters
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY = "MultiDeviceUsernameChangeSyncJob"
@@ -49,7 +46,7 @@ class MultiDeviceUsernameChangeSyncJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!Recipient.self().isRegistered) {
       Log.w(TAG, "Not registered")
       return Result.failure()
@@ -60,29 +57,20 @@ class MultiDeviceUsernameChangeSyncJob private constructor(
       return Result.failure()
     }
 
-    val syncMessageContent = Content(
-      syncMessage = SyncMessage.Builder()
-        .pad()
-        .usernameChange(SyncMessage.UsernameChange())
-        .build()
+    Log.d(TAG, "Sending username change sync")
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncUsernameChange(),
+      urgent = true,
+      onEncrypted = null
     )
 
-    return try {
-      Log.d(TAG, "Sending username change sync")
-      val success = AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessageContent, true, Optional.empty()).isSuccess
-      if (success) {
-        Result.success()
-      } else {
-        Log.w(TAG, "Unsuccessful username change send. Retrying.")
-        Result.retry(defaultBackoff())
+    return result.fold(
+      ifRight = { Result.success() },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "username change sync", defaultBackoff())
       }
-    } catch (e: IOException) {
-      Log.w(TAG, "Unable to send username change sync due to io exception", e)
-      Result.retry(defaultBackoff())
-    } catch (e: UntrustedIdentityException) {
-      Log.w(TAG, "Unable to send username change sync due to untrusted exception", e)
-      Result.failure()
-    }
+    )
   }
 
   override fun onFailure() = Unit

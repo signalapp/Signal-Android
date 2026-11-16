@@ -292,8 +292,8 @@ class ProvisioningSocket<T> private constructor(
   }
 
   sealed class Mode(val host: String, val params: String) {
-    data object Rereg : Mode("rereg", "")
-    data class Link(val linkAndSyncCapable: Boolean) : Mode("linkdevice", if (linkAndSyncCapable) "&capabilities=backup5" else "")
+    data object Rereg : Mode("rereg", "&capabilities=nopni")
+    data class Link(val linkAndSyncCapable: Boolean) : Mode("linkdevice", "&capabilities=" + listOfNotNull("backup5".takeIf { linkAndSyncCapable }, "nopni", "nopni2").joinToString(","))
   }
 
   fun interface ProvisioningSocketExceptionHandler {

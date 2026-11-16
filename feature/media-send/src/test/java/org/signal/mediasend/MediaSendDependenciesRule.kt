@@ -8,9 +8,14 @@ package org.signal.mediasend
 import android.app.Application
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import org.junit.rules.ExternalResource
 import org.signal.camera.CameraDependencies
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.mediasend.screens.edit.image.BrushWidths
+import org.signal.remoteconfig.FakeRemoteConfigDependencies
+import org.signal.remoteconfig.RemoteConfig
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -27,6 +32,10 @@ class MediaSendDependenciesRule(private val application: Application) : External
   }
 
   override fun before() {
+    RemoteConfig.initDependencies(FakeRemoteConfigDependencies())
+    mockkObject(RemoteConfig)
+    every { RemoteConfig.maxAttachmentCount } returns 32
+
     CameraDependencies.init(application, mockk(relaxed = true))
     MediaSendDependencies.init(
       application,
@@ -34,5 +43,9 @@ class MediaSendDependenciesRule(private val application: Application) : External
         every { provideMediaSendRepository() } returns mediaSendRepository
       }
     )
+  }
+
+  override fun after() {
+    unmockkObject(RemoteConfig)
   }
 }

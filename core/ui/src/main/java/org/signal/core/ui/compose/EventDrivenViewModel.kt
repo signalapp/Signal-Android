@@ -18,7 +18,7 @@ import org.signal.core.util.logging.Log
  */
 abstract class EventDrivenViewModel<E : Any>(
   private val tag: String,
-  private val shouldLogEvents: Boolean = true
+  private val shouldLogEvents: Boolean = false
 ) : ViewModel() {
 
   private val eventChannel = Channel<E>(Channel.UNLIMITED)

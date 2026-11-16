@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.badges.models
 
 import android.view.View
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 object BadgePreview {
 
   fun register(mappingAdapter: MappingAdapter) {
-    mappingAdapter.registerFactory(BadgeModel.FeaturedModel::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.featured_badge_preview_preference))
     mappingAdapter.registerFactory(BadgeModel.SubscriptionModel::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.subscription_flow_badge_preview_preference))
     mappingAdapter.registerFactory(BadgeModel.GiftedBadgeModel::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.gift_badge_preview_preference))
   }
@@ -29,10 +29,6 @@ object BadgePreview {
 
     abstract val badge: Badge?
     abstract val recipient: Recipient
-
-    data class FeaturedModel(override val badge: Badge?) : BadgeModel<FeaturedModel>() {
-      override val recipient: Recipient = Recipient.self()
-    }
 
     data class SubscriptionModel(override val badge: Badge?) : BadgeModel<SubscriptionModel>() {
       override val recipient: Recipient = Recipient.self()

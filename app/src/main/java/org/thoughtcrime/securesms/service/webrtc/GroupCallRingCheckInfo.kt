@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.service.webrtc
 
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 data class GroupCallRingCheckInfo(
   val recipientId: RecipientId,

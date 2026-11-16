@@ -543,7 +543,7 @@ private fun MediaFolderTile(
         modifier = Modifier
           .fillMaxWidth()
           .aspectRatio(1f)
-          .background(color = Previews.rememberRandomColor(), shape = RoundedCornerShape(26.dp))
+          .background(color = Previews.rememberRandomColor(seed = mediaFolder.thumbnailUri), shape = RoundedCornerShape(26.dp))
       )
     } else {
       BoxWithConstraints(
@@ -620,8 +620,8 @@ private fun MediaTile(
       if (LocalInspectionMode.current) {
         Box(
           modifier = Modifier
-            .background(color = Previews.rememberRandomColor())
-            .fillMaxWidth()
+            .size(width = width, height = height)
+            .background(color = Previews.rememberRandomColor(seed = media.uri))
         )
       } else {
         GlideImage(
@@ -764,7 +764,7 @@ private fun MediaThumbnail(
       Box(
         modifier = Modifier
           .fillMaxSize()
-          .background(color = Previews.rememberRandomColor())
+          .background(color = Previews.rememberRandomColor(seed = media.uri))
       )
     } else {
       GlideImage(
@@ -919,7 +919,7 @@ private fun MediaTileSelectedChatColorPreview() {
 }
 
 @Composable
-private fun rememberPreviewMediaFolders(count: Int): List<MediaFolder> {
+internal fun rememberPreviewMediaFolders(count: Int): List<MediaFolder> {
   return remember(count) {
     (0 until count).map { index ->
       MediaFolder(

@@ -13,11 +13,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.rx3.awaitSingleOrNull
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeRepository
 import org.thoughtcrime.securesms.conversation.ui.error.TrustAndVerifyResult
 import org.thoughtcrime.securesms.database.model.IdentityRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /** ViewModel for [SafetyNumberBottomSheetFragment]. Manages state and trust-and-verify logic. */
 class SafetyNumberBottomSheetViewModel(

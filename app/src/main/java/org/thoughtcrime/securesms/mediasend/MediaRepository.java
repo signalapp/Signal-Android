@@ -15,11 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.database.SqlUtil;
 import org.signal.core.models.media.Media;
 import org.signal.core.models.media.MediaFolder;
 import org.signal.core.models.media.TransformProperties;
 import org.signal.core.ui.util.StorageUtil;
-import org.signal.core.util.SqlUtil;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.SignalExecutors;

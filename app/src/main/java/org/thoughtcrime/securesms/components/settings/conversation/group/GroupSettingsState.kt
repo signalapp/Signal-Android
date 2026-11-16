@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.group
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.uicomponents.recentmediarail.RecentMediaRailState
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallBarState
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallEntry
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.StyledMemberLabel
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 data class GroupSettingsState(
   val groupId: GroupId,

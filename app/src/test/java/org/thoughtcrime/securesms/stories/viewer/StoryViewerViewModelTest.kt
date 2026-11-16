@@ -11,7 +11,7 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 
 class StoryViewerViewModelTest {

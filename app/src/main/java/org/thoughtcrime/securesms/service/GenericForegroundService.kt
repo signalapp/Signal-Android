@@ -20,6 +20,7 @@ import org.signal.network.util.Preconditions
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.NotificationIds
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
@@ -35,7 +36,6 @@ class GenericForegroundService : Service() {
   companion object {
     private val TAG = Log.tag(GenericForegroundService::class.java)
 
-    private const val NOTIFICATION_ID = 827353982
     private const val EXTRA_TITLE = "extra_title"
     private const val EXTRA_CONTENT_TEXT = "extra_content_text"
     private const val EXTRA_CHANNEL_ID = "extra_channel_id"
@@ -245,7 +245,7 @@ class GenericForegroundService : Service() {
 
     try {
       startForeground(
-        NOTIFICATION_ID,
+        NotificationIds.GENERIC_FOREGROUND_SERVICE,
         NotificationCompat.Builder(this, active.channelId)
           .setSmallIcon(active.iconRes)
           .setContentTitle(active.title)

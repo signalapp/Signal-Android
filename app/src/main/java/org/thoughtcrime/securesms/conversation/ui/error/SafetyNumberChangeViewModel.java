@@ -8,9 +8,9 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeRepository.SafetyNumberChangeState;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.Collection;

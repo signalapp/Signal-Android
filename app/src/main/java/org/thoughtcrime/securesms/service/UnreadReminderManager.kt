@@ -6,11 +6,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.notifications.ReminderType
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.UnreadReminderJob
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
 
@@ -35,24 +34,17 @@ class UnreadReminderManager(
 
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val messageThreadIds = SignalDatabase.threads.getMutedThreadIds(ReminderType.MESSAGES, reminderThreshold)
-    val callThreadIds = SignalDatabase.threads.getMutedThreadIds(ReminderType.CALLS, reminderThreshold)
-
+    val messageThreadIds = SignalDatabase.threads.getMutedThreadIds(reminderThreshold)
     val (messageThreadId, messageTimestamp) = SignalDatabase.messages.getOldestUnreadMessage(messageThreadIds)
-    val (callThreadId, callTimestamp) = SignalDatabase.calls.getOldestUnreadCall(callThreadIds)
 
-    return if (messageThreadId == -1L && callThreadId == -1L) {
+    return if (messageThreadId == -1L) {
       Log.i(TAG, "No existing unread message or calls from a qualifying thread.")
       cancelAlarm(application, UnreadReminderAlarm::class.java)
       null
-    } else if (messageTimestamp < callTimestamp) {
+    } else {
       val delay = (messageTimestamp + reminderThreshold - System.currentTimeMillis()).coerceAtLeast(0)
       Log.i(TAG, "The next unread reminder needs to fire in $delay ms for a message in thread $messageThreadId.")
       Event(delay, messageThreadId)
-    } else {
-      val delay = (callTimestamp + reminderThreshold - System.currentTimeMillis()).coerceAtLeast(0)
-      Log.i(TAG, "The next unread reminder needs to fire in $delay ms for a call in thread $callThreadId.")
-      Event(delay, callThreadId)
     }
   }
 

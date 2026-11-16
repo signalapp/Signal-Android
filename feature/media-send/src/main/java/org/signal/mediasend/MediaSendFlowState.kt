@@ -13,6 +13,7 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.WriteWith
 import org.signal.camera.CameraDependencies
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.parcelers.NullableCharSequenceParceler
 import org.signal.core.util.ContentTypeUtil
 import org.signal.mediasend.screens.edit.image.BrushWidths
@@ -56,10 +57,19 @@ data class MediaSendFlowState(
    */
   val message: @WriteWith<NullableCharSequenceParceler> CharSequence? = null,
   /**
+   * The [message] held aside while view-once is on, since a view-once send cannot carry a body. Turning view-once back
+   * off puts it back, so the toggle is not a silent way to lose what was already typed.
+   */
+  val viewOnceStashedMessage: @WriteWith<NullableCharSequenceParceler> CharSequence? = null,
+  /**
    * If non-null, this media was the first capture from the camera and may be
    * removed if the user backs out of camera-first flow.
    */
   val cameraFirstCapture: Media? = null,
+  /**
+   * Whether the user stays on the camera after each capture, rather than being taken on to edit it.
+   */
+  val isMultiCaptureEnabled: Boolean = false,
   /**
    * Whether touch interactions are enabled (disabled during animations/transitions).
    */

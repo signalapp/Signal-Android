@@ -17,7 +17,7 @@ class ApngInputStreamFactoryResourceDecoder : ResourceDecoder<InputStreamFactory
 
   override fun handles(source: InputStreamFactory, options: Options): Boolean {
     return if (options.get(ApngOptions.ANIMATE) == true) {
-      ApngDecoder.isApng(source.create())
+      source.create().use { ApngDecoder.isApng(it) }
     } else {
       false
     }

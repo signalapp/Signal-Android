@@ -72,24 +72,29 @@ class ListDetailSceneStrategyTest {
   }
 
   /**
-   * Backing out of a pushed list with detail open takes the detail with it, rather than stopping on the
-   * pushed list with an empty detail pane.
+   * A detail stack never empties itself on back, so leaving the pushed list is up to the host, which can keep the detail.
    */
   @Test
-  fun `given split pane showing detail over a pushed list, when going back, then both are popped`() {
-    val entries = listOf(rootEntry, pushedEntry, detailEntry)
-    val scene = splitPane(entries)
-
-    assertTrue(scene.isBackEnabled)
-    assertEquals(2, scene.popsOnBack(entries))
-    assertEquals(listOf(rootEntry), scene.previousEntries)
+  fun `given split pane showing detail over a pushed list, then back is left to the rest of the app`() {
+    assertFalse(splitPane(listOf(rootEntry, pushedEntry, detailEntry)).isBackEnabled)
   }
 
   @Test
-  fun `given split pane, then it displays the current list beside the topmost detail`() {
+  fun `given split pane, then it displays the current list beside the detail stack above it`() {
     val scene = splitPane(listOf(rootEntry, pushedEntry, detailEntry, subScreenEntry))
 
-    assertEquals(listOf(pushedEntry, subScreenEntry), scene.entries)
+    assertEquals(listOf(pushedEntry, detailEntry, subScreenEntry), scene.entries)
+  }
+
+  /**
+   * The detail pane navigates its own stack, so the list never has to move to a different scene.
+   */
+  @Test
+  fun `given split pane, then moving within a detail stack keeps one scene identity`() {
+    val detail = splitPane(listOf(rootEntry, detailEntry))
+    val subScreen = splitPane(listOf(rootEntry, detailEntry, subScreenEntry))
+
+    assertEquals(detail.key, subScreen.key)
   }
 
   /**

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.attachments
 import android.net.Uri
 import android.os.Parcel
 import org.signal.blurhash.BlurHash
+import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -69,7 +70,8 @@ class TombstoneAttachment : Attachment {
     stickerLocator: StickerLocator? = null,
     quote: Boolean,
     quoteTargetContentType: String?,
-    uuid: UUID?
+    uuid: UUID?,
+    audioHash: AudioHash? = null
   ) : super(
     contentType = contentType ?: "",
     quote = quote,
@@ -93,7 +95,7 @@ class TombstoneAttachment : Attachment {
     caption = caption,
     stickerLocator = stickerLocator,
     blurHash = BlurHash.parseOrNull(blurHash),
-    audioHash = null,
+    audioHash = audioHash,
     transformProperties = null,
     uuid = uuid
   )

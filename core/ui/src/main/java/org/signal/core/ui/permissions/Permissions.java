@@ -15,16 +15,20 @@ import android.view.WindowManager;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.ui.BottomSheetUtil;
 import org.signal.core.ui.R;
+import org.signal.core.ui.view.DialogExtensionsKt;
 import org.signal.core.util.LRUCache;
 
 import java.lang.ref.WeakReference;
@@ -172,11 +176,18 @@ public class Permissions {
     }
 
     public void execute() {
+      if (permissionObject.getContext() == null) {
+        Log.w(TAG, "Permission host has no context, ignoring request.");
+        return;
+      }
+
       PermissionsRequest request = new PermissionsRequest(allGrantedListener, anyDeniedListener, anyPermanentlyDeniedListener, anyResultListener,
                                                           someGrantedListener, someDeniedListener, somePermanentlyDeniedListener);
 
       if (ifNecesary && (permissionObject.hasAll(requestedPermissions) || !condition)) {
         executePreGrantedPermissionsRequest(request);
+      } else if (!permissionObject.isAvailable()) {
+        Log.w(TAG, "Permission host is no longer available, ignoring request.");
       } else if ((rationaleDialogMessage != null || (rationaleDialogTitle != null && rationaleDialogDetails != null))
                  && rationalDialogHeader != null) {
         executePermissionsRequestWithRationale(request);
@@ -202,14 +213,24 @@ public class Permissions {
              .setBackgroundInsetTop(0)
              .setBackgroundInsetBottom(0)
              .setCancelable(rationaleDialogCancelable);
+
+      AlertDialog dialog = builder.show();
       if (rationaleDialogMessage != null) {
-        builder.show().getWindow().setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
-      } else {
-        builder.show();
+        dialog.getWindow().setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
+      }
+
+      Lifecycle lifecycle = permissionObject.getLifecycle();
+      if (lifecycle != null) {
+        DialogExtensionsKt.dismissOnDestroy(dialog, lifecycle);
       }
     }
 
     private void executePermissionsRequest(PermissionsRequest request) {
+      if (!permissionObject.isAvailable()) {
+        Log.w(TAG, "Permission host is no longer available, ignoring request.");
+        return;
+      }
+
       int requestCode = new SecureRandom().nextInt(65434) + 100;
 
       synchronized (OUTSTANDING) {
@@ -224,6 +245,11 @@ public class Permissions {
     }
 
     private void executeNoPermissionsRequest(PermissionsRequest request) {
+      if (!permissionObject.isAvailable()) {
+        Log.w(TAG, "Permission host is no longer available, ignoring request.");
+        return;
+      }
+
       for (String permission : requestedPermissions) {
         request.addMapping(permission, true);
       }
@@ -321,6 +347,8 @@ public class Permissions {
     abstract boolean shouldShouldPermissionRationale(String permission);
     abstract boolean hasAll(String... permissions);
     abstract void requestPermissions(int requestCode, String... permissions);
+    abstract @Nullable Lifecycle getLifecycle();
+    abstract boolean isAvailable();
 
     int getWindowWidth() {
       WindowManager  windowManager = ContextCompat.getSystemService(getContext(), WindowManager.class);
@@ -359,6 +387,16 @@ public class Permissions {
     public void requestPermissions(int requestCode, String... permissions) {
       Permissions.requestPermissions(activity, requestCode, permissions);
     }
+
+    @Override
+    public @Nullable Lifecycle getLifecycle() {
+      return activity instanceof LifecycleOwner ? ((LifecycleOwner) activity).getLifecycle() : null;
+    }
+
+    @Override
+    public boolean isAvailable() {
+      return !activity.isFinishing() && !activity.isDestroyed();
+    }
   }
 
   private static class FragmentPermissionObject extends PermissionObject {
@@ -387,6 +425,16 @@ public class Permissions {
     @Override
     public void requestPermissions(int requestCode, String... permissions) {
       Permissions.requestPermissions(fragment, requestCode, permissions);
+    }
+
+    @Override
+    public @NonNull Lifecycle getLifecycle() {
+      return fragment.getLifecycle();
+    }
+
+    @Override
+    public boolean isAvailable() {
+      return fragment.isAdded() && !fragment.isRemoving();
     }
   }
 

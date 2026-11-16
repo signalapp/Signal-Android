@@ -4,12 +4,12 @@ import androidx.annotation.CheckResult
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.stories.Stories
 
@@ -60,8 +60,9 @@ class ContactSearchRepository {
   @CheckResult
   fun deletePrivateStory(distributionListId: DistributionListId): Completable {
     return Completable.fromAction {
-      SignalDatabase.distributionLists.deleteList(distributionListId)
-      Stories.onStorySettingsChanged(distributionListId)
+      if (SignalDatabase.distributionLists.deleteList(distributionListId)) {
+        Stories.onStorySettingsChanged(distributionListId)
+      }
     }.subscribeOn(Schedulers.io())
   }
 }

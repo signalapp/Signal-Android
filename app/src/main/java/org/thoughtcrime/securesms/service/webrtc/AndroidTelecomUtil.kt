@@ -8,12 +8,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.components.webrtc.AudioOutputOption
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 
 /**
@@ -88,9 +88,13 @@ object AndroidTelecomUtil {
           systemRejected = true
           AppDependencies.signalCallManager.dropCall(callId)
         } finally {
-          Log.i(TAG, "Removing incoming controller for recipientId=$recipientId")
           synchronized(controllers) {
-            controllers.remove(recipientId)
+            if (controllers[recipientId] === controller) {
+              Log.i(TAG, "Removing incoming controller for recipientId=$recipientId callId=$callId")
+              controllers.remove(recipientId)
+            } else {
+              Log.i(TAG, "Not removing incoming controller for recipientId=$recipientId callId=$callId, replaced by a newer call")
+            }
           }
         }
       }
@@ -123,9 +127,13 @@ object AndroidTelecomUtil {
           systemRejected = true
           AppDependencies.signalCallManager.dropCall(callId)
         } finally {
-          Log.i(TAG, "Removing outgoing controller for recipientId=$recipientId")
           synchronized(controllers) {
-            controllers.remove(recipientId)
+            if (controllers[recipientId] === controller) {
+              Log.i(TAG, "Removing outgoing controller for recipientId=$recipientId callId=$callId")
+              controllers.remove(recipientId)
+            } else {
+              Log.i(TAG, "Not removing outgoing controller for recipientId=$recipientId callId=$callId, replaced by a newer call")
+            }
           }
         }
       }

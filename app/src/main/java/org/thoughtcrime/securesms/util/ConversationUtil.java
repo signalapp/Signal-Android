@@ -14,19 +14,20 @@ import androidx.core.content.pm.ShortcutManagerCompat;
 
 import com.google.common.collect.Sets;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util.AppIconUtility;
+import org.signal.appsettings.appicon.AppIconUtility;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -86,6 +87,24 @@ public final class ConversationUtil {
   @WorkerThread
   public static boolean pushShortcutForRecipientSync(@NonNull Context context, @NonNull Recipient recipient, @NonNull Direction direction ) {
     return pushShortcutForRecipientInternal(context, recipient, 0, direction);
+  }
+
+  /**
+   * Pushes a dynamic shortcut for the given recipient if one is not already published. The OS will
+   * not treat a notification as a conversation, or let it bubble, unless its shortcut exists.
+   */
+  @WorkerThread
+  public static void ensureShortcutForRecipientSync(@NonNull Context context, @NonNull Recipient recipient) {
+    if (SignalStore.settings().getScreenLockEnabled()) {
+      return;
+    }
+
+    String shortcutId = getShortcutId(recipient);
+
+    if (ShortcutManagerCompat.getDynamicShortcuts(context).stream().noneMatch(shortcut -> shortcut.getId().equals(shortcutId))) {
+      Log.d(TAG, "Pushing missing shortcut for " + recipient.getId());
+      pushShortcutForRecipientSync(context, recipient, Direction.NONE);
+    }
   }
 
   /**

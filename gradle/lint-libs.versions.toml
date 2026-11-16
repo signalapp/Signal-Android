@@ -2,7 +2,7 @@
 # ./gradlew --write-verification-metadata sha256 qa --rerun-tasks
 
 [versions]
-lint = "32.2.1"
+lint = "32.4.0"
 
 [libraries]
 lint-api = { module = "com.android.tools.lint:lint-api", version.ref = "lint" }

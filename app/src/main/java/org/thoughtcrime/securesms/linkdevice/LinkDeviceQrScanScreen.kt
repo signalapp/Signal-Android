@@ -23,7 +23,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import org.signal.camera.CameraCaptureMode
 import org.signal.camera.CameraScreen
 import org.signal.camera.CameraScreenEvents
@@ -35,7 +34,6 @@ import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
 import org.thoughtcrime.securesms.qr.QrCrosshair
-import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.mediasend.R as MediaSendR
 
 /**
@@ -53,16 +51,13 @@ fun LinkDeviceQrScanScreen(
   linkDeviceResult: LinkDeviceResult,
   onLinkDeviceSuccess: () -> Unit,
   onLinkDeviceFailure: () -> Unit,
-  navController: NavController?,
   modifier: Modifier = Modifier
 ) {
   val context = LocalContext.current
 
   when (qrCodeState) {
     LinkDeviceSettingsState.QrCodeState.NONE -> Unit
-    LinkDeviceSettingsState.QrCodeState.VALID_WITH_SYNC -> {
-      navController?.safeNavigate(R.id.action_addLinkDeviceFragment_to_linkDeviceSyncBottomSheet)
-    }
+    LinkDeviceSettingsState.QrCodeState.VALID_WITH_SYNC -> Unit
 
     LinkDeviceSettingsState.QrCodeState.VALID_WITHOUT_SYNC -> {
       Dialogs.SimpleAlertDialog(
@@ -188,8 +183,7 @@ private fun LinkDeviceQrScanScreenPreview() {
       onQrCodeDismissed = {},
       linkDeviceResult = LinkDeviceResult.None,
       onLinkDeviceSuccess = {},
-      onLinkDeviceFailure = {},
-      navController = null
+      onLinkDeviceFailure = {}
     )
   }
 }
@@ -208,8 +202,7 @@ private fun LinkDeviceQrScanScreenNoPermissionPreview() {
       onQrCodeDismissed = {},
       linkDeviceResult = LinkDeviceResult.None,
       onLinkDeviceSuccess = {},
-      onLinkDeviceFailure = {},
-      navController = null
+      onLinkDeviceFailure = {}
     )
   }
 }

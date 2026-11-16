@@ -13,12 +13,12 @@ import androidx.constraintlayout.widget.Group
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import org.signal.core.ui.fonts.SignalSymbols
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.v2.PendingParticipantsListener
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 
 /**

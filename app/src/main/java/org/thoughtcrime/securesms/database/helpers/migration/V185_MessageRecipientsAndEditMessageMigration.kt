@@ -3,8 +3,9 @@ package org.thoughtcrime.securesms.database.helpers.migration
 import android.app.Application
 import android.preference.PreferenceManager
 import androidx.core.content.contentValuesOf
+import org.signal.core.database.SqlUtil
 import org.signal.core.models.ServiceId.ACI
-import org.signal.core.util.SqlUtil
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -13,10 +14,9 @@ import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
-import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * This is a combination of the edit message and message recipient migrations (would have been V185 and v186), but as they

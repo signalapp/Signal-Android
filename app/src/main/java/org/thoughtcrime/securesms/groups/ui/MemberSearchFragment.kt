@@ -47,6 +47,7 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireParcelableCompat
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ArbitraryRepository
 import org.thoughtcrime.securesms.contacts.paged.ContactSearch
@@ -62,7 +63,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchViewModel
 import org.thoughtcrime.securesms.conversation.RecipientSearchBar
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.MemberSearchFragment.AddMembersModel
 import org.thoughtcrime.securesms.groups.ui.MemberSearchFragment.DividerModel
 import org.thoughtcrime.securesms.groups.ui.MemberSearchFragment.InviteViaModel

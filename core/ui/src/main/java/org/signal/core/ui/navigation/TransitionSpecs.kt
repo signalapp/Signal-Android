@@ -106,20 +106,6 @@ object TransitionSpecs {
   }
 
   /**
-   * Suppresses only the *enter* transition, leaving pops to the display's defaults.
-   *
-   * For destinations that animate their own arrival and would otherwise be animated twice — a conversation
-   * hands off from a bitmap of the list it came from — but which should still animate on the way out. Using
-   * [None] here would suppress both directions, because a pop is resolved against the metadata of the
-   * scene being left.
-   */
-  val suppressEnterMetadata: Map<String, Any> get() = metadata {
-    put(NavDisplay.TransitionKey) {
-      Transition.NONE
-    }
-  }
-
-  /**
    * No enter/exit animation.
    */
   object None : Transition {

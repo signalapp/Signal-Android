@@ -13,11 +13,11 @@ import org.signal.libsignal.net.MultiRecipientSendFailure
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.UnauthMessagesService
 import org.signal.network.NetworkResult
+import org.signal.network.crypto.SealedSenderAccess
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebsocketResponse
 import org.signal.network.websocket.post
 import org.signal.network.websocket.put
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList
@@ -33,14 +33,14 @@ class MessageApi(
 
   companion object {
     /**
-     * Adjust the default parsing of [SendMessageResponse] to set the non-server returned [SendMessageResponse.sentUnidentfied]
+     * Adjust the default parsing of [SendMessageResponse] to set the non-server returned [SendMessageResponse.sentUnidentified]
      * flag on the model.
      */
     private val sendMessageResponseConverter = object : NetworkResult.WebSocketResponseConverter<SendMessageResponse> {
       override fun convert(response: WebsocketResponse): NetworkResult<SendMessageResponse> {
         return if (response.status == 200) {
           response.toSuccess(SendMessageResponse::class)
-            .map { it.apply { setSentUnidentfied(response.isUnidentified) } }
+            .map { it.apply { sentUnidentified = response.isUnidentified } }
         } else {
           response.toStatusCodeError()
         }

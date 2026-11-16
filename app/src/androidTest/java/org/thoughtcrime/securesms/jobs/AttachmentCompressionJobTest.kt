@@ -13,9 +13,9 @@ import assertk.assertions.isTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.StreamUtil
-import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.UriAttachmentBuilder

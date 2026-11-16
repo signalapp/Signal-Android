@@ -6,20 +6,20 @@
 package org.signal.registration.screens.addusername
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.UsernameUtil
@@ -44,7 +44,7 @@ import kotlin.time.Duration.Companion.milliseconds
 class AddUsernameViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<AddUsernameScreenEvents>(TAG) {
+) : EventDrivenViewModel<AddUsernameScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(AddUsernameViewModel::class)
@@ -54,6 +54,9 @@ class AddUsernameViewModel(
 
   private val _state = MutableStateFlow(AddUsernameState())
   val state: StateFlow<AddUsernameState> = _state.asStateFlow()
+
+  private val _actions = Channel<AddUsernameScreenActions>(Channel.BUFFERED)
+  val actions: Flow<AddUsernameScreenActions> = _actions.receiveAsFlow()
 
   private val entryChanges = MutableSharedFlow<AddUsernameScreenEvents.EntrySettled>(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
 
@@ -66,7 +69,6 @@ class AddUsernameViewModel(
       .launchIn(viewModelScope)
 
     entryChanges
-      .distinctUntilChanged()
       .debounce(ENTRY_DEBOUNCE)
       .onEach { onEvent(it) }
       .launchIn(viewModelScope)
@@ -86,11 +88,13 @@ class AddUsernameViewModel(
     when (event) {
       is AddUsernameScreenEvents.UsernameChanged -> applyUsernameChanged(state, event.value, stateEmitter)
       is AddUsernameScreenEvents.DiscriminatorChanged -> applyDiscriminatorChanged(state, event.value, stateEmitter)
+      is AddUsernameScreenEvents.DiscriminatorFocusLost -> applyDiscriminatorFocusLost(state)
       is AddUsernameScreenEvents.EntrySettled -> applyEntrySettled(state, event, stateEmitter)
       is AddUsernameScreenEvents.ReservationCompleted -> applyReservationCompleted(state, event, stateEmitter)
-      is AddUsernameScreenEvents.LearnMoreClicked -> stateEmitter(state.copy(dialogs = state.dialogs.copy(learnMore = true)))
-      is AddUsernameScreenEvents.LearnMoreDialogDismissed -> stateEmitter(state.copy(dialogs = state.dialogs.copy(learnMore = false)))
-      is AddUsernameScreenEvents.SkipClicked -> applySkipClicked(parentEventEmitter)
+      is AddUsernameScreenEvents.LearnMoreClicked -> _actions.trySend(AddUsernameScreenActions.OpenLearnMoreArticle)
+      is AddUsernameScreenEvents.SkipClicked -> stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmSkip = true)))
+      is AddUsernameScreenEvents.SkipConfirmed -> applySkipConfirmed(parentEventEmitter)
+      is AddUsernameScreenEvents.SkipDialogDismissed -> stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmSkip = false)))
       is AddUsernameScreenEvents.NextClicked -> applyNextClicked(state, parentEventEmitter, stateEmitter)
       is AddUsernameScreenEvents.NetworkErrorDialogDismissed -> applyDialogDismissed(state, stateEmitter) { it.copy(networkError = false) }
       is AddUsernameScreenEvents.UnknownErrorDialogDismissed -> applyDialogDismissed(state, stateEmitter) { it.copy(unknownError = false) }
@@ -119,28 +123,52 @@ class AddUsernameViewModel(
   }
 
   /**
-   * A blank discriminator hands control back to the service, matching the behavior of clearing the field in the app's
-   * username editor.
+   * Non-digits are dropped as they're typed, since a discriminator can only ever be digits.
+   *
+   * Emptying the field hands control back to the service once the field loses focus (see [applyDiscriminatorFocusLost]).
+   * Until then we hold onto a service-assigned reservation, since that pairing is still the one the entry is showing.
+   * A user-typed reservation, on the other hand, is dropped as soon as its digits are erased -- the user asked for that
+   * exact number and no longer wants it, so there is nothing left to submit until the field settles.
    */
   private fun applyDiscriminatorChanged(state: AddUsernameState, discriminator: String, stateEmitter: (AddUsernameState) -> Unit) {
-    if (discriminator == state.discriminator) {
+    val digitsOnly = discriminator.filter { it in '0'..'9' }
+    val isUserSet = digitsOnly.isNotEmpty()
+
+    if (digitsOnly == state.discriminator || (discriminator.isNotEmpty() && digitsOnly.isEmpty())) {
       return
     }
 
     reserveJob?.cancel()
 
     val updated = state.copy(
-      discriminator = discriminator,
-      isDiscriminatorUserSet = discriminator.isNotBlank(),
+      discriminator = digitsOnly,
+      isDiscriminatorUserSet = isUserSet,
       validationError = null,
-      reservation = null,
+      reservation = state.reservation.takeIf { !isUserSet && !state.isDiscriminatorUserSet },
       isReserving = false
     )
 
     stateEmitter(updated)
-    scheduleReservation(updated)
+
+    if (isUserSet) {
+      scheduleReservation(updated)
+    }
   }
 
+  /**
+   * Reserves right away rather than through [scheduleReservation], since focus loss already means the user is done
+   * typing and there is nothing left to debounce.
+   */
+  private fun applyDiscriminatorFocusLost(state: AddUsernameState) {
+    if (state.discriminator.isBlank() && state.username.isNotBlank()) {
+      onEvent(AddUsernameScreenEvents.EntrySettled(state.username, null))
+    }
+  }
+
+  /**
+   * Deliberately not de-duplicated: the entry can travel away from a pair and back to it, and those repeats still need
+   * a fresh reservation.
+   */
   private fun scheduleReservation(state: AddUsernameState) {
     if (state.username.isNotBlank()) {
       entryChanges.tryEmit(AddUsernameScreenEvents.EntrySettled(state.username, state.requestedDiscriminator))
@@ -224,7 +252,7 @@ class AddUsernameViewModel(
     }
   }
 
-  private fun applySkipClicked(parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
+  private fun applySkipConfirmed(parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
     Log.i(TAG, "Skipping username creation.")
     parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
   }
@@ -308,23 +336,16 @@ class AddUsernameViewModel(
   }
 
   private fun checkDiscriminator(discriminator: String): AddUsernameState.ValidationError? {
-    return when (UsernameUtil.checkDiscriminator(discriminator)) {
+    return when (val reason = UsernameUtil.checkDiscriminator(discriminator)) {
       null -> null
       UsernameUtil.InvalidReason.TOO_SHORT -> AddUsernameState.ValidationError.DISCRIMINATOR_TOO_SHORT
       UsernameUtil.InvalidReason.TOO_LONG -> AddUsernameState.ValidationError.DISCRIMINATOR_TOO_LONG
       UsernameUtil.InvalidReason.INVALID_NUMBER_00 -> AddUsernameState.ValidationError.DISCRIMINATOR_CANNOT_BE_00
       UsernameUtil.InvalidReason.INVALID_NUMBER_PREFIX_0 -> AddUsernameState.ValidationError.DISCRIMINATOR_CANNOT_START_WITH_ZERO
-      else -> AddUsernameState.ValidationError.DISCRIMINATOR_INVALID_CHARACTERS
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return AddUsernameViewModel(repository, parentEventEmitter) as T
+      else -> {
+        Log.w(TAG, "Unexpected discriminator validation failure: $reason")
+        AddUsernameState.ValidationError.DISCRIMINATOR_NOT_AVAILABLE
+      }
     }
   }
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.payments.FailureReason;
 import org.thoughtcrime.securesms.payments.PaymentTransactionId;
 import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.payments.Wallet;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.IOException;

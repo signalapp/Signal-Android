@@ -90,6 +90,67 @@ public class GroupV2UpdateMessageUtilTest {
   }
 
   @Test
+  public void isSelfLeave_whenSelfIsRemoved_shouldReturnTrue() {
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .deleteMember(alice)
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    boolean isSelfLeave = GroupV2UpdateMessageUtil.isSelfLeave(messageGroupContext, alice);
+
+    assertTrue(isSelfLeave);
+  }
+
+  @Test
+  public void isSelfLeave_whenSelfIsRemovedAndPromotesNewAdmin_shouldReturnTrue() {
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .promoteToAdmin(bob)
+                                               .deleteMember(alice)
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    boolean isSelfLeave = GroupV2UpdateMessageUtil.isSelfLeave(messageGroupContext, alice);
+
+    assertTrue(isSelfLeave);
+  }
+
+  @Test
+  public void isSelfLeave_whenOtherIsRemoved_shouldReturnFalse() {
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .deleteMember(bob)
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    boolean isSelfLeave = GroupV2UpdateMessageUtil.isSelfLeave(messageGroupContext, alice);
+
+    assertFalse(isSelfLeave);
+  }
+
+  @Test
   public void isJoinRequestCancel_whenChangeRemovesRequestingMembers_shouldReturnTrue() {
     // GIVEN
     ACI  alice = ACI.from(UUID.randomUUID());
@@ -133,6 +194,73 @@ public class GroupV2UpdateMessageUtilTest {
 
     // THEN
     assertFalse(isJoinRequestCancel);
+  }
+
+  @Test
+  public void isJustATimerChange_whenOnlyTimerChanges_shouldReturnTrue() {
+    // GIVEN
+    ACI  alice = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .timer(3600)
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    // WHEN
+    boolean isJustATimerChange = GroupV2UpdateMessageUtil.isJustATimerChange(messageGroupContext);
+
+    // THEN
+    assertTrue(isJustATimerChange);
+  }
+
+  @Test
+  public void isJustATimerChange_whenTimerAndOtherChanges_shouldReturnFalse() {
+    // GIVEN
+    ACI  alice = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .timer(3600)
+                                               .title("New title")
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    // WHEN
+    boolean isJustATimerChange = GroupV2UpdateMessageUtil.isJustATimerChange(messageGroupContext);
+
+    // THEN
+    assertFalse(isJustATimerChange);
+  }
+
+  @Test
+  public void isJustATimerChange_whenNoTimerChange_shouldReturnFalse() {
+    // GIVEN
+    ACI  alice = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .title("New title")
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    // WHEN
+    boolean isJustATimerChange = GroupV2UpdateMessageUtil.isJustATimerChange(messageGroupContext);
+
+    // THEN
+    assertFalse(isJustATimerChange);
   }
 
   private @NonNull byte[] randomBytes() {

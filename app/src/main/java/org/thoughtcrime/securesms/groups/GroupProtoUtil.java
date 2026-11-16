@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.storageservice.storage.protos.groups.GroupChange;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
@@ -16,9 +17,9 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.util.List;
@@ -97,7 +98,7 @@ public final class GroupProtoUtil {
       return RecipientId.UNKNOWN;
     }
 
-    return RecipientId.from(serviceId);
+    return RecipientIds.from(serviceId);
   }
 
   public static boolean isMember(@NonNull ACI aci, @NonNull List<DecryptedMember> membersList) {

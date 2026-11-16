@@ -14,8 +14,8 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.Util
+import org.signal.storage.protos.StorageSyncLoopState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.protos.StorageSyncLoopState
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult
 import org.thoughtcrime.securesms.testutil.SignalStoreRule
 import org.thoughtcrime.securesms.testutil.TestHelpers

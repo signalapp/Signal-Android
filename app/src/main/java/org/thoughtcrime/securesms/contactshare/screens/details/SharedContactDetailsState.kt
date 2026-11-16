@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.contactshare.screens.details
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /** State for a received contact card. Any section can be absent. */
 data class SharedContactDetailsState(
@@ -13,8 +13,8 @@ data class SharedContactDetailsState(
   /** Null when there is none, or when it is already the title. */
   val organization: String? = null,
   val photoUri: String? = null,
-  /** False when the only name is a company, which has no initials worth drawing. */
-  val hasPersonalName: Boolean = true,
+  /** True when the only name is a company, which has no initials worth drawing. */
+  val isOrgOnly: Boolean = false,
   val signalRecipientId: RecipientId? = null,
   val actions: List<ContactAction> = emptyList(),
   val details: List<DetailRow> = emptyList(),
@@ -46,7 +46,7 @@ data class SharedContactDetailsState(
   enum class DetailKind {
     PHONE,
 
-    /** Only ever from the card, never from our own recipient. Waiting on the wire fields. */
+    /** Only ever from the card, never from our own recipient. */
     NICKNAME,
     NOTE,
 

@@ -46,7 +46,7 @@ object DonationPillToggle {
       notSelected.setOnClickListener { model.onClick() }
       selected.isSelected = true
       notSelected.isSelected = false
-      selected.setIconResource(R.drawable.ic_check_24)
+      selected.setIconResource(R.drawable.ic_check_20)
       notSelected.icon = null
     }
   }

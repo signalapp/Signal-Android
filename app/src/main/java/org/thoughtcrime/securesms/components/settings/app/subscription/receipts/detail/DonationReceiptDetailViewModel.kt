@@ -1,41 +1,62 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.detail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
-import org.thoughtcrime.securesms.util.livedata.Store
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 
-class DonationReceiptDetailViewModel(id: Long, private val repository: DonationReceiptDetailRepository) : ViewModel() {
+/**
+ * Drives [DonationReceiptDetailScreen].
+ */
+class DonationReceiptDetailViewModel(id: Long) : EventDrivenViewModel<DonationReceiptDetailEvent>(TAG) {
 
-  private val store = Store(DonationReceiptDetailState())
-  private val disposables = CompositeDisposable()
-  private val cachedRecord: Single<InAppPaymentReceiptRecord> = repository.getDonationReceiptRecord(id).cache()
-
-  val state: LiveData<DonationReceiptDetailState> = store.stateLiveData
-
-  init {
-    refresh()
+  companion object {
+    private val TAG = Log.tag(DonationReceiptDetailViewModel::class)
   }
 
-  private fun refresh() {
-    disposables.clear()
+  private val _state = MutableStateFlow(DonationReceiptDetailState())
+  private val _actions = Channel<DonationReceiptDetailAction>(Channel.BUFFERED)
 
-    disposables += cachedRecord.subscribe { record ->
-      store.update { it.copy(inAppPaymentReceiptRecord = record) }
+  val state: StateFlow<DonationReceiptDetailState> = _state.asStateFlow()
+  val actions: Flow<DonationReceiptDetailAction> = _actions.receiveAsFlow()
+
+  init {
+    viewModelScope.launch {
+      val record = DonationReceiptDetailRepository.getDonationReceiptRecord(id)
+      _state.update { it.copy(inAppPaymentReceiptRecord = record) }
     }
   }
 
-  override fun onCleared() {
-    disposables.clear()
+  override suspend fun processEvent(event: DonationReceiptDetailEvent) {
+    when (event) {
+      DonationReceiptDetailEvent.NavigateBackClicked -> _actions.send(DonationReceiptDetailAction.NavigateBack)
+      DonationReceiptDetailEvent.ShareClicked -> shareReceipt()
+    }
   }
 
-  class Factory(private val id: Long, private val repository: DonationReceiptDetailRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(DonationReceiptDetailViewModel(id, repository)) as T
+  /**
+   * Renders outside the event queue so the guard sees [DonationReceiptDetailState.isRenderingReceipt] immediately;
+   * awaiting it here would let a queued second tap start another render once the first finishes.
+   */
+  private fun shareReceipt() {
+    val state = _state.value
+    val record = state.inAppPaymentReceiptRecord
+    if (record == null || state.isRenderingReceipt) {
+      return
+    }
+
+    _state.update { it.copy(isRenderingReceipt = true) }
+    viewModelScope.launch {
+      val uri = DonationReceiptDetailRepository.renderReceiptImage(record)
+      _state.update { it.copy(isRenderingReceipt = false) }
+      _actions.send(DonationReceiptDetailAction.ShareReceipt(uri))
     }
   }
 }

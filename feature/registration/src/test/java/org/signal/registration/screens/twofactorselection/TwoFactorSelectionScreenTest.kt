@@ -36,6 +36,8 @@ class TwoFactorSelectionScreenTest {
 
   private val events = mutableListOf<TwoFactorSelectionScreenEvents>()
 
+  private val passkey = TwoFactorMethod.Passkey(WebAuthnParameters(challenge = byteArrayOf(1, 2, 3), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(4, 5, 6))))
+
   @Test
   fun `screen displays title and subtitle`() {
     setContent(createState())
@@ -66,7 +68,7 @@ class TwoFactorSelectionScreenTest {
 
     composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_OPTION).performClick()
 
-    assertThat(events).contains(TwoFactorSelectionScreenEvents.MethodSelected(TwoFactorMethod.Passkey))
+    assertThat(events).contains(TwoFactorSelectionScreenEvents.MethodSelected(passkey))
   }
 
   @Test
@@ -94,6 +96,29 @@ class TwoFactorSelectionScreenTest {
     assertThat(events).isEmpty()
   }
 
+  @Test
+  fun `the passkey error dialog is shown when the state asks for it`() {
+    setContent(createState(showPasskeyError = true))
+
+    composeTestRule.onNodeWithText("Something went wrong with your passkey. Please try again or choose another method.").assertIsDisplayed()
+  }
+
+  @Test
+  fun `dismissing the passkey error dialog emits PasskeyErrorDismissed`() {
+    setContent(createState(showPasskeyError = true))
+
+    composeTestRule.onNodeWithText("OK").performClick()
+
+    assertThat(events).contains(TwoFactorSelectionScreenEvents.PasskeyErrorDismissed)
+  }
+
+  @Test
+  fun `no passkey error dialog is shown by default`() {
+    setContent(createState())
+
+    composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_ERROR_DIALOG).assertDoesNotExist()
+  }
+
   private fun setContent(state: TwoFactorSelectionState) {
     composeTestRule.setContent {
       SignalTheme {
@@ -106,8 +131,9 @@ class TwoFactorSelectionScreenTest {
   }
 
   private fun createState(
-    methods: List<TwoFactorMethod> = listOf(TwoFactorMethod.Passkey, TwoFactorMethod.AuthenticatorApp)
+    methods: List<TwoFactorMethod> = listOf(passkey, TwoFactorMethod.AuthenticatorApp),
+    showPasskeyError: Boolean = false
   ): TwoFactorSelectionState {
-    return TwoFactorSelectionState(methods = methods)
+    return TwoFactorSelectionState(methods = methods, showPasskeyError = showPasskeyError)
   }
 }

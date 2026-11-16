@@ -21,6 +21,8 @@ import android.content.Context
 import android.os.Build
 import android.text.format.DateFormat
 import org.signal.core.util.logging.Log
+import org.signal.core.util.toLocalDateTime
+import org.signal.core.util.toLocalTime
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate
 import org.thoughtcrime.securesms.util.DateUtils.getBriefRelativeTimeSpanString

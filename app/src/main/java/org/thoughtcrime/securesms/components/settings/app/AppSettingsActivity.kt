@@ -6,40 +6,31 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Process
 import androidx.navigation.NavDirections
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.UsernameEditMode
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
-import org.thoughtcrime.securesms.MainActivity
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
+import org.thoughtcrime.securesms.components.NavGraphHostActivity
+import org.thoughtcrime.securesms.components.settings.app.backups.local.usesOnDeviceBackupsScreen
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.help.HelpFragment
-import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.profiles.manage.UsernameEditMode
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.util.CachedInflater
-import org.thoughtcrime.securesms.util.DynamicTheme
-import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val START_ROUTE = "app.settings.args.START_ROUTE"
 private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_PREFERENCES"
-private const val STATE_WAS_CONFIGURATION_UPDATED = "app.settings.state.configuration.updated"
-private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
+internal const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
 
-class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
+class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
 
   private val TAG = Log.tag(AppSettingsActivity::class)
-
-  private var wasConfigurationUpdated = false
 
   override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
@@ -56,14 +47,14 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
       when (val appSettingsRoute: AppSettingsRoute? = intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)) {
         AppSettingsRoute.Empty -> null
         is AppSettingsRoute.BackupsRoute.Local -> {
-          if (SignalStore.backup.newLocalBackupsEnabled || (Environment.Backups.isNewFormatSupportedForLocalBackup() && (!SignalStore.settings.isBackupEnabled || appSettingsRoute.triggerUpdateFlow))) {
+          if (appSettingsRoute.usesOnDeviceBackupsScreen()) {
             AppSettingsFragmentDirections.actionDirectToLocalBackupsFragment()
               .setTriggerUpdateFlow(appSettingsRoute.triggerUpdateFlow)
           } else {
             AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
           }
         }
-        is AppSettingsRoute.HelpRoute.Settings -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
+        is AppSettingsRoute.HelpRoute.Help -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
           .setStartCategoryIndex(appSettingsRoute.startCategoryIndex)
         AppSettingsRoute.DataAndStorageRoute.Proxy -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         AppSettingsRoute.NotificationsRoute.Notifications -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
@@ -102,38 +93,12 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
 
     intent = intent.putExtra(START_ROUTE, AppSettingsRoute.Empty)
 
-    if (startingAction == null && savedInstanceState != null) {
-      wasConfigurationUpdated = savedInstanceState.getBoolean(STATE_WAS_CONFIGURATION_UPDATED)
-    }
-
     startingAction?.let {
       navController.safeNavigate(it)
     }
 
-    SignalStore.settings.onConfigurationSettingChanged.observe(this) { key ->
-      if (key == SettingsValues.THEME) {
-        DynamicTheme.setDefaultDayNightMode(this)
-        recreate()
-      } else if (key == SettingsValues.LANGUAGE) {
-        CachedInflater.from(this).clear()
-        wasConfigurationUpdated = true
-        recreate()
-        val intent = Intent(this, KeyCachingService::class.java)
-        intent.action = KeyCachingService.LOCALE_CHANGE_EVENT
-        startService(intent)
-      }
-    }
-
-    if (savedInstanceState == null) {
-      when (intent.getStringExtra(EXTRA_PERFORM_ACTION_ON_CREATE)) {
-        ACTION_CHANGE_NUMBER_SUCCESS -> {
-          MaterialAlertDialogBuilder(this)
-            .setMessage(getString(R.string.ChangeNumber__your_phone_number_has_changed_to_s, SignalE164Util.prettyPrint(Recipient.self().requireE164())))
-            .setPositiveButton(R.string.ChangeNumber__okay, null)
-            .show()
-        }
-      }
-    }
+    recreateOnThemeChange()
+    performActionOnCreate(savedInstanceState)
   }
 
   override fun onNewIntent(intent: Intent) {
@@ -142,20 +107,14 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     startActivity(intent)
   }
 
-  override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    outState.putBoolean(STATE_WAS_CONFIGURATION_UPDATED, wasConfigurationUpdated)
-  }
-
-  override fun onWillFinish() {
-    if (wasConfigurationUpdated) {
-      setResult(MainActivity.RESULT_CONFIG_CHANGED)
-    }
-  }
-
   override fun resolveNavGraphId(): Int = R.navigation.app_settings_with_change_number
 
   override fun resolveStartBundle(): Bundle? = null
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
 
   @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -165,6 +124,8 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
 
   companion object {
     const val ACTION_CHANGE_NUMBER_SUCCESS = "action_change_number_success"
+
+    const val REQUEST_CODE_UPGRADE_LOCAL_BACKUPS = 1205
 
     @JvmStatic
     @JvmOverloads
@@ -178,7 +139,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
 
     @JvmStatic
     fun help(context: Context, startCategoryIndex: Int = 0): Intent {
-      return getIntentForStartLocation(context, AppSettingsRoute.HelpRoute.Settings(startCategoryIndex = startCategoryIndex))
+      return getIntentForStartLocation(context, AppSettingsRoute.HelpRoute.Help(startCategoryIndex = startCategoryIndex))
         .putExtra(HelpFragment.START_CATEGORY_INDEX, startCategoryIndex)
     }
 
@@ -260,6 +221,10 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     fun upgradeLocalBackups(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Local(triggerUpdateFlow = true))
 
     private fun getIntentForStartLocation(context: Context, startRoute: AppSettingsRoute): Intent {
+      if (RemoteConfig.useAppSettingsNavigation) {
+        return AppSettingsNavigationActivity.createIntent(context, startRoute)
+      }
+
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings_with_change_number)
         .putExtra(START_ROUTE, startRoute)

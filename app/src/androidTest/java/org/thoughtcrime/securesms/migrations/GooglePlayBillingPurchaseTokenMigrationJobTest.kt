@@ -10,10 +10,10 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.database.deleteAll
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.billing.BillingPurchaseState
 import org.signal.core.util.billing.BillingResponseCode
-import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.database.InAppPaymentSubscriberTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord

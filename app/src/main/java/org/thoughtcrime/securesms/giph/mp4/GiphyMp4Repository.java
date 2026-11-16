@@ -10,8 +10,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
-import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
@@ -31,16 +29,15 @@ final class GiphyMp4Repository {
   private final OkHttpClient client;
 
   GiphyMp4Repository() {
-    this.client = new OkHttpClient.Builder().proxySelector(new ContentProxySelector())
-                                            .addInterceptor(new StandardUserAgentInterceptor())
-                                            .dns(SignalServiceNetworkAccess.DNS)
-                                            .build();
+    this.client = AppDependencies.getOkHttpClient().newBuilder()
+                                 .proxySelector(new ContentProxySelector())
+                                 .build();
   }
 
-  void saveToBlob(@NonNull GiphyImage giphyImage, boolean isForMms, @NonNull Consumer<GiphyMp4SaveResult> resultConsumer) {
+  void saveToBlob(@NonNull GiphyImage giphyImage, @NonNull Consumer<GiphyMp4SaveResult> resultConsumer) {
     EXECUTOR.execute(() -> {
       try {
-        Uri blob = saveToBlobInternal(giphyImage, isForMms);
+        Uri blob = saveToBlobInternal(giphyImage);
         resultConsumer.accept(new GiphyMp4SaveResult.Success(blob, giphyImage));
       } catch (IOException e) {
         resultConsumer.accept(new GiphyMp4SaveResult.Error(e));
@@ -49,25 +46,14 @@ final class GiphyMp4Repository {
   }
 
   @WorkerThread
-  private @NonNull Uri saveToBlobInternal(@NonNull GiphyImage giphyImage, boolean isForMms) throws IOException {
-    String  url;
-    String  mime;
-
-    if (isForMms) {
-      url  = giphyImage.getGifMmsUrl();
-      mime = MediaUtil.IMAGE_GIF;
-    } else {
-      url  = giphyImage.getMp4Url();
-      mime = MediaUtil.VIDEO_MP4;
-    }
-
-    Request request = new Request.Builder().url(url).build();
+  private @NonNull Uri saveToBlobInternal(@NonNull GiphyImage giphyImage) throws IOException {
+    Request request = new Request.Builder().url(giphyImage.getMp4Url()).build();
 
     try (Response response = client.newCall(request).execute()) {
       if (response.code() >= 200 && response.code() < 300) {
         return AppDependencies.getBlobs()
                               .forData(response.body().byteStream(), response.body().contentLength())
-                              .withMimeType(mime)
+                              .withMimeType(MediaUtil.VIDEO_MP4)
                               .createForSingleSessionOnDisk(AppDependencies.getApplication());
       } else {
         throw new IOException("Unexpected response code: " + response.code());

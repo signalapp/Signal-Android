@@ -24,7 +24,9 @@ import androidx.annotation.WorkerThread;
 
 import java.util.stream.Collectors;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -33,11 +35,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.signal.core.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -113,10 +112,10 @@ public class NotificationChannels {
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
 
-    int oldVersion = TextSecurePreferences.getNotificationChannelVersion(context);
+    int oldVersion = SignalStore.misc().getNotificationChannelVersion();
     if (oldVersion != VERSION) {
       onUpgrade(notificationManager, oldVersion, VERSION);
-      TextSecurePreferences.setNotificationChannelVersion(context, VERSION);
+      SignalStore.misc().setNotificationChannelVersion(VERSION);
     }
 
     onCreate(notificationManager);
@@ -214,7 +213,7 @@ public class NotificationChannels {
    * @return The channel ID for the default messages channel.
    */
   public synchronized @NonNull String getMessagesChannel() {
-    return getMessagesChannelId(TextSecurePreferences.getNotificationMessagesChannelVersion(context));
+    return getMessagesChannelId(SignalStore.misc().getNotificationMessagesChannelVersion());
   }
 
   /**
@@ -709,7 +708,7 @@ public class NotificationChannels {
 
     if (oldVersion < Version.AUDIO_ATTRIBUTE_CHANGE) {
       Context context                       = AppDependencies.getApplication();
-      int     existingMessageChannelVersion = TextSecurePreferences.getNotificationMessagesChannelVersion(context);
+      int     existingMessageChannelVersion = SignalStore.misc().getNotificationMessagesChannelVersion();
       int     newMessageChannelVersion      = existingMessageChannelVersion + 1;
       String  existingChannelId             = "messages_" + existingMessageChannelVersion;
       String  newChannelId                  = "messages_" + newMessageChannelVersion;
@@ -734,7 +733,7 @@ public class NotificationChannels {
 
         notificationManager.createNotificationChannel(newChannel);
 
-        TextSecurePreferences.setNotificationMessagesChannelVersion(context, newMessageChannelVersion);
+        SignalStore.misc().setNotificationMessagesChannelVersion(newMessageChannelVersion);
       }
     }
   }
@@ -803,12 +802,12 @@ public class NotificationChannels {
   @TargetApi(26)
   private void updateMessageChannel(@NonNull ChannelUpdater updater) {
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-    int existingVersion                     = TextSecurePreferences.getNotificationMessagesChannelVersion(context);
+    int existingVersion                     = SignalStore.misc().getNotificationMessagesChannelVersion();
     int newVersion                          = existingVersion + 1;
 
     Log.i(TAG, "Updating message channel from version " + existingVersion + " to " + newVersion);
     if (updateExistingChannel(notificationManager, getMessagesChannelId(existingVersion), getMessagesChannelId(newVersion), updater)) {
-      TextSecurePreferences.setNotificationMessagesChannelVersion(context, newVersion);
+      SignalStore.misc().setNotificationMessagesChannelVersion(newVersion);
     } else {
       onCreate(notificationManager);
     }

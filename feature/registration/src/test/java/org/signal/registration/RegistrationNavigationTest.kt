@@ -72,7 +72,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme(incognitoKeyboardEnabled = false) {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -91,7 +90,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -116,7 +114,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -139,7 +136,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -166,7 +162,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -198,7 +193,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -225,7 +219,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -246,7 +239,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -269,7 +261,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -291,7 +282,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -314,7 +304,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -341,7 +330,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -369,7 +357,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )
@@ -395,7 +382,6 @@ class RegistrationNavigationTest {
     composeTestRule.setContent {
       SignalTheme {
         RegistrationNavHost(
-          registrationRepository = mockRepository,
           registrationViewModel = viewModel,
           permissionsState = permissionsState
         )

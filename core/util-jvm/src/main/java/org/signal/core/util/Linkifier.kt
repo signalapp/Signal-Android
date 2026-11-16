@@ -28,12 +28,25 @@ object Linkifier {
   private val CLOSING_BRACKETS = mapOf(')' to '(', ']' to '[', '}' to '{')
 
   /**
+   * Characters that always terminate a URL: whitespace (including the unicode variants), bidi/format
+   * controls, and punctuation that is only ever used to quote or wrap a URL.
+   */
+  private const val URL_TERMINATOR = "\\s\\u0085\\u00A0\\u1680\\u2000-\\u200D\\u2028\\u2029\\u202A-\\u202F\\u205F\\u2066-\\u2069\\u3000\\uFEFF<>\"`|\\\\"
+
+  /**
    * Characters we treat as definitely-not-part-of-a-URL when extending past the host. Commas and
    * semicolons are allowed inside a URL, but not when they are acting as a separator before another
    * obvious URL.
    */
-  private const val URL_CHAR =
-    "(?:[^\\s\\u0085\\u00A0\\u1680\\u2000-\\u200D\\u2028\\u2029\\u202A-\\u202F\\u205F\\u2066-\\u2069\\u3000\\uFEFF<>\"'`,;|\\\\]|[,;](?!https?://|www\\.))"
+  private const val URL_CHAR = "(?:[^$URL_TERMINATOR,;]|[,;](?!https?://|www\\.))"
+
+  /**
+   * Like [URL_CHAR], but for the authority (host/port/userinfo) portion of a URL, so it stops at the
+   * first path/query/fragment delimiter. Apostrophes are excluded here so that a possessive like
+   * `https://signal.org's blog` doesn't drag the `'s` into the host, while still allowing them
+   * within a path (see [URL_CHAR]).
+   */
+  private const val AUTHORITY_CHAR = "(?:[^$URL_TERMINATOR,;'/?#]|[,;](?!https?://|www\\.))"
 
   /**
    * A single domain label: letter/digit, optional letter/digit/hyphen body. Used for intermediate
@@ -56,7 +69,8 @@ object Linkifier {
     "(?i)" +
       "(?:" +
       // Variant 1: explicit scheme (http or https). User intent is unambiguous; no TLD check.
-      "https?://" + URL_CHAR + "+" +
+      "https?://" + AUTHORITY_CHAR + "+" +
+      "(?:[/?#]" + URL_CHAR + "*)?" +
       "|" +
       // Variant 2: starts with www. — also unambiguous; no TLD check.
       "www\\." + DOMAIN_LABEL + "(?:\\." + DOMAIN_LABEL + ")+" +

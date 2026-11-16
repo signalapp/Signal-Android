@@ -6,9 +6,9 @@
 package org.thoughtcrime.securesms.database
 
 import kotlinx.serialization.json.Json
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.logging.Log
-import org.signal.mediasend.SentMediaQuality
 import org.signal.network.util.JsonUtil
 import java.io.IOException
 import java.util.Optional

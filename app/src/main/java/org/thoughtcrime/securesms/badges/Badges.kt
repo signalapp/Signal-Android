@@ -1,19 +1,11 @@
 package org.thoughtcrime.securesms.badges
 
-import android.content.Context
 import android.net.Uri
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.flexbox.AlignItems
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
-import org.signal.core.util.DimensionUnit
+import org.signal.core.models.badges.Badge
+import org.signal.core.models.badges.Badge.Category.Companion.fromCode
 import org.signal.core.util.ScreenDensity
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.badges.models.Badge.Category.Companion.fromCode
-import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import java.math.BigDecimal
@@ -23,42 +15,6 @@ import java.util.concurrent.TimeUnit
 object Badges {
 
   private val TAG: String = Log.tag(Badges::class.java)
-
-  fun DSLConfiguration.displayBadges(
-    context: Context,
-    badges: List<Badge>,
-    selectedBadge: Badge? = null,
-    fadedBadgeId: String? = null
-  ) {
-    badges
-      .map {
-        Badge.Model(
-          badge = it,
-          isSelected = it == selectedBadge,
-          isFaded = it.id == fadedBadgeId
-        )
-      }
-      .forEach { customPref(it) }
-
-    val badgeSize = DimensionUnit.DP.toPixels(88f)
-    val windowWidth = context.resources.displayMetrics.widthPixels
-    val perRow = (windowWidth / badgeSize).toInt()
-
-    val empties = ((perRow - (badges.size % perRow)) % perRow)
-    repeat(empties) {
-      customPref(Badge.EmptyModel())
-    }
-  }
-
-  fun createLayoutManagerForGridWithBadges(context: Context): RecyclerView.LayoutManager {
-    val layoutManager = FlexboxLayoutManager(context)
-
-    layoutManager.flexDirection = FlexDirection.ROW
-    layoutManager.alignItems = AlignItems.CENTER
-    layoutManager.justifyContent = JustifyContent.CENTER
-
-    return layoutManager
-  }
 
   private fun getBadgeImageUri(densityPath: String): Uri {
     return Uri.parse(BuildConfig.BADGE_STATIC_ROOT).buildUpon()
@@ -123,7 +79,7 @@ object Badges {
       uriAndDensity.first,
       uriAndDensity.second,
       serviceBadge.expiration?.let { getTimestamp(it) } ?: 0,
-      serviceBadge.isVisible,
+      serviceBadge.visible,
       TimeUnit.SECONDS.toMillis(serviceBadge.duration)
     )
   }

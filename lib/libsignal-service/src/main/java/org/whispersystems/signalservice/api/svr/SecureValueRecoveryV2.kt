@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.MasterKey
 import org.signal.core.util.Hex
+import org.signal.core.util.PinHashUtil
+import org.signal.core.util.crypto.InvalidCiphertextException
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.svr2.PinHash
 import org.signal.network.NetworkResult
@@ -19,9 +21,7 @@ import org.signal.svr2.proto.DeleteRequest
 import org.signal.svr2.proto.ExposeRequest
 import org.signal.svr2.proto.Request
 import org.signal.svr2.proto.RestoreRequest
-import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.fromWebSocketRequest
-import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.DeleteResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.InvalidRequestException

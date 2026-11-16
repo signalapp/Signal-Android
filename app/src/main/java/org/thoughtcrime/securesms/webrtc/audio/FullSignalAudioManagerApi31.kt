@@ -7,8 +7,8 @@ import android.media.AudioManager
 import android.media.AudioRecordingConfiguration
 import android.media.MediaRecorder
 import androidx.annotation.RequiresApi
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * API 31 introduces new audio manager methods to handle audio routing, including to Bluetooth devices.
@@ -68,8 +68,16 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     }
   }
 
+  private var isMicrophoneSilenced = false
+
   private val audioRecordingCallback = object : AudioManager.AudioRecordingCallback() {
     override fun onRecordingConfigChanged(configs: List<AudioRecordingConfiguration>) {
+      val silenced = configs.any { it.isClientSilenced }
+      if (silenced != isMicrophoneSilenced) {
+        isMicrophoneSilenced = silenced
+        eventListener?.onMicrophoneSilencedChanged(silenced)
+      }
+
       if (configs.isEmpty()) {
         Log.i(TAG, "AudioRecordingCallback: no active recordings state: $state mode: ${getModeName(requestedMode)}")
       } else {

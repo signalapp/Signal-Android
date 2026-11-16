@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Process
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,6 +17,7 @@ import androidx.core.text.buildSpannedString
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.models.media.Media
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.mediasend.MediaSendLauncher.share
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareDialogs
 import org.thoughtcrime.securesms.sharing.MultiShareSender
 import org.thoughtcrime.securesms.sharing.MultiShareSender.MultiShareSendResultCollection
@@ -181,8 +180,6 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
     viewModel.onContactSelectionConfirmed(contactSearchKeys)
   }
 
-  override fun getContainer(): ViewGroup = findViewById(R.id.fragment_container_wrapper)
-
   override fun getDialogBackgroundColor(): Int = ContextCompat.getColor(this, R.color.signal_background_primary)
 
   private fun getUnresolvedShareData(): Result<UnresolvedShareData, IntentError> {
@@ -287,8 +284,8 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
             action = ConversationIntents.ACTION
             putExtras(conversationIntent)
           }
-          finish()
           startActivity(mainActivityIntent)
+          finish()
         },
         onError = { throwable ->
           Log.w(TAG, "Failed to build conversation intent for share target.", throwable)

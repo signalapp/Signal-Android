@@ -2,20 +2,20 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
-import org.signal.network.NetworkResult
+import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RemoteConfigApi.RemoteConfigResult
+import org.signal.remoteconfig.RemoteConfig
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import kotlin.time.Duration.Companion.days
 
 /**
  * Job to refresh remote configs. Utilizes eTags so a 304 is returned if content is unchanged since last fetch.
  */
-class RemoteConfigRefreshJob private constructor(parameters: Parameters) : Job(parameters) {
+class RemoteConfigRefreshJob private constructor(parameters: Parameters) : CoroutineJob(parameters) {
   companion object {
     const val KEY: String = "RemoteConfigRefreshJob"
     private val TAG = Log.tag(RemoteConfigRefreshJob::class.java)
@@ -39,38 +39,43 @@ class RemoteConfigRefreshJob private constructor(parameters: Parameters) : Job(p
     return KEY
   }
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "Not registered. Skipping.")
       return Result.success()
     }
 
-    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+    if (SignalStore.account.isUnauthorizedReceived) {
       Log.i(TAG, "No longer authorized. Ignoring.")
       return Result.success()
     }
 
-    return when (val result = SignalNetwork.remoteConfig.getRemoteConfig(SignalStore.remoteConfig.eTag)) {
-      is NetworkResult.Success -> {
-        RemoteConfig.update(result.result.config)
-        SignalStore.misc.setLastKnownServerTime(result.result.serverEpochTimeMilliseconds, System.currentTimeMillis())
-        if (result.result.eTag.isNotNullOrBlank()) {
-          SignalStore.remoteConfig.eTag = result.result.eTag
+    return when (val result = SignalNetwork.remoteConfigApi.getRemoteConfig(SignalStore.remoteConfig.eTag)) {
+      is RequestResult.Success -> {
+        when (val config = result.result) {
+          is RemoteConfigResult.Updated -> {
+            RemoteConfig.update(config.config)
+            if (config.eTag.isNotNullOrBlank()) {
+              SignalStore.remoteConfig.eTag = config.eTag
+            }
+          }
+          is RemoteConfigResult.NotModified -> {
+            Log.i(TAG, "Remote config has not changed since last pull.")
+            SignalStore.remoteConfig.lastFetchTime = System.currentTimeMillis()
+          }
         }
+        SignalStore.misc.setLastKnownServerTime(result.result.serverEpochTimeMilliseconds, System.currentTimeMillis())
         Result.success()
       }
-
-      is NetworkResult.ApplicationError -> Result.failure()
-      is NetworkResult.NetworkError -> Result.retry(defaultBackoff())
-      is NetworkResult.StatusCodeError ->
-        if (result.code == 304) {
-          Log.i(TAG, "Remote config has not changed since last pull.")
-          SignalStore.remoteConfig.lastFetchTime = System.currentTimeMillis()
-          SignalStore.misc.setLastKnownServerTime(result.header(SignalWebSocket.SERVER_DELIVERED_TIMESTAMP_HEADER)?.toLongOrNull() ?: System.currentTimeMillis(), System.currentTimeMillis())
-          Result.success()
-        } else {
-          Result.retry(defaultBackoff())
-        }
+      is RequestResult.NonSuccess -> {
+        Result.retry(defaultBackoff())
+      }
+      is RequestResult.RetryableNetworkError -> {
+        Result.retry(result.retryAfter?.toMillis() ?: defaultBackoff())
+      }
+      is RequestResult.ApplicationError -> {
+        Result.failure()
+      }
     }
   }
 

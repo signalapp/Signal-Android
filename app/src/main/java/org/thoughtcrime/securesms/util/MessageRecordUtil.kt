@@ -64,11 +64,16 @@ fun MessageRecord.hasDocument(): Boolean = isMms && (this as MmsMessageRecord).s
 fun MessageRecord.isViewOnceMessage(): Boolean = isMms && (this as MmsMessageRecord).isViewOnce
 
 fun MessageRecord.hasExtraText(): Boolean {
-  val hasTextSlide = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null
   val hasOverflowText: Boolean = body.length > MAX_BODY_DISPLAY_LENGTH
 
-  return hasTextSlide || hasOverflowText
+  return isBodyTruncated() || hasOverflowText
 }
+
+/**
+ * True if the inline [MessageRecord.body] is only a prefix of the full message text, with the remainder living in a text slide
+ * (regardless of whether that slide has been downloaded yet).
+ */
+fun MessageRecord.isBodyTruncated(): Boolean = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null
 
 fun MessageRecord.hasQuote(): Boolean = isMms && (this as MmsMessageRecord).quote != null
 
@@ -79,6 +84,9 @@ fun MessageRecord.getQuote(): Quote? = if (isMms) {
 }
 
 fun MessageRecord.hasLinkPreview(): Boolean = isMms && (this as MmsMessageRecord).linkPreviews.isNotEmpty()
+
+/** If message has both a link preview and an attachment, it should prefer the attachment. */
+fun MessageRecord.shouldDisplayLinkPreview(): Boolean = hasLinkPreview() && !hasNonTextSlide()
 
 fun MessageRecord.hasTextSlide(): Boolean = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null && this.slideDeck.textSlide?.uri != null
 
@@ -95,7 +103,7 @@ fun MessageRecord.hasPollTerminate(): Boolean = this.isPollTerminate && this.mes
 fun MessageRecord.hasPinnedMessageUpdate(): Boolean = this.isPinnedMessageUpdate && this.messageExtras != null && this.messageExtras!!.pinnedMessage != null
 
 fun MessageRecord.hasBigImageLinkPreview(context: Context): Boolean {
-  if (!hasLinkPreview()) {
+  if (!shouldDisplayLinkPreview()) {
     return false
   }
 

@@ -5,77 +5,120 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.backup.DeletionState
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.Environment
 import kotlin.time.Duration.Companion.milliseconds
 
-class BackupsSettingsViewModel : ViewModel() {
+/**
+ * Drives the top-level backups settings screen.
+ *
+ * @param launchCheckoutFlow True when the screen was opened to start backups checkout straight away, which only a
+ *   primary device can do. [savedStateHandle] remembers that it was started, so restoring the screen doesn't start it
+ *   again.
+ */
+class BackupsSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
+  launchCheckoutFlow: Boolean = false,
+  savedStateHandle: SavedStateHandle = SavedStateHandle(),
+  private val repository: BackupsSettingsRepository = BackupsSettingsRepository
+) : EventDrivenViewModel<BackupsSettingsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(BackupsSettingsViewModel::class)
+
+    private const val KEY_CHECKOUT_LAUNCHED = "checkout_launched"
+    private const val LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059752"
   }
 
-  private val internalStateFlow: MutableStateFlow<BackupsSettingsState>
+  private val backupState = repository.observeBackupState(viewModelScope)
 
-  val stateFlow: StateFlow<BackupsSettingsState> by lazy { internalStateFlow }
+  private val _state = MutableStateFlow(
+    BackupsSettingsState(
+      backupState = backupState.value,
+      lastBackupAt = repository.lastBackupTime().milliseconds,
+      isLinkedDevice = repository.isLinkedDevice()
+    )
+  )
+  private val _actions = Channel<BackupsSettingsAction>(Channel.BUFFERED)
+
+  val state: StateFlow<BackupsSettingsState> = _state.asStateFlow()
+  val actions: Flow<BackupsSettingsAction> = _actions.receiveAsFlow()
 
   init {
-    val repo = BackupStateObserver(viewModelScope, useDatabaseFallbackOnNetworkError = true)
-    internalStateFlow = MutableStateFlow(BackupsSettingsState(backupState = repo.backupState.value))
-
     viewModelScope.launch {
-      repo.backupState.collect { enabledState ->
-        Log.d(TAG, "Found enabled state $enabledState. Updating UI state.")
-        internalStateFlow.update {
+      backupState.collect { backupState ->
+        Log.d(TAG, "Found enabled state $backupState. Updating UI state.")
+        _state.update {
           it.copy(
-            backupState = enabledState,
-            lastBackupAt = SignalStore.backup.lastBackupTime.milliseconds,
-            showBackupTierInternalOverride = Environment.IS_STAGING && SignalStore.account.isPrimaryDevice,
-            backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride
+            backupState = backupState,
+            lastBackupAt = repository.lastBackupTime().milliseconds,
+            showBackupTierInternalOverride = repository.canOverrideBackupTier(),
+            backupTierInternalOverride = repository.backupTierInternalOverride()
           )
         }
       }
     }
 
-    viewModelScope.launch(Dispatchers.Default) {
-      SignalStore.backup.lastBackupTimeFlow
-        .collect { lastBackupTime ->
-          internalStateFlow.update {
-            it.copy(lastBackupAt = lastBackupTime.milliseconds)
-          }
-        }
+    viewModelScope.launch(SignalDispatchers.Default) {
+      repository.lastBackupTimeFlow().collect { lastBackupTime ->
+        _state.update { it.copy(lastBackupAt = lastBackupTime.milliseconds) }
+      }
     }
 
-    if (SignalStore.account.isLinkedDevice) {
-      viewModelScope.launch(Dispatchers.IO) {
-        BackupRepository.refreshBackupFileTimestamp()
-      }
+    if (repository.isLinkedDevice()) {
+      viewModelScope.launch { repository.refreshBackupFileTimestamp() }
+    }
+
+    if (launchCheckoutFlow && repository.isPrimaryDevice() && savedStateHandle.get<Boolean>(KEY_CHECKOUT_LAUNCHED) != true) {
+      savedStateHandle[KEY_CHECKOUT_LAUNCHED] = true
+      _actions.trySend(BackupsSettingsAction.LaunchCheckout)
     }
   }
 
-  fun onBackupTierInternalOverrideChanged(tier: MessageBackupTier?) {
-    SignalStore.backup.backupTierInternalOverride = tier
-    SignalStore.backup.deletionState = DeletionState.NONE
-    viewModelScope.launch(SignalDispatchers.Default) {
-      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-      StorageSyncHelper.scheduleSyncForDataChange()
+  override suspend fun processEvent(event: BackupsSettingsEvent) {
+    when (event) {
+      BackupsSettingsEvent.NavigateBackClicked -> {
+        parentEventEmitter.navigateBack()
+      }
+      BackupsSettingsEvent.BackupsRowClicked -> {
+        val state = _state.value
+        when (state.backupState) {
+          is BackupState.Error -> Unit
+          BackupState.None -> {
+            if (!state.isLinkedDevice) {
+              _actions.send(BackupsSettingsAction.LaunchCheckout)
+            }
+          }
+          else -> parentEventEmitter.navigateTo(AppSettingsRoute.BackupsRoute.Remote())
+        }
+      }
+      BackupsSettingsEvent.OnDeviceBackupsRowClicked -> {
+        parentEventEmitter.navigateTo(AppSettingsRoute.BackupsRoute.Local())
+      }
+      is BackupsSettingsEvent.BackupTierInternalOverrideChanged -> {
+        repository.setBackupTierInternalOverride(event.tier, viewModelScope)
+      }
+      BackupsSettingsEvent.LearnMoreClicked -> {
+        _actions.send(BackupsSettingsAction.OpenSupportArticle(LEARN_MORE_URL))
+      }
+      BackupsSettingsEvent.CheckoutCompleted -> {
+        parentEventEmitter.navigateTo(AppSettingsRoute.BackupsRoute.Remote())
+      }
     }
-
-    BackupStateObserver.notifyBackupStateChanged(scope = viewModelScope)
   }
 }

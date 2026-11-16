@@ -1,85 +1,74 @@
 package org.thoughtcrime.securesms.stories.settings.select
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.subjects.PublishSubject
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.livedata.Store
 
 class BaseStoryRecipientSelectionViewModel(
-  private val distributionListId: DistributionListId?,
-  private val repository: BaseStoryRecipientSelectionRepository
+  private val distributionListId: DistributionListId?
 ) : ViewModel() {
-  private val store = Store(BaseStoryRecipientSelectionState(distributionListId))
-  private val subject = PublishSubject.create<Action>()
-  private val disposable = CompositeDisposable()
+  private val internalState = MutableStateFlow(BaseStoryRecipientSelectionState(distributionListId))
+  private val internalActions = Channel<Action>(Channel.BUFFERED)
+  private var actionJob: Job? = null
 
-  var actionObservable: Observable<Action> = subject
-  var state: LiveData<BaseStoryRecipientSelectionState> = store.stateLiveData
+  val actions: Flow<Action> = internalActions.receiveAsFlow()
+  val state: StateFlow<BaseStoryRecipientSelectionState> = internalState
 
   init {
     if (distributionListId != null) {
-      disposable += repository.getRecord(distributionListId)
-        .subscribe { record ->
-          val startingSelection = if (record.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT) record.rawMembers else record.members
-          store.update { it.copy(privateStory = record, selection = it.selection + startingSelection, isStartingSelection = true) }
-        }
-    }
-  }
-
-  override fun onCleared() {
-    disposable.clear()
-  }
-
-  fun toggleSelectAll(): Single<Set<RecipientId>> {
-    return Single.create { emitter ->
-      disposable += repository.getAllSignalContacts().subscribeBy { allSignalRecipients ->
-        store.update { it.copy(selection = allSignalRecipients) }
-        emitter.onSuccess(allSignalRecipients)
+      viewModelScope.launch {
+        val record = BaseStoryRecipientSelectionRepository.getRecord(distributionListId)
+        val startingSelection = if (record.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT) record.rawMembers else record.members
+        internalState.update { it.copy(privateStory = record, selection = it.selection + startingSelection, isStartingSelection = true) }
       }
     }
   }
 
+  suspend fun toggleSelectAll(): Set<RecipientId> {
+    val allSignalRecipients = BaseStoryRecipientSelectionRepository.getAllSignalContacts()
+    internalState.update { it.copy(selection = allSignalRecipients) }
+    return allSignalRecipients
+  }
+
   fun addRecipient(recipientId: RecipientId) {
-    store.update { it.copy(selection = it.selection + recipientId) }
+    internalState.update { it.copy(selection = it.selection + recipientId) }
   }
 
   fun removeRecipient(recipientId: RecipientId) {
-    store.update { it.copy(selection = it.selection - recipientId) }
+    internalState.update { it.copy(selection = it.selection - recipientId) }
   }
 
   fun onAction() {
-    if (distributionListId != null) {
-      repository.updateDistributionListMembership(store.state.privateStory!!, store.state.selection)
-      subject.onNext(Action.ExitFlow)
-    } else {
-      subject.onNext(Action.GoToNextScreen(store.state.selection))
+    if (actionJob?.isActive == true) {
+      return
+    }
+
+    actionJob = viewModelScope.launch {
+      if (distributionListId != null) {
+        BaseStoryRecipientSelectionRepository.updateDistributionListMembership(internalState.value.privateStory!!, internalState.value.selection)
+        internalActions.send(Action.ExitFlow)
+      } else {
+        internalActions.send(Action.GoToNextScreen)
+      }
     }
   }
 
   fun onStartingSelectionAdded() {
-    store.update { it.copy(isStartingSelection = false) }
+    internalState.update { it.copy(isStartingSelection = false) }
   }
 
   sealed class Action {
-    data class GoToNextScreen(val recipients: Set<RecipientId>) : Action()
-    object ExitFlow : Action()
-  }
-
-  class Factory(
-    private val distributionListId: DistributionListId?,
-    private val repository: BaseStoryRecipientSelectionRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(BaseStoryRecipientSelectionViewModel(distributionListId, repository)) as T
-    }
+    data object GoToNextScreen : Action()
+    data object ExitFlow : Action()
   }
 }

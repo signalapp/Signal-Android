@@ -144,7 +144,7 @@ fun ArchiveRestoreStatusBanner(
 
       Icon(
         painter = SignalIcons.X.painter,
-        contentDescription = stringResource(R.string.Material3SearchToolbar__close),
+        contentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
         tint = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
           .size(24.dp)

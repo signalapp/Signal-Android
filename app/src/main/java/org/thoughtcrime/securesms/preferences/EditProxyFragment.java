@@ -16,11 +16,11 @@ import androidx.core.app.ShareCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.HostInsets;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -28,11 +28,10 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
-import org.signal.network.config.SignalProxy;
 
 import java.util.Optional;
 
@@ -59,14 +58,7 @@ public class EditProxyFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     Toolbar toolbar = view.findViewById(R.id.toolbar);
-    toolbar.setNavigationOnClickListener(v -> {
-      if (!Navigation.findNavController(v).popBackStack()) {
-        requireActivity().finish();
-      }
-    });
-
-    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
-    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+    toolbar.setNavigationOnClickListener(v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
     this.proxySwitch = view.findViewById(R.id.edit_proxy_switch);
     this.proxyTitle  = view.findViewById(R.id.edit_proxy_address_title);
@@ -75,7 +67,10 @@ public class EditProxyFragment extends Fragment {
     this.saveButton  = view.findViewById(R.id.edit_proxy_save);
     this.shareButton = view.findViewById(R.id.edit_proxy_share);
 
-    SystemWindowInsetsSetter.attach(saveButton, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+    if (!HostInsets.isInsetByHost(this)) {
+      HostInsets.insetToolbarForStatusBar(toolbar, getViewLifecycleOwner());
+      SystemWindowInsetsSetter.attach(saveButton, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+    }
 
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
@@ -87,7 +82,7 @@ public class EditProxyFragment extends Fragment {
       }
     });
 
-    this.proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
+    this.proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxyHost()).orElse(""));
     this.proxySwitch.setChecked(SignalStore.proxy().isProxyEnabled());
 
     initViewModel();
@@ -145,7 +140,7 @@ public class EditProxyFragment extends Fragment {
   }
 
   private void presentProxyState(@NonNull WebSocketConnectionState proxyState) {
-    if (SignalStore.proxy().getProxy() != null) {
+    if (SignalStore.proxy().getProxyHost() != null) {
       switch (proxyState) {
         case DISCONNECTED:
         case DISCONNECTING:
@@ -173,7 +168,7 @@ public class EditProxyFragment extends Fragment {
     switch (event) {
       case PROXY_SUCCESS:
         proxyStatus.setVisibility(View.VISIBLE);
-        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
+        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxyHost()).orElse(""));
         new MaterialAlertDialogBuilder(requireContext())
            .setTitle(R.string.preferences_success)
            .setMessage(R.string.preferences_you_are_connected_to_the_proxy)
@@ -185,7 +180,7 @@ public class EditProxyFragment extends Fragment {
         break;
       case PROXY_FAILURE:
         proxyStatus.setVisibility(View.INVISIBLE);
-        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
+        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxyHost()).orElse(""));
         ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(proxyText);
         new MaterialAlertDialogBuilder(requireContext())
            .setTitle(R.string.preferences_failed_to_connect)

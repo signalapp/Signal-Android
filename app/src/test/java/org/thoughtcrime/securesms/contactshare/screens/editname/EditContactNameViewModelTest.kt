@@ -125,6 +125,6 @@ class EditContactNameViewModelTest {
   }
 
   private fun createViewModel(parts: ContactNameParts): EditContactNameViewModel {
-    return EditContactNameViewModel(SavedStateHandle()).apply { onEvent(EditContactNameEvent.Initialize(parts)) }
+    return EditContactNameViewModel(parts, SavedStateHandle())
   }
 }

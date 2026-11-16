@@ -6,6 +6,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import org.signal.core.util.logging.Log
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.storage.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
@@ -168,8 +169,8 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
 
     val potentialOnboardingUrlLanguages = mutableListOf<String>()
 
-    if (SignalStore.settings.language != "zz") {
-      potentialOnboardingUrlLanguages += SignalStore.settings.language
+    if (PlainTextKeyValueStore.language != "zz") {
+      potentialOnboardingUrlLanguages += PlainTextKeyValueStore.language
     }
 
     for (index in 0 until localeList.size()) {

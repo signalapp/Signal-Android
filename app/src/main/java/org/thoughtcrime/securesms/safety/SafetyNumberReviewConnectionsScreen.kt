@@ -54,7 +54,7 @@ fun SafetyNumberReviewConnectionsScreen(
   Scaffolds.Default(
     onNavigationClick = onDoneClick,
     navigationIconRes = CoreUiR.drawable.symbol_arrow_start_24,
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+    navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description),
     title = stringResource(R.string.SafetyNumberReviewConnectionsFragment__safety_number_changes)
   ) { paddingValues ->
     Box(

@@ -5,6 +5,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.GroupCallSpeechEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.OutgoingVideoSourceRouter;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -137,6 +137,11 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull LocalDeviceStateBuilder setBluetoothPermissionDenied(boolean bluetoothPermissionDenied) {
       toBuild.setBluetoothPermissionDenied(bluetoothPermissionDenied);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setMicrophoneSilencedTimestamp(long microphoneSilencedTimestamp) {
+      toBuild.setMicrophoneSilencedTimestamp(microphoneSilencedTimestamp);
       return this;
     }
 

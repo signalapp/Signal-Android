@@ -8,9 +8,7 @@ package org.thoughtcrime.securesms.registration.fcm;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
@@ -91,9 +89,8 @@ public final class PushChallengeRequest {
 
     @WorkerThread
     private Optional<String> requestAndReceiveChallengeBlocking() {
-      EventBus eventBus = EventBus.getDefault();
+      EventBus.Subscription subscription = EventBus.getDefault().subscribe(PushChallengeEvent.class, this::onChallengeEvent);
 
-      eventBus.register(this);
       try {
         accountManager.requestRegistrationPushChallenge(sessionId, fcmToken);
 
@@ -104,12 +101,11 @@ public final class PushChallengeRequest {
         Log.w(TAG, "Error getting push challenge", e);
         return Optional.empty();
       } finally {
-        eventBus.unregister(this);
+        subscription.unsubscribe();
       }
     }
 
-    @Subscribe(threadMode = ThreadMode.POSTING)
-    public void onChallengeEvent(@NonNull PushChallengeEvent pushChallengeEvent) {
+    private void onChallengeEvent(@NonNull PushChallengeEvent pushChallengeEvent) {
       challenge.set(pushChallengeEvent.challenge);
       latch.countDown();
     }

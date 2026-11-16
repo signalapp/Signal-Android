@@ -62,6 +62,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import kotlinx.coroutines.delay
+import org.signal.core.models.badges.Badge
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -72,7 +74,6 @@ import org.signal.core.ui.fonts.SignalSymbols.signalSymbolText
 import org.signal.core.util.BidiUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageLarge
 import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors
@@ -81,7 +82,6 @@ import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
 import org.thoughtcrime.securesms.messagerequests.GroupInfo
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRecipientInfo
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.signal.core.ui.R as CoreUiR
@@ -113,10 +113,12 @@ class ConversationHeaderView : AbstractComposeView {
     val isReleaseNotes = recipient.isReleaseNotes
     val isOfficialAccount = recipient.showVerified
 
+    val hasUsernameOrSharedName = recipient.hasUsernameOrSharedName
+
     val showUnverifiedName = if (recipient.isGroup) {
       !info.groupInfo.nameVerified
     } else if (!isOfficialAccount) {
-      recipient.nickname.isEmpty && !recipient.isSystemContact
+      recipient.nickname.isEmpty && !recipient.isSystemContact && !hasUsernameOrSharedName
     } else {
       false
     }
@@ -139,6 +141,7 @@ class ConversationHeaderView : AbstractComposeView {
         isReleaseNotes = isReleaseNotes,
         badge = if (!isOfficialAccount) recipient.featuredBadge else null,
         showUnverifiedName = showUnverifiedName,
+        hasUsernameOrSharedName = hasUsernameOrSharedName,
         isGroup = recipient.isGroup,
         hasWallpaper = recipient.hasWallpaper,
         phoneNumber = phoneNumber,
@@ -188,6 +191,7 @@ private fun ConversationHeaderContent(
   isReleaseNotes: Boolean = false,
   badge: Badge?,
   showUnverifiedName: Boolean,
+  hasUsernameOrSharedName: Boolean = false,
   isGroup: Boolean,
   hasWallpaper: Boolean = false,
   phoneNumber: String? = null,
@@ -291,7 +295,9 @@ private fun ConversationHeaderContent(
         )
       }
 
-      if (!isSelf && !isReleaseNotes && (sharedGroups.isNotEmpty() || !isGroup)) {
+      val showSharedGroups = sharedGroups.isNotEmpty() || (!isGroup && !hasUsernameOrSharedName)
+
+      if (!isSelf && !isReleaseNotes && showSharedGroups) {
         SharedGroupsDescription(
           sharedGroups = sharedGroups,
           modifier = Modifier.padding(top = 8.dp)

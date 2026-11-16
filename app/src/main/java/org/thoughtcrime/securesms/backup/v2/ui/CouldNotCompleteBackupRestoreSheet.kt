@@ -45,7 +45,7 @@ private fun CouldNotCompleteBackupRestoreSheetContent(
     )
   }
 
-  val learnMore = stringResource(R.string.preferences__app_icon_learn_more)
+  val learnMore = stringResource(R.string.CouldNotCompleteBackupRestoreSheet__learn_more)
   val secondaryActionButtonState: BackupAlertActionButtonState = remember(learnMore, onLearnMoreClick) {
     BackupAlertActionButtonState(
       label = learnMore,

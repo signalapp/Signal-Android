@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
+import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 
 /**
@@ -17,35 +18,49 @@ sealed class DonationRedemptionJobStatus {
   data object None : DonationRedemptionJobStatus()
 
   /**
+   * A donation with a job chain still in flight.
+   *
+   * [paymentSourceType] is the method the donation was paid with, which determines how long it is expected to stay
+   * pending: bank transfers settle over days, everything else is effectively immediate.
+   */
+  sealed class Pending : DonationRedemptionJobStatus() {
+    abstract val paymentSourceType: PaymentSourceType
+  }
+
+  /**
    * Donation is pending external user verification (e.g., iDEAL).
    *
    * For one-time, pending donation data is provided via the job data as it is not in the store yet.
+   *
+   * Intentionally not a data class: structural equality would let `distinctUntilChanged` drop emissions that
+   * consumers rely on to refresh.
    */
   class PendingExternalVerification(
+    override val paymentSourceType: PaymentSourceType,
     val pendingOneTimeDonation: PendingOneTimeDonation? = null,
     val nonVerifiedMonthlyDonation: NonVerifiedMonthlyDonation? = null
-  ) : DonationRedemptionJobStatus()
+  ) : Pending()
 
   /**
    * Donation is at the receipt request status.
    *
    * For one-time donations, pending donation data available via the store.
    */
-  data object PendingReceiptRequest : DonationRedemptionJobStatus()
+  data class PendingReceiptRequest(override val paymentSourceType: PaymentSourceType) : Pending()
 
   /**
    * Donation is at the receipt redemption status.
    *
    * For one-time donations, pending donation data available via the store.
    */
-  data object PendingReceiptRedemption : DonationRedemptionJobStatus()
+  data class PendingReceiptRedemption(override val paymentSourceType: PaymentSourceType) : Pending()
 
   /**
    * Donation is being refreshed during a keep-alive.
    *
    * This is an invalid state for one-time donations.
    */
-  data object PendingKeepAlive : DonationRedemptionJobStatus()
+  data class PendingKeepAlive(override val paymentSourceType: PaymentSourceType) : Pending()
 
   /**
    * Representation of a failed subscription job chain derived from no pending/running jobs and
@@ -53,15 +68,5 @@ sealed class DonationRedemptionJobStatus {
    */
   data object FailedSubscription : DonationRedemptionJobStatus()
 
-  fun isInProgress(): Boolean {
-    return when (this) {
-      is PendingExternalVerification,
-      PendingReceiptRedemption,
-      PendingReceiptRequest,
-      PendingKeepAlive -> true
-
-      FailedSubscription,
-      None -> false
-    }
-  }
+  fun isInProgress(): Boolean = this is Pending
 }

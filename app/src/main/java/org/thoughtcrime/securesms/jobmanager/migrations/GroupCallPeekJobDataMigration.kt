@@ -5,10 +5,10 @@
 
 package org.thoughtcrime.securesms.jobmanager.migrations
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.jobmanager.JobMigration
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Migrate jobs with just the recipient id to utilize the new data proto.

@@ -15,11 +15,11 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ContextUtil;
 import org.signal.core.util.ByteSize;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.RestartableSubscription;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentTable;
@@ -41,6 +41,8 @@ public class ViewOnceMessageView extends LinearLayout {
   private int                unopenedIconColor;
   private int                circleColor;
   private int                circleColorWithWallpaper;
+
+  private final RestartableSubscription progressSubscription = new RestartableSubscription(() -> EventBus.getDefault().subscribeSticky(PartProgressEvent.class, ThreadMode.MAIN, this::onPartProgress));
 
   public ViewOnceMessageView(Context context) {
     super(context);
@@ -75,15 +77,13 @@ public class ViewOnceMessageView extends LinearLayout {
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    if (!EventBus.getDefault().isRegistered(this)) {
-      EventBus.getDefault().register(this);
-    }
+    progressSubscription.start();
   }
 
   @Override
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
-    EventBus.getDefault().unregister(this);
+    progressSubscription.stop();
   }
 
   public boolean requiresTapToDownload(@NonNull MmsMessageRecord messageRecord) {
@@ -186,8 +186,7 @@ public class ViewOnceMessageView extends LinearLayout {
     return R.string.RevealableMessageView_view_photo;
   }
 
-  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-  public void onEventAsync(final PartProgressEvent event) {
+  private void onPartProgress(final PartProgressEvent event) {
     if (event.attachment.equals(attachment)) {
       progress.setInstantProgress((float) event.progress / (float) event.total);
     }

@@ -426,7 +426,7 @@ tasks.register("replaceEllipsis") {
 tasks.register("cleanApostropheErrors") {
   group = "Static Files"
   description = "Fix smartling apostrophe string errors."
-  mustRunAfter("pullTranslations")
+  mustRunAfter("pullTranslations", "replaceEllipsis")
 
   val rootDirFile = rootDir
 
@@ -448,7 +448,7 @@ tasks.register("cleanApostropheErrors") {
 tasks.register("excludeNonTranslatables") {
   group = "Static Files"
   description = "Remove strings that are marked \"translatable\"=\"false\" or are ExtraTranslations."
-  mustRunAfter("pullTranslations")
+  mustRunAfter("pullTranslations", "cleanApostropheErrors")
 
   val rootDirFile = rootDir
 

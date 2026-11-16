@@ -16,6 +16,7 @@ public class FiatMoney {
     add("UGX");
     add("ISK");
     add("HUF");
+    add("COP");
   }};
 
   private final BigDecimal amount;
@@ -73,7 +74,7 @@ public class FiatMoney {
 
   /**
    * Transforms the given currency / amount pair from a signal network amount to a FiatMoney, accounting for the special
-   * cased multiplicands for ISK and UGX
+   * cased multiplicands for ISK, UGX, HUF, and COP
    */
   public static @NonNull FiatMoney fromSignalNetworkAmount(@NonNull BigDecimal amount, @NonNull Currency currency) {
     String     currencyCode  = currency.getCurrencyCode();

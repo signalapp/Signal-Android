@@ -6,9 +6,9 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.bumptech.glide.RequestManager;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Locale;
 import java.util.Set;

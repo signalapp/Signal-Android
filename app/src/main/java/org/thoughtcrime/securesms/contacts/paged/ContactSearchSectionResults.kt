@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.contacts.paged
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration.SectionKey
 import org.thoughtcrime.securesms.database.model.ThreadWithRecipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.search.MessageResult
 
 /**

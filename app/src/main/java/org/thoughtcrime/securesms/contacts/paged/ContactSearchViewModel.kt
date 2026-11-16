@@ -38,9 +38,9 @@ import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.PagingController
 import org.signal.paging.StateFlowPagedData
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.search.SearchFilter
 import org.thoughtcrime.securesms.search.SearchRepository

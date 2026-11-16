@@ -14,8 +14,10 @@ import io.mockk.unmockkObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -25,11 +27,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.PaneAnchor
+import org.thoughtcrime.securesms.conversation.ConversationArgs
+import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.MessageId
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 
@@ -85,6 +90,28 @@ class MainNavigationViewModelTest {
     testDispatcher.scheduler.advanceUntilIdle()
   }
 
+  private fun conversation(startingPosition: Int = -1): MainDetailRoute.Conversation {
+    return MainDetailRoute.Conversation(
+      ConversationArgs(
+        recipientId = RecipientId.from(1),
+        threadId = 10,
+        draftText = null,
+        draftMedia = null,
+        draftContentType = null,
+        media = null,
+        stickerLocator = null,
+        isBorderless = false,
+        distributionType = ThreadTable.DistributionTypes.DEFAULT,
+        startingPosition = startingPosition,
+        isFirstTimeInSelfCreatedGroup = false,
+        isWithSearchOpen = false,
+        giftBadge = null,
+        shareDataTimestamp = -1L,
+        conversationScreenType = ConversationScreenType.NORMAL
+      )
+    )
+  }
+
   @Test
   fun `given a new view model, then chats is displayed with no detail`() {
     assertEquals(MainListRoute.Chats, viewModel.currentTab.value)
@@ -116,6 +143,26 @@ class MainNavigationViewModelTest {
     viewModel.sendEvent(MainNavigationEvents.ExitDetail)
 
     assertEquals(listOf(MainListRoute.Chats), viewModel.navigator[MainListRoute.Chats])
+  }
+
+  @Test
+  fun `given settings are open, when opening another recipient's settings, then they stack on the same detail`() {
+    val memberSettings = MainDetailRoute.Chats.ConversationSettings(RecipientId.from(3))
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversationSettings))
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(memberSettings))
+
+    assertEquals(listOf(MainListRoute.Chats, conversationSettings, memberSettings), viewModel.navigator[MainListRoute.Chats])
+    assertEquals(RecipientId.from(1), viewModel.navigator[MainListRoute.Chats].activeRecipientId)
+  }
+
+  @Test
+  fun `given another recipient's settings are stacked, when popping, then the original settings are displayed`() {
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversationSettings))
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Chats.ConversationSettings(RecipientId.from(3))))
+
+    viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.Back))
+
+    assertEquals(listOf(MainListRoute.Chats, conversationSettings), viewModel.navigator[MainListRoute.Chats])
   }
 
   @Test
@@ -278,6 +325,24 @@ class MainNavigationViewModelTest {
     assertEquals(PaneAnchor.DETAIL_ONLY, viewModel.paneAnchor.value)
   }
 
+  /**
+   * AND-9169: a notification opening a chat arrives as a single detail navigation, so it brings the chats
+   * stack forward without asking for its list and pulling a window the user dragged to full screen back
+   * to the split.
+   */
+  @Test
+  fun `given the detail fills the window on another tab, when going to a chats detail, then chats is displayed and the pane stays put`() {
+    viewModel.sendEvent(MainNavigationEvents.GoToList(MainListRoute.Calls))
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(callLinkDetails))
+    viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.AnchorSelected(PaneAnchor.DETAIL_ONLY)))
+
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversationSettings))
+
+    assertEquals(MainListRoute.Chats, viewModel.currentTab.value)
+    assertEquals(listOf(MainListRoute.Chats, conversationSettings), viewModel.navigator[MainListRoute.Chats])
+    assertEquals(PaneAnchor.DETAIL_ONLY, viewModel.paneAnchor.value)
+  }
+
   @Test
   fun `given the detail fills the window, when the last detail is popped, then the list is revealed`() {
     viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversationSettings))
@@ -295,6 +360,27 @@ class MainNavigationViewModelTest {
     viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.AnchorSelected(PaneAnchor.DETAIL_ONLY)))
 
     viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.Back))
+
+    assertEquals(PaneAnchor.DETAIL_ONLY, viewModel.paneAnchor.value)
+  }
+
+  @Test
+  fun `given a conversation is open, when going to a position in it, then it stays open and is asked to scroll`() = runTest(testDispatcher) {
+    val open = conversation()
+    viewModel.navigator.processEvent(ListDetailEvents.Push(open, MainListRoute.Chats))
+
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversation(startingPosition = 42)))
+
+    assertEquals(listOf(MainListRoute.Chats, open), viewModel.navigator[MainListRoute.Chats])
+    assertEquals(MainNavigationViewModel.ConversationJump(threadId = 10, position = 42), viewModel.conversationJumps.first())
+  }
+
+  @Test
+  fun `given a conversation is open and the list fills the window, when going to a position in it, then the detail is revealed`() {
+    viewModel.navigator.processEvent(ListDetailEvents.Push(conversation(), MainListRoute.Chats))
+    viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.AnchorSelected(PaneAnchor.LIST_ONLY)))
+
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversation(startingPosition = 42)))
 
     assertEquals(PaneAnchor.DETAIL_ONLY, viewModel.paneAnchor.value)
   }

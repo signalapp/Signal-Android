@@ -8,9 +8,10 @@ package org.thoughtcrime.securesms.main
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import org.signal.core.ui.NavigationType
 import org.signal.core.ui.compose.BreakpointPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.navigationBarsCompat
 import org.signal.core.ui.compose.showSnackbar
 import org.signal.core.ui.rememberIsSplitPane
 import org.thoughtcrime.securesms.components.snackbars.SnackbarHostKey
@@ -70,7 +72,7 @@ fun MainBottomChrome(
     modifier = modifier
       .fillMaxWidth()
       .animateContentSize()
-      .then(if (navigationType == NavigationType.RAIL) Modifier.navigationBarsPadding() else Modifier)
+      .then(if (navigationType == NavigationType.RAIL) Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat) else Modifier)
   ) {
     if (state.mainToolbarMode == MainToolbarMode.FULL && navigationType != NavigationType.RAIL) {
       Box(
@@ -97,7 +99,7 @@ fun MainBottomChrome(
     }
 
     val snackBarModifier = if (state.mainToolbarMode == MainToolbarMode.BASIC && navigationType != NavigationType.RAIL) {
-      Modifier.navigationBarsPadding()
+      Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat)
     } else {
       Modifier
     }

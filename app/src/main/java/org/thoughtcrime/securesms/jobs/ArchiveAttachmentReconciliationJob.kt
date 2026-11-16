@@ -24,6 +24,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.signal.network.api.ArchiveApiV2
 import org.signal.network.service.ArchiveError
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -38,9 +39,9 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentReconciliationJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
@@ -416,7 +417,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
    * @return The [ArchiveApiV2.MediaItemsPage] if successful, or null with a [Result] indicating the failure reason.
    */
   private suspend fun getRemoteArchiveItemPage(cursor: String?): Pair<ArchiveApiV2.MediaItemsPage?, Result?> {
-    return when (val result = AppDependencies.archiveService.listRemoteMediaObjects(CDN_FETCH_LIMIT, cursor)) {
+    return when (val result = SignalNetwork.archiveService.listRemoteMediaObjects(CDN_FETCH_LIMIT, cursor)) {
       is Either.Right -> result.value to null
       is Either.Left -> when (val error = result.value) {
         is ArchiveError.NetworkError -> null to Result.retry(defaultBackoff())

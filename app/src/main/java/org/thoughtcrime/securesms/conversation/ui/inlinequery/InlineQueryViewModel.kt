@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiStore
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.keyvalue.getPreferredVariation
 import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 
 /**
@@ -17,8 +17,8 @@ import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
  * the results.
  */
 class InlineQueryViewModel(
-  private val emojiSearchRepository: EmojiSearchRepository = EmojiSearchRepository(AppDependencies.application),
-  private val recentEmojis: RecentEmojiPageModel = RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY)
+  private val emojiSearchRepository: EmojiSearchRepository = EmojiSearchRepository(),
+  private val recentEmojis: RecentEmojiStore = RecentEmojiStore(AppDependencies.application, RecentEmojiStore.RECENT_STORAGE_KEY)
 ) : ViewModel() {
 
   private val querySubject: PublishSubject<InlineQuery> = PublishSubject.create()

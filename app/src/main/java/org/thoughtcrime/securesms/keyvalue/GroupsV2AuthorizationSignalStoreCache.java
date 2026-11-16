@@ -7,6 +7,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.auth.AuthCredentialWithPniResponse;
 import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredentialResponse;
 import org.signal.libsignal.zkgroup.internal.ByteArray;
+import org.signal.storage.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TemporalAuthCredentialResponse;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TemporalAuthCredentialResponses;
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization;

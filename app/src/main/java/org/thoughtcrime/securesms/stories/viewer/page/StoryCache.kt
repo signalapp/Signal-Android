@@ -44,7 +44,7 @@ class StoryCache(
     val newMappings: Map<Uri, StoryCacheValue> = prefetchableAttachments.associateWith { attachment ->
       val imageTarget = if (MediaUtil.isImage(attachment)) {
         requestManager
-          .load(DecryptableUri(attachment.uri!!))
+          .load(DecryptableUri(attachment.uri!!, contentType = attachment.contentType))
           .priority(Priority.HIGH)
           .centerInside()
           .into(StoryCacheTarget(attachment.uri!!, storySize))

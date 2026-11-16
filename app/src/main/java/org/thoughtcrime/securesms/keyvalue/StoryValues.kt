@@ -2,10 +2,14 @@ package org.thoughtcrime.securesms.keyvalue
 
 import org.json.JSONObject
 import org.signal.core.util.StringSerializer
+import org.signal.remoteconfig.RemoteConfig
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.SignalStoreValues
+import org.signal.storage.keyvalue.booleanValue
+import org.signal.storage.keyvalue.longValue
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.stories.archive.StoryArchiveDuration
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
 
@@ -60,17 +64,18 @@ class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     viewedReceiptsEnabled = true
   }
 
-  public override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
-    MANUAL_FEATURE_DISABLE,
-    USER_HAS_ADDED_TO_A_STORY,
-    USER_HAS_SEEN_FIRST_NAV_VIEW,
-    HAS_DOWNLOADED_ONBOARDING_STORY,
-    USER_HAS_VIEWED_ONBOARDING_STORY,
-    STORY_VIEWED_RECEIPTS,
-    USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET,
-    ARCHIVE_ENABLED,
-    ARCHIVE_DURATION
-  )
+  override val keysToIncludeInBackup: List<String>
+    get() = listOf(
+      MANUAL_FEATURE_DISABLE,
+      USER_HAS_ADDED_TO_A_STORY,
+      USER_HAS_SEEN_FIRST_NAV_VIEW,
+      HAS_DOWNLOADED_ONBOARDING_STORY,
+      USER_HAS_VIEWED_ONBOARDING_STORY,
+      STORY_VIEWED_RECEIPTS,
+      USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET,
+      ARCHIVE_ENABLED,
+      ARCHIVE_DURATION
+    )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
 

@@ -21,6 +21,10 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
   private var totalBytesRead: Long = 0
   private var lastMark = -1L
 
+  /** Bytes consumed so far, including skips. Not tracked when there is no limit. */
+  val bytesRead: Long
+    get() = totalBytesRead
+
   companion object {
 
     private const val UNLIMITED = -1L

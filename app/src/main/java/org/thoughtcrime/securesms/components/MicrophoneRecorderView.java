@@ -25,7 +25,7 @@ import androidx.core.content.ContextCompat;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioRecordingHandler;
 import org.signal.core.ui.permissions.Permissions;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 public final class MicrophoneRecorderView extends FrameLayout implements View.OnTouchListener {
 
@@ -89,6 +89,10 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
 
   public boolean isRecordingLocked() {
     return state == State.RUNNING_LOCKED;
+  }
+
+  public boolean isRecording() {
+    return state != State.NOT_RUNNING;
   }
 
   private void lockAction() {
@@ -173,7 +177,7 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     FloatingRecordButton(Context context, ImageView recordButtonFab) {
       this.recordButtonFab = recordButtonFab;
       this.recordButtonFab.getBackground().setColorFilter(context.getResources()
-                                                                 .getColor(R.color.red_500),
+                                                                 .getColor(org.signal.core.ui.R.color.red_500),
                                                           PorterDuff.Mode.SRC_IN);
     }
 
@@ -261,6 +265,7 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     }
 
     void display() {
+      lockDropTarget.animate().cancel();
       lockDropTarget.setScaleX(1);
       lockDropTarget.setScaleY(1);
       lockDropTarget.setAlpha(0);
@@ -276,11 +281,15 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     }
 
     void hide() {
+      if (lockDropTarget.getVisibility() != VISIBLE) return;
+
+      lockDropTarget.animate().cancel();
       lockDropTarget.animate()
                     .setStartDelay(0)
                     .setDuration(ANIMATION_DURATION)
                     .setInterpolator(new LinearInterpolator())
                     .scaleX(0).scaleY(0)
+                    .withEndAction(() -> lockDropTarget.setVisibility(GONE))
                     .start();
     }
   }

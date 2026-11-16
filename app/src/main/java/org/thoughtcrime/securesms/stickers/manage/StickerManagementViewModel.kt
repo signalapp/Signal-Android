@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.stickers.manage
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,12 +14,15 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.util.Util
 import org.signal.core.util.swap
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.stickers.BlessedPacks
-import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
+import org.thoughtcrime.securesms.stickers.StickerUrl
+import org.thoughtcrime.securesms.stickers.manage.StickerPack.DownloadStatus
 
 class StickerManagementViewModel : ViewModel() {
   private val stickerManagementRepo = StickerManagementRepository
@@ -46,33 +48,39 @@ class StickerManagementViewModel : ViewModel() {
   private suspend fun loadStickerPacks() {
     combine(stickerManagementRepo.getStickerPacks(), downloadStatusByPackId, ::Pair)
       .collectLatest { (stickerPacksResult, downloadStatuses) ->
-        val recentlyInstalledPacks = stickerPacksResult.installedPacks.filter { downloadStatuses.contains(StickerPackId(it.packId)) }
-        val allAvailablePacks = (stickerPacksResult.blessedPacks + stickerPacksResult.availablePacks + recentlyInstalledPacks)
+        val allRecords = stickerPacksResult.blessedPacks + stickerPacksResult.availablePacks + stickerPacksResult.installedPacks
+        val installedPackIds = allRecords
+          .filter { it.isInstalled }
+          .map { StickerPackId(it.packId) }
+          .filter { downloadStatuses.containsKey(it) }
+          .toSet()
+        if (installedPackIds.isNotEmpty()) {
+          downloadStatusByPackId.update { it - installedPackIds }
+          return@collectLatest
+        }
+
+        val allPacks = allRecords
           .map { record ->
             val packId = StickerPackId(record.packId)
-            AvailableStickerPack(
+            StickerPack(
               record = record,
               isBlessed = BlessedPacks.contains(record.packId),
-              downloadStatus = downloadStatuses.getOrElse(packId) {
-                downloadStatusByPackId.value.getOrDefault(packId, DownloadStatus.NotDownloaded)
+              downloadStatus = if (record.isInstalled) {
+                DownloadStatus.Downloaded
+              } else {
+                downloadStatuses.getOrDefault(packId, DownloadStatus.NotDownloaded)
               }
             )
           }
           .sortedBy { stickerPacksResult.sortOrderByPackId.getValue(it.id) }
 
-        val (availableBlessedPacks, availableNotBlessedPacks) = allAvailablePacks.partition { it.isBlessed }
-        val installedPacks = stickerPacksResult.installedPacks.map { record ->
-          InstalledStickerPack(
-            record = record,
-            isBlessed = BlessedPacks.contains(record.packId),
-            sortOrder = stickerPacksResult.sortOrderByPackId.getValue(StickerPackId(record.packId))
-          )
-        }
+        val (blessedPacks, notBlessedPacks) = allPacks.partition { it.isBlessed }
+        val installedPacks = allPacks.filter { it.isInstalled }
 
         internalUiState.update {
           it.copy(
-            availableBlessedPacks = availableBlessedPacks,
-            availableNotBlessedPacks = availableNotBlessedPacks,
+            blessedPacks = blessedPacks,
+            notBlessedPacks = notBlessedPacks,
             installedPacks = installedPacks,
             multiSelectEnabled = if (installedPacks.isEmpty()) false else it.multiSelectEnabled
           )
@@ -80,7 +88,7 @@ class StickerManagementViewModel : ViewModel() {
       }
   }
 
-  fun installStickerPack(pack: AvailableStickerPack) {
+  fun installStickerPack(pack: StickerPack) {
     viewModelScope.launch {
       updatePackDownloadStatus(pack.id, DownloadStatus.InProgress)
 
@@ -90,31 +98,24 @@ class StickerManagementViewModel : ViewModel() {
       internalUiState.update {
         it.copy(actionConfirmation = StickerManagementConfirmation.InstalledPack(pack.record.title))
       }
-
-      delay(1500) // wait, so we show the downloaded status for a bit before removing this row from the available sticker packs list
-      updatePackDownloadStatus(pack.id, null)
     }
   }
 
   private fun updatePackDownloadStatus(packId: StickerPackId, newStatus: DownloadStatus?) {
-    downloadStatusByPackId.value = if (newStatus == null) {
-      downloadStatusByPackId.value.minus(packId)
-    } else {
-      downloadStatusByPackId.value.plus(packId to newStatus)
+    downloadStatusByPackId.update {
+      if (newStatus == null) it - packId else it + (packId to newStatus)
     }
   }
 
   fun onUninstallStickerPacksRequested(packIds: Set<StickerPackId>) {
-    if (packIds.isEmpty()) {
+    val installedPackIds = internalUiState.value.installedPacks.map { it.id }.filter { packIds.contains(it) }.toSet()
+
+    if (installedPackIds.isEmpty()) {
       return
     }
 
-    if (internalUiState.value.multiSelectEnabled) {
-      internalUiState.update {
-        it.copy(userPrompt = ConfirmRemoveStickerPacksPrompt(numItemsToDelete = packIds.size))
-      }
-    } else {
-      uninstallStickerPacks(packIds)
+    internalUiState.update {
+      it.copy(userPrompt = StickerManagementPrompt.ConfirmRemovePacks(packIds = installedPackIds))
     }
   }
 
@@ -145,6 +146,43 @@ class StickerManagementViewModel : ViewModel() {
     }
   }
 
+  fun onHideStickerPackRequested(pack: StickerPack) {
+    internalUiState.update {
+      it.copy(userPrompt = StickerManagementPrompt.ConfirmHidePack(pack = pack))
+    }
+  }
+
+  fun onHideStickerPackConfirmed(pack: StickerPack) {
+    internalUiState.update { it.copy(userPrompt = null) }
+    hideStickerPack(pack)
+  }
+
+  fun onHideStickerPackCanceled() {
+    internalUiState.update { it.copy(userPrompt = null) }
+  }
+
+  private fun hideStickerPack(pack: StickerPack) {
+    viewModelScope.launch {
+      StickerManagementRepository.hideStickerPack(packId = pack.id, packKey = pack.key)
+      updatePackDownloadStatus(pack.id, null)
+
+      internalUiState.update {
+        it.copy(
+          actionConfirmation = StickerManagementConfirmation.HiddenPack(pack.id),
+          selectedPackIds = it.selectedPackIds.minus(pack.id)
+        )
+      }
+    }
+  }
+
+  fun unhideStickerPack(packId: StickerPackId) {
+    internalUiState.update { it.copy(actionConfirmation = null) }
+
+    viewModelScope.launch {
+      StickerManagementRepository.unhideStickerPack(packId)
+    }
+  }
+
   fun updatePosition(fromIndex: Int, toIndex: Int) {
     internalUiState.update { it.copy(installedPacks = internalUiState.value.installedPacks.swap(fromIndex, toIndex)) }
   }
@@ -155,7 +193,7 @@ class StickerManagementViewModel : ViewModel() {
     }
   }
 
-  fun toggleSelection(pack: InstalledStickerPack) {
+  fun toggleSelection(pack: StickerPack) {
     internalUiState.update {
       val wasItemSelected = it.selectedPackIds.contains(pack.id)
       val selectedPackIds = if (wasItemSelected) it.selectedPackIds.minus(pack.id) else it.selectedPackIds.plus(pack.id)
@@ -169,12 +207,14 @@ class StickerManagementViewModel : ViewModel() {
 
   fun toggleSelectAll() {
     internalUiState.update {
+      val visiblePackIds = it.filteredInstalledPacks.map { pack -> pack.id }.toSet()
+
       it.copy(
         multiSelectEnabled = true,
-        selectedPackIds = if (it.selectedPackIds.size == it.installedPacks.size) {
-          emptySet()
+        selectedPackIds = if (it.selectedPackIds.containsAll(visiblePackIds)) {
+          it.selectedPackIds.minus(visiblePackIds)
         } else {
-          it.installedPacks.map { pack -> pack.id }.toSet()
+          it.selectedPackIds.plus(visiblePackIds)
         }
       )
     }
@@ -189,6 +229,26 @@ class StickerManagementViewModel : ViewModel() {
     }
   }
 
+  fun setSearchModeEnabled(isEnabled: Boolean) {
+    internalUiState.update {
+      it.copy(
+        searchMode = isEnabled,
+        searchQuery = if (isEnabled) it.searchQuery else ""
+      )
+    }
+  }
+
+  fun onSearchQueryChanged(query: String) {
+    internalUiState.update { it.copy(searchQuery = query) }
+  }
+
+  fun onCopyPack(id: StickerPackId, key: StickerPackKey) {
+    Util.copyToClipboard(AppDependencies.application, StickerUrl.createShareLink(id.value, key.value))
+    internalUiState.update {
+      it.copy(actionConfirmation = StickerManagementConfirmation.CopiedPack)
+    }
+  }
+
   fun onSnackbarDismiss() {
     internalUiState.update {
       it.copy(actionConfirmation = null)
@@ -197,45 +257,47 @@ class StickerManagementViewModel : ViewModel() {
 }
 
 data class StickerManagementUiState(
-  val availableBlessedPacks: List<AvailableStickerPack> = emptyList(),
-  val availableNotBlessedPacks: List<AvailableStickerPack> = emptyList(),
-  val installedPacks: List<InstalledStickerPack> = emptyList(),
+  val blessedPacks: List<StickerPack> = emptyList(),
+  val notBlessedPacks: List<StickerPack> = emptyList(),
+  val installedPacks: List<StickerPack> = emptyList(),
   val multiSelectEnabled: Boolean = false,
   val selectedPackIds: Set<StickerPackId> = emptySet(),
-  val userPrompt: ConfirmRemoveStickerPacksPrompt? = null,
-  val actionConfirmation: StickerManagementConfirmation? = null
-)
+  val userPrompt: StickerManagementPrompt? = null,
+  val actionConfirmation: StickerManagementConfirmation? = null,
+  val searchMode: Boolean = false,
+  val searchQuery: String = ""
+) {
+  val searchActive: Boolean = searchQuery.isNotBlank()
+  val filteredBlessedPacks: List<StickerPack> = blessedPacks.filter { it.record.title.contains(searchQuery.trim(), ignoreCase = true) }
+  val filteredNotBlessedPacks: List<StickerPack> = notBlessedPacks.filter { it.record.title.contains(searchQuery.trim(), ignoreCase = true) }
+  val filteredInstalledPacks: List<StickerPack> = installedPacks.filter { it.record.title.contains(searchQuery.trim(), ignoreCase = true) }
+}
 
-data class ConfirmRemoveStickerPacksPrompt(
-  val numItemsToDelete: Int
-)
+sealed interface StickerManagementPrompt {
+  data class ConfirmRemovePacks(val packIds: Set<StickerPackId>) : StickerManagementPrompt
+  data class ConfirmHidePack(val pack: StickerPack) : StickerManagementPrompt
+}
 
 sealed interface StickerManagementConfirmation {
   data class InstalledPack(val packTitle: String) : StickerManagementConfirmation
   data class UninstalledPack(val packTitle: String) : StickerManagementConfirmation
   data class UninstalledPacks(val numPacksUninstalled: Int) : StickerManagementConfirmation
+  data class HiddenPack(val packId: StickerPackId) : StickerManagementConfirmation
+  data object CopiedPack : StickerManagementConfirmation
 }
 
-data class AvailableStickerPack(
+data class StickerPack(
   val record: StickerPackRecord,
   val isBlessed: Boolean,
   val downloadStatus: DownloadStatus
 ) {
   val id = StickerPackId(record.packId)
   val key = StickerPackKey(record.packKey)
+  val isInstalled = record.isInstalled
 
   sealed class DownloadStatus {
     data object NotDownloaded : DownloadStatus()
     data object InProgress : DownloadStatus()
     data object Downloaded : DownloadStatus()
   }
-}
-
-data class InstalledStickerPack(
-  val record: StickerPackRecord,
-  val isBlessed: Boolean,
-  val sortOrder: Int
-) {
-  val id = StickerPackId(record.packId)
-  val key = StickerPackKey(record.packKey)
 }

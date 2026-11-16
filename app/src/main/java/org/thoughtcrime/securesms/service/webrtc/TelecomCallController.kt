@@ -12,6 +12,7 @@ import androidx.core.telecom.CallEndpointCompat
 import androidx.core.telecom.CallsManager
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCommand
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
@@ -91,8 +91,15 @@ class TelecomCallController(
 
   suspend fun start() {
     val recipient = Recipient.resolved(recipientId)
-    val displayName = if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) recipient.getDisplayName(context) else context.getString(R.string.Recipient_signal_call)
-    val address = Uri.fromParts("sip", recipientId.serialize(), null)
+    val displayContact = SignalStore.settings.messageNotificationsPrivacy.isDisplayContact
+    val displayName = if (displayContact) recipient.getDisplayName(context) else context.getString(R.string.Recipient_signal_call)
+
+    // Handsfree devices reduce the handle to dialable characters, so only an E164 survives to be displayed or phonebook matched.
+    val (address, handleMode) = if (displayContact && recipient.shouldShowE164) {
+      Uri.fromParts("tel", recipient.requireE164(), null) to HandleMode.TEL
+    } else {
+      Uri.fromParts("sip", "signalcall", null) to HandleMode.SIP_OPAQUE
+    }
 
     val direction = if (isOutgoing) CallAttributesCompat.DIRECTION_OUTGOING else CallAttributesCompat.DIRECTION_INCOMING
     val callType = if (isVideoCall) CallAttributesCompat.CALL_TYPE_VIDEO_CALL else CallAttributesCompat.CALL_TYPE_AUDIO_CALL
@@ -104,7 +111,7 @@ class TelecomCallController(
       callType = callType
     )
 
-    Log.i(TAG, "start() recipientId=$recipientId callId=$callId isOutgoing=$isOutgoing isVideo=$isVideoCall")
+    Log.i(TAG, "start() recipientId=$recipientId callId=$callId isOutgoing=$isOutgoing isVideo=$isVideoCall handleMode=${handleMode.logValue}")
 
     callsManager.addCall(
       callAttributes = attributes,
@@ -137,7 +144,7 @@ class TelecomCallController(
       var needToResetAudioRoute = isOutgoing && !isVideoCall
       var initialEndpoint: SignalAudioManager.AudioDevice? = null
 
-      launch {
+      val endpointJob = launch {
         currentCallEndpoint.collect { endpoint ->
           val activeDevice = endpoint.type.toAudioDevice()
           Log.i(TAG, "currentCallEndpoint changed: ${endpoint.name} (type=${endpoint.type}) -> $activeDevice")
@@ -161,14 +168,14 @@ class TelecomCallController(
         }
       }
 
-      launch {
+      val muteJob = launch {
         isMuted.collect { muted ->
           Log.i(TAG, "isMuted changed: $muted for callId=$callId")
           AppDependencies.signalCallManager.setMuteAudio(muted)
         }
       }
 
-      launch {
+      val availableEndpointsJob = launch {
         availableEndpoints.collect { endpoints ->
           cachedEndpoints = endpoints
           val available = endpoints.map { it.type.toAudioDevice() }.toSet()
@@ -211,6 +218,11 @@ class TelecomCallController(
             }
           }
         }
+
+        Log.i(TAG, "Command loop ended, cancelling flow collectors for callId=$callId")
+        endpointJob.cancel()
+        muteJob.cancel()
+        availableEndpointsJob.cancel()
       }
     }
   }
@@ -232,6 +244,9 @@ class TelecomCallController(
 
   private fun onDisconnect(cause: DisconnectCause) {
     Log.i(TAG, "onDisconnect(code=${cause.code}, reason=${cause.reason})")
+    disconnected = true
+    commandChannel.close()
+
     when (cause.code) {
       DisconnectCause.REJECTED -> {
         Log.i(TAG, "Call rejected via system UI")
@@ -276,4 +291,9 @@ private fun Int.toAudioDevice(): SignalAudioManager.AudioDevice {
     CallEndpointCompat.TYPE_STREAMING -> SignalAudioManager.AudioDevice.SPEAKER_PHONE
     else -> SignalAudioManager.AudioDevice.EARPIECE
   }
+}
+
+private enum class HandleMode(val logValue: String) {
+  SIP_OPAQUE("sip-opaque"),
+  TEL("tel")
 }

@@ -32,6 +32,7 @@
         android:id="@+id/conversation_item_body_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clipChildren="false"
         android:layout_marginStart="48dp"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@id/conversation_item_alert"

@@ -125,6 +125,12 @@ class InAppPaymentRedemptionJob private constructor(
       Log.w(TAG, "A permanent failure occurred.")
 
       val inAppPayment = SignalDatabase.inAppPayments.getById(InAppPaymentTable.InAppPaymentId(jobData.inAppPaymentId))
+      val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEEMED
+      if (isRedeemed) {
+        Log.i(TAG, "InAppPayment with ID ${jobData.inAppPaymentId} was already redeemed. Exiting quietly.", true)
+        return
+      }
+
       if (inAppPayment != null && inAppPayment.data.error == null) {
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(

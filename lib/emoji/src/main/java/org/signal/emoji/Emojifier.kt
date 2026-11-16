@@ -34,11 +34,14 @@ import org.signal.emoji.parsing.EmojiParser
  * Applies Signal or System emoji to the given content based on user settings.
  *
  * Text is transformed and passed to content as an annotated string and inline content map.
+ *
+ * @param fontSize The size each inline emoji is drawn at. Should match the font size of the text the content renders.
  */
 @Composable
 fun Emojifier(
   text: String,
   useSystemEmoji: Boolean = LocalInspectionMode.current || EmojiDependencies.preferSystemEmoji,
+  fontSize: TextUnit = LocalTextStyle.current.fontSize,
   content: @Composable (AnnotatedString, Map<String, InlineTextContent>) -> Unit = { annotatedText, inlineContent ->
     Text(
       text = annotatedText,
@@ -52,7 +55,6 @@ fun Emojifier(
   }
 
   val context = LocalContext.current
-  val fontSize = LocalTextStyle.current.fontSize
 
   val foundEmojis: List<EmojiParser.Candidate> = remember(text) {
     EmojiProvider.getCandidates(text)?.list.orEmpty()

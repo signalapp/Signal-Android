@@ -12,22 +12,27 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
-import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Configuration fragment for the internal conversation test fragment.
  */
 class InternalConversationSpringboardFragment : ComposeFragment() {
 
-  private val viewModel: InternalConversationSpringboardViewModel by navGraphViewModels(R.id.app_settings)
+  private val viewModel: InternalConversationSpringboardViewModel by activityViewModels()
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   @Composable
   override fun FragmentContent() {
@@ -35,14 +40,20 @@ class InternalConversationSpringboardFragment : ComposeFragment() {
   }
 
   private fun navigateBack() {
-    findNavController().popBackStack()
+    (appSettingsRouter::onEvent).navigateBack()
   }
 
   private fun launchTestFragment() {
-    findNavController().navigate(
-      InternalConversationSpringboardFragmentDirections
-        .actionInternalConversationSpringboardFragmentToInternalConversationTestFragment()
-    )
+    (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.InternalRoute.ConversationTestFragment)
+  }
+
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.InternalRoute.ConversationTestFragment -> findNavController().safeNavigate(
+        InternalConversationSpringboardFragmentDirections.actionInternalConversationSpringboardFragmentToInternalConversationTestFragment()
+      )
+      else -> error("Unexpected route: ${route.javaClass.name}")
+    }
   }
 }
 

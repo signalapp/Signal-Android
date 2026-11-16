@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +18,6 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.formatHours
 import java.time.LocalTime
 import java.util.Locale
@@ -81,11 +80,27 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
     }
   }
 
+  /**
+   * Keeps access to [uri], the folder the user picked for on-device backups, and makes it the backup location. A null
+   * [uri] means the picker was cancelled.
+   */
+  fun onBackupDirectorySelected(context: Context, uri: Uri?) {
+    if (uri == null) {
+      Log.w(TAG, "Unified backup location selection cancelled or failed")
+      return
+    }
+
+    Log.i(TAG, "Backup location selected: $uri")
+    val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+    context.contentResolver.takePersistableUriPermission(uri, takeFlags)
+    SignalStore.backup.newLocalBackupsDirectory = uri.toString()
+  }
+
   fun refreshSettingsState() {
     val context = AppDependencies.application
     val backupTime = LocalTime.of(SignalStore.settings.backupHour, SignalStore.settings.backupMinute).formatHours(context)
 
-    val userUnregistered = TextSecurePreferences.isUnauthorizedReceived(context) || !SignalStore.account.isRegistered
+    val userUnregistered = SignalStore.account.isUnauthorizedReceived || !SignalStore.account.isRegistered
     val clientDeprecated = SignalStore.misc.isClientDeprecated
     val legacyLocalBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(context)
     val canTurnOn = legacyLocalBackupsEnabled || (!userUnregistered && !clientDeprecated)
@@ -143,7 +158,7 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
 
         SignalStore.backup.newLocalBackupsDirectory = SignalStore.settings.signalBackupDirectory?.toString()
 
-        BackupPassphrase.set(context, null)
+        SignalStore.backup.v1BackupPassphrase = null
         SignalStore.settings.isBackupEnabled = false
         BackupUtil.deleteAllBackups()
       }

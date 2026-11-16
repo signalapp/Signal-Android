@@ -71,6 +71,7 @@ dependencies {
   implementation(libs.rxjava3.rxkotlin)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.libsignal.client)
+  implementation(libs.square.okio)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)

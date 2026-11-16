@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.recipients.ui.findby
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 sealed interface FindByResult {
   data class Success(val recipientId: RecipientId) : FindByResult

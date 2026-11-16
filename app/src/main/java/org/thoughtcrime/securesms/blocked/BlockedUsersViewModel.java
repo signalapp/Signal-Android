@@ -5,9 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.database.RxDatabaseObserver;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.List;
 import java.util.Objects;

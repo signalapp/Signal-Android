@@ -12,9 +12,9 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.subscription.PayPalRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.protos.InAppPaymentSetupJobData
+import org.thoughtcrime.securesms.net.SignalNetwork
 
 class InAppPaymentPayPalRecurringSetupJob private constructor(data: InAppPaymentSetupJobData, parameters: Parameters) : InAppPaymentSetupJob(data, parameters) {
 
@@ -37,7 +37,7 @@ class InAppPaymentPayPalRecurringSetupJob private constructor(data: InAppPayment
     }
   }
 
-  private val payPalRepository = PayPalRepository(AppDependencies.donationsService)
+  private val payPalRepository = PayPalRepository(SignalNetwork.donationsService)
 
   override fun performPreUserAction(inAppPayment: InAppPaymentTable.InAppPayment): RequiredUserAction {
     info("Ensuring the subscriber id is set on the server.")

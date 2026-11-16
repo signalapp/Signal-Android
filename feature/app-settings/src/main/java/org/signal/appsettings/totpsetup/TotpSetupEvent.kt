@@ -19,7 +19,7 @@ sealed interface TotpSetupEvent {
   /** The user tapped the button that copies the setup key. */
   data object CopyKeyClicked : TotpSetupEvent
 
-  /** The fragment reported that no installed app could handle the setup link. */
+  /** The host reported that no installed app could handle the setup link. */
   data object NoTotpAppFound : TotpSetupEvent
 
   /** The user finished the steps and is ready to enter a code. */
@@ -27,4 +27,7 @@ sealed interface TotpSetupEvent {
 
   /** Dismisses whatever is in [TotpSetupState.dialog], which leaves the screen since none of them are recoverable here. */
   data object DialogDismissed : TotpSetupEvent
+
+  /** The snackbar finished showing. */
+  data object SnackbarDismissed : TotpSetupEvent
 }

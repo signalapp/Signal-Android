@@ -16,7 +16,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.annotation.Px
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.signal.core.ui.util.ViewUtil
 import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.floor

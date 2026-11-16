@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.subscription.Subscription

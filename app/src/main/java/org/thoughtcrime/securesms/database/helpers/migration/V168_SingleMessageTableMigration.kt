@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
+import org.signal.storage.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.database.SQLiteDatabase
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 @Suppress("ClassName")
 object V168_SingleMessageTableMigration : SignalDatabaseMigration {
@@ -89,7 +89,7 @@ object V168_SingleMessageTableMigration : SignalDatabaseMigration {
 
     stopwatch.stop(TAG)
 
-    SignalStore.plaintext.smsMigrationIdOffset = nextMmsId
+    PlainTextKeyValueStore.smsMigrationIdOffset = nextMmsId
   }
 
   private fun copySmsToMms(db: SQLiteDatabase, idOffset: Long) {

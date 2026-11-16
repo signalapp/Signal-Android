@@ -26,7 +26,7 @@ import org.signal.uicomponents.recentmediarail.RecentMedia.Availability
 class RecentMediaRailPresenter(
   coroutineScope: CoroutineScope,
   private val loader: Loader
-) : EventDrivenPresenter<RecentMediaRailEvents>(TAG, coroutineScope) {
+) : EventDrivenPresenter<RecentMediaRailEvents>(TAG, coroutineScope, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(RecentMediaRailPresenter::class)

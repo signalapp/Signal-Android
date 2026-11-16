@@ -14,8 +14,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
 import org.signal.core.ui.isSplitPane
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.RestartableSubscription
 import org.thoughtcrime.securesms.main.MainDetailRoute
 
 /**
@@ -29,38 +30,29 @@ import org.thoughtcrime.securesms.main.MainDetailRoute
  * On other screen types, since we are in a multi-pane mode, we can subscribe immediately.
  */
 fun Fragment.listenToEventBusWhileResumed(
-  detailLocation: Flow<MainDetailRoute?>
+  detailLocation: Flow<MainDetailRoute?>,
+  subscribe: () -> EventBus.Subscription
 ) {
+  val subscription = RestartableSubscription(subscribe)
+
   lifecycleScope.launch {
     detailLocation
       .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
       .collectLatest {
         if (!resources.isSplitPane()) {
           when (it) {
-            is MainDetailRoute.Conversation -> unsubscribe()
-            null -> subscribe()
+            is MainDetailRoute.Conversation -> subscription.stop()
+            null -> subscription.start()
             else -> Unit
           }
         } else {
-          subscribe()
+          subscription.start()
         }
       }
   }
 
   lifecycleScope.launch {
     lifecycle.eventFlow.filter { it == Lifecycle.Event.ON_PAUSE }
-      .collectLatest { unsubscribe() }
-  }
-}
-
-private fun Fragment.subscribe() {
-  if (!EventBus.getDefault().isRegistered(this)) {
-    EventBus.getDefault().register(this)
-  }
-}
-
-private fun Fragment.unsubscribe() {
-  if (EventBus.getDefault().isRegistered(this)) {
-    EventBus.getDefault().unregister(this)
+      .collectLatest { subscription.stop() }
   }
 }

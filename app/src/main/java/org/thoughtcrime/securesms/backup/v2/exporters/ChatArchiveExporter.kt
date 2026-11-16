@@ -35,6 +35,9 @@ class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalData
       throw NoSuchElementException()
     }
 
+    val recipientId = cursor.requireLong(ThreadTable.RECIPIENT_ID)
+    val isGroup = recipientId in exportState.groupRecipientIds
+
     val customChatColorsId = ChatColors.Id.forLongValue(cursor.requireLong(RecipientTable.CUSTOM_CHAT_COLORS_ID)).takeIf { it.isValid(exportState) } ?: ChatColors.Id.NotSet
 
     val chatColors: ChatColors? = cursor.requireBlob(RecipientTable.CHAT_COLORS)?.takeUnless { customChatColorsId is ChatColors.Id.NotSet }?.let { serializedChatColors ->
@@ -62,7 +65,7 @@ class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalData
       expireTimerVersion = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION),
       muteUntilMs = cursor.requireLong(RecipientTable.MUTE_UNTIL).takeIf { it > 0 },
       markedUnread = ThreadTable.ReadStatus.deserialize(cursor.requireInt(ThreadTable.READ)) == ThreadTable.ReadStatus.ForcedUnread,
-      dontNotifyForMentionsIfMuted = RecipientTable.NotificationSetting.DO_NOT_NOTIFY.id == cursor.requireInt(RecipientTable.MENTION_SETTING),
+      dontNotifyForMentionsIfMuted = if (isGroup) RecipientTable.NotificationSetting.DO_NOT_NOTIFY.id == cursor.requireInt(RecipientTable.MENTION_SETTING) else false,
       style = ChatStyleConverter.constructRemoteChatStyle(
         db = db,
         chatColors = chatColors,
@@ -71,8 +74,8 @@ class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalData
         backupMode = exportState.backupMode
       ),
       notifyForCallsIfMuted = RecipientTable.NotificationSetting.toBoolean(RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.CALL_NOTIFICATION_SETTING))),
-      notifyForMentionsIfMuted = RecipientTable.NotificationSetting.toBoolean(RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.MENTION_SETTING))),
-      notifyForRepliesIfMuted = RecipientTable.NotificationSetting.toBoolean(RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.REPLY_NOTIFICATION_SETTING))),
+      notifyForMentionsIfMuted = if (isGroup) RecipientTable.NotificationSetting.toBoolean(RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.MENTION_SETTING))) else null,
+      notifyForRepliesIfMuted = if (isGroup) RecipientTable.NotificationSetting.toBoolean(RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.REPLY_NOTIFICATION_SETTING))) else null,
       showUnreadReminders = RecipientTable.NotificationSetting.toBoolean(RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.UNREAD_REMINDER)))
     )
   }

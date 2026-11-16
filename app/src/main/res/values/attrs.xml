@@ -27,9 +27,6 @@
         <attr name="segmentSelectedStrokeColor" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="CustomDefaultPreference">
-        <attr name="custom_pref_toggle" format="string"/>
-    </declare-styleable>
 
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
@@ -228,14 +225,6 @@
         <attr name="revealable_circleColorWithWallpaper" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="MediaKeyboard">
-        <attr name="tabs_gravity" format="enum">
-            <enum name="bottom" value="0" />
-            <enum name="top" value="1" />
-        </attr>
-        <attr name="media_keyboard_theme" format="reference" />
-    </declare-styleable>
-
     <declare-styleable name="ContactFilterView">
         <attr name="searchTextStyle" format="reference" />
         <attr name="showDialpad" format="boolean" />
@@ -300,22 +289,6 @@
         <attr name="ccpv_chat_bubble_count" format="integer" />
     </declare-styleable>
 
-    <declare-styleable name="KeyboardPageSearchView">
-        <attr name="show_always" format="boolean" />
-        <attr name="search_bar_tint" format="color|reference" />
-        <attr name="search_icon_tint" format="color|reference" />
-        <attr name="search_hint" format="string|reference" />
-        <attr name="click_only" format="boolean" />
-    </declare-styleable>
-
-    <declare-styleable name="TopShadowBehavior">
-        <attr name="app_bar_layout_id" format="reference" />
-    </declare-styleable>
-
-    <declare-styleable name="BottomShadowBehavior">
-        <attr name="bottom_bar_id" format="reference" />
-    </declare-styleable>
-
     <declare-styleable name="ButtonStripItemView">
         <attr name="bsiv_icon" format="reference" />
         <attr name="bsiv_label" format="string" />
@@ -345,10 +318,6 @@
 
     <declare-styleable name="CircularProgressMaterialButton">
         <attr name="circularProgressMaterialButton__label" format="string" />
-    </declare-styleable>
-    <declare-styleable name="AnimatedInOutImageButton">
-        <attr name="rotationWhenVisible" format="float" />
-        <attr name="rotationWhenHidden" format="float" />
     </declare-styleable>
 
     <declare-styleable name="InsetAwareConstraintLayout">

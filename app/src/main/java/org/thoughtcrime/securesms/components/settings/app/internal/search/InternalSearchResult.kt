@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.components.settings.app.internal.search
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 data class InternalSearchResult(
   val name: String,

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.ServiceMessageId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -41,7 +40,7 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
       Log.i(TAG, "There are ${earlyIds.size} items in the early message cache with matches.")
 
       for (id: ServiceMessageId in earlyIds) {
-        val earlyEntries: List<EarlyMessageCacheEntry>? = AppDependencies.earlyMessageCache.retrieve(id.sender, id.sentTimestamp).orNull()
+        val earlyEntries: List<EarlyMessageCacheEntry>? = AppDependencies.earlyMessageCache.retrieve(id.sender, id.sentTimestamp)
 
         if (earlyEntries != null) {
           for (entry in earlyEntries) {

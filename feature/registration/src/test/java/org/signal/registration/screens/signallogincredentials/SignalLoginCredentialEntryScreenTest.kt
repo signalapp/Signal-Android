@@ -9,6 +9,7 @@ import android.app.Application
 import androidx.compose.ui.autofill.ContentType
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -38,6 +39,7 @@ import org.signal.passwordmanager.UsernamePasswordCredential
 import org.signal.registration.screens.aepentry.AepInput
 import org.signal.registration.screens.shared.AccountIdError
 import org.signal.registration.test.TestTags
+import org.signal.signallogin.SignalLoginTestTags
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -62,6 +64,13 @@ class SignalLoginCredentialEntryScreenTest {
   }
 
   @Test
+  fun `when the screen is displayed, the title is labelled beta`() {
+    setContent(SignalLoginCredentialEntryState())
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_TAG).assertIsDisplayed()
+  }
+
+  @Test
   fun `when an empty field is tapped, the password manager is prompted and the picked credential is emitted`() {
     stubPasswordManager()
     setContent(SignalLoginCredentialEntryState())
@@ -76,6 +85,28 @@ class SignalLoginCredentialEntryScreenTest {
   fun `when a field is tapped with a login already entered, the password manager is not prompted`() {
     stubPasswordManager()
     setContent(completeState())
+
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ACCOUNT_ID_FIELD).performClick()
+    composeTestRule.waitForIdle()
+
+    coVerify(exactly = 0) { SignalCredentialManager.getCredential(any()) }
+  }
+
+  @Test
+  fun `when a field is tapped with only a prefilled account ID, the password manager is still prompted`() {
+    stubPasswordManager()
+    setContent(SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID, isAccountIdPrefilled = true))
+
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ACCOUNT_ID_FIELD).performClick()
+    composeTestRule.waitForIdle()
+
+    assertThat(events).contains(SignalLoginCredentialEntryScreenEvents.PasswordManagerCredentialSelected(accountId = VALID_ACCOUNT_ID, recoveryKey = VALID_RECOVERY_KEY))
+  }
+
+  @Test
+  fun `when a field is tapped with a user-typed account ID, the password manager is not prompted`() {
+    stubPasswordManager()
+    setContent(SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID))
 
     composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ACCOUNT_ID_FIELD).performClick()
     composeTestRule.waitForIdle()
@@ -131,6 +162,16 @@ class SignalLoginCredentialEntryScreenTest {
     composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_NEED_HELP_BUTTON).performClick()
 
     assertThat(events).contains(SignalLoginCredentialEntryScreenEvents.NeedHelpClicked)
+  }
+
+  @Test
+  fun `in confirm-saved mode, Show login info again takes the place of Need help`() {
+    setContent(SignalLoginCredentialEntryState(mode = SignalLoginCredentialEntryState.Mode.ConfirmSaved))
+
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_NEED_HELP_BUTTON).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_SHOW_LOGIN_INFO_AGAIN_BUTTON).performClick()
+
+    assertThat(events).contains(SignalLoginCredentialEntryScreenEvents.ShowLoginInfoAgainClicked)
   }
 
   @Test

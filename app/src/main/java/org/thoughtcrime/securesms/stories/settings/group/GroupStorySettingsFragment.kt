@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
@@ -15,6 +16,7 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
@@ -28,6 +30,7 @@ import org.signal.core.ui.R as CoreUiR
 class GroupStorySettingsFragment : DSLSettingsFragment(menuId = R.menu.story_group_menu) {
 
   private val lifecycleDisposable = LifecycleDisposable()
+  private val appSettingsRouter by appSettingsRouter(onNavigateBack = { findNavController().popBackStack() })
 
   private val viewModel: GroupStorySettingsViewModel by viewModels(factoryProducer = {
     GroupStorySettingsViewModel.Factory(GroupStorySettingsFragmentArgs.fromBundle(requireArguments()).groupId)
@@ -66,7 +69,7 @@ class GroupStorySettingsFragment : DSLSettingsFragment(menuId = R.menu.story_gro
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     viewModel.state.observe(viewLifecycleOwner) { state ->
       if (state.removed) {
-        findNavController().popBackStack()
+        (appSettingsRouter::onEvent).navigateBack()
         return@observe
       }
 

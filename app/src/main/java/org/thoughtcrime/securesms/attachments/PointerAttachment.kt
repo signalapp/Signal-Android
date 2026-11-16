@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import org.signal.blurhash.BlurHash
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
@@ -41,7 +42,8 @@ class PointerAttachment : Attachment {
     blurHash: BlurHash?,
     uuid: UUID?,
     quote: Boolean,
-    quoteTargetContentType: String? = null
+    quoteTargetContentType: String? = null,
+    audioHash: AudioHash? = null
   ) : super(
     contentType = contentType,
     transferState = transferState,
@@ -65,7 +67,7 @@ class PointerAttachment : Attachment {
     caption = caption,
     stickerLocator = stickerLocator,
     blurHash = blurHash,
-    audioHash = null,
+    audioHash = audioHash,
     transformProperties = null,
     uuid = uuid
   )
@@ -137,6 +139,7 @@ class PointerAttachment : Attachment {
           caption = pointer.get().asPointer().caption.orElse(null),
           stickerLocator = stickerLocator,
           blurHash = BlurHash.parseOrNull(pointer.get().asPointer().blurHash.orElse(null)),
+          audioHash = AudioHash.fromSenderProvided(pointer.get().contentType, pointer.get().asPointer().audioWaveform, pointer.get().asPointer().audioDurationSeconds),
           uuid = pointer.get().asPointer().uuid,
           quote = quote,
           quoteTargetContentType = quoteTargetContentType

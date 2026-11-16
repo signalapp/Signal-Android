@@ -17,6 +17,10 @@ internal fun NavBackStack<NavKey>.goToSend() {
   goToSingle(MediaSendRoute.Send)
 }
 
+internal fun NavBackStack<NavKey>.goToStickerSelect() {
+  goToSingle(MediaSendRoute.StickerSelect)
+}
+
 internal fun NavBackStack<NavKey>.goToFolders() {
   goToSingle(MediaSendRoute.Select.Folders)
 }

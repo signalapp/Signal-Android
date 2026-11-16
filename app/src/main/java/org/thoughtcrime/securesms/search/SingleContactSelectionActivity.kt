@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.search
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.ContactSelectionActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ChatType
-import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.Optional
 import java.util.function.Consumer
 

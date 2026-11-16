@@ -24,6 +24,16 @@ message RegistrationData {
   ProvisioningData provisioningData = 10;
   string flowStateJson = 11;
   int64 lastUpdatedMillis = 12;
+  SignalLoginPurchase signalLoginPurchase = 13;
+}
+
+// A Signal Login purchase that has been paid for with Google Play but not yet redeemed into an account.
+message SignalLoginPurchase {
+  // The Google Play purchase token, which the service verifies the purchase with.
+  string purchaseToken = 1;
+  // The zkgroup receipt credential request context. The service rejects a retry that uses a different one, so this
+  // must survive until the purchase is redeemed.
+  bytes receiptCredentialRequestContext = 2;
 }
 
 message AccountData {

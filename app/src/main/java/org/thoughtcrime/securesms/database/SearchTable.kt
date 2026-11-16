@@ -9,10 +9,10 @@ import android.text.TextUtils
 import androidx.sqlite.db.SupportSQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.intellij.lang.annotations.Language
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider
 import org.thoughtcrime.securesms.jobs.RebuildMessageSearchIndexJob
@@ -323,7 +323,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
    * Drops all tables and recreates them.
    */
   @JvmOverloads
-  fun fullyResetTables(db: SupportSQLiteDatabase = writableDatabase.sqlCipherDatabase, useTransaction: Boolean = true) {
+  fun fullyResetTables(db: SupportSQLiteDatabase = writableDatabase, useTransaction: Boolean = true) {
     if (useTransaction) {
       db.beginTransaction()
     }

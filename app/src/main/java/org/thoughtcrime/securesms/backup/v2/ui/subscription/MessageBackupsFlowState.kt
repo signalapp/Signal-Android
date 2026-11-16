@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import androidx.compose.runtime.Immutable
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.ServiceId
 import org.signal.core.util.billing.BillingResponseCode
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
@@ -24,6 +25,8 @@ data class MessageBackupsFlowState(
   val startScreen: MessageBackupsStage,
   val stage: MessageBackupsStage = startScreen,
   val accountEntropyPool: AccountEntropyPool = SignalStore.account.accountEntropyPool,
+  val aci: ServiceId.ACI = SignalStore.account.requireAci(),
+  val isPhoneNumberless: Boolean = false,
   val failure: Throwable? = null,
   val paymentReadyState: PaymentReadyState = PaymentReadyState.NOT_READY,
   val backupKeySaveState: BackupKeySaveState? = null

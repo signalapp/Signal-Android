@@ -1,0 +1,58 @@
+package org.signal.uicomponents.zooming;
+
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+
+import androidx.annotation.Nullable;
+
+import com.davemorrissey.labs.subscaleview.decoder.ImageDecoder;
+import com.davemorrissey.labs.subscaleview.decoder.SkiaImageDecoder;
+
+import org.signal.glide.SignalGlideDependencies;
+import org.signal.glide.common.io.InputStreamFactory;
+
+import java.io.InputStream;
+
+public class AttachmentBitmapDecoder implements ImageDecoder{
+
+  private final @Nullable GainmapReporter reporter;
+
+  public AttachmentBitmapDecoder(@Nullable GainmapReporter reporter) {
+    this.reporter = reporter;
+  }
+
+  @Override
+  public Bitmap decode(Context context, Uri uri) throws Exception {
+    if (!SignalGlideDependencies.isLocalUri(uri)) {
+      return new SkiaImageDecoder().decode(context, uri);
+    }
+
+    InputStream inputStream = InputStreamFactory.build(uri).create();
+
+    try {
+      BitmapFactory.Options options = new BitmapFactory.Options();
+      options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+
+      Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
+
+      if (bitmap == null) {
+        throw new RuntimeException("Skia image region decoder returned null bitmap - image format may not be supported");
+      }
+
+      // Both decoders report: initialiseBaseLayer() routes any image that fits at native resolution here
+      // rather than to AttachmentRegionDecoder.
+      if (reporter != null && UltraHdrSupport.hasGainmap(bitmap)) {
+        reporter.onGainmapPresent();
+      }
+
+      return bitmap;
+    } finally {
+      if (inputStream != null) inputStream.close();
+    }
+  }
+
+
+}

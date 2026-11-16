@@ -58,6 +58,9 @@ class SelectedElementGuideRenderer : Renderer {
   private fun performRender(rendererContext: RendererContext) {
     rendererContext.save()
 
+    guidePaint.color = rendererContext.resolveDecorationColor(Color.WHITE)
+    circlePaint.color = rendererContext.resolveDecorationColor(Color.WHITE)
+
     rendererContext.canvasMatrix.setToIdentity()
 
     path.reset()

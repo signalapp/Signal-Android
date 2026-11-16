@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.groups.v2.processing
 
 import assertk.assertThat
+import assertk.assertions.contains
 import assertk.assertions.containsOnly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
@@ -103,6 +104,53 @@ class GroupStatePatcherTest {
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log1))
     assertThat(advanceGroupStateResult.remainingRemoteGroupChanges).isEmpty()
     assertThat(advanceGroupStateResult.updatedGroupState).isEqualTo(log1.group)
+  }
+
+  @Test
+  fun known_group_history_starting_after_local_revision_does_not_warn_about_local_revision() {
+    val logRecorder = LogRecorder()
+    Log.initialize(logRecorder)
+
+    val currentState = state(5)
+    val log6 = serverLogEntry(6)
+
+    val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
+        previousGroupState = currentState,
+        serverHistory = listOf(log6),
+        groupSendEndorsementsResponse = null
+      ),
+      /* maximumRevisionToApply = */
+      10
+    )
+
+    assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log6))
+    assertThat(advanceGroupStateResult.updatedGroupState).isEqualTo(log6.group)
+    assertThat(logRecorder.warnings.map { it.message }).isEmpty()
+  }
+
+  @Test
+  fun known_group_history_with_gap_after_local_revision_still_warns_about_missing_revision() {
+    val logRecorder = LogRecorder()
+    Log.initialize(logRecorder)
+
+    val currentState = state(5)
+    val log7 = serverLogEntry(7)
+
+    val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
+        previousGroupState = currentState,
+        serverHistory = listOf(log7),
+        groupSendEndorsementsResponse = null
+      ),
+      /* maximumRevisionToApply = */
+      10
+    )
+
+    assertThat(advanceGroupStateResult.updatedGroupState).isEqualTo(log7.group)
+    assertThat(logRecorder.warnings.map { it.message }).contains("Could not find group log on server V6")
   }
 
   @Test

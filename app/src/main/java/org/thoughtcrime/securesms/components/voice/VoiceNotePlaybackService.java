@@ -23,6 +23,7 @@ import androidx.media3.common.util.UnstableApi;
 import androidx.media3.session.MediaSession;
 import androidx.media3.session.MediaSessionService;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.core.models.database.AttachmentId;
@@ -35,7 +36,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 import org.thoughtcrime.securesms.mms.PartUriParser;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;

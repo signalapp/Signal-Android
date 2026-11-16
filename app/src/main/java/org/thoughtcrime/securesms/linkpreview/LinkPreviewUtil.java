@@ -17,6 +17,7 @@ import org.whispersystems.signalservice.api.util.OptionalUtil;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -77,7 +78,7 @@ public final class LinkPreviewUtil {
         Matcher contentMatcher = OPEN_GRAPH_CONTENT_PATTERN.matcher(tag);
         if (contentMatcher.find() && contentMatcher.groupCount() > 0) {
           String content = fromDoubleEncoded(contentMatcher.group(1));
-          openGraphTags.put(property.toLowerCase(), content);
+          openGraphTags.put(property.toLowerCase(Locale.ROOT), content);
         }
       }
     }
@@ -92,7 +93,7 @@ public final class LinkPreviewUtil {
         Matcher contentMatcher = OPEN_GRAPH_CONTENT_PATTERN.matcher(tag);
         if (contentMatcher.find() && contentMatcher.groupCount() > 0) {
           String content = fromDoubleEncoded(contentMatcher.group(1));
-          openGraphTags.put(property.toLowerCase(), content);
+          openGraphTags.put(property.toLowerCase(Locale.ROOT), content);
         }
       }
     }

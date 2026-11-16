@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.calls.CallsListPane
 import org.thoughtcrime.securesms.calls.registerCallsTabDetailRoutes
 import org.thoughtcrime.securesms.chats.ArchiveListPane
 import org.thoughtcrime.securesms.chats.ChatsListPane
-import org.thoughtcrime.securesms.chats.ConversationTransitionState
 import org.thoughtcrime.securesms.chats.registerChatsTabDetailRoutes
 import org.thoughtcrime.securesms.stories.StoriesListPane
 import org.thoughtcrime.securesms.stories.registerStoriesTabDetailRoutes
@@ -34,12 +33,11 @@ import org.thoughtcrime.securesms.stories.registerStoriesTabDetailRoutes
 @Composable
 fun rememberDecoratedDetailEntries(
   mainNavigationViewModel: MainNavigationViewModel,
-  convoTransitionState: ConversationTransitionState,
   isSplitPane: Boolean
 ): List<NavEntry<NavKey>> {
   return rememberCurrentDecoratedNavEntries(
     navigator = mainNavigationViewModel.navigator,
-    entryProvider = rememberMainNavEntryProvider(convoTransitionState, isSplitPane)
+    entryProvider = rememberMainNavEntryProvider(isSplitPane)
   )
 }
 
@@ -48,14 +46,11 @@ fun rememberDecoratedDetailEntries(
  * screens for different tabs.
  */
 @Composable
-private fun rememberMainNavEntryProvider(
-  convoTransitionState: ConversationTransitionState,
-  isSplitPane: Boolean
-): (NavKey) -> NavEntry<NavKey> {
-  return remember(convoTransitionState, isSplitPane) {
+private fun rememberMainNavEntryProvider(isSplitPane: Boolean): (NavKey) -> NavEntry<NavKey> {
+  return remember(isSplitPane) {
     entryProvider {
       registerMainScreenRoutes()
-      registerChatsTabDetailRoutes(convoTransitionState)
+      registerChatsTabDetailRoutes()
       registerCallsTabDetailRoutes(isSplitPane)
       registerStoriesTabDetailRoutes()
     }

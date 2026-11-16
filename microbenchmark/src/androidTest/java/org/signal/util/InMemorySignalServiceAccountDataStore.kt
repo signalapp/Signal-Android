@@ -198,12 +198,14 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
     // Called, but not needed
   }
 
+  override fun setMultiDevice(isMultiDevice: Boolean) = Unit
+
   override fun isMultiDevice(): Boolean {
     return false
   }
 
   private fun SessionRecord.isValid(): Boolean {
-    return this.hasSenderChain(0.0)
+    return this.hasSenderChain()
   }
 
   private data class SenderKeyLocator(val address: SignalProtocolAddress, val distributionId: UUID)

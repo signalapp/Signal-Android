@@ -7,6 +7,7 @@ import org.signal.benchmark.setup.Generator
 import org.signal.benchmark.setup.Harness
 import org.signal.benchmark.setup.OtherClient
 import org.signal.benchmark.setup.TestUsers
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.thoughtcrime.securesms.IncomingMessageObserverInstrumentationApplicationContext
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.MarkerJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.websocket.BenchmarkWebSocketConnection
 import java.util.concurrent.CopyOnWriteArraySet

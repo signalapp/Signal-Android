@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
@@ -191,7 +192,7 @@ private fun CompleteIcon(
 ) {
   Icon(
     imageVector = state.icon,
-    tint = MaterialTheme.colorScheme.onSurface,
+    tint = state.tint,
     contentDescription = state.iconContentDesc,
     modifier = modifier.padding(12.dp * scale)
   )
@@ -220,7 +221,8 @@ sealed interface TransferProgressState {
 
   data class Complete(
     val icon: ImageVector,
-    val iconContentDesc: String
+    val iconContentDesc: String,
+    val tint: Color
   ) : TransferProgressState
 }
 
@@ -300,7 +302,8 @@ private fun TransferProgressIndicatorCompletePreview() {
       TransferProgressIndicator(
         state = TransferProgressState.Complete(
           icon = ImageVector.vectorResource(R.drawable.symbol_check_white_24),
-          iconContentDesc = ""
+          iconContentDesc = "",
+          tint = MaterialTheme.colorScheme.onSurface
         )
       )
     }

@@ -6,9 +6,6 @@
 package org.thoughtcrime.securesms.contactshare.screens.editname
 
 sealed interface EditContactNameEvent {
-  /** Seeds the editor with the name as it currently stands. */
-  data class Initialize(val parts: ContactNameParts) : EditContactNameEvent
-
   data class PrefixChanged(val value: String) : EditContactNameEvent {
     override fun toString(): String = "PrefixChanged(hasValue=${value.isNotBlank()})"
   }

@@ -7,8 +7,6 @@ package org.signal.registration.screens.devicetransfer.progress
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -20,10 +18,9 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
 import org.signal.devicetransfer.DeviceToDeviceTransferService
 import org.signal.devicetransfer.NewDeviceRestoreStatus
@@ -37,21 +34,15 @@ class DeviceTransferProgressViewModel(
   private val context: Context,
   private val progressEvents: Flow<NewDeviceRestoreStatus>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<DeviceTransferProgressScreenEvents>(TAG) {
+) : EventDrivenViewModel<DeviceTransferProgressScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DeviceTransferProgressViewModel::class)
 
     /** Cold Flow over [NewDeviceRestoreStatus] EventBus events. */
     fun restoreStatusFlow(): Flow<NewDeviceRestoreStatus> = callbackFlow {
-      val subscriber = object {
-        @Subscribe(threadMode = ThreadMode.MAIN)
-        fun onEventMainThread(event: NewDeviceRestoreStatus) {
-          trySend(event)
-        }
-      }
-      EventBus.getDefault().register(subscriber)
-      awaitClose { EventBus.getDefault().unregister(subscriber) }
+      val subscription = EventBus.default.subscribe<NewDeviceRestoreStatus>(threadMode = ThreadMode.MAIN) { trySend(it) }
+      awaitClose { subscription.unsubscribe() }
     }.flowOn(Dispatchers.Main.immediate)
   }
 
@@ -131,17 +122,6 @@ class DeviceTransferProgressViewModel(
 
   private fun stopService() {
     DeviceToDeviceTransferService.stop(context)
-    EventBus.getDefault().removeStickyEvent(TransferStatus::class.java)
-  }
-
-  class Factory(
-    private val context: Context,
-    private val progressEvents: Flow<NewDeviceRestoreStatus>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return DeviceTransferProgressViewModel(context, progressEvents, parentEventEmitter) as T
-    }
+    EventBus.default.removeStickyEvent<TransferStatus>()
   }
 }

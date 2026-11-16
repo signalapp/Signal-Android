@@ -8,11 +8,11 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.Util;
 import org.signal.mediasend.MediaConstraints;
-import org.signal.mediasend.SentMediaQuality;
+import org.signal.core.models.media.SentMediaQuality;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.video.TranscodingConfig;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 

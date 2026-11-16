@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.WriteWith
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.parcelers.NullableCharSequenceParceler
 
 /**
@@ -92,10 +93,6 @@ class MediaSendFlowActivityContract(private val clazz: Class<out Activity>) : Ac
      * Whether the flow was entered to scan a quick restore QR code, which shows an explanatory sheet.
      */
     val isForQuickRestore: Boolean = false,
-    /**
-     * Maximum number of media items that can be selected.
-     */
-    val maxSelection: Int = 32,
     /**
      * Send type identifier (app-layer enum ordinal).
      */

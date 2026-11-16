@@ -9,6 +9,7 @@ import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
+import org.signal.storage.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.database.MessageTable
@@ -405,8 +406,8 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     val potentialNoteUrls = mutableListOf<String>()
 
-    if (SignalStore.settings.language != "zz") {
-      potentialNoteUrls += "$this/${SignalStore.settings.language}.json"
+    if (PlainTextKeyValueStore.language != "zz") {
+      potentialNoteUrls += "$this/${PlainTextKeyValueStore.language}.json"
     }
 
     for (index in 0 until localeList.size()) {

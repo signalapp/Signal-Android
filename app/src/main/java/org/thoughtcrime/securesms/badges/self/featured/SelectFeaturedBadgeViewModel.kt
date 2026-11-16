@@ -1,73 +1,80 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.badges.self.featured
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.subjects.PublishSubject
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.filterNot
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx3.asFlow
+import org.signal.appsettings.badges.SelectFeaturedBadgeEvent
+import org.signal.appsettings.badges.SelectFeaturedBadgeState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.badges.BadgeRepository
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.livedata.Store
 
-private val TAG = Log.tag(SelectFeaturedBadgeViewModel::class.java)
+/**
+ * Drives choosing which of the user's badges is featured on their profile, and saving that choice.
+ */
+class SelectFeaturedBadgeViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<SelectFeaturedBadgeEvent>(TAG) {
 
-class SelectFeaturedBadgeViewModel(private val repository: BadgeRepository) : ViewModel() {
+  companion object {
+    private val TAG = Log.tag(SelectFeaturedBadgeViewModel::class)
+  }
 
-  private val store = Store(SelectFeaturedBadgeState())
-  private val eventSubject = PublishSubject.create<SelectFeaturedBadgeEvent>()
-
-  val state: LiveData<SelectFeaturedBadgeState> = store.stateLiveData
-  val events: Observable<SelectFeaturedBadgeEvent> = eventSubject.observeOn(AndroidSchedulers.mainThread())
-
-  private val disposables = CompositeDisposable()
+  private val _state = MutableStateFlow(SelectFeaturedBadgeState())
+  val state: StateFlow<SelectFeaturedBadgeState> = _state.asStateFlow()
 
   init {
-    store.update(Recipient.live(Recipient.self().id).liveDataResolved) { recipient, state ->
-      val unexpiredBadges = recipient.badges.filterNot { it.isExpired() }
-      state.copy(
-        stage = if (state.stage == SelectFeaturedBadgeState.Stage.INIT) SelectFeaturedBadgeState.Stage.READY else state.stage,
-        selectedBadge = unexpiredBadges.firstOrNull(),
-        allUnlockedBadges = unexpiredBadges
-      )
+    viewModelScope.launch {
+      Recipient.observable(Recipient.self().id).asFlow().filterNot { it.isResolving }.collect { recipient ->
+        _state.update {
+          val unexpiredBadges = recipient.badges.filterNot { badge -> badge.isExpired() }
+          it.copy(
+            stage = if (it.stage == SelectFeaturedBadgeState.Stage.INIT) SelectFeaturedBadgeState.Stage.READY else it.stage,
+            selectedBadge = unexpiredBadges.firstOrNull(),
+            badges = unexpiredBadges
+          )
+        }
+      }
     }
   }
 
-  fun setSelectedBadge(badge: Badge) {
-    store.update { it.copy(selectedBadge = badge) }
+  override suspend fun processEvent(event: SelectFeaturedBadgeEvent) {
+    when (event) {
+      SelectFeaturedBadgeEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      is SelectFeaturedBadgeEvent.BadgeClicked -> _state.update { it.copy(selectedBadge = event.badge) }
+      SelectFeaturedBadgeEvent.SaveClicked -> save()
+      SelectFeaturedBadgeEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = SelectFeaturedBadgeState.Snackbar.None) }
+    }
   }
 
-  fun save() {
-    val snapshot = store.state
-    if (snapshot.selectedBadge == null) {
-      eventSubject.onNext(SelectFeaturedBadgeEvent.NO_BADGE_SELECTED)
+  private suspend fun save() {
+    val badge = _state.value.selectedBadge
+    if (!_state.value.canSave || badge == null) {
       return
     }
 
-    store.update { it.copy(stage = SelectFeaturedBadgeState.Stage.SAVING) }
-    disposables += repository.setFeaturedBadge(snapshot.selectedBadge).subscribeBy(
-      onComplete = {
-        eventSubject.onNext(SelectFeaturedBadgeEvent.SAVE_SUCCESSFUL)
-      },
-      onError = { error ->
-        Log.e(TAG, "Failed to update profile.", error)
-        eventSubject.onNext(SelectFeaturedBadgeEvent.FAILED_TO_UPDATE_PROFILE)
-      }
-    )
-  }
+    _state.update { it.copy(stage = SelectFeaturedBadgeState.Stage.SAVING) }
 
-  override fun onCleared() {
-    disposables.clear()
-  }
-
-  class Factory(private val badgeRepository: BadgeRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(SelectFeaturedBadgeViewModel(badgeRepository)))
+    val result = BadgeRepository.setFeaturedBadge(badge)
+    if (result is NetworkResult.Success) {
+      parentEventEmitter.navigateBack()
+    } else {
+      Log.e(TAG, "Failed to update profile.", result.getCause())
+      _state.update { it.copy(stage = SelectFeaturedBadgeState.Stage.READY, snackbar = SelectFeaturedBadgeState.Snackbar.FailedToUpdateProfile) }
     }
   }
 }

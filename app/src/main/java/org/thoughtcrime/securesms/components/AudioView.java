@@ -29,9 +29,9 @@ import com.airbnb.lottie.model.KeyPath;
 import com.airbnb.lottie.value.LottieValueCallback;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.RestartableSubscription;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -72,6 +72,7 @@ public final class AudioView extends FrameLayout {
             private final boolean             autoRewind;
 
   @Nullable private final TextView duration;
+  @Nullable private final TextView fileName;
 
   @ColorInt private final int waveFormPlayedBarsColor;
   @ColorInt private final int waveFormUnplayedBarsColor;
@@ -88,6 +89,8 @@ public final class AudioView extends FrameLayout {
 
   private Disposable disposable         = Disposable.disposed();
   private Disposable awaitingDisposable = Disposable.disposed();
+
+  private final RestartableSubscription progressSubscription = new RestartableSubscription(() -> EventBus.getDefault().subscribeSticky(PartProgressEvent.class, ThreadMode.MAIN, this::onPartProgress));
 
   private final Observer<VoiceNotePlaybackState> playbackStateObserver = this::onPlaybackState;
 
@@ -133,6 +136,7 @@ public final class AudioView extends FrameLayout {
       this.circleProgress    = findViewById(R.id.circle_progress);
       this.seekBar           = findViewById(R.id.seek);
       this.duration          = findViewById(R.id.duration);
+      this.fileName          = findViewById(R.id.file_name);
 
       lottieDirection = REVERSE;
       this.playPauseButton.setOnClickListener(new PlayPauseClickedListener());
@@ -161,7 +165,7 @@ public final class AudioView extends FrameLayout {
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
+    progressSubscription.start();
 
     awaitingDisposable = AttachmentBackfill.awaitingChanges()
                                            .observeOn(AndroidSchedulers.mainThread())
@@ -173,7 +177,7 @@ public final class AudioView extends FrameLayout {
   @Override
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
-    EventBus.getDefault().unregister(this);
+    progressSubscription.stop();
     disposable.dispose();
     awaitingDisposable.dispose();
   }
@@ -196,6 +200,16 @@ public final class AudioView extends FrameLayout {
 
     if (duration != null) {
       duration.setVisibility(View.VISIBLE);
+    }
+
+    if (fileName != null) {
+      String name = audio.asAttachment().voiceNote ? null : audio.getFileName().orElse(null);
+      if (name != null && !name.isBlank()) {
+        fileName.setText(name);
+        fileName.setVisibility(View.VISIBLE);
+      } else {
+        fileName.setVisibility(View.GONE);
+      }
     }
 
     if (seekBar instanceof WaveFormSeekBarView) {
@@ -431,6 +445,10 @@ public final class AudioView extends FrameLayout {
       this.duration.setTextColor(foregroundTint);
     }
 
+    if (this.fileName != null) {
+      this.fileName.setTextColor(foregroundTint);
+    }
+
     if (this.seekBar.getProgressDrawable() != null) {
       this.seekBar.getProgressDrawable().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
     }
@@ -584,8 +602,7 @@ public final class AudioView extends FrameLayout {
     }
   }
 
-  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-  public void onEventAsync(final PartProgressEvent event) {
+  private void onPartProgress(final PartProgressEvent event) {
     if (audioSlide != null && circleProgress != null && event.attachment.equals(audioSlide.asAttachment())) {
       circleProgress.setInstantProgress(((float) event.progress) / event.total);
     }

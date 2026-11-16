@@ -1,24 +1,21 @@
 package org.thoughtcrime.securesms.jobs
 
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
-import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RecipientRecord
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
-import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
-import java.io.IOException
+import org.thoughtcrime.securesms.util.OutgoingContent
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.util.concurrent.TimeUnit
 
-class MultiDeviceBlockedUpdateJob private constructor(parameters: Parameters) : BaseJob(parameters) {
+class MultiDeviceBlockedUpdateJob private constructor(parameters: Parameters) : CoroutineJob(parameters) {
   companion object {
     const val KEY: String = "MultiDeviceBlockedUpdateJob"
 
@@ -39,32 +36,44 @@ class MultiDeviceBlockedUpdateJob private constructor(parameters: Parameters) : 
 
   override fun getFactoryKey(): String = KEY
 
-  @Throws(IOException::class, UntrustedIdentityException::class)
-  public override fun onRun() {
+  override suspend fun doRun(): Result {
     if (!Recipient.self().isRegistered) {
-      throw NotPushRegisteredException()
+      Log.w(TAG, "Not registered, aborting...")
+      return Result.failure()
     }
 
     if (!SignalStore.account.isMultiDevice) {
       Log.i(TAG, "Not multi device, aborting...")
-      return
+      return Result.success()
     }
 
     val blocked: List<RecipientRecord> = SignalDatabase.recipients.getBlocked()
-    val blockedGroups = blocked.mapNotNull { record -> record.groupId?.decodedId?.let { BlockedListMessage.Group(it, record.blockedAt) } }
-    val blockedIndividuals = blocked
-      .filter { it.aci != null || it.e164 != null }
-      .map { BlockedListMessage.Individual(it.aci, it.e164, it.blockedAt) }
+    val blockedGroups = blocked.mapNotNull { record -> record.groupId?.decodedId?.let { record to it.toByteString() } }
+    val blockedAcis = blocked.mapNotNull { record -> record.aci?.let { record to it.toByteString() } }
+    val blockedE164s = blocked.mapNotNull { record -> record.e164?.let { record to it } }
 
-    AppDependencies.signalServiceMessageSender.sendSyncMessage(
-      SignalServiceSyncMessage.forBlocked(BlockedListMessage(blockedIndividuals, blockedGroups))
+    val blockedMessage = SyncMessage.Blocked(
+      acisBinary = blockedAcis.map { (_, aci) -> aci },
+      numbers = blockedE164s.map { (_, e164) -> e164 },
+      groupIds = blockedGroups.map { (_, groupId) -> groupId },
+      blockedE164s = blockedE164s.map { (record, e164) -> SyncMessage.Blocked.BlockedE164(e164 = e164, timestamp = record.blockedAt) },
+      blockedAcis = blockedAcis.map { (record, aci) -> SyncMessage.Blocked.BlockedAci(aciBinary = aci, timestamp = record.blockedAt) },
+      blockedGroups = blockedGroups.map { (record, groupId) -> SyncMessage.Blocked.BlockedGroup(groupId = groupId, timestamp = record.blockedAt) }
     )
-  }
 
-  public override fun onShouldRetry(exception: Exception): Boolean {
-    if (exception is ServerRejectedException) return false
-    if (exception is PushNetworkException) return true
-    return false
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncBlocked(blockedMessage),
+      urgent = false,
+      onEncrypted = null
+    )
+
+    return result.fold(
+      ifRight = { Result.success() },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "blocked list sync", defaultBackoff())
+      }
+    )
   }
 
   override fun onFailure() = Unit

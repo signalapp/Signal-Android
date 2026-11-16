@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import androidx.annotation.WorkerThread
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
@@ -8,7 +9,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.pa
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse

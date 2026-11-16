@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.Store;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
 
+import java.util.Locale;
+
 public class PaymentsRecoveryEntryViewModel extends ViewModel {
 
   private Store<PaymentsRecoveryEntryViewState> state  = new Store<>(new PaymentsRecoveryEntryViewState());
@@ -48,7 +50,7 @@ public class PaymentsRecoveryEntryViewModel extends ViewModel {
 
   private boolean isValid(@Nullable String string) {
     if (string == null) return false;
-    else                return Mnemonic.BIP39_WORDS_ENGLISH.contains(string.toLowerCase());
+    else                return Mnemonic.BIP39_WORDS_ENGLISH.contains(string.toLowerCase(Locale.ROOT));
   }
 
   enum Events {

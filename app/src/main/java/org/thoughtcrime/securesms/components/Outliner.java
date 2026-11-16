@@ -7,7 +7,7 @@ import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 public class Outliner {
 

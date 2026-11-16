@@ -22,7 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.NightPreview
@@ -31,21 +31,28 @@ import org.signal.core.ui.compose.Rows
 
 class InternalSvrPlaygroundFragment : ComposeFragment() {
 
-  private val viewModel: InternalSvrPlaygroundViewModel by viewModels()
-
   @Composable
   override fun FragmentContent() {
-    val state: InternalSvrPlaygroundState by viewModel.state
-
-    SvrPlaygroundScreen(
-      state = state,
-      onTabSelected = viewModel::onTabSelected,
-      onCreateClicked = viewModel::onCreateClicked,
-      onRestoreClicked = viewModel::onRestoreClicked,
-      onDeleteClicked = viewModel::onDeleteClicked,
-      onPinChanged = viewModel::onPinChanged
-    )
+    InternalSvrPlaygroundEntry()
   }
+}
+
+/**
+ * The SVR playground, wired to its view model.
+ */
+@Composable
+fun InternalSvrPlaygroundEntry() {
+  val viewModel: InternalSvrPlaygroundViewModel = viewModel()
+  val state: InternalSvrPlaygroundState by viewModel.state
+
+  SvrPlaygroundScreen(
+    state = state,
+    onTabSelected = viewModel::onTabSelected,
+    onCreateClicked = viewModel::onCreateClicked,
+    onRestoreClicked = viewModel::onRestoreClicked,
+    onDeleteClicked = viewModel::onDeleteClicked,
+    onPinChanged = viewModel::onPinChanged
+  )
 }
 
 @Composable

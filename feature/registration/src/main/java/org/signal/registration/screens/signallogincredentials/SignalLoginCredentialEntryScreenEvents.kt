@@ -29,8 +29,11 @@ sealed class SignalLoginCredentialEntryScreenEvents {
   /** The user tapped the eye button that switches the recovery key between masked and spelled out. */
   data object RecoveryKeyVisibilityToggled : SignalLoginCredentialEntryScreenEvents()
 
-  /** The user tapped "Need help?". */
+  /** The user tapped "Need help?". Only reachable in [SignalLoginCredentialEntryState.Mode.Login] and [SignalLoginCredentialEntryState.Mode.Verify]. */
   data object NeedHelpClicked : SignalLoginCredentialEntryScreenEvents()
+
+  /** The user tapped "Show login info again". Only reachable in [SignalLoginCredentialEntryState.Mode.ConfirmSaved]. */
+  data object ShowLoginInfoAgainClicked : SignalLoginCredentialEntryScreenEvents()
 
   /** The user submitted the login, either with the next button or the keyboard's done action. */
   data object NextClicked : SignalLoginCredentialEntryScreenEvents()
@@ -38,6 +41,11 @@ sealed class SignalLoginCredentialEntryScreenEvents {
   /** The user completed the two-factor flow the login was bounced to. Carries the entered code. */
   data class TwoFactorCodeEntered(val code: String) : SignalLoginCredentialEntryScreenEvents() {
     override fun toString(): String = "TwoFactorCodeEntered(code=${code.censor()})"
+  }
+
+  /** The user completed a passkey ceremony the login was bounced to. Carries the assertion the service verifies. */
+  data class PasskeyAssertionReceived(val responseJson: String) : SignalLoginCredentialEntryScreenEvents() {
+    override fun toString(): String = "PasskeyAssertionReceived()"
   }
 
   /** The user dismissed the login error dialog. */

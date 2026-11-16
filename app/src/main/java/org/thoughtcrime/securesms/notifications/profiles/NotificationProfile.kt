@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.notifications.profiles
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.storage.StorageId
 
 data class NotificationProfile(

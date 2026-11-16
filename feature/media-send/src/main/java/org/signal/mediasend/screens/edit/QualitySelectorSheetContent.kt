@@ -23,13 +23,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.mediasend.R
-import org.signal.mediasend.SentMediaQuality
 
 /**
  * Modal bottom sheet offering the media quality options, dismissing itself once one is picked.
@@ -114,8 +115,8 @@ fun QualitySelectorSheetContent(
 @Composable
 private fun ButtonLabel(title: String, description: String) {
   Column(horizontalAlignment = Alignment.CenterHorizontally) {
-    Text(text = title, color = MaterialTheme.colorScheme.onSurface)
-    Text(text = description, color = MaterialTheme.colorScheme.onSurface, style = MaterialTheme.typography.bodySmall)
+    Text(text = title, color = MaterialTheme.colorScheme.onSurface, textAlign = TextAlign.Center)
+    Text(text = description, color = MaterialTheme.colorScheme.onSurface, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
   }
 }
 

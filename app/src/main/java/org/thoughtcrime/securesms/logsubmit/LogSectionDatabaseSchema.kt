@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.logsubmit
 
 import android.content.Context
-import org.signal.core.util.getAllIndexDefinitions
-import org.signal.core.util.getAllTableDefinitions
-import org.signal.core.util.getAllTriggerDefinitions
-import org.signal.core.util.getForeignKeys
+import org.signal.core.database.getAllIndexDefinitions
+import org.signal.core.database.getAllTableDefinitions
+import org.signal.core.database.getAllTriggerDefinitions
+import org.signal.core.database.getForeignKeys
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
 

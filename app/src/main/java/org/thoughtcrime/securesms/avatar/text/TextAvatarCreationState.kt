@@ -1,11 +1,17 @@
 package org.thoughtcrime.securesms.avatar.text
 
 import org.thoughtcrime.securesms.avatar.Avatar
-import org.thoughtcrime.securesms.avatar.AvatarColorItem
-import org.thoughtcrime.securesms.avatar.Avatars
 
+/**
+ * @param currentAvatar the avatar as edited so far.
+ * @param selectedTab whether the user is typing the avatar's text or choosing its color.
+ */
 data class TextAvatarCreationState(
-  val currentAvatar: Avatar.Text
+  val currentAvatar: Avatar.Text,
+  val selectedTab: Tab = Tab.TEXT
 ) {
-  fun colors(): List<AvatarColorItem> = Avatars.colors.map { AvatarColorItem(it, currentAvatar.color == it) }
+  enum class Tab {
+    TEXT,
+    COLOR
+  }
 }

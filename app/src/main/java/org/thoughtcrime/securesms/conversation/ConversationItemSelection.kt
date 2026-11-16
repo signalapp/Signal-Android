@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable
 import org.thoughtcrime.securesms.util.hasNoBubble
 
 object ConversationItemSelection {
@@ -66,7 +65,7 @@ object ConversationItemSelection {
     val xTranslation = -target.root.x - bodyBubble.x
     val yTranslation = -target.root.y - bodyBubble.y
 
-    val mp4Projection = (target as? GiphyMp4Playable)?.getGiphyMp4PlayableProjection(list)
+    val mp4Projection = (target as? ConversationItem)?.getInlineVideoProjection(list)
 
     var scaledVideoBitmap: Bitmap? = null
     if (videoBitmap != null && mp4Projection != null) {

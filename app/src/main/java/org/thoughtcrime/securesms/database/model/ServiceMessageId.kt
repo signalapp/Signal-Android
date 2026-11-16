@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.database.model
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /**
  * Represents the messages "ID" from the service's perspective, which identifies messages via a

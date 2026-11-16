@@ -5,43 +5,59 @@
 
 package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
-import org.signal.appsettings.totpapplist.TotpApp
+import org.signal.core.models.MasterKey
 import org.signal.core.util.Base32
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.MfaMetadata
+import org.signal.libsignal.net.MfaNotVerifiedException
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.TooManyMfaKeysException
+import org.signal.libsignal.net.TooManyTotpKeysException
+import org.signal.libsignal.net.TotpParameters
+import org.signal.network.api.AccountApiV2
+import org.signal.remoteconfig.RemoteConfig
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import java.net.URLEncoder
 import java.time.Instant
+import org.signal.appsettings.R as AppSettingsR
 
 /**
- * Everything the authenticator app screens need, sitting between them and the TOTP operations on [TotpApi].
+ * Pairing an authenticator app, sitting between the setup screens and the TOTP endpoints on [AccountApiV2].
+ *
+ * Everything that isn't specific to TOTP -- listing, renaming, removing -- is the same request whatever kind of second
+ * factor it acts on, and lives on [TwoFactorMethodService][org.signal.network.service.TwoFactorMethodService].
  */
 class TotpRepository(
-  private val api: TotpApi = SHARED_API,
-  private val clock: () -> Long = System::currentTimeMillis
+  private val api: AccountApiV2 = SignalNetwork.accountApiV2,
+  private val masterKeyProvider: () -> MasterKey = { SignalStore.svr.masterKey },
+  private val clock: () -> Long = System::currentTimeMillis,
+  private val defaultAppName: () -> String = { AppDependencies.application.getString(AppSettingsR.string.TotpRepository__authenticator) }
 ) {
 
   companion object {
     private val TAG = Log.tag(TotpRepository::class)
 
-    /** Shared so that every screen in the flow sees the same state until there's a service behind this. */
-    private val SHARED_API: TotpApi = InMemoryTotpApi()
-
     private const val ISSUER = "Signal"
 
-    /** What the service uses, and what every authenticator app supports without reading a single URI parameter. */
-    private const val ALGORITHM = "SHA1"
-    private const val DIGITS = 6
-    private const val PERIOD_SECONDS = 30
+    /** The algorithm names the Key Uri Format defines, keyed by what [TotpParameters.algorithm] calls them. */
+    private val URI_ALGORITHMS = mapOf(
+      "HmacSHA1" to "SHA1",
+      "HmacSHA256" to "SHA256",
+      "HmacSHA512" to "SHA512"
+    )
 
     /** How many characters of the display form go between spaces. */
     private const val DISPLAY_GROUP_SIZE = 4
-
-    const val MAX_NAME_LENGTH_BYTES = TotpApi.Metadata.NAME_MAX_LENGTH
-    const val MAX_NAME_LENGTH_GRAPHEMES = 30
   }
 
+  /**
+   * How many authenticator apps the account is allowed at once. libsignal reports hitting the limit but doesn't expose
+   * the number, so the screens that want to show it get it from here.
+   */
   fun getMaxApps(): Int {
-    return TotpApi.MAX_KEYS
+    return RemoteConfig.maxTotpApps
   }
 
   /**
@@ -49,19 +65,25 @@ class TotpRepository(
    * service holds the pending key from here until [confirmPendingApp], so nothing is kept on this side.
    */
   suspend fun beginSetup(accountName: String): BeginSetupResult {
-    return when (val result = api.generateKey()) {
+    return when (val result = api.generateTotpKey()) {
       is RequestResult.Success -> {
-        val key = result.result.key
+        val generated = result.result
+
+        val setupUri = buildSetupUri(key = generated.key, parameters = generated.parameters, accountName = accountName)
+        if (setupUri == null) {
+          Log.w(TAG, "The service generated a key with parameters a setup link can't describe: ${generated.parameters}")
+          return BeginSetupResult.NetworkFailure
+        }
 
         BeginSetupResult.Success(
-          setupUri = buildSetupUri(key = key, accountName = accountName),
-          displayKey = Base32.encode(key).chunked(DISPLAY_GROUP_SIZE).joinToString(" "),
-          clipboardKey = Base32.encode(key)
+          setupUri = setupUri,
+          displayKey = Base32.encode(generated.key).chunked(DISPLAY_GROUP_SIZE).joinToString(" "),
+          clipboardKey = Base32.encode(generated.key)
         )
       }
       is RequestResult.NonSuccess -> {
         when (result.error) {
-          TotpApi.GenerateKeyError.TooManyKeys -> BeginSetupResult.TooManyApps
+          is TooManyTotpKeysException, is TooManyMfaKeysException -> BeginSetupResult.TooManyApps
         }
       }
       is RequestResult.RetryableNetworkError -> {
@@ -78,22 +100,23 @@ class TotpRepository(
   /**
    * Confirms the pending key with a code from the user's authenticator app.
    *
-   * The key is confirmed without a name, because the service wants metadata at confirmation time and the user doesn't
-   * name their app until the screen after this one. Naming it later means a brief window where a key has no name, which
-   * is a better failure than a window where the second factor isn't active yet.
+   * The key is confirmed with a default name, because the service wants metadata at confirmation time and the user
+   * doesn't name their app until the screen after this one. Anything that lists keys in that window shows the default
+   * rather than a nameless entry.
    */
   suspend fun confirmPendingApp(code: String): ConfirmResult {
     val oneTimePassword = code.toIntOrNull() ?: return ConfirmResult.IncorrectCode
 
-    val metadata = TotpApi.Metadata(name = "", createdAt = Instant.ofEpochMilli(clock()))
+    val createdAt = clock()
+    val metadata = MfaMetadata(name = defaultAppName(), createdAt = Instant.ofEpochMilli(createdAt))
 
-    return when (val result = api.confirmKey(oneTimePassword = oneTimePassword, metadata = metadata)) {
+    return when (val result = api.confirmTotpKey(oneTimePassword = oneTimePassword, metadata = metadata, masterKey = masterKeyProvider())) {
       is RequestResult.Success -> {
-        ConfirmResult.Success(appId = result.result.toLong())
+        ConfirmResult.Success(appId = result.result.toLong(), createdAt = createdAt)
       }
       is RequestResult.NonSuccess -> when (result.error) {
-        TotpApi.ConfirmKeyError.NotVerified -> ConfirmResult.IncorrectCode
-        TotpApi.ConfirmKeyError.TooManyKeys -> {
+        is MfaNotVerifiedException -> ConfirmResult.IncorrectCode
+        is TooManyMfaKeysException -> {
           Log.w(TAG, "The account filled up with keys between generating this one and confirming it.")
           ConfirmResult.TooManyApps
         }
@@ -109,87 +132,22 @@ class TotpRepository(
     }
   }
 
-  /** The authenticator apps on the account, newest id last. */
-  suspend fun getTotpApps(): AppsResult {
-    return when (val result = api.listKeys()) {
-      is RequestResult.Success -> {
-        AppsResult.Success(
-          result.result.map { key ->
-            TotpApp(
-              id = key.keyId.toLong(),
-              name = key.metadata.name,
-              createdAt = key.metadata.createdAt.toEpochMilli()
-            )
-          }
-        )
-      }
-      is RequestResult.RetryableNetworkError -> {
-        Log.w(TAG, "Couldn't list keys.", result.networkError)
-        AppsResult.NetworkFailure
-      }
-      is RequestResult.ApplicationError -> {
-        Log.w(TAG, "Couldn't list keys.", result.cause)
-        AppsResult.NetworkFailure
-      }
-      is RequestResult.NonSuccess -> error("Code branch is unreachable")
-    }
-  }
-
-  /** Renames [app], which means handing the whole metadata blob back to the service. */
-  suspend fun renameTotpApp(app: TotpApp, name: String): UpdateResult {
-    return setMetadata(app.id, TotpApi.Metadata(name = name, createdAt = Instant.ofEpochMilli(app.createdAt)))
-  }
-
-  /** Names a newly confirmed app, which was confirmed without one moments ago. */
-  suspend fun nameNewTotpApp(appId: Long, name: String): UpdateResult {
-    return setMetadata(appId, TotpApi.Metadata(name = name, createdAt = Instant.ofEpochMilli(clock())))
-  }
-
-  suspend fun removeTotpApp(appId: Long): UpdateResult {
-    return when (val result = api.removeKey(appId.toInt())) {
-      is RequestResult.Success -> UpdateResult.Success
-      is RequestResult.RetryableNetworkError -> {
-        Log.w(TAG, "Couldn't remove the key.", result.networkError)
-        UpdateResult.NetworkFailure
-      }
-      is RequestResult.ApplicationError -> {
-        Log.w(TAG, "Couldn't remove the key.", result.cause)
-        UpdateResult.NetworkFailure
-      }
-      is RequestResult.NonSuccess -> error("Code branch is unreachable")
-    }
-  }
-
-  private suspend fun setMetadata(appId: Long, metadata: TotpApi.Metadata): UpdateResult {
-    return when (val result = api.setKeyMetadata(keyId = appId.toInt(), metadata = metadata)) {
-      is RequestResult.Success -> UpdateResult.Success
-      is RequestResult.NonSuccess -> when (result.error) {
-        TotpApi.SetKeyMetadataError.KeyNotFound -> UpdateResult.AppNotFound
-      }
-      is RequestResult.RetryableNetworkError -> {
-        Log.w(TAG, "Couldn't set key metadata.", result.networkError)
-        UpdateResult.NetworkFailure
-      }
-      is RequestResult.ApplicationError -> {
-        Log.w(TAG, "Couldn't set key metadata.", result.cause)
-        UpdateResult.NetworkFailure
-      }
-    }
-  }
-
   /**
    * The `otpauth://` URI that hands the key to an authenticator app, following the de facto Key Uri Format every app
-   * implements. Note that a lot of apps ignore params like "algorithm", but we set them just in case.
+   * implements, or null for parameters the format can't describe. Note that a lot of apps ignore params like
+   * "algorithm", but we set them just in case.
    */
-  private fun buildSetupUri(key: ByteArray, accountName: String): String {
+  private fun buildSetupUri(key: ByteArray, parameters: TotpParameters, accountName: String): String? {
+    val algorithm = URI_ALGORITHMS[parameters.algorithm] ?: return null
+
     val label = if (accountName.isBlank()) encode(ISSUER) else "${encode(ISSUER)}:${encode(accountName)}"
 
     val query = listOf(
       "secret" to Base32.encode(key),
       "issuer" to ISSUER,
-      "algorithm" to ALGORITHM,
-      "digits" to DIGITS.toString(),
-      "period" to PERIOD_SECONDS.toString()
+      "algorithm" to algorithm,
+      "digits" to parameters.passwordLength.toString(),
+      "period" to parameters.timeStep.seconds.toString()
     ).joinToString("&") { (name, value) -> "$name=${encode(value)}" }
 
     return "otpauth://totp/$label?$query"
@@ -217,7 +175,7 @@ class TotpRepository(
   }
 
   sealed interface ConfirmResult {
-    data class Success(val appId: Long) : ConfirmResult
+    data class Success(val appId: Long, val createdAt: Long) : ConfirmResult
 
     data object IncorrectCode : ConfirmResult
 
@@ -225,19 +183,5 @@ class TotpRepository(
     data object TooManyApps : ConfirmResult
 
     data object NetworkFailure : ConfirmResult
-  }
-
-  sealed interface AppsResult {
-    data class Success(val apps: List<TotpApp>) : AppsResult
-
-    data object NetworkFailure : AppsResult
-  }
-
-  sealed interface UpdateResult {
-    data object Success : UpdateResult
-
-    data object AppNotFound : UpdateResult
-
-    data object NetworkFailure : UpdateResult
   }
 }

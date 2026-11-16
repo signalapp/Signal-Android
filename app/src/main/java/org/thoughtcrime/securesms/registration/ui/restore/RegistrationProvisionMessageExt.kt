@@ -12,6 +12,12 @@ import org.signal.registration.proto.RegistrationProvisionMessage
 import java.security.InvalidKeyException
 
 /**
+ * The phone number, or null if absent or empty.
+ */
+val RegistrationProvisionMessage.e164OrNull: String?
+  get() = e164?.takeIf { it.isNotEmpty() }
+
+/**
  * Attempt to parse the ACI identity key pair from the proto message parts.
  */
 val RegistrationProvisionMessage.aciIdentityKeyPair: IdentityKeyPair?
@@ -27,14 +33,17 @@ val RegistrationProvisionMessage.aciIdentityKeyPair: IdentityKeyPair?
   }
 
 /**
- * Attempt to parse the PNI identity key pair from the proto message parts.
+ * Attempt to parse the PNI identity key pair from the proto message parts. Null if absent or empty.
  */
 val RegistrationProvisionMessage.pniIdentityKeyPair: IdentityKeyPair?
   get() {
+    val publicKey = pniIdentityKeyPublic?.takeIf { it.size > 0 } ?: return null
+    val privateKey = pniIdentityKeyPrivate?.takeIf { it.size > 0 } ?: return null
+
     return try {
       IdentityKeyPair(
-        IdentityKey(pniIdentityKeyPublic.toByteArray()),
-        ECPrivateKey(pniIdentityKeyPrivate.toByteArray())
+        IdentityKey(publicKey.toByteArray()),
+        ECPrivateKey(privateKey.toByteArray())
       )
     } catch (_: InvalidKeyException) {
       null

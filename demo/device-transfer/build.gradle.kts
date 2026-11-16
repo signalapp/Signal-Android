@@ -19,4 +19,10 @@ android {
 
 dependencies {
   implementation(project(":lib:device-transfer"))
+  implementation(project(":core:ui"))
+
+  implementation(libs.androidx.lifecycle.runtime.compose)
+  implementation(libs.androidx.lifecycle.viewmodel.compose)
+  implementation(libs.androidx.compose.ui.tooling.preview)
+  debugImplementation(libs.androidx.compose.ui.tooling.core)
 }

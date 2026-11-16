@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil.telecomSuppo
 import org.thoughtcrime.securesms.util.AppSignatureUtil
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.PowerManagerCompat
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.VersionTracker.getDaysSinceFirstInstalled
 import java.util.Locale
 import kotlin.math.roundToLong
@@ -71,7 +70,7 @@ class LogSectionSystemInfo : LogSection {
       FCM               : ${SignalStore.account.fcmEnabled}
       Locale            : ${Locale.getDefault()}
       Linked Devices    : ${SignalStore.account.isMultiDevice}
-      First Version     : ${TextSecurePreferences.getFirstInstallVersion(context)}
+      First Version     : ${SignalStore.misc.firstInstallVersion}
       Days Installed    : ${getDaysSinceFirstInstalled(context)}
       Last Registration : ${getTimeRegistered()}
       Build Variant     : ${BuildConfig.BUILD_DISTRIBUTION_TYPE}${BuildConfig.BUILD_ENVIRONMENT_TYPE}${BuildConfig.BUILD_VARIANT_TYPE}

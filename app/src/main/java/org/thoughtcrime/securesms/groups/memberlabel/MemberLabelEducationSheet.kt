@@ -36,10 +36,10 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.viewModel
 import org.signal.core.util.requireParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Explains what member labels are and provides options to edit the current user's label.

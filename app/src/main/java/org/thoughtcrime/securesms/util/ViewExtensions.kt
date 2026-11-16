@@ -11,6 +11,7 @@ import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.lifecycle.Lifecycle
+import org.signal.core.ui.util.ViewUtil
 
 var View.visible: Boolean
   get() {

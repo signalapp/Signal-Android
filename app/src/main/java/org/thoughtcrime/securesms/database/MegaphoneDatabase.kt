@@ -5,20 +5,23 @@ import androidx.annotation.VisibleForTesting
 import androidx.sqlite.db.SupportSQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
-import org.signal.core.util.delete
+import org.signal.core.database.delete
+import org.signal.core.database.insertInto
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.forEach
-import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
-import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader.load
+import org.signal.storage.database.DatabaseSecret
+import org.signal.storage.database.DatabaseSecretProvider
+import org.signal.storage.database.SignalDatabaseOpenHelper
+import org.signal.storage.database.SqlCipherDatabaseHook
+import org.signal.storage.database.SqlCipherErrorHandler
+import org.signal.storage.database.SqlCipherLibraryLoader.load
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import kotlin.concurrent.Volatile
@@ -32,7 +35,7 @@ open class MegaphoneDatabase(
 ) : SQLiteOpenHelper(
   application,
   DATABASE_NAME,
-  databaseSecret.asString(),
+  databaseSecret.asHex(),
   null,
   DATABASE_VERSION,
   0,
@@ -230,7 +233,6 @@ open class MegaphoneDatabase(
       .run()
   }
 
-  override fun getSqlCipherDatabase(): SQLiteDatabase {
-    return writableDatabase
-  }
+  override val sqlCipherDatabase: SQLiteDatabase
+    get() = writableDatabase
 }

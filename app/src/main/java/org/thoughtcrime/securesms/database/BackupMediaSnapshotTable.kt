@@ -9,9 +9,12 @@ import android.content.Context
 import android.database.Cursor
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.count
-import org.signal.core.util.delete
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.count
+import org.signal.core.database.delete
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.forEach
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
@@ -23,10 +26,7 @@ import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
 import org.signal.core.util.toInt
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 
 /**

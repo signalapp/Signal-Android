@@ -6,8 +6,6 @@
 package org.signal.registration.screens.devicetransfer.instructions
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +20,7 @@ import org.signal.registration.screens.util.navigateTo
 
 class DeviceTransferInstructionsViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<DeviceTransferInstructionsScreenEvents>(TAG) {
+) : EventDrivenViewModel<DeviceTransferInstructionsScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DeviceTransferInstructionsViewModel::class)
@@ -55,15 +53,6 @@ class DeviceTransferInstructionsViewModel(
       DeviceTransferInstructionsScreenEvents.BackClicked -> {
         parentEventEmitter.navigateBack()
       }
-    }
-  }
-
-  class Factory(
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return DeviceTransferInstructionsViewModel(parentEventEmitter) as T
     }
   }
 }

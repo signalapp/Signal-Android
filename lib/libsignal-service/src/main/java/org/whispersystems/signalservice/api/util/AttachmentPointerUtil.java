@@ -43,7 +43,9 @@ public final class AttachmentPointerUtil {
                                               pointer.caption != null && !pointer.caption.isEmpty() ? Optional.of(pointer.caption) : Optional.empty(),
                                               pointer.blurHash != null ? Optional.of(pointer.blurHash) : Optional.empty(),
                                               pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0,
-                                              UuidUtil.fromByteStringOrNull(pointer.clientUuid));
+                                              UuidUtil.fromByteStringOrNull(pointer.clientUuid),
+                                              pointer.audioWaveform != null ? pointer.audioWaveform.toByteArray() : null,
+                                              pointer.audioDurationSeconds);
   }
 
   public static AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {
@@ -113,6 +115,14 @@ public final class AttachmentPointerUtil {
 
     if (attachment.getUuid() != null) {
       builder.clientUuid(UuidUtil.toByteString(attachment.getUuid()));
+    }
+
+    if (attachment.getAudioWaveform() != null) {
+      builder.audioWaveform(ByteString.of(attachment.getAudioWaveform()));
+    }
+
+    if (attachment.getAudioDurationSeconds() != null) {
+      builder.audioDurationSeconds(attachment.getAudioDurationSeconds());
     }
 
     return builder.build();

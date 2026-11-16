@@ -7,7 +7,9 @@ package org.signal.registration.screens.signalloginpayment
 
 import org.signal.core.util.Base64
 import org.signal.core.util.censor
+import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
+import java.io.IOException
 
 /**
  * A manually-pasted, base64-encoded receipt credential. Wrapping it keeps the raw text from being logged by accident:
@@ -22,8 +24,16 @@ value class ManualReceiptCredential(val value: String) {
   val isNotBlank: Boolean
     get() = value.isNotBlank()
 
-  /** Parses the pasted text as a receipt credential. Throws if it isn't a valid one. */
-  fun decode(): ReceiptCredential = ReceiptCredential(Base64.decode(value.trim()))
+  /** Parses the pasted text as a receipt credential, or null if it isn't a valid one. */
+  fun decodeOrNull(): ReceiptCredential? {
+    return try {
+      ReceiptCredential(Base64.decode(value.trim()))
+    } catch (e: IOException) {
+      null
+    } catch (e: InvalidInputException) {
+      null
+    }
+  }
 
   override fun toString(): String = "ManualReceiptCredential(${value.censor()})"
 

@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 /**
@@ -43,8 +42,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
 
   private static final String TAG = Log.tag(PassphraseChangeActivity.class);
 
-  private DynamicTheme    dynamicTheme    = new DynamicTheme();
-  private DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private DynamicTheme dynamicTheme = new DynamicTheme();
 
   private EditText originalPassphrase;
   private EditText newPassphrase;
@@ -55,7 +53,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.change_passphrase_activity);
@@ -67,7 +64,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
   }
 
   private void initializeResources() {

@@ -36,6 +36,7 @@ import java.util.function.Consumer
  * @param forceSelectionOnly     Force the fragment to only select recipients, never actually performing the send.
  * @param selectSingleRecipient  Only allow the selection of a single recipient.
  * @param isWrappedInBottomSheet Whether the fragment is wrapped in a bottom sheet.
+ * @param searchHint             The hint to display in the search bar when no query is entered.
  */
 @Parcelize
 data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
@@ -49,7 +50,8 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
   val isSearchEnabled: Boolean = true,
   val isViewOnce: Boolean = false,
-  val isWrappedInBottomSheet: Boolean = false
+  val isWrappedInBottomSheet: Boolean = false,
+  @StringRes val searchHint: Int = R.string.RecipientSearchBar__search_name_or_number
 ) : Parcelable {
 
   @IgnoredOnParcel

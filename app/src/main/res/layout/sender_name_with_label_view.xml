@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/member_name"
+        style="@style/TextAppearance.Signal.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/signal_text_primary"
+        android:textStyle="bold"
+        tools:text="Peter Parker" />
+
+    <LinearLayout
+        android:id="@+id/member_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/member_label_pill_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="1dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/member_label_emoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:maxLines="1"
+            android:textAppearance="@style/Signal.Text.BodySmall"
+            tools:text="🧠" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/member_label_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/Signal.Text.BodySmall"
+            tools:text="Vet Coordinator" />
+
+    </LinearLayout>
+
+</merge>

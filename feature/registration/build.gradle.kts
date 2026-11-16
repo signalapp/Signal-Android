@@ -4,7 +4,6 @@ plugins {
   id("com.squareup.wire")
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlinx.serialization)
-  alias(testLibs.plugins.compose.screenshot)
 }
 
 android {
@@ -24,8 +23,6 @@ android {
       isIncludeAndroidResources = true
     }
   }
-
-  experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
 screenshotTests {
@@ -59,11 +56,13 @@ dependencies {
   api(project(":lib:network"))
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
-  implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))
+  implementation(project(":lib:billing"))
   implementation(project(":lib:device-transfer"))
+  implementation(project(":lib:locale"))
   implementation(project(":lib:password-manager"))
   implementation(project(":lib:signal-login"))
+  implementation(project(":lib:ui-components"))
   implementation(libs.libsignal.android)
 
   // Compose BOM
@@ -110,9 +109,4 @@ dependencies {
   androidTestImplementation(testLibs.androidx.test.ext.junit)
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
-
-  // Compose screenshot testing
-  screenshotTestImplementation(testLibs.compose.screenshot.validation.api)
-  screenshotTestImplementation(libs.androidx.compose.ui.tooling.core)
-  screenshotTestImplementation(libs.androidx.compose.ui.tooling.preview)
 }

@@ -69,7 +69,7 @@ final class ElementStack implements Parcelable {
     Parcel parcel = Parcel.obtain();
     byte[] bytes;
     try {
-      parcel.writeParcelable(parcelable, 0);
+      parcel.writeParcelable(parcelable, EditorElement.PARCELABLE_WRITE_SNAPSHOT);
       bytes = parcel.marshall();
     } finally {
       parcel.recycle();

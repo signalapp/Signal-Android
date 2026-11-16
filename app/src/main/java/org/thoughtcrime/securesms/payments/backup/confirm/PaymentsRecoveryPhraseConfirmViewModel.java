@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.payments.backup.PaymentsRecoveryRepository;
 import org.thoughtcrime.securesms.util.livedata.Store;
 
 import java.security.SecureRandom;
+import java.util.Locale;
 import java.util.Random;
 
 public class PaymentsRecoveryPhraseConfirmViewModel extends ViewModel {
@@ -48,10 +49,10 @@ public class PaymentsRecoveryPhraseConfirmViewModel extends ViewModel {
   }
 
   void validateWord1(@NonNull String entry) {
-    viewState.update(s -> s.buildUpon().withValidWord1(mnemonic.getWords().get(s.getWord1Index()).equals(entry.toLowerCase())).build());
+    viewState.update(s -> s.buildUpon().withValidWord1(mnemonic.getWords().get(s.getWord1Index()).equals(entry.toLowerCase(Locale.ROOT))).build());
   }
 
   void validateWord2(@NonNull String entry) {
-    viewState.update(s -> s.buildUpon().withValidWord2(mnemonic.getWords().get(s.getWord2Index()).equals(entry.toLowerCase())).build());
+    viewState.update(s -> s.buildUpon().withValidWord2(mnemonic.getWords().get(s.getWord2Index()).equals(entry.toLowerCase(Locale.ROOT))).build());
   }
 }

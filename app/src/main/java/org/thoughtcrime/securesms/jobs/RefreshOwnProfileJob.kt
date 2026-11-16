@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.text.TextUtils
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.Base64
 import org.signal.core.util.ExpiringProfileCredentialUtil
 import org.signal.core.util.Util
+import org.signal.core.util.crypto.InvalidCiphertextException
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.BaseUsernameException
@@ -11,9 +13,9 @@ import org.signal.libsignal.usernames.Username
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.exceptions.PushNetworkException
+import org.signal.storage.keyvalue.isTerminal
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
@@ -23,14 +25,11 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.isTerminal
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
@@ -108,10 +107,10 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
     val profile = profileAndCredential.getProfile()
 
-    if (Util.isEmpty(profile.getName()) &&
-      Util.isEmpty(profile.getAvatar()) &&
-      Util.isEmpty(profile.getAbout()) &&
-      Util.isEmpty(profile.getAboutEmoji())
+    if (Util.isEmpty(profile.name) &&
+      Util.isEmpty(profile.avatar) &&
+      Util.isEmpty(profile.about) &&
+      Util.isEmpty(profile.aboutEmoji)
     ) {
       Log.w(TAG, "The profile we retrieved was empty! Ignoring it.")
 
@@ -125,13 +124,13 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       return
     }
 
-    setProfileName(profile.getName())
-    setProfileAbout(profile.getAbout(), profile.getAboutEmoji())
-    setProfileAvatar(profile.getAvatar())
-    setProfileCapabilities(profile.getCapabilities())
-    setProfileBadges(profile.getBadges())
-    ensureUnidentifiedAccessCorrect(profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess())
-    ensurePhoneNumberSharingIsCorrect(profile.getPhoneNumberSharing())
+    setProfileName(profile.name)
+    setProfileAbout(profile.about, profile.aboutEmoji)
+    setProfileAvatar(profile.avatar)
+    setProfileCapabilities(profile.capabilities)
+    setProfileBadges(profile.badges)
+    ensureUnidentifiedAccessCorrect(profile.unidentifiedAccess, profile.unrestrictedUnidentifiedAccess)
+    ensurePhoneNumberSharingIsCorrect(profile.phoneNumberSharing)
 
     profileAndCredential.getExpiringProfileKeyCredential()
       .ifPresent { setExpiringProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), it) }
@@ -213,8 +212,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       return
     }
 
-    if (TextSecurePreferences.isUniversalUnidentifiedAccess(context) != universalUnidentifiedAccess) {
-      Log.w(TAG, "The universal access flag doesn't match our local value (local: " + TextSecurePreferences.isUniversalUnidentifiedAccess(context) + ", remote: " + universalUnidentifiedAccess + ")! Refreshing attributes.")
+    if (SignalStore.settings.isUniversalUnidentifiedAccess != universalUnidentifiedAccess) {
+      Log.w(TAG, "The universal access flag doesn't match our local value (local: " + SignalStore.settings.isUniversalUnidentifiedAccess + ", remote: " + universalUnidentifiedAccess + ")! Refreshing attributes.")
       AppDependencies.jobManager.add(RefreshAttributesJob())
       return
     }
@@ -254,7 +253,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
         .map { value -> if (value) PhoneNumberSharingState.ENABLED else PhoneNumberSharingState.DISABLED }
         .orElse(PhoneNumberSharingState.UNKNOWN)
 
-      if (remotePhoneNumberSharing == PhoneNumberSharingState.UNKNOWN || remotePhoneNumberSharing.enabled != SignalStore.phoneNumberPrivacy.isPhoneNumberSharingEnabled()) {
+      if (remotePhoneNumberSharing == PhoneNumberSharingState.UNKNOWN || remotePhoneNumberSharing.enabled != SignalStore.phoneNumberPrivacy.isPhoneNumberSharingEnabled) {
         Log.w(TAG, "Phone number sharing setting did not match! Syncing with storage service, then uploading our profile.")
         syncWithStorageServiceThenUploadProfile()
       }
@@ -287,8 +286,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       .toSet()
 
     val remoteDonorBadgeIds = badges
-      .filter { it.getCategory() == Badge.Category.Donor.code }
-      .map { it.getId() }
+      .filter { it.category == Badge.Category.Donor.code }
+      .map { it.id }
       .toSet()
 
     val remoteHasSubscriptionBadges = remoteDonorBadgeIds.any { isSubscription(it) }
@@ -315,18 +314,19 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
         var isDueToPaymentFailure = false
         if (subscriber != null) {
-          val response = AppDependencies.donationsService
+          val response = SignalNetwork.donationsService
             .getSubscription(subscriber.subscriberId)
 
           if (response.getResult().isPresent()) {
             val activeSubscription = response.getResult().get()
-            if (activeSubscription.isFailedPayment()) {
+            if (activeSubscription.isFailedPayment) {
               Log.d(TAG, "Unexpected expiry due to payment failure.", true)
               isDueToPaymentFailure = true
             }
 
-            if (activeSubscription.getChargeFailure() != null) {
-              Log.d(TAG, "Active payment contains a charge failure: " + activeSubscription.getChargeFailure().getCode(), true)
+            val chargeFailure = activeSubscription.chargeFailure
+            if (chargeFailure != null) {
+              Log.d(TAG, "Active payment contains a charge failure: " + chargeFailure.code, true)
             }
           }
 
@@ -376,8 +376,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       SignalStore.inAppPayments.setExpiredGiftBadge(null)
     }
 
-    val userHasVisibleBadges = badges.any { it.isVisible() }
-    val userHasInvisibleBadges = badges.any { !it.isVisible() }
+    val userHasVisibleBadges = badges.any { it.visible }
+    val userHasInvisibleBadges = badges.any { !it.visible }
 
     val appBadges = badges.map { Badges.fromServiceBadge(it) }
 
@@ -389,8 +389,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
         true
       )
 
-      val badgeRepository = BadgeRepository(context)
-      val updatedBadges = badgeRepository.setVisibilityForAllBadgesSync(displayBadgesOnProfile, appBadges)
+      val updatedBadges = BadgeRepository.setVisibilityForAllBadgesSync(displayBadgesOnProfile, appBadges).successOrThrow()
       SignalDatabase.recipients.setBadges(Recipient.self().id, updatedBadges)
     } else {
       SignalDatabase.recipients.setBadges(Recipient.self().id, appBadges)
@@ -439,7 +438,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
     val localUsernameLink = SignalStore.account.usernameLink ?: return
 
-    when (val usernameFetchResult = SignalNetwork.username.getDecryptedUsernameFromLinkServerIdAndEntropy(localUsernameLink.serverId, localUsernameLink.entropy)) {
+    when (val usernameFetchResult = SignalNetwork.usernameApi.getDecryptedUsernameFromLinkServerIdAndEntropy(localUsernameLink.serverId, localUsernameLink.entropy)) {
       is RequestResult.Success -> {
         val remoteUsername = usernameFetchResult.result
 

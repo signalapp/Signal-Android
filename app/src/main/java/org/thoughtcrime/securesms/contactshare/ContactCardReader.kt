@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SignalE164Util
-import java.io.IOException
 
 /** Reads a contact card off a uri, either an address book entry or a vcard attachment. */
 class ContactCardReader(context: Context) {
@@ -33,15 +32,55 @@ class ContactCardReader(context: Context) {
 
   private val context: Context = context.applicationContext
 
+  /** An address book entry, identified by a [ContactsContract] uri. Needs `READ_CONTACTS`, since the details live in the data table. */
   @WorkerThread
-  fun read(uris: List<Uri>): List<Contact> {
-    return uris.mapNotNull { uri ->
-      if (ContactsContract.AUTHORITY == uri.authority) {
-        fromSystemContacts(ContactUtil.getContactIdFromUri(uri))
-      } else {
-        fromVcard(uri)
-      }
+  fun readSystemContact(uri: Uri): Contact? {
+    return try {
+      fromSystemContacts(ContactUtil.getContactIdFromUri(uri))
+    } catch (e: SecurityException) {
+      Log.w(TAG, "Not allowed to read the selected contact.", e)
+      null
     }
+  }
+
+  /**
+   * The single phone number a system picker handed back, as a [SharedContactSource.SystemPhone] card.
+   *
+   * The provider reports the name as one string rather than as parts, so it goes in the given name and the
+   * editor is where it gets split.
+   */
+  @WorkerThread
+  fun readSystemPhone(uri: Uri): Contact? {
+    val picked = try {
+      SystemContactsRepository.getPickedPhone(context, uri)
+    } catch (e: SecurityException) {
+      Log.w(TAG, "Not allowed to read the picked phone number.", e)
+      null
+    } ?: return null
+
+    val number = ContactUtil.getNormalizedPhoneNumber(picked.number)
+
+    if (number == null) {
+      Log.w(TAG, "The picked phone number could not be normalized.")
+      return null
+    }
+
+    val name = Name(picked.displayName?.takeUnless { it.isBlank() }, null, null, null, null, null)
+
+    if (name.isEmpty) {
+      Log.w(TAG, "The picked phone number has no name to render.")
+      return null
+    }
+
+    val phones = listOf(Phone(number, VCardUtil.phoneTypeFromContactType(picked.type), picked.label))
+
+    return Contact(name, null, phones, emptyList(), emptyList(), signalAvatar(phones))
+  }
+
+  /** A .vcf, which carries no contact id and so cannot go through [readSystemContact]. */
+  @WorkerThread
+  fun readVCard(uri: Uri): Contact? {
+    return fromVcard(uri)
   }
 
   private fun fromSystemContacts(contactId: Long): Contact? {
@@ -72,7 +111,7 @@ class ContactCardReader(context: Context) {
         val vcard = Ezvcard.parse(stream).first() ?: return@use null
         VCardUtil.getContactFromVcard(vcard)
       }
-    } catch (e: IOException) {
+    } catch (e: Exception) {
       Log.w(TAG, "Failed to parse the vcard.", e)
       null
     }
@@ -137,6 +176,10 @@ class ContactCardReader(context: Context) {
       return Avatar(uri, false)
     }
 
+    return signalAvatar(phoneNumbers)
+  }
+
+  private fun signalAvatar(phoneNumbers: List<Phone>): Avatar? {
     return phoneNumbers
       .asSequence()
       .mapNotNull { SignalE164Util.formatAsE164(it.number) }

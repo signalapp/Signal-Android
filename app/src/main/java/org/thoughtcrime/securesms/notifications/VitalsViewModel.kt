@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.DeviceSpecificNotificationConfig.ShowCondition
 import org.thoughtcrime.securesms.util.ConnectivityWarning
 import org.thoughtcrime.securesms.util.NetworkUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
@@ -79,7 +78,7 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
       val timeSinceLastConnection = System.currentTimeMillis() - SignalStore.misc.lastWebSocketConnectTime
       val timeSinceLastConnectionWarning = System.currentTimeMillis() - SignalStore.misc.lastConnectivityWarningTime
       val connectedToWebSocket = AppDependencies.webSocketObserver.value == WebSocketConnectionState.CONNECTED
-      val isRegistered = SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(context)
+      val isRegistered = SignalStore.account.isRegistered && !SignalStore.account.isUnauthorizedReceived
 
       if (ConnectivityWarning.isEnabled && timeSinceLastConnection > ConnectivityWarning.threshold && timeSinceLastConnectionWarning > 14.days.inWholeMilliseconds && NetworkUtil.isConnected(context) && isRegistered && !connectedToWebSocket) {
         return@fromCallable if (ConnectivityWarning.isDebugPromptEnabled) {

@@ -4,9 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.emoji.EmojiUtil
+import org.signal.storage.keyvalue.EmojiValues
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.keyvalue.EmojiValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.getPreferredVariation
+import org.thoughtcrime.securesms.keyvalue.reactions
+import org.thoughtcrime.securesms.keyvalue.setPreferredVariation
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
@@ -46,7 +49,7 @@ class EditReactionsViewModel : ViewModel() {
   }
 
   fun save() {
-    emojiValues.reactions = store.state.reactions
+    emojiValues.rawReactions = store.state.reactions
 
     SignalExecutors.BOUNDED.execute {
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)

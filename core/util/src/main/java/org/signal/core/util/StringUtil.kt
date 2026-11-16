@@ -213,6 +213,22 @@ object StringUtil {
   }
 
   /**
+   * Trims [text] to at most [maxGraphemes] grapheme clusters, then to at most [maxByteLength] UTF-8 bytes, as
+   * [trimToFit] does.
+   */
+  @JvmStatic
+  fun trimToFit(text: String?, maxGraphemes: Int, maxByteLength: Int): String {
+    if (text.isNullOrEmpty()) {
+      return ""
+    }
+
+    val breakIterator = BreakIteratorCompat.getInstance()
+    breakIterator.setText(text)
+
+    return trimToFit(breakIterator.take(maxGraphemes).toString(), maxByteLength)
+  }
+
+  /**
    * @return The number of graphemes in the provided string.
    */
   @JvmStatic

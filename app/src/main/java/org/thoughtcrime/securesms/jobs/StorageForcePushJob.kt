@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logI
 import org.signal.network.NetworkResult
@@ -12,13 +13,13 @@ import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StickerPackId
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.manifest
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.storage.StorageSyncValidations
@@ -72,7 +73,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     }
 
     val storageServiceKey = SignalStore.storageService.storageKey
-    val repository = StorageServiceService(AppDependencies.storageServiceApi)
+    val repository = SignalNetwork.storageService
 
     val currentVersion: Long = when (val result = repository.getManifestVersion()) {
       is NetworkResult.Success -> result.result
@@ -95,7 +96,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
       .map { record -> StorageSyncModels.localToRemoteRecord(record, newContactStorageIds[record.id]!!.raw) }
       .toMutableList()
 
-    val accountRecord = StorageSyncHelper.buildAccountRecord(context, Recipient.self().fresh())
+    val accountRecord = StorageSyncHelper.buildAccountRecord(Recipient.self().fresh())
     val allNewStorageIds: MutableList<StorageId> = ArrayList(newContactStorageIds.values)
 
     inserts.add(accountRecord)
@@ -125,14 +126,32 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     inserts.addAll(newNotificationProfileInserts)
     allNewStorageIds.addAll(newNotificationProfileStorageIds.values)
 
-    val oldStickerPackStorageIds = SignalDatabase.stickers.getStorageSyncIdsMap()
+    val oldStickerPackStorageIds = SignalDatabase.stickers.getInstalledStorageSyncIdsMap()
     val newStickerPackStorageIds = generateStickerPackStorageIds(oldStickerPackStorageIds)
     val newStickerPackInserts: List<SignalStorageRecord> = oldStickerPackStorageIds.keys
-      .mapNotNull { SignalDatabase.stickers.getPackForStorageSync(it) }
+      .mapNotNull { SignalDatabase.stickers.getInstalledPackForStorageSync(it) }
       .map { record -> StorageSyncModels.localToRemoteRecord(record, newStickerPackStorageIds[record.packId]!!.raw) }
 
     inserts.addAll(newStickerPackInserts)
     allNewStorageIds.addAll(newStickerPackStorageIds.values)
+
+    val oldHiddenStickerPackStorageIds = SignalDatabase.stickers.getHiddenPacksStorageSyncIdsMap()
+    val newHiddenStickerPackStorageIds = generateStickerPackStorageIds(oldHiddenStickerPackStorageIds)
+    val newHiddenStickerPackInserts: List<SignalStorageRecord> = oldHiddenStickerPackStorageIds.keys
+      .mapNotNull { SignalDatabase.stickers.getHiddenPackForStorageSync(it) }
+      .map { record -> StorageSyncModels.localToRemoteRecord(record, newHiddenStickerPackStorageIds[record.packId]!!.raw) }
+
+    inserts.addAll(newHiddenStickerPackInserts)
+    allNewStorageIds.addAll(newHiddenStickerPackStorageIds.values)
+
+    val oldFavoriteStickerStorageIds = SignalDatabase.stickers.getFavoriteStorageSyncIdsMap()
+    val newFavoriteStickerStorageIds = generateFavoriteStickerStorageIds(oldFavoriteStickerStorageIds)
+    val newFavoriteStickerInserts: List<SignalStorageRecord> = oldFavoriteStickerStorageIds.keys
+      .mapNotNull { SignalDatabase.stickers.getFavoriteForStorageSync(it) }
+      .map { record -> StorageSyncModels.localToRemoteRecord(record, newFavoriteStickerStorageIds[record.rowId]!!.raw) }
+
+    inserts.addAll(newFavoriteStickerInserts)
+    allNewStorageIds.addAll(newFavoriteStickerStorageIds.values)
 
     Log.i(TAG, "Generating and including a new recordIkm.")
     val recordIkm: RecordIkm = RecordIkm.generate()
@@ -173,6 +192,8 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     SignalDatabase.chatFolders.applyStorageIdUpdates(newChatFolderStorageIds)
     SignalDatabase.notificationProfiles.applyStorageIdUpdates(newNotificationProfileStorageIds)
     SignalDatabase.stickers.applyStorageIdUpdates(newStickerPackStorageIds)
+    SignalDatabase.stickers.applyHiddenPackStorageIdUpdates(newHiddenStickerPackStorageIds)
+    SignalDatabase.stickers.applyFavoriteStorageIdUpdates(newFavoriteStickerStorageIds)
     SignalDatabase.unknownStorageIds.deleteAll()
   }
 
@@ -209,6 +230,12 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
   }
 
   private fun generateStickerPackStorageIds(oldKeys: Map<StickerPackId, StorageId>): Map<StickerPackId, StorageId> {
+    return oldKeys.mapValues { (_, value) ->
+      value.withNewBytes(StorageSyncHelper.generateKey())
+    }
+  }
+
+  private fun generateFavoriteStickerStorageIds(oldKeys: Map<Long, StorageId>): Map<Long, StorageId> {
     return oldKeys.mapValues { (_, value) ->
       value.withNewBytes(StorageSyncHelper.generateKey())
     }

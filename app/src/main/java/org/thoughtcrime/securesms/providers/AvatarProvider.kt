@@ -14,18 +14,20 @@ import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.ParcelFileDescriptor
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.PartAuthorityUris
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.contentproviders.BaseContentProvider
 import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
+import org.signal.storage.database.DatabaseSecretProvider
+import org.signal.storage.database.SqlCipherLibraryLoader
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -33,12 +35,10 @@ import org.thoughtcrime.securesms.logging.PersistentLogger
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientCreator
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.AdaptiveBitmapMetrics
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -117,7 +117,7 @@ class AvatarProvider : BaseContentProvider() {
     if (uriMatcher.match(uri) == AVATAR) {
       if (VERBOSE) Log.i(TAG, "Loading avatar.")
       try {
-        val recipient = getRecipientId(uri)?.let { RecipientCreator.forRecord(application, SignalDatabase.recipients.getRecord(it)) } ?: return null
+        val recipient = getRecipientId(uri)?.let { RecipientCreator.forRecord(SignalDatabase.recipients.getRecord(it)) } ?: return null
         return getParcelFileDescriptorForAvatar(recipient)
       } catch (ioe: IOException) {
         Log.w(TAG, ioe)

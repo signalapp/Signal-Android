@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.badges.gifts.flow
 
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.money.FiatMoney
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.Currency
