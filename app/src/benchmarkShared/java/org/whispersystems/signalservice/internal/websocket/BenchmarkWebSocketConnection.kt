@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.signal.core.util.JsonUtils
+import org.signal.libsignal.net.ChatConnection
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebSocketResponseMessage
 import org.signal.network.websocket.WebsocketResponse
@@ -21,6 +22,7 @@ import java.util.Optional
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
+import kotlin.time.Duration
 
 /**
  * A [WebSocketConnection] that provides a way to add "incoming" WebSocket payloads
@@ -166,6 +168,20 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
     }
 
     return Single.error(okio.IOException("fake timeout"))
+  }
+
+  /** Answers the same way as [sendRequest]. */
+  override suspend fun sendRequestSuspend(request: WebSocketRequestMessage, timeout: Duration): WebsocketResponse {
+    if (request.verb == "PUT" && request.path?.startsWith("/v1/messages/") == true) {
+      return WebsocketResponse(200, SendMessageResponse().toJson(), emptyList<String>(), true)
+    }
+
+    throw okio.IOException("fake timeout")
+  }
+
+  /** Fails like an offline connection, so callers treat it as a network error. */
+  override suspend fun <T> runWithChatConnection(callback: (ChatConnection) -> T): T {
+    throw okio.IOException("no chat connection")
   }
 
   fun addQueueEmptyMessage() {
