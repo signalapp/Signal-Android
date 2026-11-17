@@ -19,6 +19,7 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
+import org.thoughtcrime.securesms.components.settings.insetForSafeAreaWithKeyboard
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.data.network.Challenge
@@ -40,6 +41,8 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   private var navigatingAway: Boolean = false
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    insetForSafeAreaWithKeyboard(view)
+
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.setTitle(R.string.ChangeNumberVerifyFragment__change_number)
     toolbar.setNavigationOnClickListener {

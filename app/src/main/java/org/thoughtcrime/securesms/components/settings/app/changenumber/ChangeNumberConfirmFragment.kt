@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.insetForSafeAreaWithKeyboard
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -28,6 +29,8 @@ class ChangeNumberConfirmFragment : LoggingFragment(R.layout.fragment_change_num
   private val viewModel by activityViewModels<ChangeNumberViewModel>()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    insetForSafeAreaWithKeyboard(view)
+
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.setTitle(R.string.ChangeNumberEnterPhoneNumberFragment__change_number)
     toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
