@@ -45,6 +45,7 @@ import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import org.signal.core.util.PlayServicesUtil
 import org.signal.core.util.PlayStoreUtil
+import org.signal.core.util.bytes
 import java.util.Locale
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -236,9 +237,19 @@ class LanguageSplitRepositoryTest {
     fixture.update(SplitInstallSessionStatus.DOWNLOADING)
     fixture.update(SplitInstallSessionStatus.INSTALLED)
 
-    assertThat(states).containsExactly(LanguageInstallStatus.Downloading, LanguageInstallStatus.Installed)
+    assertThat(states).containsExactly(LanguageInstallStatus.Downloading(totalBytes = 0.bytes), LanguageInstallStatus.Installed)
     verify { manager.unregisterListener(listener.captured) }
     verify(exactly = 0) { manager.cancelInstall(any()) }
+  }
+
+  @Test
+  fun `install reports the size of the download`() = runTest(UnconfinedTestDispatcher()) {
+    val states = collect(repository.install("de"))
+
+    fixture.update(SplitInstallSessionStatus.PENDING)
+    fixture.update(SplitInstallSessionStatus.DOWNLOADING, totalBytes = 240_000)
+
+    assertThat(states).containsExactly(LanguageInstallStatus.Downloading(totalBytes = 0.bytes), LanguageInstallStatus.Downloading(totalBytes = 240_000.bytes))
   }
 
   @Test
@@ -253,7 +264,7 @@ class LanguageSplitRepositoryTest {
 
     start.setResult(SESSION)
 
-    assertThat(states).containsExactly(LanguageInstallStatus.Downloading)
+    assertThat(states).containsExactly(LanguageInstallStatus.Downloading(totalBytes = 0.bytes))
   }
 
   @Test
@@ -339,7 +350,7 @@ class LanguageSplitRepositoryTest {
     fixture.update(SplitInstallSessionStatus.INSTALLED, sessionId = OTHER_SESSION)
     fixture.update(SplitInstallSessionStatus.INSTALLED)
 
-    assertThat(states).containsExactly(LanguageInstallStatus.Downloading, LanguageInstallStatus.Installed)
+    assertThat(states).containsExactly(LanguageInstallStatus.Downloading(totalBytes = 0.bytes), LanguageInstallStatus.Installed)
   }
 
   @Test
@@ -395,7 +406,7 @@ class LanguageSplitRepositoryTest {
     fixture.update(SplitInstallSessionStatus.PENDING)
     fixture.update(SplitInstallSessionStatus.CANCELED)
 
-    assertThat(states).containsExactly(LanguageInstallStatus.NeedsPlayConfirmation(SESSION), LanguageInstallStatus.Downloading, LanguageInstallStatus.Cancelled)
+    assertThat(states).containsExactly(LanguageInstallStatus.NeedsPlayConfirmation(SESSION), LanguageInstallStatus.Downloading(totalBytes = 0.bytes), LanguageInstallStatus.Cancelled)
   }
 
   @Test
@@ -549,7 +560,7 @@ class LanguageSplitRepositoryTest {
     installSplits(DENSITY_SPLIT, "de")
     fixture.update(SplitInstallSessionStatus.INSTALLED)
 
-    assertThat(states).containsExactly(LanguageInstallStatus.Downloading, LanguageInstallStatus.Installed)
+    assertThat(states).containsExactly(LanguageInstallStatus.Downloading(totalBytes = 0.bytes), LanguageInstallStatus.Installed)
     assertThat(repository.pendingRestartLanguage.value).isEqualTo("de")
     verify(exactly = 0) { manager.cancelInstall(any()) }
     verify(exactly = 0) { manager.deferredLanguageInstall(any()) }

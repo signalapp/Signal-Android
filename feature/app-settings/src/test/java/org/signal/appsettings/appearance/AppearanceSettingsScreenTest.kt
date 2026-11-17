@@ -25,6 +25,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.util.bytes
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -154,8 +155,16 @@ class AppearanceSettingsScreenTest {
   }
 
   @Test
+  fun `the download dialog shows the size of the language pack once it is known`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage(totalBytes = 240_000.bytes)))
+
+    composeTestRule.onNodeWithText("Downloading language pack…").assertIsDisplayed()
+    composeTestRule.onNodeWithText(240_000.bytes.toUnitString()).assertIsDisplayed()
+  }
+
+  @Test
   fun `cancelling the language pack download emits DialogDismissed`() {
-    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage))
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage()))
 
     composeTestRule.onNodeWithText("Downloading language pack…").assertIsDisplayed()
     composeTestRule.onNodeWithText("Cancel").performClick()

@@ -42,6 +42,7 @@ import org.signal.appsettings.appearance.AppearanceSettingsState.LanguageDownloa
 import org.signal.appsettings.appearance.AppearanceSettingsState.Theme
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.core.util.bytes
 import org.signal.locale.LanguageAvailability
 import org.signal.locale.LanguageInstallStatus
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
@@ -159,8 +160,8 @@ class AppearanceSettingsViewModelTest {
     viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
 
-    installStates.emit(LanguageInstallStatus.Downloading)
-    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage)
+    installStates.emit(LanguageInstallStatus.Downloading(totalBytes = 0.bytes))
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage())
     verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
 
     installStates.emit(LanguageInstallStatus.Installed)
@@ -188,11 +189,11 @@ class AppearanceSettingsViewModelTest {
     viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
     viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
 
-    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage())
     verify(exactly = 0) { AppearanceSettingsRepository.applyLanguage(any()) }
 
-    installStates.emit(LanguageInstallStatus.Downloading)
-    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage)
+    installStates.emit(LanguageInstallStatus.Downloading(totalBytes = 0.bytes))
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage())
 
     installStates.emit(LanguageInstallStatus.Installed)
     verify { AppearanceSettingsRepository.applyLanguage("de") }
@@ -256,7 +257,7 @@ class AppearanceSettingsViewModelTest {
     installStates.emit(LanguageInstallStatus.NeedsPlayConfirmation(sessionId = 7))
 
     assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.ConfirmLanguageDownload(sessionId = 7)))
-    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.DownloadingLanguage())
 
     installStates.emit(LanguageInstallStatus.Installed)
     verify { AppearanceSettingsRepository.applyLanguage("de") }

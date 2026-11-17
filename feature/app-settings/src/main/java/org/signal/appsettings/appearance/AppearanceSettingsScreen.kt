@@ -45,6 +45,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.bytes
 
 @VisibleForTesting
 object AppearanceSettingsTestTags {
@@ -171,6 +172,7 @@ fun AppearanceSettingsScreen(
       is AppearanceSettingsState.Dialog.DownloadingLanguage -> {
         Dialogs.ProgressDialog(
           message = stringResource(R.string.preferences_language_change_downloading_message),
+          caption = if (dialog.totalBytes > 0.bytes) dialog.totalBytes.toUnitString() else "",
           dismiss = stringResource(android.R.string.cancel),
           onDismiss = { onEvent(AppearanceSettingsEvent.DialogDismissed) },
           indeterminate = true,
@@ -332,7 +334,7 @@ private fun AppearanceSettingsScreenConfirmLanguageDownloadPreview() {
 @Composable
 private fun AppearanceSettingsScreenDownloadingLanguagePreview() {
   AppearanceSettingsScreen(
-    state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage),
+    state = AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage(totalBytes = 240_000.bytes)),
     onEvent = {}
   )
 }

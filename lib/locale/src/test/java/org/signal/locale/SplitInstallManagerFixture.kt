@@ -43,8 +43,8 @@ internal class SplitInstallManagerFixture {
     every { manager.startInstall(any()) } returns Tasks.forResult(SESSION)
   }
 
-  fun update(status: Int, sessionId: Int = SESSION, errorCode: Int = 0) {
-    val state = sessionState(status, sessionId, errorCode)
+  fun update(status: Int, sessionId: Int = SESSION, errorCode: Int = 0, totalBytes: Long = 0) {
+    val state = sessionState(status, sessionId, errorCode, totalBytes = totalBytes)
     listeners.forEach { it.onStateUpdate(state) }
   }
 }
@@ -54,7 +54,8 @@ internal fun sessionState(
   status: Int,
   sessionId: Int = SESSION,
   errorCode: Int = 0,
-  languages: List<String> = listOf("de")
+  languages: List<String> = listOf("de"),
+  totalBytes: Long = 0
 ): SplitInstallSessionState {
   if (status == SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION) {
     return mockk {
@@ -64,7 +65,7 @@ internal fun sessionState(
       every { languages() } returns languages
     }
   }
-  return SplitInstallSessionState.create(sessionId, status, errorCode, 0, 0, emptyList(), languages)
+  return SplitInstallSessionState.create(sessionId, status, errorCode, 0, totalBytes, emptyList(), languages)
 }
 
 /** Play delivers task results on the main thread. */

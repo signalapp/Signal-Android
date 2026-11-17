@@ -5,6 +5,9 @@
 
 package org.signal.appsettings.appearance
 
+import org.signal.core.util.ByteSize
+import org.signal.core.util.bytes
+
 /**
  * Everything [AppearanceSettingsScreen] needs to render.
  */
@@ -52,7 +55,8 @@ data class AppearanceSettingsState(
     /** Warns that switching to [language] restarts the app. When [needsDownload] is true, the language pack is downloaded first. */
     data class ConfirmLanguageChange(val language: String, val needsDownload: Boolean = false) : Dialog
 
-    data object DownloadingLanguage : Dialog
+    /** [totalBytes] is the size of the language pack, or 0 while it isn't known. */
+    data class DownloadingLanguage(val totalBytes: ByteSize = 0.bytes) : Dialog
 
     /** Downloading the language pack for [language] failed; [reason] decides the message and whether a retry is offered. */
     data class LanguageDownloadFailed(val language: String, val reason: LanguageDownloadFailure) : Dialog

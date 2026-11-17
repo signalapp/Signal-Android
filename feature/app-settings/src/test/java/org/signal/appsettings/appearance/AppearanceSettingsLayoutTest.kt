@@ -44,7 +44,7 @@ class AppearanceSettingsLayoutTest : SignalLayoutStressTest() {
 
   @Test
   fun `downloading a language pack`() = assertPassesLayoutChecks {
-    AppearanceSettingsScreen(state = populated.copy(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage), onEvent = {})
+    AppearanceSettingsScreen(state = populated.copy(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage()), onEvent = {})
   }
 
   @Test

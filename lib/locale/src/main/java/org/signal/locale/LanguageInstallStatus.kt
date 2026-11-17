@@ -6,9 +6,11 @@
 package org.signal.locale
 
 import com.google.android.play.core.splitinstall.model.SplitInstallErrorCode
+import org.signal.core.util.ByteSize
 
 sealed interface LanguageInstallStatus {
-  data object Downloading : LanguageInstallStatus
+  /** [totalBytes] is the size of the download, or 0 while Play hasn't reported it. */
+  data class Downloading(val totalBytes: ByteSize) : LanguageInstallStatus
 
   data class NeedsPlayConfirmation(val sessionId: Int) : LanguageInstallStatus
 

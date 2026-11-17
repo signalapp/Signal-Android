@@ -133,12 +133,12 @@ class AppearanceSettingsViewModel(
   }
 
   private fun installThenApply(language: String, showProgress: Boolean) {
-    _state.update { it.copy(dialog = if (showProgress) AppearanceSettingsState.Dialog.DownloadingLanguage else AppearanceSettingsState.Dialog.None) }
+    _state.update { it.copy(dialog = if (showProgress) AppearanceSettingsState.Dialog.DownloadingLanguage() else AppearanceSettingsState.Dialog.None) }
     languageDownloadJob?.cancel()
     languageDownloadJob = viewModelScope.launch {
       AppearanceSettingsRepository.installLanguage(language).collect { installState ->
         when (installState) {
-          is LanguageInstallStatus.Downloading -> _state.update { it.copy(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage) }
+          is LanguageInstallStatus.Downloading -> _state.update { it.copy(dialog = AppearanceSettingsState.Dialog.DownloadingLanguage(installState.totalBytes)) }
           is LanguageInstallStatus.NeedsPlayConfirmation -> _actions.send(AppearanceSettingsAction.ConfirmLanguageDownload(installState.sessionId))
           is LanguageInstallStatus.Installed -> applyLanguage(language)
           is LanguageInstallStatus.Cancelled -> _state.update { it.copy(dialog = AppearanceSettingsState.Dialog.None) }

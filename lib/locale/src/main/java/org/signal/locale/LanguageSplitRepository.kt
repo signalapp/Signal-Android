@@ -40,6 +40,7 @@ import kotlinx.coroutines.tasks.await
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.PlayServicesUtil
 import org.signal.core.util.PlayStoreUtil
+import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import java.io.File
@@ -398,7 +399,7 @@ class LanguageSplitRepository @JvmOverloads constructor(
       SplitInstallSessionStatus.PENDING,
       SplitInstallSessionStatus.DOWNLOADING,
       SplitInstallSessionStatus.DOWNLOADED,
-      SplitInstallSessionStatus.INSTALLING -> LanguageInstallStatus.Downloading
+      SplitInstallSessionStatus.INSTALLING -> LanguageInstallStatus.Downloading(totalBytesToDownload().bytes)
       SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION -> LanguageInstallStatus.NeedsPlayConfirmation(sessionId())
       SplitInstallSessionStatus.INSTALLED -> LanguageInstallStatus.Installed
       SplitInstallSessionStatus.CANCELED -> LanguageInstallStatus.Cancelled
