@@ -415,7 +415,7 @@ private fun UserMessagesHost(
         if (RemoteConfig.contactDelete) R.string.NewConversationActivity__hide_s else R.string.NewConversationActivity__remove_s,
         userMessage.recipient.getShortDisplayName(context)
       ),
-      body = stringResource(R.string.NewConversationActivity__you_wont_see_this_person),
+      body = stringResource(if (RemoteConfig.contactDelete) R.string.NewConversationActivity__this_person_wont_appear else R.string.NewConversationActivity__you_wont_see_this_person),
       confirm = stringResource(if (RemoteConfig.contactDelete) R.string.NewConversationActivity__hide else R.string.NewConversationActivity__remove),
       dismiss = stringResource(android.R.string.cancel),
       onConfirm = { onRemoveConfirmed(userMessage.recipient) },

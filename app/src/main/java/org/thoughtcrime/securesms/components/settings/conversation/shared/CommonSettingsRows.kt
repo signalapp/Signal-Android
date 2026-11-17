@@ -106,7 +106,7 @@ fun BlockRow(
 
   Rows.TextRow(
     text = stringResource(titleRes),
-    icon = painterResource(R.drawable.symbol_block_24),
+    icon = painterResource(CoreUiR.drawable.symbol_block_24),
     foregroundTint = if (isBlocked) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.error,
     enabled = enabled,
     onClick = onClick,

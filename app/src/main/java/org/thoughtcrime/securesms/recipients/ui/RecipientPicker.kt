@@ -351,7 +351,7 @@ private suspend fun showItemContextMenu(
 
     if (!recipient.isSelf && !recipient.isGroup) {
       val removeItem = ActionItem(
-        iconRes = R.drawable.ic_minus_circle_20,
+        iconRes = if (RemoteConfig.contactDelete) CoreUiR.drawable.symbol_visible_slash_24 else R.drawable.ic_minus_circle_20,
         title = context.getString(if (RemoteConfig.contactDelete) R.string.NewConversationActivity__hide else R.string.NewConversationActivity__remove),
         tintRes = CoreUiR.color.signal_colorOnSurface,
         action = { callbacks.onRemove(recipient) }

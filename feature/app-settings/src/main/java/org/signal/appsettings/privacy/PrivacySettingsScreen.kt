@@ -138,24 +138,38 @@ fun PrivacySettingsScreen(
         }
       }
 
-      item {
-        Rows.TextRow(
-          text = stringResource(R.string.PrivacySettingsFragment__blocked),
-          label = pluralStringResource(R.plurals.PrivacySettingsFragment__d_contacts, state.blockedCount, state.blockedCount),
-          onClick = { onEvent(PrivacySettingsEvent.BlockedClicked) },
-          modifier = Modifier.testTag(PrivacySettingsTestTags.ROW_BLOCKED)
-        )
-      }
-
       if (state.showHiddenContacts) {
+        item {
+          Texts.SectionHeader(text = stringResource(R.string.PrivacySettingsScreen__hidden_and_blocked))
+        }
+
         item {
           Rows.TextRow(
             text = stringResource(R.string.PrivacySettingsScreen__hidden),
-            label = pluralStringResource(R.plurals.PrivacySettingsScreen__d_hidden_contacts, state.hiddenCount, state.hiddenCount),
+            label = if (state.hiddenCount == 0) {
+              stringResource(R.string.PrivacySettingsScreen__none)
+            } else {
+              pluralStringResource(R.plurals.PrivacySettingsScreen__d_hidden_contacts, state.hiddenCount, state.hiddenCount)
+            },
+            icon = SignalIcons.VisibleSlash.painter,
             onClick = { onEvent(PrivacySettingsEvent.HiddenContactsClicked) },
             modifier = Modifier.testTag(PrivacySettingsTestTags.ROW_HIDDEN)
           )
         }
+      }
+
+      item {
+        Rows.TextRow(
+          text = stringResource(R.string.PrivacySettingsFragment__blocked),
+          label = if (state.showHiddenContacts && state.blockedCount == 0) {
+            stringResource(R.string.PrivacySettingsScreen__none)
+          } else {
+            pluralStringResource(R.plurals.PrivacySettingsFragment__d_contacts, state.blockedCount, state.blockedCount)
+          },
+          icon = if (state.showHiddenContacts) SignalIcons.Block.painter else null,
+          onClick = { onEvent(PrivacySettingsEvent.BlockedClicked) },
+          modifier = Modifier.testTag(PrivacySettingsTestTags.ROW_BLOCKED)
+        )
       }
 
       item {

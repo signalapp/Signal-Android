@@ -44,6 +44,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   BadgeMulti(icon(R.drawable.symbol_badge_multi_24)),
   Bell(icon(R.drawable.symbol_bell_24)),
   BellSlash(icon(R.drawable.symbol_bell_slash_24)),
+  Block(icon(R.drawable.symbol_block_24)),
   Blur(icon(R.drawable.symbol_blur_24)),
   BrushPen(icon(R.drawable.symbol_brush_pen_24)),
   BrushHighlighter(icon(R.drawable.symbol_brush_highlighter_24)),

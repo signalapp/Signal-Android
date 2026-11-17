@@ -689,6 +689,10 @@
     <string name="PrivacySettingsScreen__signal">Signal</string>
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
     <string name="PrivacySettingsScreen__learn_more">Learn more</string>
+    <!-- Section header in privacy settings above the rows for hidden and blocked contacts -->
+    <string name="PrivacySettingsScreen__hidden_and_blocked">Hidden and blocked</string>
+    <!-- Row label in privacy settings shown when the user has no hidden contacts or no blocked contacts -->
+    <string name="PrivacySettingsScreen__none">None</string>
     <!-- Row title in privacy settings that opens the list of contacts the user has hidden -->
     <string name="PrivacySettingsScreen__hidden">Hidden</string>
     <!-- Row label in privacy settings showing how many contacts the user has hidden. Placeholder is the count. -->
