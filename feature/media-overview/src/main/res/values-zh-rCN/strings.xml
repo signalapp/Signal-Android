@@ -9,11 +9,11 @@
   <!-- Section header in the media overview list, above items sent or received earlier this month -->
   <string name="MediaOverviewScreen__this_month">本月</string>
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
-  <string name="MediaOverviewScreen__large">大尺寸</string>
+  <string name="MediaOverviewScreen__large">大</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
   <string name="MediaOverviewScreen__medium">中</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
-  <string name="MediaOverviewScreen__small">小尺寸</string>
+  <string name="MediaOverviewScreen__small">小</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
   <string name="MediaOverviewScreen__tab_media">媒体</string>
@@ -36,11 +36,11 @@
   <string name="MediaOverviewScreen__no_media">无媒体</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
-  <string name="MediaOverviewScreen__sort_by">排序</string>
+  <string name="MediaOverviewScreen__sort_by">排序方式</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the most recent items first -->
   <string name="MediaOverviewScreen__newest">最新</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the earliest items first -->
-  <string name="MediaOverviewScreen__oldest">最旧</string>
+  <string name="MediaOverviewScreen__oldest">最早</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the largest files first -->
   <string name="MediaOverviewScreen__storage_used">已用存储</string>
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->

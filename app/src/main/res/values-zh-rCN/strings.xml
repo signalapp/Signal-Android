@@ -509,7 +509,7 @@
     <string name="ConversationFragment_delete_for_me">对我删除</string>
     <string name="ConversationFragment_delete_for_everyone">对每个人删除</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">已为我删除</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="other">删除已选消息？</item>

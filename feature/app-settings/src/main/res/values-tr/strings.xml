@@ -1176,13 +1176,13 @@
 
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">Gelişmiş</string>
-    <string name="preferences_advanced__always_relay_calls">Aramaları her zaman aktar</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP adresinizi kişinize göstermekten kaçınmak için tüm aramaları Signal sunucusundan aktarın. Etkinleştirildiğinde arama kalitesi düşecektir.</string>
+    <string name="preferences_advanced__always_relay_calls">Aramaları her zaman yönlendir</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Görüştüğün kişinin IP adresini görmesini önlemek için tüm aramaları Signal sunucusu üzerinden yönlendir. Bu özelliği etkinleştirmek arama kalitesini düşürür.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Sansür atlatma</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
     <string name="preferences_communication__censorship_circumvention">Sansür atlatma</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Etkinleştirildiğinde, Signal sansürü atlatmaya çalışacaktır. Signal\'in sansürlendiği bir konumda olmadığınız sürece bu özelliği etkinleştirmeyin.</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Etkinleştirildiğinde, Signal sansürü atlatmaya çalışacaktır. Signal\'ın sansürlendiği bir konumda olmadığınız sürece bu özelliği etkinleştirmeyin.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Sansür atlatma hesabınızın telefon numarasına bağlı olarak etkinleştirildi.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
@@ -1195,7 +1195,7 @@
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Durum simgesi göster</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">İletiler gizli gönderici kullanılarak gönderildiğinde ileti detaylarında simge göster.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Herkesten al</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Kişileriniz arasında bulunmayan ve profilinizi paylaşmadığınız kişilerden göndereninin gizli olduğu iletilerin alınmasını etkinleştir.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Kişilerinde kayıtlı olmayan ve profilini paylaşmadığın kişilerden de göndericisi gizli mesajlar almayı etkinleştir.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Otomatik anahtar doğrulama</string>
     <!-- Preference summary for automatic key verification -->
@@ -1204,7 +1204,7 @@
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Kaybolan mesajlar</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Etkinleştirildiğinde, senin tarafından başlatılan yeni sohbetlerde gönderilen ve alınan yeni mesajlar görüldükten sonra kaybolur.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Etkinleştirildiğinde, senin başlattığın yeni sohbetlerde gönderilen ve alınan yeni mesajlar görüldükten sonra kaybolur.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Etkinleştirildiğinde, bu sohbette gönderilen ve alınan yeni mesajlar görüldükten sonra kaybolur.</string>
     <string name="ExpireTimerSettingsFragment__off">Kapalı</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 hafta</string>
@@ -1222,19 +1222,19 @@
     <string name="AccountSettingsScreen__pin_created">PIN oluşturuldu.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Veriler silinemedi</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Kayıt kilidi etkinleştirme başarısız oldu</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Kayıt kilidi devredışı bırakma başarısız oldu</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Kaydolma kilidi etkinleştirme başarısız oldu.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Kaydolma kilidi devre dışı bırakma başarısız oldu.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Gelişmiş PIN ayarları</string>
     <string name="preferences__enable_pin">PIN\'i etkinleştir</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir. Uygulamayı açmak için PIN\'inize ihtiyacınız yoktur.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN\'ler Signal\'da depolanan verileri şifreli olarak tutar; böylece yalnızca sen erişebilirsin. Profilin, ayarların ve kişilerin Signal\'ı yeniden yüklediğinde geri yüklenecektir. Uygulamayı açmak için PIN\'e ihtiyacın yoktur.</string>
     <string name="preferences__disable_pin">PIN\'i devre dışı bırak</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN\'i devre dışı bırakırsanız, elle yedekleyip geri yüklemediğiniz sürece Signal\'i yeniden kaydettiğinizde tüm verilerinizi kaybedersiniz. PIN devre dışı iken Kayıt Kilidini açamazsınız.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kayıt kilidi için PIN gereklidir. PIN\'i devre dışı bırakmak için, lütfen ilk önce kayıt kilidini devre dışı bırakın.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN\'i devre dışı bırakırsan, elle yedekleyip geri yüklemediğin sürece Signal\'ı yeniden kaydettiğinde tüm verilerini kaybedersin. PIN devre dışı iken Kaydolma Kilidini açamazsın.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kaydolma kilidi için PIN gereklidir. PIN\'i devre dışı bırakmak için lütfen önce kayıt kilidini devre dışı bırak.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödemeleri kurtarma parolasını kaydet</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN\'inizi devre dışı bırakmadan önce, ödemeler hesabınızın kurtarılmasını güvence altına almak için ödemeler kurtarma parolanızı kaydetmeniz gerekiyor.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN\'ini devre dışı bırakmadan önce, ödemeler hesabının kurtarılmasını güvence altına almak için ödemeleri kurtarma parolanı kaydetmen gerekiyor.</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Parolayı kaydet</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Yeni bir kurtarma anahtarı oluştur</string>

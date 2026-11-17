@@ -11,12 +11,12 @@
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
   <string name="MediaOverviewScreen__large">Stor</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
-  <string name="MediaOverviewScreen__medium">Medium</string>
+  <string name="MediaOverviewScreen__medium">Middels</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
   <string name="MediaOverviewScreen__small">Liten</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
-  <string name="MediaOverviewScreen__tab_media">Medier</string>
+  <string name="MediaOverviewScreen__tab_media">Mediefiler</string>
   <!-- Tab title in the media overview screen for documents and other files -->
   <string name="MediaOverviewScreen__tab_files">Filer</string>
   <!-- Tab title in the media overview screen for voice messages and audio files -->
@@ -34,7 +34,7 @@
         <item quantity="other">%1$d valgt (%2$s)</item>
     </plurals>
   <!-- Shown in the middle of a media overview tab that has nothing in it -->
-  <string name="MediaOverviewScreen__no_media">Ingen medier</string>
+  <string name="MediaOverviewScreen__no_media">Ingen mediefiler</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
   <string name="MediaOverviewScreen__sort_by">Sorter etter</string>
@@ -45,7 +45,7 @@
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the largest files first -->
   <string name="MediaOverviewScreen__storage_used">Lagring brukt</string>
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->
-  <string name="MediaOverviewScreen__grid_view">Rutenett visning</string>
+  <string name="MediaOverviewScreen__grid_view">Rutenettvisning</string>
   <!-- Accessibility description for the button that switches the media overview from a grid of thumbnails to a list with file details -->
   <string name="MediaOverviewScreen__list_view">Listevisning</string>
 
@@ -77,13 +77,13 @@
 
   <!-- Title of the dialog confirming deletion of the selected media overview items -->
   <plurals name="MediaOverviewScreen__delete_confirm_title">
-        <item quantity="one">Vil du slette valgt element?</item>
-        <item quantity="other">Vil du slette valgte elementer?</item>
+        <item quantity="one">Vil du slette det valgte elementet?</item>
+        <item quantity="other">Vil du slette de valgte elementene?</item>
     </plurals>
   <!-- Body of the dialog confirming deletion of the selected media overview items. The placeholder is the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_confirm_message">
-        <item quantity="one">Dette vil permanent slette den valgte filen. All tekst tilknyttet dette elementet, vil også bli slettet.</item>
-        <item quantity="other">Dette vil permanent slette de %1$d valgte filene. All tekst tilknyttet disse elementene, vil også bli slettet.</item>
+        <item quantity="one">Dette sletter den valgte filen permanent. All tekst tilknyttet dette elementet, blir også slettet.</item>
+        <item quantity="other">Dette sletter de %1$d valgte filene permanen. All tekst tilknyttet disse elementene, blir også slettet.</item>
     </plurals>
   <!-- Title of the progress dialog shown while the selected media overview items are being deleted -->
   <string name="MediaOverviewScreen__deleting">Sletter</string>
@@ -97,7 +97,7 @@
   <!-- Title of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_all_items">Enkelte elementer kan ikke lagres</string>
   <!-- Body of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__some_media_offloaded_message">Enkelte av filene du har valgt, har blitt avlastet fra enheten din fordi «Optimal lagring på Signal» er slått på. Du kan lagre én mediefil om gangen, eller slå av «Optimal lagring på Signal» for å lagre alle filene på én gang.</string>
+  <string name="MediaOverviewScreen__some_media_offloaded_message">Enkelte av mediefilene du har valgt, har blitt avlastet fra enheten din fordi «Optimal lagring på Signal» er slått på. Du kan lagre én mediefil om gangen, eller slå av «Optimal lagring på Signal» for å lagre alle filene på én gang.</string>
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
   <string name="MediaOverviewScreen__view_storage_settings">Åpne lagringsinnstillingene</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->
@@ -127,7 +127,7 @@
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__three_part_line" translatable="false">%1$s · %2$s · %3$s</string> -->
 
   <!-- Accessibility description for a photo or video thumbnail in the media overview grid -->
-  <string name="MediaOverviewScreen__media_preview">Forhåndsvisning av medier</string>
+  <string name="MediaOverviewScreen__media_preview">Forhåndsvisning av mediefiler</string>
   <!-- Accessibility description for the play icon drawn over a video thumbnail in the media overview -->
   <string name="MediaOverviewScreen__play_video">Spill av video</string>
   <!-- Accessibility description for the check mark shown on a selected item in the media overview -->

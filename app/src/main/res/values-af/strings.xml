@@ -516,7 +516,7 @@
     <string name="ConversationFragment_delete_for_me">Skrap vir my</string>
     <string name="ConversationFragment_delete_for_everyone">Skrap vir almal</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">Geskrap vir my</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Skrap geselekteerde boodskap?</item>

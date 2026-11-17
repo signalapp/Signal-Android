@@ -16,7 +16,7 @@
   <string name="MediaOverviewScreen__small">Küçük</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
-  <string name="MediaOverviewScreen__tab_media">İçerik</string>
+  <string name="MediaOverviewScreen__tab_media">Medya</string>
   <!-- Tab title in the media overview screen for documents and other files -->
   <string name="MediaOverviewScreen__tab_files">Dosyalar</string>
   <!-- Tab title in the media overview screen for voice messages and audio files -->
@@ -27,14 +27,14 @@
   <string name="MediaOverviewScreen__tab_all">Tümü</string>
 
   <!-- Screen title when the media overview shows media from every chat, so the user can review what is using storage -->
-  <string name="MediaOverviewScreen__all_storage_use">Depolama kullanımı</string>
+  <string name="MediaOverviewScreen__all_storage_use">Tüm depolama kullanımı</string>
   <!-- Screen title while selecting items in the media overview. The first placeholder is the number of selected items, the second is their combined file size (e.g. "3 selected (12 MB)") -->
   <plurals name="MediaOverviewScreen__d_selected_s">
         <item quantity="one">%1$d seçili (%2$s)</item>
         <item quantity="other">%1$d seçili (%2$s)</item>
     </plurals>
   <!-- Shown in the middle of a media overview tab that has nothing in it -->
-  <string name="MediaOverviewScreen__no_media">İçerik yok</string>
+  <string name="MediaOverviewScreen__no_media">Medya yok</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
   <string name="MediaOverviewScreen__sort_by">Sıralama</string>
@@ -112,17 +112,17 @@
   <!-- File type shown in a media overview list row, between the file size and the date, for documents and other files (e.g. "2 MB · File · Nov 3") -->
   <string name="MediaOverviewScreen__type_file">Dosya</string>
   <!-- Title of a voice message in a media overview list row, in place of a file name -->
-  <string name="MediaOverviewScreen__voice_message">Sesli İleti</string>
+  <string name="MediaOverviewScreen__voice_message">Sesli Mesaj</string>
   <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
   <string name="MediaOverviewScreen__note_to_self">Kendime Not</string>
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
   <string name="MediaOverviewScreen__sent_by_s">%1$s tarafından gönderilen</string>
   <!-- Shown in a media overview list row for an item the user sent -->
-  <string name="MediaOverviewScreen__sent_by_you">Sizin gönderdikleriniz</string>
+  <string name="MediaOverviewScreen__sent_by_you">Senin gönderdiklerin</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item someone else sent in a group. The first placeholder is the sender\'s name, the second is the group name -->
   <string name="MediaOverviewScreen__sent_by_s_to_s">%1$s tarafından --&gt; %2$s</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item the user sent. The placeholder is the name of the chat it was sent to -->
-  <string name="MediaOverviewScreen__sent_by_you_to_s">%1$s kişisine gönderdikleriniz</string>
+  <string name="MediaOverviewScreen__sent_by_you_to_s">%1$s kişisine gönderdiklerin</string>
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__two_part_line" translatable="false">%1$s · %2$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__three_part_line" translatable="false">%1$s · %2$s · %3$s</string> -->
 

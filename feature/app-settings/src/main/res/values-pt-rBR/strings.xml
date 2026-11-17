@@ -1192,7 +1192,7 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">A driblagem de censura pode ser habilitada somente durante uma conexão à Internet.</string>
     <string name="preferences_communication__category_sealed_sender">Remetente Oculto</string>
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Exibir indicadores</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Exibir ícone de status</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostrar ícone de status em mensagens que foram entregues usando remetente oculto.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de qualquer um</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Habilitar remetente oculto para mensagens recebidas de não contatos e pessoas com quem você não compartilhou seu perfil.</string>
@@ -1203,7 +1203,7 @@
 
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
-    <string name="ExpireTimerSettingsScreen__disappearing_messages">Mensagens efêmeras</string>
+    <string name="ExpireTimerSettingsScreen__disappearing_messages">Mensagens temporárias</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Quando habilitadas, novas mensagens enviadas e recebidas em novos chats desaparecerão após terem sido lidas.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Quando habilitadas, as mensagens enviadas e recebidas neste chat desaparecerão após terem sido lidas.</string>
     <string name="ExpireTimerSettingsFragment__off">Desligado</string>
@@ -1222,8 +1222,8 @@
     <string name="AccountSettingsScreen__pin_created">PIN criado.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Falha ao excluir dados</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o Desbloqueio de registro.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o Desbloqueio de registro.</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o bloqueio de registro.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o bloqueio de registro.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->

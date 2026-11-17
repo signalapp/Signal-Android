@@ -509,7 +509,7 @@
     <string name="ConversationFragment_delete_for_me">លុបសម្រាប់ខ្ញុំ</string>
     <string name="ConversationFragment_delete_for_everyone">លុបសម្រាប់អ្នករាល់គ្នា</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">បានលុបសម្រាប់ខ្ញុំ</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="other">លុបសារដែលបានជ្រើសរើស?</item>

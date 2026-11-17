@@ -9,11 +9,11 @@
   <!-- Section header in the media overview list, above items sent or received earlier this month -->
   <string name="MediaOverviewScreen__this_month">Ce mois-ci</string>
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
-  <string name="MediaOverviewScreen__large">Grande</string>
+  <string name="MediaOverviewScreen__large">Fichiers volumineux</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
-  <string name="MediaOverviewScreen__medium">Fichier de taille moyenne</string>
+  <string name="MediaOverviewScreen__medium">Fichiers de taille moyenne</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
-  <string name="MediaOverviewScreen__small">Petite</string>
+  <string name="MediaOverviewScreen__small">Fichiers peu volumineux</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
   <string name="MediaOverviewScreen__tab_media">Médias</string>
@@ -39,9 +39,9 @@
   <!-- Title of the dialog for choosing how the media overview is sorted -->
   <string name="MediaOverviewScreen__sort_by">Trier par</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the most recent items first -->
-  <string name="MediaOverviewScreen__newest">Les plus récentes en premier</string>
+  <string name="MediaOverviewScreen__newest">Les plus récents en premier</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the earliest items first -->
-  <string name="MediaOverviewScreen__oldest">Les plus anciennes en premier</string>
+  <string name="MediaOverviewScreen__oldest">Les plus anciens en premier</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the largest files first -->
   <string name="MediaOverviewScreen__storage_used">Espace de stockage utilisé</string>
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->

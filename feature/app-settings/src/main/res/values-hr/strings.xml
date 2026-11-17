@@ -1227,7 +1227,7 @@
 
     <!-- AccountSettingsScreen -->
     <!-- Snackbar shown after the user creates a PIN -->
-    <string name="AccountSettingsScreen__pin_created">PIN je stvoren</string>
+    <string name="AccountSettingsScreen__pin_created">PIN je stvoren.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Brisanje podataka nije uspjelo</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Omogućavanje Zaključavanja registracije nije uspjelo.</string>
@@ -1250,6 +1250,6 @@
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Morate stvoriti i zabilježiti novi ključ za oporavak prije nego što onemogućite PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Stvori novi ključ</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN je stvoren</string>
+    <string name="ApplicationPreferencesActivity_pin_created">PIN je stvoren.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN je onemogućen.</string>
 </resources>

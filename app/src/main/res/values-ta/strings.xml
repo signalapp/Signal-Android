@@ -516,7 +516,7 @@
     <string name="ConversationFragment_delete_for_me">எனக்கு மட்டும் நீக்கு</string>
     <string name="ConversationFragment_delete_for_everyone">அனைவருக்கும் நீக்கு</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">எனக்கு மட்டும் நீக்கப்பட்டது</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்க வேண்டுமா?</item>

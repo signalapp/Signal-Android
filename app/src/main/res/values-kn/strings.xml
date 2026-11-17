@@ -516,7 +516,7 @@
     <string name="ConversationFragment_delete_for_me">ನನಗೆ ಮಾತ್ರ ಅಳಿಸಿ</string>
     <string name="ConversationFragment_delete_for_everyone">ಎಲ್ಲರಿಗೂ ಅಳಿಸಿ</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">ನನಗೆ ಮಾತ್ರ ಅಳಿಸಲಾಗಿದೆ</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಮೆಸೇಜನ್ನು ಅಳಿಸುವುದೇ?</item>

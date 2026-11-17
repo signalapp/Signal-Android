@@ -1176,23 +1176,23 @@
 
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">વધુ</string>
-    <string name="preferences_advanced__always_relay_calls">હંમેશા રિલે કૉલ્સ</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">તમારા સંપર્કમાં તમારું IP સરનામું જણાવવાનું ટાળવા માટે Signal સર્વર દ્વારા બધા કૉલ્સ રિલે કરો. સક્ષમ કરવાથી કૉલની ગુણવત્તામાં ઘટાડો થશે.</string>
+    <string name="preferences_advanced__always_relay_calls">હંમેશા રિલે કૉલ</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">તમારા સંપર્કમાં તમારું IP સરનામું જણાવવાનું ટાળવા માટે Signal સર્વર દ્વારા બધા કૉલ રિલે કરો. સક્ષમ કરવાથી કૉલની ગુણવત્તામાં ઘટાડો થશે.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">સેન્સરશીપ પ્રયુક્તિ</string>
+    <string name="preferences_communication__category_censorship_circumvention">સેન્સરશિપ ઉપાય</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">સેન્સરશીપ પ્રયુક્તિ</string>
+    <string name="preferences_communication__censorship_circumvention">સેન્સરશિપ ઉપાય</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">જો સક્ષમ હોય, તો Signal સેન્સરશીપને અવળું કરવાનો પ્રયાસ કરશે. જ્યાં સુધી તમે Signal સેન્સર કરેલ નથી ત્યાં સુધી આ સુવિધાને સક્ષમ કરશો નહીં.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">તમારા એકાઉન્ટના ફોન નંબરના આધારે સેન્સરશીપ પ્રયુક્તિ સક્રિય કરવામાં આવી છે.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">તમારા એકાઉન્ટના ફોન નંબરના આધારે સેન્સરશિપ ઉપાય સક્રિય કરવામાં આવી છે.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">તમે જાતે સેન્સરશિપ પ્રયુક્તિને અક્ષમ કરી છે.</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">તમે જાતે સેન્સરશિપ ઉપાયને અક્ષમ કરી છે.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">સેન્સરશિપ પ્રયુક્તિ જરૂરી નથી; તમે પહેલેથી જ Signal સેવા સાથે જોડાયેલા છો.</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">સેન્સરશિપ ઉપાય જરૂરી નથી; તમે પહેલેથી જ Signal સેવા સાથે જોડાયેલા છો.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">જ્યારે ઇન્ટરનેટથી કનેક્ટેડ હોય ત્યારે જ સેન્સરશિપ પ્રયુક્તિ સક્રિય કરી શકાય છે.</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">જ્યારે ઇન્ટરનેટથી કનેક્ટેડ હોય ત્યારે જ સેન્સરશિપ ઉપાય સક્રિય કરી શકાય છે.</string>
     <string name="preferences_communication__category_sealed_sender">સીલ કરી મોકલનાર</string>
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">સ્ટેટસ આઇકૉન બતાવો</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">સ્ટેટસ આઇકન બતાવો</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">મેસેજની વિગતોમાં એક ચિહ્ન બતાવો જ્યારે તેઓ સીલ કરેલા પ્રેષકનો ઉપયોગ કરીને વિતરિત કરવામાં આવે.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">કોઈની પાસેથી મંજૂરી આપો</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">બિન-સંપર્કો અને જેની સાથે તમે તમારી પ્રોફાઇલ શેર કરી નથી તેવા લોકો તરફથી આવતા મેસેજ માટે સીલ કરેલા મોકલનાર સક્ષમ કરો.</string>
@@ -1228,10 +1228,10 @@
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">વિગતવાર પિન સેટિંગ્સ</string>
-    <string name="preferences__enable_pin">PIN ને અક્ષમ કરો</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN એન્ક્રિપ્ટ થયેલ Signal સાથે માહિતીને સંગ્રહિત રાખે છે જેથી ફક્ત તમે જ તેનો ઉપયોગ કરી શકો. જ્યારે તમે ફરીથી ઇન્સ્ટોલ કરો ત્યારે તમારી પ્રોફાઇલ, સેટિંગ્સ અને સંપર્કો રિસ્ટોર થશે. એપ ખોલવા માટે તમારે તમારા PIN ની જરૂર નહીં પડે.</string>
-    <string name="preferences__disable_pin">PIN અક્ષમ કરો</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">જો તમે PIN ને અક્ષમ કરો છો, તો જ્યારે તમે Signal ને ફરીથી રજીસ્ટર કરશો ત્યારે તમે તમામ ડેટા ગુમાવશો જ્યાં સુધી તમે તેને મેન્યુઅલી સ્થાનાંતરિત ન કરો. જ્યારે PIN અક્ષમ હોય ત્યારે તમે રજીસ્ટ્રેશન લૉક ચાલુ કરી શકતા નથી.</string>
+    <string name="preferences__enable_pin">પિન અક્ષમ કરો</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">પિન એન્ક્રિપ્ટ થયેલ Signal સાથે માહિતીને સંગ્રહિત રાખે છે જેથી ફક્ત તમે જ તેનો ઉપયોગ કરી શકો. જ્યારે તમે ફરીથી ઇન્સ્ટોલ કરો ત્યારે તમારી પ્રોફાઇલ, સેટિંગ્સ અને સંપર્કો રિસ્ટોર થશે. એપ ખોલવા માટે તમારે તમારા PIN ની જરૂર નહીં પડે.</string>
+    <string name="preferences__disable_pin">પિન અક્ષમ કરો</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">જો તમે પિનને અક્ષમ કરો છો, તો જ્યારે તમે Signal ને ફરીથી રજીસ્ટર કરશો ત્યારે તમે તમામ ડેટા ગુમાવશો જ્યાં સુધી તમે તેને મેન્યુઅલી સ્થાનાંતરિત ન કરો. જ્યારે પિન અક્ષમ હોય ત્યારે તમે રજીસ્ટ્રેશન લૉક ચાલુ કરી શકતા નથી.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">રજીસ્ટ્રેશન લૉક માટે પિન આવશ્યક છે. પિન અક્ષમ કરવા માટે, કૃપા કરીને પહેલા રજીસ્ટ્રેશન લૉકને અક્ષમ કરો.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">પેમેન્ટ રિકવરી કરવા માટે વાક્ય રેકોર્ડ કરો</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">તમે તમારો પિન અક્ષમ કરી શકો તે પહેલાં, તમે તમારા પેમેન્ટ એકાઉન્ટને રિકવરી કરી શકો છો તેની ખાતરી કરવા માટે તમારે તમારા પેમેન્ટ રિકવરી વાક્યને રેકોર્ડ કરવું આવશ્યક છે.</string>

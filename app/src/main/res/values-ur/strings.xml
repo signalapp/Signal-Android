@@ -516,7 +516,7 @@
     <string name="ConversationFragment_delete_for_me">میرے لئے حذف کریں</string>
     <string name="ConversationFragment_delete_for_everyone">سب کے لئے حذف کریں</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">میرے لیے حذف کر دیا گیا</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">منتخب شدہ پیغام حذف کریں؟</item>

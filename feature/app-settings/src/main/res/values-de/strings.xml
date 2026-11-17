@@ -1195,7 +1195,7 @@
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Symbol anzeigen</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Symbol unter »Nachrichtendetails« anzeigen bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Von jedem erlauben</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Vertraulicher Absender« aktivieren für eingehende Nachrichten von Nichtkontakten sowie Menschen, mit denen du dein Profil nicht geteilt hast</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Vertraulicher Absender« aktivieren für eingehende Nachrichten von Nichtkontakten sowie Menschen, mit denen du dein Profil nicht geteilt hast.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automatische Schlüssel-Verifizierung</string>
     <!-- Preference summary for automatic key verification -->

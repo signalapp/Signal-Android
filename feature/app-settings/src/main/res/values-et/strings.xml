@@ -1177,35 +1177,35 @@
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">Täpsem</string>
     <string name="preferences_advanced__always_relay_calls">Alati vahenda kõned</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vahenda kõik kõned Signali serveri kaudu, et vältida oma IP-aadressi levitamist oma kontaktile. Lubamine vähendab kõnekvaliteeti.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vahenda kõik kõned Signali serveri kaudu, et vältida oma IP-aadressi avaldamist oma kontaktile. Lubamine vähendab kõnekvaliteeti.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Tsensuuri vältimine</string>
+    <string name="preferences_communication__category_censorship_circumvention">Tsensuurivaba ligipääs</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Tsensuuri vältimine</string>
+    <string name="preferences_communication__censorship_circumvention">Tsensuurivaba ligipääs</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Kui on lubatud, siis püüab Signal tsenseerimisest mööda hiilida. Luba see funktsioon vaid siis, kui oled kohas, kus Signal on tsenseeritud.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Tsenseerimisest möödahiilimine on aktiveeritud sinu konto telefoninumbri järgi.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Tsensuurivaba ligipääs on aktiveeritud sinu konto telefoninumbri tõttu.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Sa oled käsitsi keelanud tsenseerimisest möödahiilimise</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Sa oled käsitsi keelanud tsensuurivaba ligipääsu.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Tsenseerimisest möödahiilimine pole vajalik, sa oled juba Signali teenusega ühendatud.</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Tsensuurivaba ligipääs pole vajalik. Sa oled juba Signali teenusega ühendatud.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Tsenseerimisest möödahiilimist saab aktiveerida ainult Internetis olles.</string>
-    <string name="preferences_communication__category_sealed_sender">Kaetud saatja</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Tsensuurivaba ligipääsu saab aktiveerida ainult Internetis olles.</string>
+    <string name="preferences_communication__category_sealed_sender">Varjatud saatja</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Näita olekuikooni</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Kui sõnum saadeti turvatud saatja funktsiooni kasutades, näita sõnumi andmete all vastavat ikooni.</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Kui sõnum saadeti varjatud saatja funktsiooni kasutades, näita sõnumi andmete all vastavat ikooni.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Luba kõigilt</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Luba kaetud saatja sissetulevate sõnumite juures mitte-kontaktidelt ja isikutelt, kellega sa pole enda profiili jaganud.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Luba varjatud saatja sissetulevate sõnumite puhul, mis tulevad kontaktiks mitte olevatelt isikutelt ja nendelt, kellega sa pole oma profiili jaganud.</string>
     <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Võtme automaatne kontroll</string>
+    <string name="preferences_automatic_key_verification">Automaatne võtme kinnitamine</string>
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">Kui see on lubatud, proovib Signal automaatselt kontrollida üks-ühele vestluste krüptimist.</string>
 
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Kaduvad sõnumid</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kui see on sisse lülitatud, kustuvad saadetud ja vastu võetud sõnumid sinu alustatud vestlustes pärast seda, kui neid on nähtud.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kui lubatud, siis kaovad selle vestluse saadetud ja saadud sõnumid pärast nende nägemist.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kui see on sisse lülitatud, kustuvad saadetud ja vastu võetud sõnumid sinu alustatud uutes vestlustes pärast seda, kui neid on nähtud.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kui lubatud, siis kaovad selle vestluse saadetud ja vastu võetud sõnumid pärast nende nägemist.</string>
     <string name="ExpireTimerSettingsFragment__off">Väljas</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 nädalat</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 nädal</string>
@@ -1229,17 +1229,17 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Täpsemad PIN-koodi sätted</string>
     <string name="preferences__enable_pin">Luba PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koodid hoiavad Signalis salvestatud teabe krüptituna, seega ainult sinul on sellele juurdepääs. Kui paigaldad Signali uuesti, siis sinu profiil, sätted ja kontaktid taastatakse. Rakenduse avamiseks pole PIN-koodi vaja.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koodid hoiavad Signalis salvestatud teabe krüptituna nii, et ainult sinul on sellele juurdepääs. Kui paigaldad Signali uuesti, siis sinu profiil, sätted ja kontaktid taastatakse. Rakenduse avamiseks pole PIN-koodi vaja.</string>
     <string name="preferences__disable_pin">Keela PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Kui keelad PIN-koodi, siis kaotad kõik andmed, kui eemaldad Signal rakenduse ja pole seda käsitsi varundanud ja taastanud. Registreerimislukku pole võimalik sisse lülitada, kui PIN-kood on keelatud.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Kui keelad PIN-koodi, siis kaotad Signali rakenduse eemaldamisel kõik andmed, kui sa pole neid käsitsi varundanud ja taastanud. Registreerimislukku pole võimalik sisse lülitada, kui PIN-kood on keelatud.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koode on registreerimisluku jaoks vaja. PIN-koodide keelamiseks keela kõigepealt registreerimislukk.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Salvesta maksete kontroll-lause</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Enne kui saad oma PIN-koodi desaktiveerida, pead salvestama oma maksete kontroll-lause, tagamaks, et saad oma maksekonto taastada.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Salvesta maksete taastelause</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Enne kui saad PIN-koodi keelata, pead salvestama maksete taastelause tagamaks, et saad oma maksekonto taastada.</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Salvesta lause</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Loo uus varukoopia võti</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Loo uus taastevõti</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Enne PIN-koodi väljalülitamist pead looma ja salvestama uue varukoopia võtme.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Enne PIN-koodi väljalülitamist pead looma ja salvestama uue taastevõtme.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Loo võti</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN-kood loodud.</string>

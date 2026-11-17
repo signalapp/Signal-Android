@@ -7,11 +7,11 @@
   <!-- Section header in the media overview list, above items sent or received earlier this week -->
   <string name="MediaOverviewScreen__this_week">An seachtain seo</string>
   <!-- Section header in the media overview list, above items sent or received earlier this month -->
-  <string name="MediaOverviewScreen__this_month">An mí seo</string>
+  <string name="MediaOverviewScreen__this_month">An mhí seo</string>
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
   <string name="MediaOverviewScreen__large">Mór</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
-  <string name="MediaOverviewScreen__medium">Meán</string>
+  <string name="MediaOverviewScreen__medium">Meánmhéid</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
   <string name="MediaOverviewScreen__small">Beag</string>
 
@@ -80,7 +80,7 @@
   <!-- Menu item shown when long-pressing an item in the media overview, and the confirm button of the dialog asking whether to delete the selected items -->
   <string name="MediaOverviewScreen__delete">Scrios</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Starts selecting multiple items, beginning with this one -->
-  <string name="MediaOverviewScreen__select">Roghnaigh é</string>
+  <string name="MediaOverviewScreen__select">Roghnaigh</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Opens the chat scrolled to the message the item was sent in -->
   <string name="MediaOverviewScreen__jump_to_message">Léim chuig teachtaireacht</string>
 
@@ -94,11 +94,11 @@
     </plurals>
   <!-- Body of the dialog confirming deletion of the selected media overview items. The placeholder is the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_confirm_message">
-        <item quantity="one">Scriosfar an comhad roghnaithe go buan leis sin. Scriosfar aon téacs teachtaireachta a bhaineann leis an mír seo freisin.</item>
-        <item quantity="two">Scriosfar %1$d chomhad roghnaithe go buan leis sin. Scriosfar aon téacs teachtaireachta a bhaineann leis na míreanna seo freisin.</item>
-        <item quantity="few">Scriosfar %1$d chomhad roghnaithe go buan leis sin. Scriosfar aon téacs teachtaireachta a bhaineann leis na míreanna seo freisin.</item>
-        <item quantity="many">Scriosfar %1$d gcomhad roghnaithe go buan leis sin. Scriosfar aon téacs teachtaireachta a bhaineann leis na míreanna seo freisin.</item>
-        <item quantity="other">Scriosfar %1$d comhad roghnaithe go buan leis sin. Scriosfar aon téacs teachtaireachta a bhaineann leis na míreanna seo freisin.</item>
+        <item quantity="one">Scriosfar an comhad roghnaithe go buan leis seo. Scriosfar aon téacs teachtaireachta a bhaineann leis an mír seo freisin.</item>
+        <item quantity="two">Scriosfar %1$d chomhad roghnaithe go buan leis seo. Scriosfar aon téacs teachtaireachta a bhaineann leis na míreanna seo freisin.</item>
+        <item quantity="few">Scriosfar %1$d chomhad roghnaithe go buan leis seo. Scriosfar aon téacs teachtaireachta a bhaineann leis na míreanna seo freisin.</item>
+        <item quantity="many">Scriosfar %1$d gcomhad roghnaithe go buan leis seo. Scriosfar aon téacs teachtaireachta a bhaineann leis na míreanna seo freisin.</item>
+        <item quantity="other">Scriosfar %1$d comhad roghnaithe go buan leis seo. Scriosfar aon téacs teachtaireachta a bhaineann leis na míreanna seo freisin.</item>
     </plurals>
   <!-- Title of the progress dialog shown while the selected media overview items are being deleted -->
   <string name="MediaOverviewScreen__deleting">Ag scriosadh</string>
@@ -129,7 +129,7 @@
   <!-- Title of a voice message in a media overview list row, in place of a file name -->
   <string name="MediaOverviewScreen__voice_message">Glórphost</string>
   <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
-  <string name="MediaOverviewScreen__note_to_self">Nóta Chugam Féin</string>
+  <string name="MediaOverviewScreen__note_to_self">Nóta chugam féin</string>
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
   <string name="MediaOverviewScreen__sent_by_s">Seolta ag %1$s</string>
   <!-- Shown in a media overview list row for an item the user sent -->

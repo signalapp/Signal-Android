@@ -72,11 +72,11 @@
     <!-- Clickable text that opens a corresponding URL -->
     <string name="RegistrationActivity_learn_more">વધુ જાણો</string>
     <!-- Dialog message shown when the server rejects the user\'s captcha response during registration -->
-    <string name="PhoneNumberEntryScreen__captcha_not_accepted">Your verification response was not accepted. Please try again, or contact support if the problem continues.</string>
+    <string name="PhoneNumberEntryScreen__captcha_not_accepted">તમારો ચકાસણી પ્રતિસાદ સ્વીકારવામાં આવ્યો ન હતો. કૃપા કરીને ફરી પ્રયાસ કરો અથવા જો સમસ્યા ચાલુ રહે તો સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Dialog button that lets the user contact support after their captcha response was rejected -->
     <string name="PhoneNumberEntryScreen__contact_support">સપોર્ટનો સંપર્ક કરો</string>
     <!-- Subject line of the support email composed when the user\'s captcha response was rejected during registration -->
-    <string name="PhoneNumberEntryScreen__contact_support_email_subject">Signal Registration - Captcha Not Accepted for Android</string>
+    <string name="PhoneNumberEntryScreen__contact_support_email_subject">Signal રજિસ્ટ્રેશન - Android માટે કેપ્ચા સ્વીકારવામાં આવતા નથી</string>
     <!-- Text placed in the body of the support email composed when the user\'s captcha response was rejected. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="PhoneNumberEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Captcha Not Accepted for Android</string> -->
 

@@ -16,7 +16,7 @@
   <string name="MediaOverviewScreen__small">Piccolo</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
-  <string name="MediaOverviewScreen__tab_media">Media</string>
+  <string name="MediaOverviewScreen__tab_media">Contenuti multimediali</string>
   <!-- Tab title in the media overview screen for documents and other files -->
   <string name="MediaOverviewScreen__tab_files">File</string>
   <!-- Tab title in the media overview screen for voice messages and audio files -->
@@ -24,7 +24,7 @@
   <!-- Tab title in the media overview screen for links sent in the chat -->
   <string name="MediaOverviewScreen__tab_links">Link</string>
   <!-- Tab title in the media overview screen showing every kind of item together -->
-  <string name="MediaOverviewScreen__tab_all">Tutti</string>
+  <string name="MediaOverviewScreen__tab_all">Tutto</string>
 
   <!-- Screen title when the media overview shows media from every chat, so the user can review what is using storage -->
   <string name="MediaOverviewScreen__all_storage_use">Tutta la memoria usata</string>
@@ -34,14 +34,14 @@
         <item quantity="other">%1$d selezionati (%2$s)</item>
     </plurals>
   <!-- Shown in the middle of a media overview tab that has nothing in it -->
-  <string name="MediaOverviewScreen__no_media">Nessun file multimediale</string>
+  <string name="MediaOverviewScreen__no_media">Nessun contenuto multimediale</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
   <string name="MediaOverviewScreen__sort_by">Ordina per</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the most recent items first -->
   <string name="MediaOverviewScreen__newest">Più recente</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the earliest items first -->
-  <string name="MediaOverviewScreen__oldest">Più vecchia</string>
+  <string name="MediaOverviewScreen__oldest">Più vecchio</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the largest files first -->
   <string name="MediaOverviewScreen__storage_used">Memoria utilizzata</string>
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->
@@ -104,7 +104,7 @@
   <string name="MediaOverviewScreen__media_not_sent_yet">Questo contenuto multimediale non è stato ancora inviato.</string>
 
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Image · Nov 3") -->
-  <string name="MediaOverviewScreen__type_image">Immagini</string>
+  <string name="MediaOverviewScreen__type_image">Immagine</string>
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Video · Nov 3") -->
   <string name="MediaOverviewScreen__type_video">Video</string>
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Audio · Nov 3") -->

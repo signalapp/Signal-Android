@@ -1176,26 +1176,26 @@
 
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">Advanced</string>
-    <string name="preferences_advanced__always_relay_calls">Laging padaain ang tawag sa server ng Signal</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Padaanin sa server ng Signal ang lahat ng tawag upang maiwasang mailantad ang iyong IP address sa kontak mo. Bababa ang kalidad ng tawag kapag naka-enable.</string>
+    <string name="preferences_advanced__always_relay_calls">Laging padaanin ang tawag sa Signal server</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Padaanin sa Signal server ang lahat ng tawag upang maiwasang mailantad ang iyong IP address sa kontak mo. Bababa ang kalidad ng tawag kapag naka-enable ito.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Censorship circumvention</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
     <string name="preferences_communication__censorship_circumvention">Censorship circumvention</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Kung gumagana, susubukin ng Signal na ikutan ang censorship. Huwag paganahin ang feature na ito maliban na lang kung ika\'y nasa lugar na naka-censor ang Signal.</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Kapag naka-enable ito, susubukan ng Signal na iwasan ang censorship. Huwag paganahin ang feature na ito maliban na lang kung ika\'y nasa lugar na naka-censor ang Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Ang censorship circumvention ay activated base sa phone number ng account mo.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Ang censorship circumvention ay in-activate base sa phone number ng account mo.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ang pag-ikot sa censorship ay manu-mano mong hindi pinagana.</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Manual mong dinisable ang censorship circumvention.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Ang pag-ikot sa censorship ay hindi kailangan; kunektado ka na sa serbisyo ng Signal.</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Hindi kailangan ang censorship circumvention; konektado ka na sa serbisyo ng Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Ang pag-ikot sa censorship ay mapapagana lamang kapag kunektado sa internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Sealed na Tagapagpadala</string>
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Magpakita ng icon sa message details when they were delivered gamit ang sealed sender.</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Payagan ang mula sa sinuman</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">I-enable ang sealed na tagapagpadala para sa mga paparating na mensahe mula sa mga hindi kontak at tao kung kanino mo hindi pa naibabahagi ang iyong profile</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">I-a-activate lang ang censorship circumvention kapag konektado ka sa internet.</string>
+    <string name="preferences_communication__category_sealed_sender">Sealed Sender</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Ipakita ang status icon</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Magpakita ng icon sa message details kapag pinadala ito gamit ang sealed sender.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone">Payagan mula kahit kanino</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">I-enable ang sealed sender para sa mga paparating na mensahe mula sa hindi mo contacts at sa mga tao kung kanino hindi mo pa naibabahagi ang iyong profile.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automatic Key Verification</string>
     <!-- Preference summary for automatic key verification -->
@@ -1205,43 +1205,43 @@
     <!-- Title of the screen for choosing a disappearing messages timer -->
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Disappearing messages</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kapag naka-enable ito, mawawala ang bagong messages na na-send at na-receive sa sinimulan mong bagong chats kapag na-seen na nila ang mga ito.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kapag naka-enable ito, mawawala ang bagong messages na na-send at na-receive sa chat na ito kapag na-seen na niya ito.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kapag naka-enable ito, mawawala ang bagong messages na na-send at na-receive sa chat na ito kapag nabasa na ang mga ito.</string>
     <string name="ExpireTimerSettingsFragment__off">Off</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
-    <string name="ExpireTimerSettingsFragment__1_day">1 day</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 hour</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
+    <string name="ExpireTimerSettingsFragment__4_weeks">4 na linggo</string>
+    <string name="ExpireTimerSettingsFragment__1_week">1 linggo</string>
+    <string name="ExpireTimerSettingsFragment__1_day">1 araw</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">8 oras</string>
+    <string name="ExpireTimerSettingsFragment__1_hour">1 oras</string>
+    <string name="ExpireTimerSettingsFragment__5_minutes">5 minuto</string>
+    <string name="ExpireTimerSettingsFragment__30_seconds">30 segundo</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
     <string name="ExpireTimerSettingsFragment__save">I-save</string>
 
     <!-- AccountSettingsScreen -->
     <!-- Snackbar shown after the user creates a PIN -->
-    <string name="AccountSettingsScreen__pin_created">Nalikha na ang PIN.</string>
+    <string name="AccountSettingsScreen__pin_created">Nilikha ang PIN.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Hindi mabura ang data</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Bigo na paganahin ang registration lock.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Bigo na patayin ang registration lock?</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Hindi na-enable ang registration lock.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Hindi na-enable ang registration lock.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__enable_pin">I-enable ang PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs keep information stored with Signal encrypted kaya ikaw lang ang may access dito. Ang iyong profile, settings, at contacts ay mare-restore when you reinstall. Hindi mo kailangan ng PIN para i-open ang app.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Pinapanatiling encrypted ng PINs ang impormasyong nakalagay sa Signal kaya ikaw lang ang may access dito. Ang iyong profile, settings, at contacts ay mare-restore kapag in-install mo ulit ito. Hindi mo kailangan ng PIN para i-open ang app.</string>
     <string name="preferences__disable_pin">I-disable ang PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Kung idi-disable mo ang iyong PIN, mawawala ang lahat ng data kapag ikaw ay nag-register ulit sa Signal unless manually kang nag-back up and restore. Hindi mo pwedeng i-turn on ang Registration Lock habang naka-disable ang PIN.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Required ang PIN para sa registration lock. Para mag-disable ng PIN, paki disable muna ang registration lock.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Kapag dinisable mo ang iyong PIN, mawawala ang lahat ng data kapag ikaw ay nag-register ulit sa Signal maliban na lang kung manual kang nag-back up and restore. Hindi mo pwedeng i-turn on ang Registration Lock habang naka-disable ang PIN.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Required ang PIN para sa registration lock. Para i-disable ang PINs, paki disable muna ang registration lock.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">I-record ang payments recovery phrase</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Bago mo ma-disable ang iyong PIN, kinakailangan mong i-record ang payments recovery phrase mo para masiguradong mare-recover mo ang iyong payments account.</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">I-record ang phrase</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Mag-record ang phrase</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Gumawa ng bagong recovery key</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Kailangan mong gumawa at i-record ang panibagong recovery key mo bago mo ma-disable ang iyong PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Kailangan mong gumawa at mag-record ng panibagong recovery key bago mo ma-disable ang iyong PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Gumawa ng key</string>
-    <string name="ApplicationPreferencesActivity_pin_created">Nalikha na ang PIN.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">Naka-disable ang PIN.</string>
+    <string name="ApplicationPreferencesActivity_pin_created">Nalikha ang PIN.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">Dinisable ang PIN.</string>
 </resources>

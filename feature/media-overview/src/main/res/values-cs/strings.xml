@@ -96,22 +96,22 @@
         <item quantity="other">Tímto trvale odstraníte všech %1$d vybraných souborů. Veškerý text zpráv přidružený k těmto položkám bude rovněž odstraněn.</item>
     </plurals>
   <!-- Title of the progress dialog shown while the selected media overview items are being deleted -->
-  <string name="MediaOverviewScreen__deleting">Mažu</string>
+  <string name="MediaOverviewScreen__deleting">Odstraňování</string>
   <!-- Progress shown below the title while deleting media overview items. The first placeholder is how many are done, the second is the total (e.g. "12 of 207") -->
   <string name="MediaOverviewScreen__delete_progress_count">%1$d z %2$d</string>
 
   <!-- Title of the dialog shown when saving from the media overview, and every selected item has been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_media">Média nelze uložit</string>
   <!-- Body of the dialog shown when saving from the media overview, and every selected item has been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__media_offloaded_message">Tato média byla z vašeho zařízení odložena, protože je zapnutá funkce Optimalizovat úložiště Signal. Položky můžete stahovat po jedné, nebo můžete vypnout funkci Optimalizovat úložiště Signal a stáhnout všechna média do svého zařízení.</string>
+  <string name="MediaOverviewScreen__media_offloaded_message">Tato média byla z vašeho zařízení odložena, protože máte zapnutou funkci Optimalizovat úložiště Signal. Položky můžete stahovat jednotlivě, nebo můžete vypnout funkci Optimalizovat úložiště Signal a stáhnout všechna média do svého zařízení.</string>
   <!-- Title of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_all_items">Nejde uložit všechny položky</string>
   <!-- Body of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__some_media_offloaded_message">Některá vybraná média byla z vašeho zařízení odložena, protože je zapnutá funkce Optimalizovat úložiště Signal. Položky můžete ukládat po jedné, nebo můžete vypnout funkci Optimalizovat úložiště Signal a stáhnout všechna média do svého zařízení.</string>
+  <string name="MediaOverviewScreen__some_media_offloaded_message">Některá vybraná média byla z vašeho zařízení odložena, protože máte zapnutou funkci Optimalizovat úložiště Signal. Položky můžete ukládat jednotlivě, nebo můžete vypnout funkci Optimalizovat úložiště Signal a stáhnout všechna média do svého zařízení.</string>
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
   <string name="MediaOverviewScreen__view_storage_settings">Zobrazit nastavení úložiště</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->
-  <string name="MediaOverviewScreen__media_not_sent_yet">Toto médium se ještě neodeslalo.</string>
+  <string name="MediaOverviewScreen__media_not_sent_yet">Toto médium ještě nebylo odesláno.</string>
 
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Image · Nov 3") -->
   <string name="MediaOverviewScreen__type_image">Obrázek</string>
@@ -126,13 +126,13 @@
   <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
   <string name="MediaOverviewScreen__note_to_self">Poznámka pro sebe</string>
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
-  <string name="MediaOverviewScreen__sent_by_s">Odesláno od %1$s</string>
+  <string name="MediaOverviewScreen__sent_by_s">Odeslal/a %1$s</string>
   <!-- Shown in a media overview list row for an item the user sent -->
   <string name="MediaOverviewScreen__sent_by_you">Odesláno vámi</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item someone else sent in a group. The first placeholder is the sender\'s name, the second is the group name -->
-  <string name="MediaOverviewScreen__sent_by_s_to_s">Odesláno od %1$s pro %2$s</string>
+  <string name="MediaOverviewScreen__sent_by_s_to_s">Odeslal/a %1$s uživateli %2$s</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item the user sent. The placeholder is the name of the chat it was sent to -->
-  <string name="MediaOverviewScreen__sent_by_you_to_s">Odesláno vámi pro %1$s</string>
+  <string name="MediaOverviewScreen__sent_by_you_to_s">Odesláno vámi uživateli %1$s</string>
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__two_part_line" translatable="false">%1$s · %2$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__three_part_line" translatable="false">%1$s · %2$s · %3$s</string> -->
 

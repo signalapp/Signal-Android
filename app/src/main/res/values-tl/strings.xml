@@ -516,7 +516,7 @@
     <string name="ConversationFragment_delete_for_me">Burahin sa \'kin</string>
     <string name="ConversationFragment_delete_for_everyone">Burahin sa lahat</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">Burahin para sa akin</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Burahin ang piniling message?</item>

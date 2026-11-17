@@ -1183,37 +1183,37 @@
     <string name="SelectRecipientsScreen__allowed_notifications">Povolená oznámení</string>
 
     <!-- AdvancedPrivacySettingsScreen -->
-    <string name="preferences__advanced">Rozšířené možnosti</string>
-    <string name="preferences_advanced__always_relay_calls">Vždy předávat hovory</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Přenášet všechna volání přes servery Signal, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.</string>
+    <string name="preferences__advanced">Pokročilé možnosti</string>
+    <string name="preferences_advanced__always_relay_calls">Vždy přesměrovávat hovory</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Přesměrovávat všechny hovory přes servery Signal, aby se vašemu kontaktu nezobrazila vaše IP adresa. Povolením této funkce se sníží kvalita hovoru.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Obcházení cenzury</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
     <string name="preferences_communication__censorship_circumvention">Obcházení cenzury</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Pokud je povoleno, Signal se pokusí obejít cenzuru. Nepovolujte v místech, kde Signal není cenzurován.</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Pokud tuto funkci zapnete, Signal se pokusí obejít cenzuru. Zapínejte ji pouze v místech, kde je Signal cenzurován.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Obcházení cenzury bylo aktivováno na základě vašeho telefonního čísla.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ručně jste zakázal(a) obcházení cenzury.</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ručně jste deaktivovali obcházení cenzury.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
     <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Obcházení cenzury není nutné; již jste připojeni ke službě Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Obcházení cenzury může být povoleno pouze pokud jste připojeni k internetu.</string>
-    <string name="preferences_communication__category_sealed_sender">Utajený odesílatel</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Obcházení cenzury může být povoleno pouze, pokud jste připojeni k internetu.</string>
+    <string name="preferences_communication__category_sealed_sender">Zapečetěný odesílatel</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Zobrazit stavovou ikonu</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Zobrazení ikony v podrobnostech zprávy, pokud byla doručena pomocí utajeného odesílatele.</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">V podrobnostech zprávy zobrazit ikonu, pokud byla doručena pomocí zapečetěného odesílatele.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Povolit od kohokoliv</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Povolit utajené odesílatele pro příchozí zprávy od lidí, které nemáte kontaktech a se kterými nesdílíte váš profil.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Povolit zapečetěného odesílatele pro příchozí zprávy od lidí, které nemáte kontaktech a se kterými nesdílíte svůj profil.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automatické ověření klíče</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Pokud je tato funkce povolena, služba Signal se pokusí automaticky ověřit šifrování 1:1 chatů.</string>
+    <string name="preferences_automatic_key_verification_body">Pokud tuto funkci zapnete, Signal se pokusí automaticky ověřovat šifrování soukromých chatů.</string>
 
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Mizející zprávy</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Pokud je tato funkce povolena, nové zprávy odeslané a přijaté v nových chatech, které jste zahájili, po zobrazení zmizí.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Pokud je tato funkce povolena, nové zprávy odeslané a přijaté v tomto chatu po zobrazení zmizí.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Pokud tuto funkci zapnete, nové zprávy odeslané a přijaté v nových chatech, které zahájíte, po zobrazení zmizí.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Pokud tuto funkci zapnete, nové zprávy odeslané a přijaté v tomto chatu po zobrazení zmizí.</string>
     <string name="ExpireTimerSettingsFragment__off">Vyp.</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 týdny</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 týden</string>
@@ -1230,19 +1230,19 @@
     <string name="AccountSettingsScreen__pin_created">PIN vytvořen.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Data se nepodařilo odstranit</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivace zámku registrace se nezdařila.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Zablokování zámku registrace se nezdařilo.</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Zámek registrace se nepodařilo aktivovat.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Zámek registrace se nepodařilo deaktivovat.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Rozšířené nastavení PIN</string>
-    <string name="preferences__enable_pin">Povolit PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN uchovává informace uložené v Signal zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat.</string>
-    <string name="preferences__disable_pin">Deaktivovat PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je vyžadován pro zámek registrace. Nejprve prosím zakažte zámek registrace, aby bylo možné PIN deaktivovat.</string>
+    <string name="preferences__advanced_pin_settings_title">Pokročilá nastavení PIN</string>
+    <string name="preferences__enable_pin">Zapnout PIN</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN uchovává informace uložené v Signal šifrované, takže k nim máte přístup pouze vy. Po opětovné instalaci aplikace se obnoví váš profil, nastavení a kontakty. K otevření aplikace PIN nepotřebujete.</string>
+    <string name="preferences__disable_pin">Vypnout PIN</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, přijdete při opětovné registraci Signal o všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Pokud je PIN deaktivovaný, nelze zapnout zámek registrace.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je vyžadován pro zámek registrace. Nejprve prosím vypnout zámek registrace, aby bylo možné PIN deaktivovat.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Záznam fráze pro obnovení plateb</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Než budete moci deaktivovat svůj PIN, musíte si zaznamenat frázi pro obnovení plateb, abyste zajistili, že můžete obnovit svůj platební účet.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Než budete moci deaktivovat svůj PIN, musíte si zaznamenat frázi pro obnovení plateb, abyste měli jistotu, že budete moci svůj platební účet obnovit.</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Záznam fráze</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Vytvořit nový klíč pro obnovení</string>
@@ -1251,5 +1251,5 @@
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Vytvořit klíč</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN vytvořen.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN zakázán.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">PIN byl deaktivován.</string>
 </resources>

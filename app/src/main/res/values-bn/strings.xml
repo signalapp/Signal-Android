@@ -516,7 +516,7 @@
     <string name="ConversationFragment_delete_for_me">আমার জন্য মুছে ফেলুন</string>
     <string name="ConversationFragment_delete_for_everyone">প্রত্যেকের জন্য মুছে ফেলুন</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">আমার জন্য মুছে ফেলা হয়েছে</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">নির্বাচিত বার্তাটি মুছে ফেলবেন?</item>

@@ -16,7 +16,7 @@
   <string name="MediaOverviewScreen__small">Pequena</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
-  <string name="MediaOverviewScreen__tab_media">Multimédia</string>
+  <string name="MediaOverviewScreen__tab_media">Ficheiro</string>
   <!-- Tab title in the media overview screen for documents and other files -->
   <string name="MediaOverviewScreen__tab_files">Ficheiros</string>
   <!-- Tab title in the media overview screen for voice messages and audio files -->
@@ -55,7 +55,7 @@
         <item quantity="other">Guardar</item>
     </plurals>
   <!-- Bottom bar button that selects every item in the current media overview tab -->
-  <string name="MediaOverviewScreen__select_all">Selec. tudo</string>
+  <string name="MediaOverviewScreen__select_all">Selecionar tudo</string>
   <!-- Bottom bar button that deletes the selected media. Plural so the verb can agree with the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_plural">
         <item quantity="one">Eliminar</item>
@@ -73,7 +73,7 @@
   <!-- Menu item shown when long-pressing an item in the media overview. Starts selecting multiple items, beginning with this one -->
   <string name="MediaOverviewScreen__select">Selecionar</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Opens the chat scrolled to the message the item was sent in -->
-  <string name="MediaOverviewScreen__jump_to_message">Saltar para mensagem</string>
+  <string name="MediaOverviewScreen__jump_to_message">Ir para a mensagem</string>
 
   <!-- Title of the dialog confirming deletion of the selected media overview items -->
   <plurals name="MediaOverviewScreen__delete_confirm_title">
@@ -127,7 +127,7 @@
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__three_part_line" translatable="false">%1$s · %2$s · %3$s</string> -->
 
   <!-- Accessibility description for a photo or video thumbnail in the media overview grid -->
-  <string name="MediaOverviewScreen__media_preview">Pré-visualização de multimédia</string>
+  <string name="MediaOverviewScreen__media_preview">Pré-visualização de ficheiro</string>
   <!-- Accessibility description for the play icon drawn over a video thumbnail in the media overview -->
   <string name="MediaOverviewScreen__play_video">Reproduzir vídeo</string>
   <!-- Accessibility description for the check mark shown on a selected item in the media overview -->

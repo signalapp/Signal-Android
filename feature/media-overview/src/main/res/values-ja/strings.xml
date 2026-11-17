@@ -81,7 +81,7 @@
         <item quantity="other">選択した%1$d個のファイルを完全に消去します。これらのアイテムに関連付けられているメッセージテキストもすべて消去されます。</item>
     </plurals>
   <!-- Title of the progress dialog shown while the selected media overview items are being deleted -->
-  <string name="MediaOverviewScreen__deleting">削除しています</string>
+  <string name="MediaOverviewScreen__deleting">消去しています</string>
   <!-- Progress shown below the title while deleting media overview items. The first placeholder is how many are done, the second is the total (e.g. "12 of 207") -->
   <string name="MediaOverviewScreen__delete_progress_count">%1$d/%2$d</string>
 

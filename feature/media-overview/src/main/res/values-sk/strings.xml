@@ -9,11 +9,11 @@
   <!-- Section header in the media overview list, above items sent or received earlier this month -->
   <string name="MediaOverviewScreen__this_month">Tento mesiac</string>
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
-  <string name="MediaOverviewScreen__large">Veľká</string>
+  <string name="MediaOverviewScreen__large">Veľké</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
-  <string name="MediaOverviewScreen__medium">Stredná</string>
+  <string name="MediaOverviewScreen__medium">Stredné</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
-  <string name="MediaOverviewScreen__small">Malá</string>
+  <string name="MediaOverviewScreen__small">Malé</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
   <string name="MediaOverviewScreen__tab_media">Médiá</string>
@@ -31,7 +31,7 @@
   <!-- Screen title while selecting items in the media overview. The first placeholder is the number of selected items, the second is their combined file size (e.g. "3 selected (12 MB)") -->
   <plurals name="MediaOverviewScreen__d_selected_s">
         <item quantity="one">%1$d vybrané (%2$s)</item>
-        <item quantity="few">%1$d vybraných (%2$s)</item>
+        <item quantity="few">%1$d vybrané (%2$s)</item>
         <item quantity="many">%1$d vybraných (%2$s)</item>
         <item quantity="other">%1$d vybraných (%2$s)</item>
     </plurals>
@@ -107,7 +107,7 @@
   <!-- Title of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_all_items">Nie je možné uložiť všetky položky</string>
   <!-- Body of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__some_media_offloaded_message">Niektoré médiá, ktoré ste vybrali, boli z vášho zariadenia presunuté, pretože je zapnutá možnosť „Optimalizovať úložisko Signal“. Položky môžete ukladať jednu po druhej alebo vypnúť možnosť „Optimalizovať úložisko Signal“ a stiahnuť si do zariadenia všetky médiá.</string>
+  <string name="MediaOverviewScreen__some_media_offloaded_message">Niektoré médiá, ktoré ste vybrali, boli z vášho zariadenia presunuté, pretože je zapnutá možnosť „Optimalizovať úložisko Signal“. Položky môžete uložiť jednu po druhej alebo vypnúť možnosť „Optimalizovať úložisko Signal“ a stiahnuť si do zariadenia všetky médiá.</string>
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
   <string name="MediaOverviewScreen__view_storage_settings">Zobraziť nastavenia úložiska</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->

@@ -1173,71 +1173,71 @@
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">កម្រិតខ្ពស់</string>
     <string name="preferences_advanced__always_relay_calls">តែងតែបញ្ជូនការហៅចេញ</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទាំងអស់តាមរយៈម៉ាស៊ីនមេ Signal ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន អាយភី របស់អ្នក ទៅកាន់លេខទំនាក់ទំនងរបស់អ្នក។ ការអនុញ្ញាតនេះនឹងកាត់បន្ថយគុណភាពការហៅ។</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទាំងអស់តាមរយៈម៉ាស៊ីនមេ Signal ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន IP របស់អ្នក ទៅកាន់ទំនាក់ទំនងរបស់អ្នក។ ការបើកមុខងារនេះនឹងកាត់បន្ថយគុណភាពនៃការហៅ។</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">ការចៀសវាងការឃ្លាំមើល</string>
+    <string name="preferences_communication__category_censorship_circumvention">ការចៀសវាងការត្រួតពិនិត្យ</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">ការចៀសវាងការឃ្លាំមើល</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">បើសិនបើក Signalនឹងព្យាយាមចៀសវាងការឃ្លាំមើល។ កុំបើកមុខងារនេះ លុះត្រាអ្នកកំពុងស្ថិតនៅទីតាំងដែល Signal ត្រូវបានឃ្លាំមើល។</string>
+    <string name="preferences_communication__censorship_circumvention">ការចៀសវាងការត្រួតពិនិត្យ</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">បើសិនវាបើក នោះ Signal នឹងព្យាយាមចៀសវាងការត្រួតពិនិត្យ។ កុំបើកមុខងារនេះ លើកលែងតែអ្នកស្ថិតនៅទីតាំងមួយដែល Signal ត្រូវបានត្រួតពិនិត្យ។</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">ការចៀសវាងការឃ្លាំមើល ត្រូវបានដំណើរការ ផ្អែកលើលេខទូរស័ព្ទរបស់គណនីអ្នក។</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">ការចៀសវាងការត្រួតពិនិត្យត្រូវបានបើកដំណើរការ ដោយផ្អែកលើលេខទូរសព្ទរបស់គណនីអ្នក។</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">អ្នកបានបិទការបង្ការការត្រួតពិនិត្យ។</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">អ្នកបានបិទដោយផ្ទាល់ដៃនូវការចៀសវាងការត្រួតពិនិត្យ។</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ការចៀសវាងការឃ្លាំមើលមិនចាំបាច់ទេ អ្នកបានតភ្ជាប់សេវាកម្ម Signal រួចរាល់ហើយ។</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ការចៀសវាងការត្រួតពិនិត្យមិនចាំបាច់ទេ អ្នកបានភ្ជាប់សេវាកម្ម Signal រួចរាល់ហើយ។</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ការចៀសវាងការឃ្លាំមើល អាចត្រូវបានដំណើរការ ពេលភ្ជាប់​អុីនធឺណិត​តែប៉ុណ្ណោះ។</string>
-    <string name="preferences_communication__category_sealed_sender">សញ្ញាអ្នកផ្ញើ</string>
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">បង្ហាញរូបតំណាងស្ថានភាព</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">បង្ហាញរូបតំណាងនៅក្នុងព័ត៌មានលម្អិតនៃសារ នៅពេលដែលត្រូវបានចែកចាយដោយប្រើអ្នកផ្ញើបិទជិត។</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ការចៀសវាងការត្រួតពិនិត្យអាចបើកដំណើរការបាន តែនៅពេលភ្ជាប់អុីនធឺណិតប៉ុណ្ណោះ។</string>
+    <string name="preferences_communication__category_sealed_sender">មុខងារការពារអ្នកផ្ញើ</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">បង្ហាញរូបស្ថានភាព</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">បង្ហាញរូបតំណាងនៅក្នុងព័ត៌មានលម្អិតនៃសារ នៅពេលដែលវាត្រូវបានបញ្ជូនដោយប្រើមុខងារការពារអ្នកផ្ញើ។</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">អនុញ្ញាតពីនរណាម្នាក់</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">បើក ត្រាអ្នកផ្ញើសម្រាប់សារទទួលបានពីអ្នកក្រៅបញ្ជីទំនាក់ទំនង និងមនុស្សដែលអ្នកមិនបានចែករំលែកទម្រង់របស់អ្នក។</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">បើកមុខងារការពារអ្នកផ្ញើសម្រាប់សារផ្ញើចូលពីអ្នកក្រៅបញ្ជីទំនាក់ទំនង និងមនុស្សដែលអ្នកមិនបានចែករំលែកប្រូហ្វាល់របស់អ្នកជាមួយ។</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">ការផ្ទៀងផ្ទាត់សោដោយស្វ័យប្រវត្តិ</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">នៅពេលបើកដំណើរការ Signal នឹងព្យាយាមផ្ទៀងផ្ទាត់ដោយស្វ័យប្រវត្តិនូវការអ៊ីនគ្រីបការជជែកមួយទល់មួយ។</string>
+    <string name="preferences_automatic_key_verification_body">នៅពេលបើកវា Signal នឹងព្យាយាមផ្ទៀងផ្ទាត់ដោយស្វ័យប្រវត្តិនូវការអ៊ីនគ្រីបការជជែកមួយទល់មួយ។</string>
 
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
     <string name="ExpireTimerSettingsScreen__disappearing_messages">សារដែលបាត់ដោយស្វ័យប្រវត្តិ</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">នៅពេលបើកដំណើរការ រាល់សារថ្មីដែលបានផ្ញើចេញ​ និងទទួលនៅក្នុងការសន្ទនាថ្មីដែលចាប់ផ្ដើមដោយអ្នកនឹងលុបបាត់បន្ទាប់ពីគេបានឃើញ</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">នៅពេលបើកដំណើរការ រាល់សារដែលផ្ញើចេញ ចូលក្នុងការសន្ទនានេះនឹងលុបបាត់បន្ទាប់ពីបានអានរួច</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">នៅពេលបើកវា សារថ្មីៗដែលបានផ្ញើចេញ និងទទួលនៅក្នុងការជជែកថ្មីៗដែលចាប់ផ្ដើមដោយអ្នកនឹងបាត់ទៅវិញបន្ទាប់ពីគេបានឃើញសារទាំងនោះរួច។</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">នៅពេលបើកវា សារថ្មីៗដែលបានផ្ញើចេញ និងទទួលនៅក្នុងការជជែកនេះនឹងបាត់ទៅវិញបន្ទាប់ពីគេបានឃើញសារទាំងនោះរួច។</string>
     <string name="ExpireTimerSettingsFragment__off">បិទ</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">៤ សប្ដាហ៍</string>
+    <string name="ExpireTimerSettingsFragment__4_weeks">4 សប្ដាហ៍</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 សប្តាហ៍</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 ថ្ងៃ</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">៨ ម៉ោង</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">8 ម៉ោង</string>
     <string name="ExpireTimerSettingsFragment__1_hour">1 ម៉ោង</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 នាទី</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 វិនាទី</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">ថេរវេលាកំណត់ខ្លួនឯង</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">រយៈពេលកំណត់ផ្ទាល់ខ្លួន</string>
     <string name="ExpireTimerSettingsFragment__save">រក្សាទុក</string>
 
     <!-- AccountSettingsScreen -->
     <!-- Snackbar shown after the user creates a PIN -->
-    <string name="AccountSettingsScreen__pin_created">PIN ត្រូវបានបង្កើត។</string>
+    <string name="AccountSettingsScreen__pin_created">លេខកូដសម្ងាត់ត្រូវបានបង្កើត។</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
-    <string name="AccountSettingsScreen__delete_all_data_failed">មិនអាចលុបទិន្នន័យ</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">មិនអាចបើកការចាក់សោរចុះឈ្មោះ។</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">មិនអាចបិទការចាក់សោរចុះឈ្មោះ។</string>
+    <string name="AccountSettingsScreen__delete_all_data_failed">មិនអាចលុបទិន្នន័យបាន</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">មិនអាចបើកការចាក់សោការចុះឈ្មោះបាន។</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">មិនអាចបិទការចាក់សោការចុះឈ្មោះបាន។</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">ការកំណត់លេខកូដ PIN ជាន់ខ្ពស់</string>
-    <string name="preferences__enable_pin">បើកលេខកូដ PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">លេខកូដ​ PINs រក្សាទុកព័ត៌មានជាមួយកូដនីយកម្ម Signal ដូចនេះមានតែអ្នកប៉ុណ្ណោះចូលប្រើប្រាស់វាបាន។ ប្រវត្តិរូប ការកំណត់ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលអ្នកដំឡើងវិញ។ អ្នកនឹងមិនត្រូវការលេខកូដ PIN ដើម្បីបើកកម្មវិធីទេ។</string>
-    <string name="preferences__disable_pin">បិទលេខកូដ PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">បើអ្នកបានបិទលេខកូដ PIN អ្នកនឹងបាត់បង់ទិន្នន័យទាំងអស់ នៅពេលអ្នកចុះឈ្មោះ Signal ឡើងវិញ លុះត្រាអ្នកបម្រុងទុក និងស្តារឡើងវិញដោយខ្លួនឯង។ អ្នកមិនអាចបើក ការចាក់សោការចុះឈ្មោះ នៅពេលលេខកូដ PIN បានបិទនោះទេ។</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN ត្រូវបានទាមទារសម្រាប់ការចុះឈ្មោះចាក់សោ។ ដើម្បីបិទកូដ PIN សូមបិទការចុះឈ្មោះចាក់សោ។</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ថតឃ្លាសង្គ្រោះការទូទាត់</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">មុនពេលអ្នកអាចបិទលេខកូដ PIN របស់អ្នក អ្នកត្រូវរក្សាទុកឃ្លាស្តារការទូទាត់របស់អ្នក ដើម្បីប្រាកដថាអ្នកអាចស្តារគណនីទូទាត់របស់អ្នកបាន។</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">ថតឃ្លា</string>
+    <string name="preferences__advanced_pin_settings_title">ការកំណត់លេខកូដសម្ងាត់កម្រិតខ្ពស់</string>
+    <string name="preferences__enable_pin">បើកលេខកូដសម្ងាត់</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">លេខកូដសម្ងាត់រក្សាការអ៊ីនគ្រីបព័ត៌មានដែលបានរក្សាទុកជាមួយ Signal ដូចនេះមានតែអ្នកប៉ុណ្ណោះដែលអាចចូលប្រើវាបាន។ ប្រូហ្វាល់ ការកំណត់ និងទំនាក់ទំនងរបស់អ្នកនឹងស្តារមកវិញនៅពេលអ្នកដំឡើងឡើងវិញ។ អ្នកនឹងមិនត្រូវការលេខកូដសម្ងាត់ដើម្បីបើកកម្មវិធីទេ។</string>
+    <string name="preferences__disable_pin">បិទលេខកូដសម្ងាត់</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">បើអ្នកបានបិទលេខកូដសម្ងាត់ អ្នកនឹងបាត់បង់ទិន្នន័យទាំងអស់ នៅពេលអ្នកចុះឈ្មោះ Signal ឡើងវិញ លើកលែងតែអ្នកបម្រុងទុក និងស្តារមកវិញដោយខ្លួនឯង។ អ្នកមិនអាចបើកការចាក់សោការចុះឈ្មោះ នៅពេលលេខកូដសម្ងាត់ត្រូវបានបិទនោះទេ។</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">លេខកូដសម្ងាត់ត្រូវបានទាមទារសម្រាប់ការចាក់សោការចុះឈ្មោះ។ ដើម្បីបិទលេខកូដសម្ងាត់ (PIN) សូមបិទការចាក់សោការចុះឈ្មោះជាមុនសិន។</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">កត់ត្រាឃ្លាស្តារការទូទាត់</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">មុនពេលអ្នកអាចបិទលេខកូដសម្ងាត់របស់អ្នក អ្នកត្រូវតែរក្សាទុកឃ្លាស្តារការទូទាត់របស់អ្នក ដើម្បីធានាថាអ្នកអាចស្តារគណនីទូទាត់របស់អ្នកបាន។</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">កត់ត្រាឃ្លា</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">បង្កើតសោស្តារថ្មី</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">អ្នកត្រូវតែបង្កើត និងកត់ត្រាសោស្តារថ្មី មុនពេលអ្នកអាចបិទលេខកូដសម្ងាត់របស់អ្នក។</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">បង្កើតសោ</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN ត្រូវបានបង្កើត។</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN បានបិទ។</string>
+    <string name="ApplicationPreferencesActivity_pin_created">លេខកូដសម្ងាត់ត្រូវបានបង្កើត។</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">លេខកូដសម្ងាត់បានបិទ។</string>
 </resources>

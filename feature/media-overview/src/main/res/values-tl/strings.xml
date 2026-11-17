@@ -30,14 +30,14 @@
   <string name="MediaOverviewScreen__all_storage_use">Lahat ng nagamit na storage</string>
   <!-- Screen title while selecting items in the media overview. The first placeholder is the number of selected items, the second is their combined file size (e.g. "3 selected (12 MB)") -->
   <plurals name="MediaOverviewScreen__d_selected_s">
-        <item quantity="one">%1$d selected (%2$s)</item>
-        <item quantity="other">%1$d selected (%2$s)</item>
+        <item quantity="one">%1$d ang pinili (%2$s)</item>
+        <item quantity="other">%1$d ang pinili (%2$s)</item>
     </plurals>
   <!-- Shown in the middle of a media overview tab that has nothing in it -->
   <string name="MediaOverviewScreen__no_media">Walang media</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
-  <string name="MediaOverviewScreen__sort_by">Pasunud-sunurin ayon sa</string>
+  <string name="MediaOverviewScreen__sort_by">I-ayos ayon sa</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the most recent items first -->
   <string name="MediaOverviewScreen__newest">Pinakabago</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the earliest items first -->
@@ -45,9 +45,9 @@
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the largest files first -->
   <string name="MediaOverviewScreen__storage_used">Nagamit na storage</string>
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->
-  <string name="MediaOverviewScreen__grid_view">Grid na view</string>
+  <string name="MediaOverviewScreen__grid_view">Grid view</string>
   <!-- Accessibility description for the button that switches the media overview from a grid of thumbnails to a list with file details -->
-  <string name="MediaOverviewScreen__list_view">List na view</string>
+  <string name="MediaOverviewScreen__list_view">List view</string>
 
   <!-- Bottom bar button that saves the selected media to the device. Plural so the verb can agree with the number of selected items -->
   <plurals name="MediaOverviewScreen__save_plural">
@@ -78,7 +78,7 @@
   <!-- Title of the dialog confirming deletion of the selected media overview items -->
   <plurals name="MediaOverviewScreen__delete_confirm_title">
         <item quantity="one">Burahin ang piniling item?</item>
-        <item quantity="other">Burahin ang mga piniling item?</item>
+        <item quantity="other">Burahin ang piniling items?</item>
     </plurals>
   <!-- Body of the dialog confirming deletion of the selected media overview items. The placeholder is the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_confirm_message">
@@ -97,7 +97,7 @@
   <!-- Title of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_all_items">Hindi ma-save ang lahat ng items</string>
   <!-- Body of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__some_media_offloaded_message">Ang ilang media na pinili mo ay na-offloadoffloaded mula sa device mo dahil naka-on ang \"I-optimize ang Signal storage\". Maaari mong i-save ang items nang paisa-isa, o i-off ang \"I-optimize ang Signal storage\" para ma-download ang lahat ng media sa device mo.</string>
+  <string name="MediaOverviewScreen__some_media_offloaded_message">Ang ilang media na pinili mo ay na-offload mula sa device mo dahil naka-on ang \"I-optimize ang Signal storage\". Maaari mong i-save ang items nang paisa-isa, o i-off ang \"I-optimize ang Signal storage\" para ma-download ang lahat ng media sa device mo.</string>
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
   <string name="MediaOverviewScreen__view_storage_settings">Tignan ang storage settings</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->
@@ -112,7 +112,7 @@
   <!-- File type shown in a media overview list row, between the file size and the date, for documents and other files (e.g. "2 MB · File · Nov 3") -->
   <string name="MediaOverviewScreen__type_file">File</string>
   <!-- Title of a voice message in a media overview list row, in place of a file name -->
-  <string name="MediaOverviewScreen__voice_message">Voice na Mensahe</string>
+  <string name="MediaOverviewScreen__voice_message">Voice Message</string>
   <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
   <string name="MediaOverviewScreen__note_to_self">Note to Self</string>
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->

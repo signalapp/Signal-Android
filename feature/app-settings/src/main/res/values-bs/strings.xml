@@ -1192,7 +1192,7 @@
     <string name="preferences_communication__censorship_circumvention">Zaobilazak cenzure</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ako je omogućeno, Signal će pokušati zaobići cenzuru. Nemojte omogućiti ovu funkciju osim ako niste na mjestu gdje je Signal cenzuriran.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Korištenje cenzure je aktivirano na temelju telefonskog broja vašeg računa.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Zaobilazak cenzure je aktiviran na temelju telefonskog broja vašeg računa.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ručno ste isključili zaobilazak cenzure.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -1222,7 +1222,7 @@
     <string name="ExpireTimerSettingsFragment__1_hour">1 sat</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minuta</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundi</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Drugo</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Prilagođeno vrijeme</string>
     <string name="ExpireTimerSettingsFragment__save">Pohrani</string>
 
     <!-- AccountSettingsScreen -->

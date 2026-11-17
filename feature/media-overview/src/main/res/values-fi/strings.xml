@@ -82,8 +82,8 @@
     </plurals>
   <!-- Body of the dialog confirming deletion of the selected media overview items. The placeholder is the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_confirm_message">
-        <item quantity="one">Tämä poistaa valitun tiedoston pysyvästi. Myös kaikki tähän kohteeseen liitetyt viestitekstit poistetaan.</item>
-        <item quantity="other">Tämä poistaa kaikki %1$d valittua tiedostoa pysyvästi. Myös kaikki näihin kohteisiin liitetyt viestitekstit poistetaan.</item>
+        <item quantity="one">Tämä poistaa valitun tiedoston pysyvästi. Myös kaikki kohteeseen liitetyt viestitekstit poistetaan.</item>
+        <item quantity="other">Tämä poistaa kaikki %1$d valittua tiedostoa pysyvästi. Myös kaikki kohteisiin liitetyt viestitekstit poistetaan.</item>
     </plurals>
   <!-- Title of the progress dialog shown while the selected media overview items are being deleted -->
   <string name="MediaOverviewScreen__deleting">Poistetaan</string>
@@ -101,7 +101,7 @@
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
   <string name="MediaOverviewScreen__view_storage_settings">Näytä tallennustilan asetukset</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->
-  <string name="MediaOverviewScreen__media_not_sent_yet">Tätä mediaa ei ole vielä lähetetty.</string>
+  <string name="MediaOverviewScreen__media_not_sent_yet">Mediaa ei ole vielä lähetetty.</string>
 
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Image · Nov 3") -->
   <string name="MediaOverviewScreen__type_image">Kuva</string>
@@ -114,7 +114,7 @@
   <!-- Title of a voice message in a media overview list row, in place of a file name -->
   <string name="MediaOverviewScreen__voice_message">Ääniviesti</string>
   <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
-  <string name="MediaOverviewScreen__note_to_self">Viestit itselleni</string>
+  <string name="MediaOverviewScreen__note_to_self">Oma muistutus</string>
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
   <string name="MediaOverviewScreen__sent_by_s">Lähettäjä %1$s</string>
   <!-- Shown in a media overview list row for an item the user sent -->

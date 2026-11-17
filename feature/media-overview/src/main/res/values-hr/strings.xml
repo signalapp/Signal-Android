@@ -107,7 +107,7 @@
   <!-- Title of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_all_items">Nije moguće spremiti sve podatke</string>
   <!-- Body of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__some_media_offloaded_message">Dio odabranih medijskih zapisa je premješteno s vašeg uređaja jer ste omogućili opciju „Optimizirajte Signalovu pohranu“. Medijske zapise možete sada spremiti pojedinačno ili isključiti opciju „Optimizirajte Signalovu pohranu“ kako biste preuzeli sve medijske zapise na vaš uređaj.</string>
+  <string name="MediaOverviewScreen__some_media_offloaded_message">Dio odabranih medijskih zapisa je premješten s vašeg uređaja jer ste omogućili opciju „Optimizirajte Signalovu pohranu“. Medijske zapise možete sada spremiti pojedinačno ili isključiti opciju „Optimizirajte Signalovu pohranu“ kako biste preuzeli sve medijske zapise na vaš uređaj.</string>
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
   <string name="MediaOverviewScreen__view_storage_settings">Otvori postavke pohrane</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->

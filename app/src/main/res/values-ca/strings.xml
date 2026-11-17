@@ -516,7 +516,7 @@
     <string name="ConversationFragment_delete_for_me">Esborrar per a mi</string>
     <string name="ConversationFragment_delete_for_everyone">Esborrar per a tothom</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">Eliminat per a mi</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Vols suprimir el missatge seleccionat?</item>

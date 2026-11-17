@@ -72,11 +72,11 @@
     <!-- Clickable text that opens a corresponding URL -->
     <string name="RegistrationActivity_learn_more">Más información</string>
     <!-- Dialog message shown when the server rejects the user\'s captcha response during registration -->
-    <string name="PhoneNumberEntryScreen__captcha_not_accepted">Your verification response was not accepted. Please try again, or contact support if the problem continues.</string>
+    <string name="PhoneNumberEntryScreen__captcha_not_accepted">Tu respuesta de verificación no se ha aceptado. Inténtalo de nuevo o contacta con nuestro equipo de Asistencia si el problema persiste.</string>
     <!-- Dialog button that lets the user contact support after their captcha response was rejected -->
     <string name="PhoneNumberEntryScreen__contact_support">Contactar con asistencia</string>
     <!-- Subject line of the support email composed when the user\'s captcha response was rejected during registration -->
-    <string name="PhoneNumberEntryScreen__contact_support_email_subject">Signal Registration - Captcha Not Accepted for Android</string>
+    <string name="PhoneNumberEntryScreen__contact_support_email_subject">Registro en Signal: Captcha no aceptado en Android</string>
     <!-- Text placed in the body of the support email composed when the user\'s captcha response was rejected. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="PhoneNumberEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Captcha Not Accepted for Android</string> -->
 
@@ -138,7 +138,7 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">Contactar con asistencia</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-    <string name="VerificationCodeScreen__contact_support_email_subject">Registrarte en Signal: Clave de verificación en Android</string>
+    <string name="VerificationCodeScreen__contact_support_email_subject">Registro en Signal: Clave de verificación en Android</string>
     <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
@@ -458,7 +458,7 @@
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">Contactar con asistencia</string>
     <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
-    <string name="PinEntryScreen__contact_support_email_subject">Registrarte en Signal: Ayuda con el PIN en Android</string>
+    <string name="PinEntryScreen__contact_support_email_subject">Registro en Signal: Ayuda con el PIN en Android</string>
     <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 

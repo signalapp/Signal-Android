@@ -530,7 +530,7 @@
     <string name="ConversationFragment_delete_for_me">Usuń u mnie</string>
     <string name="ConversationFragment_delete_for_everyone">Usuń u wszystkich</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">Usunięto u mnie</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Usunąć zaznaczoną wiadomość?</item>

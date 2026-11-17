@@ -112,7 +112,7 @@
   <!-- File type shown in a media overview list row, between the file size and the date, for documents and other files (e.g. "2 MB · File · Nov 3") -->
   <string name="MediaOverviewScreen__type_file">Αρχείο</string>
   <!-- Title of a voice message in a media overview list row, in place of a file name -->
-  <string name="MediaOverviewScreen__voice_message">Μήνυμα φωνής</string>
+  <string name="MediaOverviewScreen__voice_message">Ηχητικό μήνυμα</string>
   <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
   <string name="MediaOverviewScreen__note_to_self">Σημείωση για εμένα</string>
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
@@ -127,7 +127,7 @@
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__three_part_line" translatable="false">%1$s · %2$s · %3$s</string> -->
 
   <!-- Accessibility description for a photo or video thumbnail in the media overview grid -->
-  <string name="MediaOverviewScreen__media_preview">Προεπισκόπιση</string>
+  <string name="MediaOverviewScreen__media_preview">Προεπισκόπηση πολυμέσων</string>
   <!-- Accessibility description for the play icon drawn over a video thumbnail in the media overview -->
   <string name="MediaOverviewScreen__play_video">Αναπαραγωγή βίντεο</string>
   <!-- Accessibility description for the check mark shown on a selected item in the media overview -->

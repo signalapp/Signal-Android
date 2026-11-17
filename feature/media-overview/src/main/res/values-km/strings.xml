@@ -16,7 +16,7 @@
   <string name="MediaOverviewScreen__small">តូច</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
-  <string name="MediaOverviewScreen__tab_media">ព័ត៌មាន</string>
+  <string name="MediaOverviewScreen__tab_media">មេឌៀ</string>
   <!-- Tab title in the media overview screen for documents and other files -->
   <string name="MediaOverviewScreen__tab_files">ឯកសារ</string>
   <!-- Tab title in the media overview screen for voice messages and audio files -->
@@ -27,13 +27,13 @@
   <string name="MediaOverviewScreen__tab_all">ទាំងអស់</string>
 
   <!-- Screen title when the media overview shows media from every chat, so the user can review what is using storage -->
-  <string name="MediaOverviewScreen__all_storage_use">ការប្រើប្រាស់កន្លែងផ្ទុកទាំងអស់</string>
+  <string name="MediaOverviewScreen__all_storage_use">ការប្រើប្រាស់ទំហំផ្ទុកទាំងអស់</string>
   <!-- Screen title while selecting items in the media overview. The first placeholder is the number of selected items, the second is their combined file size (e.g. "3 selected (12 MB)") -->
   <plurals name="MediaOverviewScreen__d_selected_s">
-        <item quantity="other">%1$d បានជ្រើសរើស (%2$s)</item>
+        <item quantity="other">បានជ្រើសរើស %1$d (%2$s)</item>
     </plurals>
   <!-- Shown in the middle of a media overview tab that has nothing in it -->
-  <string name="MediaOverviewScreen__no_media">គ្មានព័ត៌មាន</string>
+  <string name="MediaOverviewScreen__no_media">គ្មានមេឌៀ</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
   <string name="MediaOverviewScreen__sort_by">តម្រៀបតាម</string>
@@ -42,7 +42,7 @@
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the earliest items first -->
   <string name="MediaOverviewScreen__oldest">ចាស់បំផុត</string>
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the largest files first -->
-  <string name="MediaOverviewScreen__storage_used">ឧបករណ៍ផ្ទុកត្រូវបានប្រើ</string>
+  <string name="MediaOverviewScreen__storage_used">ទំហំផ្ទុកត្រូវបានប្រើ</string>
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->
   <string name="MediaOverviewScreen__grid_view">ទិដ្ឋភាពក្រឡាចត្រង្គ</string>
   <!-- Accessibility description for the button that switches the media overview from a grid of thumbnails to a list with file details -->
@@ -88,11 +88,11 @@
   <!-- Title of the dialog shown when saving from the media overview, and every selected item has been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_media">មិនអាចរក្សាទុកមេឌៀទេ</string>
   <!-- Body of the dialog shown when saving from the media overview, and every selected item has been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__media_offloaded_message">មេឌៀនេះត្រូវបានផ្ទេរពីឧបករណ៍របស់អ្នក ពីព្រោះមុខងារ \"បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើ Signal\" ត្រូវបានបើក។ អ្នកអាចទាញយកអ្វីៗម្តងមួយៗ ឬបិទមុខងារ \"បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើឧបករណ៍\" ដើម្បីទាញយកមេឌៀទាំងអស់ទៅកាន់ឧបករណ៍របស់អ្នក។</string>
+  <string name="MediaOverviewScreen__media_offloaded_message">មេឌៀនេះត្រូវបានផ្ទេរពីឧបករណ៍របស់អ្នក ពីព្រោះមុខងារ \"បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើ Signal\" ត្រូវបានបើក។ អ្នកអាចទាញយកធាតុទាំងឡាយម្តងមួយៗ ឬបិទមុខងារ \"បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើ Signal\" ដើម្បីទាញយកមេឌៀទាំងអស់ទៅកាន់ឧបករណ៍របស់អ្នក។</string>
   <!-- Title of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_all_items">មិនអាចរក្សាទុកធាតុទាំងអស់បាន</string>
   <!-- Body of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__some_media_offloaded_message">មេឌៀមួយចំនួនដែលអ្នកបានជ្រើសរើសត្រូវបានផ្ទេរពីឧបករណ៍របស់អ្នក ដោយសារតែមុខងារ \"បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើ Signal\" ត្រូវបានបើក។ អ្នកអាចរក្សាទុកអ្វីៗម្តងមួយៗ ឬបិទមុខងារ \"បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើ Signal\" ដើម្បីទាញយកមេឌៀទាំងអស់ទៅកាន់ឧបករណ៍របស់អ្នក។</string>
+  <string name="MediaOverviewScreen__some_media_offloaded_message">មេឌៀមួយចំនួនដែលអ្នកបានជ្រើសរើសត្រូវបានផ្ទេរពីឧបករណ៍របស់អ្នក ដោយសារតែមុខងារ \"បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើ Signal\" ត្រូវបានបើក។ អ្នកអាចរក្សាទុកធាតុទាំងឡាយម្តងមួយៗ ឬបិទមុខងារ \"បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើ Signal\" ដើម្បីទាញយកមេឌៀទាំងអស់ទៅកាន់ឧបករណ៍របស់អ្នក។</string>
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
   <string name="MediaOverviewScreen__view_storage_settings">មើលការកំណត់ទំហំផ្ទុក</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->
@@ -122,7 +122,7 @@
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__three_part_line" translatable="false">%1$s · %2$s · %3$s</string> -->
 
   <!-- Accessibility description for a photo or video thumbnail in the media overview grid -->
-  <string name="MediaOverviewScreen__media_preview">ការបង្ហាញសារ</string>
+  <string name="MediaOverviewScreen__media_preview">ការមើលមេឌៀជាមុន</string>
   <!-- Accessibility description for the play icon drawn over a video thumbnail in the media overview -->
   <string name="MediaOverviewScreen__play_video">ចាក់វីដេអូ</string>
   <!-- Accessibility description for the check mark shown on a selected item in the media overview -->

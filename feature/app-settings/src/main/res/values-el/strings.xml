@@ -1229,12 +1229,12 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Ρυθμίσεις PIN για προχωρημένους</string>
     <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσύ έχεις πρόσβαση σε αυτές. Το προφίλ σου, οι ρυθμίσεις και οι επαφές να επαναφερθούν όταν επανεγκαταστήσεις το Signal. Δεν θα χρειάζεται να γράψεις το PIN για να ανοίξεις την εφαρμογή.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσύ έχεις πρόσβαση σε αυτές. Το προφίλ σου, οι ρυθμίσεις και οι επαφές θα επαναφερθούν όταν επανεγκαταστήσεις το Signal. Δεν θα χρειάζεται να γράψεις το PIN για να ανοίξεις την εφαρμογή.</string>
     <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Τα PIN χρειάζονται για το κλείδωμα εγγραφής. Για να απενεργοποιήσεις τα PIN, πρέπει πρώτα να απενεργοποιήσεις το κλείδωμα εγγραφής.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ηχογραφήστε το συνθηματικό της αποκατάστασης πληρωμών</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Πριν μπορέσετε να απενεργοποιήσετε το PIN σας, πρέπει να καταγράψετε τη φράση ανάκτησης πληρωμών για να διασφαλίσετε ότι μπορείτε να ανακτήσετε τον λογαριασμό πληρωμών σας.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ηχογράφησε τη φράση ανάκτησης πληρωμών</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Πριν μπορέσεις να απενεργοποιήσεις το PIN σου, πρέπει να καταγράψεις τη φράση ανάκτησης πληρωμών για να διασφαλίσεις ότι μπορείς να ανακτήσεις τον λογαριασμό πληρωμών σου.</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Καταγραφή φράσης</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Δημιουργία νέου κλειδιού ανάκτησης</string>

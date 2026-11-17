@@ -1175,25 +1175,25 @@
     <string name="preferences_advanced__always_relay_calls">ส่งต่อการโทรเสมอ</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ส่งต่อสายทั้งหมดผ่านเซิร์ฟเวอร์ Signal เพื่อหลีกเลี่ยงการเปิดเผยที่อยู่ IP ของคนที่คุณติดต่อด้วย การเปิดใช้งานจะลดคุณภาพการโทรลง</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">การหลบเลี่ยงการปิดกั้น</string>
+    <string name="preferences_communication__category_censorship_circumvention">การหลบเลี่ยงการเซ็นเซอร์</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">การหลบเลี่ยงการปิดกั้น</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">หากเปิดใช้ Signal จะพยายามหลบเลี่ยงการปิดกั้นข้อมูล อย่าเปิดใช้ความสามารถนี้ เว้นแต่ว่าคุณอยู่ในที่ที่ Signal ถูกปิดกั้น</string>
+    <string name="preferences_communication__censorship_circumvention">การหลบเลี่ยงการเซ็นเซอร์</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">หากเปิดใช้ Signal จะพยายามหลบเลี่ยงการเซ็นเซอร์ อย่าเปิดใช้ความสามารถนี้ เว้นแต่ว่าคุณอยู่ในที่ที่ Signal ถูกปิดกั้น</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">การหลบเลี่ยงการปิดกั้นถูกเปิดใช้ เนื่องจากหมายเลขโทรศัพท์ของบัญชีของคุณ</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">การหลบเลี่ยงการเซ็นเซอร์ถูกเปิดใช้ เนื่องจากหมายเลขโทรศัพท์ของบัญชีของคุณ</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">คุณได้ปิดใช้งานระบบหลีกเลี่ยงการปิดกั้น</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">คุณได้ปิดใช้งานการหลบเลี่ยงการเซ็นเซอร์</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ไม่จำเป็นต้องใช้การหลบเลี่ยงการปิดกั้น คุณเชื่อมต่อกับเซิร์ฟเวอร์ Signal อยู่แล้ว</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ไม่จำเป็นต้องใช้การหลบเลี่ยงการเซ็นเซอร์ คุณเชื่อมต่อกับเซิร์ฟเวอร์ Signal อยู่แล้ว</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">การหลบเลี่ยงการปิดกั้นข้อมูลจะใช้ได้ก็ต่อเมื่อเชื่อมต่อกับอินเทอร์เน็ต</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">การหลบเลี่ยงการเซ็นเซอร์จะใช้ได้ก็ต่อเมื่อเชื่อมต่อกับอินเทอร์เน็ต</string>
     <string name="preferences_communication__category_sealed_sender">ผู้ส่งที่ปกปิดตัวตน</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">แสดงไอคอนสถานะ</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">แสดงไอคอนในรายละเอียดข้อความเมื่อเป็นข้อความที่ส่งโดยใช้ผู้ส่งที่ถูกปกปิด</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">แสดงไอคอนในรายละเอียดข้อความเมื่อเป็นข้อความที่ส่งโดยใช้ผู้ส่งที่ปกปิดตัวตน</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">อนุญาตจากทุกคน</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปิดบังตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แบ่งปันโปรไฟล์</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปกปิดตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แชร์โปรไฟล์</string>
     <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">การตรวจยืนยันโดยอัตโนมัติ</string>
+    <string name="preferences_automatic_key_verification">การตรวจสอบคีย์อัตโนมัติ</string>
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">หากเปิดใช้งาน Signal จะพยายามตรวจยืนยันการเข้ารหัสของแชทส่วนตัวโดยอัตโนมัติ</string>
 
@@ -1210,7 +1210,7 @@
     <string name="ExpireTimerSettingsFragment__1_hour">1 ชั่วโมง</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 นาที</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 วินาที</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">เวลากำหนดเอง</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">กำหนดเวลาเอง</string>
     <string name="ExpireTimerSettingsFragment__save">บันทึก</string>
 
     <!-- AccountSettingsScreen -->
@@ -1218,8 +1218,8 @@
     <string name="AccountSettingsScreen__pin_created">สร้างรหัส PIN แล้ว</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">ลบข้อมูลไม่สำเร็จ</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">การเปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">การปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">เปิดใช้งานกุญแจลงทะเบียนไม่สำเร็จ</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">ปิดใช้งานกุญแจลงทะเบียนไม่สำเร็จ</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
@@ -1228,7 +1228,7 @@
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ได้เข้ารหัสไว้ ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้งแอปอีกครั้ง คุณไม่จำเป็นต้องมีรหัส PIN ของคุณเพื่อเปิดแอป</string>
     <string name="preferences__disable_pin">ปิดใช้งาน PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณลงทะเบียนบัญชี Signal ใหม่ นอกจากว่าคุณได้สำรองข้อมูลและกู้มันคืนมาเอง คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ปิดการใช้งานอยู่</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">รหัส PIN นั้นจำเป็นสำหรับการล็อกการลงทะเบียน เพื่อจะเลิกใช้ PIN ให้เลิกล็อกการลงทะเบียนก่อน</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">กุญแจลงทะเบียนต้องใช้รหัส PIN หากต้องการเลิกใช้ PIN โปรดปิดใช้งานกุญแจลงทะเบียนก่อน</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">บันทึกวลีกู้คืนสำหรับการชำระเงิน</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ก่อนที่คุณจะปิดใช้งานรหัส PIN ของคุณได้ คุณต้องจดบันทึกวลีกู้คืนการชำระเงิน เพื่อให้แน่ใจว่าคุณสามารถกู้คืนบัญชีการชำระเงินของคุณได้</string>
     <string name="ApplicationPreferencesActivity_record_phrase">วลีกู้คืน</string>

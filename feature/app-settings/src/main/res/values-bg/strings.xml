@@ -1176,22 +1176,22 @@
 
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">Допълнителни</string>
-    <string name="preferences_advanced__always_relay_calls">Винаги да се използва прехвърляне на обажданията</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Signal сървърва, за да се прикрие IP адресът Ви от контакта Ви. Активирането ще намали качеството на връзката.</string>
+    <string name="preferences_advanced__always_relay_calls">Винаги да се прехвърлят обаждания</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през сървъра на Signal, за да се прикрие вашият IP адрес от контакта ви. Активирането ще намали качеството на връзката.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Заобикаляне на цензурата</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
     <string name="preferences_communication__censorship_circumvention">Заобикаляне на цензурата</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ако е активирано, Signal ще се опита да заобиколи цензурата. Не разрешавайте тази функция, освен ако не сте на място, където Signal е цензуриран.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Заобикалянето на цензурата е активирано въз основа на телефонния номер на профила Ви.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Заобикалянето на цензурата е активирано въз основа на телефонния номер на акаунта ви.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Вие ръчно забранихте заобикалянето на цензура.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
     <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Не е необходимо заобикаляне на цензурата; вече сте свързани към услугата за Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Заобикалянето на цензура може да се активира, само когато е свързано към интернет.</string>
-    <string name="preferences_communication__category_sealed_sender">Скрит изпращач</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Заобикалянето на цензура може да се активира, само когато има връзка с интернет.</string>
+    <string name="preferences_communication__category_sealed_sender">Скрит подател</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Показване на икона за статуса</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Показване на икона в подробностите за съобщенията, когато те са доставени със запечатан подател.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Разреши от всеки</string>
@@ -1206,7 +1206,7 @@
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Изчезващи съобщения</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Когато е включено, нови съобщения, изпратени и получени в нови чатове, започнати от вас, ще изчезват след като са прочетени.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Когато е включено, нови съобщения, изпратени и получени в този чат, ще изчезват след като са прочетени.</string>
-    <string name="ExpireTimerSettingsFragment__off">Деактивирани</string>
+    <string name="ExpireTimerSettingsFragment__off">Изключено</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 седмици</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 седмица</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 ден</string>
@@ -1215,23 +1215,23 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 минути</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Специфично време</string>
-    <string name="ExpireTimerSettingsFragment__save">Запази</string>
+    <string name="ExpireTimerSettingsFragment__save">Запазване</string>
 
     <!-- AccountSettingsScreen -->
     <!-- Snackbar shown after the user creates a PIN -->
     <string name="AccountSettingsScreen__pin_created">ПИН кодът е създаден.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Неуспешно изтриване на данни</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Неуспешно активиране на регистрационно заключване.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Неуспешно деактивиране на регистрационно заключване.</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Неуспешно активиране на заключване на регистрацията.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Неуспешно деактивиране на заключване на регистрацията.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Разширени настройки за ПИН</string>
     <string name="preferences__enable_pin">Активиране на ПИН</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">ПИН кодовете съхраняват информацията, съхранявана със Signal, криптирана, така че само вие да имате достъп до нея. Вашите профил, настройки и контакти ще се възстановят, когато преинсталирате. Няма да ви е необходим вашия ПИН, за да отворите приложението.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">ПИН кодовете поддържат информацията, съхранявана със Signal, криптирана, така че само вие да имате достъп до нея. Вашите профил, настройки и контакти ще се възстановят, когато преинсталирате. Няма да е необходим вашият ПИН, за да отворите приложението.</string>
     <string name="preferences__disable_pin">Деактивиране на ПИН</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако деактивирате ПИН кода, ще загубите всички данни, когато пререгистрирате Signal, освен ако не направите ръчно архивиране и възстановяване. Не можете да включите Регистрационно заключване, докато ПИН кодът е деактивиран.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако деактивирате ПИН кода, ще загубите всички данни, когато пререгистрирате Signal, освен ако не направите ръчно архивиране и възстановяване. Не можете да включите Заключване на регистрацията, докато ПИН кодът е деактивиран.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ПИН кодовете са задължителни за заключване на регистрацията. За да деактивирате ПИН кодовете, моля първо деактивирайте заключването на регистрацията.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Записване на фраза за възстановяване на плащания</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Преди да можете да деактивирате своя PIN, трябва да запишете фразата си за възстановяване на плащания, за да можете да възстановите своя акаунт за плащания.</string>

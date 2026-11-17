@@ -509,7 +509,7 @@
     <string name="ConversationFragment_delete_for_me">ကျွန်ုပ်အတွက် ဖျက်ပါ</string>
     <string name="ConversationFragment_delete_for_everyone">လူတိုင်းအတွက် ဖျက်ပါ</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">ကျွန်ုပ်အတွက် ဖျက်ရန်</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="other">ရွေးထားသည့် မက်ဆေ့များအား ဖျက်မည်လား။</item>

@@ -77,8 +77,8 @@
 
   <!-- Title of the dialog confirming deletion of the selected media overview items -->
   <plurals name="MediaOverviewScreen__delete_confirm_title">
-        <item quantity="one">चयनित आइटम डिलीट करें?</item>
-        <item quantity="other">चयनित आइटम डिलीट करें?</item>
+        <item quantity="one">चुना गया आइटम डिलीट करना है?</item>
+        <item quantity="other">चुने गए आइटम डिलीट करने हैं?</item>
     </plurals>
   <!-- Body of the dialog confirming deletion of the selected media overview items. The placeholder is the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_confirm_message">

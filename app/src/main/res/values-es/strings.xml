@@ -516,7 +516,7 @@
     <string name="ConversationFragment_delete_for_me">Eliminar para mí</string>
     <string name="ConversationFragment_delete_for_everyone">Eliminar para todos</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">Eliminado para mí</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">¿Eliminar el mensaje seleccionado?</item>
@@ -2087,7 +2087,7 @@
         <item quantity="one">Te queda %1$d intento. Si agotas los intentos, podrás crear un nuevo PIN. Podrás registrar y usar tu cuenta, pero se perderán algunos ajustes ya guardados, como tu información de perfil.</item>
         <item quantity="other">Te quedan %1$d intentos. Si agotas los intentos, podrás crear un nuevo PIN. Podrás registrar y usar tu cuenta, pero se perderán algunos ajustes ya guardados, como tu información de perfil.</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registrarte en Signal: Ayuda con el PIN en Android</string>
+    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registro en Signal: Ayuda con el PIN en Android</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Crea tu PIN</string>
@@ -4266,7 +4266,7 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Llamarme (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Reenviar clave (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_code_support_subject">Registrarte en Signal: Clave de verificación en Android</string>
+    <string name="RegistrationActivity_code_support_subject">Registro en Signal: Clave de verificación en Android</string>
     <string name="RegistrationActivity_incorrect_code">Clave incorrecta</string>
     <string name="BackupUtil_never">Nunca</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->

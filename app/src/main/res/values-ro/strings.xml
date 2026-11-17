@@ -523,7 +523,7 @@
     <string name="ConversationFragment_delete_for_me">Șterge doar pentru mine</string>
     <string name="ConversationFragment_delete_for_everyone">Șterge pentru toată lumea</string>
     <!-- Snackbar text shown after the user deletes one or more messages only for themselves -->
-    <string name="ConversationFragment__deleted_for_me">Deleted for me</string>
+    <string name="ConversationFragment__deleted_for_me">Șters doar pentru mine</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Șterg mesajul selectat?</item>

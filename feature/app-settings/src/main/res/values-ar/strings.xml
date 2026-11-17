@@ -1198,7 +1198,7 @@
     <string name="preferences_communication__category_censorship_circumvention">تجاوز الرقابة</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
     <string name="preferences_communication__censorship_circumvention">تجاوز الرقابة</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">في حالة التفعيل، سيُحاول تطبيق سيجنال تجاوز الرقابة. لا تُفعِّل هذه الميزة إلا إذا كنتَ في مكان يخضع فيه سيجنال للرقابة.</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">في حالة التفعيل، سيُحاول تطبيق سيجنال تجاوز الرقابة. لا تُفعِّل هذه الميزة إلا إذا كُنتَ في مكان يخضع فيه سيجنال للرقابة.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">تمَّ تنشيط خاصية \"تجاوز الرقابة\" استنادًا إلى رقم الهاتف الخاص بحسابك.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
@@ -1211,7 +1211,7 @@
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">إظهار أيقونة الحالة</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">عرض أيقونة في تفاصيل الرسالة للرسائل التي تمَّ إيصالها باستخدام المُرسِل المُشفَّر.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">السماح من أي شخص</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل خاصية \"المُرسِل المُشفَّر\" للرسائل الواردة من غير جهات الاتصال والأشخاص الذين لم تشارِك معه ملفّك الشخصي.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل خاصية \"المُرسِل المُشفَّر\" للرسائل الواردة من غير جهات الاتصال والأشخاص الذين لم تشارِك معهم ملفّك الشخصي.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">التحقُّق التلقائي من المفاتيح</string>
     <!-- Preference summary for automatic key verification -->
@@ -1219,14 +1219,14 @@
 
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
-    <string name="ExpireTimerSettingsScreen__disappearing_messages">ميزة اختفاء الرسائل</string>
+    <string name="ExpireTimerSettingsScreen__disappearing_messages">ميزة الرسائل المؤقَّتة</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">عند تفعيلها، سَتختفي الرسائل الجديدة، المُرسلَة والمُستلَمة في الدردشات الجديدة التي بدأتَ بها، بعد رؤيتها.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">عند تفعيلها، ستختفي الرسائل الجديدة، المُرسلَة والمُستلَمة في هذه الدردشة، بعد رؤيتها.</string>
     <string name="ExpireTimerSettingsFragment__off">في حالة إيقاف</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 أسابيع</string>
     <string name="ExpireTimerSettingsFragment__1_week">أسبوع واحد</string>
     <string name="ExpireTimerSettingsFragment__1_day">يوم واحد</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">ثمانِ ساعات</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">ثماني ساعات</string>
     <string name="ExpireTimerSettingsFragment__1_hour">ساعة واحدة</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 دقائق</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 ثانية</string>
@@ -1245,7 +1245,7 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
     <string name="preferences__enable_pin">تفعيل رقم PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">أرقام التعريف الشخصية (PIN) تُبقي المعلومات المحفوظة في سيجنال مُشفَّرة لكي لا يستطيع أحدٌ غيرك الوصول إليها. سيتمُّ استرجاع حسابك الشخصي، إعداداتك، وجهات اتصالك عند إعادة تثبيت التطبيق. لن تكون لك حاجة بعدها لرقم التعريف الشخصي لفتح التطبيق.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">أرقام التعريف الشخصية (PIN) تُبقي المعلومات المحفوظة في سيجنال مُشفَّرة لكي لا يستطيع أحدٌ غيرك الوصول إليها. سيتمُّ استرجاع حسابك الشخصي، وإعداداتك، وجهات اتصالك عند إعادة تثبيت التطبيق. لن تكون لك حاجة بعدها لرقم التعريف الشخصي لفتح التطبيق.</string>
     <string name="preferences__disable_pin">تعطيل رقم الـ PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قٌمتَ بتعطيل رقم التعريف الشخصي (PIN)، ستضيع جميع البيانات عند قيامك بإعادة التسجيل في سيجنال إلّا إذا قُمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل بينما رقم التعريف الشخصي (PIN) في حالة تعطيل.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">رقم التعريف الشخصي (PIN) مطلوب لقفل التسجيل. لتعطيله، يُرجى أولًا تعطيل قفل التسجيل.</string>
@@ -1255,7 +1255,7 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">إنشاء مفتاح استعادة جديد</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">عليك إنشاء وتسجيل مفتاح استعادة جديد قبل أن تتمكّن من إيقاف تشغيل رقم التعريف الشخصي الخاص بك.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">عليك إنشاء وتسجيل مفتاح استعادة جديد قبل أن تتمكّن من تعطيل رقم التعريف الشخصي (PIN) الخاص بك.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">إنشاء مفتاح</string>
     <string name="ApplicationPreferencesActivity_pin_created">تمَّ إنشاء رقم التعريف الشخصي (PIN).</string>

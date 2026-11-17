@@ -1189,14 +1189,14 @@
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">Ardroghanna</string>
     <string name="preferences_advanced__always_relay_calls">Cuir glaonna ar aghaidh i gcónaí</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Seol gach glao trí fhreastalaí Signal ionas nach nochtfar do sheoladh IP do do theagmhálaí. Laghdófar cáilíocht an ghlao má chumasaítear é sin.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Cuir gach glao ar aghaidh trí fhreastalaí Signal ionas nach nochtfar do sheoladh IP do do theagmhálaí. Laghdófar cáilíocht an ghlao má chumasaítear é sin.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Sárú na Cinsireachta</string>
+    <string name="preferences_communication__category_censorship_circumvention">Sárú na cinsireachta</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Sárú na Cinsireachta</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Leis an rogha seo, déanfaidh Signal iarracht an chinsireacht a shárú. Ná húsáid an rogha seo mura bhfuil tú i dtír a dhéanann cinsireacht ar Signal.</string>
+    <string name="preferences_communication__censorship_circumvention">Sárú na cinsireachta</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Leis an rogha seo, déanfaidh Signal iarracht an chinsireacht a shárú. Ná cumasaigh an ghné seo ach amháin más i dtír a dhéanann cinsireacht ar Signal thú.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Cuireadh sárú na cinsireachta i bhfeidhm bunaithe ar an uimhir ghutháin atá agat.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Cuireadh sárú na cinsireachta i bhfeidhm bunaithe ar uimhir ghutháin do chuntais.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Dhíchumasaigh tú sárú na cinsireachta de láimh.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -1204,9 +1204,9 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Ní féidir sárú na cinsireachta a chur i bhfeidhm nuair nach bhfuil tú ceangailte leis an Idirlíon.</string>
     <string name="preferences_communication__category_sealed_sender">Seoltóir Séalaithe</string>
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show Status Icon</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Taispeáin an deilbhín stádais</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Taispeáin deilbhín i sonraí na teachtaireachta nuair a seachadadh iad le seoltóir séalaithe.</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone">Ceadaigh ó Dhuine ar bith</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone">Ceadaigh ó dhuine ar bith</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tabhair cead do dhaoine nach teagmhálaithe iad agus do dhaoine nár chomhroinn tú do phróifíl leo teachtaireachtaí le seoltóirí séalaithe a chur chugat.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Uathfhíorú eochrach</string>
@@ -1216,17 +1216,17 @@
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Teachtaireachtaí sealadacha</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Nuair a bheidh sé cumasaithe, imeoidh teachtaireachtaí nua, a sheoltar agus a fhaightear i gcomhráite nua a thosaigh tú, as radharc tar éis iad a fheiceáil.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in this chat will disappear after they have been seen.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Nuair a bheidh sé cumasaithe, imeoidh teachtaireachtaí nua, a sheoltar agus a fhaightear i gcomhráite nua a thosaigh tú, as radharc tar éis féachaint orthu.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nuair a bheidh sé cumasaithe, imeoidh teachtaireachtaí nua, a sheoltar agus a fhaightear sa chomhrá seo, as radharc tar éis féachaint orthu.</string>
     <string name="ExpireTimerSettingsFragment__off">As</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 seachtaine</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 seachtain amháin</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 lá amháin</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 uair an chloig</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">8 n-uair an chloig</string>
+    <string name="ExpireTimerSettingsFragment__1_hour">1 uair an chloig amháin</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 nóiméad</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 soicind</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Custom Time</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Am saincheaptha</string>
     <string name="ExpireTimerSettingsFragment__save">Sábháil</string>
 
     <!-- AccountSettingsScreen -->
@@ -1234,20 +1234,20 @@
     <string name="AccountSettingsScreen__pin_created">Cruthaíodh an UAP.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Theip ar scriosadh na sonraí</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Níorbh fhéidir an glas clárúcháin a chumasú.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Níorbh fhéidir an glas clárúcháin a dhíchumasú.</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Níorbh fhéidir an glas cláraithe a chumasú.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Níorbh fhéidir an glas cláraithe a dhíchumasú.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Ardroghanna UAP</string>
     <string name="preferences__enable_pin">Cumasaigh UAP</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Úsáidtear UAPanna chun an fhaisnéis a stórálann tú le Signal a chriptiú, ionas nach mbeidh aon duine eile in ann í a fheiceáil.  Déanfar athchóiriú ar do phróifíl agus do chuid socruithe agus teagmhálaithe nuair a shuiteálfaidh tú Signal arís. Ní bheidh an UAP ag teastáil chun an aip a oscailt.</string>
-    <string name="preferences__disable_pin">Díchumasaigh an UAP</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Má dhíchumasaíonn tú an UAP, caillfidh tú na sonraí go léir nuair a athchláraíonn tú Signal mura ndéanann tú cúltacú agus aischur de láimh. Ní féidir leat Glasáil Clárúcháin a chasadh air leis an UAP díchumasaithe.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Tá UAP de dhíth chun glas clárúcháin a úsáid. Caithfidh tú an glas clárúcháin a dhíchumasú sula mbeidh tú in ann an UAP a dhíchumasú.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Record Payments Recovery Phrase</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Before you can disable your PIN, you must record your payments recovery phrase to ensure you can recover your payments account.</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Déan an nath a thaifeadadh</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Úsáidtear UAPanna chun an fhaisnéis a stórálann tú le Signal a chriptiú, ionas nach mbeidh aon duine eile in ann í a fheiceáil. Aischuirfear do phróifíl agus do chuid socruithe agus teagmhálaithe nuair a shuiteálfaidh tú Signal arís. Ní bheidh an UAP ag teastáil chun an aip a oscailt.</string>
+    <string name="preferences__disable_pin">Díchumasaigh UAP</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Má dhíchumasaíonn tú an UAP, caillfidh tú na sonraí go léir nuair a athchláraíonn tú Signal mura ndéanann tú cúltacú agus aischur de láimh. Ní féidir leat Glas Cláraithe a chasadh air agus an UAP díchumasaithe.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Tá UAP de dhíth chun glas cláraithe a úsáid. Caithfidh tú an glas cláraithe a dhíchumasú sula mbeidh tú in ann UAPanna a dhíchumasú.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Taifead frása athshlánaithe íocaíochtaí</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Sula mbeidh tú in ann do UAP a dhíchumasú, ní mór duit frása athshlánaithe íocaíochtaí a thaifeadadh lena chinntiú go mbeidh tú in ann do chuntas íocaíochtaí a athshlánú.</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Taifead frása</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Cruthaigh eochair athshlánaithe nua</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->

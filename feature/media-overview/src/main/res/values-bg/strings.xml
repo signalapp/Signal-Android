@@ -34,7 +34,7 @@
         <item quantity="other">%1$d избрани (%2$s)</item>
     </plurals>
   <!-- Shown in the middle of a media overview tab that has nothing in it -->
-  <string name="MediaOverviewScreen__no_media">Няма нищо</string>
+  <string name="MediaOverviewScreen__no_media">Няма мултимедия</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
   <string name="MediaOverviewScreen__sort_by">Сортиране по</string>
@@ -51,8 +51,8 @@
 
   <!-- Bottom bar button that saves the selected media to the device. Plural so the verb can agree with the number of selected items -->
   <plurals name="MediaOverviewScreen__save_plural">
-        <item quantity="one">Запази</item>
-        <item quantity="other">Запази</item>
+        <item quantity="one">Запазване</item>
+        <item quantity="other">Запазване</item>
     </plurals>
   <!-- Bottom bar button that selects every item in the current media overview tab -->
   <string name="MediaOverviewScreen__select_all">Избиране на всичко</string>
@@ -118,18 +118,18 @@
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
   <string name="MediaOverviewScreen__sent_by_s">Изпратено от %1$s</string>
   <!-- Shown in a media overview list row for an item the user sent -->
-  <string name="MediaOverviewScreen__sent_by_you">Изпратено от тебе</string>
+  <string name="MediaOverviewScreen__sent_by_you">Изпратено от вас</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item someone else sent in a group. The first placeholder is the sender\'s name, the second is the group name -->
   <string name="MediaOverviewScreen__sent_by_s_to_s">Изпратено от %1$s до %2$s</string>
   <!-- Shown in a media overview list row when listing media from every chat, for an item the user sent. The placeholder is the name of the chat it was sent to -->
-  <string name="MediaOverviewScreen__sent_by_you_to_s">Изпратено от тебе до %1$s</string>
+  <string name="MediaOverviewScreen__sent_by_you_to_s">Изпратено от вас до %1$s</string>
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__two_part_line" translatable="false">%1$s · %2$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewScreen__three_part_line" translatable="false">%1$s · %2$s · %3$s</string> -->
 
   <!-- Accessibility description for a photo or video thumbnail in the media overview grid -->
   <string name="MediaOverviewScreen__media_preview">Преглед на медията</string>
   <!-- Accessibility description for the play icon drawn over a video thumbnail in the media overview -->
-  <string name="MediaOverviewScreen__play_video">Възпроизвеждане на видео</string>
+  <string name="MediaOverviewScreen__play_video">Пускане на видео</string>
   <!-- Accessibility description for the check mark shown on a selected item in the media overview -->
   <string name="MediaOverviewScreen__selected">Избрани</string>
   <!-- Accessibility description for the button in a media overview list row that plays an audio file -->

@@ -34,7 +34,7 @@
         <item quantity="other">%1$d തിരഞ്ഞെടുത്തു (%2$s)</item>
     </plurals>
   <!-- Shown in the middle of a media overview tab that has nothing in it -->
-  <string name="MediaOverviewScreen__no_media">ഒന്നുമില്ല</string>
+  <string name="MediaOverviewScreen__no_media">മീഡിയ ഒന്നുമില്ല</string>
 
   <!-- Title of the dialog for choosing how the media overview is sorted -->
   <string name="MediaOverviewScreen__sort_by">ഇങ്ങനെ അടുക്കുക</string>
@@ -51,8 +51,8 @@
 
   <!-- Bottom bar button that saves the selected media to the device. Plural so the verb can agree with the number of selected items -->
   <plurals name="MediaOverviewScreen__save_plural">
-        <item quantity="one">സൂക്ഷിക്കുക</item>
-        <item quantity="other">സംരക്ഷിക്കൂ</item>
+        <item quantity="one">സംരക്ഷിക്കുക</item>
+        <item quantity="other">സംരക്ഷിക്കുക</item>
     </plurals>
   <!-- Bottom bar button that selects every item in the current media overview tab -->
   <string name="MediaOverviewScreen__select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
@@ -67,7 +67,7 @@
   <!-- Menu item shown when long-pressing an item in the media overview. Shares the item with another app -->
   <string name="MediaOverviewScreen__share">പങ്കിടുക</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Saves the item to the device -->
-  <string name="MediaOverviewScreen__save">സംരക്ഷിക്കൂ</string>
+  <string name="MediaOverviewScreen__save">സംരക്ഷിക്കുക</string>
   <!-- Menu item shown when long-pressing an item in the media overview, and the confirm button of the dialog asking whether to delete the selected items -->
   <string name="MediaOverviewScreen__delete">ഇല്ലാതാക്കൂ</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Starts selecting multiple items, beginning with this one -->

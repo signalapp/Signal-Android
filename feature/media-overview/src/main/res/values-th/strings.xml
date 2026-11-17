@@ -18,7 +18,7 @@
   <!-- Tab title in the media overview screen for photos and videos -->
   <string name="MediaOverviewScreen__tab_media">สื่อ</string>
   <!-- Tab title in the media overview screen for documents and other files -->
-  <string name="MediaOverviewScreen__tab_files">แฟ้ม</string>
+  <string name="MediaOverviewScreen__tab_files">ไฟล์</string>
   <!-- Tab title in the media overview screen for voice messages and audio files -->
   <string name="MediaOverviewScreen__tab_audio">เสียง</string>
   <!-- Tab title in the media overview screen for links sent in the chat -->
@@ -62,7 +62,7 @@
   <!-- Menu item shown when long-pressing an item in the media overview. Opens a sheet to forward the item to other chats -->
   <string name="MediaOverviewScreen__forward">ส่งต่อ</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Shares the item with another app -->
-  <string name="MediaOverviewScreen__share">แบ่งปัน</string>
+  <string name="MediaOverviewScreen__share">แชร์</string>
   <!-- Menu item shown when long-pressing an item in the media overview. Saves the item to the device -->
   <string name="MediaOverviewScreen__save">บันทึก</string>
   <!-- Menu item shown when long-pressing an item in the media overview, and the confirm button of the dialog asking whether to delete the selected items -->

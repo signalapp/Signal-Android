@@ -1177,7 +1177,7 @@
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">Avanzado</string>
     <string name="preferences_advanced__always_relay_calls">Redireccionar chamadas sempre</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecciona todas as chamadas a través do servidor de Signal para evitar revelar o teu enderezo IP aos teus contactos. Ao activar esta opción, reducirase a calidade da chamada.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecciona todas as chamadas a través do servidor de Signal para evitar revelarlles o teu enderezo IP aos teus contactos. Ao activar esta opción, reducirase a calidade da chamada.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Eludir censura</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -1188,14 +1188,14 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Desactivaches manualmente a función Eludir censura.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">A función Eludir censura non é necesaria, xa podes contectarte a Signal.</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">A función Eludir censura non é necesaria, xa podes conectarte a Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">A función Eludir censura só pode activarse cunha conexión activa a Internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Remitente selado</string>
+    <string name="preferences_communication__category_sealed_sender">Remitente oculto</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostrar icona de estado</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostrar unha icona nos detalles das mensaxes cando se entreguen empregando o remitente oculto.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de calquera</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa o remitente selado para as mensaxes entrantes de persoas que non estean nos teus contactos ou con aquelas coas que non compartiras o teu perfil.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa o remitente oculto para as mensaxes entrantes de persoas que non estean nos teus contactos ou con aquelas coas que non compartiras o teu perfil.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Verificación automática da clave</string>
     <!-- Preference summary for automatic key verification -->
@@ -1206,7 +1206,7 @@
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Mensaxes temporais</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Cando se activa, as novas mensaxes enviadas e recibidas en novas conversas que ti comeces desaparecerán unha vez as lean.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Cando se activa, as novas mensaxes enviadas e recibidas nesta conversa desaparecerán despois de que as lean.</string>
-    <string name="ExpireTimerSettingsFragment__off">Off</string>
+    <string name="ExpireTimerSettingsFragment__off">Desactivar</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 semanas</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 semana</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 día</string>
@@ -1231,9 +1231,9 @@
     <string name="preferences__enable_pin">Activar PIN</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">O PIN mantén a información gardada con Signal cifrada para que só ti poidas acceder a ela. O teu perfil, axustes e contactos serán restablecidos cando reinstales. Non precisas o PIN para abrir a app.</string>
     <string name="preferences__disable_pin">Desactivar PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se desactivas o PIN perderás todos os datos cando voltes a rexistrar Signal a menos que fagas unha copia de apoio e a restaures. Non podes activar Bloqueo do Rexistro se o PIN está desactivado.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs requírense para o bloqueo do rexistro. Para desactivar PINs, primeiro desactiva o bloqueo do rexistro.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Gardar frase de recuperación de pagamento.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se desactivas o PIN perderás todos os datos cando te volvas a rexistrar en Signal, a menos que fagas unha copia de seguranza e a restaures. Non podes activar o bloqueo do rexistro se o PIN está desactivado.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Precísase un PIN para o bloqueo do rexistro. Para desactivar o PIN, primeiro desactiva o bloqueo do rexistro.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Gardar frase de recuperación de pagamentos</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de poder desactivar o PIN, tes que gardar a túa frase de recuperación de pagamentos para asegurarte de que podes recuperar a conta de pagamentos.</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Gardar frase.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->

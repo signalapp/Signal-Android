@@ -1184,7 +1184,7 @@
     <string name="preferences_communication__censorship_circumvention">Sensuurin kiertäminen</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Signal yrittää kiertää sensuuria toiminnon ollessa käytössä. Käytä toimintoa vain paikassa, jossa Signal on sensuroitu.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Puhelinnumerosi sijaintiin perustuva sensuurin kiertäminen otettu käyttöön.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Puhelinnumeron sijaintiin perustuva sensuurin kiertäminen otettu käyttöön.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Olet manuaalisesti poistanut käytöstä sensuurin kiertämisen.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -1195,7 +1195,7 @@
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Näytä tilailmaisin</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Näytä viestin lisätiedoissa kuvake niille viesteille, jotka toimitettiin lähettäjäsinetillä.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Hyväksy kaikilta</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ota lähettäjäsinetti käyttöön saapuville viesteille henkilöiltä, jotka eivät ole yhteystiedoissasi tai joiden kanssa et ole jakanut profiiliasi.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ota lähettäjäsinetti käyttöön saapuville viesteille henkilöiltä, jotka eivät ole yhteystiedoissasi tai joille et ole jakanut profiiliasi.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automaattinen avaimen vahvistus</string>
     <!-- Preference summary for automatic key verification -->
@@ -1205,7 +1205,7 @@
     <!-- Title of the screen for choosing a disappearing messages timer -->
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Katoavat viestit</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat uusista aloittamistasi keskusteluista, kun ne on nähty.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta, kun ne on nähty.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat keskustelusta, kun ne on nähty.</string>
     <string name="ExpireTimerSettingsFragment__off">Ei käytössä</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 viikkoa</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 viikko</string>
@@ -1229,9 +1229,9 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Tunnusluvun lisäasetukset</string>
     <string name="preferences__enable_pin">Ota tunnusluku käyttöön</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Tunnusluvulla salataan Signaliin tallentamasi tiedot, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautetaan, kun asennat Signalin uudelleen. Tunnuslukua ei tarvita sovelluksen avaamiseen.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Tunnusluvulla salataan Signaliin tallentamasi tiedot, jotta vain sinä pääset niihin käsiksi. Profiili, asetukset ja yhteystiedot palautetaan, kun asennat Signalin uudelleen. Sovelluksen avaamiseen ei tarvita tunnuslukua.</string>
     <string name="preferences__disable_pin">Poista tunnusluku käytöstä</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jos poistat tunnusluvun käytöstä, menetät kaikki tietosi rekisteröityessäsi Signaliin uudelleen, ellet varmuuskopioi tietojasi käsin. Et voi myöskään ottaa rekisteröintiestoa käyttöön, jos tunnusluku on pois päältä.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jos poistat tunnusluvun käytöstä, menetät kaikki tietosi rekisteröityessäsi Signaliin uudelleen, ellet varmuuskopioi tietoja manuaalisesti. Et voi myöskään ottaa rekisteröintiestoa käyttöön, jos tunnusluku on pois päältä.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Rekisteröintiesto vaatii tunnusluvun. Poista rekisteröintiesto käytöstä ennen tunnusluvun poistamista.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Tallenna maksujen palautuslause</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Ennen tunnusluvun ottamista pois käytöstä tallenna palautuslause. Sitä tarvitaan maksutilin palauttamiseen.</string>

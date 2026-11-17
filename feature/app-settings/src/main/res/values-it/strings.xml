@@ -1176,13 +1176,13 @@
 
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">Avanzate</string>
-    <string name="preferences_advanced__always_relay_calls">Ritrasmetti sempre le chiamate</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ritrasmetti le chiamate attraverso i server di Signal per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>
+    <string name="preferences_advanced__always_relay_calls">Inoltra sempre le chiamate</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Inoltra le chiamate attraverso i server di Signal per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Raggiro della censura</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
     <string name="preferences_communication__censorship_circumvention">Raggiro della censura</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Se attivo, Signal cercherà di raggirare la censura. Non attivare questa funzione se non ti trovi in un luogo dove Signal è soggetto a censura.</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Se attivo, Signal cercherà di raggirare la censura. Non attivare questa funzione se non ti trovi in un luogo in cui Signal è soggetto a censura.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Il raggiro della censura è stato attivato sulla base del tuo numero di telefono.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
@@ -1190,12 +1190,12 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
     <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Il raggiro della censura non è necessario; sei già connesso al servizio Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Il raggiro della censura può essere attivato solo se connessi a Internet.</string>
-    <string name="preferences_communication__category_sealed_sender">Mittente sigillato</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Il raggiro della censura può essere attivato solo se si è connessi a Internet.</string>
+    <string name="preferences_communication__category_sealed_sender">Mittente schermato</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostra icona di stato</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostra un\'icona nei dettagli del messaggio quando sono stati consegnati utilizzando il mittente sigillato.</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostra un\'icona nei dettagli del messaggio quando sono stati consegnati utilizzando il mittente schermato.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Permetti da chiunque</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Abilita il mittente sigillato per i messaggi in arrivo da non-contatti e persone con cui non hai condiviso il tuo profilo.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Abilita il mittente schermato per i messaggi in arrivo da non-contatti e persone con cui non hai condiviso il tuo profilo.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Verifica automatica della chiave</string>
     <!-- Preference summary for automatic key verification -->
@@ -1233,7 +1233,7 @@
     <string name="preferences__disable_pin">Disabilita PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Signal a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">I PIN sono richiesti per il blocco registrazione. Per disabilitare i PIN, disabilita prima il blocco registrazione.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Annota la frase di recupero dei pagamenti</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Annota la frase di recupero per i pagamenti</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Prima di disattivare il PIN, salva la frase di recupero per assicurarti di poter recuperare il tuo account dei pagamenti.</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Annota frase</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->

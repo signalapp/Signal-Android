@@ -18,7 +18,7 @@
   <!-- Tab title in the media overview screen for photos and videos -->
   <string name="MediaOverviewScreen__tab_media">Media</string>
   <!-- Tab title in the media overview screen for documents and other files -->
-  <string name="MediaOverviewScreen__tab_files">Berkas</string>
+  <string name="MediaOverviewScreen__tab_files">File</string>
   <!-- Tab title in the media overview screen for voice messages and audio files -->
   <string name="MediaOverviewScreen__tab_audio">Audio</string>
   <!-- Tab title in the media overview screen for links sent in the chat -->
@@ -46,7 +46,7 @@
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->
   <string name="MediaOverviewScreen__grid_view">Tampilan grid</string>
   <!-- Accessibility description for the button that switches the media overview from a grid of thumbnails to a list with file details -->
-  <string name="MediaOverviewScreen__list_view">Tampilan urutan</string>
+  <string name="MediaOverviewScreen__list_view">Tampilan daftar</string>
 
   <!-- Bottom bar button that saves the selected media to the device. Plural so the verb can agree with the number of selected items -->
   <plurals name="MediaOverviewScreen__save_plural">
@@ -78,7 +78,7 @@
     </plurals>
   <!-- Body of the dialog confirming deletion of the selected media overview items. The placeholder is the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_confirm_message">
-        <item quantity="other">Ini akan menghapus secara permanen %1$d file terpilih. Semua pesan yang berkaitan dengan item ini juga akan dihapus.</item>
+        <item quantity="other">Ini akan menghapus permanen %1$d file terpilih. Semua pesan yang berkaitan dengan item ini juga akan dihapus.</item>
     </plurals>
   <!-- Title of the progress dialog shown while the selected media overview items are being deleted -->
   <string name="MediaOverviewScreen__deleting">Menghapus</string>

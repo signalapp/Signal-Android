@@ -1173,25 +1173,25 @@
     <!-- AdvancedPrivacySettingsScreen -->
     <string name="preferences__advanced">Lanjutan</string>
     <string name="preferences_advanced__always_relay_calls">Selalu relay panggilan</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Sampaikan semua panggilan melalui peladen Signal untuk menghindari pengungkapan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay semua panggilan melalui server Signal untuk menghindari pengungkapan alamat IP ke kontak Anda. Kualitas panggilan akan menurun ketika Anda mengaktifkannya.</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
-    <string name="preferences_communication__category_censorship_circumvention">Hindari penyensoran</string>
+    <string name="preferences_communication__category_censorship_circumvention">Pengelakan sensor</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
-    <string name="preferences_communication__censorship_circumvention">Hindari penyensoran</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Jika diaktifkan, Signal akan menggagalkan penyensoran. Jangan nonaktifkan fitur ini kecuali Anda berada di lokasi di mana Signal disensor.</string>
+    <string name="preferences_communication__censorship_circumvention">Pengelakan sensor</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Jika diaktifkan, Signal akan menggagalkan penyensoran. Jangan menonaktifkan fitur ini kecuali Anda berada di lokasi tempat Signal disensor.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Pengelabuan Penyensoran telah diaktifkan berdasarkan nomor telepon Anda.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Pengelakan sensor telah diaktifkan berdasarkan nomor telepon Anda.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Anda telah menonaktifkan pengelakan sensor secara manual.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
-    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Pengelabuan penyensoran tidak diperlukan; Anda telah terhubung dengan layanan Signal.</string>
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Pengelakan sensor tidak diperlukan; Anda telah terhubung dengan layanan Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Penghindar penyensoran hanya dapat diaktifkan ketika terkoneksi dengan internet</string>
-    <string name="preferences_communication__category_sealed_sender">Pengirim Tertutup</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Pengelakan sensor hanya dapat diaktifkan ketika terhubung ke internet.</string>
+    <string name="preferences_communication__category_sealed_sender">Pengirim Tersembunyi</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Tampilkan ikon status</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Tampilkan ikon pada detail pesan saat terkirim menggunakan pengirim tertutup.</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Tampilkan ikon pada detail pesan saat terkirim menggunakan pengirim tersembunyi.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Izinkan dari semua orang</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktifkan pengirim tertutup untuk pesan masuk dari non-kontak dan orang yang tidak Anda beri profil.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktifkan pengirim tersembunyi untuk pesan masuk dari nonkontak dan orang yang tidak Anda kirimi profil.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Verifikasi kunci otomatis</string>
     <!-- Preference summary for automatic key verification -->
@@ -1200,8 +1200,8 @@
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
     <string name="ExpireTimerSettingsScreen__disappearing_messages">Pesan terhapus otomatis</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Jika diaktifkan, pesan baru yang dikirim dan diterima pada obrolan baru yang Anda mulai akan hilang setelah dibaca.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Jika diaktifkan, pesan baru yang dikirim dan diterima dalam obrolan ini akan hilang setelah dilihat.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Jika diaktifkan, pesan baru yang dikirim dan diterima di chat baru yang Anda mulai akan hilang setelah dibaca.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Jika diaktifkan, pesan baru yang dikirim dan diterima dalam chat ini akan hilang setelah dilihat.</string>
     <string name="ExpireTimerSettingsFragment__off">Mati</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 minggu</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 minggu</string>
@@ -1218,20 +1218,20 @@
     <string name="AccountSettingsScreen__pin_created">PIN berhasil dibuat.</string>
     <!-- Snackbar shown when wiping all of the app\'s data on this device fails -->
     <string name="AccountSettingsScreen__delete_all_data_failed">Gagal menghapus data</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Gagal mengaktifkan kunci pendaftaran.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Gagal menonaktifkan kunci pendaftaran.</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">Gagal mengaktifkan kunci registrasi.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Gagal menonaktifkan kunci registrasi.</string>
 
     <!-- AdvancedPinSettingsScreen -->
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Pengaturan PIN lanjutan</string>
     <string name="preferences__enable_pin">Aktifkan PIN</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN menjaga informasi yang disimpan dengan Signal terenkripsi sehingga hanya Anda yang dapat mengaksesnya. Profil Anda, pengaturan, dan kontak-kontak akan dipulihkan saat Anda memasang ulang aplikasi. Anda tidak memerlukan PIN untuk membuka aplikasinya.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN menjaga informasi yang disimpan dengan Signal terenkripsi sehingga hanya Anda yang dapat mengaksesnya. Profil Anda, pengaturan, dan kontak akan dipulihkan saat Anda menginstal ulang aplikasi. Anda tidak memerlukan PIN untuk membuka aplikasi.</string>
     <string name="preferences__disable_pin">Nonaktifkan PIN</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jika Anda menonaktifkan PIN, Anda akan kehilangan data saat Anda mendaftar ulang Signal kecuali Anda melakukan pencadangan manual dan memulihkannya. Anda tidak dapat menyalakan Kunci Pendaftaran saat PIN dinonaktifkan.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jika Anda menonaktifkan PIN, Anda akan kehilangan data saat Anda mendaftar ulang Signal kecuali Anda melakukan pencadangan manual dan memulihkannya. Anda tidak dapat mengaktifkan Kunci Registrasi saat PIN dinonaktifkan.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Anda perlu PIN untuk kunci registrasi. Nonaktifkan kunci registrasi dulu untuk menonaktifkan PIN.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekam frasa pemulihan pembayaran</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Sebelum menonaktifkan PIN, Anda harus merekam frasa pemulihan pembayaran Anda agar dapat memulihkan rekening/akun pembayaran Anda.</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Rekam frasa</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Catat frasa pemulihan pembayaran</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Sebelum menonaktifkan PIN, pastikan Anda mencatat frasa pemulihan pembayaran Anda agar dapat memulihkan rekening pembayaran Anda.</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Catat frasa</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Buat kunci pemulihan baru</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->

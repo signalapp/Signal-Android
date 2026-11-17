@@ -11,7 +11,7 @@
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
   <string name="MediaOverviewScreen__large">Duży</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
-  <string name="MediaOverviewScreen__medium">Średnie</string>
+  <string name="MediaOverviewScreen__medium">Średni</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
   <string name="MediaOverviewScreen__small">Mały</string>
 

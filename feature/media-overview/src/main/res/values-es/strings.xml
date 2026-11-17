@@ -9,11 +9,11 @@
   <!-- Section header in the media overview list, above items sent or received earlier this month -->
   <string name="MediaOverviewScreen__this_month">Este mes</string>
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
-  <string name="MediaOverviewScreen__large">Grande</string>
+  <string name="MediaOverviewScreen__large">Archivos grandes</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
-  <string name="MediaOverviewScreen__medium">Mediano</string>
+  <string name="MediaOverviewScreen__medium">Archivos medianos</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
-  <string name="MediaOverviewScreen__small">Pequeño</string>
+  <string name="MediaOverviewScreen__small">Archivos pequeños</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
   <string name="MediaOverviewScreen__tab_media">Multimedia</string>
@@ -82,8 +82,8 @@
     </plurals>
   <!-- Body of the dialog confirming deletion of the selected media overview items. The placeholder is the number of selected items -->
   <plurals name="MediaOverviewScreen__delete_confirm_message">
-        <item quantity="one">Se eliminará de forma permanente el archivo seleccionado. Todos los mensajes asociados con este archivo también se eliminarán.</item>
-        <item quantity="other">Se eliminarán de forma permanente los %1$d archivos seleccionados. Todos los mensajes asociados con estos archivos también se eliminarán.</item>
+        <item quantity="one">Se borrará de forma permanente el archivo seleccionado. También se eliminarán todos los mensajes asociados con este archivo.</item>
+        <item quantity="other">Se borrarán de forma permanente los %1$d archivos seleccionados. También se eliminarán todos los mensajes asociados con estos archivos.</item>
     </plurals>
   <!-- Title of the progress dialog shown while the selected media overview items are being deleted -->
   <string name="MediaOverviewScreen__deleting">Eliminando</string>
@@ -93,26 +93,26 @@
   <!-- Title of the dialog shown when saving from the media overview, and every selected item has been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_media">No se puede guardar el archivo</string>
   <!-- Body of the dialog shown when saving from the media overview, and every selected item has been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__media_offloaded_message">Este archivo se ha eliminado de tu dispositivo porque tienes activada la opción \"Optimizar almacenamiento de Signal\". Puedes descargar los archivos uno por uno o desactivar la opción \"Optimizar almacenamiento de Signal\" para descargarlos todos en tu dispositivo.</string>
+  <string name="MediaOverviewScreen__media_offloaded_message">Este archivo multimedia se ha eliminado de tu dispositivo porque tienes activada la opción \"Optimizar almacenamiento de Signal\". Puedes descargar los archivos uno por uno o desactivar la opción \"Optimizar almacenamiento de Signal\" para descargarlos todos en tu dispositivo.</string>
   <!-- Title of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space -->
   <string name="MediaOverviewScreen__cant_save_all_items">No se pueden guardar todos los elementos</string>
   <!-- Body of the dialog shown when saving from the media overview, and some of the selected items have been removed from the device to save space. "Optimize Signal storage" is the name of a setting -->
-  <string name="MediaOverviewScreen__some_media_offloaded_message">Algunos de los archivos que has seleccionado se han eliminado de tu dispositivo porque tienes activada la opción \"Optimizar almacenamiento de Signal\". Puedes guardar los archivos uno por uno o desactivar la opción \"Optimizar almacenamiento de Signal\" para descargarlos todos en tu dispositivo.</string>
+  <string name="MediaOverviewScreen__some_media_offloaded_message">Algunos de los archivos multimedia que has seleccionado se han eliminado de tu dispositivo porque tienes activada la opción \"Optimizar almacenamiento de Signal\". Puedes guardar los archivos uno por uno o desactivar la opción \"Optimizar almacenamiento de Signal\" para descargarlos todos en tu dispositivo.</string>
   <!-- Button in the dialogs about media removed from the device to save space. Opens the storage settings screen -->
   <string name="MediaOverviewScreen__view_storage_settings">Ver ajustes de almacenamiento</string>
   <!-- Toast shown when tapping a photo or video in the media overview that is still being sent -->
-  <string name="MediaOverviewScreen__media_not_sent_yet">Este archivo aún no se ha enviado.</string>
+  <string name="MediaOverviewScreen__media_not_sent_yet">Este archivo multimedia aún no se ha enviado.</string>
 
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Image · Nov 3") -->
-  <string name="MediaOverviewScreen__type_image">Imagen</string>
+  <string name="MediaOverviewScreen__type_image">Imágenes</string>
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Video · Nov 3") -->
   <string name="MediaOverviewScreen__type_video">Vídeos</string>
   <!-- File type shown in a media overview list row, between the file size and the date (e.g. "2 MB · Audio · Nov 3") -->
   <string name="MediaOverviewScreen__type_audio">Audios</string>
   <!-- File type shown in a media overview list row, between the file size and the date, for documents and other files (e.g. "2 MB · File · Nov 3") -->
-  <string name="MediaOverviewScreen__type_file">Documento</string>
+  <string name="MediaOverviewScreen__type_file">Documentos</string>
   <!-- Title of a voice message in a media overview list row, in place of a file name -->
-  <string name="MediaOverviewScreen__voice_message">Mensaje de voz</string>
+  <string name="MediaOverviewScreen__voice_message">Mensajes de voz</string>
   <!-- Shown in a media overview list row for an item in the user\'s Note to Self chat, in place of who sent it -->
   <string name="MediaOverviewScreen__note_to_self">Notas privadas</string>
   <!-- Shown in a media overview list row for an item someone else sent. The placeholder is the sender\'s name -->
