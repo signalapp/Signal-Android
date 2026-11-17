@@ -17,15 +17,11 @@ data class DataAndStorageSettingsState(
   val alwaysAutoDownloadedBytes: Long = 0,
   val sentMediaQuality: SentMediaQuality = SentMediaQuality.STANDARD,
   val callDataMode: CallDataMode = CallDataMode.HIGH_ALWAYS,
-  val forceWebsocketMode: Boolean = false,
-  val playServicesAvailable: Boolean = true,
+  val stayConnectedInBackground: Boolean = false,
+  val isPushAvailable: Boolean = true,
   val isProxyEnabled: Boolean = false,
   val dialog: Dialog = Dialog.None
 ) {
-
-  /** Without Play Services there's no push, so the app always stays connected and the toggle is locked on. */
-  val isStayConnectedInBackgroundChecked: Boolean
-    get() = forceWebsocketMode || !playServicesAvailable
 
   fun autoDownloadFor(network: AutoDownloadNetwork): Set<AutoDownloadMediaType> = autoDownload[network].orEmpty()
 
@@ -35,6 +31,9 @@ data class DataAndStorageSettingsState(
 
     /** Warns that staying connected in the background uses more battery. */
     data object ConfirmStayConnectedInBackground : Dialog
+
+    /** Warns that without push, turning off staying connected means no messages arrive in the background. */
+    data object ConfirmDisableStayConnectedWithoutPush : Dialog
   }
 }
 

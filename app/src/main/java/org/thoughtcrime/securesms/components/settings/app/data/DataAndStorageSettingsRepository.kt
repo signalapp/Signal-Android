@@ -13,7 +13,6 @@ import org.signal.appsettings.dataandstorage.AutoDownloadMediaType
 import org.signal.appsettings.dataandstorage.AutoDownloadNetwork
 import org.signal.core.models.calls.CallDataMode
 import org.signal.core.models.media.SentMediaQuality
-import org.signal.core.util.PlayServicesUtil
 import org.thoughtcrime.securesms.components.settings.app.storage.StorageUsageRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SettingsValues.ForceWebsocketMode
@@ -66,10 +65,12 @@ object DataAndStorageSettingsRepository {
     AppDependencies.signalCallManager.dataModeUpdate()
   }
 
-  fun isForceWebsocketModeEnabled(): Boolean = SignalStore.settings.forceWebsocketMode.isEnabled
+  fun isStayConnectedInBackgroundEnabled(): Boolean = SignalStore.settings.shouldStayConnectedInBackground()
+
+  fun isPushAvailable(): Boolean = SignalStore.account.fcmEnabled
 
   /** Stores the new mode and restarts the network so it takes effect. */
-  suspend fun setForceWebsocketModeEnabled(enabled: Boolean) {
+  suspend fun setStayConnectedInBackgroundEnabled(enabled: Boolean) {
     withContext(Dispatchers.Default) {
       SignalStore.settings.forceWebsocketMode = if (enabled) ForceWebsocketMode.ENABLED_BY_USER else ForceWebsocketMode.DISABLED_BY_USER
       if (!enabled) {
@@ -78,10 +79,6 @@ object DataAndStorageSettingsRepository {
       AppDependencies.resetNetwork()
       AppDependencies.startNetwork()
     }
-  }
-
-  fun isPlayServicesAvailable(): Boolean {
-    return PlayServicesUtil.getPlayServicesStatus(AppDependencies.application) == PlayServicesUtil.PlayServicesStatus.SUCCESS
   }
 
   fun isProxyEnabled(): Boolean = SignalStore.proxy.isProxyEnabled

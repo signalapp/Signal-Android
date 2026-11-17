@@ -31,11 +31,14 @@ sealed interface DataAndStorageSettingsEvent {
   /** The user picked when calls should use less data. */
   data class CallDataModeSelected(val mode: CallDataMode) : DataAndStorageSettingsEvent
 
-  /** The user flipped the stay connected in background toggle. Turning it on asks them to confirm first. */
+  /** The user flipped the stay connected in background toggle. Turning it on, or off without push, asks them to confirm first. */
   data class StayConnectedInBackgroundToggled(val enabled: Boolean) : DataAndStorageSettingsEvent
 
   /** The user confirmed they want to stay connected in the background. */
   data object StayConnectedInBackgroundConfirmed : DataAndStorageSettingsEvent
+
+  /** The user confirmed they want to stop staying connected in the background despite not having push. */
+  data object DisableStayConnectedInBackgroundConfirmed : DataAndStorageSettingsEvent
 
   /** The user tapped the use proxy row. */
   data object UseProxyClicked : DataAndStorageSettingsEvent

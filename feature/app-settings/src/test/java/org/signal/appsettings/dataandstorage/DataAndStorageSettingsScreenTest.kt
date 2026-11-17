@@ -8,11 +8,7 @@ package org.signal.appsettings.dataandstorage
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.assertIsNotEnabled
-import androidx.compose.ui.test.assertIsOn
-import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.isToggleable
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
@@ -114,7 +110,7 @@ class DataAndStorageSettingsScreenTest {
 
   @Test
   fun `toggling stay connected in background emits StayConnectedInBackgroundToggled`() {
-    setContent(DataAndStorageSettingsState(forceWebsocketMode = false))
+    setContent(DataAndStorageSettingsState(stayConnectedInBackground = false))
 
     scrollTo(DataAndStorageSettingsTestTags.ROW_STAY_CONNECTED)
     composeTestRule.onNodeWithTag(DataAndStorageSettingsTestTags.ROW_STAY_CONNECTED)
@@ -125,12 +121,15 @@ class DataAndStorageSettingsScreenTest {
   }
 
   @Test
-  fun `stay connected in background is locked on without play services`() {
-    setContent(DataAndStorageSettingsState(forceWebsocketMode = false, playServicesAvailable = false))
+  fun `turning off stay connected in background emits StayConnectedInBackgroundToggled`() {
+    setContent(DataAndStorageSettingsState(stayConnectedInBackground = true))
 
     scrollTo(DataAndStorageSettingsTestTags.ROW_STAY_CONNECTED)
-    composeTestRule.onNodeWithTag(DataAndStorageSettingsTestTags.ROW_STAY_CONNECTED).assertIsNotEnabled()
-    composeTestRule.onNode(isToggleable() and hasAnyAncestor(hasTestTag(DataAndStorageSettingsTestTags.ROW_STAY_CONNECTED)), useUnmergedTree = true).assertIsOn()
+    composeTestRule.onNodeWithTag(DataAndStorageSettingsTestTags.ROW_STAY_CONNECTED)
+      .assertIsEnabled()
+      .performClick()
+
+    assertThat(interactionEvents).containsExactly(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(false))
   }
 
   @Test
@@ -152,6 +151,19 @@ class DataAndStorageSettingsScreenTest {
 
     assertThat(interactionEvents).containsExactly(
       DataAndStorageSettingsEvent.StayConnectedInBackgroundConfirmed,
+      DataAndStorageSettingsEvent.DialogDismissed
+    )
+  }
+
+  @Test
+  fun `the disable without push confirmation dialog emits confirm and dismiss events`() {
+    setContent(DataAndStorageSettingsState(isPushAvailable = false, dialog = DataAndStorageSettingsState.Dialog.ConfirmDisableStayConnectedWithoutPush))
+
+    composeTestRule.onNodeWithText("Continue").performClick()
+    composeTestRule.onNodeWithText("Cancel").performClick()
+
+    assertThat(interactionEvents).containsExactly(
+      DataAndStorageSettingsEvent.DisableStayConnectedInBackgroundConfirmed,
       DataAndStorageSettingsEvent.DialogDismissed
     )
   }

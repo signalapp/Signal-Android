@@ -159,9 +159,8 @@ fun DataAndStorageSettingsScreen(
 
       item {
         Rows.ToggleRow(
-          checked = state.isStayConnectedInBackgroundChecked,
+          checked = state.stayConnectedInBackground,
           text = stringResource(R.string.DataAndStorageSettingsFragment__stay_connected_in_background),
-          enabled = state.playServicesAvailable,
           onCheckChanged = { onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(it)) },
           modifier = Modifier.testTag(DataAndStorageSettingsTestTags.ROW_STAY_CONNECTED)
         )
@@ -194,6 +193,17 @@ fun DataAndStorageSettingsScreen(
           confirm = stringResource(R.string.DataAndStorageSettingsFragment__enable),
           dismiss = stringResource(android.R.string.cancel),
           onConfirm = { onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundConfirmed) },
+          onDeny = { onEvent(DataAndStorageSettingsEvent.DialogDismissed) },
+          onDismissRequest = { onEvent(DataAndStorageSettingsEvent.DialogDismissed) }
+        )
+      }
+      DataAndStorageSettingsState.Dialog.ConfirmDisableStayConnectedWithoutPush -> {
+        Dialogs.SimpleAlertDialog(
+          title = "",
+          body = stringResource(R.string.DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device),
+          confirm = stringResource(R.string.DataAndStorageSettingsFragment__continue),
+          dismiss = stringResource(android.R.string.cancel),
+          onConfirm = { onEvent(DataAndStorageSettingsEvent.DisableStayConnectedInBackgroundConfirmed) },
           onDeny = { onEvent(DataAndStorageSettingsEvent.DialogDismissed) },
           onDismissRequest = { onEvent(DataAndStorageSettingsEvent.DialogDismissed) }
         )
@@ -284,7 +294,7 @@ private fun DataAndStorageSettingsScreenPreview() {
 @Composable
 private fun DataAndStorageSettingsScreenCalculatingPreview() {
   DataAndStorageSettingsScreen(
-    state = DataAndStorageSettingsState(playServicesAvailable = false),
+    state = DataAndStorageSettingsState(),
     onEvent = {}
   )
 }

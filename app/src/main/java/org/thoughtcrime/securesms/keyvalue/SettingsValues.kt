@@ -471,6 +471,9 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
       putInteger(FORCE_WEBSOCKET_MODE, value.serialize())
     }
 
+  /** Whether the websocket should be kept open while the app is in the background. */
+  fun shouldStayConnectedInBackground(): Boolean = forceWebsocketMode.shouldStayConnected(SignalStore.account.fcmEnabled)
+
   var mediaKeyboardMode: MediaKeyboardMode
     get() = MediaKeyboardMode.valueOf(getNonNullString(MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name))
     set(value) {
@@ -681,8 +684,14 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
     ENABLED_AUTOMATICALLY(2),
     DISABLED_BY_USER(3);
 
-    val isEnabled: Boolean
-      get() = this == ENABLED_BY_USER || this == ENABLED_AUTOMATICALLY
+    /** Without FCM there's no push, so we stay connected unless the user explicitly turned it off. */
+    fun shouldStayConnected(fcmEnabled: Boolean): Boolean {
+      return when (this) {
+        ENABLED_BY_USER, ENABLED_AUTOMATICALLY -> true
+        DISABLED_BY_USER -> false
+        DISABLED_AUTOMATICALLY -> !fcmEnabled
+      }
+    }
 
     fun serialize(): Int = value
 

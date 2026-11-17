@@ -137,7 +137,7 @@ public class RefreshAttributesJob extends BaseJob {
 
   private void setPrimaryDeviceAttributes(@NonNull SvrValues svrValues, @NonNull AccountAttributes.Capabilities capabilities) throws IOException {
     int       registrationId              = SignalStore.account().getRegistrationId();
-    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled() || SignalStore.settings().getForceWebsocketMode().isEnabled();
+    boolean   fetchesMessages             = SignalStore.settings().shouldStayConnectedInBackground();
     byte[]    unidentifiedAccessKey       = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
     boolean   universalUnidentifiedAccess = SignalStore.settings().isUniversalUnidentifiedAccess();
     String    registrationLockV2          = null;

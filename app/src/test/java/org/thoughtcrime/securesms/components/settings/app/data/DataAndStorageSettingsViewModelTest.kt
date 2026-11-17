@@ -53,7 +53,8 @@ class DataAndStorageSettingsViewModelTest {
   private val autoDownload = mutableMapOf<AutoDownloadNetwork, Set<AutoDownloadMediaType>>()
   private var sentMediaQuality = SentMediaQuality.STANDARD
   private var callDataMode = CallDataMode.HIGH_ALWAYS
-  private var forceWebsocket = false
+  private var stayConnected = false
+  private var pushAvailable = true
 
   @Before
   fun setUp() {
@@ -69,9 +70,9 @@ class DataAndStorageSettingsViewModelTest {
     every { DataAndStorageSettingsRepository.setSentMediaQuality(any()) } answers { sentMediaQuality = firstArg() }
     every { DataAndStorageSettingsRepository.getCallDataMode() } answers { callDataMode }
     every { DataAndStorageSettingsRepository.setCallDataMode(any()) } answers { callDataMode = firstArg() }
-    every { DataAndStorageSettingsRepository.isForceWebsocketModeEnabled() } answers { forceWebsocket }
-    coEvery { DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(any()) } answers { forceWebsocket = firstArg() }
-    every { DataAndStorageSettingsRepository.isPlayServicesAvailable() } returns true
+    every { DataAndStorageSettingsRepository.isStayConnectedInBackgroundEnabled() } answers { stayConnected }
+    coEvery { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(any()) } answers { stayConnected = firstArg() }
+    every { DataAndStorageSettingsRepository.isPushAvailable() } answers { pushAvailable }
     every { DataAndStorageSettingsRepository.isProxyEnabled() } returns false
   }
 
@@ -86,7 +87,7 @@ class DataAndStorageSettingsViewModelTest {
     autoDownload[AutoDownloadNetwork.WIFI] = setOf(AutoDownloadMediaType.IMAGES, AutoDownloadMediaType.VIDEO)
     sentMediaQuality = SentMediaQuality.HIGH
     callDataMode = CallDataMode.LOW_ALWAYS
-    forceWebsocket = true
+    stayConnected = true
     every { DataAndStorageSettingsRepository.isProxyEnabled() } returns true
 
     val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
@@ -101,7 +102,7 @@ class DataAndStorageSettingsViewModelTest {
         alwaysAutoDownloadedBytes = 102_400,
         sentMediaQuality = SentMediaQuality.HIGH,
         callDataMode = CallDataMode.LOW_ALWAYS,
-        forceWebsocketMode = true,
+        stayConnectedInBackground = true,
         isProxyEnabled = true
       )
     )
@@ -180,7 +181,7 @@ class DataAndStorageSettingsViewModelTest {
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(true))
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmStayConnectedInBackground)
-    coVerify(exactly = 0) { DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(any()) }
+    coVerify(exactly = 0) { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(any()) }
   }
 
   @Test
@@ -190,8 +191,8 @@ class DataAndStorageSettingsViewModelTest {
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(true))
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundConfirmed)
 
-    coVerify { DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(true) }
-    assertThat(viewModel.state.value.forceWebsocketMode).isTrue()
+    coVerify { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(true) }
+    assertThat(viewModel.state.value.stayConnectedInBackground).isTrue()
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
   }
 
@@ -201,19 +202,54 @@ class DataAndStorageSettingsViewModelTest {
 
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundConfirmed)
 
-    coVerify(exactly = 0) { DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(any()) }
+    coVerify(exactly = 0) { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(any()) }
   }
 
   @Test
   fun `turning off stay connected in background disables it without asking`() = runTest(testDispatcher) {
-    forceWebsocket = true
+    stayConnected = true
     val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(false))
 
-    coVerify { DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(false) }
-    assertThat(viewModel.state.value.forceWebsocketMode).isFalse()
+    coVerify { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(false) }
+    assertThat(viewModel.state.value.stayConnectedInBackground).isFalse()
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `turning off stay connected in background without push asks for confirmation first`() = runTest(testDispatcher) {
+    stayConnected = true
+    pushAvailable = false
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
+
+    viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(false))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmDisableStayConnectedWithoutPush)
+    coVerify(exactly = 0) { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(any()) }
+  }
+
+  @Test
+  fun `confirming disable without push disables it and closes the dialog`() = runTest(testDispatcher) {
+    stayConnected = true
+    pushAvailable = false
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
+
+    viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(false))
+    viewModel.onEvent(DataAndStorageSettingsEvent.DisableStayConnectedInBackgroundConfirmed)
+
+    coVerify { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(false) }
+    assertThat(viewModel.state.value.stayConnectedInBackground).isFalse()
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `DisableStayConnectedInBackgroundConfirmed is ignored without the confirmation dialog`() = runTest(testDispatcher) {
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
+
+    viewModel.onEvent(DataAndStorageSettingsEvent.DisableStayConnectedInBackgroundConfirmed)
+
+    coVerify(exactly = 0) { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(any()) }
   }
 
   @Test
@@ -224,6 +260,6 @@ class DataAndStorageSettingsViewModelTest {
     viewModel.onEvent(DataAndStorageSettingsEvent.DialogDismissed)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
-    coVerify(exactly = 0) { DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(any()) }
+    coVerify(exactly = 0) { DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(any()) }
   }
 }

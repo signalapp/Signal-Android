@@ -18,7 +18,7 @@ class DataAndStorageSettingsLayoutTest : SignalLayoutStressTest() {
     alwaysAutoDownloadedBytes = 102_400,
     sentMediaQuality = SentMediaQuality.HIGH,
     callDataMode = CallDataMode.LOW_ALWAYS,
-    forceWebsocketMode = true,
+    stayConnectedInBackground = true,
     isProxyEnabled = true
   )
 
@@ -33,8 +33,8 @@ class DataAndStorageSettingsLayoutTest : SignalLayoutStressTest() {
   }
 
   @Test
-  fun `without play services`() = assertPassesLayoutChecks {
-    DataAndStorageSettingsScreen(state = populated.copy(forceWebsocketMode = false, playServicesAvailable = false), onEvent = {})
+  fun `confirming disable stay connected without push`() = assertPassesLayoutChecks {
+    DataAndStorageSettingsScreen(state = populated.copy(isPushAvailable = false, dialog = DataAndStorageSettingsState.Dialog.ConfirmDisableStayConnectedWithoutPush), onEvent = {})
   }
 
   @Test

@@ -74,8 +74,10 @@ class DataAndStorageSettingsViewModel(
       is DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled -> {
         if (event.enabled) {
           _state.update { it.copy(dialog = DataAndStorageSettingsState.Dialog.ConfirmStayConnectedInBackground) }
+        } else if (!_state.value.isPushAvailable) {
+          _state.update { it.copy(dialog = DataAndStorageSettingsState.Dialog.ConfirmDisableStayConnectedWithoutPush) }
         } else {
-          DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(false)
+          DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(false)
           refresh()
         }
       }
@@ -83,7 +85,14 @@ class DataAndStorageSettingsViewModel(
       DataAndStorageSettingsEvent.StayConnectedInBackgroundConfirmed -> {
         if (_state.value.dialog != DataAndStorageSettingsState.Dialog.ConfirmStayConnectedInBackground) return
         _state.update { it.copy(dialog = DataAndStorageSettingsState.Dialog.None) }
-        DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(true)
+        DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(true)
+        refresh()
+      }
+
+      DataAndStorageSettingsEvent.DisableStayConnectedInBackgroundConfirmed -> {
+        if (_state.value.dialog != DataAndStorageSettingsState.Dialog.ConfirmDisableStayConnectedWithoutPush) return
+        _state.update { it.copy(dialog = DataAndStorageSettingsState.Dialog.None) }
+        DataAndStorageSettingsRepository.setStayConnectedInBackgroundEnabled(false)
         refresh()
       }
 
@@ -100,8 +109,8 @@ class DataAndStorageSettingsViewModel(
         alwaysAutoDownloadedBytes = DataAndStorageSettingsRepository.getAlwaysAutoDownloadedBytes(),
         sentMediaQuality = DataAndStorageSettingsRepository.getSentMediaQuality(),
         callDataMode = DataAndStorageSettingsRepository.getCallDataMode(),
-        forceWebsocketMode = DataAndStorageSettingsRepository.isForceWebsocketModeEnabled(),
-        playServicesAvailable = DataAndStorageSettingsRepository.isPlayServicesAvailable(),
+        stayConnectedInBackground = DataAndStorageSettingsRepository.isStayConnectedInBackgroundEnabled(),
+        isPushAvailable = DataAndStorageSettingsRepository.isPushAvailable(),
         isProxyEnabled = DataAndStorageSettingsRepository.isProxyEnabled()
       )
     }
