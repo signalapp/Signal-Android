@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.ImportResult
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -194,6 +195,26 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       .subscribeBy {
         _state.value = _state.value.copy(statusMessage = "Encrypted backup import complete!")
       }
+  }
+
+  fun importPlaintextBackup(length: Long, inputStreamFactory: () -> InputStream) {
+    _state.value = _state.value.copy(statusMessage = "Importing plaintext backup...")
+
+    val self = Recipient.self()
+    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
+
+    disposables += Single.fromCallable { BackupRepository.importForDebugging(length, inputStreamFactory, selfData, backupKey = null) }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(
+        onSuccess = { result ->
+          _state.value = _state.value.copy(statusMessage = if (result is ImportResult.Success) "Plaintext backup import complete!" else "Plaintext backup import failed!")
+        },
+        onError = { e ->
+          Log.w(TAG, "Plaintext backup import failed", e)
+          _state.value = _state.value.copy(statusMessage = "Plaintext backup import failed: ${e.message}")
+        }
+      )
   }
 
   fun haltAllJobs() {

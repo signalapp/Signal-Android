@@ -100,6 +100,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
   private lateinit var saveEncryptedBackupToDiskLauncher: ActivityResultLauncher<Intent>
   private lateinit var savePlaintextBackupToDiskLauncher: ActivityResultLauncher<Intent>
   private lateinit var importEncryptedBackupFromDiskLauncher: ActivityResultLauncher<Intent>
+  private lateinit var importPlaintextBackupFromDiskLauncher: ActivityResultLauncher<Intent>
   private lateinit var savePlaintextCopyLauncher: ActivityResultLauncher<Intent>
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,6 +130,19 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
         result.data?.data?.let { uri ->
           requireContext().contentResolver.getLength(uri)?.let { length ->
             viewModel.importEncryptedBackup(length) { requireContext().contentResolver.openInputStream(uri)!! }
+          }
+        } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
+      }
+    }
+
+    importPlaintextBackupFromDiskLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+      if (result.resultCode == RESULT_OK) {
+        result.data?.data?.let { uri ->
+          val length = requireContext().contentResolver.getLength(uri)
+          if (length != null) {
+            viewModel.importPlaintextBackup(length) { requireContext().contentResolver.openInputStream(uri)!! }
+          } else {
+            Toast.makeText(requireContext(), "Unable to read file length", Toast.LENGTH_SHORT).show()
           }
         } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
       }
@@ -237,6 +251,21 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
             } else {
               Toast.makeText(context, "Invalid credentials!", Toast.LENGTH_SHORT).show()
             }
+          },
+          onImportPlaintextBackupFromDiskClicked = {
+            MaterialAlertDialogBuilder(context)
+              .setTitle("Are you sure?")
+              .setMessage("This will delete all of your chats and replace them with the contents of the selected plaintext backup. Only do this on a test device!")
+              .setPositiveButton("Pick file") { _, _ ->
+                val intent = Intent().apply {
+                  action = Intent.ACTION_GET_CONTENT
+                  type = "application/octet-stream"
+                  addCategory(Intent.CATEGORY_OPENABLE)
+                }
+                importPlaintextBackupFromDiskLauncher.launch(intent)
+              }
+              .setNegativeButton(android.R.string.cancel, null)
+              .show()
           },
           onDeleteRemoteBackup = {
             MaterialAlertDialogBuilder(context)
@@ -367,6 +396,7 @@ fun Screen(
   onImportEncryptedBackupFromDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskDismissed: () -> Unit = {},
   onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> },
+  onImportPlaintextBackupFromDiskClicked: () -> Unit = {},
   onClearLocalMediaBackupState: () -> Unit = {},
   onDeleteRemoteBackup: () -> Unit = {},
   onTriggerLocalRestoreDirectoryError: () -> Unit = {},
@@ -581,6 +611,12 @@ fun Screen(
         text = "Wipe all data and restore from file",
         label = "Erases all content on your device, followed by a restore of an encrypted backup selected from disk.",
         onClick = onImportEncryptedBackupFromDiskClicked
+      )
+
+      Rows.TextRow(
+        text = "Wipe all data and restore from plaintext file",
+        label = "Erases all content on your device, followed by a restore of an unencrypted, uncompressed backup (.binproto) selected from disk.",
+        onClick = onImportPlaintextBackupFromDiskClicked
       )
 
       Rows.TextRow(
