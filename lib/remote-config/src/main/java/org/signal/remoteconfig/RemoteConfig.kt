@@ -14,9 +14,11 @@ import org.signal.core.util.serialization.SignalJson
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.RemoteConfigApi.GetRemoteConfigError
 import org.signal.network.api.RemoteConfigApi.RemoteConfigResult
+import org.signal.remoteconfig.RemoteConfig.INTERNAL_USER_KEY
 import org.signal.remoteconfig.RemoteConfig.REMOTE_VALUES
 import org.signal.remoteconfig.RemoteConfig.asBoolean
 import org.signal.remoteconfig.RemoteConfig.asInteger
+import org.signal.remoteconfig.RemoteConfig.internalUserDisabled
 import org.signal.remoteconfig.RemoteConfig.remoteBoolean
 import org.signal.remoteconfig.RemoteConfig.remoteValue
 import org.signal.remoteconfig.RemoteConfig.retryReceiptMaxCount
@@ -1644,11 +1646,9 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  const val APP_SETTINGS_NAVIGATION_KEY = "android.appSettingsNavigation.1"
-
   /** Whether to host app settings in the new navigation activity in place of the fragment nav graph. */
   val useAppSettingsNavigation: Boolean by remoteBoolean(
-    key = APP_SETTINGS_NAVIGATION_KEY,
+    key = "android.appSettingsNavigation.2",
     defaultValue = false,
     hotSwappable = true
   )
