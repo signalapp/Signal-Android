@@ -19,7 +19,8 @@ import org.signal.libsignal.net.AuthDevicesService
 import org.signal.libsignal.net.DeviceIdNotFoundException
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.protocol.InvalidKeyException
+import org.signal.libsignal.provisioning.ProvisioningPublicKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
 import org.signal.network.websocket.WebSocketRequestMessage
@@ -98,13 +99,17 @@ class LinkDeviceApi(
    *
    * [e164], [pni], and [pniIdentityKeyPair] are absent for an account with no phone number, and are only ever sent
    * as a complete set.
+   *
+   * @param deviceKey The new device's public key from its provisioning QR code.
+   * @throws InvalidKeyException if [deviceKey] is invalid
    */
+  @Throws(InvalidKeyException::class)
   fun linkDevice(
     e164: String?,
     aci: ACI,
     pni: PNI?,
     deviceIdentifier: String,
-    deviceKey: ECPublicKey,
+    deviceKey: ProvisioningPublicKey,
     aciIdentityKeyPair: IdentityKeyPair,
     pniIdentityKeyPair: IdentityKeyPair?,
     profileKey: ProfileKey,
@@ -124,7 +129,6 @@ class LinkDeviceApi(
     val sentPni = pni.takeIf { sendPhoneNumberData }
     val sentPniIdentityKeyPair = pniIdentityKeyPair.takeIf { sendPhoneNumberData }
 
-    val cipher = PrimaryProvisioningCipher(deviceKey)
     val message = ProvisionMessage(
       aciIdentityKeyPublic = aciIdentityKeyPair.publicKey.serialize().toByteString(),
       aciIdentityKeyPrivate = aciIdentityKeyPair.privateKey.serialize().toByteString(),
@@ -144,7 +148,7 @@ class LinkDeviceApi(
       pniBinary = sentPni?.toByteStringWithoutPrefix(),
       authCredentialSalt = authCredentialSalt?.toByteString()
     )
-    val ciphertext: ByteArray = cipher.encrypt(message)
+    val ciphertext: ByteArray = PrimaryProvisioningCipher.encrypt(deviceKey, message)
     val body = ProvisioningMessage(Base64.encodeWithPadding(ciphertext))
 
     val request = WebSocketRequestMessage.put("/v1/provisioning/${deviceIdentifier.urlEncode()}", body)

@@ -343,7 +343,6 @@ class DemoNetworkController(
     fun startSocket() {
       val handle = ProvisioningSocket.start<ProvisionMessage>(
         mode = ProvisioningSocket.Mode.Link(linkAndSyncCapable = allowLinkAndSync),
-        identityKeyPair = IdentityKeyPair.generate(),
         configuration = serviceConfiguration,
         handler = { id, t ->
           Log.w(TAG, "[startLinkDeviceProvisioning] Socket [$id] failed", t)
@@ -532,7 +531,6 @@ class DemoNetworkController(
     fun startSocket() {
       val handle = ProvisioningSocket.start<RegistrationProvisionMessage>(
         mode = ProvisioningSocket.Mode.Rereg,
-        identityKeyPair = IdentityKeyPair.generate(),
         configuration = serviceConfiguration,
         handler = { id, t ->
           Log.w(TAG, "[startProvisioning] Socket [$id] failed", t)

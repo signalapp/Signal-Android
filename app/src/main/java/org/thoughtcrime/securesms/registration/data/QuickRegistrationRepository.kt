@@ -16,7 +16,7 @@ import org.signal.core.util.Base64.decode
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.provisioning.ProvisioningPublicKey
 import org.signal.network.NetworkResult
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -65,9 +65,9 @@ object QuickRegistrationRepository {
    * Accepts both standard and url-safe base64, with or without padding.
    */
   @VisibleForTesting
-  fun parsePublicKey(uri: Uri): ECPublicKey? {
+  fun parsePublicKey(uri: Uri): ProvisioningPublicKey? {
     val publicKeyEncoded: String = uri.getQueryParameter("pub_key") ?: return null
-    return ECPublicKey(decode(publicKeyEncoded))
+    return ProvisioningPublicKey(decode(publicKeyEncoded))
   }
 
   private fun Uri.getCapabilities(): Set<Capability> {
@@ -99,7 +99,7 @@ object QuickRegistrationRepository {
 
     try {
       val ephemeralId: String? = uri.getQueryParameter("uuid")
-      val publicKey: ECPublicKey? = parsePublicKey(uri)
+      val publicKey: ProvisioningPublicKey? = parsePublicKey(uri)
 
       if (ephemeralId == null || publicKey == null) {
         Log.w(TAG, "Invalid link data hasId: ${ephemeralId != null} hasKey: ${publicKey != null}")

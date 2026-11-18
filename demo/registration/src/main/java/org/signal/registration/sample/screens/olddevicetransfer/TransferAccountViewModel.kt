@@ -21,7 +21,7 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.provisioning.ProvisioningPublicKey
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.signal.registration.sample.RegistrationApplication
 import org.signal.registration.sample.storage.RegistrationPreferences
@@ -82,7 +82,7 @@ class TransferAccountViewModel(
 
     try {
       withContext(Dispatchers.IO) {
-        val publicKey = ECPublicKey(Base64.decode(publicKeyEncoded))
+        val publicKey = ProvisioningPublicKey(Base64.decode(publicKeyEncoded))
 
         val e164 = RegistrationPreferences.e164
         val aci = checkNotNull(RegistrationPreferences.aci) { "No ACI stored" }
@@ -106,7 +106,7 @@ class TransferAccountViewModel(
           backupVersion = 0
         )
 
-        val cipherText = PrimaryProvisioningCipher(publicKey).encrypt(message)
+        val cipherText = PrimaryProvisioningCipher.encrypt(publicKey, message)
         sendProvisioningMessage(deviceId, cipherText)
       }
       Log.i(TAG, "Provisioning message sent successfully")

@@ -3,11 +3,6 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "org.signal.registration.proto";
 
-message RegistrationProvisionEnvelope {
-  bytes publicKey = 1;
-  bytes body = 2; // Encrypted RegistrationProvisionMessage
-}
-
 message RegistrationProvisionMessage {
   enum Platform {
     ANDROID = 0;

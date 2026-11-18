@@ -17,7 +17,7 @@ import org.signal.core.util.logging.logW
 import org.signal.core.util.toByteArray
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.provisioning.ProvisioningPublicKey
 import org.signal.network.NetworkResult
 import org.signal.network.api.CdnApi
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
@@ -212,9 +212,9 @@ object LinkDeviceRepository {
    * Accepts both standard and url-safe base64, with or without padding.
    */
   @VisibleForTesting
-  fun parsePublicKey(uri: Uri): ECPublicKey? {
+  fun parsePublicKey(uri: Uri): ProvisioningPublicKey? {
     val publicKeyEncoded: String = uri.getQueryParameter("pub_key") ?: return null
-    return ECPublicKey(Base64.decode(publicKeyEncoded))
+    return ProvisioningPublicKey(Base64.decode(publicKeyEncoded))
   }
 
   /**
@@ -242,28 +242,29 @@ object LinkDeviceRepository {
     }
 
     val ephemeralId: String = uri.getQueryParameter("uuid") ?: return LinkDeviceResult.BadCode
-    val publicKey = try {
-      parsePublicKey(uri) ?: return LinkDeviceResult.BadCode
+    val publicKey = parsePublicKey(uri) ?: return LinkDeviceResult.BadCode
+
+    val deviceLinkResult = try {
+      SignalNetwork.linkDeviceApi.linkDevice(
+        e164 = SignalStore.account.e164,
+        aci = SignalStore.account.aci!!,
+        pni = SignalStore.account.pni,
+        deviceIdentifier = ephemeralId,
+        deviceKey = publicKey,
+        aciIdentityKeyPair = SignalStore.account.aciIdentityKey,
+        pniIdentityKeyPair = SignalStore.account.pniIdentityKeyOrNull,
+        profileKey = ProfileKeyUtil.getSelfProfileKey(),
+        accountEntropyPool = SignalStore.account.accountEntropyPool,
+        masterKey = SignalStore.svr.masterKey,
+        code = verificationCodeResult.verificationCode,
+        ephemeralMessageBackupKey = ephemeralMessageBackupKey,
+        mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey,
+        authCredentialSalt = SignalStore.account.authCredentialSalt
+      )
     } catch (e: InvalidKeyException) {
+      Log.w(TAG, "Invalid public key in linking QR code", e)
       return LinkDeviceResult.KeyError
     }
-
-    val deviceLinkResult = SignalNetwork.linkDeviceApi.linkDevice(
-      e164 = SignalStore.account.e164,
-      aci = SignalStore.account.aci!!,
-      pni = SignalStore.account.pni,
-      deviceIdentifier = ephemeralId,
-      deviceKey = publicKey,
-      aciIdentityKeyPair = SignalStore.account.aciIdentityKey,
-      pniIdentityKeyPair = SignalStore.account.pniIdentityKeyOrNull,
-      profileKey = ProfileKeyUtil.getSelfProfileKey(),
-      accountEntropyPool = SignalStore.account.accountEntropyPool,
-      masterKey = SignalStore.svr.masterKey,
-      code = verificationCodeResult.verificationCode,
-      ephemeralMessageBackupKey = ephemeralMessageBackupKey,
-      mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey,
-      authCredentialSalt = SignalStore.account.authCredentialSalt
-    )
 
     return when (deviceLinkResult) {
       is NetworkResult.Success -> {

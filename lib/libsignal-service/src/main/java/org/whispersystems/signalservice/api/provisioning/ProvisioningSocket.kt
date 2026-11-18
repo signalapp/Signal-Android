@@ -24,16 +24,13 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.websocket.WebSocketMessage
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebSocketResponseMessage
-import org.signal.registration.proto.RegistrationProvisionEnvelope
 import org.whispersystems.signalservice.api.buildOkHttpClient
 import org.whispersystems.signalservice.api.chooseUrl
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
-import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisioningAddress
 import java.io.Closeable
 import java.io.IOException
@@ -47,7 +44,6 @@ import kotlin.time.Duration.Companion.seconds
 class ProvisioningSocket<T> private constructor(
   private val mode: Mode,
   val id: Int,
-  identityKeyPair: IdentityKeyPair,
   configuration: SignalServiceConfiguration,
   private val scope: CoroutineScope
 ) {
@@ -60,7 +56,6 @@ class ProvisioningSocket<T> private constructor(
 
     fun <T> start(
       mode: Mode,
-      identityKeyPair: IdentityKeyPair,
       configuration: SignalServiceConfiguration,
       handler: ProvisioningSocketExceptionHandler,
       block: suspend CoroutineScope.(ProvisioningSocket<T>) -> Unit
@@ -71,7 +66,7 @@ class ProvisioningSocket<T> private constructor(
       scope.launch {
         var socket: ProvisioningSocket<T>? = null
         try {
-          socket = ProvisioningSocket(mode, socketId, identityKeyPair, configuration, scope)
+          socket = ProvisioningSocket(mode, socketId, configuration, scope)
           socket.connect()
           block(socket)
         } catch (e: CancellationException) {
@@ -114,7 +109,7 @@ class ProvisioningSocket<T> private constructor(
   private val serviceUrl = configuration.signalServiceUrls.chooseUrl()
   private val okhttp = serviceUrl.buildOkHttpClient(configuration)
 
-  private val cipher = SecondaryProvisioningCipher(identityKeyPair)
+  private val cipher = SecondaryProvisioningCipher.generate()
   private var webSocket: WebSocket? = null
 
   private val provisioningUrlDeferral: CompletableDeferred<String> = CompletableDeferred()
@@ -215,8 +210,8 @@ class ProvisioningSocket<T> private constructor(
 
           "/v1/message" -> {
             when (mode) {
-              is Mode.Rereg -> provisioningMessageDeferral.complete(cipher.decrypt(RegistrationProvisionEnvelope.ADAPTER.decode(body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
-              is Mode.Link -> provisioningMessageDeferral.complete(cipher.decrypt(ProvisionEnvelope.ADAPTER.decode(body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
+              is Mode.Rereg -> provisioningMessageDeferral.complete(cipher.decryptRegistrationProvisionEnvelope(body.toByteArray()) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
+              is Mode.Link -> provisioningMessageDeferral.complete(cipher.decryptProvisionEnvelope(body.toByteArray()) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
             }
           }
 

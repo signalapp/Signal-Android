@@ -20,11 +20,6 @@ message ProvisioningAddress {
   optional string address = 1;
 }
 
-message ProvisionEnvelope {
-  optional bytes publicKey = 1;
-  optional bytes body = 2; // Encrypted ProvisionMessage
-}
-
 message ProvisionMessage {
   optional bytes aciIdentityKeyPublic = 1;
   optional bytes aciIdentityKeyPrivate = 2;

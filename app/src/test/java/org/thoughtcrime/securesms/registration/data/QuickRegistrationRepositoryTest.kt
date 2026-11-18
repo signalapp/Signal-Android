@@ -16,7 +16,6 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.Base64
-import org.signal.libsignal.protocol.InvalidKeyException
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -60,11 +59,7 @@ class QuickRegistrationRepositoryTest {
   fun `standard base64 with unescaped plus - does not parse`() {
     val data = "sgnl://rereg?uuid=$EPHEMERAL_ID_PERCENT_ENCODED&pub_key=$STANDARD_B64&capabilities="
 
-    val key = try {
-      QuickRegistrationRepository.parsePublicKey(Uri.parse(data))?.serialize()
-    } catch (e: InvalidKeyException) {
-      null
-    }
+    val key = QuickRegistrationRepository.parsePublicKey(Uri.parse(data))?.serialize()
 
     assertFalse(EXPECTED_KEY.contentEquals(key))
   }
