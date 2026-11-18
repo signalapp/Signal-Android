@@ -1539,15 +1539,22 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("useJetPackTelecom")
   val useJetPackTelecom: Boolean by remoteBoolean(
-    key = "android.calling.useJetPackTelecom",
+    key = "android.calling.useJetPackTelecom.2",
     defaultValue = false,
+    hotSwappable = false
+  )
+
+  /** Comma-separated manufacturers allowed to use Jetpack telecom. Empty allows none. */
+  val telecomManufacturerAllowlist: String by remoteString(
+    key = "android.calling.telecomAllowList.2",
+    defaultValue = "",
     hotSwappable = false
   )
 
   /** The minimum SDK version required to enable Jetpack telecom integration */
   val telecomMinSdkVersion: Int by remoteInt(
-    key = "android.calling.telecomMinSdkVersion",
-    defaultValue = 37,
+    key = "android.calling.telecomMinSdkVersion.2",
+    defaultValue = 34,
     hotSwappable = false
   )
 

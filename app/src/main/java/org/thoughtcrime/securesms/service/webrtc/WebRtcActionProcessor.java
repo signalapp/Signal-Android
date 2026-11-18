@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.service.webrtc;
 
 import android.content.Context;
 import android.os.ResultReceiver;
+import android.telecom.DisconnectCause;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -290,7 +291,7 @@ public abstract class WebRtcActionProcessor {
     RemotePeer peer = currentState.getCallInfoState().getPeerByCallId(new CallId(callId));
     if (peer == null || !peer.callIdEquals(currentState.getCallInfoState().getActivePeer())) {
       Log.w(tag, "Received telecom approval after call terminated. callId: " + callId + " recipient: " + recipientId);
-      webRtcInteractor.terminateCall(recipientId, android.telecom.DisconnectCause.LOCAL);
+      webRtcInteractor.terminateCall(recipientId, callId, DisconnectCause.LOCAL);
       return currentState;
     }
 
@@ -302,17 +303,23 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleDropCall(@NonNull WebRtcServiceState currentState, long callId) {
-    Log.i(tag, "handleDropCall(): call_id: " + callId);
+  protected @NonNull WebRtcServiceState handleDropCall(@NonNull WebRtcServiceState currentState, long callId, boolean busy) {
+    Log.i(tag, "handleDropCall(): call_id: " + callId + " busy: " + busy);
 
-    CallId     id           = new CallId(callId);
-    RemotePeer callIdPeer   = currentState.getCallInfoState().getPeerByCallId(id);
-    RemotePeer activePeer   = currentState.getCallInfoState().getActivePeer();
-    boolean    isActivePeer = activePeer != null && activePeer.getCallId().equals(id);
+    CallId     id         = new CallId(callId);
+    RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
+
+    if (activePeer == null || !activePeer.getCallId().equals(id)) {
+      Log.i(tag, "handleDropCall(): call_id " + callId + " is not the active call, ignoring");
+      return currentState;
+    }
 
     try {
-      if (callIdPeer != null && currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_INCOMING) {
-        webRtcInteractor.insertMissedCall(callIdPeer, callIdPeer.getCallStartTimestamp(), currentState.getCallSetupState(id).isRemoteVideoOffer());
+      if (busy) {
+        webRtcInteractor.sendCallMessage(activePeer, SignalServiceCallMessage.forBusy(new BusyMessage(callId), null));
+      }
+      if (busy || currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_INCOMING) {
+        webRtcInteractor.insertMissedCall(activePeer, activePeer.getCallStartTimestamp(), currentState.getCallSetupState(id).isRemoteVideoOffer());
       }
       webRtcInteractor.getCallManager().hangup();
 
@@ -324,7 +331,7 @@ public abstract class WebRtcActionProcessor {
 
       webRtcInteractor.postStateUpdate(currentState);
 
-      return terminate(currentState, isActivePeer ? activePeer : callIdPeer);
+      return terminate(currentState, activePeer);
     } catch (CallException e) {
       return callFailure(currentState, "hangup() failed: ", e);
     }
@@ -740,7 +747,11 @@ public abstract class WebRtcActionProcessor {
   }
 
   public synchronized @NonNull WebRtcServiceState terminate(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
-    Log.i(tag, "terminate():");
+    return terminate(currentState, remotePeer, DisconnectCause.REMOTE);
+  }
+
+  public synchronized @NonNull WebRtcServiceState terminate(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer, int disconnectCause) {
+    Log.i(tag, "terminate(): disconnectCause: " + disconnectCause);
 
     RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
 
@@ -764,7 +775,9 @@ public abstract class WebRtcActionProcessor {
                                     (activePeer.getState() == CallState.CONNECTED);
       webRtcInteractor.stopAudio(playDisconnectSound);
 
-      webRtcInteractor.terminateCall(activePeer.getId());
+      if (currentState.getCallSetupState(activePeer).usesTelecom()) {
+        webRtcInteractor.terminateCall(activePeer.getId(), activePeer.getCallId().longValue(), disconnectCause);
+      }
       webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
       webRtcInteractor.stopForegroundService();
     }

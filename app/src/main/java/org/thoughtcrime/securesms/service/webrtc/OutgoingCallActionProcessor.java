@@ -70,18 +70,21 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     Log.i(TAG, "assign activePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode() + " type: " + offerType);
 
     boolean isVideoCall = offerType == OfferMessage.Type.VIDEO_CALL;
+    boolean usesTelecom = webRtcInteractor.shouldUseTelecom();
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer, isVideoCall);
+    Log.i(TAG, "usesTelecom: " + usesTelecom);
+
+    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer, isVideoCall, usesTelecom);
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, isVideoCall, false));
-    webRtcInteractor.initializeAudioForCall(false);
+    webRtcInteractor.initializeAudioForCall(usesTelecom);
     webRtcInteractor.setDefaultAudioDevice(remotePeer.getId(),
                                            isVideoCall ? SignalAudioManager.AudioDevice.SPEAKER_PHONE : SignalAudioManager.AudioDevice.EARPIECE,
                                            false);
-    webRtcInteractor.startOutgoingRinger();
 
-    if (!webRtcInteractor.addNewOutgoingCall(remotePeer.getId(), remotePeer.getCallId().longValue(), isVideoCall)) {
-      Log.i(TAG, "Unable to add new outgoing call");
-      return handleDropCall(currentState, remotePeer.getCallId().longValue());
+    if (usesTelecom) {
+      webRtcInteractor.addNewOutgoingCall(remotePeer.getId(), remotePeer.getCallId().longValue(), isVideoCall, currentState.getLocalDeviceState().getUserSelectedAudioDevice());
+    } else {
+      webRtcInteractor.startOutgoingRinger();
     }
 
     RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), SignalDatabase.threads().getThreadIdIfExistsFor(remotePeer.getId()));
@@ -100,7 +103,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     return builder.changeCallSetupState(remotePeer.getCallId())
                   .enableVideoOnCreate(isVideoCall)
-                  .waitForTelecom(AndroidTelecomUtil.getTelecomSupported())
+                  .usesTelecom(usesTelecom)
                   .telecomApproved(false)
                   .commit()
                   .changeCallInfoState()
@@ -131,17 +134,30 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetTelecomApproved(@NonNull WebRtcServiceState currentState, long callId, RecipientId recipientId) {
-    return proceed(super.handleSetTelecomApproved(currentState, callId, recipientId));
+    currentState = super.handleSetTelecomApproved(currentState, callId, recipientId);
+
+    CallSetupState callSetupState = currentState.getCallSetupState(new CallId(callId));
+    if (!callSetupState.isTelecomApproved()) {
+      return currentState;
+    }
+
+    webRtcInteractor.startOutgoingRinger();
+    if (!currentState.getLocalDeviceState().isMicrophoneEnabled()) {
+      Log.i(TAG, "Applying pre-join mute on telecom approval");
+      webRtcInteractor.setMicrophoneMute(true);
+    }
+
+    return proceed(currentState);
   }
 
   private @NonNull WebRtcServiceState proceed(@NonNull WebRtcServiceState currentState) {
     RemotePeer      activePeer      = currentState.getCallInfoState().requireActivePeer();
     CallSetupState  callSetupState  = currentState.getCallSetupState(activePeer);
 
-    if (callSetupState.getIceServers().isEmpty() || (callSetupState.shouldWaitForTelecomApproval() && !callSetupState.isTelecomApproved())) {
+    if (callSetupState.getIceServers().isEmpty() || (callSetupState.usesTelecom() && !callSetupState.isTelecomApproved())) {
       Log.i(TAG, "Unable to proceed without ice server and telecom approval" +
                  " iceServers: " + Util.hasItems(callSetupState.getIceServers()) +
-                 " waitForTelecom: " + callSetupState.shouldWaitForTelecomApproval() +
+                 " usesTelecom: " + callSetupState.usesTelecom() +
                  " telecomApproved: " + callSetupState.isTelecomApproved());
       return currentState;
     }
@@ -178,8 +194,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleDropCall(@NonNull WebRtcServiceState currentState, long callId) {
-    return callSetupDelegate.handleDropCall(currentState, callId);
+  protected @NonNull WebRtcServiceState handleDropCall(@NonNull WebRtcServiceState currentState, long callId, boolean busy) {
+    return callSetupDelegate.handleDropCall(currentState, callId, busy);
   }
 
   @Override
@@ -232,10 +248,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetMuteAudio(@NonNull WebRtcServiceState currentState, boolean muted) {
-    return currentState.builder()
-                       .changeLocalDeviceState()
-                       .isMicrophoneEnabled(!muted)
-                       .build();
+    return activeCallDelegate.handleSetMuteAudio(currentState, muted);
   }
 
   @Override

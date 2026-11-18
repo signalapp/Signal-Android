@@ -20,9 +20,9 @@ sealed class AudioManagerCommand : Parcelable {
   override fun writeToParcel(parcel: Parcel, flags: Int) = Unit
   override fun describeContents(): Int = 0
 
-  class Initialize(val isGroupCall: Boolean = false) : AudioManagerCommand() {
+  class Initialize(val usesTelecom: Boolean = false) : AudioManagerCommand() {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-      ParcelUtil.writeBoolean(parcel, isGroupCall)
+      ParcelUtil.writeBoolean(parcel, usesTelecom)
     }
 
     companion object {
@@ -62,10 +62,14 @@ sealed class AudioManagerCommand : Parcelable {
     }
   }
 
-  class PrepareForAccept : AudioManagerCommand() {
+  class PrepareForAccept(val waitForBluetooth: Boolean = false) : AudioManagerCommand() {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+      ParcelUtil.writeBoolean(parcel, waitForBluetooth)
+    }
+
     companion object {
       @JvmField
-      val CREATOR: Parcelable.Creator<PrepareForAccept> = ParcelCheat { PrepareForAccept() }
+      val CREATOR: Parcelable.Creator<PrepareForAccept> = ParcelCheat { PrepareForAccept(ParcelUtil.readBoolean(it)) }
     }
   }
 
@@ -122,6 +126,17 @@ sealed class AudioManagerCommand : Parcelable {
           clearUserEarpieceSelection = ParcelUtil.readBoolean(parcel)
         )
       }
+    }
+  }
+
+  class SetMicrophoneMute(val muted: Boolean) : AudioManagerCommand() {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+      ParcelUtil.writeBoolean(parcel, muted)
+    }
+
+    companion object {
+      @JvmField
+      val CREATOR: Parcelable.Creator<SetMicrophoneMute> = ParcelCheat { SetMicrophoneMute(ParcelUtil.readBoolean(it)) }
     }
   }
 

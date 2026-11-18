@@ -14,6 +14,7 @@ import android.media.AudioManager
 import android.media.SoundPool
 import android.net.Uri
 import android.os.Build
+import android.os.Looper
 import androidx.annotation.VisibleForTesting
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.ThreadUtil
@@ -25,7 +26,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.audio.AudioDeviceUpdatedListener
 import org.thoughtcrime.securesms.audio.SignalBluetoothManager
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil
+import java.util.concurrent.atomic.AtomicBoolean
 
 private val TAG = Log.tag(SignalAudioManager::class.java)
 
@@ -33,6 +34,12 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
 
   private var commandAndControlThread = SignalExecutors.getAndStartHandlerThread("call-audio", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD)
   protected val handler = SignalAudioHandler(commandAndControlThread.looper)
+
+  @VisibleForTesting
+  internal val looperForTesting: Looper
+    get() = handler.looper
+
+  private val audioListenersRegistered = AtomicBoolean(false)
 
   protected var state: State = State.UNINITIALIZED
 
@@ -63,8 +70,10 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   private var awaitingAudioForAccept = false
   private var prepareForAcceptStartedAt = 0L
 
+  protected open val acceptGateTimeoutMs: Long = ACCEPT_GATE_TIMEOUT_MS
+
   private val acceptGateTimeout = Runnable {
-    Log.w(TAG, "Audio not reported ready within ${ACCEPT_GATE_TIMEOUT_MS}ms, accepting anyway")
+    Log.w(TAG, "Audio not reported ready within ${acceptGateTimeoutMs}ms, accepting anyway")
     notifyReadyForAccept("timed out")
   }
 
@@ -76,8 +85,8 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
 
     @SuppressLint("NewApi")
     @JvmStatic
-    fun create(context: Context, eventListener: EventListener?, canUseTelecom: Boolean): SignalAudioManager {
-      return if (canUseTelecom && AndroidTelecomUtil.telecomSupported) {
+    fun create(context: Context, eventListener: EventListener?, usesTelecom: Boolean): SignalAudioManager {
+      return if (usesTelecom) {
         TelecomAudioManager(context, eventListener)
       } else if (Build.VERSION.SDK_INT >= 31) {
         FullSignalAudioManagerApi31(context, eventListener)
@@ -92,7 +101,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
       Log.i(TAG, "handleCommand(): ${command.javaClass.simpleName} state: $state requestedMode: ${getModeName(requestedMode)}")
       when (command) {
         is AudioManagerCommand.Initialize -> initialize()
-        is AudioManagerCommand.PrepareForAccept -> prepareForAccept()
+        is AudioManagerCommand.PrepareForAccept -> prepareForAccept(command.waitForBluetooth)
         is AudioManagerCommand.Start -> start()
         is AudioManagerCommand.Stop -> stop(command.playDisconnect)
         is AudioManagerCommand.SetDefaultDevice -> setDefaultAudioDevice(command.recipientId, command.device, command.clearUserEarpieceSelection)
@@ -101,6 +110,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
         is AudioManagerCommand.SilenceIncomingRinger -> silenceIncomingRinger()
         is AudioManagerCommand.StartOutgoingRinger -> startOutgoingRinger()
         is AudioManagerCommand.PlayStateChangeUp -> playStateChangeUp()
+        is AudioManagerCommand.SetMicrophoneMute -> onSetMicrophoneMute(command.muted)
       }
     }
 
@@ -113,12 +123,16 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   }
 
   /** Starts the backstop first, so an implementation that never reports back only delays the accept. */
-  private fun prepareForAccept() {
+  private fun prepareForAccept(waitForBluetooth: Boolean) {
+    if (awaitingAudioForAccept) {
+      Log.i(TAG, "prepareForAccept(): already waiting for audio, started ${System.currentTimeMillis() - prepareForAcceptStartedAt}ms ago")
+      return
+    }
     preparedForAccept = true
     awaitingAudioForAccept = true
     prepareForAcceptStartedAt = System.currentTimeMillis()
-    handler.postDelayed(acceptGateTimeout, ACCEPT_GATE_TIMEOUT_MS)
-    onPrepareForAccept()
+    handler.postDelayed(acceptGateTimeout, acceptGateTimeoutMs)
+    onPrepareForAccept(waitForBluetooth)
   }
 
   protected fun notifyReadyForAccept(reason: String) {
@@ -131,22 +145,53 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
     eventListener?.onAudioReadyForAccept()
   }
 
+  @VisibleForTesting
+  internal fun setStateForTesting(state: State, appliedMode: Int) {
+    this.state = state
+    this.appliedMode = appliedMode
+  }
+
   protected fun resetAcceptState() {
     preparedForAccept = false
     awaitingAudioForAccept = false
     handler.removeCallbacks(acceptGateTimeout)
   }
 
-  fun shutdown() {
-    handler.post {
+  fun shutdown(onComplete: (() -> Unit)? = null) {
+    val posted = handler.post {
       stop(false)
       if (commandAndControlThread != null) {
         Log.i(TAG, "Shutting down command and control")
         commandAndControlThread.quitSafely()
         commandAndControlThread = null
       }
+      onComplete?.invoke()
+    }
+
+    if (!posted) {
+      onComplete?.invoke()
     }
   }
+
+  /**
+   * Quits the command thread and drops any queued work, including a pending [shutdown], so it can't run later.
+   */
+  fun abandon() {
+    releaseAudioListeners()
+    handler.looper.quit()
+  }
+
+  protected fun onAudioListenersRegistered() {
+    audioListenersRegistered.set(true)
+  }
+
+  protected fun releaseAudioListeners() {
+    if (audioListenersRegistered.compareAndSet(true, false)) {
+      unregisterAudioListeners()
+    }
+  }
+
+  protected open fun unregisterAudioListeners() = Unit
 
   private fun playStateChangeUp() {
     val volume: Float = androidAudioManager.voiceCallVolume
@@ -159,8 +204,10 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   protected abstract fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean)
   protected abstract fun selectAudioDevice(recipientId: RecipientId?, device: Int, isId: Boolean)
 
-  /** Must end in [notifyReadyForAccept]; otherwise the accept waits for [ACCEPT_GATE_TIMEOUT_MS]. */
-  protected open fun onPrepareForAccept() {
+  protected open fun onSetMicrophoneMute(muted: Boolean) = Unit
+
+  /** Must end in [notifyReadyForAccept], otherwise the accept waits for [acceptGateTimeoutMs]. */
+  protected open fun onPrepareForAccept(waitForBluetooth: Boolean) {
     Log.i(TAG, "onPrepareForAccept(): state: $state previousMode: ${getModeName(requestedMode)}")
 
     incomingRinger.stop()
@@ -227,7 +274,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
     incomingRinger.stop()
   }
 
-  protected fun setMicrophoneMute(on: Boolean) {
+  protected open fun setMicrophoneMute(on: Boolean) {
     if (androidAudioManager.isMicrophoneMute != on) {
       Log.i(TAG, "setMicrophoneMute(): changing system microphone mute to $on")
       androidAudioManager.isMicrophoneMute = on

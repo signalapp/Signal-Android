@@ -404,7 +404,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void dropCall(long callId) {
-    process((s, p) -> p.handleDropCall(s, callId));
+    dropCall(callId, false);
+  }
+
+  public void dropCall(long callId, boolean busy) {
+    process((s, p) -> p.handleDropCall(s, callId, busy));
   }
 
   public void setCallLinkJoinRequestAccepted(@NonNull RecipientId participant) {

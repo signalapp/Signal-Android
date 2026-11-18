@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil;
 import org.thoughtcrime.securesms.util.RingtoneUtil;
 import org.signal.core.util.ServiceUtil;
 
@@ -63,9 +64,12 @@ public class IncomingRinger {
     if (player != null && ringerMode == AudioManager.RINGER_MODE_NORMAL) {
       try {
         if (!player.isPlaying()) {
+          if (Build.VERSION.SDK_INT >= 28) {
+            player.addOnRoutingChangedListener(router -> Log.i(TAG, "Ringtone routed to: " + CallAudioLogging.describeDevice(router.getRoutedDevice())), null);
+          }
           player.prepare();
           player.start();
-          Log.i(TAG, "Playing ringtone now...");
+          Log.i(TAG, "Playing ringtone now... telecomEndpoint: " + AndroidTelecomUtil.getActiveAudioDeviceForLogging());
         } else {
           Log.w(TAG, "Ringtone is already playing, declining to restart.");
         }

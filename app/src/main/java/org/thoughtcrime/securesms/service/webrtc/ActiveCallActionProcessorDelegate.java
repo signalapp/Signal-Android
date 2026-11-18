@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
 import android.os.ResultReceiver;
+import android.telecom.DisconnectCause;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,6 +55,23 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
       resultReceiver.send(1, ActiveCallData.fromCallState(currentState).toBundle());
     }
     return currentState;
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleSetMuteAudio(@NonNull WebRtcServiceState currentState, boolean muted) {
+    RemotePeer activePeer  = currentState.getCallInfoState().getActivePeer();
+    boolean    usesTelecom = activePeer != null && currentState.getCallSetupState(activePeer).usesTelecom();
+
+    Log.i(tag, "handleSetMuteAudio(): muted=" + muted + " wasEnabled=" + currentState.getLocalDeviceState().isMicrophoneEnabled() + " usesTelecom=" + usesTelecom);
+
+    if (usesTelecom) {
+      webRtcInteractor.setMicrophoneMute(muted);
+    }
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .isMicrophoneEnabled(!muted)
+                       .build();
   }
 
   @Override
@@ -130,7 +148,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
 
       webRtcInteractor.postStateUpdate(currentState);
 
-      return terminate(currentState, remotePeer);
+      return terminate(currentState, remotePeer, DisconnectCause.LOCAL);
     } catch (CallException e) {
       return callFailure(currentState, "hangup() failed: ", e);
     }
@@ -140,23 +158,24 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleReceivedOfferWhileActive(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     RemotePeer activePeer         = currentState.getCallInfoState().requireActivePeer();
     boolean    isRemoteVideoOffer = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
+    boolean    usesTelecom        = currentState.getCallSetupState(activePeer).usesTelecom();
 
     Log.i(tag, "handleReceivedOfferWhileActive(): call_id: " + remotePeer.getCallId());
 
     switch (activePeer.getState()) {
       case DIALING:
       case REMOTE_RINGING:
-        webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, activePeer, isRemoteVideoOffer);
+        webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, activePeer, isRemoteVideoOffer, usesTelecom);
         break;
       case IDLE:
       case ANSWERING:
-        webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, activePeer, isRemoteVideoOffer);
+        webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, activePeer, isRemoteVideoOffer, usesTelecom);
         break;
       case LOCAL_RINGING:
-        webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer, isRemoteVideoOffer);
+        webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer, isRemoteVideoOffer, usesTelecom);
         break;
       case CONNECTED:
-        webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, activePeer, isRemoteVideoOffer);
+        webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, activePeer, isRemoteVideoOffer, usesTelecom);
         break;
       default:
         throw new IllegalStateException();
@@ -273,8 +292,8 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
       return terminate(currentState, activePeer);
     } else {
       RemotePeer peerByCallId = currentState.getCallInfoState().getPeerByCallId(callId);
-      if (peerByCallId != null) {
-        webRtcInteractor.terminateCall(peerByCallId.getId());
+      if (peerByCallId != null && currentState.getCallSetupState(peerByCallId).usesTelecom()) {
+        webRtcInteractor.terminateCall(peerByCallId.getId(), peerByCallId.getCallId().longValue());
       }
     }
 

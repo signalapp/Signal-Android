@@ -122,14 +122,14 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState, RemotePeer.GROUP_CALL_ID.longValue());
 
-    webRtcInteractor.initializeAudioForCall(true);
+    webRtcInteractor.initializeAudioForCall(false);
 
     boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient.resolve());
 
     if (!shouldDisturbUserWithCall) {
       Log.i(TAG, "Silently ignoring group ring due to mute settings.");
     } else {
-      webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup, true);
+      webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup, true, false);
       webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
       boolean started = webRtcInteractor.startWebRtcCallActivityIfPossible();
       if (!started) {
@@ -257,7 +257,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient(), true);
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
-    webRtcInteractor.initializeAudioForCall(true);
+    webRtcInteractor.initializeAudioForCall(false);
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireRouter());

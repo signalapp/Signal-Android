@@ -125,7 +125,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
     if (enable && mediaProjectionData != null) {
       Log.i(tag, "Updating service for media projection, then can screen share");
-      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, true, true);
+      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, true, false, true);
 
       return currentState.builder()
                          .changeLocalDeviceState()
@@ -135,7 +135,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
       router.stopScreenShare();
 
       boolean cameraWasEnabled = currentState.getLocalDeviceState().getCameraState().isEnabled();
-      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, true, false);
+      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, true, false, false);
 
       try {
         groupCall.setPresenting(false);

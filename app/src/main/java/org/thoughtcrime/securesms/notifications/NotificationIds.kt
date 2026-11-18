@@ -19,6 +19,7 @@ object NotificationIds {
   const val MAY_HAVE_MESSAGES_NOTIFICATION_ID: Int = 60
   const val WEBRTC_CALL: Int = 70
   const val WEBRTC_CALL_RINGING: Int = 71
+  const val WEBRTC_CALL_MICROPHONE_PERMISSION: Int = 72
   const val VOICE_NOTE_NOW_PLAYING: Int = 80
   const val ATTACHMENT_PROGRESS: Int = 90
   const val BACKUP_PROGRESS: Int = 100

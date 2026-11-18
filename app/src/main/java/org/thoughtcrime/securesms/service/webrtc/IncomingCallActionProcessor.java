@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
 
@@ -82,18 +82,23 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetTelecomApproved(@NonNull WebRtcServiceState currentState, long callId, RecipientId recipientId) {
-    return proceed(super.handleSetTelecomApproved(currentState, callId, recipientId));
+    currentState = super.handleSetTelecomApproved(currentState, callId, recipientId);
+
+    RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
+    if (activePeer == null || activePeer.getCallId().longValue() != callId || activePeer.getState() != CallState.LOCAL_RINGING) {
+      return currentState;
+    }
+
+    Log.i(TAG, "handleSetTelecomApproved(): ringing now that telecom has added the call");
+    return startRinging(currentState, activePeer);
   }
 
   private @NonNull WebRtcServiceState proceed(@NonNull WebRtcServiceState currentState) {
     RemotePeer     activePeer     = currentState.getCallInfoState().requireActivePeer();
     CallSetupState callSetupState = currentState.getCallSetupState(activePeer.getCallId());
 
-    if (callSetupState.getIceServers().isEmpty() || (callSetupState.shouldWaitForTelecomApproval() && !callSetupState.isTelecomApproved())) {
-      Log.i(TAG, "Unable to proceed without ice server and telecom approval" +
-                 " iceServers: " + Util.hasItems(callSetupState.getIceServers()) +
-                 " waitForTelecom: " + callSetupState.shouldWaitForTelecomApproval() +
-                 " telecomApproved: " + callSetupState.isTelecomApproved());
+    if (callSetupState.getIceServers().isEmpty()) {
+      Log.i(TAG, "Unable to proceed without ice servers");
       return currentState;
     }
 
@@ -129,8 +134,13 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleDropCall(@NonNull WebRtcServiceState currentState, long callId) {
-    return callSetupDelegate.handleDropCall(currentState, callId);
+  protected @NonNull WebRtcServiceState handleDropCall(@NonNull WebRtcServiceState currentState, long callId, boolean busy) {
+    return callSetupDelegate.handleDropCall(currentState, callId, busy);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleSetMuteAudio(@NonNull WebRtcServiceState currentState, boolean muted) {
+    return activeCallDelegate.handleSetMuteAudio(currentState, muted);
   }
 
   @Override
@@ -157,7 +167,12 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                .waitForAudio(true)
                                .build();
 
-    webRtcInteractor.prepareAudioForAccept();
+    if (currentState.getCallSetupState(activePeer).usesTelecom() && currentState.getCallSetupState(activePeer).isTelecomApproved()) {
+      webRtcInteractor.activateCall(activePeer.getId(), activePeer.getCallId().longValue(), answerWithVideo);
+    }
+
+    boolean waitForBluetooth = currentState.getCallSetupState(activePeer).usesTelecom() && currentState.getLocalDeviceState().getActiveDevice() == SignalAudioManager.AudioDevice.BLUETOOTH;
+    webRtcInteractor.prepareAudioForAccept(waitForBluetooth);
 
     return currentState;
   }
@@ -178,6 +193,11 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                .waitForAudio(false)
                                .build();
 
+    if (activePeer.getState() == CallState.ANSWERING || (currentState.getCallSetupState(activePeer).usesTelecom() && !currentState.getCallSetupState(activePeer).isTelecomApproved())) {
+      Log.i(TAG, "handleAudioReadyForAccept(): accepted before ringing, deferring until ringing");
+      return currentState;
+    }
+
     try {
       webRtcInteractor.getCallManager().acceptCall(activePeer.getCallId());
     } catch (CallException e) {
@@ -189,6 +209,14 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
   protected @NonNull WebRtcServiceState handleDenyCall(@NonNull WebRtcServiceState currentState) {
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
+
+    if (activePeer.getState() == CallState.ANSWERING && currentState.getCallSetupState(activePeer).usesTelecom() && !currentState.getCallSetupState(activePeer).isAccepted()) {
+      Log.i(TAG, "handleDenyCall(): denied before local ringing, deferring until ringing");
+      return currentState.builder()
+                         .changeCallSetupState(activePeer.getCallId())
+                         .denyPending(true)
+                         .build();
+    }
 
     if (activePeer.getState() != CallState.LOCAL_RINGING) {
       Log.w(TAG, "Can only deny from ringing!");
@@ -203,6 +231,38 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
     Log.i(TAG, "handleDenyCall():");
 
+    return rejectAndTerminate(currentState, activePeer);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleLocalHangup(@NonNull WebRtcServiceState currentState) {
+    RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
+
+    if (activePeer == null) {
+      Log.i(TAG, "handleLocalHangup(): no active peer");
+      return currentState;
+    }
+
+    if (activePeer.getState() == CallState.ANSWERING) {
+      Log.i(TAG, "handleLocalHangup(): hangup before local ringing, deferring until ringing");
+      return currentState.builder()
+                         .changeCallSetupState(activePeer.getCallId())
+                         .denyPending(true)
+                         .build();
+    }
+
+    if (currentState.getCallSetupState(activePeer).isAccepted()) {
+      Log.i(TAG, "handleLocalHangup(): call_id: " + activePeer.getCallId() + " already accepted, hanging up");
+      webRtcInteractor.sendAcceptedCallEventSyncMessage(activePeer, false, currentState.getCallSetupState(activePeer).isAcceptWithVideo());
+      return activeCallDelegate.handleLocalHangup(currentState);
+    }
+
+    Log.i(TAG, "handleLocalHangup(): call_id: " + activePeer.getCallId());
+
+    return rejectAndTerminate(currentState, activePeer);
+  }
+
+  private @NonNull WebRtcServiceState rejectAndTerminate(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer activePeer) {
     OutgoingVideoSourceRouter router = currentState.getVideoState().getRouter();
     if (router != null) {
       router.setVanitySink(null);
@@ -213,7 +273,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                          currentState.getCallSetupState(activePeer).isRemoteVideoOffer());
 
     try {
-      webRtcInteractor.rejectIncomingCall(activePeer.getId());
+      webRtcInteractor.rejectIncomingCall(activePeer.getId(), activePeer.getCallId().longValue());
       webRtcInteractor.getCallManager().hangup();
 
       currentState = currentState.builder()
@@ -288,6 +348,65 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                               CallTable.Event.ONGOING,
                                               false);
 
+    if (currentState.getCallSetupState(activePeer).isDenyPending()) {
+      if (currentState.getCallSetupState(activePeer).isAccepted()) {
+        Log.i(TAG, "handleLocalRinging(): applying hangup of an accepted call received before ringing");
+        webRtcInteractor.sendAcceptedCallEventSyncMessage(activePeer, false, currentState.getCallSetupState(activePeer).isAcceptWithVideo());
+        return activeCallDelegate.handleLocalHangup(currentState);
+      }
+
+      Log.i(TAG, "handleLocalRinging(): applying deny received before ringing");
+      return rejectAndTerminate(currentState, activePeer);
+    }
+
+    CallSetupState callSetupState = currentState.getCallSetupState(activePeer);
+    if (callSetupState.usesTelecom() && !callSetupState.isTelecomApproved()) {
+      Log.i(TAG, "handleLocalRinging(): adding call to telecom, ringing once it is added");
+      webRtcInteractor.addNewIncomingCall(activePeer.getId(), activePeer.getCallId().longValue(), callSetupState.isRemoteVideoOffer());
+      return currentState;
+    }
+
+    return startRinging(currentState, activePeer);
+  }
+
+  private @NonNull WebRtcServiceState startRinging(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer activePeer) {
+    Recipient recipient                 = activePeer.getRecipient();
+    boolean   shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient);
+
+    if (currentState.getCallSetupState(activePeer).isAccepted()) {
+      currentState = currentState.builder()
+                                 .changeCallInfoState()
+                                 .callState(WebRtcViewModel.State.CALL_INCOMING)
+                                 .build();
+
+      if (currentState.getCallSetupState(activePeer).usesTelecom()) {
+        webRtcInteractor.activateCall(activePeer.getId(), activePeer.getCallId().longValue(), currentState.getCallSetupState(activePeer).isAcceptWithVideo());
+
+        if (!currentState.getCallSetupState(activePeer).shouldWaitForAudio()) {
+          Log.i(TAG, "handleLocalRinging(): accepted before telecom approval, waiting for telecom audio again");
+          currentState = currentState.builder()
+                                     .changeCallSetupState(activePeer.getCallId())
+                                     .waitForAudio(true)
+                                     .build();
+
+          webRtcInteractor.prepareAudioForAccept(currentState.getLocalDeviceState().getActiveDevice() == SignalAudioManager.AudioDevice.BLUETOOTH);
+        }
+      }
+
+      if (currentState.getCallSetupState(activePeer).shouldWaitForAudio()) {
+        Log.i(TAG, "handleLocalRinging(): accepted before ringing, accepting once audio is ready");
+        return currentState;
+      }
+
+      Log.i(TAG, "handleLocalRinging(): applying accept received before ringing");
+      try {
+        webRtcInteractor.getCallManager().acceptCall(activePeer.getCallId());
+      } catch (CallException e) {
+        return callFailure(currentState, "accept() failed: ", e);
+      }
+      return currentState;
+    }
+
     if (!shouldDisturbUserWithCall) {
       Log.i(TAG, "Silently ignoring call due to mute settings.");
       return currentState.builder()
@@ -320,9 +439,9 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientTable.VibrateState.ENABLED || (vibrateState == RecipientTable.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
     }
 
-    boolean isRemoteVideoOffer = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
+    CallSetupState callSetupState = currentState.getCallSetupState(activePeer);
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer, isRemoteVideoOffer);
+    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer, callSetupState.isRemoteVideoOffer(), callSetupState.usesTelecom());
     webRtcInteractor.registerPowerButtonReceiver();
 
     return currentState.builder()

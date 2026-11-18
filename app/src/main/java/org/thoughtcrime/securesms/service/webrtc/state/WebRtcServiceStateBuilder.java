@@ -150,6 +150,11 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
+    public @NonNull LocalDeviceStateBuilder setUserSelectedAudioDevice(@Nullable SignalAudioManager.AudioDevice audioDevice) {
+      toBuild.setUserSelectedAudioDevice(audioDevice);
+      return this;
+    }
+
     public @NonNull LocalDeviceStateBuilder setNetworkConnectionType(@NonNull PeerConnection.AdapterType type) {
       toBuild.setNetworkConnectionType(type);
       return this;
@@ -241,13 +246,18 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
-    public @NonNull CallSetupStateBuilder waitForTelecom(boolean waitForTelecom) {
-      toBuild.setWaitForTelecom(waitForTelecom);
+    public @NonNull CallSetupStateBuilder usesTelecom(boolean usesTelecom) {
+      toBuild.setUsesTelecom(usesTelecom);
       return this;
     }
 
     public @NonNull CallSetupStateBuilder telecomApproved(boolean telecomApproved) {
       toBuild.setTelecomApproved(telecomApproved);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder denyPending(boolean denyPending) {
+      toBuild.setDenyPending(denyPending);
       return this;
     }
 

@@ -4237,6 +4237,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
 
     <string name="CallNotificationBuilder_connecting">Connecting…</string>
+    <!-- Notification title shown when Signal needs to be opened to use the microphone during a call -->
+    <string name="CallNotificationBuilder__open_signal">Open Signal</string>
+    <!-- Notification body shown when a call was answered from a watch or other device but Signal needs microphone permission before it can connect -->
+    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">To answer this call, allow Signal access to your microphone.</string>
+    <!-- Notification body shown during a call when Android blocked microphone access because Signal was in the background -->
+    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">The other person can\'t hear you until you open Signal.</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup passphrase</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">You must have this passphrase in order to restore a backup.</string>

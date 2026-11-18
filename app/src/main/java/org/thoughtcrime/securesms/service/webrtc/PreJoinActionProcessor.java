@@ -42,6 +42,10 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
                                   .builder()
                                   .changeCallInfoState()
                                   .callState(WebRtcViewModel.State.CALL_INCOMING)
+                                  .commit()
+                                  .changeLocalDeviceState()
+                                  .isMicrophoneEnabled(true)
+                                  .setUserSelectedAudioDevice(null)
                                   .build();
 
     webRtcInteractor.postStateUpdate(currentState);

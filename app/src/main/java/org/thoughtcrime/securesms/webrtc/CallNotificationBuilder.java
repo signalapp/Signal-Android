@@ -8,6 +8,7 @@ import android.os.Build;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.Person;
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallManager;
-import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.signal.core.util.DeviceProperties;
 
@@ -33,8 +33,9 @@ import org.signal.core.util.DeviceProperties;
 
 public class CallNotificationBuilder {
 
-  public static final int WEBRTC_NOTIFICATION         = NotificationIds.WEBRTC_CALL;
-  public static final int WEBRTC_NOTIFICATION_RINGING = NotificationIds.WEBRTC_CALL_RINGING;
+  public static final int WEBRTC_NOTIFICATION                       = NotificationIds.WEBRTC_CALL;
+  public static final int WEBRTC_NOTIFICATION_RINGING               = NotificationIds.WEBRTC_CALL_RINGING;
+  public static final int WEBRTC_NOTIFICATION_MICROPHONE_PERMISSION = NotificationIds.WEBRTC_CALL_MICROPHONE_PERMISSION;
 
   public static final int TYPE_INCOMING_RINGING    = 1;
   public static final int TYPE_OUTGOING_RINGING    = 2;
@@ -89,14 +90,20 @@ public class CallNotificationBuilder {
       @CallNotificationType int type,
       Recipient recipient,
       boolean isVideoCall,
+      boolean usesTelecom,
       boolean skipPersonIcon
   ) {
     PendingIntent pendingIntent = getActivityPendingIntent(context, LaunchCallScreenIntentState.CONTENT);
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, getNotificationChannel(type))
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, getNotificationChannel(type, usesTelecom))
         .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
         .setContentIntent(pendingIntent)
         .setOngoing(true)
         .setContentTitle(SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact() ? recipient.getDisplayName(context) : context.getString(R.string.Recipient_signal_call));
+
+    if (usesTelecom && type != TYPE_INCOMING_RINGING) {
+      builder.setSilent(true);
+      builder.setOnlyAlertOnce(true);
+    }
 
     if (type == TYPE_INCOMING_CONNECTING) {
       builder.setContentText(context.getString(R.string.CallNotificationBuilder_connecting));
@@ -109,15 +116,7 @@ public class CallNotificationBuilder {
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
       builder.setFullScreenIntent(pendingIntent, true);
 
-      Person person;
-
-      if (SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact()) {
-        person = skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
-                                : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
-      } else {
-        person = new Person.Builder().setName(context.getString(R.string.Recipient_signal_call))
-                                     .build();
-      }
+      Person person = buildPerson(context, recipient, skipPersonIcon);
 
       builder.addPerson(person);
 
@@ -132,7 +131,20 @@ public class CallNotificationBuilder {
       return builder.build();
     } else if (type == TYPE_OUTGOING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
-      builder.addAction(getServiceNotificationAction(context, ActiveCallManager.hangupIntent(context), R.drawable.symbol_phone_down_fill_24, R.string.NotificationBarManager__cancel_call));
+
+      if (usesTelecom && deviceVersionSupportsIncomingCallStyle()) {
+        Person person = buildPerson(context, recipient, skipPersonIcon);
+
+        builder.setCategory(NotificationCompat.CATEGORY_CALL);
+        builder.addPerson(person);
+        builder.setStyle(NotificationCompat.CallStyle.forOngoingCall(
+            person,
+            ActiveCallManager.hangupIntent(context)
+        ).setIsVideo(isVideoCall));
+      } else {
+        builder.addAction(getServiceNotificationAction(context, ActiveCallManager.hangupIntent(context), R.drawable.symbol_phone_down_fill_24, R.string.NotificationBarManager__cancel_call));
+      }
+
       return builder.build();
     } else {
       builder.setContentText(getOngoingCallContentText(context, recipient, isVideoCall));
@@ -140,15 +152,7 @@ public class CallNotificationBuilder {
       builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
 
-      Person person;
-
-      if (SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact()) {
-        person = skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
-                                : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
-      } else {
-        person = new Person.Builder().setName(context.getString(R.string.Recipient_signal_call))
-                                     .build();
-      }
+      Person person = buildPerson(context, recipient, skipPersonIcon);
 
       builder.addPerson(person);
 
@@ -163,9 +167,19 @@ public class CallNotificationBuilder {
     }
   }
 
+  private static @NonNull Person buildPerson(@NonNull Context context, @NonNull Recipient recipient, boolean skipPersonIcon) {
+    if (SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact()) {
+      return skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
+                            : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
+    } else {
+      return new Person.Builder().setName(context.getString(R.string.Recipient_signal_call))
+                                 .build();
+    }
+  }
+
   /** Telecom requires one notification id for the lifetime of a call, so the dedicated ringing id is only used when we manage the call ourselves. */
-  public static int getNotificationId(int type) {
-    if (deviceVersionSupportsIncomingCallStyle() && type == TYPE_INCOMING_RINGING && !AndroidTelecomUtil.hasActiveController()) {
+  public static int getNotificationId(int type, boolean usesTelecom) {
+    if (deviceVersionSupportsIncomingCallStyle() && type == TYPE_INCOMING_RINGING && !usesTelecom) {
       return WEBRTC_NOTIFICATION_RINGING;
     } else {
       return WEBRTC_NOTIFICATION;
@@ -224,12 +238,28 @@ public class CallNotificationBuilder {
     }
   }
 
-  private static @NonNull String getNotificationChannel(int type) {
-    if (type == TYPE_INCOMING_RINGING || AndroidTelecomUtil.hasActiveController()) {
+  private static @NonNull String getNotificationChannel(int type, boolean usesTelecom) {
+    if (type == TYPE_INCOMING_RINGING || usesTelecom) {
       return NotificationChannels.getInstance().CALLS;
     } else {
       return NotificationChannels.getInstance().CALL_STATUS;
     }
+  }
+
+  public static Notification getMicrophonePermissionNotification(@NonNull Context context, @StringRes int bodyRes, boolean answerCall) {
+    PendingIntent pendingIntent = getActivityPendingIntent(context, answerCall ? LaunchCallScreenIntentState.AUDIO : LaunchCallScreenIntentState.CONTENT);
+
+    return new NotificationCompat.Builder(context, NotificationChannels.getInstance().CALLS)
+        .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
+        .setContentTitle(context.getString(R.string.CallNotificationBuilder__open_signal))
+        .setContentText(context.getString(bodyRes))
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
+        .setCategory(NotificationCompat.CATEGORY_CALL)
+        .setContentIntent(pendingIntent)
+        .setFullScreenIntent(pendingIntent, true)
+        .setAutoCancel(true)
+        .setOnlyAlertOnce(true)
+        .build();
   }
 
   private static NotificationCompat.Action getServiceNotificationAction(Context context, PendingIntent intent, int iconResId, int titleResId) {

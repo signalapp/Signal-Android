@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.service.webrtc
 
 import android.os.Build
+import org.signal.core.util.asListContains
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.AudioConfig
@@ -17,7 +18,8 @@ object RingRtcDynamicConfiguration {
   private var lastFetchTime: Long = 0
 
   fun isTelecomAllowedForDevice(): Boolean {
-    return RemoteConfig.useJetPackTelecom
+    return RemoteConfig.useJetPackTelecom &&
+      RemoteConfig.telecomManufacturerAllowlist.lowercase().asListContains(Build.MANUFACTURER.lowercase())
   }
 
   @JvmStatic

@@ -149,6 +149,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   private var lastProcessedIntentTimestamp = 0L
   private var previousEvent: WebRtcViewModel? = null
   private var answeredFromNotification: Boolean = false
+  private var acceptCallOnAudioGranted: Boolean = false
   private var ephemeralStateDisposable = Disposable.empty()
   private val callPermissionsDialogController = CallPermissionsDialogController()
   private val eventSubscriptions = listOf(
@@ -212,7 +213,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
       if (callIntent.action == CallIntent.Action.ANSWER_VIDEO) {
         enableVideoIfAvailable = true
-      } else if (callIntent.action == CallIntent.Action.ANSWER_AUDIO || callIntent.isStartedFromFullScreen) {
+      } else if (callIntent.action == CallIntent.Action.ANSWER_AUDIO || callIntent.action == CallIntent.Action.SHOW_ANSWERING || callIntent.isStartedFromFullScreen) {
         enableVideoIfAvailable = false
       } else {
         enableVideoIfAvailable = callIntent.shouldEnableVideoIfAvailable
@@ -326,6 +327,14 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     val callIntent = getCallIntent()
     Log.i(TAG, "onNewIntent(${callIntent.isStartedFromFullScreen})")
     logIntent(callIntent)
+
+    val isAnswer = callIntent.action == CallIntent.Action.ANSWER_AUDIO || callIntent.action == CallIntent.Action.ANSWER_VIDEO || callIntent.action == CallIntent.Action.SHOW_ANSWERING
+    val callState = previousEvent?.state
+    if (isAnswer && callState != null && callState != WebRtcViewModel.State.CALL_INCOMING) {
+      Log.w(TAG, "Ignoring ${callIntent.action} intent, call state is $callState")
+      return
+    }
+
     processIntent(callIntent)
   }
 
@@ -816,6 +825,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       }
       CallIntent.Action.DENY -> handleDenyCall()
       CallIntent.Action.END_CALL -> handleEndCall()
+      CallIntent.Action.SHOW_ANSWERING -> {
+        answeredFromNotification = true
+        callScreen.setStatus(getString(R.string.RedPhone_answering))
+      }
       else -> Unit
     }
 
@@ -880,11 +893,22 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   }
 
   private fun askCameraAudioPermissions(onGranted: () -> Unit) {
+    val alreadyGranted = hasCameraPermission() && hasAudioPermission()
     callPermissionsDialogController.requestCameraAndAudioPermission(
       activity = this,
-      onAllGranted = onGranted,
+      onAllGranted = {
+        if (!alreadyGranted) {
+          ActiveCallManager.onCallPermissionsGranted(this)
+        }
+        acceptCallIfPending()
+        onGranted()
+      },
       onCameraGranted = { callScreen.hideMissingPermissionsNotice() },
-      onAudioDenied = this::handleDenyCall
+      onAudioGranted = {
+        ActiveCallManager.onCallPermissionsGranted(this)
+        acceptCallIfPending()
+      },
+      onAudioDenied = this::handlePermissionsDenied
     )
   }
 
@@ -896,10 +920,17 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   }
 
   private fun askAudioPermissions(onGranted: () -> Unit) {
+    val alreadyGranted = hasAudioPermission()
     callPermissionsDialogController.requestAudioPermission(
       activity = this,
-      onGranted = onGranted,
-      onDenied = this::handleDenyCall
+      onGranted = {
+        if (!alreadyGranted) {
+          ActiveCallManager.onCallPermissionsGranted(this)
+        }
+        acceptCallIfPending()
+        onGranted()
+      },
+      onDenied = this::handlePermissionsDenied
     )
   }
 
@@ -938,7 +969,13 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   }
 
   private fun handleAnswerWithAudio() {
-    askAudioPermissions {
+    acceptCallOnAudioGranted = true
+    askAudioPermissions {}
+  }
+
+  private fun acceptCallIfPending() {
+    if (acceptCallOnAudioGranted) {
+      acceptCallOnAudioGranted = false
       callScreen.setStatus(getString(R.string.RedPhone_answering))
       AppDependencies.signalCallManager.acceptCall(false)
     }
@@ -964,6 +1001,25 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     val recipient = viewModel.recipient.get()
     if (recipient != Recipient.UNKNOWN) {
       AppDependencies.signalCallManager.denyCall()
+
+      callScreen.setRecipient(recipient)
+      callScreen.setStatus(getString(R.string.RedPhone_ending_call))
+      delayedFinish()
+    }
+  }
+
+  private fun handlePermissionsDenied() {
+    acceptCallOnAudioGranted = false
+    val recipient = viewModel.recipient.get()
+    if (recipient != Recipient.UNKNOWN) {
+      val callState = viewModel.callParticipantsStateSnapshot.callState
+      if (callState == WebRtcViewModel.State.CALL_INCOMING && recipient.isGroup) {
+        Log.i(TAG, "Permissions denied on an incoming group ring, denying")
+        AppDependencies.signalCallManager.denyCall()
+      } else {
+        Log.i(TAG, "Permissions denied, hanging up")
+        AppDependencies.signalCallManager.localHangup()
+      }
 
       callScreen.setRecipient(recipient)
       callScreen.setStatus(getString(R.string.RedPhone_ending_call))
@@ -1420,6 +1476,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     override fun onMicChanged(isMicEnabled: Boolean) {
+      Log.i(TAG, "onMicChanged(): user set mic enabled=$isMicEnabled")
       askAudioPermissions {
         callScreen.onCallStateUpdate(if (isMicEnabled) CallControlsChange.MIC_ON else CallControlsChange.MIC_OFF)
         handleSetMuteAudio(!isMicEnabled)

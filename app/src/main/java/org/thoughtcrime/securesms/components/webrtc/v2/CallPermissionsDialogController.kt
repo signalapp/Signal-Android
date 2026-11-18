@@ -89,6 +89,7 @@ class CallPermissionsDialogController {
     activity: AppCompatActivity,
     onAllGranted: Runnable,
     onCameraGranted: Runnable,
+    onAudioGranted: Runnable,
     onAudioDenied: Runnable
   ) {
     if (!isAskingForPermission) {
@@ -114,6 +115,9 @@ class CallPermissionsDialogController {
         .onSomeGranted { permissions: List<String?> ->
           if (permissions.contains(Manifest.permission.CAMERA)) {
             onCameraGranted.run()
+          }
+          if (permissions.contains(Manifest.permission.RECORD_AUDIO)) {
+            onAudioGranted.run()
           }
         }
         .onSomeDenied { deniedPermissions: List<String?> ->

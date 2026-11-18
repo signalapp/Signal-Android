@@ -223,9 +223,10 @@ abstract class SafeForegroundService : Service() {
    */
   @SuppressLint("WrongConstant")
   private fun postForegroundNotification(intent: Intent): Boolean {
+    val type = if (Build.VERSION.SDK_INT >= 30) serviceType(intent) else 0
     return try {
-      if (Build.VERSION.SDK_INT >= 30 && serviceType(intent) != 0) {
-        startForeground(notificationId, getForegroundNotification(intent), serviceType(intent))
+      if (Build.VERSION.SDK_INT >= 30 && type != 0) {
+        startForeground(notificationId, getForegroundNotification(intent), type)
       } else {
         startForeground(notificationId, getForegroundNotification(intent))
       }
@@ -234,6 +235,21 @@ abstract class SafeForegroundService : Service() {
       if (Build.VERSION.SDK_INT >= 31 && e is ForegroundServiceStartNotAllowedException) {
         Log.w(tag, "[postForegroundNotification] Not allowed to start foreground service.", e)
         false
+      } else if (Build.VERSION.SDK_INT >= 30 && e is SecurityException) {
+        val fallbackType = fallbackServiceType(intent) ?: throw e
+        if (fallbackType == type) {
+          Log.w(tag, "[postForegroundNotification] Service type $type denied and fallback is the same type, giving up. action: ${intent.action}", e)
+          false
+        } else {
+          Log.w(tag, "[postForegroundNotification] Service type $type denied, retrying with fallback type $fallbackType. action: ${intent.action}", e)
+          try {
+            startForeground(notificationId, getForegroundNotification(intent), fallbackType)
+            true
+          } catch (retryError: Exception) {
+            Log.w(tag, "[postForegroundNotification] Fallback type $fallbackType also denied. action: ${intent.action}", retryError)
+            false
+          }
+        }
       } else {
         throw e
       }
@@ -277,6 +293,10 @@ abstract class SafeForegroundService : Service() {
   /** Special service type to use when calling start service if needed */
   @RequiresApi(30)
   open fun serviceType(intent: Intent): Int = 0
+
+  /** Service type to retry with if the system rejects [serviceType] with a [SecurityException], or null to rethrow. */
+  @RequiresApi(30)
+  open fun fallbackServiceType(intent: Intent): Int? = null
 
   /** Notification to post as our foreground notification. */
   abstract fun getForegroundNotification(intent: Intent): Notification

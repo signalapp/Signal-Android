@@ -69,12 +69,10 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetMuteAudio(@NonNull WebRtcServiceState currentState, boolean muted) {
-    currentState = currentState.builder()
-                               .changeLocalDeviceState()
-                               .isMicrophoneEnabled(!muted)
-                               .build();
+    currentState = activeCallDelegate.handleSetMuteAudio(currentState, muted);
 
     try {
+      Log.i(TAG, "setAudioEnable(" + currentState.getLocalDeviceState().isMicrophoneEnabled() + ")");
       webRtcInteractor.getCallManager().setAudioEnable(currentState.getLocalDeviceState().isMicrophoneEnabled());
     } catch (CallException e) {
       return callFailure(currentState, "Enabling audio failed: ", e);
@@ -133,11 +131,13 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
 
     OutgoingVideoSourceRouter router = currentState.getVideoState().requireRouter();
 
-    RecipientId recipientId = currentState.getCallInfoState().requireActivePeer().getRecipient().getId();
+    RemotePeer  activePeer  = currentState.getCallInfoState().requireActivePeer();
+    RecipientId recipientId = activePeer.getRecipient().getId();
+    boolean     usesTelecom = currentState.getCallSetupState(activePeer).usesTelecom();
 
     if (enable && mediaProjectionData != null) {
       Log.i(tag, "Updating service for media projection, then can screen share");
-      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, true, true);
+      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, true, usesTelecom, true);
 
       return currentState.builder()
                          .changeLocalDeviceState()
@@ -147,7 +147,7 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
       router.stopScreenShare();
 
       boolean cameraWasEnabled = currentState.getLocalDeviceState().getCameraState().isEnabled();
-      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, cameraWasEnabled, false);
+      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, cameraWasEnabled, usesTelecom, false);
 
       try {
         webRtcInteractor.getCallManager().setVideoEnable(cameraWasEnabled, false);

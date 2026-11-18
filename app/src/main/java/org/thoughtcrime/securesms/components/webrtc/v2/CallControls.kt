@@ -456,7 +456,8 @@ data class CallControlsState(
   val displayStartCallButton: Boolean = false,
   val startCallButtonText: Int = R.string.WebRtcCallView__start_call,
   val displayEndCallButton: Boolean = false,
-  val isLocalScreenSharing: Boolean = false
+  val isLocalScreenSharing: Boolean = false,
+  val usesTelecom: Boolean = false
 ) {
 
   val hasAnyControls: Boolean
@@ -500,7 +501,8 @@ data class CallControlsState(
         displayStartCallButton = webRtcControls.displayStartCallControls(),
         startCallButtonText = webRtcControls.startCallButtonText,
         displayEndCallButton = webRtcControls.displayEndCall(),
-        isLocalScreenSharing = isLocalScreenSharing
+        isLocalScreenSharing = isLocalScreenSharing,
+        usesTelecom = callParticipantsState.usesTelecom
       )
     }
   }
