@@ -2117,6 +2117,14 @@
     <string name="RatingManager_no_thanks">No thanks</string>
     <string name="RatingManager_later">Later</string>
 
+    <!-- ChatReactionOverlay -->
+    <!-- Content description for the last slot of the long press reaction bar, which opens the full emoji picker -->
+    <string name="ChatReactionOverlay__more_reactions">More reactions</string>
+    <!-- Content description for an emoji in the long press reaction bar. %1$s is the emoji -->
+    <string name="ChatReactionOverlay__react_with">React with %1$s</string>
+    <!-- Content description for the emoji in the long press reaction bar that the user already reacted with; activating it removes the reaction. %1$s is the emoji -->
+    <string name="ChatReactionOverlay__remove_reaction">Remove %1$s reaction</string>
+
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">All &#183; %1$d</string>
     <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Tap to remove</string>
