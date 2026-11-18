@@ -121,9 +121,21 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         (${MessageTable.LINK_PREVIEWS} IS NOT NULL AND ${AttachmentTable.CONTENT_TYPE} LIKE 'image/%')
       """
 
-    /** Image and video attachments, excluding SVGs and link preview thumbnails, that have local data or can be fetched. */
-    private const val GALLERY_MEDIA_CONDITIONS = """
-        (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL) OR ${AttachmentTable.THUMBNAIL_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
+    /** Attachments taking up local storage. The all-chats overview is opened from storage management, so it only lists these. */
+    private const val STORED_LOCALLY_CONDITION = "${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_FILE} IS NOT NULL"
+
+    /** Attachments with local data, or offloaded ones that can be restored. */
+    private const val DOWNLOADED_OR_OFFLOADED_CONDITION = """
+        (${AttachmentTable.DATA_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED})
+      """
+
+    /** Gallery attachments with local data or that can be fetched, including videos that can be streamed. */
+    private const val GALLERY_AVAILABLE_CONDITION = """
+        (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL) OR ${AttachmentTable.THUMBNAIL_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED})
+      """
+
+    /** Image and video attachments, excluding SVGs and link preview thumbnails. */
+    private const val GALLERY_TYPE_CONDITIONS = """
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND
         (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
         NOT $LINK_PREVIEW_THUMBNAIL_CONDITION
@@ -132,7 +144,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   @JvmOverloads
   fun getGalleryMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0, offset: Int = 0): Cursor {
-    val query = galleryMediaQuery(mediaSource(threadId, sorting))
+    val query = galleryMediaQuery(threadId, mediaSource(threadId, sorting))
       .sortedBy(sorting)
       .paged(limit, offset)
 
@@ -141,7 +153,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   /** How many rows [getGalleryMediaForThread] would return for the thread. */
   fun getGalleryMediaCountForThread(threadId: Long): Int {
-    return count(galleryMediaQuery(countSource(threadId)), null)
+    return count(galleryMediaQuery(threadId, countSource(threadId)), null)
   }
 
   /**
@@ -150,9 +162,9 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
    */
   fun getViewableGalleryMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0, offset: Int = 0): List<MediaRecord> {
     val (query, args) = if (threadId == ALL_THREADS.toLong() || sorting == Sorting.Largest) {
-      viewableGalleryMediaQuery(threadSubqueryFilter(threadId)) to null
+      viewableGalleryMediaQuery(threadId, threadSubqueryFilter(threadId)) to null
     } else {
-      viewableGalleryMediaQuery(threadFilter(threadId), tables = MEDIA_QUERY_TABLES_BY_THREAD_DATE) to arrayOf(threadId.toString())
+      viewableGalleryMediaQuery(threadId, threadFilter(threadId), tables = MEDIA_QUERY_TABLES_BY_THREAD_DATE) to arrayOf(threadId.toString())
     }
 
     return readableDatabase
@@ -167,7 +179,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   /** The [getViewableGalleryMediaForThread] row for [attachmentId], or null when it is absent or not viewable. */
   fun getViewableGalleryMediaForAttachment(threadId: Long, attachmentId: Long): MediaRecord? {
-    val query = "${viewableGalleryMediaQuery(threadFilter(threadId))} AND ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} = ?"
+    val query = "${viewableGalleryMediaQuery(threadId, threadFilter(threadId))} AND ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} = ?"
 
     return readableDatabase
       .rawQuery(query, arrayOf(threadId.toString(), attachmentId.toString()))
@@ -176,7 +188,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   /** How many rows [getViewableGalleryMediaForThread] would return for the thread. */
   fun getViewableGalleryMediaCountForThread(threadId: Long): Int {
-    val query = "SELECT COUNT(*) FROM (${viewableGalleryMediaQuery(threadSubqueryFilter(threadId))})"
+    val query = "SELECT COUNT(*) FROM (${viewableGalleryMediaQuery(threadId, threadSubqueryFilter(threadId))})"
     return readableDatabase.rawQuery(query, null).readToSingleInt(0)
   }
 
@@ -189,7 +201,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     val before = sorting.projectedBeforePredicate(anchorAttachment, anchor.dateReceived)
     val query = """
       SELECT SUM(CASE WHEN ${before.where} THEN 1 ELSE 0 END), COUNT(*)
-      FROM (${viewableGalleryMediaQuery(threadSubqueryFilter(threadId))})
+      FROM (${viewableGalleryMediaQuery(threadId, threadSubqueryFilter(threadId))})
     """
 
     return readableDatabase.rawQuery(query, before.whereArgs).readToSingleObject { cursor ->
@@ -199,7 +211,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   @JvmOverloads
   fun getDocumentMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0, offset: Int = 0): Cursor {
-    val query = documentMediaQuery(mediaSource(threadId, sorting))
+    val query = documentMediaQuery(threadId, mediaSource(threadId, sorting))
       .sortedBy(sorting)
       .paged(limit, offset)
 
@@ -208,12 +220,12 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   /** How many rows [getDocumentMediaForThread] would return for the thread. */
   fun getDocumentMediaCountForThread(threadId: Long): Int {
-    return count(documentMediaQuery(countSource(threadId)), null)
+    return count(documentMediaQuery(threadId, countSource(threadId)), null)
   }
 
   @JvmOverloads
   fun getAudioMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0, offset: Int = 0): Cursor {
-    val query = audioMediaQuery(mediaSource(threadId, sorting))
+    val query = audioMediaQuery(threadId, mediaSource(threadId, sorting))
       .sortedBy(sorting)
       .paged(limit, offset)
 
@@ -222,7 +234,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   /** How many rows [getAudioMediaForThread] would return for the thread. */
   fun getAudioMediaCountForThread(threadId: Long): Int {
-    return count(audioMediaQuery(countSource(threadId)), null)
+    return count(audioMediaQuery(threadId, countSource(threadId)), null)
   }
 
   @JvmOverloads
@@ -339,24 +351,24 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     )
   }
 
-  private fun galleryMediaQuery(source: String): String {
+  private fun galleryMediaQuery(threadId: Long, source: String): String {
     return """
       SELECT
         $MEDIA_QUERY_PROJECTION
       FROM
         $source AND
-        $GALLERY_MEDIA_CONDITIONS AND
+        ${galleryConditions(threadId)} AND
         $MEDIA_QUERY_CONDITIONS
       """
   }
 
-  private fun documentMediaQuery(source: String): String {
+  private fun documentMediaQuery(threadId: Long, source: String): String {
     return """
       SELECT
         $MEDIA_QUERY_PROJECTION
       FROM
         $source AND
-        (${AttachmentTable.DATA_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
+        ${availabilityCondition(threadId)} AND
         (
           ${AttachmentTable.CONTENT_TYPE} LIKE 'image/svg%' OR
           (
@@ -370,13 +382,13 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
       """
   }
 
-  private fun audioMediaQuery(source: String): String {
+  private fun audioMediaQuery(threadId: Long, source: String): String {
     return """
       SELECT
         $MEDIA_QUERY_PROJECTION
       FROM
         $source AND
-        (${AttachmentTable.DATA_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
+        ${availabilityCondition(threadId)} AND
         ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%' AND
         $MEDIA_QUERY_CONDITIONS
       """
@@ -389,7 +401,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         $MEDIA_QUERY_PROJECTION
       FROM
         $source AND
-        (${AttachmentTable.DATA_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
+        ${availabilityCondition(threadId)} AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain' AND
         NOT $LINK_PREVIEW_THUMBNAIL_CONDITION AND
         $MEDIA_QUERY_CONDITIONS
@@ -398,13 +410,28 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     return "$allMediaSubquery UNION ALL ${threadLinkMediaQuery(threadId)}"
   }
 
-  /** Links in [threadId], in received order. */
+  /** Links in [threadId], in received order. Across all threads, only links whose preview image is stored locally. */
   private fun threadLinkMediaQuery(threadId: Long): String {
-    val operator = if (threadId == ALL_THREADS.toLong()) "!=" else "="
+    val filter = if (threadId == ALL_THREADS.toLong()) {
+      "${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} != $threadId AND $STORED_LOCALLY_CONDITION"
+    } else {
+      "${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = $threadId"
+    }
+
     return linkMediaQuery(
-      filter = "${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} $operator $threadId",
+      filter = filter,
       messages = "${MessageTable.TABLE_NAME} INDEXED BY ${MessageTable.INDEX_LINK_PREVIEW_DATE}"
     )
+  }
+
+  /** What makes a non-gallery attachment listable in [threadId]. */
+  private fun availabilityCondition(threadId: Long): String {
+    return if (threadId == ALL_THREADS.toLong()) STORED_LOCALLY_CONDITION else DOWNLOADED_OR_OFFLOADED_CONDITION
+  }
+
+  private fun galleryConditions(threadId: Long): String {
+    val availability = if (threadId == ALL_THREADS.toLong()) STORED_LOCALLY_CONDITION else GALLERY_AVAILABLE_CONDITION
+    return "$availability AND $GALLERY_TYPE_CONDITIONS"
   }
 
   /** Generates the FROM and WHERE clause for the media page queries, using the appropriate index. */
@@ -538,7 +565,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
   }
 
   /** Gallery media narrowed to rows with something renderable on disk: full data, an in-progress download, or a restored thumbnail. */
-  private fun viewableGalleryMediaQuery(threadFilter: String, tables: String = MEDIA_QUERY_TABLES): String {
+  private fun viewableGalleryMediaQuery(threadId: Long, threadFilter: String, tables: String = MEDIA_QUERY_TABLES): String {
     return """
         SELECT
           $MEDIA_QUERY_PROJECTION
@@ -546,7 +573,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           $tables
         WHERE
           $threadFilter AND
-          $GALLERY_MEDIA_CONDITIONS AND
+          ${galleryConditions(threadId)} AND
           (
             ${AttachmentTable.TRANSFER_STATE} IN (${AttachmentTable.TRANSFER_PROGRESS_DONE}, ${AttachmentTable.TRANSFER_PROGRESS_STARTED}) OR
             ${AttachmentTable.THUMBNAIL_RESTORE_STATE} = ${AttachmentTable.ThumbnailRestoreState.FINISHED.value}

@@ -238,7 +238,6 @@ class MediaTableTest_galleryMedia {
     assertThat(media.getLinkMediaForThread(threadId, Sorting.Newest).readMessageIds()).containsExactly(second, first)
     assertThat(media.getLinkMediaForThread(threadId, Sorting.Oldest).readMessageIds()).containsExactly(first, second)
     assertThat(media.getLinkMediaCountForThread(threadId)).isEqualTo(2)
-    assertThat(media.getLinkMediaCountForThread(MediaTable.ALL_THREADS.toLong())).isEqualTo(3)
   }
 
   @Test
@@ -274,6 +273,7 @@ class MediaTableTest_galleryMedia {
     val audioMessage = fixtures.insertMessage(second)
     val audio = fixtures.insertAttachment(audioMessage, contentType = "audio/aac", dataSize = 10)
     val linkMessage = fixtures.insertMessage(first, linkPreviews = "[]")
+    fixtures.insertAttachment(linkMessage, contentType = "image/jpeg", dataSize = 5)
     val videoMessage = fixtures.insertMessage(second)
     val video = fixtures.insertAttachment(videoMessage, contentType = "video/mp4", dataSize = 20)
     fixtures.insertAttachment(fixtures.insertMessage(second, scheduledDate = 1000), contentType = "image/jpeg", dataSize = 60)
@@ -281,10 +281,11 @@ class MediaTableTest_galleryMedia {
     val media = SignalDatabase.media
     val allThreads = MediaTable.ALL_THREADS.toLong()
 
-    assertThat(media.getGalleryMediaForThread(allThreads, Sorting.Newest).readIds()).containsExactly(video, offloaded, image)
-    assertThat(media.getGalleryMediaForThread(allThreads, Sorting.Oldest).readIds()).containsExactly(image, offloaded, video)
-    assertThat(media.getGalleryMediaForThread(allThreads, Sorting.Largest).readIds()).containsExactly(offloaded, image, video)
-    assertThat(media.getGalleryMediaForThread(allThreads, Sorting.Largest, limit = 1, offset = 1).readIds()).containsExactly(image)
+    assertThat(media.getGalleryMediaForThread(first, Sorting.Newest).readIds()).containsExactly(offloaded, image)
+    assertThat(media.getGalleryMediaForThread(allThreads, Sorting.Newest).readIds()).containsExactly(video, image)
+    assertThat(media.getGalleryMediaForThread(allThreads, Sorting.Oldest).readIds()).containsExactly(image, video)
+    assertThat(media.getGalleryMediaForThread(allThreads, Sorting.Largest).readIds()).containsExactly(image, video)
+    assertThat(media.getGalleryMediaForThread(allThreads, Sorting.Largest, limit = 1, offset = 1).readIds()).containsExactly(video)
 
     for (sorting in Sorting.entries) {
       assertThat(media.getDocumentMediaForThread(allThreads, sorting).readIds(), name = "sorting=$sorting").containsExactly(pdf)
@@ -292,11 +293,64 @@ class MediaTableTest_galleryMedia {
       assertThat(media.getLinkMediaForThread(allThreads, sorting).readMessageIds(), name = "sorting=$sorting").containsExactly(linkMessage)
     }
 
-    val oldest = listOf(imageMessage, pdfMessage, offloadedMessage, audioMessage, linkMessage, videoMessage)
+    val oldest = listOf(imageMessage, pdfMessage, audioMessage, linkMessage, videoMessage)
     assertThat(media.getAllMediaForThread(allThreads, Sorting.Newest).readMessageIds()).isEqualTo(oldest.reversed())
     assertThat(media.getAllMediaForThread(allThreads, Sorting.Oldest).readMessageIds()).isEqualTo(oldest)
-    assertThat(media.getAllMediaForThread(allThreads, Sorting.Largest).readMessageIds()).containsExactly(pdfMessage, offloadedMessage, imageMessage, videoMessage, audioMessage, linkMessage)
+    assertThat(media.getAllMediaForThread(allThreads, Sorting.Largest).readMessageIds()).containsExactly(pdfMessage, imageMessage, videoMessage, audioMessage, linkMessage)
     assertThat(media.getAllMediaForThread(allThreads, Sorting.Newest, limit = 2, offset = 1).readMessageIds()).isEqualTo(oldest.reversed().subList(1, 3))
+  }
+
+  @Test
+  fun `given media that is not stored locally, when I get each tab across all threads, then it is excluded`() {
+    val threadId = fixtures.createThread()
+    val messageId = fixtures.insertMessage(threadId)
+
+    val image = fixtures.insertAttachment(messageId, contentType = "image/jpeg", dataSize = 10)
+    val streamable = fixtures.insertAttachment(messageId, contentType = "video/mp4", transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING, dataFile = null, incrementalDigest = byteArrayOf(1), dataSize = 500)
+    val thumbnailOnly = fixtures.insertAttachment(messageId, transferState = AttachmentTable.TRANSFER_NEEDS_RESTORE, dataFile = null, thumbnailFile = "/thumbnail/file", dataSize = 400)
+    val offloadedImage = fixtures.insertAttachment(messageId, transferState = AttachmentTable.TRANSFER_RESTORE_OFFLOADED, dataFile = null, dataSize = 300)
+    fixtures.insertAttachment(messageId, contentType = "application/pdf", transferState = AttachmentTable.TRANSFER_RESTORE_OFFLOADED, dataFile = null, dataSize = 200)
+    fixtures.insertAttachment(messageId, contentType = "audio/aac", transferState = AttachmentTable.TRANSFER_RESTORE_OFFLOADED, dataFile = null, dataSize = 100)
+
+    val media = SignalDatabase.media
+    val allThreads = MediaTable.ALL_THREADS.toLong()
+
+    assertThat(galleryIds(threadId).toSet()).isEqualTo(setOf(image, streamable, thumbnailOnly, offloadedImage))
+    assertThat(media.getDocumentMediaCountForThread(threadId)).isEqualTo(1)
+    assertThat(media.getAudioMediaCountForThread(threadId)).isEqualTo(1)
+
+    for (sorting in Sorting.entries) {
+      assertThat(galleryIds(allThreads, sorting), name = "sorting=$sorting").containsExactly(image)
+      assertThat(media.getDocumentMediaForThread(allThreads, sorting).readIds(), name = "sorting=$sorting").isEmpty()
+      assertThat(media.getAudioMediaForThread(allThreads, sorting).readIds(), name = "sorting=$sorting").isEmpty()
+      assertThat(media.getAllMediaForThread(allThreads, sorting).readIds(), name = "sorting=$sorting").containsExactly(image)
+    }
+
+    assertThat(media.getGalleryMediaCountForThread(allThreads)).isEqualTo(1)
+    assertThat(media.getAllMediaCountForThread(allThreads)).isEqualTo(1)
+  }
+
+  @Test
+  fun `given links with and without a stored preview image, when I get links across all threads, then only links with a stored image are included`() {
+    val threadId = fixtures.createThread()
+    val withoutImage = fixtures.insertMessage(threadId, linkPreviews = "[]")
+    val notDownloaded = fixtures.insertMessage(threadId, linkPreviews = "[]")
+    fixtures.insertAttachment(notDownloaded, transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING, dataFile = null)
+    val stored = fixtures.insertMessage(threadId, linkPreviews = "[]")
+    fixtures.insertAttachment(stored)
+
+    val media = SignalDatabase.media
+    val allThreads = MediaTable.ALL_THREADS.toLong()
+
+    assertThat(media.getLinkMediaForThread(threadId, Sorting.Newest).readMessageIds()).containsExactly(stored, notDownloaded, withoutImage)
+
+    for (sorting in Sorting.entries) {
+      assertThat(media.getLinkMediaForThread(allThreads, sorting).readMessageIds(), name = "sorting=$sorting").containsExactly(stored)
+      assertThat(media.getAllMediaForThread(allThreads, sorting).readMessageIds(), name = "sorting=$sorting").containsExactly(stored)
+    }
+
+    assertThat(media.getLinkMediaCountForThread(allThreads)).isEqualTo(1)
+    assertThat(media.getAllMediaCountForThread(allThreads)).isEqualTo(1)
   }
 
   // endregion
@@ -403,6 +457,26 @@ class MediaTableTest_galleryMedia {
     assertThat(SignalDatabase.media.getViewableGalleryMediaCountForThread(allThreads)).isEqualTo(2)
     assertThat(SignalDatabase.media.getViewableGalleryMediaPositionAndCount(allThreads, Sorting.Oldest, inThreadA)?.position).isEqualTo(0)
     assertThat(SignalDatabase.media.getViewableGalleryMediaPositionAndCount(allThreads, Sorting.Oldest, inThreadB)?.position).isEqualTo(1)
+  }
+
+  @Test
+  fun `given a restored thumbnail without local data, when I get viewable gallery media across all threads, then it is excluded`() {
+    val threadId = fixtures.createThread()
+    val messageId = fixtures.insertMessage(threadId)
+    val stored = fixtures.insertAttachment(messageId)
+    val thumbnailOnly = fixtures.insertAttachment(
+      messageId = messageId,
+      transferState = AttachmentTable.TRANSFER_NEEDS_RESTORE,
+      dataFile = null,
+      thumbnailFile = "/thumbnail/file",
+      thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.FINISHED
+    )
+    val allThreads = MediaTable.ALL_THREADS.toLong()
+
+    assertThat(viewableIds(threadId)).containsExactly(thumbnailOnly, stored)
+    assertThat(viewableIds(allThreads)).containsExactly(stored)
+    assertThat(SignalDatabase.media.getViewableGalleryMediaCountForThread(allThreads)).isEqualTo(1)
+    assertThat(SignalDatabase.media.getViewableGalleryMediaPositionAndCount(allThreads, Sorting.Newest, thumbnailOnly)).isNull()
   }
 
   @Test
