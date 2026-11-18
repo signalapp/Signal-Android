@@ -9,11 +9,11 @@
   <!-- Section header in the media overview list, above items sent or received earlier this month -->
   <string name="MediaOverviewScreen__this_month">В этом месяце</string>
   <!-- Section header in the media overview list when sorted by storage used, above the largest files -->
-  <string name="MediaOverviewScreen__large">Большой</string>
+  <string name="MediaOverviewScreen__large">Большое</string>
   <!-- Section header in the media overview list when sorted by storage used, above medium-sized files -->
-  <string name="MediaOverviewScreen__medium">Средние</string>
+  <string name="MediaOverviewScreen__medium">Среднее</string>
   <!-- Section header in the media overview list when sorted by storage used, above the smallest files -->
-  <string name="MediaOverviewScreen__small">Маленький</string>
+  <string name="MediaOverviewScreen__small">Маленькое</string>
 
   <!-- Tab title in the media overview screen for photos and videos -->
   <string name="MediaOverviewScreen__tab_media">Медиа</string>

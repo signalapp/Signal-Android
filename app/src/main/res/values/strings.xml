@@ -1223,7 +1223,7 @@
     </plurals>
 
     <!-- LanguagePackReadyBanner -->
-    <!-- Banner shown after a language finished downloading in the background. %1$s is the language's name written in that language, for example "Deutsch". -->
+    <!-- Banner shown after a language finished downloading in the background. %1$s is the language\'s name written in that language, for example "Deutsch". -->
     <string name="LanguagePackReadyBanner__body">The app language "%1$s" is ready to use. Restart Signal to switch to it.</string>
     <!-- Button on the banner shown after a language finished downloading. Restarts the app so the language takes effect. -->
     <string name="LanguagePackReadyBanner__restart">Restart</string>
@@ -5160,11 +5160,11 @@
     <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
-    <!-- Dialog title when hiding a contact. Placeholder is the contact's name. -->
+    <!-- Dialog title when hiding a contact. Placeholder is the contact\'s name. -->
     <string name="NewConversationActivity__hide_s">Hide %1$s?</string>
     <!-- Dialog body when hiding a contact -->
     <string name="NewConversationActivity__this_person_wont_appear">This person won\'t appear in your contact list and search. If they message you in the future, you\'ll receive a message request. You can manage people you\'ve hidden in settings.</string>
-    <!-- Snackbar message after hiding a contact. Placeholder is the contact's name. -->
+    <!-- Snackbar message after hiding a contact. Placeholder is the contact\'s name. -->
     <string name="NewConversationActivity__s_has_been_hidden">%1$s has been hidden</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
