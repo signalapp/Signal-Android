@@ -1013,6 +1013,15 @@ object RemoteConfig {
     hotSwappable = false
   )
 
+  /** Value for the WebRTC field trial "WebRTC-Audio-NetEqSmartFlushing" */
+  @JvmStatic
+  @get:JvmName("callingFieldTrialSmartFlushing")
+  val callingFieldTrialSmartFlushing: String by remoteString(
+    key = "android.calling.fieldTrial.smartFlushing",
+    defaultValue = "",
+    hotSwappable = false
+  )
+
   /**
    * Enable/disable for notification when we cannot fetch messages despite receiving an urgent push.
    */
