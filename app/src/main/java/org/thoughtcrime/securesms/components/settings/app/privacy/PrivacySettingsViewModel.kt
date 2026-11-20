@@ -42,7 +42,6 @@ class PrivacySettingsViewModel(
   init {
     refresh()
 
-    // Screen security can be changed while this screen is showing, e.g. by AssistantScreenSecurityObserver.
     viewModelScope.launch {
       PrivacySettingsRepository.screenSecurityEnabledFlow().collect { enabled ->
         _state.update { it.copy(screenSecurity = enabled) }
