@@ -194,7 +194,11 @@ public abstract class WebRtcActionProcessor {
       return currentState;
     }
 
-    if (TelephonyUtil.isAnyPstnLineBusy(context)) {
+    RemotePeer activePeer            = currentState.getCallInfoState().getActivePeer();
+    boolean    activeCallUsesTelecom = activePeer != null && currentState.getCallSetupState(activePeer).usesTelecom();
+
+    // Let RingRTC handle busy and glare if the active call uses Telecom.
+    if (!activeCallUsesTelecom && TelephonyUtil.isAnyPstnLineBusy(context)) {
       Log.i(tag, "PSTN line is busy.");
       currentState = currentState.getActionProcessor().handleSendBusy(currentState, callMetadata, true);
       webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
