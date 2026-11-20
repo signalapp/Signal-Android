@@ -7,13 +7,16 @@ package org.signal.core.ui.compose.split
 
 import android.app.Application
 import androidx.compose.material3.Text
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.snapshots.Snapshot
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberDecoratedNavEntries
+import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,6 +31,7 @@ class DetailPaneRootTest {
   val composeTestRule = createComposeRule()
 
   private val backStack = mutableStateListOf<NavKey>(TestListKey.ROOT, TestDetailKey(1))
+  private val observedRoots = mutableListOf<Pair<Int, Boolean>>()
 
   @Test
   fun `the only entry in the detail stack is its root`() {
@@ -62,6 +66,21 @@ class DetailPaneRootTest {
     composeTestRule.onNodeWithText("detail 1 root=false").assertExists()
   }
 
+  @Test
+  fun `an entry swapped out of the detail stack stays its root while it leaves`() {
+    setContent(isSplitPane = true)
+
+    composeTestRule.runOnIdle {
+      Snapshot.withMutableSnapshot {
+        backStack.removeAt(backStack.lastIndex)
+        backStack += TestDetailKey(2)
+      }
+    }
+
+    composeTestRule.onNodeWithText("detail 2 root=true").assertExists()
+    assertEquals(listOf(1 to true, 2 to true), observedRoots.distinct())
+  }
+
   private fun setContent(isSplitPane: Boolean) {
     composeTestRule.setContent {
       val layout = rememberListDetailPaneLayout(paneAnchor = PaneAnchor.SPLIT, maxWidth = 1000.dp, onAnchorSelected = {})
@@ -69,7 +88,11 @@ class DetailPaneRootTest {
         backStack = backStack,
         entryProvider = entryProvider {
           listEntry<TestListKey> { Text("list") }
-          detailEntry<TestDetailKey> { Text("detail ${it.id} root=${LocalIsDetailPaneRoot.current}") }
+          detailEntry<TestDetailKey> {
+            val isRoot = LocalIsDetailPaneRoot.current
+            SideEffect { observedRoots += it.id to isRoot }
+            Text("detail ${it.id} root=$isRoot")
+          }
           detailEntry<TestSubScreenKey> { Text("sub ${it.id} root=${LocalIsDetailPaneRoot.current}") }
         }
       )

@@ -105,7 +105,7 @@ internal class ListDetailScene(
           ) {
             CompositionLocalProvider(
               LocalIsInDetailPane provides true,
-              LocalDetailPaneRootContentKey provides detailEntries.firstOrNull()?.contentKey
+              LocalDetailPaneContentKeys provides detailEntries.map { it.contentKey }
             ) {
               if (detailEntries.isNotEmpty()) {
                 DetailPaneNavDisplay(listKey = listEntry.contentKey, entries = detailEntries)

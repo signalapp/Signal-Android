@@ -142,9 +142,9 @@ val LocalIsInDetailPane = compositionLocalOf { false }
 val LocalIsDetailPaneRoot = compositionLocalOf { false }
 
 /**
- * The content key of the bottom of the detail stack beside the list, or null outside a split.
+ * The content keys of the detail stack beside the list, bottom first, or null outside a split.
  */
-internal val LocalDetailPaneRootContentKey = compositionLocalOf<Any?> { null }
+internal val LocalDetailPaneContentKeys = compositionLocalOf<List<Any>?> { null }
 
 /**
  * The list pane's content width while both panes are visible: the list's [splitListWidth] less the padding at its start,

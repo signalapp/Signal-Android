@@ -8,6 +8,7 @@ package org.signal.core.ui.compose.split
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.movableContentOf
@@ -140,7 +141,21 @@ fun ListDetailNavDisplay(
 
   val detailPaneRootDecorator = remember {
     NavEntryDecorator<NavKey> { entry ->
-      CompositionLocalProvider(LocalIsDetailPaneRoot provides (entry.contentKey == LocalDetailPaneRootContentKey.current)) {
+      val detailContentKeys = LocalDetailPaneContentKeys.current
+      val lastKnownRoot = remember(entry.contentKey) { DetailPaneRootHolder() }
+
+      // An entry leaving the pane is no longer in the stack, and keeps what it was while it is still on screen.
+      val isRoot = if (detailContentKeys == null || entry.contentKey in detailContentKeys) {
+        detailContentKeys?.firstOrNull() == entry.contentKey
+      } else {
+        lastKnownRoot.isRoot
+      }
+
+      SideEffect {
+        lastKnownRoot.isRoot = isRoot
+      }
+
+      CompositionLocalProvider(LocalIsDetailPaneRoot provides isRoot) {
         entry.Content()
       }
     }
@@ -188,6 +203,10 @@ fun ListDetailNavDisplay(
       modifier = modifier
     )
   }
+}
+
+private class DetailPaneRootHolder {
+  var isRoot: Boolean = false
 }
 
 private class ListPaneChromeOwner {
