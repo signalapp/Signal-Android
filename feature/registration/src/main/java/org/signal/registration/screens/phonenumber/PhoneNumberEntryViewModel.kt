@@ -52,10 +52,15 @@ class PhoneNumberEntryViewModel(
   companion object {
     private val TAG = Log.tag(PhoneNumberEntryViewModel::class)
     private const val PUSH_CHALLENGE_TIMEOUT_MS = 5000L
+
+    /** Enough to strip a doubled trunk prefix (e.g. a Ukrainian "00501234567") without looping on bad metadata. */
+    private const val MAX_TRUNK_PREFIX_PASSES = 3
   }
 
   private val phoneNumberUtil: PhoneNumberUtil = PhoneNumberUtil.getInstance()
-  private var formatter: AsYouTypeFormatter = phoneNumberUtil.getAsYouTypeFormatter("US")
+  private var formatterRegionCode: String = "US"
+  private var formatter: AsYouTypeFormatter = phoneNumberUtil.getAsYouTypeFormatter(formatterRegionCode)
+  private var internationalFormatter: AsYouTypeFormatter = phoneNumberUtil.getAsYouTypeFormatter(formatterRegionCode)
 
   private val _state = MutableStateFlow(
     PhoneNumberEntryState(
@@ -81,7 +86,7 @@ class PhoneNumberEntryViewModel(
 
   fun setDefaultCountry() {
     val regionCode = repository.getDefaultRegionCode()
-    formatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+    setFormatterRegion(regionCode)
     _state.update {
       it.copy(
         regionCode = regionCode,
@@ -239,7 +244,7 @@ class PhoneNumberEntryViewModel(
     val countryCodeStr = countryCode.toString()
     if (countryCodeStr == state.countryCode && regionCode == state.regionCode) return state
 
-    formatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+    setFormatterRegion(regionCode)
     val formattedNumber = formatNumber(state.nationalNumber)
 
     return state.copy(
@@ -266,7 +271,7 @@ class PhoneNumberEntryViewModel(
     val regionCode = phoneNumberUtil.getRegionCodeForCountryCode(sanitized.toIntOrNull() ?: 0) ?: state.regionCode
 
     // Reset formatter for new region and reformat the existing national number
-    formatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+    setFormatterRegion(regionCode)
     val formattedNumber = formatNumber(state.nationalNumber)
 
     return state.copy(
@@ -320,7 +325,7 @@ class PhoneNumberEntryViewModel(
     parentEventEmitter: (RegistrationFlowEvent) -> Unit
   ): PhoneNumberEntryState {
     var state = inputState.withNormalizedNationalNumber()
-    val e164 = "+${state.countryCode}${state.nationalNumber}"
+    val e164 = state.toE164()
 
     // If the user selected a restore option before entering their phone number, navigate to the restore flow
     if (state.pendingRestoreOption != null) {
@@ -421,7 +426,7 @@ class PhoneNumberEntryViewModel(
   ) {
     var state = inputState.copy(showSpinner = true)
     stateEmitter(state)
-    state = applySessionBasedRegistration(state, state.sessionE164 ?: "+${state.countryCode}${state.nationalNumber}", parentEventEmitter)
+    state = applySessionBasedRegistration(state, state.sessionE164 ?: state.toE164(), parentEventEmitter)
     stateEmitter(state.copy(showSpinner = false))
   }
 
@@ -435,7 +440,7 @@ class PhoneNumberEntryViewModel(
     aep: AccountEntropyPool?,
     parentEventEmitter: (RegistrationFlowEvent) -> Unit
   ): PhoneNumberEntryState {
-    val e164 = inputState.sessionE164 ?: "+${inputState.countryCode}${inputState.nationalNumber}"
+    val e164 = inputState.sessionE164 ?: inputState.toE164()
     val state = inputState.copy()
 
     if (aep == null) {
@@ -591,6 +596,9 @@ class PhoneNumberEntryViewModel(
       return state
     }
 
+    if (state.sessionMetadata == null) {
+      Log.i(TAG, "[CreateSession] Creating a session for $e164.")
+    }
     var sessionMetadata: SessionMetadata = state.sessionMetadata ?: when (val response = this@PhoneNumberEntryViewModel.repository.createSession(e164)) {
       is RequestResult.Success<SessionMetadata> -> {
         response.result
@@ -711,7 +719,7 @@ class PhoneNumberEntryViewModel(
             state
           }
           is RequestVerificationCodeError.ThirdPartyServiceError -> {
-            Log.w(TAG, "[RequestVerificationCode] Third party service error.")
+            Log.w(TAG, "[RequestVerificationCode] Third party service error for $e164. Reason: ${error.data.reason}, permanent: ${error.data.permanentFailure}")
             state.copy(dialogs = state.dialogs.copy(unableToSendSms = true))
           }
         }
@@ -740,7 +748,7 @@ class PhoneNumberEntryViewModel(
   }
 
   private suspend fun applyCaptchaCompleted(inputState: PhoneNumberEntryState, token: String, parentEventEmitter: (RegistrationFlowEvent) -> Unit): PhoneNumberEntryState {
-    val e164 = "+${inputState.countryCode}${inputState.nationalNumber}"
+    val e164 = inputState.toE164()
     var state = inputState.copy()
     var sessionMetadata = state.sessionMetadata ?: return state.copy(dialogs = state.dialogs.copy(unknownError = true))
 
@@ -828,6 +836,7 @@ class PhoneNumberEntryViewModel(
             state
           }
           is RequestVerificationCodeError.ThirdPartyServiceError -> {
+            Log.w(TAG, "[RequestVerificationCode] Third party service error after captcha for $e164. Reason: ${error.data.reason}, permanent: ${error.data.permanentFailure}")
             state.copy(dialogs = state.dialogs.copy(unableToSendSms = true))
           }
         }
@@ -869,11 +878,46 @@ class PhoneNumberEntryViewModel(
     parentEventEmitter.navigateTo(RegistrationRoute.VerificationCodeEntry)
   }
 
+  private fun setFormatterRegion(regionCode: String) {
+    formatterRegionCode = regionCode
+    formatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+    internationalFormatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+  }
+
+  /**
+   * Formats [nationalNumber] for display as the user types.
+   *
+   * In countries with a national trunk prefix (UA, GB, NL, DE, FR, ...) the national as-you-type formatter only applies
+   * formatting when the number starts with that prefix: "0501234567" shows as "050 123 4567", but the correct
+   * "501234567" stays an unformatted blob. Next to a "+380" country code, that wrongly suggests the leading 0 is
+   * required. When the national formatter gives up, we format the number internationally and drop the country code.
+   */
   private fun formatNumber(nationalNumber: String): String {
-    formatter.clear()
+    val nationalFormatted = formatter.formatAll(nationalNumber)
+    if (nationalFormatted.any { !it.isDigit() }) {
+      return nationalFormatted
+    }
+
+    val countryCode = phoneNumberUtil.getCountryCodeForRegion(formatterRegionCode)
+    if (countryCode == 0) {
+      return nationalFormatted
+    }
+
+    val countryCodePrefix = "+$countryCode"
+    val internationalFormatted = internationalFormatter.formatAll(countryCodePrefix + nationalNumber)
+    if (!internationalFormatted.startsWith("$countryCodePrefix ")) {
+      return nationalFormatted
+    }
+
+    val withoutCountryCode = internationalFormatted.removePrefix(countryCodePrefix).trim()
+    return if (withoutCountryCode.filter { it.isDigit() } == nationalNumber) withoutCountryCode else nationalFormatted
+  }
+
+  private fun AsYouTypeFormatter.formatAll(input: String): String {
+    clear()
     var result = ""
-    for (digit in nationalNumber) {
-      result = formatter.inputDigit(digit)
+    for (char in input) {
+      result = inputDigit(char)
     }
     return result
   }
@@ -898,7 +942,7 @@ class PhoneNumberEntryViewModel(
     val nationalNumber = parsedNumber.nationalNumber.toString()
     val regionCode = phoneNumberUtil.getRegionCodeForNumber(parsedNumber) ?: phoneNumberUtil.getRegionCodeForCountryCode(countryCode)
 
-    formatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+    setFormatterRegion(regionCode)
     val formattedNumber = formatNumber(nationalNumber)
 
     return state.copy(
@@ -931,7 +975,11 @@ class PhoneNumberEntryViewModel(
 
     return when (phoneNumberUtil.isPossibleNumberWithReason(withCountryCode)) {
       PhoneNumberUtil.ValidationResult.TOO_LONG -> {
-        if (isPossibleFullNumber(digitsOnly)) redistributeFullPhoneNumber(state, "+$digitsOnly") else null
+        if (isPossibleFullNumber(digitsOnly)) {
+          redistributeFullPhoneNumber(state, "+$digitsOnly")
+        } else {
+          stripRepeatedCountryCode(countryCode, digitsOnly)?.let { redistributeFullPhoneNumber(state, "+$countryCode$it") }
+        }
       }
       PhoneNumberUtil.ValidationResult.IS_POSSIBLE -> {
         if (withCountryCode.nationalNumber.toString() != digitsOnly) redistributeFullPhoneNumber(state, "+$countryCode$digitsOnly") else null
@@ -971,20 +1019,19 @@ class PhoneNumberEntryViewModel(
    * types in "0612345678"), which would otherwise produce a wrong E164 when naively concatenated with the country
    * code (+310612345678 instead of +31612345678). Leading zeros that are a significant part of the number (e.g.
    * Italian landlines) are preserved.
+   *
+   * Also drops the selected country code if the user typed it again in the number field (e.g. "380501234567", or
+   * "80501234567" from the old Ukrainian "8 0XX" dialing habit, with +380 selected). Only paste/autofill is
+   * reinterpreted as the user types, so typed numbers like that would otherwise be submitted as-is.
    */
   private fun PhoneNumberEntryState.withNormalizedNationalNumber(): PhoneNumberEntryState {
     if (countryCode.isEmpty() || nationalNumber.isEmpty()) {
       return this
     }
 
-    val parsedNumber = try {
-      phoneNumberUtil.parse("+$countryCode$nationalNumber", null)
-    } catch (_: NumberParseException) {
-      return this
-    }
-
-    val significantNumber = phoneNumberUtil.getNationalSignificantNumber(parsedNumber)
-    if (significantNumber == nationalNumber || parsedNumber.countryCode.toString() != countryCode) {
+    val digits = stripRepeatedCountryCode(countryCode, nationalNumber) ?: nationalNumber
+    val significantNumber = significantNationalNumber(countryCode, digits) ?: return this
+    if (significantNumber == nationalNumber) {
       return this
     }
 
@@ -992,6 +1039,100 @@ class PhoneNumberEntryViewModel(
       nationalNumber = significantNumber,
       formattedNumber = formatNumber(significantNumber)
     ).withNumberValidity()
+  }
+
+  /** The E164 to submit for this state. Always normalized, so no submission path can send a redundant trunk prefix. */
+  private fun PhoneNumberEntryState.toE164(): String {
+    val normalized = withNormalizedNationalNumber()
+    return "+${normalized.countryCode}${normalized.nationalNumber}"
+  }
+
+  /**
+   * The national significant number libphonenumber (and therefore the server) sees for [nationalNumber], with any
+   * redundant trunk prefixes stripped. A doubled prefix ("00501234567" for +380) takes more than one pass. Returns
+   * null if the number can't be parsed under [countryCode].
+   */
+  private fun significantNationalNumber(countryCode: String, nationalNumber: String): String? {
+    var current = nationalNumber
+    repeat(MAX_TRUNK_PREFIX_PASSES) {
+      val parsedNumber = try {
+        phoneNumberUtil.parse("+$countryCode$current", null)
+      } catch (_: NumberParseException) {
+        return null
+      }
+
+      if (parsedNumber.countryCode.toString() != countryCode) {
+        return null
+      }
+
+      val significantNumber = phoneNumberUtil.getNationalSignificantNumber(parsedNumber)
+      if (significantNumber == current) {
+        return current
+      }
+      current = significantNumber
+    }
+    return current
+  }
+
+  /**
+   * If [digits] is too long for [countryCode] because it starts with that country code again (or with its tail end,
+   * e.g. "80501234567" for +380), returns the valid national number left after dropping it. Returns null otherwise.
+   *
+   * Requires the remainder to be a *valid* number rather than just a possible one, so a mistyped number isn't silently
+   * reinterpreted.
+   */
+  private fun stripRepeatedCountryCode(countryCode: String, digits: String): String? {
+    val asTyped = try {
+      phoneNumberUtil.parse("+$countryCode$digits", null)
+    } catch (_: NumberParseException) {
+      return null
+    }
+
+    if (phoneNumberUtil.isPossibleNumberWithReason(asTyped) != PhoneNumberUtil.ValidationResult.TOO_LONG) {
+      return null
+    }
+
+    for (overlap in countryCode.length downTo 1) {
+      val repeatedPrefix = countryCode.takeLast(overlap)
+      if (!digits.startsWith(repeatedPrefix) || digits.length == repeatedPrefix.length) {
+        continue
+      }
+
+      val candidate = try {
+        phoneNumberUtil.parse("+$countryCode${digits.substring(repeatedPrefix.length)}", null)
+      } catch (_: NumberParseException) {
+        continue
+      }
+
+      if (candidate.countryCode.toString() == countryCode && phoneNumberUtil.isValidNumber(candidate)) {
+        return phoneNumberUtil.getNationalSignificantNumber(candidate)
+      }
+    }
+
+    return null
+  }
+
+  /**
+   * True if, after stripping everything that can be stripped, the number still starts with the national trunk prefix
+   * and isn't a valid number. That's a trunk prefix plus too few digits (e.g. "050123456" for +380, one digit short),
+   * which has a possible length but would be rejected by the SMS provider. Valid numbers that happen to start with the
+   * trunk prefix digit (e.g. Russian 8-800 numbers) are not affected.
+   */
+  private fun hasDanglingTrunkPrefix(regionCode: String, countryCode: String, nationalNumber: String): Boolean {
+    val region = regionCode.takeUnless { it.isEmpty() || it == "ZZ" }
+      ?: phoneNumberUtil.getRegionCodeForCountryCode(countryCode.toIntOrNull() ?: return false)
+    val trunkPrefix = phoneNumberUtil.getNddPrefixForRegion(region, true)?.takeIf { it.isNotEmpty() } ?: return false
+    val significantNumber = significantNationalNumber(countryCode, nationalNumber) ?: return false
+
+    if (!significantNumber.startsWith(trunkPrefix)) {
+      return false
+    }
+
+    return try {
+      !phoneNumberUtil.isValidNumber(phoneNumberUtil.parse("+$countryCode$significantNumber", null))
+    } catch (_: NumberParseException) {
+      false
+    }
   }
 
   private fun PhoneNumberEntryState.withoutAccountId(): PhoneNumberEntryState {
@@ -1013,13 +1154,25 @@ class PhoneNumberEntryViewModel(
       return copy(isNumberPossible = false, isNumberInvalid = false)
     }
 
-    val isNumberInvalid = when (phoneNumberUtil.isPossibleNumberWithReason(parsedNumber)) {
-      PhoneNumberUtil.ValidationResult.TOO_LONG,
-      PhoneNumberUtil.ValidationResult.INVALID_LENGTH,
-      PhoneNumberUtil.ValidationResult.INVALID_COUNTRY_CODE -> true
-      else -> false
+    val possibility = phoneNumberUtil.isPossibleNumberWithReason(parsedNumber)
+    val isNumberInvalid: Boolean
+    val isNumberPossible: Boolean
+
+    if (possibility == PhoneNumberUtil.ValidationResult.TOO_LONG && stripRepeatedCountryCode(countryCode, nationalNumber) != null) {
+      // The user typed the country code again (e.g. "380501234567" with +380 selected). It gets dropped on submit.
+      isNumberInvalid = false
+      isNumberPossible = true
+    } else {
+      isNumberInvalid = when (possibility) {
+        PhoneNumberUtil.ValidationResult.TOO_LONG,
+        PhoneNumberUtil.ValidationResult.INVALID_LENGTH,
+        PhoneNumberUtil.ValidationResult.INVALID_COUNTRY_CODE -> true
+        else -> false
+      }
+      // A dangling trunk prefix is treated like a too-short number: not submittable, but not flagged as an error
+      // either, since "050123456" is also what the user has typed on the way to "0501234567".
+      isNumberPossible = phoneNumberUtil.isPossibleNumber(parsedNumber) && !hasDanglingTrunkPrefix(regionCode, countryCode, nationalNumber)
     }
-    val isNumberPossible = phoneNumberUtil.isPossibleNumber(parsedNumber)
 
     return if (this.isNumberInvalid != isNumberInvalid || this.isNumberPossible != isNumberPossible) {
       copy(isNumberPossible = isNumberPossible, isNumberInvalid = isNumberInvalid)
