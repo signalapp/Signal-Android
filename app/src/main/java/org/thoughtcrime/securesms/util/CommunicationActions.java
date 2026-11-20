@@ -98,7 +98,7 @@ public class CommunicationActions {
           if (resultCode == 1) {
             ActiveCallData activeCallData = ActiveCallData.fromBundle(resultData);
             if (Objects.equals(activeCallData.getRecipientId(), recipient.getId())) {
-              startCallInternal(callContext, recipient, false, false);
+              returnToCallScreen(callContext);
             } else {
               onUserAlreadyInAnotherCall.onUserAlreadyInAnotherCall();
             }
@@ -148,7 +148,7 @@ public class CommunicationActions {
         if (resultCode == 1) {
           ActiveCallData activeCallData = ActiveCallData.fromBundle(resultData);
           if (Objects.equals(activeCallData.getRecipientId(), recipient.getId())) {
-            startCallInternal(callContext, recipient, false, fromCallLink);
+            returnToCallScreen(callContext);
           } else {
             onUserAlreadyInAnotherCall.onUserAlreadyInAnotherCall();
           }
@@ -425,6 +425,17 @@ public class CommunicationActions {
       return true;
     }
     return false;
+  }
+
+  /**
+   * Shows the active call screen without starting a call.
+   */
+  private static void returnToCallScreen(@NonNull CallContext callContext) {
+    callContext.startActivity(
+        new CallIntent.Builder(callContext.getContext())
+            .withIntentFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            .build()
+    );
   }
 
   private static void startCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean isVideo, boolean fromCallLink) {

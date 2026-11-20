@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
@@ -187,6 +188,12 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                            @NonNull OfferMessage.Type offerType)
   {
     Log.i(tag, "handleOutgoingCall():");
+
+    RecipientId lobbyRecipientId = currentState.getCallInfoState().getCallRecipient().getId();
+    if (!remotePeer.getId().equals(lobbyRecipientId)) {
+      Log.w(tag, "handleOutgoingCall(): Ignoring request to call " + remotePeer.getId() + " while in the lobby for " + lobbyRecipientId);
+      return currentState;
+    }
 
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
 
