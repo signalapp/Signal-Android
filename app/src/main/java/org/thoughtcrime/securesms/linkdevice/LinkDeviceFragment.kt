@@ -200,7 +200,8 @@ fun LinkDeviceEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
     title = stringResource(id = R.string.preferences__linked_devices),
     onNavigationClick = { parentEventEmitter.navigateBack() },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description),
+    expandableTitle = true
   ) { contentPadding: PaddingValues ->
     DeviceListScreen(
       state = state,
