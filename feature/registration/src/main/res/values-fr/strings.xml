@@ -72,7 +72,7 @@
     <!-- Clickable text that opens a corresponding URL -->
     <string name="RegistrationActivity_learn_more">En savoir plus</string>
     <!-- Dialog message shown when the server rejects the user\'s captcha response during registration -->
-    <string name="PhoneNumberEntryScreen__captcha_not_accepted">Le code de vérification n\'a pas été accepté. Veuillez réessayer ou contacter l\'assistance si le problème persiste.</string>
+    <string name="PhoneNumberEntryScreen__captcha_not_accepted">Captcha non accepté. Veuillez réessayer ou contacter l\'assistance si le problème persiste.</string>
     <!-- Dialog button that lets the user contact support after their captcha response was rejected -->
     <string name="PhoneNumberEntryScreen__contact_support">Contacter l\'assistance</string>
     <!-- Subject line of the support email composed when the user\'s captcha response was rejected during registration -->

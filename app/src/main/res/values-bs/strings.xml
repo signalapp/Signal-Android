@@ -1300,9 +1300,9 @@
     <!-- Banner shown after a language finished downloading in the background. %1$s is the language\'s name written in that language, for example "Deutsch". -->
     <string name="LanguagePackReadyBanner__body">"The app language %1$s is ready to use. Restart Signal to switch to it."</string>
     <!-- Button on the banner shown after a language finished downloading. Restarts the app so the language takes effect. -->
-    <string name="LanguagePackReadyBanner__restart">Restart</string>
+    <string name="LanguagePackReadyBanner__restart">Ponovo pokreni</string>
     <!-- Button on the banner shown after a language finished downloading. Hides the banner without restarting and applying the new language. -->
-    <string name="LanguagePackReadyBanner__not_now">Not now</string>
+    <string name="LanguagePackReadyBanner__not_now">Ne sada</string>
 
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">Napustiti grupu?</string>
@@ -4479,7 +4479,7 @@
 
     <string name="CallNotificationBuilder_connecting">Povezivanje…</string>
     <!-- Notification title shown when Signal needs to be opened to use the microphone during a call -->
-    <string name="CallNotificationBuilder__open_signal">Open Signal</string>
+    <string name="CallNotificationBuilder__open_signal">Otvori Signal</string>
     <!-- Notification body shown when a call was answered from a watch or other device but Signal needs microphone permission before it can connect -->
     <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">To answer this call, allow Signal access to your microphone.</string>
     <!-- Notification body shown during a call when Android blocked microphone access because Signal was in the background -->
@@ -5428,7 +5428,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">Ukloni</string>
     <!-- Context menu item that hides a contact -->
-    <string name="NewConversationActivity__hide">Hide</string>
+    <string name="NewConversationActivity__hide">Sakrij</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Blokiraj</string>
     <!-- Dialog title when removing a contact -->

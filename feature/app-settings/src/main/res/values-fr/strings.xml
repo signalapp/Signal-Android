@@ -459,9 +459,9 @@
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play services app in system settings. "Google Play" is a product name; do not translate it. -->
     <string name="preferences_language_change_download_failed_play_services_disabled_message">Language packs are downloaded through Google Play services, which is turned off on this device. Enable it in settings to download this language.</string>
     <!-- Positive button label on the language pack download failure dialog when the Google Play Store or Google Play services app is turned off. Opens that app\'s page in system settings, where it can be turned on. -->
-    <string name="preferences_language_unavailable_open_settings">Open settings</string>
+    <string name="preferences_language_unavailable_open_settings">Ouvrir les paramètres</string>
     <!-- Positive button label on the language pack download failure dialog. Starts the download again. -->
-    <string name="preferences_language_change_download_retry">Try again</string>
+    <string name="preferences_language_change_download_retry">Réessayer</string>
     <!-- Positive button label on the language pack download failure dialog when Google Play cannot download the pack. Opens signal.org/android/apk in a browser. -->
     <string name="preferences_language_unavailable_visit_website">Visit website</string>
 
@@ -527,7 +527,7 @@
     <!-- Body of a confirmation dialog shown when a user without Google Play Services tries to disable the "Stay connected in background" setting -->
     <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play Services are not available on this device. If this setting is disabled, you will no longer be able to receive messages while the app is in the background.</string>
     <!-- Button label that disables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__continue">Continue</string>
+    <string name="DataAndStorageSettingsFragment__continue">Continuer</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">Haute qualité</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
@@ -692,13 +692,13 @@
     <!-- Section header in privacy settings above the rows for hidden and blocked contacts -->
     <string name="PrivacySettingsScreen__hidden_and_blocked">Hidden and blocked</string>
     <!-- Row label in privacy settings shown when the user has no hidden contacts or no blocked contacts -->
-    <string name="PrivacySettingsScreen__none">None</string>
+    <string name="PrivacySettingsScreen__none">Aucune</string>
     <!-- Row title in privacy settings that opens the list of contacts the user has hidden -->
     <string name="PrivacySettingsScreen__hidden">Hidden</string>
     <!-- Row label in privacy settings showing how many contacts the user has hidden. Placeholder is the count. -->
     <plurals name="PrivacySettingsScreen__d_hidden_contacts">
-        <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="one">%1$d contact</item>
+        <item quantity="other">%1$d contacts</item>
     </plurals>
 
     <!-- HiddenContactsScreen -->
@@ -713,7 +713,7 @@
     <!-- Dialog body explaining what unhiding a contact does -->
     <string name="HiddenContactsScreen__unhide_body">This person will show up when searching again, and will be able to see your profile.</string>
     <!-- Dialog button that unhides a contact -->
-    <string name="HiddenContactsScreen__unhide">Unhide</string>
+    <string name="HiddenContactsScreen__unhide">Afficher</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
@@ -1291,16 +1291,16 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Créer une nouvelle clé de récupération</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Pour pouvoir désactiver votre code PIN, vous devez d\'abord créer et enregistrer une nouvelle clé de récupération.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Pour désactiver votre code PIN, vous devez d\'abord créer une nouvelle clé de récupération et l\'enregistrer.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Créer une clé</string>
     <string name="ApplicationPreferencesActivity_pin_created">Code PIN créé.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">Code PIN désactivé.</string>
 
     <!-- Title of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__discard_changes">Discard changes?</string>
+    <string name="AppSettingsNavigation__discard_changes">Supprimer les modifications ?</string>
     <!-- Body of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
     <string name="AppSettingsNavigation__you_will_lose_changes">You\'ll lose the changes you\'ve made.</string>
     <!-- Button in a dialog that throws away unsaved edits and leaves the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__discard">Discard</string>
+    <string name="AppSettingsNavigation__discard">Supprimer</string>
 </resources>

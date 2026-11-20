@@ -45,9 +45,9 @@
   <!-- Sort option in the media overview, and the label of the sort button when selected. Shows the largest files first -->
   <string name="MediaOverviewScreen__storage_used">Espace de stockage utilisé</string>
   <!-- Accessibility description for the button that switches the media overview from a list back to a grid of thumbnails -->
-  <string name="MediaOverviewScreen__grid_view">Vue Galerie</string>
+  <string name="MediaOverviewScreen__grid_view">Vue Grille</string>
   <!-- Accessibility description for the button that switches the media overview from a grid of thumbnails to a list with file details -->
-  <string name="MediaOverviewScreen__list_view">Affichage en liste</string>
+  <string name="MediaOverviewScreen__list_view">Vue Liste</string>
 
   <!-- Bottom bar button that saves the selected media to the device. Plural so the verb can agree with the number of selected items -->
   <plurals name="MediaOverviewScreen__save_plural">

@@ -1224,9 +1224,9 @@
     <!-- Banner shown after a language finished downloading in the background. %1$s is the language\'s name written in that language, for example "Deutsch". -->
     <string name="LanguagePackReadyBanner__body">"The app language %1$s is ready to use. Restart Signal to switch to it."</string>
     <!-- Button on the banner shown after a language finished downloading. Restarts the app so the language takes effect. -->
-    <string name="LanguagePackReadyBanner__restart">Restart</string>
+    <string name="LanguagePackReadyBanner__restart">Redémarrer</string>
     <!-- Button on the banner shown after a language finished downloading. Hides the banner without restarting and applying the new language. -->
-    <string name="LanguagePackReadyBanner__not_now">Not now</string>
+    <string name="LanguagePackReadyBanner__not_now">Plus tard</string>
 
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">Quitter le groupe ?</string>
@@ -1541,8 +1541,8 @@
     <string name="MediaOverviewActivity_Oldest">Le plus ancien</string>
     <string name="MediaOverviewActivity_Storage_used">Espace de stockage utilisé</string>
     <string name="MediaOverviewActivity_All_storage_use">Utilisation totale de l\'espace de stockage</string>
-    <string name="MediaOverviewActivity_Grid_view_description">Vue Galerie</string>
-    <string name="MediaOverviewActivity_List_view_description">Affichage en liste</string>
+    <string name="MediaOverviewActivity_Grid_view_description">Vue Grille</string>
+    <string name="MediaOverviewActivity_List_view_description">Vue Liste</string>
     <string name="MediaOverviewActivity_Selected_description">Sélectionné</string>
     <string name="MediaOverviewActivity_select_all">Tout sélectionner</string>
     <plurals name="MediaOverviewActivity_save_plural">
@@ -2105,7 +2105,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Avertissement</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">La désactivation du code PIN entraînera la perte de toutes vos données lors de votre réinscription sur Signal, à moins de procéder à une sauvegarde et une restauration manuelles. Vous ne pouvez pas activer le blocage d’inscription si le code PIN est désactivé.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">La désactivation du code PIN entraînera la perte de toutes vos données lors de votre réinscription sur Signal, à moins de procéder à une sauvegarde et une restauration manuelles. Vous ne pouvez pas activer le blocage d\'inscription si le code PIN est désactivé.</string>
     <string name="PinOptOutDialog_disable_pin">Désactiver le code PIN</string>
 
     <!-- RatingManager -->
@@ -4235,7 +4235,7 @@
 
     <string name="CallNotificationBuilder_connecting">Connexion…</string>
     <!-- Notification title shown when Signal needs to be opened to use the microphone during a call -->
-    <string name="CallNotificationBuilder__open_signal">Open Signal</string>
+    <string name="CallNotificationBuilder__open_signal">Ouvrir Signal</string>
     <!-- Notification body shown when a call was answered from a watch or other device but Signal needs microphone permission before it can connect -->
     <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">To answer this call, allow Signal access to your microphone.</string>
     <!-- Notification body shown during a call when Android blocked microphone access because Signal was in the background -->
@@ -5148,7 +5148,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">Supprimer</string>
     <!-- Context menu item that hides a contact -->
-    <string name="NewConversationActivity__hide">Hide</string>
+    <string name="NewConversationActivity__hide">Masquer</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Bloquer</string>
     <!-- Dialog title when removing a contact -->
