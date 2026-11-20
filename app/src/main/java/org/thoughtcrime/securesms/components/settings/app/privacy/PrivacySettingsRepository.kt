@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy
 
 import android.content.Intent
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.concurrent.SignalDispatchers
@@ -65,6 +66,9 @@ object PrivacySettingsRepository {
   fun getScreenLockTimeout(): Duration = SignalStore.settings.screenLockTimeout.seconds
 
   fun isScreenSecurityEnabled(): Boolean = SignalStore.settings.isScreenSecurityEnabled
+
+  /** Emits whenever screen security changes, including when it is changed from outside of the privacy settings screen. */
+  fun screenSecurityEnabledFlow(): Flow<Boolean> = SignalStore.settings.isScreenSecurityEnabledFlow
 
   fun setScreenSecurityEnabled(enabled: Boolean) {
     SignalStore.settings.isScreenSecurityEnabled = enabled

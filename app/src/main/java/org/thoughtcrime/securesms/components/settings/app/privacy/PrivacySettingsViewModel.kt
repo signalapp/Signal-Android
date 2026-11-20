@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy
 
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -7,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.signal.appsettings.privacy.PrivacySettingsAction
 import org.signal.appsettings.privacy.PrivacySettingsEvent
 import org.signal.appsettings.privacy.PrivacySettingsState
@@ -39,6 +41,13 @@ class PrivacySettingsViewModel(
 
   init {
     refresh()
+
+    // Screen security can be changed while this screen is showing, e.g. by AssistantScreenSecurityObserver.
+    viewModelScope.launch {
+      PrivacySettingsRepository.screenSecurityEnabledFlow().collect { enabled ->
+        _state.update { it.copy(screenSecurity = enabled) }
+      }
+    }
   }
 
   override suspend fun processEvent(event: PrivacySettingsEvent) {

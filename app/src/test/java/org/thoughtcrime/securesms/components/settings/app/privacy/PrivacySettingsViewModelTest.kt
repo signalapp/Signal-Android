@@ -22,6 +22,7 @@ import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestScope
@@ -56,6 +57,7 @@ class PrivacySettingsViewModelTest {
   private var readReceipts = false
   private var typingIndicators = false
   private var screenSecurity = false
+  private val screenSecurityFlow = MutableStateFlow(false)
   private var incognitoKeyboard = false
   private var paymentLock = false
   private var hiddenContactsAvailable = false
@@ -84,7 +86,11 @@ class PrivacySettingsViewModelTest {
     every { PrivacySettingsRepository.isScreenLockEnabled() } returns false
     every { PrivacySettingsRepository.getScreenLockTimeout() } returns Duration.ZERO
     every { PrivacySettingsRepository.isScreenSecurityEnabled() } answers { screenSecurity }
-    every { PrivacySettingsRepository.setScreenSecurityEnabled(any()) } answers { screenSecurity = firstArg() }
+    every { PrivacySettingsRepository.setScreenSecurityEnabled(any()) } answers {
+      screenSecurity = firstArg()
+      screenSecurityFlow.value = firstArg()
+    }
+    every { PrivacySettingsRepository.screenSecurityEnabledFlow() } returns screenSecurityFlow
     every { PrivacySettingsRepository.isIncognitoKeyboardEnabled() } answers { incognitoKeyboard }
     every { PrivacySettingsRepository.setIncognitoKeyboardEnabled(any()) } answers { incognitoKeyboard = firstArg() }
     every { PrivacySettingsRepository.isPaymentLockEnabled() } answers { paymentLock }
@@ -190,6 +196,17 @@ class PrivacySettingsViewModelTest {
 
     assertThat(viewModel.state.value.screenSecurity).isTrue()
     assertThat(actions).containsExactly(PrivacySettingsAction.ApplyScreenSecurity(true))
+  }
+
+  @Test
+  fun `screen security changed outside of the screen updates the toggle`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    assertThat(viewModel.state.value.screenSecurity).isFalse()
+
+    screenSecurity = true
+    screenSecurityFlow.value = true
+
+    assertThat(viewModel.state.value.screenSecurity).isTrue()
   }
 
   @Test

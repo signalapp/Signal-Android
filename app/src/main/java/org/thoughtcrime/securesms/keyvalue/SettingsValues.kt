@@ -6,6 +6,7 @@ import android.provider.Settings
 import androidx.annotation.ArrayRes
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 import org.signal.core.models.calls.CallDataMode
 import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.storage.KeepMessagesDuration
@@ -433,7 +434,9 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
 
   var screenLockTimeout: Long by longValue(SCREEN_LOCK_TIMEOUT, 0)
 
-  var isScreenSecurityEnabled: Boolean by booleanValue(SCREEN_SECURITY_ENABLED, false)
+  private val isScreenSecurityEnabledValue = booleanValue(SCREEN_SECURITY_ENABLED, false)
+  var isScreenSecurityEnabled: Boolean by isScreenSecurityEnabledValue
+  val isScreenSecurityEnabledFlow: Flow<Boolean> by lazy { isScreenSecurityEnabledValue.toFlow() }
 
   /** When the user last turned screen security back off after it was automatically enabled due to an assistant app, or 0 if never. */
   var assistantScreenSecurityDeclinedAt: Long by longValue(ASSISTANT_SCREEN_SECURITY_DECLINED_AT, 0)
