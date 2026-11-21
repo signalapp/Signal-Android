@@ -4,8 +4,11 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.media.AudioDeviceCallback
+import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.os.Bundle
+import android.os.Handler
 import android.os.PowerManager
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -39,8 +42,13 @@ class VoiceNoteProximityWakeLockManager(
 
   private val mediaControllerCallback = ProximityListener()
   private val hardwareSensorEventListener = HardwareSensorEventListener()
+  private val audioDeviceCallback = object : AudioDeviceCallback() {
+    override fun onAudioDevicesAdded(addedDevices: Array<out AudioDeviceInfo>) = updateProximitySensor()
+    override fun onAudioDevicesRemoved(removedDevices: Array<out AudioDeviceInfo>) = updateProximitySensor()
+  }
 
-  private var startTime: Long = -1
+  private var deviceCallbackRegistered = false
+  private var sensorRegistered = false
 
   init {
     if (proximitySensor != null) {
@@ -51,6 +59,7 @@ class VoiceNoteProximityWakeLockManager(
   override fun onResume(owner: LifecycleOwner) {
     if (proximitySensor != null) {
       mediaController.addListener(mediaControllerCallback)
+      setMonitoringPlayback(isPlaybackActive())
     }
   }
 
@@ -62,7 +71,7 @@ class VoiceNoteProximityWakeLockManager(
 
   fun unregisterCallbacksAndRelease() {
     mediaController.removeListener(mediaControllerCallback)
-    cleanUpWakeLock()
+    setMonitoringPlayback(false)
   }
 
   fun unregisterFromLifecycle() {
@@ -73,12 +82,46 @@ class VoiceNoteProximityWakeLockManager(
 
   private fun isActivityResumed() = activity.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
 
-  private fun cleanUpWakeLock() {
-    startTime = -1L
+  private fun isPlaybackActive(): Boolean {
+    return mediaController.playWhenReady &&
+      mediaController.playbackSuppressionReason == Player.PLAYBACK_SUPPRESSION_REASON_NONE &&
+      (mediaController.playbackState == Player.STATE_READY || mediaController.playbackState == Player.STATE_BUFFERING)
+  }
+
+  private fun setMonitoringPlayback(active: Boolean) {
+    if (active != deviceCallbackRegistered) {
+      deviceCallbackRegistered = active
+      if (active) {
+        audioManager.registerAudioDeviceCallback(audioDeviceCallback, Handler(activity.mainLooper))
+      } else {
+        audioManager.unregisterAudioDeviceCallback(audioDeviceCallback)
+      }
+    }
+
+    updateProximitySensor()
+  }
+
+  private fun updateProximitySensor() {
+    val shouldRegister = deviceCallbackRegistered && !audioManager.isHeadsetConnected
+    if (sensorRegistered == shouldRegister) {
+      return
+    }
+
+    if (shouldRegister) {
+      // The system turns the screen back on when the sensor is far. Keep the lock for the next near event.
+      wakeLock?.acquire(TimeUnit.MINUTES.toMillis(30))
+      sensorRegistered = sensorManager.registerListener(hardwareSensorEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
+      if (!sensorRegistered) {
+        wakeLock?.release()
+      }
+      return
+    }
+
+    sensorRegistered = false
     sensorManager.unregisterListener(hardwareSensorEventListener)
 
     if (wakeLock?.isHeld == true) {
-      Log.d(TAG, "[cleanUpWakeLock] Releasing wake lock.")
+      Log.d(TAG, "Stopped monitoring proximity. Releasing wake lock.")
       wakeLock.release()
     }
 
@@ -93,44 +136,18 @@ class VoiceNoteProximityWakeLockManager(
 
   inner class ProximityListener : Player.Listener {
     override fun onEvents(player: Player, events: Player.Events) {
-      super.onEvents(player, events)
-      if (events.containsAny(Player.EVENT_PLAYBACK_STATE_CHANGED, Player.EVENT_IS_PLAYING_CHANGED)) {
-        if (!isActivityResumed()) {
-          return
-        }
-
-        if (player.isPlaying) {
-          if (startTime == -1L) {
-            if (audioManager.isHeadsetConnected) {
-              Log.d(TAG, "[onPlaybackStateChanged] Headset connected, skipping proximity sensor registration.")
-            } else {
-              Log.d(TAG, "[onPlaybackStateChanged] Player became active with start time $startTime, registering sensor listener.")
-              startTime = System.currentTimeMillis()
-              if (wakeLock?.isHeld == false) {
-                Log.d(TAG, "[onPlaybackStateChanged] Acquiring wakelock")
-                wakeLock.acquire(TimeUnit.MINUTES.toMillis(30))
-              }
-              sensorManager.registerListener(hardwareSensorEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
-            }
-          } else {
-            Log.d(TAG, "[onPlaybackStateChanged] Player became active without start time, skipping sensor registration")
-          }
-        } else {
-          Log.d(TAG, "[onPlaybackStateChanged] Player became inactive. Cleaning up wake lock.")
-          cleanUpWakeLock()
-        }
+      if (!isActivityResumed()) return
+      if (events.containsAny(Player.EVENT_PLAYBACK_STATE_CHANGED, Player.EVENT_PLAY_WHEN_READY_CHANGED, Player.EVENT_PLAYBACK_SUPPRESSION_REASON_CHANGED)) {
+        setMonitoringPlayback(isPlaybackActive())
       }
     }
   }
 
   inner class HardwareSensorEventListener : SensorEventListener {
     override fun onSensorChanged(event: SensorEvent) {
-      if (System.currentTimeMillis() - startTime <= 500) {
-        Log.i(TAG, "Ignoring sensor change because it's too close to start time.")
-        return
-      } else if (startTime == -1L ||
+      if (!sensorRegistered ||
         !isActivityResumed() ||
-        !mediaController.isPlaying ||
+        !isPlaybackActive() ||
         event.sensor.type != Sensor.TYPE_PROXIMITY ||
         audioManager.isHeadsetConnected()
       ) {
@@ -144,15 +161,6 @@ class VoiceNoteProximityWakeLockManager(
       }
 
       sendNewStreamTypeToPlayer(newStreamType)
-
-      if (newStreamType == AudioManager.STREAM_VOICE_CALL) {
-        startTime = System.currentTimeMillis()
-      } else {
-        if (wakeLock?.isHeld == true) {
-          Log.d(TAG, "[onSensorChanged] Releasing wakelock")
-          wakeLock.release()
-        }
-      }
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) = Unit

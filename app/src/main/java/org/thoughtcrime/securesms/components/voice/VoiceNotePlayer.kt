@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.components.voice
 
 import android.content.Context
+import android.media.AudioDeviceInfo
 import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.os.Build
 import androidx.annotation.OptIn
 import androidx.core.content.ContextCompat
+import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.Player
@@ -25,7 +27,7 @@ import org.thoughtcrime.securesms.video.exo.SignalMediaSourceFactory
 @OptIn(UnstableApi::class)
 class VoiceNotePlayer @JvmOverloads constructor(
   context: Context,
-  internalPlayer: ExoPlayer = ExoPlayer.Builder(context)
+  private val internalPlayer: ExoPlayer = ExoPlayer.Builder(context)
     .setRenderersFactory(WorkaroundRenderersFactory(context))
     .setMediaSourceFactory(SignalMediaSourceFactory(context))
     .setLoadControl(
@@ -38,11 +40,19 @@ class VoiceNotePlayer @JvmOverloads constructor(
 
   companion object {
     private val TAG = Log.tag(VoiceNotePlayer::class.java)
+    private val EARPIECE_AUDIO_ATTRIBUTES = AudioAttributes.Builder()
+      .setUsage(C.USAGE_VOICE_COMMUNICATION)
+      .setContentType(C.AUDIO_CONTENT_TYPE_SPEECH)
+      .build()
+    private val MEDIA_AUDIO_ATTRIBUTES = AudioAttributes.Builder()
+      .setUsage(C.USAGE_MEDIA)
+      .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+      .build()
   }
 
-  init {
-    val audioManager = ContextCompat.getSystemService(context, AudioManager::class.java)
+  private val audioManager = ContextCompat.getSystemService(context, AudioManager::class.java)
 
+  init {
     val audioFocusRequest = if (Build.VERSION.SDK_INT >= 26) {
       AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
         .setAudioAttributes(
@@ -84,6 +94,33 @@ class VoiceNotePlayer @JvmOverloads constructor(
         }
       }
     })
+  }
+
+  fun setAudioStream(streamType: Int) {
+    when (streamType) {
+      AudioManager.STREAM_VOICE_CALL -> {
+        if (audioAttributes.usage == C.USAGE_VOICE_COMMUNICATION || !playWhenReady) return
+
+        val earpiece = audioManager?.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+          ?.firstOrNull { it.type == AudioDeviceInfo.TYPE_BUILTIN_EARPIECE }
+        if (earpiece == null) {
+          Log.w(TAG, "Pausing voice note because no earpiece is available.")
+          pause()
+          return
+        }
+
+        internalPlayer.setPreferredAudioDevice(earpiece)
+        setAudioAttributes(EARPIECE_AUDIO_ATTRIBUTES, false)
+      }
+      AudioManager.STREAM_MUSIC -> {
+        if (audioAttributes.usage != C.USAGE_VOICE_COMMUNICATION) return
+
+        pause()
+        internalPlayer.setPreferredAudioDevice(null)
+        setAudioAttributes(MEDIA_AUDIO_ATTRIBUTES, false)
+      }
+      else -> throw AssertionError("Unexpected voice note stream type: $streamType")
+    }
   }
 
   override fun seekTo(windowIndex: Int, positionMs: Long) {
