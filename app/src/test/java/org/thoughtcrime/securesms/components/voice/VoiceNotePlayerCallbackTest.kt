@@ -2,97 +2,112 @@ package org.thoughtcrime.securesms.components.voice
 
 import android.app.Application
 import android.content.Context
+import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.os.Bundle
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
+import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.SessionCommand
 import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import io.mockk.verifyOrder
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.robolectric.shadows.AudioDeviceInfoBuilder
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class VoiceNotePlayerCallbackTest {
   private val context: Context = ApplicationProvider.getApplicationContext()
+  private val audioManager = shadowOf(context.getSystemService(AudioManager::class.java))
   private val mediaAudioAttributes = AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build()
   private val callAudioAttributes = AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_SPEECH).setUsage(C.USAGE_VOICE_COMMUNICATION).build()
   private val session = mockk<MediaSession>()
   private val controllerInfo = mockk<MediaSession.ControllerInfo>()
-  private val player = mockk<VoiceNotePlayer>(relaxUnitFun = true)
-  private val testSubject = VoiceNotePlayerCallback(context, player)
+  private val player = mockk<ExoPlayer>(relaxUnitFun = true)
+  private val testSubject = VoiceNotePlayerCallback(context, VoiceNotePlayer(context, player))
 
   @Test
-  fun `Given stream is media, When I onCommand for voice, then I expect the stream to switch to voice and continue playback`() {
-    // GIVEN
+  fun `raising the phone selects the built-in earpiece and continues playing`() {
     every { player.audioAttributes } returns mediaAudioAttributes
+    every { player.playWhenReady } returns true
+    val speaker = AudioDeviceInfoBuilder.newBuilder().setType(AudioDeviceInfo.TYPE_BUILTIN_SPEAKER).build()
+    val earpiece = AudioDeviceInfoBuilder.newBuilder().setType(AudioDeviceInfo.TYPE_BUILTIN_EARPIECE).build()
+    audioManager.setOutputDevices(listOf(speaker, earpiece))
 
-    val command = SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY)
-    val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_VOICE_CALL) }
-    val expected = callAudioAttributes
+    setAudioStream(AudioManager.STREAM_VOICE_CALL)
 
-    // WHEN
-    testSubject.onCustomCommand(session, controllerInfo, command, extras)
-
-    // THEN
-    verify { player.playWhenReady = false }
-    verify { player.setAudioAttributes(expected, false) }
-    verify { player.playWhenReady = true }
+    verifyOrder {
+      player.setPreferredAudioDevice(earpiece)
+      player.setAudioAttributes(callAudioAttributes, false)
+    }
+    verify(exactly = 0) { player.pause() }
+    verify(exactly = 0) { player.playWhenReady = any() }
   }
 
   @Test
-  fun `Given stream is voice, When I onCommand for media, then I expect the stream to switch to media and pause playback`() {
-    // GIVEN
+  fun `raising the phone without an earpiece pauses playback`() {
+    every { player.audioAttributes } returns mediaAudioAttributes
+    every { player.playWhenReady } returns true
+    audioManager.setOutputDevices(listOf(AudioDeviceInfoBuilder.newBuilder().setType(AudioDeviceInfo.TYPE_BUILTIN_SPEAKER).build()))
+
+    setAudioStream(AudioManager.STREAM_VOICE_CALL)
+
+    verify { player.pause() }
+    verify(exactly = 0) { player.setAudioAttributes(any(), any()) }
+  }
+
+  @Test
+  fun `moving away pauses before releasing the earpiece`() {
     every { player.audioAttributes } returns callAudioAttributes
 
-    val command = SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY)
-    val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_MUSIC) }
-    val expected = mediaAudioAttributes
+    setAudioStream(AudioManager.STREAM_MUSIC)
 
-    // WHEN
-    testSubject.onCustomCommand(session, controllerInfo, command, extras)
-
-    // THEN
-    verify { player.playWhenReady = false }
-    verify { player.setAudioAttributes(expected, false) }
+    verifyOrder {
+      player.pause()
+      player.setPreferredAudioDevice(null)
+      player.setAudioAttributes(mediaAudioAttributes, false)
+    }
     verify(exactly = 0) { player.playWhenReady = true }
   }
 
   @Test
-  fun `Given stream is voice, When I onCommand for voice, then I expect no change`() {
-    // GIVEN
-    every { player.audioAttributes } returns callAudioAttributes
+  fun `a late near event after pause leaves the player alone`() {
+    every { player.audioAttributes } returns mediaAudioAttributes
+    every { player.playWhenReady } returns false
 
-    val command = SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY)
-    val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_VOICE_CALL) }
+    setAudioStream(AudioManager.STREAM_VOICE_CALL)
 
-    // WHEN
-    testSubject.onCustomCommand(session, controllerInfo, command, extras)
-
-    // THEN
-    verify(exactly = 0) { player.playWhenReady = any() }
-    verify(exactly = 0) { player.setAudioAttributes(any(), false) }
+    verify(exactly = 0) { player.setPreferredAudioDevice(any()) }
+    verify(exactly = 0) { player.setAudioAttributes(any(), any()) }
+    verify(exactly = 0) { player.playWhenReady = true }
   }
 
   @Test
-  fun `Given stream is media, When I onCommand for media, then I expect no change`() {
-    // GIVEN
+  fun `repeated near and far events leave the current route and playback alone`() {
+    every { player.audioAttributes } returns callAudioAttributes
+    setAudioStream(AudioManager.STREAM_VOICE_CALL)
+
     every { player.audioAttributes } returns mediaAudioAttributes
+    setAudioStream(AudioManager.STREAM_MUSIC)
 
-    val command = SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY)
-    val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_MUSIC) }
-
-    // WHEN
-    testSubject.onCustomCommand(session, controllerInfo, command, extras)
-
-    // THEN
-    verify(exactly = 0) { player.playWhenReady = any() }
+    verify(exactly = 0) { player.pause() }
+    verify(exactly = 0) { player.setPreferredAudioDevice(any()) }
     verify(exactly = 0) { player.setAudioAttributes(any(), any()) }
+    verify(exactly = 0) { player.playWhenReady = any() }
+  }
+
+  private fun setAudioStream(streamType: Int) {
+    val action = VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM
+    val command = SessionCommand(action, Bundle.EMPTY)
+    val extras = Bundle().apply { putInt(action, streamType) }
+    testSubject.onCustomCommand(session, controllerInfo, command, extras)
   }
 }

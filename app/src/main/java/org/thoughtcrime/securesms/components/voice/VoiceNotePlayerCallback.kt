@@ -13,8 +13,6 @@ import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.annotation.OptIn
 import androidx.annotation.WorkerThread
-import androidx.media3.common.AudioAttributes
-import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaItem.LocalConfiguration
 import androidx.media3.common.PlaybackParameters
@@ -198,24 +196,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   }
 
   private fun setAudioStream(extras: Bundle): ListenableFuture<SessionResult> {
-    val newStreamType: Int = extras.getInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_MUSIC)
-
-    val currentStreamType = androidx.media3.common.util.Util.getStreamTypeForAudioUsage(player.audioAttributes.usage)
-    if (newStreamType != currentStreamType) {
-      val attributes = when (newStreamType) {
-        AudioManager.STREAM_MUSIC -> AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build()
-        AudioManager.STREAM_VOICE_CALL -> AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_SPEECH).setUsage(C.USAGE_VOICE_COMMUNICATION).build()
-        else -> throw AssertionError()
-      }
-
-      player.playWhenReady = false
-      player.setAudioAttributes(attributes, false)
-      if (newStreamType == AudioManager.STREAM_VOICE_CALL) {
-        player.playWhenReady = true
-      } else {
-        Log.i(TAG, "Audio stream set to $newStreamType. Not playing when ready.")
-      }
-    }
+    player.setAudioStream(extras.getInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_MUSIC))
     return Futures.immediateFuture(SessionResult(SessionResult.RESULT_SUCCESS))
   }
 

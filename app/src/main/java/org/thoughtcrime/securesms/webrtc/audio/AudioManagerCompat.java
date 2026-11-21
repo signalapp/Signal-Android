@@ -224,9 +224,12 @@ public abstract class AudioManagerCompat {
       final int type = device.getType();
       if (type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
           type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES ||
+          type == AudioDeviceInfo.TYPE_USB_DEVICE ||
           type == AudioDeviceInfo.TYPE_USB_HEADSET ||
           type == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP ||
-          type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO) {
+          type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO ||
+          type == AudioDeviceInfo.TYPE_BLE_HEADSET ||
+          type == AudioDeviceInfo.TYPE_HEARING_AID) {
         Log.i(TAG, "Headset connected: " + type);
         return true;
       }
