@@ -445,25 +445,25 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">નવી ભાષાનું સેટિંગ લાગુ કરવા માટે ઍપ રિસ્ટાર્ટ થશે.</string>
     <!-- Dialog message body shown when selecting a language that hasn\'t been downloaded yet, notifying the user that a download will happen and then restart. -->
-    <string name="preferences_language_change_download_confirmation_message">Signal will download the language pack and then restart the app to apply the new language setting.</string>
+    <string name="preferences_language_change_download_confirmation_message">Signal ભાષા પેક ડાઉનલોડ કરશે અને પછી નવી ભાષા સેટિંગ લાગુ કરવા માટે ઍપને ફરીથી શરૂ કરશે.</string>
     <!-- Dialog message shown while a language pack is being downloaded after the user picks a language. -->
-    <string name="preferences_language_change_downloading_message">Downloading language pack…</string>
+    <string name="preferences_language_change_downloading_message">ભાષા પેક ડાઉનલોડ થાય છે…</string>
     <!-- Dialog message shown when downloading a language pack fails for a reason that trying again may fix. %1$d is Google Play\'s numeric error code, for example -6, shown so the user can report it. -->
-    <string name="preferences_language_change_download_failed_message">Couldn\'t download language pack (error %1$d). Check your connection and try again.</string>
+    <string name="preferences_language_change_download_failed_message">ભાષા પેક ડાઉનલોડ ન કરી શક્યા (એરર %1$d). તમારું કનેક્શન તપાસો અને ફરીથી પ્રયત્ન કરો.</string>
     <!-- Dialog message shown when downloading a language pack fails because the device is out of storage. -->
-    <string name="preferences_language_change_download_failed_storage_message">Couldn\'t download language pack. Free up space on your device and try again.</string>
+    <string name="preferences_language_change_download_failed_storage_message">ભાષા પેક ડાઉનલોડ ન કરી શક્યા. તમારા ડિવાઇસ પર જગ્યા ખાલી કરો અને ફરી પ્રયાસ કરો.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the Google Play Store or Google Play services app is missing, or Google Play didn\'t install this copy of Signal. Directs the user to download a universal build with full language support from signal.org. "Google Play" is a product name and "signal.org" is a web address; do not translate either. -->
-    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play can\'t download language packs for this copy of Signal. Download an APK from signal.org to use all supported languages.</string>
+    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play આ Signalની કૉપિ માટે ભાષા પેક ડાઉનલોડ કરી શકતું નથી. સપોર્ટ થતી બધી ભાષાઓનો ઉપયોગ કરવા signal.org પરથી APK ડાઉનલોડ કરો.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play Store app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_disabled_message">Language packs are downloaded through Google Play, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_disabled_message">ભાષા પેકને Google Play દ્વારા ડાઉનલોડ કરવામાં આવે છે, જે આ ડિવાઇસ પર બંધ કરેલ છે. આ ભાષા ડાઉનલોડ કરવા માટે તેને સેટિંગ્સમાંથી ચાલુ કરો.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play services app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_services_disabled_message">Language packs are downloaded through Google Play services, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_services_disabled_message">ભાષા પેકને Google Play સર્વિસ દ્વારા ડાઉનલોડ કરવામાં આવે છે, જે આ ડિવાઇસ પર બંધ કરેલ છે. આ ભાષા ડાઉનલોડ કરવા માટે તેને સેટિંગ્સમાંથી ચાલુ કરો.</string>
     <!-- Positive button label on the language pack download failure dialog when the Google Play Store or Google Play services app is turned off. Opens that app\'s page in system settings, where it can be turned on. -->
     <string name="preferences_language_unavailable_open_settings">સેટિંગ્સ ખોલો</string>
     <!-- Positive button label on the language pack download failure dialog. Starts the download again. -->
     <string name="preferences_language_change_download_retry">ફરીથી પ્રયત્ન કરો</string>
     <!-- Positive button label on the language pack download failure dialog when Google Play cannot download the pack. Opens signal.org/android/apk in a browser. -->
-    <string name="preferences_language_unavailable_visit_website">Visit website</string>
+    <string name="preferences_language_unavailable_visit_website">વેબસાઇટની મુલાકાત લો</string>
 
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ફોન નંબર</string>
@@ -525,7 +525,7 @@
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__enable">ચાલુ કરો</string>
     <!-- Body of a confirmation dialog shown when a user without Google Play Services tries to disable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play Services are not available on this device. If this setting is disabled, you will no longer be able to receive messages while the app is in the background.</string>
+    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play સર્વિસ આ ડિવાઇસ પર ઉપલબ્ધ નથી. જો આ સેટિંગ નિષ્ક્રિય કરવામાં આવે, તો ઍપ બેકગ્રાઉન્ડમાં હોય ત્યારે તમે મેસેજ મેળવી શકશો નહીં.</string>
     <!-- Button label that disables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__continue">ચાલુ રાખો</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -690,11 +690,11 @@
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
     <string name="PrivacySettingsScreen__learn_more">વધુ જાણો</string>
     <!-- Section header in privacy settings above the rows for hidden and blocked contacts -->
-    <string name="PrivacySettingsScreen__hidden_and_blocked">Hidden and blocked</string>
+    <string name="PrivacySettingsScreen__hidden_and_blocked">છુપાવ્યા અને બ્લૉક કર્યા</string>
     <!-- Row label in privacy settings shown when the user has no hidden contacts or no blocked contacts -->
     <string name="PrivacySettingsScreen__none">કંઈ નહીં</string>
     <!-- Row title in privacy settings that opens the list of contacts the user has hidden -->
-    <string name="PrivacySettingsScreen__hidden">Hidden</string>
+    <string name="PrivacySettingsScreen__hidden">છુપાવ્યા</string>
     <!-- Row label in privacy settings showing how many contacts the user has hidden. Placeholder is the count. -->
     <plurals name="PrivacySettingsScreen__d_hidden_contacts">
         <item quantity="one">%1$d સંપર્ક</item>
@@ -703,15 +703,15 @@
 
     <!-- HiddenContactsScreen -->
     <!-- Title of the screen listing the contacts the user has hidden -->
-    <string name="HiddenContactsScreen__hidden_contacts">Hidden contacts</string>
+    <string name="HiddenContactsScreen__hidden_contacts">છુપાવેલા સંપર્કો</string>
     <!-- Explanation at the top of the hidden contacts screen -->
-    <string name="HiddenContactsScreen__hidden_contacts_description">Hidden contacts don\'t show up when searching. You\'ll get a message request if they message you. Tap a contact to unhide them.</string>
+    <string name="HiddenContactsScreen__hidden_contacts_description">છુપાવેલા સંપર્કો શોધ કરતી વખતે દેખાશે નહીં. જો તેઓ તમને મેસેજ મોકલશે તો તમને એક મેસેજની વિનંતી મળશે. કોઈ સંપર્કને ફરીથી બતાવવા માટે તેના પર ટેપ કરો.</string>
     <!-- Shown on the hidden contacts screen when the user hasn\'t hidden anyone -->
-    <string name="HiddenContactsScreen__no_hidden_contacts">No hidden contacts</string>
+    <string name="HiddenContactsScreen__no_hidden_contacts">કોઈ છુપાવેલા સંપર્કો નથી</string>
     <!-- Dialog title asking whether to unhide a contact. Placeholder is the contact\'s name. -->
-    <string name="HiddenContactsScreen__unhide_s">Unhide %1$s?</string>
+    <string name="HiddenContactsScreen__unhide_s">%1$sને પાછા બતાવવા છે?</string>
     <!-- Dialog body explaining what unhiding a contact does -->
-    <string name="HiddenContactsScreen__unhide_body">This person will show up when searching again, and will be able to see your profile.</string>
+    <string name="HiddenContactsScreen__unhide_body">ફરીથી શોધ કરશો ત્યારે આ વ્યક્તિ દેખાશે અને તે તમારી પ્રોફાઇલ જોઈ શકશે.</string>
     <!-- Dialog button that unhides a contact -->
     <string name="HiddenContactsScreen__unhide">બતાવો</string>
 
@@ -1300,7 +1300,7 @@
     <!-- Title of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard_changes">ફેરફારો જવા દેવા છે?</string>
     <!-- Body of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__you_will_lose_changes">You\'ll lose the changes you\'ve made.</string>
+    <string name="AppSettingsNavigation__you_will_lose_changes">તમે કરેલા ફેરફારો ગુમાવશો.</string>
     <!-- Button in a dialog that throws away unsaved edits and leaves the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard">કાઢી નાખો</string>
 </resources>

@@ -444,25 +444,25 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">重新開 APP 去套用新嘅語言設定。</string>
     <!-- Dialog message body shown when selecting a language that hasn\'t been downloaded yet, notifying the user that a download will happen and then restart. -->
-    <string name="preferences_language_change_download_confirmation_message">Signal will download the language pack and then restart the app to apply the new language setting.</string>
+    <string name="preferences_language_change_download_confirmation_message">Signal 會下載語言包，然後重新開 APP 去套用新嘅語言設定。</string>
     <!-- Dialog message shown while a language pack is being downloaded after the user picks a language. -->
-    <string name="preferences_language_change_downloading_message">Downloading language pack…</string>
+    <string name="preferences_language_change_downloading_message">下載緊語言包……</string>
     <!-- Dialog message shown when downloading a language pack fails for a reason that trying again may fix. %1$d is Google Play\'s numeric error code, for example -6, shown so the user can report it. -->
-    <string name="preferences_language_change_download_failed_message">Couldn\'t download language pack (error %1$d). Check your connection and try again.</string>
+    <string name="preferences_language_change_download_failed_message">下載唔到語言包（錯誤 %1$d）。請檢查你嘅連線，然後再試多次。</string>
     <!-- Dialog message shown when downloading a language pack fails because the device is out of storage. -->
-    <string name="preferences_language_change_download_failed_storage_message">Couldn\'t download language pack. Free up space on your device and try again.</string>
+    <string name="preferences_language_change_download_failed_storage_message">下載唔到語言包。請喺你部機度搵多啲空間之後再試。</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the Google Play Store or Google Play services app is missing, or Google Play didn\'t install this copy of Signal. Directs the user to download a universal build with full language support from signal.org. "Google Play" is a product name and "signal.org" is a web address; do not translate either. -->
-    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play can\'t download language packs for this copy of Signal. Download an APK from signal.org to use all supported languages.</string>
+    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play 下載唔到呢個 Signal 版本嘅語言包。請喺 signal.org 下載 APK 檔案，就可以用所有受支援嘅語言。</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play Store app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_disabled_message">Language packs are downloaded through Google Play, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_disabled_message">語言包係由 Google Play 下載，但呢個裝置嘅 Google Play 閂咗。喺設定入面啟用佢嚟下載呢種語言。</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play services app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_services_disabled_message">Language packs are downloaded through Google Play services, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_services_disabled_message">語言包係由 Google Play 服務下載，但呢部裝置嘅 Play 服務閂咗。喺設定入面啟用佢嚟下載呢種語言。</string>
     <!-- Positive button label on the language pack download failure dialog when the Google Play Store or Google Play services app is turned off. Opens that app\'s page in system settings, where it can be turned on. -->
     <string name="preferences_language_unavailable_open_settings">打開設定</string>
     <!-- Positive button label on the language pack download failure dialog. Starts the download again. -->
     <string name="preferences_language_change_download_retry">再試一次</string>
     <!-- Positive button label on the language pack download failure dialog when Google Play cannot download the pack. Opens signal.org/android/apk in a browser. -->
-    <string name="preferences_language_unavailable_visit_website">Visit website</string>
+    <string name="preferences_language_unavailable_visit_website">去個網站睇睇</string>
 
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">電話冧把</string>
@@ -524,7 +524,7 @@
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__enable">啟用</string>
     <!-- Body of a confirmation dialog shown when a user without Google Play Services tries to disable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play Services are not available on this device. If this setting is disabled, you will no longer be able to receive messages while the app is in the background.</string>
+    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">呢部裝置用唔到 Play 服務。如果停用呢個設定，當 APP 喺背景執行嗰陣，你就唔會再收到訊息。</string>
     <!-- Button label that disables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__continue">繼續</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -688,11 +688,11 @@
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
     <string name="PrivacySettingsScreen__learn_more">了解詳情</string>
     <!-- Section header in privacy settings above the rows for hidden and blocked contacts -->
-    <string name="PrivacySettingsScreen__hidden_and_blocked">Hidden and blocked</string>
+    <string name="PrivacySettingsScreen__hidden_and_blocked">隱藏同封鎖咗</string>
     <!-- Row label in privacy settings shown when the user has no hidden contacts or no blocked contacts -->
     <string name="PrivacySettingsScreen__none">無</string>
     <!-- Row title in privacy settings that opens the list of contacts the user has hidden -->
-    <string name="PrivacySettingsScreen__hidden">Hidden</string>
+    <string name="PrivacySettingsScreen__hidden">隱藏咗</string>
     <!-- Row label in privacy settings showing how many contacts the user has hidden. Placeholder is the count. -->
     <plurals name="PrivacySettingsScreen__d_hidden_contacts">
         <item quantity="other">%1$d 個聯絡人</item>
@@ -700,15 +700,15 @@
 
     <!-- HiddenContactsScreen -->
     <!-- Title of the screen listing the contacts the user has hidden -->
-    <string name="HiddenContactsScreen__hidden_contacts">Hidden contacts</string>
+    <string name="HiddenContactsScreen__hidden_contacts">隱藏嘅聯絡人</string>
     <!-- Explanation at the top of the hidden contacts screen -->
-    <string name="HiddenContactsScreen__hidden_contacts_description">Hidden contacts don\'t show up when searching. You\'ll get a message request if they message you. Tap a contact to unhide them.</string>
+    <string name="HiddenContactsScreen__hidden_contacts_description">喺搜尋聯絡人嗰陣，隱藏嘅聯絡人唔會出現㗎喇。如果對方向你傳送訊息，你將會收到訊息請求。㩒一下聯絡人嚟取消隱藏。</string>
     <!-- Shown on the hidden contacts screen when the user hasn\'t hidden anyone -->
-    <string name="HiddenContactsScreen__no_hidden_contacts">No hidden contacts</string>
+    <string name="HiddenContactsScreen__no_hidden_contacts">冇隱藏嘅聯絡人</string>
     <!-- Dialog title asking whether to unhide a contact. Placeholder is the contact\'s name. -->
-    <string name="HiddenContactsScreen__unhide_s">Unhide %1$s?</string>
+    <string name="HiddenContactsScreen__unhide_s">係咪取消隱藏%1$s？</string>
     <!-- Dialog body explaining what unhiding a contact does -->
-    <string name="HiddenContactsScreen__unhide_body">This person will show up when searching again, and will be able to see your profile.</string>
+    <string name="HiddenContactsScreen__unhide_body">呢個人會喺你再搜尋嗰陣出現，同埋佢可以睇到你嘅個人檔案。</string>
     <!-- Dialog button that unhides a contact -->
     <string name="HiddenContactsScreen__unhide">取消隱藏</string>
 
@@ -1293,9 +1293,9 @@
     <string name="ApplicationPreferencesActivity_pin_disabled">停用咗 PIN 碼。</string>
 
     <!-- Title of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__discard_changes">改過嗰啲嘢係咪掉咗佢？</string>
+    <string name="AppSettingsNavigation__discard_changes">頭先改咗嘅嘢係咪掉咗佢？</string>
     <!-- Body of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__you_will_lose_changes">You\'ll lose the changes you\'ve made.</string>
+    <string name="AppSettingsNavigation__you_will_lose_changes">改過嘅嘢通通都冇得留低㗎啦。</string>
     <!-- Button in a dialog that throws away unsaved edits and leaves the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard">掉咗佢</string>
 </resources>

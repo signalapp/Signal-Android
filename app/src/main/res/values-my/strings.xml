@@ -1184,9 +1184,9 @@
 
     <!-- LanguagePackReadyBanner -->
     <!-- Banner shown after a language finished downloading in the background. %1$s is the language\'s name written in that language, for example "Deutsch". -->
-    <string name="LanguagePackReadyBanner__body">"The app language %1$s is ready to use. Restart Signal to switch to it."</string>
+    <string name="LanguagePackReadyBanner__body">"အက်ပ်၏ ဘာသာစကား %1$s ကို အသုံးပြုရန် အသင့်ဖြစ်ပါပြီ။ ၎င်းဘာသာစကားသို့ ပြောင်းလဲရန် Signal ကို ပြန်လည်စတင်ပါ။"</string>
     <!-- Button on the banner shown after a language finished downloading. Restarts the app so the language takes effect. -->
-    <string name="LanguagePackReadyBanner__restart">ပြန်စတင်မည်</string>
+    <string name="LanguagePackReadyBanner__restart">ပြန်စတင်ရန်</string>
     <!-- Button on the banner shown after a language finished downloading. Hides the banner without restarting and applying the new language. -->
     <string name="LanguagePackReadyBanner__not_now">ယခု မလုပ်သေးပါ</string>
 
@@ -4115,9 +4115,9 @@
     <!-- Notification title shown when Signal needs to be opened to use the microphone during a call -->
     <string name="CallNotificationBuilder__open_signal">Signal ကို ဖွင့်ရန်</string>
     <!-- Notification body shown when a call was answered from a watch or other device but Signal needs microphone permission before it can connect -->
-    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">To answer this call, allow Signal access to your microphone.</string>
+    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">ဤခေါ်ဆိုမှုကို ဖြေဆိုရန် Signal အား သင့်မိုက်ခရိုဖုန်းကို အသုံးပြုခွင့်ပြုပါ။</string>
     <!-- Notification body shown during a call when Android blocked microphone access because Signal was in the background -->
-    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">The other person can\'t hear you until you open Signal.</string>
+    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">Signal ကို မဖွင့်မချင်း တစ်ဖက်လူက သင့်အသံကို ကြားရမည် မဟုတ်ပါ။</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">စကားဝှက်ကို အရန်သိမ်းဆည်းထားပါ</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">အရန်သိမ်းထားသည်များကို အပ္ပလီကေးရှင်းပြင်ပ ဖုန်းထဲတွင် သိမ်းပြီး အောက်ပါ စကားဝှက်ဖြင့် လုံခြုံစွာ သိမ်းထားပါမည်။ အရန်သိမ်းထားသောဖိုင်များကို ပြန်ရယူနိုင်ရန် ဤစကားဝှက်ရှိကို ရှိရမည်။</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">အရန်ကူးခြင်းတစ်ခုကို ပြန်လည်ရယူရန် သင့်တွင်ဤစကားဝှက် ရှိရမည်</string>
@@ -5018,11 +5018,11 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s ကို ဖယ်ရှားထားပါသည်</string>
     <!-- Dialog title when hiding a contact. Placeholder is the contact\'s name. -->
-    <string name="NewConversationActivity__hide_s">Hide %1$s?</string>
+    <string name="NewConversationActivity__hide_s">%1$s ကို ဝှက်မလား။</string>
     <!-- Dialog body when hiding a contact -->
-    <string name="NewConversationActivity__this_person_wont_appear">This person won\'t appear in your contact list and search. If they message you in the future, you\'ll receive a message request. You can manage people you\'ve hidden in settings.</string>
+    <string name="NewConversationActivity__this_person_wont_appear">ဤသူသည် သင့်အဆက်အသွယ်စာရင်းနှင့် ရှာဖွေမှုတွင် ပေါ်လာမည် မဟုတ်ပါ။ အနာဂတ်တွင် ၎င်းတို့က သင့်ထံ စာပို့ပါက မက်ဆေ့ချ်တောင်းဆိုမှုတစ်ခုကို သင် ရရှိလိမ့်မည်။ ဆက်တင်တွင် သင်ဖျောက်ထားသောသူများကို စီမံခန့်ခွဲနိုင်ပါသည်။</string>
     <!-- Snackbar message after hiding a contact. Placeholder is the contact\'s name. -->
-    <string name="NewConversationActivity__s_has_been_hidden">%1$s has been hidden</string>
+    <string name="NewConversationActivity__s_has_been_hidden">%1$s ကို ဝှက်လိုက်ပါပြီ</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s အား ဘလော့ခ်ပြီးပါပြီ</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->

@@ -217,13 +217,13 @@
     <!-- Title of the screen that explains passkeys before the user sets one up -->
     <string name="PasskeySetupScreen__passkeys">Paseochracha</string>
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
-    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Cuireann paseochracha ar do chumas dara cineál slán fíordheimhnithe a chur le do chuntas go héasca. Is féidir le paseochracha bithmhéadracht do ghléis nó eochair shlándála FIDO2 chomhoiriúnach a úsáid.</string>
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Cuireann paseochracha ar do chumas dara cineál slán fíordheimhnithe a chur le do chuntas go héasca. Is féidir le paseochracha bithmhéadracht do ghléis nó eochair slándála FIDO2 chomhoiriúnach a úsáid.</string>
     <!-- Link that opens a support article about passkeys -->
     <string name="PasskeySetupScreen__learn_more">Tuilleadh faisnéise</string>
     <!-- Bullet point explaining that the user can name their passkey -->
     <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Tabhair ainm oiriúnach ar do phaseochair lena haithint</string>
     <!-- Bullet point explaining where the passkey is stored -->
-    <string name="PasskeySetupScreen__use_your_devices_biometrics">Úsáid bithmhéadracht do ghléis nó eochair shlándála FIDO2 le do phaseochair a stóráil</string>
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Úsáid bithmhéadracht do ghléis nó eochair slándála FIDO2 le do phaseochair a stóráil</string>
     <!-- Bullet point explaining that passkeys can be managed later -->
     <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Cur paseochracha leis nó bain iad am ar bith.</string>
     <!-- Button that starts creating a passkey -->

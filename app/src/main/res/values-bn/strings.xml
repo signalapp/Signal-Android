@@ -1222,7 +1222,7 @@
 
     <!-- LanguagePackReadyBanner -->
     <!-- Banner shown after a language finished downloading in the background. %1$s is the language\'s name written in that language, for example "Deutsch". -->
-    <string name="LanguagePackReadyBanner__body">"The app language %1$s is ready to use. Restart Signal to switch to it."</string>
+    <string name="LanguagePackReadyBanner__body">"অ্যাপের ভাষা %1$s ব্যবহারের জন্য প্রস্তুত। এই ভাষাটি কার্যকর করতে Signal পুনরায় চালু করুন।"</string>
     <!-- Button on the banner shown after a language finished downloading. Restarts the app so the language takes effect. -->
     <string name="LanguagePackReadyBanner__restart">পুনরায় চালু করুন</string>
     <!-- Button on the banner shown after a language finished downloading. Hides the banner without restarting and applying the new language. -->
@@ -4237,9 +4237,9 @@
     <!-- Notification title shown when Signal needs to be opened to use the microphone during a call -->
     <string name="CallNotificationBuilder__open_signal">Signal খুলুন</string>
     <!-- Notification body shown when a call was answered from a watch or other device but Signal needs microphone permission before it can connect -->
-    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">To answer this call, allow Signal access to your microphone.</string>
+    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">এই কলের রিপ্লাই দিতে, Signal-কে আপনার মাইক্রোফোন ব্যবহারের অনুমতি দিন।</string>
     <!-- Notification body shown during a call when Android blocked microphone access because Signal was in the background -->
-    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">The other person can\'t hear you until you open Signal.</string>
+    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">আপনি Signal না খোলা পর্যন্ত অপর প্রান্তের ব্যক্তি আপনার কথা শুনতে পাবেন না।</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">পাসফ্রেজ ব্যাকঅাপ করুন</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ব্যাকআপগুলি বাহ্যিক স্টোরেজে সংরক্ষণ করা হবে এবং নীচের পাসফ্রেজের সাহায্যে এনক্রিপ্ট করা হবে। ব্যাকঅাপ পুনরুদ্ধার করতে আপনার অবশ্যই এই পাসফ্রেজ থাকতে হবে।</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">ব্যাকআপটি পুনরুদ্ধার করতে আপনার অবশ্যই এই পাসফ্রেজটি থাকতে হবে।</string>
@@ -5158,11 +5158,11 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s-কে সরিয়ে দেওয়া হয়েছে</string>
     <!-- Dialog title when hiding a contact. Placeholder is the contact\'s name. -->
-    <string name="NewConversationActivity__hide_s">Hide %1$s?</string>
+    <string name="NewConversationActivity__hide_s">%1$s-কে লুকাবেন?</string>
     <!-- Dialog body when hiding a contact -->
-    <string name="NewConversationActivity__this_person_wont_appear">This person won\'t appear in your contact list and search. If they message you in the future, you\'ll receive a message request. You can manage people you\'ve hidden in settings.</string>
+    <string name="NewConversationActivity__this_person_wont_appear">এই ব্যক্তিকে আপনার কন্টাক্ট লিস্টে বা সার্চের ফলাফলে আর দেখা যাবে না। ভবিষ্যতে তারা আপনাকে মেসেজ পাঠালে, আপনি একটি \'মেসেজের অনুরোধ\' পাবেন। আপনি যাদের আড়াল করেছেন, সেটিংস থেকে তাদের নিয়ন্ত্রণ করতে পারবেন।</string>
     <!-- Snackbar message after hiding a contact. Placeholder is the contact\'s name. -->
-    <string name="NewConversationActivity__s_has_been_hidden">%1$s has been hidden</string>
+    <string name="NewConversationActivity__s_has_been_hidden">%1$s-কে লুকানো হয়েছে</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s-কে ব্লক করা হয়েছে</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->

@@ -445,25 +445,25 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">ಹೊಸ ಭಾಷೆಯ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಅನ್ವಯಿಸಲು ಆ್ಯಪ್ ಮರುಪ್ರಾರಂಭಗೊಳ್ಳುತ್ತದೆ.</string>
     <!-- Dialog message body shown when selecting a language that hasn\'t been downloaded yet, notifying the user that a download will happen and then restart. -->
-    <string name="preferences_language_change_download_confirmation_message">Signal will download the language pack and then restart the app to apply the new language setting.</string>
+    <string name="preferences_language_change_download_confirmation_message">Signal ಭಾಷೆಯ ಪ್ಯಾಕ್ ಅನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡುತ್ತದೆ ಮತ್ತು ಹೊಸ ಭಾಷೆಯ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಅನ್ವಯಿಸಲು ಆ್ಯಪ್ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸುತ್ತದೆ.</string>
     <!-- Dialog message shown while a language pack is being downloaded after the user picks a language. -->
-    <string name="preferences_language_change_downloading_message">Downloading language pack…</string>
+    <string name="preferences_language_change_downloading_message">ಭಾಷೆಯ ಪ್ಯಾಕ್ ಅನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <!-- Dialog message shown when downloading a language pack fails for a reason that trying again may fix. %1$d is Google Play\'s numeric error code, for example -6, shown so the user can report it. -->
-    <string name="preferences_language_change_download_failed_message">Couldn\'t download language pack (error %1$d). Check your connection and try again.</string>
+    <string name="preferences_language_change_download_failed_message">ಭಾಷೆಯ ಪ್ಯಾಕ್ ಅನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ (ದೋಷ %1$d). ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Dialog message shown when downloading a language pack fails because the device is out of storage. -->
-    <string name="preferences_language_change_download_failed_storage_message">Couldn\'t download language pack. Free up space on your device and try again.</string>
+    <string name="preferences_language_change_download_failed_storage_message">ಭಾಷೆಯ ಪ್ಯಾಕ್ ಅನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸ್ಥಳಾವಕಾಶವನ್ನು ತೆರವುಗೊಳಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the Google Play Store or Google Play services app is missing, or Google Play didn\'t install this copy of Signal. Directs the user to download a universal build with full language support from signal.org. "Google Play" is a product name and "signal.org" is a web address; do not translate either. -->
-    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play can\'t download language packs for this copy of Signal. Download an APK from signal.org to use all supported languages.</string>
+    <string name="preferences_language_change_download_failed_play_unavailable_message">Signal ನ ಈ ಕಾಪಿಗೆ Google Play ಭಾಷೆಯ ಪ್ಯಾಕ್‌ಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. ಎಲ್ಲಾ ಬೆಂಬಲಿತ ಭಾಷೆಗಳಲ್ಲಿ ಬಳಸಲು signal.org ಇಂದ APK ಅನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play Store app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_disabled_message">Language packs are downloaded through Google Play, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_disabled_message">ಭಾಷಾ ಪ್ಯಾಕ್‌ಗಳನ್ನು Google Play ಮೂಲಕ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತದೆ, ಅದು ಈ ಸಾಧನದಲ್ಲಿ ಆಫ್ ಆಗಿದೆ. ಈ ಭಾಷೆಯನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಅದನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play services app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_services_disabled_message">Language packs are downloaded through Google Play services, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_services_disabled_message">ಭಾಷಾ ಪ್ಯಾಕ್‌ಗಳನ್ನು Google Play ಸೇವೆಗಳ ಮೂಲಕ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತದೆ, ಅದು ಈ ಸಾಧನದಲ್ಲಿ ಆಫ್ ಆಗಿದೆ. ಈ ಭಾಷೆಯನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಅದನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <!-- Positive button label on the language pack download failure dialog when the Google Play Store or Google Play services app is turned off. Opens that app\'s page in system settings, where it can be turned on. -->
     <string name="preferences_language_unavailable_open_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ</string>
     <!-- Positive button label on the language pack download failure dialog. Starts the download again. -->
     <string name="preferences_language_change_download_retry">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
     <!-- Positive button label on the language pack download failure dialog when Google Play cannot download the pack. Opens signal.org/android/apk in a browser. -->
-    <string name="preferences_language_unavailable_visit_website">Visit website</string>
+    <string name="preferences_language_unavailable_visit_website">ವೆಬ್‌ಸೈಟ್‌ಗೆ ಭೇಟಿ ನೀಡಿ</string>
 
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
@@ -525,7 +525,7 @@
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <!-- Body of a confirmation dialog shown when a user without Google Play Services tries to disable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play Services are not available on this device. If this setting is disabled, you will no longer be able to receive messages while the app is in the background.</string>
+    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play ಸೇವೆಗಳು ಈ ಸಾಧನದಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ. ಈ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ, ಆ್ಯಪ್ ಹಿನ್ನೆಲೆಯಲ್ಲಿರುವಾಗ ನೀವು ಇನ್ನು ಮೆಸೇಜ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- Button label that disables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__continue">ಮುಂದುವರಿಸಿ</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -690,11 +690,11 @@
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
     <string name="PrivacySettingsScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Section header in privacy settings above the rows for hidden and blocked contacts -->
-    <string name="PrivacySettingsScreen__hidden_and_blocked">Hidden and blocked</string>
+    <string name="PrivacySettingsScreen__hidden_and_blocked">ಮರೆಮಾಡಲಾಗಿದೆ ಮತ್ತು ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
     <!-- Row label in privacy settings shown when the user has no hidden contacts or no blocked contacts -->
     <string name="PrivacySettingsScreen__none">ಯಾವುದೂ ಇಲ್ಲ</string>
     <!-- Row title in privacy settings that opens the list of contacts the user has hidden -->
-    <string name="PrivacySettingsScreen__hidden">Hidden</string>
+    <string name="PrivacySettingsScreen__hidden">ಮರೆಮಾಡಲಾಗಿದೆ</string>
     <!-- Row label in privacy settings showing how many contacts the user has hidden. Placeholder is the count. -->
     <plurals name="PrivacySettingsScreen__d_hidden_contacts">
         <item quantity="one">%1$d ಸಂಪರ್ಕ</item>
@@ -703,17 +703,17 @@
 
     <!-- HiddenContactsScreen -->
     <!-- Title of the screen listing the contacts the user has hidden -->
-    <string name="HiddenContactsScreen__hidden_contacts">Hidden contacts</string>
+    <string name="HiddenContactsScreen__hidden_contacts">ಮರೆಮಾಡಿದ ಸಂಪರ್ಕಗಳು</string>
     <!-- Explanation at the top of the hidden contacts screen -->
-    <string name="HiddenContactsScreen__hidden_contacts_description">Hidden contacts don\'t show up when searching. You\'ll get a message request if they message you. Tap a contact to unhide them.</string>
+    <string name="HiddenContactsScreen__hidden_contacts_description">ಹುಡುಕುವಾಗ ಮರೆಮಾಡಿದ ಸಂಪರ್ಕಗಳು ಕಾಣಿಸುವುದಿಲ್ಲ. ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಿದರೆ ನೀವು ಸಂದೇಶ ವಿನಂತಿಯನ್ನು ಪಡೆಯುತ್ತೀರಿ. ಅವರನ್ನು ಮರೆಮಾಡದಿರಲು ಸಂಪರ್ಕವನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <!-- Shown on the hidden contacts screen when the user hasn\'t hidden anyone -->
-    <string name="HiddenContactsScreen__no_hidden_contacts">No hidden contacts</string>
+    <string name="HiddenContactsScreen__no_hidden_contacts">ಮರೆಮಾಡಿದ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ</string>
     <!-- Dialog title asking whether to unhide a contact. Placeholder is the contact\'s name. -->
-    <string name="HiddenContactsScreen__unhide_s">Unhide %1$s?</string>
+    <string name="HiddenContactsScreen__unhide_s">%1$s ಅವರನ್ನು ಮರೆಮಾಡಬಾರದೇ?</string>
     <!-- Dialog body explaining what unhiding a contact does -->
-    <string name="HiddenContactsScreen__unhide_body">This person will show up when searching again, and will be able to see your profile.</string>
+    <string name="HiddenContactsScreen__unhide_body">ಮತ್ತೊಮ್ಮೆ ಹುಡುಕಿದಾಗ ಈ ವ್ಯಕ್ತಿಯು ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತಾರೆ ಮತ್ತು ಅವರು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
     <!-- Dialog button that unhides a contact -->
-    <string name="HiddenContactsScreen__unhide">Unhide</string>
+    <string name="HiddenContactsScreen__unhide">ಮರೆಮಾಡದಿರಿ</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
@@ -1300,7 +1300,7 @@
     <!-- Title of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard_changes">ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸುವುದೇ?</string>
     <!-- Body of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__you_will_lose_changes">You\'ll lose the changes you\'ve made.</string>
+    <string name="AppSettingsNavigation__you_will_lose_changes">ನೀವು ಮಾಡಿದ ಬದಲಾವಣೆಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.</string>
     <!-- Button in a dialog that throws away unsaved edits and leaves the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard">ತ್ಯಜಿಸಿ</string>
 </resources>

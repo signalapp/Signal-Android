@@ -444,25 +444,25 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">앱을 다시 시작하여 새 언어 설정을 적용합니다.</string>
     <!-- Dialog message body shown when selecting a language that hasn\'t been downloaded yet, notifying the user that a download will happen and then restart. -->
-    <string name="preferences_language_change_download_confirmation_message">Signal will download the language pack and then restart the app to apply the new language setting.</string>
+    <string name="preferences_language_change_download_confirmation_message">새 언어 설정을 적용하기 위해 Signal에서 언어 팩을 다운로드한 후 앱을 다시 시작합니다.</string>
     <!-- Dialog message shown while a language pack is being downloaded after the user picks a language. -->
-    <string name="preferences_language_change_downloading_message">Downloading language pack…</string>
+    <string name="preferences_language_change_downloading_message">언어 팩 다운로드 중…</string>
     <!-- Dialog message shown when downloading a language pack fails for a reason that trying again may fix. %1$d is Google Play\'s numeric error code, for example -6, shown so the user can report it. -->
-    <string name="preferences_language_change_download_failed_message">Couldn\'t download language pack (error %1$d). Check your connection and try again.</string>
+    <string name="preferences_language_change_download_failed_message">언어 팩을 다운로드할 수 없습니다(오류 %1$d). 연결을 확인하고 다시 시도해 주세요.</string>
     <!-- Dialog message shown when downloading a language pack fails because the device is out of storage. -->
-    <string name="preferences_language_change_download_failed_storage_message">Couldn\'t download language pack. Free up space on your device and try again.</string>
+    <string name="preferences_language_change_download_failed_storage_message">언어 팩을 다운로드할 수 없습니다. 기기에 여유 공간을 확보한 후 다시 시도해 주세요.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the Google Play Store or Google Play services app is missing, or Google Play didn\'t install this copy of Signal. Directs the user to download a universal build with full language support from signal.org. "Google Play" is a product name and "signal.org" is a web address; do not translate either. -->
-    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play can\'t download language packs for this copy of Signal. Download an APK from signal.org to use all supported languages.</string>
+    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play에서 이 Signal 버전의 언어 팩을 다운로드할 수 없습니다. 지원되는 모든 언어를 사용하려면 signal.org에서 APK를 다운로드하세요.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play Store app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_disabled_message">Language packs are downloaded through Google Play, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_disabled_message">언어 팩은 Google Play를 통해 다운로드되지만, 현재 이 기기에서 해당 서비스가 꺼져 있습니다. 이 언어를 다운로드하려면 설정에서 Google Play 서비스를 사용 설정하세요.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play services app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_services_disabled_message">Language packs are downloaded through Google Play services, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_services_disabled_message">언어 팩은 Google Play 서비스를 통해 다운로드되지만, 현재 이 기기에서 해당 서비스가 꺼져 있습니다. 이 언어를 다운로드하려면 설정에서 Google Play 서비스를 사용 설정하세요.</string>
     <!-- Positive button label on the language pack download failure dialog when the Google Play Store or Google Play services app is turned off. Opens that app\'s page in system settings, where it can be turned on. -->
     <string name="preferences_language_unavailable_open_settings">설정 열기</string>
     <!-- Positive button label on the language pack download failure dialog. Starts the download again. -->
     <string name="preferences_language_change_download_retry">다시 시도하기</string>
     <!-- Positive button label on the language pack download failure dialog when Google Play cannot download the pack. Opens signal.org/android/apk in a browser. -->
-    <string name="preferences_language_unavailable_visit_website">Visit website</string>
+    <string name="preferences_language_unavailable_visit_website">웹사이트 방문하기</string>
 
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">전화번호</string>
@@ -524,7 +524,7 @@
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__enable">활성화하기</string>
     <!-- Body of a confirmation dialog shown when a user without Google Play Services tries to disable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play Services are not available on this device. If this setting is disabled, you will no longer be able to receive messages while the app is in the background.</string>
+    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">이 기기에서는 Google Play 서비스를 사용할 수 없습니다. 이 설정을 사용 중지하면 앱이 백그라운드에 있을 때 더 이상 메시지를 받을 수 없습니다.</string>
     <!-- Button label that disables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__continue">계속</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -688,11 +688,11 @@
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
     <string name="PrivacySettingsScreen__learn_more">자세히 알아보기</string>
     <!-- Section header in privacy settings above the rows for hidden and blocked contacts -->
-    <string name="PrivacySettingsScreen__hidden_and_blocked">Hidden and blocked</string>
+    <string name="PrivacySettingsScreen__hidden_and_blocked">숨김 및 차단함</string>
     <!-- Row label in privacy settings shown when the user has no hidden contacts or no blocked contacts -->
     <string name="PrivacySettingsScreen__none">없음</string>
     <!-- Row title in privacy settings that opens the list of contacts the user has hidden -->
-    <string name="PrivacySettingsScreen__hidden">Hidden</string>
+    <string name="PrivacySettingsScreen__hidden">숨김</string>
     <!-- Row label in privacy settings showing how many contacts the user has hidden. Placeholder is the count. -->
     <plurals name="PrivacySettingsScreen__d_hidden_contacts">
         <item quantity="other">연락처 %1$d개</item>
@@ -700,15 +700,15 @@
 
     <!-- HiddenContactsScreen -->
     <!-- Title of the screen listing the contacts the user has hidden -->
-    <string name="HiddenContactsScreen__hidden_contacts">Hidden contacts</string>
+    <string name="HiddenContactsScreen__hidden_contacts">숨긴 연락처</string>
     <!-- Explanation at the top of the hidden contacts screen -->
-    <string name="HiddenContactsScreen__hidden_contacts_description">Hidden contacts don\'t show up when searching. You\'ll get a message request if they message you. Tap a contact to unhide them.</string>
+    <string name="HiddenContactsScreen__hidden_contacts_description">숨긴 연락처는 검색 결과에 표시되지 않습니다. 상대방이 메시지를 보내면 메시지 요청으로 받게 됩니다. 숨김을 해제하려면 연락처를 탭하세요.</string>
     <!-- Shown on the hidden contacts screen when the user hasn\'t hidden anyone -->
-    <string name="HiddenContactsScreen__no_hidden_contacts">No hidden contacts</string>
+    <string name="HiddenContactsScreen__no_hidden_contacts">숨긴 연락처 없음</string>
     <!-- Dialog title asking whether to unhide a contact. Placeholder is the contact\'s name. -->
-    <string name="HiddenContactsScreen__unhide_s">Unhide %1$s?</string>
+    <string name="HiddenContactsScreen__unhide_s">%1$s 님을 숨김 해제할까요?</string>
     <!-- Dialog body explaining what unhiding a contact does -->
-    <string name="HiddenContactsScreen__unhide_body">This person will show up when searching again, and will be able to see your profile.</string>
+    <string name="HiddenContactsScreen__unhide_body">이 사용자가 검색 결과에 다시 표시되며 내 프로필을 볼 수 있게 됩니다.</string>
     <!-- Dialog button that unhides a contact -->
     <string name="HiddenContactsScreen__unhide">숨기기 취소</string>
 
@@ -1295,7 +1295,7 @@
     <!-- Title of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard_changes">변경 내용을 삭제할까요?</string>
     <!-- Body of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__you_will_lose_changes">You\'ll lose the changes you\'ve made.</string>
+    <string name="AppSettingsNavigation__you_will_lose_changes">변경 내용이 손실됩니다.</string>
     <!-- Button in a dialog that throws away unsaved edits and leaves the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard">삭제하기</string>
 </resources>

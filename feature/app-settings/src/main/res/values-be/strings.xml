@@ -131,7 +131,7 @@
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
     <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Не атрымалася выдаліць праграму аўтэнтыфікацыі. Праверце падключэнне і паўтарыце спробу.</string>
     <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Выкарыстоўвайце другую форму аўтэнтыфікацыі, каб абараніць свой уліковы запіс пры выкарыстанні Signal Login на новай прыладзе.</string>
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Выкарыстоўвайце дадатковую форму аўтэнтыфікацыі, каб абараніць свой уліковы запіс пры выкарыстанні Signal Login на новай прыладзе.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Даведацца больш</string>
 
@@ -447,25 +447,25 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">Каб пераключыцца на новую мову, неабходна перазапусціць праграму.</string>
     <!-- Dialog message body shown when selecting a language that hasn\'t been downloaded yet, notifying the user that a download will happen and then restart. -->
-    <string name="preferences_language_change_download_confirmation_message">Signal will download the language pack and then restart the app to apply the new language setting.</string>
+    <string name="preferences_language_change_download_confirmation_message">Signal спампуе моўны пакет, а потым перазапусціць праграму, каб прымяніць новыя моўныя налады.</string>
     <!-- Dialog message shown while a language pack is being downloaded after the user picks a language. -->
-    <string name="preferences_language_change_downloading_message">Downloading language pack…</string>
+    <string name="preferences_language_change_downloading_message">Спампоўка моўных пакетаў…</string>
     <!-- Dialog message shown when downloading a language pack fails for a reason that trying again may fix. %1$d is Google Play\'s numeric error code, for example -6, shown so the user can report it. -->
-    <string name="preferences_language_change_download_failed_message">Couldn\'t download language pack (error %1$d). Check your connection and try again.</string>
+    <string name="preferences_language_change_download_failed_message">Не атрымалася спампаваць моўны пакет (памылка %1$d). Праверце падключэнне і паўтарыце спробу.</string>
     <!-- Dialog message shown when downloading a language pack fails because the device is out of storage. -->
-    <string name="preferences_language_change_download_failed_storage_message">Couldn\'t download language pack. Free up space on your device and try again.</string>
+    <string name="preferences_language_change_download_failed_storage_message">Не атрымалася спампаваць моўны пакет. Вызваліце месца на прыладзе і паўтарыце спробу.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the Google Play Store or Google Play services app is missing, or Google Play didn\'t install this copy of Signal. Directs the user to download a universal build with full language support from signal.org. "Google Play" is a product name and "signal.org" is a web address; do not translate either. -->
-    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play can\'t download language packs for this copy of Signal. Download an APK from signal.org to use all supported languages.</string>
+    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play не можа спампаваць моўныя пакеты для гэтай версіі Signal. Спампуйце APK-файл з signal.org, каб карыстацца ўсімі падтрымліваемымі мовамі.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play Store app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_disabled_message">Language packs are downloaded through Google Play, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_disabled_message">Моўныя пакеты спампоўваюцца праз Google Play, які на гэтай прыладзе адключаны. Уключыце яго ў наладах, каб спампаваць гэтую мову.</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play services app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_services_disabled_message">Language packs are downloaded through Google Play services, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_services_disabled_message">Моўныя пакеты спампоўваюцца праз сэрвісы Google Play, якія на гэтай прыладзе адключаны. Уключыце iх у наладах, каб спампаваць гэтую мову.</string>
     <!-- Positive button label on the language pack download failure dialog when the Google Play Store or Google Play services app is turned off. Opens that app\'s page in system settings, where it can be turned on. -->
     <string name="preferences_language_unavailable_open_settings">Адкрыць налады</string>
     <!-- Positive button label on the language pack download failure dialog. Starts the download again. -->
     <string name="preferences_language_change_download_retry">Паўтарыць спробу</string>
     <!-- Positive button label on the language pack download failure dialog when Google Play cannot download the pack. Opens signal.org/android/apk in a browser. -->
-    <string name="preferences_language_unavailable_visit_website">Visit website</string>
+    <string name="preferences_language_unavailable_visit_website">Зайсці на сайт</string>
 
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Нумар тэлефона</string>
@@ -527,7 +527,7 @@
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__enable">Уключыць</string>
     <!-- Body of a confirmation dialog shown when a user without Google Play Services tries to disable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play Services are not available on this device. If this setting is disabled, you will no longer be able to receive messages while the app is in the background.</string>
+    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Сэрвісы Google Play недаступныя на гэтай прыладзе. Калі гэтая налада адключана, вы больш не зможаце атрымліваць паведамленні, пакуль праграма знаходзіцца ў фонавым рэжыме.</string>
     <!-- Button label that disables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__continue">Працягнуць</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -630,7 +630,7 @@
     <string name="PrivacySettingsFragment__app_security">Бяспека праграмы</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блакіраваць скрыншоты ў спісе нядаўніх праграм i ўнутры праграмы</string>
-    <string name="PrivacySettingsFragment__blocked">Заблакаваны</string>
+    <string name="PrivacySettingsFragment__blocked">Заблакаваныя</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">Каб выкарыстоўваць блакіроўку плацяжоў, вам трэба спачатку ўключыць блакіроўку экрана або ідэнтыфікатар адбітка пальца ў наладах вашага тэлефона.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -694,11 +694,11 @@
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
     <string name="PrivacySettingsScreen__learn_more">Даведацца больш</string>
     <!-- Section header in privacy settings above the rows for hidden and blocked contacts -->
-    <string name="PrivacySettingsScreen__hidden_and_blocked">Hidden and blocked</string>
+    <string name="PrivacySettingsScreen__hidden_and_blocked">Схаваныя і заблакаваныя</string>
     <!-- Row label in privacy settings shown when the user has no hidden contacts or no blocked contacts -->
     <string name="PrivacySettingsScreen__none">Няма</string>
     <!-- Row title in privacy settings that opens the list of contacts the user has hidden -->
-    <string name="PrivacySettingsScreen__hidden">Hidden</string>
+    <string name="PrivacySettingsScreen__hidden">Схаваныя</string>
     <!-- Row label in privacy settings showing how many contacts the user has hidden. Placeholder is the count. -->
     <plurals name="PrivacySettingsScreen__d_hidden_contacts">
         <item quantity="one">%1$d кантакт</item>
@@ -709,17 +709,17 @@
 
     <!-- HiddenContactsScreen -->
     <!-- Title of the screen listing the contacts the user has hidden -->
-    <string name="HiddenContactsScreen__hidden_contacts">Hidden contacts</string>
+    <string name="HiddenContactsScreen__hidden_contacts">Схаваныя кантакты</string>
     <!-- Explanation at the top of the hidden contacts screen -->
-    <string name="HiddenContactsScreen__hidden_contacts_description">Hidden contacts don\'t show up when searching. You\'ll get a message request if they message you. Tap a contact to unhide them.</string>
+    <string name="HiddenContactsScreen__hidden_contacts_description">Схаваныя кантакты не бачныя падчас пошуку. Вы атрымаеце запыт на перапіску, калі яны дашлюць вам паведамленне. Націсніце на кантакт, каб паказаць яго.</string>
     <!-- Shown on the hidden contacts screen when the user hasn\'t hidden anyone -->
-    <string name="HiddenContactsScreen__no_hidden_contacts">No hidden contacts</string>
+    <string name="HiddenContactsScreen__no_hidden_contacts">Няма схаваных кантактаў</string>
     <!-- Dialog title asking whether to unhide a contact. Placeholder is the contact\'s name. -->
-    <string name="HiddenContactsScreen__unhide_s">Unhide %1$s?</string>
+    <string name="HiddenContactsScreen__unhide_s">Паказаць %1$s?</string>
     <!-- Dialog body explaining what unhiding a contact does -->
-    <string name="HiddenContactsScreen__unhide_body">This person will show up when searching again, and will be able to see your profile.</string>
+    <string name="HiddenContactsScreen__unhide_body">Гэтая асоба з\'явіцца пры паўторным пошуку і зможа ўбачыць ваш профіль.</string>
     <!-- Dialog button that unhides a contact -->
-    <string name="HiddenContactsScreen__unhide">Адкрыць</string>
+    <string name="HiddenContactsScreen__unhide">Паказаць</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
@@ -1261,7 +1261,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Аўтаматычная праверка ключоў</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Калі гэта функцыя ўключана, Signal будзе спрабаваць аўтаматычна правяраць шыфраванне прыватных чатаў.</string>
+    <string name="preferences_automatic_key_verification_body">Калі гэта функцыя ўключана, Signal будзе спрабаваць аўтаматычна правяраць шыфраванне асабістых чатаў.</string>
 
     <!-- ExpireTimerSettingsScreen -->
     <!-- Title of the screen for choosing a disappearing messages timer -->
@@ -1310,7 +1310,7 @@
     <!-- Title of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard_changes">Скінуць змяненні?</string>
     <!-- Body of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__you_will_lose_changes">You\'ll lose the changes you\'ve made.</string>
+    <string name="AppSettingsNavigation__you_will_lose_changes">Вы страціце ўсе змяненні, што вы зрабілі.</string>
     <!-- Button in a dialog that throws away unsaved edits and leaves the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard">Скінуць</string>
 </resources>

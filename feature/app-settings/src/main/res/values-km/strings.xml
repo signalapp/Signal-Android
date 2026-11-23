@@ -444,25 +444,25 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">កម្មវិធីនឹងចាប់ផ្ដើមឡើងវិញដើម្បីអនុវត្តការកំណត់ភាសាថ្មី។</string>
     <!-- Dialog message body shown when selecting a language that hasn\'t been downloaded yet, notifying the user that a download will happen and then restart. -->
-    <string name="preferences_language_change_download_confirmation_message">Signal will download the language pack and then restart the app to apply the new language setting.</string>
+    <string name="preferences_language_change_download_confirmation_message">Signal នឹងទាញយកកញ្ចប់ភាសា រួចចាប់ផ្តើមកម្មវិធីឡើងវិញ ដើម្បីអនុវត្តការកំណត់ភាសាថ្មី។</string>
     <!-- Dialog message shown while a language pack is being downloaded after the user picks a language. -->
-    <string name="preferences_language_change_downloading_message">Downloading language pack…</string>
+    <string name="preferences_language_change_downloading_message">កំពុងទាញយកកញ្ចប់ភាសា…</string>
     <!-- Dialog message shown when downloading a language pack fails for a reason that trying again may fix. %1$d is Google Play\'s numeric error code, for example -6, shown so the user can report it. -->
-    <string name="preferences_language_change_download_failed_message">Couldn\'t download language pack (error %1$d). Check your connection and try again.</string>
+    <string name="preferences_language_change_download_failed_message">មិនអាចទាញយកកញ្ចប់ភាសាបានទេ (បញ្ហា %1$d)។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Dialog message shown when downloading a language pack fails because the device is out of storage. -->
-    <string name="preferences_language_change_download_failed_storage_message">Couldn\'t download language pack. Free up space on your device and try again.</string>
+    <string name="preferences_language_change_download_failed_storage_message">មិនអាចទាញយកកញ្ចប់ភាសាបានទេ។ បង្កើនទំហំផ្ទុកទំនេរនៅលើឧបករណ៍របស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the Google Play Store or Google Play services app is missing, or Google Play didn\'t install this copy of Signal. Directs the user to download a universal build with full language support from signal.org. "Google Play" is a product name and "signal.org" is a web address; do not translate either. -->
-    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play can\'t download language packs for this copy of Signal. Download an APK from signal.org to use all supported languages.</string>
+    <string name="preferences_language_change_download_failed_play_unavailable_message">Google Play មិនអាចទាញយកកញ្ចប់ភាសាសម្រាប់ Signal ច្បាប់ចម្លងនេះបានទេ។ ទាញយក APK ពី signal.org ដើម្បីប្រើប្រាស់ភាសាទាំងអស់ដែលអាចប្រើបាន។</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play Store app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_disabled_message">Language packs are downloaded through Google Play, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_disabled_message">កញ្ចប់ភាសាត្រូវបានទាញយកតាមរយៈ Google Play ប៉ុន្តែមុខងារនេះត្រូវបានបិទនៅលើឧបករណ៍នេះ។ បើកវានៅក្នុងការកំណត់ ដើម្បីទាញយកភាសានេះ។</string>
     <!-- Dialog message shown when a language pack can\'t be downloaded because the user turned off the Google Play services app in system settings. "Google Play" is a product name; do not translate it. -->
-    <string name="preferences_language_change_download_failed_play_services_disabled_message">Language packs are downloaded through Google Play services, which is turned off on this device. Enable it in settings to download this language.</string>
+    <string name="preferences_language_change_download_failed_play_services_disabled_message">កញ្ចប់ភាសាត្រូវបានទាញយកតាមរយៈសេវាកម្ម Google Play ប៉ុន្តែសេវាកម្មនេះត្រូវបានបិទនៅលើឧបករណ៍នេះ។ បើកវានៅក្នុងការកំណត់ ដើម្បីទាញយកភាសានេះ។</string>
     <!-- Positive button label on the language pack download failure dialog when the Google Play Store or Google Play services app is turned off. Opens that app\'s page in system settings, where it can be turned on. -->
     <string name="preferences_language_unavailable_open_settings">បើកការកំណត់</string>
     <!-- Positive button label on the language pack download failure dialog. Starts the download again. -->
     <string name="preferences_language_change_download_retry">ព្យាយាមម្តងទៀត</string>
     <!-- Positive button label on the language pack download failure dialog when Google Play cannot download the pack. Opens signal.org/android/apk in a browser. -->
-    <string name="preferences_language_unavailable_visit_website">Visit website</string>
+    <string name="preferences_language_unavailable_visit_website">ចូលមើលគេហទំព័រ</string>
 
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">លេខទូរសព្ទ</string>
@@ -524,7 +524,7 @@
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__enable">បើក</string>
     <!-- Body of a confirmation dialog shown when a user without Google Play Services tries to disable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">Play Services are not available on this device. If this setting is disabled, you will no longer be able to receive messages while the app is in the background.</string>
+    <string name="DataAndStorageSettingsFragment__play_services_are_not_available_on_this_device">សេវាកម្ម Play មិនមាននៅលើឧបករណ៍នេះទេ។ ប្រសិនបើការកំណត់នេះត្រូវបានបិទ អ្នកនឹងមិនអាចទទួលបានសារទៀតទេ នៅពេលដែលកម្មវិធីកំពុងដំណើរការក្នុងផ្ទៃខាងក្រោយ។</string>
     <!-- Button label that disables the "Stay connected in background" setting from a confirmation dialog -->
     <string name="DataAndStorageSettingsFragment__continue">បន្ត</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -688,11 +688,11 @@
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
     <string name="PrivacySettingsScreen__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Section header in privacy settings above the rows for hidden and blocked contacts -->
-    <string name="PrivacySettingsScreen__hidden_and_blocked">Hidden and blocked</string>
+    <string name="PrivacySettingsScreen__hidden_and_blocked">បានលាក់ និងទប់ស្កាត់</string>
     <!-- Row label in privacy settings shown when the user has no hidden contacts or no blocked contacts -->
     <string name="PrivacySettingsScreen__none">គ្មាន</string>
     <!-- Row title in privacy settings that opens the list of contacts the user has hidden -->
-    <string name="PrivacySettingsScreen__hidden">Hidden</string>
+    <string name="PrivacySettingsScreen__hidden">បានលាក់</string>
     <!-- Row label in privacy settings showing how many contacts the user has hidden. Placeholder is the count. -->
     <plurals name="PrivacySettingsScreen__d_hidden_contacts">
         <item quantity="other">%1$d ឈ្មោះទំនាក់ទំនង</item>
@@ -700,17 +700,17 @@
 
     <!-- HiddenContactsScreen -->
     <!-- Title of the screen listing the contacts the user has hidden -->
-    <string name="HiddenContactsScreen__hidden_contacts">Hidden contacts</string>
+    <string name="HiddenContactsScreen__hidden_contacts">ទំនាក់ទំនងដែលត្រូវបានលាក់</string>
     <!-- Explanation at the top of the hidden contacts screen -->
-    <string name="HiddenContactsScreen__hidden_contacts_description">Hidden contacts don\'t show up when searching. You\'ll get a message request if they message you. Tap a contact to unhide them.</string>
+    <string name="HiddenContactsScreen__hidden_contacts_description">ទំនាក់ទំនងដែលត្រូវបានលាក់ មិនបង្ហាញឱ្យឃើញទេនៅពេលស្វែងរក។ អ្នកនឹងទទួលបានសំណើសារមួយប្រសិនបើគេផ្ញើសារមកអ្នក។ ចុចលើទំនាក់ទំនងដើម្បីឈប់លាក់វិញ។</string>
     <!-- Shown on the hidden contacts screen when the user hasn\'t hidden anyone -->
-    <string name="HiddenContactsScreen__no_hidden_contacts">No hidden contacts</string>
+    <string name="HiddenContactsScreen__no_hidden_contacts">គ្មានទំនាក់ទំនងដែលត្រូវបានលាក់ទេ</string>
     <!-- Dialog title asking whether to unhide a contact. Placeholder is the contact\'s name. -->
-    <string name="HiddenContactsScreen__unhide_s">Unhide %1$s?</string>
+    <string name="HiddenContactsScreen__unhide_s">ឈប់លាក់ %1$s?</string>
     <!-- Dialog body explaining what unhiding a contact does -->
-    <string name="HiddenContactsScreen__unhide_body">This person will show up when searching again, and will be able to see your profile.</string>
+    <string name="HiddenContactsScreen__unhide_body">បុគ្គលនេះនឹងបង្ហាញខ្លួននៅពេលស្វែងរកម្តងទៀត ហើយនឹងអាចមើលឃើញប្រូហ្វាល់របស់អ្នក។</string>
     <!-- Dialog button that unhides a contact -->
-    <string name="HiddenContactsScreen__unhide">Unhide</string>
+    <string name="HiddenContactsScreen__unhide">ឈប់លាក់</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
@@ -1293,9 +1293,9 @@
     <string name="ApplicationPreferencesActivity_pin_disabled">លេខកូដសម្ងាត់បានបិទ។</string>
 
     <!-- Title of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__discard_changes">បោះបង់ការកែប្រែ?</string>
+    <string name="AppSettingsNavigation__discard_changes">បោះបង់ការផ្លាស់ប្តូរ?</string>
     <!-- Body of a dialog asking whether to throw away unsaved edits before leaving the screen they were made on in settings -->
-    <string name="AppSettingsNavigation__you_will_lose_changes">You\'ll lose the changes you\'ve made.</string>
+    <string name="AppSettingsNavigation__you_will_lose_changes">អ្នកនឹងបាត់បង់ការផ្លាស់ប្តូរទាំងឡាយដែលអ្នកបានធ្វើឡើង។</string>
     <!-- Button in a dialog that throws away unsaved edits and leaves the screen they were made on in settings -->
     <string name="AppSettingsNavigation__discard">បោះបង់</string>
 </resources>

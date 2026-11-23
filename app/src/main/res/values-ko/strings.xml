@@ -1184,7 +1184,7 @@
 
     <!-- LanguagePackReadyBanner -->
     <!-- Banner shown after a language finished downloading in the background. %1$s is the language\'s name written in that language, for example "Deutsch". -->
-    <string name="LanguagePackReadyBanner__body">"The app language %1$s is ready to use. Restart Signal to switch to it."</string>
+    <string name="LanguagePackReadyBanner__body">"앱 언어 %1$s를 사용할 수 있습니다. 이 언어로 전환하려면 Signal을 다시 시작하세요."</string>
     <!-- Button on the banner shown after a language finished downloading. Restarts the app so the language takes effect. -->
     <string name="LanguagePackReadyBanner__restart">다시 시작</string>
     <!-- Button on the banner shown after a language finished downloading. Hides the banner without restarting and applying the new language. -->
@@ -4115,9 +4115,9 @@
     <!-- Notification title shown when Signal needs to be opened to use the microphone during a call -->
     <string name="CallNotificationBuilder__open_signal">Signal 열기</string>
     <!-- Notification body shown when a call was answered from a watch or other device but Signal needs microphone permission before it can connect -->
-    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">To answer this call, allow Signal access to your microphone.</string>
+    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">통화를 수락하려면 Signal이 마이크를 사용하도록 허용하세요.</string>
     <!-- Notification body shown during a call when Android blocked microphone access because Signal was in the background -->
-    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">The other person can\'t hear you until you open Signal.</string>
+    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">Signal을 열기 전까지는 상대방이 내 목소리를 들을 수 없습니다.</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">백업 암호</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">백업 파일은 외부 저장소에 저장되며, 아래 암호 문구로 암호화됩니다. 백업을 복원하려면 이 암호 문구가 반드시 필요합니다.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">백업을 복원하려면 이 암호 문구가 반드시 필요합니다.</string>
@@ -5018,11 +5018,11 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s 님을 삭제했습니다</string>
     <!-- Dialog title when hiding a contact. Placeholder is the contact\'s name. -->
-    <string name="NewConversationActivity__hide_s">Hide %1$s?</string>
+    <string name="NewConversationActivity__hide_s">%1$s 님을 숨길까요?</string>
     <!-- Dialog body when hiding a contact -->
-    <string name="NewConversationActivity__this_person_wont_appear">This person won\'t appear in your contact list and search. If they message you in the future, you\'ll receive a message request. You can manage people you\'ve hidden in settings.</string>
+    <string name="NewConversationActivity__this_person_wont_appear">이 사용자가 연락처 목록과 검색에 표시되지 않습니다. 상대방이 나중에 메시지를 보내면 메시지 요청으로 받게 됩니다. 숨긴 사용자는 설정에서 관리할 수 있습니다.</string>
     <!-- Snackbar message after hiding a contact. Placeholder is the contact\'s name. -->
-    <string name="NewConversationActivity__s_has_been_hidden">%1$s has been hidden</string>
+    <string name="NewConversationActivity__s_has_been_hidden">%1$s 님을 숨겼습니다</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s 님을 차단했습니다</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->

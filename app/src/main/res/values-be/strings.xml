@@ -1298,9 +1298,9 @@
 
     <!-- LanguagePackReadyBanner -->
     <!-- Banner shown after a language finished downloading in the background. %1$s is the language\'s name written in that language, for example "Deutsch". -->
-    <string name="LanguagePackReadyBanner__body">"The app language %1$s is ready to use. Restart Signal to switch to it."</string>
+    <string name="LanguagePackReadyBanner__body">"Мова праграмы %1$s гатовая да выкарыстання. Перазапусціце Signal, каб пераключыцца на яе."</string>
     <!-- Button on the banner shown after a language finished downloading. Restarts the app so the language takes effect. -->
-    <string name="LanguagePackReadyBanner__restart">Restart</string>
+    <string name="LanguagePackReadyBanner__restart">Перазапусціць</string>
     <!-- Button on the banner shown after a language finished downloading. Hides the banner without restarting and applying the new language. -->
     <string name="LanguagePackReadyBanner__not_now">Не зараз</string>
 
@@ -3050,7 +3050,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Заблакаваны</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Заблакаваны</string>
+    <string name="ThreadRecord_blocked_group">Заблакаваная</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Абнаўленне Signal</string>
@@ -4481,9 +4481,9 @@
     <!-- Notification title shown when Signal needs to be opened to use the microphone during a call -->
     <string name="CallNotificationBuilder__open_signal">Адкрыць Signal</string>
     <!-- Notification body shown when a call was answered from a watch or other device but Signal needs microphone permission before it can connect -->
-    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">To answer this call, allow Signal access to your microphone.</string>
+    <string name="CallNotificationBuilder__to_answer_this_call_allow_signal_access_to_your_microphone">Каб адказаць на гэты званок, дайце Signal доступ да вашага мікрафона.</string>
     <!-- Notification body shown during a call when Android blocked microphone access because Signal was in the background -->
-    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">The other person can\'t hear you until you open Signal.</string>
+    <string name="CallNotificationBuilder__the_other_person_cant_hear_you_until_you_open_signal">Іншая асоба не зможа вас пачуць, пакуль вы не адкрыеце Signal.</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Парольная фраза для рэзервовай копіі</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Рэзервовыя копіі будуць захаваны ў знешнім сховішчы і зашыфраваны з дапамогай парольнай фразы, што ніжэй. Вам неабходна мець гэтую парольную фразу, каб аднавіць рэзервовую копію.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Вам неабходна мець гэтую парольную фразу, каб аднавіць рэзервовую копію.</string>
@@ -5143,7 +5143,7 @@
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">Непрачытаныя паведамленні з усіх чатаў</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">Чаты адзін на адзін</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">Асабістыя чаты</string>
     <!-- Description of the suggested 1:1 chat folder -->
     <string name="ChatFoldersFragment__only_direct_messages">Толькі паведамленні з чатаў адзін на адзін</string>
     <!-- Name of a chat folder that contains all groups chats -->
@@ -5208,7 +5208,7 @@
     <!-- Explanation of unread toggle option -->
     <string name="CreateFoldersFragment__when_enabled_only_chats">Калі ўключана гэта опцыя, у гэтай папцы будуць паказаны толькі чаты з непрачытанымі паведамленнямі.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Улічваць чаты з адключанымі апавяшчэннямі</string>
+    <string name="CreateFoldersFragment__include_muted_chats">Уключыць чаты з адключанымі апавяшчэннямі</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">Стварыць</string>
     <!-- Section title shown when editing an existing folder   -->
@@ -5438,11 +5438,11 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s быў(-ла) выдалены(-а)</string>
     <!-- Dialog title when hiding a contact. Placeholder is the contact\'s name. -->
-    <string name="NewConversationActivity__hide_s">Hide %1$s?</string>
+    <string name="NewConversationActivity__hide_s">Схаваць %1$s?</string>
     <!-- Dialog body when hiding a contact -->
-    <string name="NewConversationActivity__this_person_wont_appear">This person won\'t appear in your contact list and search. If they message you in the future, you\'ll receive a message request. You can manage people you\'ve hidden in settings.</string>
+    <string name="NewConversationActivity__this_person_wont_appear">Гэтая асоба не з\'явіцца ў вашым спісе кантактаў і ў пошуку. Калі яна дашле вам паведамленне ў будучыні, вы атрымаеце запыт на перапіску. Вы можаце кіраваць людзьмі, якіх схавалі, у наладах.</string>
     <!-- Snackbar message after hiding a contact. Placeholder is the contact\'s name. -->
-    <string name="NewConversationActivity__s_has_been_hidden">%1$s has been hidden</string>
+    <string name="NewConversationActivity__s_has_been_hidden">%1$s быў(-ла) схаваны(-а)</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s быў(-ла) заблакаваны(-а)</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
