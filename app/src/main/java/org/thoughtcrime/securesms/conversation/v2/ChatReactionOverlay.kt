@@ -54,6 +54,11 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.integerResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.role
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
@@ -103,6 +108,7 @@ private class StripBounds {
  * and is in window coordinates, as it arrives from the activity's touch relay.
  *
  * @param snapshot A picture of the row that was pressed, standing in for the real one.
+ * @param emojiLabels What an accessibility service announces for each slot in [emoji].
  * @param appliedEmojiIndex Slot holding the reaction already on this message, or -1 for none.
  * @param canReact False for a message that takes no reactions, which hides the strip.
  * @param returnPosition Where the row is *now*, for the hide to fly back to. Null once it is gone.
@@ -116,6 +122,7 @@ data class ReactionOverlaySelection(
   val isMessageOnLeft: Boolean,
   val lastSeenDownY: Float,
   val emoji: List<Drawable?>,
+  val emojiLabels: List<String?>,
   val appliedEmojiIndex: Int,
   val canReact: Boolean,
   val returnPosition: () -> Offset?
@@ -366,10 +373,12 @@ fun ChatReactionOverlay(
         ReactionEmoji(
           index = index,
           emoji = selection.emoji.getOrNull(index),
+          label = selection.emojiLabels.getOrNull(index),
           isApplied = index == selection.appliedEmojiIndex,
           reveal = emojiReveal[index].value,
           indicatorAlpha = indicatorReveal.value,
           selectedIndex = { controller.selectedIndex },
+          onActivate = { controller.onEmojiClicked(index) },
           onEdgeMeasured = { left, right ->
             // Layout direction order, so under RTL start is the greater edge.
             if (index == 0) {
@@ -428,16 +437,20 @@ private suspend fun followKeyboard(
  * Its own composable so that [selectedIndex], which changes as fast as a thumb moves, invalidates
  * seven small scopes rather than the whole overlay.
  *
+ * @param onActivate Activation through semantics only, for accessibility services. Touch still goes
+ *   through the scrubber.
  * @param onEdgeMeasured The slot's untransformed leading and trailing edges, in window coordinates.
  */
 @Composable
 private fun ReactionEmoji(
   index: Int,
   emoji: Drawable?,
+  label: String?,
   isApplied: Boolean,
   reveal: Float,
   indicatorAlpha: Float,
   selectedIndex: () -> Int,
+  onActivate: () -> Unit,
   onEdgeMeasured: (Float, Float) -> Unit
 ) {
   val density = LocalDensity.current
@@ -467,6 +480,17 @@ private fun ReactionEmoji(
         val left = coordinates.positionInWindow().x
 
         onEdgeMeasured(left, left + coordinates.size.width)
+      }
+      // Not clickable: touch belongs to the scrubber, and a click would commit again on lift.
+      .clearAndSetSemantics {
+        if (label != null) {
+          contentDescription = label
+          role = Role.Button
+          onClick {
+            onActivate()
+            true
+          }
+        }
       },
     contentAlignment = Alignment.Center
   ) {
