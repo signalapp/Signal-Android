@@ -1650,7 +1650,7 @@ object RemoteConfig {
 
   /** Whether to automatically turn on screen security when an assistant app requests the contents of the screen. */
   val automaticScreenSecurity: Boolean by remoteBoolean(
-    key = "android.automaticScreenSecurity.2",
+    key = "android.automaticScreenSecurity.3",
     defaultValue = false,
     hotSwappable = true
   )
