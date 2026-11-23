@@ -762,6 +762,10 @@ class ConversationViewModel(
     repository.updateStickerLastUsedTime(stickerRecord, timestamp)
   }
 
+  fun deleteScheduledMessage(messageId: Long) {
+    scheduledMessagesRepository.deleteScheduledMessage(messageId)
+  }
+
   fun getScheduledMessagesCount(): Observable<Int> {
     return scheduledMessagesRepository
       .getScheduledMessageCount(threadId)
