@@ -289,6 +289,34 @@ class EditMessageRevisionTest {
     assertThat(getLatestRevisionId(edit2Id)).isNull()
   }
 
+  @Test
+  fun incomingEditTargetingStaleRevisionMovesReactionsToNewRevision() {
+    insertOriginalMessage(sentTimeMillis = 1000)
+    val edit1Id = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1001)
+    SignalDatabase.reactions.addReaction(MessageId(edit1Id), ReactionRecord(emoji = "\uD83D\uDC4D", author = senderId, dateSent = 1001, dateReceived = 1001))
+
+    // A second edit that still targets the original timestamp, e.g. from a sender that hasn't seen the first edit yet.
+    val edit2Id = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1002)
+
+    assertEquals("Reactions must follow the chain onto the visible revision", 1, SignalDatabase.reactions.getReactions(MessageId(edit2Id)).size)
+    assertEquals("Reactions must not be stranded on a hidden revision", 0, SignalDatabase.reactions.getReactions(MessageId(edit1Id)).size)
+  }
+
+  @Test
+  fun incomingEditTargetingStaleRevisionMovesPinToNewRevision() {
+    insertOriginalMessage(sentTimeMillis = 1000)
+    val edit1Id = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1001)
+    SignalDatabase.writableDatabase.execSQL(
+      "UPDATE ${MessageTable.TABLE_NAME} SET ${MessageTable.PINNED_AT} = 1500, ${MessageTable.PINNED_UNTIL} = 999999 WHERE ${MessageTable.ID} = ?",
+      arrayOf(edit1Id)
+    )
+
+    val edit2Id = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1002)
+
+    assertEquals("Pin must follow the chain onto the visible revision", 1500L, getPinnedAt(edit2Id))
+    assertEquals("Pin must not be stranded on a hidden revision", 0L, getPinnedAt(edit1Id))
+  }
+
   private fun insertOutgoingEdit(messageToEdit: Long, sentTimeMillis: Long): Long {
     val message = OutgoingMessage(
       recipient = Recipient.resolved(contactId),
@@ -318,6 +346,10 @@ class EditMessageRevisionTest {
 
   private fun getOriginalMessageId(messageId: Long): Long {
     return readColumn(messageId, MessageTable.ORIGINAL_MESSAGE_ID) { cursor, idx -> cursor.getLong(idx) }
+  }
+
+  private fun getPinnedAt(messageId: Long): Long {
+    return readColumn(messageId, MessageTable.PINNED_AT) { cursor, idx -> cursor.getLong(idx) }
   }
 
   private fun <T> readColumn(messageId: Long, column: String, read: (Cursor, Int) -> T): T {
