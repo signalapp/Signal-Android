@@ -5,9 +5,13 @@
 
 package org.thoughtcrime.securesms.conversationlist
 
+import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.core.view.AccessibilityDelegateCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.lifecycle.LifecycleOwner
 import com.bumptech.glide.RequestManager
 import org.thoughtcrime.securesms.R
@@ -17,6 +21,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchModels.EmptyModel
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchModels.GroupWithMembersModel
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchModels.MessageModel
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchModels.ThreadModel
+import org.thoughtcrime.securesms.conversationlist.model.Conversation
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -41,11 +46,12 @@ object ConversationListSearchModels {
     onClicked: ContactSearchAdapter.OnClickedCallback<ContactSearchData.Thread>,
     onLongClicked: (View, ContactSearchData.Thread) -> Boolean,
     lifecycleOwner: LifecycleOwner,
-    requestManager: RequestManager
+    requestManager: RequestManager,
+    onAccessibilityAction: ConversationListAccessibilityHelper.OnAccessibilityActionListener? = null
   ) {
     mappingAdapter.registerFactory(
       ThreadModel::class.java,
-      LayoutFactory({ ThreadViewHolder(onClicked, onLongClicked, lifecycleOwner, requestManager, it) }, R.layout.conversation_list_item_view)
+      LayoutFactory({ ThreadViewHolder(onClicked, onLongClicked, lifecycleOwner, requestManager, onAccessibilityAction, it) }, R.layout.conversation_list_item_view)
     )
   }
 
@@ -102,14 +108,15 @@ object ConversationListSearchModels {
     onGroupWithMembersClicked: ContactSearchAdapter.OnClickedCallback<ContactSearchData.GroupWithMembers>,
     onClearFilterClicked: () -> Unit,
     lifecycleOwner: LifecycleOwner,
-    requestManager: RequestManager
+    requestManager: RequestManager,
+    onAccessibilityAction: ConversationListAccessibilityHelper.OnAccessibilityActionListener? = null
   ): MappingEntryProvider<Any> {
     return MappingEntryProviderBuilder<Any>().apply {
       viewHolder<ThreadModel>(
         key = { model -> "Thread:${model.thread.contactSearchKey}" }
       ) { ctx ->
         LayoutFactory(
-          { view -> ThreadViewHolder(onThreadClicked, onThreadLongClicked, lifecycleOwner, requestManager, view) },
+          { view -> ThreadViewHolder(onThreadClicked, onThreadLongClicked, lifecycleOwner, requestManager, onAccessibilityAction, view) },
           R.layout.conversation_list_item_view
         ).createViewHolder(FrameLayout(ctx))
       }
@@ -208,6 +215,7 @@ object ConversationListSearchModels {
     private val threadLongClickListener: (View, ContactSearchData.Thread) -> Boolean,
     private val lifecycleOwner: LifecycleOwner,
     private val requestManager: RequestManager,
+    private val accessibilityActionListener: ConversationListAccessibilityHelper.OnAccessibilityActionListener?,
     itemView: View
   ) : ConversationListItemViewHolder<ThreadModel>(itemView) {
     override fun fullBind(model: ThreadModel) {
@@ -231,6 +239,30 @@ object ConversationListSearchModels {
         false,
         null
       )
+
+      if (accessibilityActionListener != null) {
+        val conversation = Conversation(model.thread.threadWithRecipient)
+        ViewCompat.setAccessibilityDelegate(itemView, object : AccessibilityDelegateCompat() {
+          override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+            super.onInitializeAccessibilityNodeInfo(host, info)
+            ConversationListAccessibilityHelper.addConversationActions(
+              info.unwrap(),
+              host.context,
+              conversation,
+              isInSelectionMode = false,
+              includeSelect = false
+            )
+          }
+
+          override fun performAccessibilityAction(host: View, action: Int, args: Bundle?): Boolean {
+            return ConversationListAccessibilityHelper.dispatchConversationAction(
+              action,
+              conversation,
+              accessibilityActionListener
+            ) || super.performAccessibilityAction(host, action, args)
+          }
+        })
+      }
     }
   }
 
