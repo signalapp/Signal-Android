@@ -33,6 +33,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Hex
@@ -253,6 +254,34 @@ class StorageSyncJobTest {
     val inserted = SignalDatabase.recipients.getByAci(aci)
     assertTrue(inserted.isPresent)
     assertEquals(ProfileName.fromParts("Remote", "Contact"), Recipient.resolved(inserted.get()).profileName)
+  }
+
+  @Test
+  fun `given a remote-only PNI contact, when I run, then I insert it locally as registered`() {
+    val pni = PNI.from(UUID.randomUUID())
+    remoteStorage.addRemoteRecords(listOf(pniContactRecord(pni, "+15550100100", ProfileName.fromParts("Remote", "Contact"))))
+
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+
+    val inserted = SignalDatabase.recipients.getByPni(pni)
+    assertTrue(inserted.isPresent)
+    assertEquals(RecipientTable.RegisteredState.REGISTERED, SignalDatabase.recipients.getRecord(inserted.get()).registered)
+  }
+
+  @Test
+  fun `given a remote-only unregistered PNI contact, when I run, then I insert it locally as not registered`() {
+    val pni = PNI.from(UUID.randomUUID())
+    remoteStorage.addRemoteRecords(listOf(pniContactRecord(pni, "+15550100101", unregisteredAtTimestamp = 1_000L)))
+
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+
+    val inserted = SignalDatabase.recipients.getByPni(pni)
+    assertTrue(inserted.isPresent)
+    assertEquals(RecipientTable.RegisteredState.NOT_REGISTERED, SignalDatabase.recipients.getRecord(inserted.get()).registered)
   }
 
   @Test
@@ -792,6 +821,21 @@ class StorageSyncJobTest {
           givenName = profileName.givenName,
           familyName = profileName.familyName,
           whitelisted = true
+        )
+      )
+    )
+  }
+
+  private fun pniContactRecord(pni: PNI, e164: String, nickname: ProfileName = ProfileName.EMPTY, unregisteredAtTimestamp: Long = 0L): SignalStorageRecord {
+    return SignalStorageRecord(
+      id = StorageId.forContact(Util.getSecretBytes(16)),
+      proto = StorageRecord(
+        contact = ContactRecord(
+          pniBinary = pni.toByteStringWithoutPrefix(),
+          e164 = e164,
+          whitelisted = true,
+          nickname = nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) },
+          unregisteredAtTimestamp = unregisteredAtTimestamp
         )
       )
     )
