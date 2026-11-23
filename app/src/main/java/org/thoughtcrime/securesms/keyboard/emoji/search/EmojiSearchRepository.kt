@@ -16,7 +16,7 @@ class EmojiSearchRepository {
 
   fun submitQuery(query: String, limit: Int = EMOJI_SEARCH_LIMIT): Single<List<String>> {
     val result = if (query.length >= MINIMUM_INLINE_QUERY_THRESHOLD && NOT_PUNCTUATION.matches(query.substring(query.lastIndex))) {
-      Single.fromCallable { emojiSearchTable.query(query, limit) }
+      Single.fromCallable { emojiSearchTable.queryWithWordFragments(query, limit) }
     } else {
       Single.just(emptyList())
     }
