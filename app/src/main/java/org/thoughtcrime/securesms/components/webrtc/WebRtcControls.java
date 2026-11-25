@@ -180,7 +180,7 @@ public final class WebRtcControls {
   }
 
   public boolean displayAudioToggle() {
-    return (isPreJoin() || isAtLeastOutgoing()) && (!isLocalVideoEnabled || isBluetoothHeadsetAvailableForAudioToggle() || isWiredHeadsetAvailableForAudioToggle());
+    return isPreJoin() || isAtLeastOutgoing();
   }
 
   public boolean displayCameraToggle() {
@@ -200,7 +200,7 @@ public final class WebRtcControls {
   }
 
   public boolean isEarpieceAvailableForAudioToggle() {
-    return !isLocalVideoEnabled;
+    return true;
   }
 
   public boolean isBluetoothHeadsetAvailableForAudioToggle() {
