@@ -5,7 +5,6 @@
 
 package org.signal.core.ui.compose
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,15 +32,21 @@ import org.signal.core.ui.util.ThemeUtil
  */
 abstract class ComposeFullScreenDialogFragment : DialogFragment() {
 
+  /**
+   * Whether [DialogContent] is kept clear of the system bars, cutouts and keyboard. Turn it off for content that runs
+   * edge to edge and keeps itself clear where it needs to.
+   */
+  protected open val padForSafeDrawing: Boolean = true
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     val fullScreenDialogStyle = ThemeUtil.getThemedResourceId(requireContext(), R.attr.fullScreenDialogStyle)
     setStyle(STYLE_NO_FRAME, fullScreenDialogStyle)
   }
 
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    return super.onCreateDialog(savedInstanceState).apply {
-      window?.enableEdgeToEdge()
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return super.onGetLayoutInflater(savedInstanceState).also {
+      dialog?.window?.enableEdgeToEdge()
     }
   }
 
@@ -50,7 +55,11 @@ abstract class ComposeFullScreenDialogFragment : DialogFragment() {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         SignalTheme {
-          Box(modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)) {
+          if (padForSafeDrawing) {
+            Box(modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)) {
+              DialogContent()
+            }
+          } else {
             DialogContent()
           }
         }

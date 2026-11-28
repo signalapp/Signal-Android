@@ -6,15 +6,17 @@
 package org.signal.mediasend.screens.edit
 
 import android.Manifest
+import android.net.Uri
 import androidx.annotation.StringRes
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.DialogController
@@ -31,6 +33,11 @@ import org.signal.mediasend.MediaSendRepository
 import org.signal.mediasend.R
 import org.signal.mediasend.SaveToStorageResult
 import org.signal.mediasend.SnackbarEvent
+import org.signal.mediasend.screens.edit.video.VideoEditorViewModel
+import org.signal.mediasend.screens.edit.video.VideoPlayerCommand
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarAction
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarEvents
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarPresenter
 
 /**
  * Drives the edit screen.
@@ -43,7 +50,7 @@ internal class MediaEditViewModel(
   parentState: StateFlow<MediaSendFlowState>,
   private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
   private val repository: MediaSendRepository = MediaSendDependencies.mediaSendRepository
-) : EventDrivenViewModel<MediaEditScreenEvents>(TAG) {
+) : EventDrivenViewModel<MediaEditScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(MediaEditViewModel::class)
@@ -51,6 +58,12 @@ internal class MediaEditViewModel(
 
   private val _state: MutableStateFlow<MediaEditState> = MutableStateFlow(MediaEditState().withParentState(parentState.value))
   val state: StateFlow<MediaEditState> = _state.asStateFlow()
+
+  private val trimBarPresenter = VideoTrimBarPresenter(viewModelScope)
+
+  /** Seeks for the video player, which lives behind [VideoEditorViewModel] rather than in this screen. */
+  private val _videoPlayerCommands = Channel<VideoPlayerCommand>(Channel.BUFFERED)
+  val videoPlayerCommands: Flow<VideoPlayerCommand> = _videoPlayerCommands.receiveAsFlow()
 
   /** Hosted here, since this is the only screen that saves media or asks for what saving it needs. */
   val saveToStorageDialog = DialogController<Unit>()
@@ -63,18 +76,35 @@ internal class MediaEditViewModel(
     parentState
       .onEach { onEvent(MediaEditScreenEvents.ParentStateChanged(it)) }
       .launchIn(viewModelScope)
+
+    trimBarPresenter
+      .state
+      .onEach { onEvent(MediaEditScreenEvents.TrimBarStateChanged(it)) }
+      .launchIn(viewModelScope)
+
+    trimBarPresenter
+      .previews
+      .onEach { onEvent(MediaEditScreenEvents.TrimBarPreviewsChanged(it)) }
+      .launchIn(viewModelScope)
+
+    trimBarPresenter
+      .actions
+      .onEach { onEvent(MediaEditScreenEvents.TrimBarAction(it)) }
+      .launchIn(viewModelScope)
   }
 
   override suspend fun processEvent(event: MediaEditScreenEvents) {
     when (event) {
-      is MediaEditScreenEvents.ParentStateChanged -> _state.update { it.withParentState(event.parentState) }
+      is MediaEditScreenEvents.ParentStateChanged -> {
+        _state.update { it.withParentState(event.parentState) }
+        updateTrimBarSource()
+      }
       is MediaEditScreenEvents.FocusedMediaChanged -> parentEventEmitter(MediaSendFlowEvent.SetFocusedMedia(event.media))
       is MediaEditScreenEvents.ReorderSelectedMedia -> parentEventEmitter(MediaSendFlowEvent.ReorderSelectedMedia(event.fromIndex, event.toIndex))
       is MediaEditScreenEvents.RemoveMedia -> parentEventEmitter(MediaSendFlowEvent.RemoveMedia(setOf(event.media)))
       is MediaEditScreenEvents.SetMediaQuality -> parentEventEmitter(MediaSendFlowEvent.SetMediaQuality(event.quality))
       is MediaEditScreenEvents.BrushWidthChanged -> parentEventEmitter(MediaSendFlowEvent.SetBrushWidth(event.tool, event.fraction))
       is MediaEditScreenEvents.ToggleBlurFaces -> parentEventEmitter(MediaSendFlowEvent.SetBlurFacesEnabled(event.enabled))
-      is MediaEditScreenEvents.VideoTrimChanged -> parentEventEmitter(MediaSendFlowEvent.VideoTrimChanged(event.videoTrimData, event.editingComplete))
       MediaEditScreenEvents.ToggleViewOnce -> parentEventEmitter(MediaSendFlowEvent.ToggleViewOnce)
       MediaEditScreenEvents.ToggleVideoMuted -> parentEventEmitter(MediaSendFlowEvent.ToggleVideoMuted)
       is MediaEditScreenEvents.AddMessageClick -> parentEventEmitter(MediaSendFlowEvent.AddMessageRequested(event.startWithEmojiKeyboard))
@@ -84,7 +114,58 @@ internal class MediaEditViewModel(
       MediaEditScreenEvents.NavigateToGallery -> parentEventEmitter(MediaSendFlowEvent.NavigateToFolders)
       MediaEditScreenEvents.NavigateBack -> parentEventEmitter(MediaSendFlowEvent.NavigateBackFromEdit)
       MediaEditScreenEvents.SaveMedia -> saveFocusedMediaToStorage()
-      is MediaEditScreenEvents.VideoSeek -> error("VideoSeek is routed to the video player bus by MediaEditScreen and must not reach the view-model.")
+      is MediaEditScreenEvents.TrimBarEvent -> trimBarPresenter.onEvent(event.event)
+      is MediaEditScreenEvents.TrimBarStateChanged -> _state.update { it.copy(videoTrimBar = event.state) }
+      is MediaEditScreenEvents.TrimBarPreviewsChanged -> _state.update { it.copy(videoTrimBarPreviews = event.previews) }
+      is MediaEditScreenEvents.TrimBarAction -> onTrimBarAction(event.action)
+    }
+  }
+
+  /**
+   * Points the trim bar at the focused video and passes along the flow's trim for it. Sent on every flow update, not
+   * just when the trim changes: the bar ignores trims that arrive mid-drag, so the update that ends a drag has to carry
+   * the trim again even if it is unchanged.
+   *
+   * The videos either side of the focused media are preloaded whatever it is, so their bars are ready to fade in with a
+   * swipe. The focused one is included, and sent ahead of the source, so the outgoing source is still wanted once the
+   * source moves to its neighbor.
+   */
+  private fun updateTrimBarSource() {
+    val state = _state.value
+    val uri = state.focusedMedia?.uri
+    val editorState = state.focusedEditorState
+
+    trimBarPresenter.onEvent(VideoTrimBarEvents.PreloadChanged(state.videosAroundFocus()))
+
+    if (uri != null && editorState is EditorState.VideoTrim) {
+      trimBarPresenter.onEvent(VideoTrimBarEvents.SourceChanged(uri))
+      trimBarPresenter.onEvent(VideoTrimBarEvents.TrimDataChanged(uri, editorState.videoTrimData, editorState.maxDurationUs.takeIf { it > 0 }))
+    }
+  }
+
+  private fun MediaEditState.videosAroundFocus(): Set<Uri> {
+    val focusedIndex = focusedMedia?.let { selectedMedia.indexOf(it) } ?: -1
+    if (focusedIndex < 0) {
+      return emptySet()
+    }
+
+    return listOf(focusedIndex, focusedIndex - 1, focusedIndex + 1)
+      .mapNotNull { selectedMedia.getOrNull(it)?.uri }
+      .filter { editorStateMap[it] is EditorState.VideoTrim }
+      .toSet()
+  }
+
+  private suspend fun onTrimBarAction(action: VideoTrimBarAction) {
+    when (action) {
+      is VideoTrimBarAction.TrimChanged -> parentEventEmitter(MediaSendFlowEvent.VideoTrimChanged(action.uri, action.videoTrimData, action.editingComplete))
+      is VideoTrimBarAction.Seek -> {
+        val command = if (action.editingComplete) {
+          VideoEditorViewModel.Command.EndPositionDrag(action.positionUs)
+        } else {
+          VideoEditorViewModel.Command.PositionDrag(action.positionUs)
+        }
+        _videoPlayerCommands.send(VideoPlayerCommand(action.uri, command))
+      }
     }
   }
 
@@ -132,15 +213,5 @@ internal class MediaEditViewModel(
 
   private fun showSnackbar(@StringRes message: Int) {
     parentEventEmitter(MediaSendFlowEvent.ShowSnackbar(SnackbarEvent(message = message)))
-  }
-
-  class Factory(
-    private val parentState: StateFlow<MediaSendFlowState>,
-    private val parentEventEmitter: (MediaSendFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return MediaEditViewModel(parentState, parentEventEmitter) as T
-    }
   }
 }

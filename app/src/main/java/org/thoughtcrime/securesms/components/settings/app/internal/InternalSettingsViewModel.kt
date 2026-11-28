@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Observable
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.components.settings.DividerPreference
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.keyvalue.InternalValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -167,6 +167,16 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setInternalCallingUseHardwareH265Encode(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_HARDWARE_H265_ENCODE, enabled)
+    refresh()
+  }
+
+  fun setInternalCallingUseHardwareH265Decode(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_HARDWARE_H265_DECODE, enabled)
+    refresh()
+  }
+
   fun setInternalCallingEnableSvc(enabled: Boolean) {
     preferenceDataStore.putBoolean(InternalValues.CALLING_ENABLE_SVC, enabled)
     refresh()
@@ -174,6 +184,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
 
   fun setInternalCallingStatsIntervalSecs(intervalSecs: Int) {
     preferenceDataStore.putInt(InternalValues.CALLING_STATS_INTERVAL_SECS, intervalSecs)
+    refresh()
+  }
+
+  fun setInternalCallingMinimumCaptureFps(minimumFps: Int) {
+    preferenceDataStore.putInt(InternalValues.CALLING_MINIMUM_CAPTURE_FPS, minimumFps)
     refresh()
   }
 
@@ -263,8 +278,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     callingUseHardwareVp9Decode = SignalStore.internal.callingUseHardwareVp9Decode,
     callingUseSoftwareVp9Encode = SignalStore.internal.callingUseSoftwareVp9Encode,
     callingUseSoftwareVp9Decode = SignalStore.internal.callingUseSoftwareVp9Decode,
+    callingUseHardwareH265Encode = SignalStore.internal.callingUseHardwareH265Encode,
+    callingUseHardwareH265Decode = SignalStore.internal.callingUseHardwareH265Decode,
     callingEnableSvc = SignalStore.internal.callingEnableSvc,
     callingStatsIntervalSecs = SignalStore.internal.callingStatsIntervalSecs,
+    callingMinimumCaptureFps = SignalStore.internal.callingMinimumCaptureFps,
     useBuiltInEmojiSet = SignalStore.internal.forceBuiltInEmoji,
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internal.removeSenderKeyMinimum,

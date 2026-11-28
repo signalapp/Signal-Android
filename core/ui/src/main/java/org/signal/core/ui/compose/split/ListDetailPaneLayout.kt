@@ -28,7 +28,8 @@ class ListDetailPaneLayout internal constructor(
   internal val detailPaddingEnd: Dp,
   internal val shape: Shape,
   internal val hasDragHandle: Boolean,
-  internal val minPaneContentWidth: Dp
+  internal val minListContentWidth: Dp,
+  internal val minDetailContentWidth: Dp
 )
 
 /**
@@ -52,6 +53,7 @@ internal val LocalListDetailPaneLayout = compositionLocalOf<ListDetailPaneLayout
  * @param metrics the baseline geometry, which decides the widths, the gutter and the corners.
  * @param collapsedListWidth what is left of the list pane once the detail fills the window. Zero unless
  *   something inside the list stays on screen, such as a navigation rail.
+ * @param isResizable whether the divider can be dragged. When false the panes stay wherever [paneAnchor] puts them.
  */
 @Composable
 fun rememberListDetailPaneLayout(
@@ -59,7 +61,8 @@ fun rememberListDetailPaneLayout(
   maxWidth: Dp,
   onAnchorSelected: (PaneAnchor) -> Unit,
   metrics: ListDetailPaneMetrics = rememberListDetailPaneMetrics(),
-  collapsedListWidth: Dp = 0.dp
+  collapsedListWidth: Dp = 0.dp,
+  isResizable: Boolean = true
 ): ListDetailPaneLayout {
   val isSplitPane = LocalResources.current.rememberIsSplitPane()
   val splitWidth = metrics.rememberSplitListPaneWidth(maxWidth)
@@ -85,15 +88,16 @@ fun rememberListDetailPaneLayout(
     expansion.goTo(paneAnchor)
   }
 
-  return remember(expansion, metrics, isSplitPane, splitWidth) {
+  return remember(expansion, metrics, isSplitPane, splitWidth, maxWidth, isResizable) {
     ListDetailPaneLayout(
       expansion = expansion,
       partitionWidth = metrics.partitionWidth,
       listPaddingStart = metrics.listPaddingStart,
       detailPaddingEnd = metrics.detailPaddingEnd,
       shape = metrics.shape,
-      hasDragHandle = isSplitPane,
-      minPaneContentWidth = splitWidth
+      hasDragHandle = isSplitPane && isResizable,
+      minListContentWidth = if (isSplitPane) metrics.listContentWidthAtSplit(splitWidth) else splitWidth,
+      minDetailContentWidth = if (isSplitPane) metrics.detailWidthAtSplit(maxWidth, splitWidth) else splitWidth
     )
   }
 }
@@ -107,10 +111,54 @@ fun rememberListDetailPaneLayout(
  */
 typealias ListPaneChrome = @Composable (content: @Composable () -> Unit) -> Unit
 
-internal val LocalListPaneChrome = compositionLocalOf<ListPaneChrome?> { null }
+/**
+ * The chrome for the list pane, in two forms. [movable] carries its state from one list to the next, and so can only be
+ * placed once: it goes to the list in the scene being navigated to. A list animating out keeps it only if it has
+ * [movableOwnerKey], which is the last list to have been navigated to, and otherwise gets its own [chrome].
+ */
+internal class ListPaneChromeHost(
+  val chrome: ListPaneChrome,
+  val movable: ListPaneChrome,
+  val movableOwnerKey: Any?
+)
+
+internal val LocalListPaneChrome = compositionLocalOf<ListPaneChromeHost?> { null }
 
 /**
  * Fills the detail pane when there is no detail content to show. Defaults to nothing, leaving the pane's
  * own background.
  */
 internal val LocalEmptyDetailContent = compositionLocalOf<@Composable () -> Unit> { {} }
+
+/**
+ * Whether content is displayed in the detail pane of a split, beside the list. False for a single pane, including
+ * detail content filling a narrow window.
+ */
+val LocalIsInDetailPane = compositionLocalOf { false }
+
+/**
+ * Whether content is the bottom of the detail stack beside the list, where back has nothing in the pane to return to.
+ */
+val LocalIsDetailPaneRoot = compositionLocalOf { false }
+
+/**
+ * The content keys of the detail stack beside the list, bottom first, or null outside a split.
+ */
+internal val LocalDetailPaneContentKeys = compositionLocalOf<List<Any>?> { null }
+
+/**
+ * The list pane's content width while both panes are visible: the list's [splitListWidth] less the padding at its start,
+ * such as the inset the main screen's search bar needs.
+ */
+internal fun ListDetailPaneMetrics.listContentWidthAtSplit(splitListWidth: Dp): Dp {
+  return (splitListWidth - listPaddingStart).coerceAtLeast(0.dp)
+}
+
+/**
+ * The detail pane's width while both panes are visible: whatever the list, the gap between them and the detail's end
+ * padding leave of [maxWidth]. This is narrower than the list on a window that is only just wide enough for the list's
+ * fixed width, such as an open foldable.
+ */
+internal fun ListDetailPaneMetrics.detailWidthAtSplit(maxWidth: Dp, splitListWidth: Dp): Dp {
+  return (maxWidth - splitListWidth - partitionWidth - detailPaddingEnd).coerceAtLeast(0.dp)
+}

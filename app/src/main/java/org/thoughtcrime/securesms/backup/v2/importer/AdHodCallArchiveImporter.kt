@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.importer
 
 import org.signal.archive.proto.AdHocCall
-import org.signal.core.util.insertInto
+import org.signal.core.database.insertInto
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.database.CallTable

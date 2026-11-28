@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.os.ParcelCompat;
-import androidx.core.text.HtmlCompat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -114,14 +113,14 @@ public class LinkPreview implements Parcelable {
   }
 
   public @NonNull String getTitle() {
-    return HtmlCompat.fromHtml(title, 0).toString();
+    return LinkPreviewUtil.stripHtml(title);
   }
 
   public @NonNull String getDescription() {
     if (description.equals(title)) {
       return "";
     } else {
-      return HtmlCompat.fromHtml(description, 0).toString();
+      return LinkPreviewUtil.stripHtml(description);
     }
   }
 

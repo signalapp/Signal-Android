@@ -88,6 +88,7 @@
         android:id="@+id/conversation_item_body_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clipChildren="false"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="48dp"
         android:orientation="vertical"

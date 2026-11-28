@@ -10,5 +10,7 @@ package org.signal.registration.screens.twofactorselection
  */
 data class TwoFactorSelectionState(
   /** The methods to offer, in the order they should be displayed. */
-  val methods: List<TwoFactorMethod> = emptyList()
+  val methods: List<TwoFactorMethod> = emptyList(),
+  /** Whether to tell the user their passkey ceremony didn't work, leaving them here to pick again. */
+  val showPasskeyError: Boolean = false
 )

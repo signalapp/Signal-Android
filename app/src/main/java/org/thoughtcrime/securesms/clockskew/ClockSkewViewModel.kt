@@ -24,7 +24,7 @@ import java.util.TimeZone
 class ClockSkewViewModel(
   private val clock: () -> Long = { System.currentTimeMillis() },
   detected: StateFlow<Boolean> = ClockSkewDetector.detected
-) : EventDrivenViewModel<ClockSkewScreenEvent>(TAG) {
+) : EventDrivenViewModel<ClockSkewScreenEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(ClockSkewViewModel::class)

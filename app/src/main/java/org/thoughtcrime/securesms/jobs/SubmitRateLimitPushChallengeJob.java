@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.eventbus.EventBus;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -52,7 +52,7 @@ public final class SubmitRateLimitPushChallengeJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    NetworkResultUtil.toBasicLegacy(SignalNetwork.rateLimitChallenge().submitPushChallenge(challenge));
+    NetworkResultUtil.toBasicLegacy(SignalNetwork.rateLimitChallengeApi().submitPushChallenge(challenge));
     SignalStore.rateLimit().onProofAccepted();
     EventBus.getDefault().post(new SuccessEvent());
     RateLimitUtil.retryAllRateLimitedMessages(context);

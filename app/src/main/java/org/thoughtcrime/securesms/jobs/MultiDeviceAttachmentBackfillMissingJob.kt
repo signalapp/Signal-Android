@@ -7,17 +7,16 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.MultiDeviceAttachmentBackfillMissingJobData
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
+import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.ConversationIdentifier
 import org.whispersystems.signalservice.internal.push.SyncMessage
-import java.io.IOException
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -27,7 +26,7 @@ class MultiDeviceAttachmentBackfillMissingJob(
   parameters: Parameters,
   private val targetMessage: AddressableMessage,
   private val targetConversation: ConversationIdentifier
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     private val TAG = Log.tag(MultiDeviceAttachmentBackfillMissingJob::class)
@@ -59,34 +58,29 @@ class MultiDeviceAttachmentBackfillMissingJob(
     ).encode()
   }
 
-  override fun run(): Result {
-    val syncMessage = SignalServiceSyncMessage.forAttachmentBackfillResponse(
-      SyncMessage.AttachmentBackfillResponse(
-        targetMessage = targetMessage,
-        targetConversation = targetConversation,
-        error = SyncMessage.AttachmentBackfillResponse.Error.MESSAGE_NOT_FOUND
-      )
+  override suspend fun doRun(): Result {
+    val response = SyncMessage.AttachmentBackfillResponse(
+      targetMessage = targetMessage,
+      targetConversation = targetConversation,
+      error = SyncMessage.AttachmentBackfillResponse.Error.MESSAGE_NOT_FOUND
     )
 
-    return try {
-      val result = AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessage)
-      if (result.isSuccess) {
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncAttachmentBackfillResponse(response),
+      urgent = false,
+      onEncrypted = null
+    )
+
+    return result.fold(
+      ifRight = {
         Log.i(TAG, "[${targetMessage.sentTimestamp}] Successfully sent backfill missing message response.")
         Result.success()
-      } else {
-        Log.w(TAG, "[${targetMessage.sentTimestamp}] Non-successful result. Retrying.")
-        Result.retry(defaultBackoff())
+      },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "attachment backfill missing response", defaultBackoff())
       }
-    } catch (e: ServerRejectedException) {
-      Log.w(TAG, e)
-      Result.failure()
-    } catch (e: IOException) {
-      Log.w(TAG, e)
-      Result.retry(defaultBackoff())
-    } catch (e: UntrustedIdentityException) {
-      Log.w(TAG, e)
-      Result.failure()
-    }
+    )
   }
 
   override fun onFailure() = Unit

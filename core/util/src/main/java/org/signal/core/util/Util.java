@@ -21,12 +21,15 @@ import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
+import android.os.PersistableBundle;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -63,6 +66,9 @@ public class Util {
   private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(90);
 
   public static final String COPY_LABEL = "text\u00AD";
+
+  /** How long a secret sits on the clipboard before it is cleared, when the caller doesn't specify. */
+  public static final int SENSITIVE_CLIPBOARD_TIMEOUT_SECONDS = 60;
 
   public static <T> List<T> asList(T... elements) {
     List<T> result = new LinkedList<>();
@@ -436,15 +442,45 @@ public class Util {
     ((ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(COPY_LABEL, text));
   }
 
-  public static void copyToClipboard(@NonNull Context context, @NonNull CharSequence text, int expiresInSeconds) {
+  /**
+   * Copies a secret to the clipboard, clearing it after {@link #SENSITIVE_CLIPBOARD_TIMEOUT_SECONDS}. See
+   * {@link #copyToClipboardSensitive(Context, CharSequence, int)}.
+   */
+  public static void copyToClipboardSensitive(@NonNull Context context, @NonNull CharSequence text) {
+    copyToClipboardSensitive(context, text, SENSITIVE_CLIPBOARD_TIMEOUT_SECONDS);
+  }
+
+  /**
+   * Copies a secret (backup passphrase, recovery phrase, key) to the clipboard.
+   *
+   * Flags the clip as sensitive, which stops the system clipboard UI on API 33+ from rendering a preview of the value and stops keyboards
+   * from offering it as a paste suggestion. It also schedules an alarm to clear the clipboard after {@code expiresInSeconds}.
+   */
+  public static void copyToClipboardSensitive(@NonNull Context context, @NonNull CharSequence text, int expiresInSeconds) {
     ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-    clipboardManager.setPrimaryClip(ClipData.newPlainText(getPackageLabel(context), text));
+    ClipData         clip             = ClipData.newPlainText(getPackageLabel(context), text);
+
+    markSensitive(clip);
+    clipboardManager.setPrimaryClip(clip);
 
     AlarmManager  alarmManager       = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     Intent        alarmIntent        = new Intent(context, ClearClipboardAlarmReceiver.class);
     PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntentFlags.mutable());
 
     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(expiresInSeconds), pendingAlarmIntent);
+  }
+
+  /**
+   * Marks a clip as containing sensitive content. No-op below API 33. Does not prevent other apps from reading the clipboard on any API
+   * level, just affects how the system and keyboards display the clip.
+   */
+  private static void markSensitive(@NonNull ClipData clip) {
+    if (Build.VERSION.SDK_INT >= 33) {
+      PersistableBundle extras = new PersistableBundle();
+      extras.putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true);
+
+      clip.getDescription().setExtras(extras);
+    }
   }
 
   public static int parseInt(String integer, int defaultValue) {

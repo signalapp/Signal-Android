@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.verify
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.KeyTransparency.CheckMode
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.crypto.UnidentifiedAccess
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.model.KeyTransparencyStore
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import java.time.Duration
 
 /**
@@ -32,7 +32,7 @@ object VerifySafetyNumberRepository {
 
     val aciIdentityKey = identityRecord.get().identityKey
 
-    val result = SignalNetwork.keyTransparency.check(
+    val result = SignalNetwork.keyTransparencyApi.check(
       checkMode = CheckMode.Contact,
       aci = recipient.requireAci().libSignalAci,
       aciIdentityKey = aciIdentityKey,

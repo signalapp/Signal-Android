@@ -22,11 +22,14 @@ import java.io.IOException
  *
  * A 5xx or an unmapped status carries a [ServerSideErrorException], matching how libsignal reports server-side failures on the endpoints it owns.
  *
+ * [isSuccess] decides which statuses are handed to [parseSuccess]. It defaults to 2xx; endpoints with a non-2xx success (e.g. a 304) can widen it.
+ *
  * [parseSuccess] may throw an [IOException] for a 2xx body that can't be parsed; it is caught here and reported as a [RequestResult.RetryableNetworkError],
  * matching how a garbled response from the transport itself is classified.
  */
 internal suspend fun <T, E : BadRequestError> SignalWebSocket.requestResult(
   request: WebSocketRequestMessage,
+  isSuccess: (Int) -> Boolean = { it in 200..299 },
   parseSuccess: (WebsocketResponse) -> T,
   mapError: (WebsocketResponse) -> E?
 ): RequestResult<T, E> {
@@ -34,7 +37,7 @@ internal suspend fun <T, E : BadRequestError> SignalWebSocket.requestResult(
     val response = requestSuspend(request)
 
     when {
-      response.status in 200..299 -> RequestResult.Success(parseSuccess(response))
+      isSuccess(response.status) -> RequestResult.Success(parseSuccess(response))
       response.status in 500..599 -> RequestResult.RetryableNetworkError(ServerSideErrorException("Server error: ${response.status}"))
       else -> when (val error = mapError(response)) {
         null -> RequestResult.RetryableNetworkError(ServerSideErrorException("Unexpected response code: ${response.status}"))

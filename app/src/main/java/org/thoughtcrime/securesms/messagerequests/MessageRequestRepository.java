@@ -5,8 +5,10 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Result;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.groups.GroupChangeException;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -16,10 +18,11 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
 import org.thoughtcrime.securesms.jobs.ReportSpamJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
@@ -28,7 +31,6 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
@@ -67,18 +69,18 @@ public final class MessageRequestRepository {
     GroupInfo             groupInfo    = GroupInfo.ZERO;
 
     if (groupRecord.isPresent()) {
-      List<Recipient> recipients = Recipient.resolvedList(groupRecord.get().getMembers());
+      List<RecipientId> memberIds      = groupRecord.get().getMembers();
+      RecipientId       selfId         = Recipient.self().getId();
+      List<Recipient>   membersPreview = memberIds.stream().filter(id -> !id.equals(selfId)).limit(MAX_MEMBER_NAMES).map(Recipient::resolved).collect(Collectors.toList());
+
       if (groupRecord.get().getHasV2GroupProperties()) {
-        boolean         groupHasExistingContacts = recipients.stream().filter(r -> !r.isSelf()).anyMatch(r -> r.isProfileSharing() || r.isSystemContact());
-        List<Recipient> membersPreview           = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
+        boolean         groupHasExistingContacts = SignalDatabase.recipients().hasAnyProfileSharingOrSystemContact(memberIds);
         DecryptedGroup  decryptedGroup           = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
         boolean         nameVerified             = groupRecord.get().getVerifiedNameHash() != null && Arrays.equals(GroupTable.computeVerifiedNameHash(groupRecord.get().getTitle()), groupRecord.get().getVerifiedNameHash());
 
         groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description, groupHasExistingContacts, membersPreview, groupRecord.get().isMember(), groupRecord.get().isTerminated(), nameVerified);
       } else {
-        List<Recipient> membersPreview = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
-
-        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "", false, membersPreview, groupRecord.get().isActive(), false, false);
+        groupInfo = new GroupInfo(memberIds.size(), 0, "", false, membersPreview, groupRecord.get().isActive(), false, false);
       }
     }
 
@@ -187,11 +189,16 @@ public final class MessageRequestRepository {
       Recipient recipient = Recipient.resolved(recipientId);
       if (recipient.isPushV2Group()) {
         try {
+          GroupId.V2 groupId = recipient.requireGroupId().requireV2();
+
           Log.i(TAG, "GV2 accepting invite");
-          GroupManager.acceptInvite(context, recipient.requireGroupId().requireV2());
+          GroupManager.acceptInvite(context, groupId);
 
           RecipientTable recipientTable = SignalDatabase.recipients();
           recipientTable.setProfileSharing(recipientId, true);
+
+          Log.i(TAG, "Ensuring our profile key is up to date in the accepted group");
+          AppDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withoutLimits(groupId));
 
           insertMessageRequestAccept(recipient, threadId);
           onMessageRequestAccepted.run();
@@ -280,7 +287,7 @@ public final class MessageRequestRepository {
       }
 
       ThreadTable threadTable = SignalDatabase.threads();
-      threadTable.deleteConversation(threadId, false);
+      threadTable.deleteConversation(threadId);
 
       onMessageRequestDeleted.run();
     });

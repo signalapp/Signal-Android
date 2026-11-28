@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.testing
 
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
+import org.signal.core.database.deleteAll
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
-import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore

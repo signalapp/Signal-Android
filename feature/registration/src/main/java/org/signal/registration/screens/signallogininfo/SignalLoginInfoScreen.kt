@@ -19,17 +19,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -41,8 +39,8 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.passwordmanager.compose.SaveToPasswordManagerDialog
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
@@ -76,19 +74,60 @@ fun SignalLoginInfoScreen(
     )
   }
 
+  if (state.dialogs.saveNotConfirmed) {
+    SaveNotConfirmedDialog(onEvent)
+  }
+
+  if (state.dialogs.saveToPasswordManagerConfirmation) {
+    SaveToPasswordManagerDialog(
+      trustBody = stringResource(R.string.SignalLoginInfoScreen__only_store_your_credentials),
+      isGooglePasswordManagerDefault = state.isGooglePasswordManagerDefault,
+      onContinue = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmed) },
+      onDismiss = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmationDismissed) }
+    )
+  }
+
+  val params = RegistrationScaffold.rememberLayoutParams()
+
+  if (state.showConfirmSavedSheet) {
+    ConfirmLoginSavedToPasswordManagerBottomSheet(
+      maxButtonWidth = params.maxButtonWidth,
+      onConfirm = { onEvent(SignalLoginInfoScreenEvents.ConfirmSavedContinueClicked) },
+      onSeeLoginInfoAgain = { onEvent(SignalLoginInfoScreenEvents.SeeLoginInfoAgainClicked) },
+      onDismiss = { onEvent(SignalLoginInfoScreenEvents.ConfirmSavedSheetDismissed) }
+    )
+  }
+
   Surface(
     modifier = modifier
       .fillMaxSize()
       .testTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
   ) {
-    when (val params = RegistrationScaffold.rememberLayoutParams()) {
+    when (params) {
       is RegistrationScaffold.Params.OnePane -> OnePaneLayout(params, state, onEvent)
       is RegistrationScaffold.Params.TwoPane -> TwoPaneLayout(params, state, onEvent)
     }
   }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+/**
+ * Offered when the login we just handed to the password manager isn't there when we go looking for it, so the user can
+ * either try the save again or record it themselves.
+ */
+@Composable
+private fun SaveNotConfirmedDialog(onEvent: (SignalLoginInfoScreenEvents) -> Unit) {
+  Dialogs.AdvancedAlertDialog(
+    title = stringResource(R.string.SignalLoginInfoScreen__error_confirming_login_info),
+    body = stringResource(R.string.SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed),
+    positive = stringResource(R.string.SignalLoginInfoScreen__save_to_password_manager),
+    onPositive = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked) },
+    neutral = stringResource(R.string.SignalLoginInfoScreen__save_manually),
+    onNeutral = { onEvent(SignalLoginInfoScreenEvents.SaveManuallyClicked) },
+    negative = stringResource(android.R.string.cancel),
+    onNegative = { onEvent(SignalLoginInfoScreenEvents.SaveNotConfirmedDialogDismissed) }
+  )
+}
+
 @Composable
 private fun OnePaneLayout(
   params: RegistrationScaffold.Params.OnePane,
@@ -96,16 +135,13 @@ private fun OnePaneLayout(
   onEvent: (SignalLoginInfoScreenEvents) -> Unit
 ) {
   val scrollState = rememberScrollState()
-  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
 
   OnePaneRegistrationScaffold(
     params = params,
-    topBar = { TopBar(scrollBehavior = topBarScrollBehavior) },
     content = { paddingValues ->
       Column(
         modifier = Modifier
           .fillMaxSize()
-          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
           .verticalScroll(scrollState)
           .padding(paddingValues)
       ) {
@@ -124,7 +160,6 @@ private fun OnePaneLayout(
   )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TwoPaneLayout(
   params: RegistrationScaffold.Params.TwoPane,
@@ -133,17 +168,14 @@ private fun TwoPaneLayout(
 ) {
   val firstPaneScrollState = rememberScrollState()
   val secondPaneScrollState = rememberScrollState()
-  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
 
   TwoPaneRegistrationScaffold(
     params = params,
-    topBar = { TopBar(scrollBehavior = topBarScrollBehavior) },
     firstPane = { paddingValues ->
       Column(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
-          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
           .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
@@ -154,7 +186,6 @@ private fun TwoPaneLayout(
       Column(
         modifier = Modifier
           .weight(1f)
-          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
           .verticalScroll(secondPaneScrollState)
           .padding(paddingValues),
         verticalArrangement = Arrangement.Center
@@ -170,31 +201,15 @@ private fun TwoPaneLayout(
   )
 }
 
-/**
- * Title-less top app bar with no navigation icon: registration is already complete at this point, so there is nothing
- * to go back to.
- */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun TopBar(scrollBehavior: TopAppBarScrollBehavior) {
-  Scaffolds.DefaultTopAppBar(
-    title = "",
-    titleContent = { _, _ -> },
-    onNavigationClick = { },
-    navigationIcon = null,
-    scrollBehavior = scrollBehavior
-  )
-}
-
 @Composable
 private fun ColumnScope.Header(twoPane: Boolean = false) {
   Image(
-    painter = painterResource(R.drawable.image_signal_login_key),
+    painter = painterResource(R.drawable.image_signal_login_keys_checkmark),
     contentDescription = null,
     modifier = Modifier
       .padding(bottom = 24.dp)
       .align(Alignment.CenterHorizontally)
-      .size(width = 84.dp, height = 92.dp)
+      .size(96.dp)
   )
 
   Text(
@@ -244,28 +259,23 @@ private fun Footer(
         .fillMaxWidth()
         .padding(params.footerPadding)
     ) {
-      if (state.isPasswordManagerAvailable) {
-        Buttons.LargeTonal(
-          onClick = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked) },
-          enabled = !state.showSpinner,
-          colors = ButtonDefaults.filledTonalButtonColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-          ),
-          modifier = Modifier
-            .widthIn(max = params.maxButtonWidth)
-            .fillMaxWidth()
-            .testTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON)
-        ) {
-          if (state.showSpinner) {
-            CircularProgressIndicator(
-              color = MaterialTheme.colorScheme.onPrimaryContainer,
-              strokeWidth = 2.dp,
-              modifier = Modifier.size(20.dp)
-            )
-          } else {
-            Text(stringResource(R.string.SignalLoginInfoScreen__save_to_password_manager))
-          }
+      Buttons.LargeTonal(
+        onClick = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked) },
+        enabled = !state.showSpinner,
+        colors = primaryContainerButtonColors(enabledLook = state.isPasswordManagerAvailable),
+        modifier = Modifier
+          .widthIn(max = params.maxButtonWidth)
+          .fillMaxWidth()
+          .testTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON)
+      ) {
+        if (state.showSpinner) {
+          CircularProgressIndicator(
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            strokeWidth = 2.dp,
+            modifier = Modifier.size(20.dp)
+          )
+        } else {
+          Text(stringResource(R.string.SignalLoginInfoScreen__save_to_password_manager))
         }
       }
 
@@ -284,6 +294,24 @@ private fun Footer(
         Text(stringResource(R.string.SignalLoginInfoScreen__save_manually))
       }
     }
+  }
+}
+
+/**
+ * Tonal button colors, optionally rendered with the disabled palette while the button stays clickable so that tapping
+ * it can explain why it won't work.
+ */
+@Composable
+private fun primaryContainerButtonColors(enabledLook: Boolean): ButtonColors {
+  val colors = ButtonDefaults.filledTonalButtonColors(
+    containerColor = MaterialTheme.colorScheme.primaryContainer,
+    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+  )
+
+  return if (enabledLook) {
+    colors
+  } else {
+    colors.copy(containerColor = colors.disabledContainerColor, contentColor = colors.disabledContentColor)
   }
 }
 

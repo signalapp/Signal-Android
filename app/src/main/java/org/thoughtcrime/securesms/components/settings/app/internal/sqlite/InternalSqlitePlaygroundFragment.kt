@@ -42,9 +42,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -52,22 +53,32 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.internal.sqlite.InternalSqlitePlaygroundViewModel.QueryResult
 
 class InternalSqlitePlaygroundFragment : ComposeFragment() {
 
-  val viewModel by viewModels<InternalSqlitePlaygroundViewModel>()
+  private val appSettingsRouter by appSettingsRouter()
 
   @Composable
   override fun FragmentContent() {
-    val queryResults by viewModel.queryResults
-
-    Screen(
-      onBackPressed = { findNavController().popBackStack() },
-      queryResults = queryResults,
-      onQuerySubmitted = { viewModel.onQuerySubmitted(it) }
-    )
+    InternalSqlitePlaygroundEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
+}
+
+/**
+ * The SQLite playground, wired to its view model, leaving through [parentEventEmitter].
+ */
+@Composable
+fun InternalSqlitePlaygroundEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  val viewModel: InternalSqlitePlaygroundViewModel = viewModel()
+  val queryResults by viewModel.queryResults
+
+  Screen(
+    onBackPressed = { parentEventEmitter.navigateBack() },
+    queryResults = queryResults,
+    onQuerySubmitted = { viewModel.onQuerySubmitted(it) }
+  )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

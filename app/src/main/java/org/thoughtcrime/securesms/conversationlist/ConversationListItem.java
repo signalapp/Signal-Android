@@ -47,6 +47,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.fonts.SignalSymbols.Glyph;
 import org.signal.core.util.ContextUtil;
 import org.signal.core.util.DimensionUnit;
@@ -78,14 +79,13 @@ import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.glide.targets.GlideLiveDataTarget;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.signal.core.ui.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;
@@ -177,6 +177,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.searchStyleFactory      = () -> new CharacterStyle[] { new ForegroundColorSpan(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface)), SpanUtil.getBoldSpan() };
 
     getLayoutTransition().setDuration(150);
+    getLayoutTransition().setAnimateParentHierarchy(false);
   }
 
   /**
@@ -823,7 +824,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     return Transformations.map(description, sequence -> {
       SpannableString spannable = new SpannableString(sequence);
       spannable.setSpan(new StyleSpan(Typeface.ITALIC),
-                        hasGlyph ? 1 : 0,
+                        hasGlyph ? 3 : 0,
                         sequence.length(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       return spannable;

@@ -21,7 +21,7 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.provisioning.ProvisioningPublicKey
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.signal.registration.sample.RegistrationApplication
 import org.signal.registration.sample.storage.RegistrationPreferences
@@ -82,13 +82,13 @@ class TransferAccountViewModel(
 
     try {
       withContext(Dispatchers.IO) {
-        val publicKey = ECPublicKey(Base64.decode(publicKeyEncoded))
+        val publicKey = ProvisioningPublicKey(Base64.decode(publicKeyEncoded))
 
-        val e164 = checkNotNull(RegistrationPreferences.e164) { "No e164 stored" }
+        val e164 = RegistrationPreferences.e164
         val aci = checkNotNull(RegistrationPreferences.aci) { "No ACI stored" }
         val aep = checkNotNull(RegistrationPreferences.aep) { "No AEP stored" }
         val aciKeyPair = checkNotNull(RegistrationPreferences.aciIdentityKeyPair) { "No ACI identity key pair stored" }
-        val pniKeyPair = checkNotNull(RegistrationPreferences.pniIdentityKeyPair) { "No PNI identity key pair stored" }
+        val pniKeyPair = RegistrationPreferences.pniIdentityKeyPair
         val restoreMethodToken = UUID.randomUUID().toString()
 
         val message = RegistrationProvisionMessage(
@@ -101,12 +101,12 @@ class TransferAccountViewModel(
           restoreMethodToken = restoreMethodToken,
           aciIdentityKeyPublic = okio.ByteString.of(*aciKeyPair.publicKey.serialize()),
           aciIdentityKeyPrivate = okio.ByteString.of(*aciKeyPair.privateKey.serialize()),
-          pniIdentityKeyPublic = okio.ByteString.of(*pniKeyPair.publicKey.serialize()),
-          pniIdentityKeyPrivate = okio.ByteString.of(*pniKeyPair.privateKey.serialize()),
+          pniIdentityKeyPublic = pniKeyPair?.let { okio.ByteString.of(*it.publicKey.serialize()) },
+          pniIdentityKeyPrivate = pniKeyPair?.let { okio.ByteString.of(*it.privateKey.serialize()) },
           backupVersion = 0
         )
 
-        val cipherText = PrimaryProvisioningCipher(publicKey).encrypt(message)
+        val cipherText = PrimaryProvisioningCipher.encrypt(publicKey, message)
         sendProvisioningMessage(deviceId, cipherText)
       }
       Log.i(TAG, "Provisioning message sent successfully")

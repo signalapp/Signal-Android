@@ -12,7 +12,6 @@ import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -85,7 +84,7 @@ public final class SupportEmailUtil {
            "\n" +
            context.getString(R.string.SupportEmailUtil_challenge_received) + " " + getChallengeReceived() +
            "\n" +
-           context.getString(R.string.SupportEmailUtil_registered) + " " + getRegistered(context) +
+           context.getString(R.string.SupportEmailUtil_registered) + " " + getRegistered() +
            "\n" +
            context.getString(R.string.SupportEmailUtil_backups) + " " + getBackupTier();
   }
@@ -117,8 +116,8 @@ public final class SupportEmailUtil {
     return receivedRecently ? "yes" : "no";
   }
 
-  private static String getRegistered(Context context) {
-    boolean registered = SignalStore.account().isRegistered() && !TextSecurePreferences.isUnauthorizedReceived(context);
+  private static String getRegistered() {
+    boolean registered = SignalStore.account().isRegistered() && !SignalStore.account().isUnauthorizedReceived();
     return registered ? "yes" : "no";
   }
 

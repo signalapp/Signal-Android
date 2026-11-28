@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.service
 
 import android.content.Context
+import org.signal.core.util.toMillis
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AnalyzeDatabaseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.toMillis
 import java.security.SecureRandom
 import java.time.LocalDateTime
 

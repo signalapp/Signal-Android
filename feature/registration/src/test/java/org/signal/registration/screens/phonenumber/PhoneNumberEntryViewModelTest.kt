@@ -450,6 +450,38 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
+  fun `RegisterWithoutNumber navigates to the Signal Login payment screen`() = runTest {
+    viewModel.applyEvent(
+      PhoneNumberEntryState(),
+      PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.SignalLoginPayment>()
+  }
+
+  @Test
+  fun `RegisterWithoutNumber skips payment and goes straight to credential entry when the user has an existing account`() = runTest {
+    viewModel.applyEvent(
+      PhoneNumberEntryState(sawArchiveRestoreSelectionScreen = true),
+      PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(RegistrationRoute.SignalLoginCredentialEntry())
+  }
+
+  @Test
   fun `initial state reflects repository link and sync availability`() = runTest {
     every { mockRepository.isLinkAndSyncAvailable } returns true
 
@@ -815,6 +847,47 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
     assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
     assertThat(emittedEvents[2])
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.Captcha>()
+  }
+
+  @Test
+  fun `RemoteBackupRestoreDeferredToSms creates session for the chosen number and navigates to code entry`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
+
+    coEvery { mockRepository.createSession(any()) } returns
+      RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
+      RequestResult.Success(sessionMetadata)
+
+    val initialState = PhoneNumberEntryState(sessionE164 = "+15551234567")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
+
+    coVerify(exactly = 1) { mockRepository.createSession("+15551234567") }
+    assertThat(emittedEvents.last())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
+  }
+
+  @Test
+  fun `RemoteBackupRestoreDeferredToSms navigates to captcha when required`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = listOf("captcha"))
+
+    coEvery { mockRepository.createSession(any()) } returns
+      RequestResult.Success(sessionMetadata)
+
+    val initialState = PhoneNumberEntryState(sessionE164 = "+15551234567")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms, parentEventEmitter, stateEmitter)
+
+    coVerify(exactly = 0) { mockRepository.requestVerificationCode(any(), any(), any()) }
+    assertThat(emittedEvents.last())
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.Captcha>()
@@ -1513,6 +1586,56 @@ class PhoneNumberEntryViewModelTest {
 
     assertThat(emittedStates).hasSize(1)
     assertThat(emittedStates.last().dialogs.unknownError).isTrue()
+  }
+
+  @Test
+  fun `CaptchaCompleted shows captcha not accepted dialog when token is not accepted`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = listOf("captcha"))
+    val initialState = PhoneNumberEntryState(sessionMetadata = sessionMetadata)
+
+    coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
+      RequestResult.NonSuccess(
+        UpdateSessionError.TokenNotAccepted("Token not accepted")
+      )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates).hasSize(1)
+    assertThat(emittedStates.last().dialogs).isEqualTo(PhoneNumberEntryState.Dialogs(captchaNotAccepted = true))
+    assertThat(emittedEvents).isEmpty()
+  }
+
+  @Test
+  fun `CaptchaNotAcceptedDialogDismissed clears the captcha not accepted dialog`() = runTest {
+    val initialState = PhoneNumberEntryState(
+      dialogs = PhoneNumberEntryState.Dialogs(captchaNotAccepted = true)
+    )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaNotAcceptedDialogDismissed, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().dialogs).isEqualTo(PhoneNumberEntryState.Dialogs())
+  }
+
+  @Test
+  fun `CaptchaNotAcceptedContactSupport swaps the captcha not accepted dialog for the contact support dialog`() = runTest {
+    val initialState = PhoneNumberEntryState(
+      dialogs = PhoneNumberEntryState.Dialogs(captchaNotAccepted = true)
+    )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaNotAcceptedContactSupport, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().dialogs).isEqualTo(PhoneNumberEntryState.Dialogs(contactSupport = true))
+  }
+
+  @Test
+  fun `ContactSupportDialogDismissed clears the contact support dialog`() = runTest {
+    val initialState = PhoneNumberEntryState(
+      dialogs = PhoneNumberEntryState.Dialogs(contactSupport = true)
+    )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.ContactSupportDialogDismissed, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().dialogs).isEqualTo(PhoneNumberEntryState.Dialogs())
   }
 
   @Test
@@ -2218,7 +2341,7 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
-  fun `NationalNumberChanged with an over-long account ID reports the error rather than silently refusing to submit`() = runTest {
+  fun `NationalNumberChanged with an over-long account ID keeps only a complete ID`() = runTest {
     val initialState = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true)
 
     viewModel.applyEvent(
@@ -2228,8 +2351,9 @@ class PhoneNumberEntryViewModelTest {
       stateEmitter
     )
 
-    assertThat(emittedStates.last().accountIdError).isEqualTo(AccountIdError.TooLong(34))
-    assertThat(emittedStates.last().isNextEnabled).isFalse()
+    assertThat(emittedStates.last().enteredAccountId).isEqualTo("a6b284822e3283d07f2391360a4c2b91")
+    assertThat(emittedStates.last().accountIdError).isNull()
+    assertThat(emittedStates.last().isNextEnabled).isTrue()
   }
 
   @Test

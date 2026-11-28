@@ -15,20 +15,16 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
   private static final String TAG = Log.tag(ContactsSyncAdapter.class);
-
-  private static final int FULL_SYNC_THRESHOLD = 10;
 
   public ContactsSyncAdapter(Context context, boolean autoInitialize) {
     super(context, autoInitialize);
@@ -56,28 +52,15 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
     Set<String> allSystemE164s     = SystemContactsRepository.getAllDisplayNumbers(context)
                                                              .stream()
                                                              .map(number -> SignalE164Util.formatAsE164(number))
-                                                             .filter(it -> it != null)
+                                                             .filter(it -> it != null && it.startsWith("+"))
                                                              .collect(Collectors.toSet());
-    Set<String> knownSystemE164s   = SignalDatabase.recipients().getAllE164s();
+    Set<String> knownSystemE164s   = SetUtil.union(SignalDatabase.recipients().getAllE164s(), SignalDatabase.cds().getAllE164s());
     Set<String> unknownSystemE164s = SetUtil.difference(allSystemE164s, knownSystemE164s);
 
-    if (unknownSystemE164s.size() > FULL_SYNC_THRESHOLD) {
+    if (!unknownSystemE164s.isEmpty()) {
       Log.i(TAG, "There are " + unknownSystemE164s.size() + " unknown contacts. Doing a full sync.");
       try {
         ContactDiscovery.refreshAll(context, true);
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
-    } else if (unknownSystemE164s.size() > 0) {
-      List<Recipient> recipients = unknownSystemE164s.stream()
-                                                     .filter(s -> s.startsWith("+"))
-                                                     .map(s -> Recipient.external(s))
-                                                     .filter(it -> it != null).collect(Collectors.toList());
-
-      Log.i(TAG, "There are " + unknownSystemE164s.size() + " unknown E164s, which are now " + recipients.size() + " recipients. Only syncing these specific contacts.");
-
-      try {
-        ContactDiscovery.refresh(context, recipients, true);
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh! Scheduling for later.", e);
         AppDependencies.getJobManager().add(new DirectoryRefreshJob(true));

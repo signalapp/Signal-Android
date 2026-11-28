@@ -26,7 +26,6 @@ import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
@@ -156,20 +155,11 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         is StripeApi.Secure3DSAction.ConfirmRequired -> {
           Log.d(TAG, "3DS action required. Displaying dialog...")
 
-          val waitingForAuthPayment = originalPayment.copy(
-            subscriberId = if (originalPayment.type.recurring) {
-              InAppPaymentsRepository.requireSubscriber(originalPayment.type.requireSubscriberType()).subscriberId
-            } else {
-              null
-            },
-            state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION,
-            data = originalPayment.data.newBuilder().waitForAuth(
-              waitForAuth = InAppPaymentData.WaitingForAuthorizationState(
-                stripeIntentId = secure3dsAction.stripeIntentAccessor.intentId,
-                stripeClientSecret = secure3dsAction.stripeIntentAccessor.intentClientSecret
-              )
-            ).build()
-          )
+          val waitingForAuthPayment = InAppPaymentsRepository.toWaitingForAuthorization(
+            inAppPayment = originalPayment,
+            stripeIntentId = secure3dsAction.stripeIntentAccessor.intentId,
+            stripeClientSecret = secure3dsAction.stripeIntentAccessor.intentClientSecret
+          ) ?: error("No subscriber for recurring payment")
 
           Single.create { emitter ->
             val listener = FragmentResultListener { _, bundle ->

@@ -1,14 +1,20 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import androidx.annotation.NonNull;
+import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.signal.core.util.DeviceProperties;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 
 import java.util.Set;
@@ -54,6 +60,40 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
     return currentState.builder()
                        .changeLocalDeviceState()
                        .setAudioDeviceChangePending(true)
+                       .setUserSelectedAudioDevice(toAudioDevice(userDevice))
+                       .build();
+  }
+
+  private static @Nullable SignalAudioManager.AudioDevice toAudioDevice(@NonNull SignalAudioManager.ChosenAudioDeviceIdentifier userDevice) {
+    if (userDevice.isLegacy()) {
+      return userDevice.getDesiredAudioDeviceLegacy();
+    }
+
+    Integer deviceId = userDevice.getDesiredAudioDevice31();
+    if (deviceId == null || Build.VERSION.SDK_INT < 31) {
+      return null;
+    }
+
+    return AppDependencies.getAndroidCallAudioManager()
+                          .getAvailableCommunicationDevices()
+                          .stream()
+                          .filter(device -> device.getId() == deviceId)
+                          .map(device -> AudioDeviceMapping.fromPlatformType(device.getType()))
+                          .findFirst()
+                          .orElse(null);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleMicrophoneSilencedChanged(@NonNull WebRtcServiceState currentState, boolean silenced) {
+    Log.i(tag, "handleMicrophoneSilencedChanged(): silenced: " + silenced + " backgroundRestricted: " + DeviceProperties.isBackgroundRestricted());
+
+    if (!silenced) {
+      return currentState;
+    }
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setMicrophoneSilencedTimestamp(System.currentTimeMillis())
                        .build();
   }
 

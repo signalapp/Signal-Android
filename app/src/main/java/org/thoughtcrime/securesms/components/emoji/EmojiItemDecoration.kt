@@ -6,9 +6,9 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiModel
 import org.thoughtcrime.securesms.util.InsetItemDecoration
-import org.thoughtcrime.securesms.util.ViewUtil
 
 private val EDGE_LENGTH: Int = ViewUtil.dpToPx(6)
 private val HORIZONTAL_INSET: Int = ViewUtil.dpToPx(6)

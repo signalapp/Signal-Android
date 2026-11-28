@@ -301,3 +301,7 @@ message UnreadReminderJobData {
   uint64 threadId = 1;
   uint64 lastReminderTime = 2;
 }
+
+message MultiDeviceSyncRequestJobData {
+  uint32 type = 1;
+}

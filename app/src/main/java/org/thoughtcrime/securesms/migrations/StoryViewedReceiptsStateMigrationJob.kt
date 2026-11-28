@@ -5,7 +5,6 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * Added as a way to initialize the story viewed receipts setting.
@@ -23,7 +22,7 @@ internal class StoryViewedReceiptsStateMigrationJob(
 
   override fun performMigration() {
     if (!SignalStore.story.isViewedReceiptsStateSet()) {
-      SignalStore.story.viewedReceiptsEnabled = TextSecurePreferences.isReadReceiptsEnabled(context)
+      SignalStore.story.viewedReceiptsEnabled = SignalStore.settings.isReadReceiptsEnabled
       if (SignalStore.account.isRegistered) {
         recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()

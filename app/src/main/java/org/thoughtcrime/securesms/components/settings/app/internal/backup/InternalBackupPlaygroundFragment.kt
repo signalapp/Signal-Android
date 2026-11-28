@@ -54,11 +54,12 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.appsettings.backups.BackupCreationProgressRow
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
@@ -73,11 +74,12 @@ import org.signal.core.util.Util
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.backup.isIdle
+import org.thoughtcrime.securesms.backup.toBackupCreationProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreationProgressRow
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -90,14 +92,15 @@ import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.OptimizeMediaJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.ui.restore.local.RestoreLocalBackupActivity
 
 class InternalBackupPlaygroundFragment : ComposeFragment() {
 
   private val viewModel: InternalBackupPlaygroundViewModel by viewModels()
+  private val appSettingsRouter by appSettingsRouter()
   private lateinit var saveEncryptedBackupToDiskLauncher: ActivityResultLauncher<Intent>
   private lateinit var savePlaintextBackupToDiskLauncher: ActivityResultLauncher<Intent>
   private lateinit var importEncryptedBackupFromDiskLauncher: ActivityResultLauncher<Intent>
+  private lateinit var importPlaintextBackupFromDiskLauncher: ActivityResultLauncher<Intent>
   private lateinit var savePlaintextCopyLauncher: ActivityResultLauncher<Intent>
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -132,6 +135,19 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
       }
     }
 
+    importPlaintextBackupFromDiskLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+      if (result.resultCode == RESULT_OK) {
+        result.data?.data?.let { uri ->
+          val length = requireContext().contentResolver.getLength(uri)
+          if (length != null) {
+            viewModel.importPlaintextBackup(length) { requireContext().contentResolver.openInputStream(uri)!! }
+          } else {
+            Toast.makeText(requireContext(), "Unable to read file length", Toast.LENGTH_SHORT).show()
+          }
+        } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
+      }
+    }
+
     savePlaintextCopyLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
       if (result.resultCode == RESULT_OK) {
         result.data?.data?.let { uri ->
@@ -153,7 +169,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
     }
 
     Tabs(
-      onBack = { findNavController().popBackStack() },
+      onBack = { (appSettingsRouter::onEvent).navigateBack() },
       mainContent = {
         Screen(
           state = state,
@@ -236,13 +252,19 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               Toast.makeText(context, "Invalid credentials!", Toast.LENGTH_SHORT).show()
             }
           },
-          onImportNewStyleLocalBackupClicked = {
+          onImportPlaintextBackupFromDiskClicked = {
             MaterialAlertDialogBuilder(context)
               .setTitle("Are you sure?")
-              .setMessage("After you choose a file to import, this will delete all of your chats, then restore them from the file! Only do this on a test device!")
-              .setPositiveButton("Wipe and restore") { _, _ ->
-                startActivity(RestoreLocalBackupActivity.getIntent(context, finish = false))
+              .setMessage("This will delete all of your chats and replace them with the contents of the selected plaintext backup. Only do this on a test device!")
+              .setPositiveButton("Pick file") { _, _ ->
+                val intent = Intent().apply {
+                  action = Intent.ACTION_GET_CONTENT
+                  type = "application/octet-stream"
+                  addCategory(Intent.CATEGORY_OPENABLE)
+                }
+                importPlaintextBackupFromDiskLauncher.launch(intent)
               }
+              .setNegativeButton(android.R.string.cancel, null)
               .show()
           },
           onDeleteRemoteBackup = {
@@ -354,7 +376,6 @@ fun Tabs(
 fun Screen(
   state: ScreenState,
   onExportNewStyleLocalBackupClicked: () -> Unit = {},
-  onImportNewStyleLocalBackupClicked: () -> Unit = {},
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onEnqueueRemoteBackupClicked: () -> Unit = {},
   onEnqueueReconciliationClicked: () -> Unit = {},
@@ -375,6 +396,7 @@ fun Screen(
   onImportEncryptedBackupFromDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskDismissed: () -> Unit = {},
   onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> },
+  onImportPlaintextBackupFromDiskClicked: () -> Unit = {},
   onClearLocalMediaBackupState: () -> Unit = {},
   onDeleteRemoteBackup: () -> Unit = {},
   onTriggerLocalRestoreDirectoryError: () -> Unit = {},
@@ -500,7 +522,7 @@ fun Screen(
         )
       } else {
         BackupCreationProgressRow(
-          progress = state.plaintextProgress,
+          progress = state.plaintextProgress.toBackupCreationProgress(),
           isRemote = false
         )
       }
@@ -592,9 +614,9 @@ fun Screen(
       )
 
       Rows.TextRow(
-        text = "Wipe all data and restore a new-style local backup",
-        label = "Erases all content on your device, followed by a restore of a previously-generated new-style local backup.",
-        onClick = onImportNewStyleLocalBackupClicked
+        text = "Wipe all data and restore from plaintext file",
+        label = "Erases all content on your device, followed by a restore of an unencrypted, uncompressed backup (.binproto) selected from disk.",
+        onClick = onImportPlaintextBackupFromDiskClicked
       )
 
       Rows.TextRow(

@@ -1,0 +1,851 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.network.service
+
+import arrow.core.Either
+import arrow.core.raise.Raise
+import assertk.assertThat
+import assertk.assertions.doesNotContain
+import assertk.assertions.isEqualTo
+import assertk.assertions.isInstanceOf
+import io.mockk.Runs
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.coVerifyOrder
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.spyk
+import io.mockk.verify
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.test.runTest
+import org.junit.Test
+import org.signal.core.models.ServiceId
+import org.signal.core.util.Base64
+import org.signal.libsignal.net.ChallengeOption
+import org.signal.libsignal.net.MismatchedDeviceException
+import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.RequestUnauthorizedException
+import org.signal.libsignal.net.RetryLaterException
+import org.signal.libsignal.net.ServiceIdNotFoundException
+import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.NoSessionException
+import org.signal.libsignal.protocol.SessionBuilder
+import org.signal.libsignal.protocol.SessionCipher
+import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.UntrustedIdentityException
+import org.signal.libsignal.protocol.ecc.ECKeyPair
+import org.signal.libsignal.protocol.kem.KEMKeyPair
+import org.signal.libsignal.protocol.kem.KEMKeyType
+import org.signal.libsignal.protocol.message.CiphertextMessage
+import org.signal.libsignal.protocol.message.PreKeySignalMessage
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord
+import org.signal.libsignal.protocol.state.PreKeyBundle
+import org.signal.libsignal.protocol.state.PreKeyRecord
+import org.signal.libsignal.protocol.state.SignedPreKeyRecord
+import org.signal.libsignal.protocol.state.impl.InMemorySignalProtocolStore
+import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
+import org.signal.network.api.KeysApiV2
+import org.signal.network.api.MessageApiV2
+import org.signal.network.crypto.SealedSenderAccess
+import org.signal.network.crypto.UnidentifiedAccess
+import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
+import org.whispersystems.signalservice.api.SignalSessionLock
+import org.whispersystems.signalservice.api.crypto.EnvelopeContent
+import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
+import java.io.IOException
+import java.time.Duration
+import java.util.UUID
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.time.Duration.Companion.seconds
+
+class IndividualMessageServiceTest {
+
+  private val messageApi: MessageApiV2 = mockk()
+  private val keysApi: KeysApiV2 = mockk()
+  private val protocolStore: SignalServiceAccountDataStore = mockk(relaxUnitFun = true)
+  private val sessionLock: SignalSessionLock = mockk()
+  private val cipher: SignalServiceCipher = mockk()
+
+  private val localAci = ServiceId.ACI.from(UUID.fromString("aaaaaaaa-0000-0000-0000-000000000001"))
+
+  private val recipientAci = ServiceId.ACI.from(UUID.fromString("bbbbbbbb-0000-0000-0000-000000000002"))
+  private val recipient = SignalServiceAddress(recipientAci)
+
+  private val timestamp = 1_700_000_000L
+  private val storyAccess = SealedSenderAccess.Story(mockk())
+  private val envelopeContent: EnvelopeContent = mockk {
+    every { size() } returns 0
+  }
+
+  @Test
+  fun `happy path with existing session returns Success`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { messageApi.sendSealedSenderMessage(eq(recipientAci), any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val success = (result as Either.Right).value
+    assertThat(success.sentSealedSender).isEqualTo(true)
+    assertThat(success.devices).isEqualTo(listOf(1))
+  }
+
+  @Test
+  fun `missing default-device session initializes session before sending`() = runTest {
+    val service = newService()
+    val defaultAddress = SignalProtocolAddress(recipientAci.libSignalServiceId, SignalServiceAddress.DEFAULT_DEVICE_ID)
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { protocolStore.containsSession(defaultAddress) } returns false
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { keysApi.getPreKey(recipientAci.toString(), SignalServiceAddress.DEFAULT_DEVICE_ID, storyAccess) } returns
+      RequestResult.Success(KeysApiV2.PreKeyResponse(identityKey = ByteArray(0), devices = emptyList()))
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val success = (result as Either.Right).value
+    assertThat(success.devices).isEqualTo(listOf(SignalServiceAddress.DEFAULT_DEVICE_ID))
+    coVerifyOrder {
+      keysApi.getPreKey(recipientAci.toString(), SignalServiceAddress.DEFAULT_DEVICE_ID, storyAccess)
+      messageApi.sendSealedSenderMessage(eq(recipientAci), any(), any(), any(), any(), any())
+    }
+    verify {
+      cipher.encrypt(defaultAddress, storyAccess, envelopeContent)
+    }
+  }
+
+  @Test
+  fun `isOnline true is forwarded to the send request`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = true)
+
+    coVerify {
+      messageApi.sendSealedSenderMessage(eq(recipientAci), any(), any(), any(), eq(true), any())
+    }
+  }
+
+  @Test
+  fun `urgent false is forwarded to the send request`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false, urgent = false)
+
+    coVerify {
+      messageApi.sendSealedSenderMessage(eq(recipientAci), any(), any(), any(), any(), eq(false))
+    }
+  }
+
+  @Test
+  fun `story uses Story auth`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    coVerify {
+      messageApi.sendSealedSenderMessage(any(), any(), any(), eq(storyAccess), any(), any())
+    }
+  }
+
+  @Test
+  fun `non-story sealed send passes its sealed sender access`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 }) { mockk<GroupSendFullToken>() }
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = sealed, isOnline = false)
+
+    assertThat((result as Either.Right).value.sentSealedSender).isEqualTo(true)
+    coVerify {
+      messageApi.sendSealedSenderMessage(any(), any(), any(), eq(sealed), any(), any())
+    }
+  }
+
+  @Test
+  fun `unsealed fallback gets its own device recovery attempts`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, validSerializedSignalMessageBase64())
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returnsMany listOf(
+      RequestResult.NonSuccess(mismatchedException(extra = intArrayOf(3))),
+      RequestResult.NonSuccess(mismatchedException(extra = intArrayOf(3))),
+      RequestResult.NonSuccess(RequestUnauthorizedException("bad access"))
+    )
+    coEvery { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) } returnsMany listOf(
+      RequestResult.NonSuccess(mismatchedException(extra = intArrayOf(3))),
+      RequestResult.NonSuccess(mismatchedException(extra = intArrayOf(3))),
+      RequestResult.Success(Unit)
+    )
+
+    val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 })
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = sealed, isOnline = false)
+
+    assertThat((result as Either.Right).value.sentSealedSender).isEqualTo(false)
+    coVerify(exactly = 3) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
+    coVerify(exactly = 3) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `sub-device without session is excluded from target devices`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns listOf(2, 3)
+    every { protocolStore.containsSession(SignalProtocolAddress(recipientAci.libSignalServiceId, 2)) } returns true
+    every { protocolStore.containsSession(SignalProtocolAddress(recipientAci.libSignalServiceId, 3)) } returns false
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    assertThat(result).isInstanceOf(Either.Right::class)
+    verify { cipher.encrypt(SignalProtocolAddress(recipientAci.libSignalServiceId, 1), any(), any()) }
+    verify { cipher.encrypt(SignalProtocolAddress(recipientAci.libSignalServiceId, 2), any(), any()) }
+    verify(exactly = 0) { cipher.encrypt(SignalProtocolAddress(recipientAci.libSignalServiceId, 3), any(), any()) }
+  }
+
+  @Test
+  fun `story send to self raises ApplicationError without sending`() = runTest {
+    val service = newService()
+
+    val result = service.sendMessage(localAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.ApplicationError::class)
+    verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
+    coVerify(exactly = 0) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `MismatchedDeviceException archives extras and fetches missing prekeys`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+
+    val mismatch = mismatchedException(missing = intArrayOf(2), extra = intArrayOf(5))
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatch)
+    coEvery { keysApi.getPreKey(recipientAci.toString(), 2, storyAccess) } returns
+      RequestResult.Success(KeysApiV2.PreKeyResponse(identityKey = ByteArray(0), devices = emptyList()))
+
+    service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    verify { protocolStore.archiveSession(SignalProtocolAddress(recipientAci.libSignalServiceId, 5)) }
+    coVerify { keysApi.getPreKey(recipientAci.toString(), 2, storyAccess) }
+  }
+
+  @Test
+  fun `MismatchedDeviceException archives stale devices`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+
+    val mismatch = mismatchedException(stale = intArrayOf(3))
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatch)
+
+    service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    verify { protocolStore.archiveSession(SignalProtocolAddress(recipientAci.libSignalServiceId, 3)) }
+  }
+
+  @Test
+  fun `single mismatched device recovers and the next send attempt succeeds`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatchedException(missing = intArrayOf(2))) andThen
+      RequestResult.Success(Unit)
+    coEvery { keysApi.getPreKey(recipientAci.toString(), 2, storyAccess) } returns
+      RequestResult.Success(KeysApiV2.PreKeyResponse(identityKey = ByteArray(0), devices = emptyList()))
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val success = (result as Either.Right).value
+    assertThat(success.devices).isEqualTo(listOf(1))
+    coVerify(exactly = 2) { messageApi.sendSealedSenderMessage(eq(recipientAci), any(), any(), any(), any(), any()) }
+    coVerify { keysApi.getPreKey(recipientAci.toString(), 2, storyAccess) }
+  }
+
+  @Test
+  fun `sync send to self with no other devices stops instead of looping`() = runTest {
+    val service = newService()
+    every { protocolStore.isMultiDevice } returns true
+    every { protocolStore.getSubDeviceSessions(localAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, validSerializedSignalMessageBase64())
+
+    coEvery { messageApi.sendSyncMessage(any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatchedException(extra = intArrayOf(1), account = localAci))
+
+    val result = service.sendSyncMessage(timestamp, envelopeContent, urgent = true, onEncrypted = null)
+
+    val success = (result as Either.Right).value
+    assertThat(success.devices).isEqualTo(emptyList<Int>())
+    verify { protocolStore.archiveSession(SignalProtocolAddress(localAci.libSignalServiceId, 1)) }
+    verify(exactly = 1) { protocolStore.setMultiDevice(false) }
+    coVerify(exactly = 1) { messageApi.sendSyncMessage(any(), any(), any()) }
+  }
+
+  @Test
+  fun `sync send that reached a real linked device is not treated as no other devices`() = runTest {
+    val service = newService()
+    every { protocolStore.isMultiDevice } returns true
+    every { protocolStore.getSubDeviceSessions(localAci.toString()) } returns listOf(2)
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 2, 100, validSerializedSignalMessageBase64())
+
+    coEvery { messageApi.sendSyncMessage(any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatchedException(extra = intArrayOf(2), account = localAci))
+
+    val result = service.sendSyncMessage(timestamp, envelopeContent, urgent = true, onEncrypted = null)
+
+    assertThat(result).isInstanceOf(Either.Left::class)
+    verify(exactly = 0) { protocolStore.setMultiDevice(any()) }
+    coVerify(atLeast = 2) { messageApi.sendSyncMessage(any(), any(), any()) }
+  }
+
+  @Test
+  fun `sync send is skipped entirely when not multi-device`() = runTest {
+    val service = newService()
+    every { protocolStore.isMultiDevice } returns false
+
+    val result = service.sendSyncMessage(timestamp, envelopeContent, urgent = true, onEncrypted = null)
+
+    val success = (result as Either.Right).value
+    assertThat(success.devices).isEqualTo(emptyList<Int>())
+    coVerify(exactly = 0) { messageApi.sendSyncMessage(any(), any(), any()) }
+  }
+
+  @Test
+  fun `non-story sealed send to self raises ApplicationError without sending`() = runTest {
+    val service = newService()
+
+    val result = service.sendMessage(localAci, envelopeContent, timestamp, sealedSenderAccess = individualUnidentifiedAccessFirst(ByteArray(16) { 1 }), isOnline = false)
+
+    val error = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    assertThat(error.exception).isInstanceOf(IllegalArgumentException::class)
+    verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
+    coVerify(exactly = 0) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
+    coVerify(exactly = 0) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `non-story unsealed send to self raises ApplicationError without sending`() = runTest {
+    val service = newService()
+
+    val result = service.sendMessage(localAci, envelopeContent, timestamp, sealedSenderAccess = null, isOnline = false)
+
+    val error = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    assertThat(error.exception).isInstanceOf(IllegalArgumentException::class)
+    verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
+    coVerify(exactly = 0) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `ServiceIdNotFoundException maps to NotRegistered`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(ServiceIdNotFoundException("not registered"))
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val left = (result as Either.Left).value
+    assertThat(left).isInstanceOf(MessageService.SendError.NotRegistered::class)
+  }
+
+  @Test
+  fun `RequestUnauthorizedException from story send raises Unauthorized without retrying`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(RequestUnauthorizedException("bad access"))
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val left = (result as Either.Left).value
+    assertThat(left).isInstanceOf(MessageService.SendError.Unauthorized::class)
+    coVerify(exactly = 1) { messageApi.sendSealedSenderMessage(eq(recipientAci), any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `RequestUnauthorizedException from sealed send falls back to an unsealed send`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, validSerializedSignalMessageBase64())
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(RequestUnauthorizedException("bad access"))
+    coEvery { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 })
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = sealed, isOnline = false)
+
+    val success = (result as Either.Right).value
+    assertThat(success.sentSealedSender).isEqualTo(false)
+    coVerifyOrder {
+      messageApi.sendSealedSenderMessage(eq(recipientAci), any(), any(), any(), any(), any())
+      messageApi.sendUnsealedSenderMessage(eq(recipientAci), any(), any(), any(), any())
+    }
+  }
+
+  @Test
+  fun `RetryableNetworkError maps to NetworkError`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    val ioError = IOException("down")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.RetryableNetworkError(ioError)
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val network = (result as Either.Left).value as MessageService.SendError.NetworkError
+    assertThat(network.exception).isEqualTo(ioError)
+  }
+
+  @Test
+  fun `RetryableNetworkError with retry-after maps to RateLimited`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.RetryableNetworkError(RetryLaterException(Duration.ofSeconds(30)), Duration.ofSeconds(30))
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    assertThat(result).isEqualTo(Either.Left(MessageService.SendError.RateLimited(retryAfter = 30.seconds)))
+  }
+
+  @Test
+  fun `sync send RetryableNetworkError with retry-after maps to RateLimited`() = runTest {
+    val service = newService()
+    every { protocolStore.isMultiDevice } returns true
+    every { protocolStore.getSubDeviceSessions(localAci.toString()) } returns listOf(2)
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 2, 100, validSerializedSignalMessageBase64())
+    coEvery { messageApi.sendSyncMessage(any(), any(), any()) } returns
+      RequestResult.RetryableNetworkError(RetryLaterException(Duration.ofSeconds(45)), Duration.ofSeconds(45))
+
+    val result = service.sendSyncMessage(timestamp, envelopeContent, urgent = true, onEncrypted = null)
+
+    assertThat(result).isEqualTo(Either.Left(MessageService.SendError.RateLimited(retryAfter = 45.seconds)))
+  }
+
+  @Test
+  fun `ApplicationError from send is propagated`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+    val cause = IllegalStateException("boom")
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.ApplicationError(cause)
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val app = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    assertThat(app.exception).isEqualTo(cause)
+  }
+
+  @Test
+  fun `UntrustedIdentityException during encryption maps to IdentityMismatch`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    val untrusted = UntrustedIdentityException(recipient.identifier)
+    every { cipher.encrypt(any(), any(), any()) } throws untrusted
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val mismatch = (result as Either.Left).value as MessageService.SendError.IdentityMismatch
+    assertThat(mismatch.exception).isEqualTo(untrusted)
+  }
+
+  @Test
+  fun `NoSessionException during encryption archives the session and surfaces a retryable error`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    val noSession = NoSessionException("missing session")
+    every { cipher.encrypt(any(), any(), any()) } throws noSession
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    verify { protocolStore.archiveSession(SignalProtocolAddress(recipientAci.libSignalServiceId, SignalServiceAddress.DEFAULT_DEVICE_ID)) }
+    val app = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    assertThat(app.exception).isEqualTo(noSession)
+    coVerify(exactly = 0) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `content larger than max returns ContentTooLarge before encryption`() = runTest {
+    val largeContent: EnvelopeContent = mockk {
+      every { size() } returns 1024
+    }
+    val service = newService(maxContentSizeBytes = 100)
+
+    val result = service.sendMessage(recipientAci, largeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val tooLarge = (result as Either.Left).value as MessageService.SendError.ContentTooLarge
+    assertThat(tooLarge.size).isEqualTo(1024)
+    assertThat(tooLarge.maxAllowed).isEqualTo(100)
+    verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
+  }
+
+  @Test
+  fun `prekey fetch 404 during mismatched-device recovery propagates as PreKeyUnavailable`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatchedException(missing = intArrayOf(2)))
+    coEvery { keysApi.getPreKey(recipientAci.toString(), 2, storyAccess) } returns
+      RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.NotFound(authenticated = true))
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    val left = (result as Either.Left).value
+    assertThat(left).isInstanceOf(MessageService.SendError.PreKeyUnavailable::class)
+  }
+
+  @Test
+  fun `prekey 429 during mismatched-device recovery propagates retry-after as RateLimited`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, "AAAA")
+
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatchedException(missing = intArrayOf(2)))
+    coEvery { keysApi.getPreKey(recipientAci.toString(), 2, storyAccess) } returns
+      RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.RateLimited(retryAfter = 60.seconds))
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false)
+
+    assertThat(result).isEqualTo(Either.Left(MessageService.SendError.RateLimited(retryAfter = 60.seconds)))
+  }
+
+  @Test
+  fun `prekey fetch rejecting sealed access falls back to an unsealed send`() = runTest {
+    val service = newService()
+    every { protocolStore.containsSession(SignalProtocolAddress(recipientAci.libSignalServiceId, 1)) } returns false
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, validSerializedSignalMessageBase64())
+    coEvery { keysApi.getPreKey(recipientAci.toString(), 1, isNull(inverse = true)) } returns
+      RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.Unauthorized(authenticated = false))
+    coEvery { keysApi.getPreKey(recipientAci.toString(), 1, isNull()) } returns
+      RequestResult.Success(mockk())
+    coEvery { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(Unit)
+
+    val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 }) { mockk<GroupSendFullToken>() }
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = sealed, isOnline = false)
+
+    assertThat((result as Either.Right).value.sentSealedSender).isEqualTo(false)
+    coVerifyOrder {
+      keysApi.getPreKey(recipientAci.toString(), 1, eq(sealed))
+      keysApi.getPreKey(recipientAci.toString(), 1, isNull())
+    }
+    verify { cipher.encrypt(any(), isNull(), any()) }
+    coVerify(exactly = 0) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `prekey fetch rejecting sealed access during mismatched-device recovery falls back to an unsealed send`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, validSerializedSignalMessageBase64())
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatchedException(missing = intArrayOf(2)))
+    coEvery { keysApi.getPreKey(recipientAci.toString(), 2, isNull(inverse = true)) } returns
+      RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.Unauthorized(authenticated = false))
+    coEvery { keysApi.getPreKey(recipientAci.toString(), 2, isNull()) } returns
+      RequestResult.Success(mockk())
+    coEvery { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) } returnsMany listOf(
+      RequestResult.NonSuccess(mismatchedException(missing = intArrayOf(2))),
+      RequestResult.Success(Unit)
+    )
+
+    val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 })
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = sealed, isOnline = false)
+
+    assertThat((result as Either.Right).value.sentSealedSender).isEqualTo(false)
+    coVerify(exactly = 1) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
+    coVerify(exactly = 2) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
+    coVerifyOrder {
+      keysApi.getPreKey(recipientAci.toString(), 2, eq(sealed))
+      keysApi.getPreKey(recipientAci.toString(), 2, isNull())
+    }
+  }
+
+  @Test
+  fun `story prekey fetch rejected even when authenticated raises Unauthorized`() = runTest {
+    val service = newService()
+    every { protocolStore.containsSession(SignalProtocolAddress(recipientAci.libSignalServiceId, 1)) } returns false
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    coEvery { keysApi.getPreKey(any(), any(), any()) } returns
+      RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.Unauthorized(authenticated = true))
+
+    val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 })
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = SealedSenderAccess.Story(mockk(), preKeyAccess = sealed), isOnline = false)
+
+    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.Unauthorized::class)
+    coVerify(exactly = 1) { keysApi.getPreKey(any(), any(), any()) }
+    coVerify(exactly = 0) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `authenticated prekey fetch rejection raises Unauthorized`() = runTest {
+    val service = newService()
+    every { protocolStore.containsSession(SignalProtocolAddress(recipientAci.libSignalServiceId, 1)) } returns false
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    coEvery { keysApi.getPreKey(any(), any(), any()) } returns
+      RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.Unauthorized(authenticated = true))
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, isOnline = false)
+
+    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.Unauthorized::class)
+    coVerify(exactly = 1) { keysApi.getPreKey(any(), any(), isNull()) }
+  }
+
+  @Test
+  fun `initializeSession returns InvalidAccessKeyForPreKeyFetch when sealed access is rejected`() = runTest {
+    val service = newUnspiedService()
+    coEvery { keysApi.getPreKey(any(), any(), any()) } returns RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.Unauthorized(authenticated = false))
+
+    val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 })
+    val result = service.initializeSession(recipientAci, recipientDevice(1), sealed)
+
+    assertThat(result).isEqualTo(Either.Right(IndividualMessageService.SessionInitResult.InvalidAccessKeyForPreKeyFetch))
+  }
+
+  @Test
+  fun `initializeSession raises Unauthorized when an authenticated fetch is rejected`() = runTest {
+    val service = newUnspiedService()
+    coEvery { keysApi.getPreKey(any(), any(), any()) } returns RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.Unauthorized(authenticated = true))
+
+    val result = service.initializeSession(recipientAci, recipientDevice(1), null)
+
+    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.Unauthorized::class)
+  }
+
+  @Test
+  fun `initializeSession raises NotRegistered when an authenticated fetch for the primary device is not found`() = runTest {
+    val service = newUnspiedService()
+    coEvery { keysApi.getPreKey(any(), any(), any()) } returns RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.NotFound(authenticated = true))
+
+    val result = service.initializeSession(recipientAci, recipientDevice(1), null)
+
+    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.NotRegistered::class)
+  }
+
+  @Test
+  fun `initializeSession raises PreKeyUnavailable when a linked device is not found`() = runTest {
+    val service = newUnspiedService()
+    coEvery { keysApi.getPreKey(any(), any(), any()) } returns RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.NotFound(authenticated = true))
+
+    val result = service.initializeSession(recipientAci, recipientDevice(2), null)
+
+    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.PreKeyUnavailable::class)
+  }
+
+  @Test
+  fun `initializeSession raises PreKeyUnavailable when a sealed fetch for the primary device is not found`() = runTest {
+    val service = newUnspiedService()
+    coEvery { keysApi.getPreKey(any(), any(), any()) } returns RequestResult.NonSuccess(KeysApiV2.GetPreKeysError.NotFound(authenticated = false))
+
+    val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 })
+    val result = service.initializeSession(recipientAci, recipientDevice(1), sealed)
+
+    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.PreKeyUnavailable::class)
+  }
+
+  private fun recipientDevice(deviceId: Int): SignalProtocolAddress = SignalProtocolAddress(recipientAci.libSignalServiceId, deviceId)
+
+  private fun individualUnidentifiedAccessFirst(
+    accessKey: ByteArray,
+    createGroupSendToken: SealedSenderAccess.CreateGroupSendToken? = null
+  ): SealedSenderAccess.IndividualUnidentifiedAccessFirst {
+    val ua = mockk<UnidentifiedAccess>()
+    every { ua.unidentifiedAccessKey } returns accessKey
+    every { ua.unidentifiedCertificate } returns mockk()
+    every { ua.isUnrestrictedForStory } returns accessKey.all { it == 0.toByte() }
+    return SealedSenderAccess.IndividualUnidentifiedAccessFirst(ua, createGroupSendToken)
+  }
+
+  private fun mismatchedException(
+    missing: IntArray = intArrayOf(),
+    extra: IntArray = intArrayOf(),
+    stale: IntArray = intArrayOf(),
+    account: ServiceId = recipientAci
+  ): MismatchedDeviceException {
+    val entry = MismatchedDeviceException.Entry(
+      account = account.libSignalServiceId,
+      missingDevices = missing,
+      extraDevices = extra,
+      staleDevices = stale
+    )
+    return MismatchedDeviceException("mismatched", arrayOf(entry))
+  }
+
+  /**
+   * Produces a genuinely valid, native-parseable serialized [org.signal.libsignal.protocol.message.SignalMessage]
+   * (a WHISPER_TYPE message) encoded as base64. The unsealed send path wraps the encrypted bytes in
+   * `SignalMessage(bytes)`, whose native constructor rejects arbitrary input — so the fallback test needs real
+   * ciphertext here rather than a placeholder like "AAAA". We get one by establishing a real session between two
+   * in-memory stores and capturing a post-handshake reply (the initiator's first message is a PreKeySignalMessage,
+   * so we round-trip once to reach a plain SignalMessage).
+   */
+  private fun validSerializedSignalMessageBase64(): String {
+    val aliceAddress = SignalProtocolAddress("alice", 1)
+    val bobAddress = SignalProtocolAddress("bob", 1)
+
+    val aliceStore = InMemorySignalProtocolStore(IdentityKeyPair.generate(), 1)
+    val bobStore = InMemorySignalProtocolStore(IdentityKeyPair.generate(), 2)
+
+    SessionBuilder(aliceStore, bobAddress, aliceAddress).process(createPreKeyBundle(bobStore, deviceId = bobAddress.deviceId))
+
+    val aliceCipher = SessionCipher(aliceStore, aliceAddress, bobAddress)
+    val preKeyMessage = aliceCipher.encrypt("hello".toByteArray())
+
+    val bobCipher = SessionCipher(bobStore, bobAddress, aliceAddress)
+    bobCipher.decrypt(PreKeySignalMessage(preKeyMessage.serialize()))
+
+    val reply = bobCipher.encrypt("reply".toByteArray())
+    check(reply.type == CiphertextMessage.WHISPER_TYPE) { "Expected a WHISPER_TYPE SignalMessage but got ${reply.type}" }
+
+    return Base64.encodeWithPadding(reply.serialize())
+  }
+
+  private fun createPreKeyBundle(store: InMemorySignalProtocolStore, deviceId: Int): PreKeyBundle {
+    val preKeyPair = ECKeyPair.generate()
+    val signedPreKeyPair = ECKeyPair.generate()
+    val signedPreKeySignature = store.identityKeyPair.privateKey.calculateSignature(signedPreKeyPair.publicKey.serialize())
+    val kyberPreKeyPair = KEMKeyPair.generate(KEMKeyType.KYBER_1024)
+    val kyberPreKeySignature = store.identityKeyPair.privateKey.calculateSignature(kyberPreKeyPair.publicKey.serialize())
+
+    val preKeyId = 1
+    val signedPreKeyId = 2
+    val kyberPreKeyId = 3
+
+    store.storePreKey(preKeyId, PreKeyRecord(preKeyId, preKeyPair))
+    store.storeSignedPreKey(signedPreKeyId, SignedPreKeyRecord(signedPreKeyId, 1L, signedPreKeyPair, signedPreKeySignature))
+    store.storeKyberPreKey(kyberPreKeyId, KyberPreKeyRecord(kyberPreKeyId, 1L, kyberPreKeyPair, kyberPreKeySignature))
+
+    return PreKeyBundle(
+      store.localRegistrationId,
+      deviceId,
+      preKeyId,
+      preKeyPair.publicKey,
+      signedPreKeyId,
+      signedPreKeyPair.publicKey,
+      signedPreKeySignature,
+      store.identityKeyPair.publicKey,
+      kyberPreKeyId,
+      kyberPreKeyPair.publicKey,
+      kyberPreKeySignature
+    )
+  }
+
+  private fun dependencies(maxContentSizeBytes: Long = 0L): MessageSendDependencies = mockk {
+    every { this@mockk.localAci } returns this@IndividualMessageServiceTest.localAci
+    every { localDeviceId } returns 1
+    every { this@mockk.maxContentSizeBytes } returns maxContentSizeBytes
+  }
+
+  private fun newUnspiedService(): IndividualMessageService {
+    return IndividualMessageService(
+      messageApi = messageApi,
+      keysApi = keysApi,
+      protocolStore = protocolStore,
+      sessionLock = sessionLock,
+      cipher = cipher,
+      dependencies = dependencies()
+    )
+  }
+
+  /**
+   * Spy with `createSessionFromPreKeys` stubbed so tests don't exercise real crypto / native session building.
+   * Prekey fetches and their error mapping run for real.
+   */
+  private fun newService(maxContentSizeBytes: Long = 0L): IndividualMessageService {
+    every { protocolStore.containsSession(any()) } returns true
+
+    val spy: IndividualMessageService = spyk(
+      IndividualMessageService(
+        messageApi = messageApi,
+        keysApi = keysApi,
+        protocolStore = protocolStore,
+        sessionLock = sessionLock,
+        cipher = cipher,
+        dependencies = dependencies(maxContentSizeBytes)
+      )
+    )
+    every {
+      with(spy) {
+        any<Raise<MessageService.SendError>>().createSessionFromPreKeys(any(), any(), any())
+      }
+    } just Runs
+    return spy
+  }
+
+  @Test
+  fun `concurrent sends never encrypt at the same time`() = runTest {
+    val service = newService()
+    val inFlight = AtomicInteger(0)
+    val maxInFlight = AtomicInteger(0)
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } answers {
+      maxInFlight.accumulateAndGet(inFlight.incrementAndGet(), ::maxOf)
+      Thread.sleep(20)
+      inFlight.decrementAndGet()
+      OutgoingPushMessage(1, 1, 100, "AAAA")
+    }
+    coEvery { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) } returns RequestResult.Success(Unit)
+
+    val results = (1..8).map {
+      async { service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = storyAccess, isOnline = false) }
+    }.awaitAll()
+
+    assertThat(results.all { it is Either.Right }).isEqualTo(true)
+    assertThat(maxInFlight.get()).isEqualTo(1)
+    verify(exactly = 8) { cipher.encrypt(any(), any(), any()) }
+  }
+
+  @Test
+  fun `ChallengeRequired toString leaves out the token`() {
+    val error = MessageService.SendError.ChallengeRequired(token = "secret-token-123", options = setOf(ChallengeOption.PUSH_CHALLENGE), retryAfter = 5.seconds)
+
+    assertThat(error.toString()).doesNotContain("secret-token-123")
+  }
+}

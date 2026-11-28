@@ -42,8 +42,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -78,12 +76,12 @@ class SafetyTipsBottomSheetDialog : ComposeBottomSheetDialogFragment() {
 
   override val peekHeightPercentage: Float = 1f
 
+  override val hasScrollingContent: Boolean = true
+
   @Composable
   override fun SheetContent() {
-    val nestedScrollInterop = rememberNestedScrollInteropConnection()
     SafetyTipsContent(
-      forGroup = requireArguments().getBoolean(FOR_GROUP_ARG, false),
-      modifier = Modifier.nestedScroll(nestedScrollInterop)
+      forGroup = requireArguments().getBoolean(FOR_GROUP_ARG, false)
     )
   }
 }

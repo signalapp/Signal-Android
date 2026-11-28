@@ -9,18 +9,17 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.toAttachmentPointer
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.MultiDeviceAttachmentBackfillUpdateJobData
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
+import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.ConversationIdentifier
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage.AttachmentBackfillResponse.AttachmentData
-import java.io.IOException
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -31,7 +30,7 @@ class MultiDeviceAttachmentBackfillUpdateJob(
   private val targetMessage: AddressableMessage,
   private val targetConversation: ConversationIdentifier,
   private val messageId: Long
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     private val TAG = Log.tag(MultiDeviceAttachmentBackfillUpdateJob::class)
@@ -72,7 +71,7 @@ class MultiDeviceAttachmentBackfillUpdateJob(
     ).encode()
   }
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     val contract = AttachmentBackfill.backfillContractForMessage(messageId)
     val syncAttachments: List<DatabaseAttachment> = contract.bodyAttachments
     val longTextAttachment: DatabaseAttachment? = contract.longTextAttachment
@@ -83,36 +82,31 @@ class MultiDeviceAttachmentBackfillUpdateJob(
       return Result.failure()
     }
 
-    val syncMessage = SignalServiceSyncMessage.forAttachmentBackfillResponse(
-      SyncMessage.AttachmentBackfillResponse(
-        targetMessage = targetMessage,
-        targetConversation = targetConversation,
-        attachments = SyncMessage.AttachmentBackfillResponse.AttachmentDataList(
-          attachments = syncAttachments.map { it.toAttachmentData() },
-          longText = longTextAttachment?.toAttachmentData()
-        )
+    val response = SyncMessage.AttachmentBackfillResponse(
+      targetMessage = targetMessage,
+      targetConversation = targetConversation,
+      attachments = SyncMessage.AttachmentBackfillResponse.AttachmentDataList(
+        attachments = syncAttachments.map { it.toAttachmentData() },
+        longText = longTextAttachment?.toAttachmentData()
       )
     )
 
-    return try {
-      val result = AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessage)
-      if (result.isSuccess) {
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncAttachmentBackfillResponse(response),
+      urgent = false,
+      onEncrypted = null
+    )
+
+    return result.fold(
+      ifRight = {
         Log.i(TAG, "[${targetMessage.sentTimestamp}] Successfully sent backfill update message response.")
         Result.success()
-      } else {
-        Log.w(TAG, "[${targetMessage.sentTimestamp}] Non-successful result. Retrying.")
-        Result.retry(defaultBackoff())
+      },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "attachment backfill update response", defaultBackoff())
       }
-    } catch (e: ServerRejectedException) {
-      Log.w(TAG, e)
-      Result.failure()
-    } catch (e: IOException) {
-      Log.w(TAG, e)
-      Result.retry(defaultBackoff())
-    } catch (e: UntrustedIdentityException) {
-      Log.w(TAG, e)
-      Result.failure()
-    }
+    )
   }
 
   override fun onFailure() {

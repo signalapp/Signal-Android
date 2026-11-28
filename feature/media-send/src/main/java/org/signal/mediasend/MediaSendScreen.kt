@@ -19,6 +19,7 @@ import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.imageeditor.core.Renderer
 import org.signal.mediasend.screens.edit.MediaEditScreenDialogs
 
 @Composable
@@ -27,6 +28,7 @@ fun MediaSendScreen(
   modifier: Modifier = Modifier,
   textStoryEditorSlot: @Composable () -> Unit = {},
   sendSlot: @Composable (MediaSendFlowState) -> Unit = {},
+  stickerSelectSlot: @Composable (onStickerSelected: (Renderer?) -> Unit) -> Unit = {},
   onExternalHudCommand: (MediaSendFlowHudCommand) -> Unit = {}
 ) {
   val viewModel = viewModel<MediaSendFlowViewModel>(factory = MediaSendFlowViewModel.Factory(args = contractArgs))
@@ -60,6 +62,14 @@ fun MediaSendScreen(
             onDismissRequest = onDismissRequest
           )
         }
+        viewModel.reRegistrationOutdatedDeviceDialog.Content { _, onDismissRequest, _, _, _ ->
+          Dialogs.SimpleMessageDialog(
+            title = stringResource(R.string.ReRegistrationScannedDialog__transfer_failed_title),
+            message = stringResource(R.string.ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date),
+            dismiss = stringResource(android.R.string.ok),
+            onDismiss = onDismissRequest
+          )
+        }
 
         viewModel.addToGroupStoryDialog.Content { recipientId, onDismissRequest, onConfirm, _, onDeny ->
           val groupName: String by LocalDisplayNameProvider.current(recipientId.id)
@@ -76,7 +86,8 @@ fun MediaSendScreen(
           viewModel = viewModel,
           modifier = modifier,
           textStoryEditorSlot = textStoryEditorSlot,
-          sendSlot = sendSlot
+          sendSlot = sendSlot,
+          stickerSelectSlot = stickerSelectSlot
         )
       }
     }

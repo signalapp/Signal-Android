@@ -13,11 +13,19 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.core.content.ContextCompat
 import com.google.android.gms.auth.api.phone.SmsRetriever
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
@@ -25,6 +33,7 @@ import kotlinx.serialization.json.Json
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.LocalBackupRestoreProgress
+import org.signal.billing.BillingFactory
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
@@ -32,6 +41,14 @@ import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
+import org.signal.core.util.billing.BillingPurchaseState
+import org.signal.core.util.billing.BillingResponseCode
+import org.signal.core.util.billing.OneTimeProductId
+import org.signal.core.util.billing.OneTimeProductResult
+import org.signal.core.util.billing.OneTimePurchase
+import org.signal.core.util.billing.OneTimePurchaseApi
+import org.signal.core.util.billing.OneTimePurchasePreparation
+import org.signal.core.util.billing.OneTimePurchaseResult
 import org.signal.core.util.crypto.DeviceNameCipher
 import org.signal.core.util.isDebuggableBuild
 import org.signal.core.util.logging.Log
@@ -43,14 +60,19 @@ import org.signal.libsignal.protocol.kem.KEMKeyType
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.usernames.Username
+import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.LoginConfiguration
+import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
@@ -71,11 +93,13 @@ import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.proto.AccountData
 import org.signal.registration.proto.LinkedDeviceData
 import org.signal.registration.proto.ProvisioningData
+import org.signal.registration.proto.SignalLoginPurchase
 import org.signal.registration.proto.SvrCredential
 import org.signal.registration.screens.countrycode.CountryUtils
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
 import org.signal.registration.screens.messagesync.LinkAndSyncProgress
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
+import org.signal.registration.screens.signalloginpayment.PaymentAvailability
 import org.signal.registration.util.SensitiveLog
 import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
@@ -84,6 +108,8 @@ import javax.crypto.Cipher
 import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 class RegistrationRepository(
@@ -91,15 +117,56 @@ class RegistrationRepository(
   val networkController: NetworkController,
   val storageController: StorageController,
   val isLinkAndSyncAvailable: Boolean,
-  val isPhoneNumberlessRegistrationAvailable: Boolean = false
+  val isPhoneNumberlessRegistrationAvailable: Boolean = false,
+  private val isGooglePlayBillingAvailable: Boolean = false,
+  private val signalLoginPurchaseApi: OneTimePurchaseApi,
+  private val googlePlayServicesStatus: () -> PaymentAvailability = { PaymentAvailability.fromConnectionResult(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)) }
 ) {
 
   /** Gates debug-only affordances, like the manual receipt credential entry field on the Signal Login purchase screen. */
   val isDebugBuild: Boolean = context.isDebuggableBuild
 
+  private val signalLoginConfigurationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+  private val signalLoginConfigurationLock = Mutex()
+
+  /**
+   * In-flight or completed fetch of [requestSignalLoginConfiguration], so that concurrent callers share one request
+   * rather than each hitting the service. Cleared again when the fetch fails, so a failure stays retryable.
+   */
+  private var signalLoginConfigurationRequest: Deferred<LoginConfiguration?>? = null
+
   companion object {
     private val TAG = Log.tag(RegistrationRepository::class)
     private val json = Json { ignoreUnknownKeys = true }
+
+    private val SIGNAL_LOGIN_RECEIPT_LIFESPAN = (5 * 366).days
+    private val SIGNAL_LOGIN_RECEIPT_CLOCK_SKEW_BUFFER = 2.days
+    private val SIGNAL_LOGIN_RECEIPT_MAX_LIFESPAN = SIGNAL_LOGIN_RECEIPT_LIFESPAN + SIGNAL_LOGIN_RECEIPT_CLOCK_SKEW_BUFFER
+
+    /** Builds a repository from the module's injected [RegistrationDependencies]. */
+    fun create(context: Context): RegistrationRepository {
+      val dependencies = RegistrationDependencies.get()
+      val application = context.applicationContext
+
+      return RegistrationRepository(
+        context = application,
+        networkController = dependencies.networkController,
+        storageController = dependencies.storageController,
+        isLinkAndSyncAvailable = dependencies.isLinkAndSyncAvailable,
+        isPhoneNumberlessRegistrationAvailable = dependencies.isPhoneNumberlessRegistrationAvailable,
+        isGooglePlayBillingAvailable = dependencies.isGooglePlayBillingAvailable,
+        signalLoginPurchaseApi = BillingFactory.createOneTimePurchaseApi(
+          context = application,
+          isAvailable = dependencies.isGooglePlayBillingAvailable
+        )
+      )
+    }
+
+    /**
+     * The purchase option to buy within the service-provided Signal Login product. The service names the product but
+     * not the option within it, so this half stays a client constant.
+     */
+    internal const val SIGNAL_LOGIN_PURCHASE_OPTION_ID = "nonumber"
   }
 
   suspend fun createSession(e164: String): RequestResult<SessionMetadata, CreateSessionError> = withContext(Dispatchers.IO) {
@@ -336,22 +403,36 @@ class RegistrationRepository(
    * @param sessionId The verified session ID from phone number verification
    * @param registrationLock The registration lock token derived from the master key (if unlocking a reglocked account)
    * @param skipDeviceTransfer Whether to skip device transfer flow
+   * @param preExistingRegistrationData The key material from this install's previous registration of the same number. When present, that AEP and
+   *   those identity keys are re-used rather than generating new ones. Note that this is a rare occurrence -- re-registers *should* be able to
+   *   register with a RRP (see [registerAccountWithRecoveryPassword]), but it's not a guaranteed thing. RRP's can theoretically fall out of sync.
    * @return The registration result containing account information or an error
    */
   suspend fun registerAccountWithSession(
     e164: String,
     sessionId: String,
     registrationLock: String? = null,
-    skipDeviceTransfer: Boolean = true
+    skipDeviceTransfer: Boolean = true,
+    preExistingRegistrationData: PreExistingRegistrationData? = null
   ): RequestResult<RegisteredAccountData, RegisterAccountError> = withContext(Dispatchers.IO) {
-    registerAccount(e164, sessionId, recoveryPassword = null, registrationLock = registrationLock, skipDeviceTransfer = skipDeviceTransfer)
+    registerAccount(
+      e164 = e164,
+      sessionId = sessionId,
+      recoveryPassword = null,
+      registrationLock = registrationLock,
+      skipDeviceTransfer = skipDeviceTransfer,
+      existingAccountEntropyPool = preExistingRegistrationData?.aep,
+      existingAciIdentityKeyPair = preExistingRegistrationData?.aciIdentityKeyPair,
+      existingPniIdentityKeyPair = preExistingRegistrationData?.pniIdentityKeyPair,
+      unrestrictedUnidentifiedAccess = preExistingRegistrationData?.unrestrictedUnidentifiedAccess ?: false
+    )
   }
 
   /**
    * Builds the presentation for [receiptCredential] that [registerAccountWithoutPhoneNumber] redeems.
    * See [NetworkController.createReceiptCredentialPresentation].
    */
-  fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialPresentation {
+  fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialResult<ReceiptCredentialPresentation> {
     return networkController.createReceiptCredentialPresentation(receiptCredential)
   }
 
@@ -389,6 +470,356 @@ class RegistrationRepository(
   }
 
   /**
+   * Localized price of a Signal Login, as reported by Google Play.
+   *
+   * A failure to reach the service is reported as [SignalLoginPriceResult.TransientError] rather than
+   * [SignalLoginPriceResult.Unavailable], since the configuration fetch is not cached on failure and so a retry can
+   * still succeed.
+   */
+  /** Whether Google Play can take a payment for a Signal Login right now, and if not, what is wrong with it. */
+  suspend fun getPaymentAvailability(): PaymentAvailability = withContext(Dispatchers.IO) {
+    val services = googlePlayServicesStatus()
+    if (!services.isAvailable) {
+      Log.w(TAG, "[getPaymentAvailability] Google Play services cannot be used: $services")
+      return@withContext services
+    }
+
+    if (!isGooglePlayBillingAvailable) {
+      Log.w(TAG, "[getPaymentAvailability] This build has no Google Play billing, so nothing can be bought here.")
+      return@withContext PaymentAvailability.PurchasesUnavailable
+    }
+
+    when (val billing = signalLoginPurchaseApi.getApiAvailability()) {
+      BillingResponseCode.OK -> PaymentAvailability.Available
+      BillingResponseCode.BILLING_UNAVAILABLE -> {
+        Log.w(TAG, "[getPaymentAvailability] Google Play services works but billing does not, most likely because nobody is signed into the Play Store.")
+        PaymentAvailability.NotSignedIn
+      }
+      else -> {
+        Log.w(TAG, "[getPaymentAvailability] Unexpected billing availability: $billing. Letting the purchase attempt speak for itself.")
+        PaymentAvailability.Available
+      }
+    }
+  }
+
+  suspend fun getSignalLoginPrice(): SignalLoginPriceResult = withContext(Dispatchers.IO) {
+    val product = fetchSignalLoginConfiguration()?.toProductId()
+    if (product == null) {
+      return@withContext SignalLoginPriceResult.TransientError
+    }
+
+    when (val result = signalLoginPurchaseApi.queryProduct(product)) {
+      is OneTimeProductResult.Success -> SignalLoginPriceResult.Available(result.product.formattedPrice)
+      OneTimeProductResult.Unavailable -> SignalLoginPriceResult.Unavailable
+      OneTimeProductResult.TransientError -> SignalLoginPriceResult.TransientError
+    }
+  }
+
+  /**
+   * Whether the user has already paid for a Signal Login that has not been redeemed yet, meaning
+   * [startOrCompleteSignalLoginPurchase] will finish the job rather than charge them again.
+   */
+  suspend fun hasUnredeemedSignalLoginPurchase(): Boolean = withContext(Dispatchers.IO) {
+    val product = fetchSignalLoginConfiguration()?.toProductId() ?: return@withContext false
+    signalLoginPurchaseApi.queryUnconsumedPurchase(product) != null
+  }
+
+  /**
+   * The service's Signal Login configuration, cached for the life of this repository since it changes rarely and the
+   * purchase screen asks for it repeatedly. Null if the service would not give it to us.
+   *
+   * The fetch runs on [signalLoginConfigurationScope] rather than the caller's, so that a caller giving up (the user
+   * leaving the payment screen) doesn't cancel the request another caller is waiting on.
+   */
+  private suspend fun fetchSignalLoginConfiguration(): LoginConfiguration? {
+    val request = signalLoginConfigurationLock.withLock {
+      signalLoginConfigurationRequest ?: signalLoginConfigurationScope
+        .async { requestSignalLoginConfiguration() }
+        .also { signalLoginConfigurationRequest = it }
+    }
+
+    val configuration = request.await()
+
+    if (configuration == null) {
+      signalLoginConfigurationLock.withLock {
+        if (signalLoginConfigurationRequest === request) {
+          signalLoginConfigurationRequest = null
+        }
+      }
+    }
+
+    return configuration
+  }
+
+  private suspend fun requestSignalLoginConfiguration(): LoginConfiguration? {
+    return when (val result = networkController.getLoginConfiguration()) {
+      is RequestResult.Success -> result.result
+      is RequestResult.NonSuccess -> {
+        Log.w(TAG, "[requestSignalLoginConfiguration] The service would not return a Signal Login configuration: ${result.error}")
+        null
+      }
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[requestSignalLoginConfiguration] Network error fetching the Signal Login configuration.", result.networkError)
+        null
+      }
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[requestSignalLoginConfiguration] Application error fetching the Signal Login configuration.", result.cause)
+        null
+      }
+    }
+  }
+
+  private fun LoginConfiguration.toProductId(): OneTimeProductId {
+    return OneTimeProductId(productId = playProductId, purchaseOptionId = SIGNAL_LOGIN_PURCHASE_OPTION_ID)
+  }
+
+  /**
+   * Begins buying a Signal Login: works out what to sell and gets Google Play ready to sell it.
+   *
+   * Stops short of showing the purchase sheet, since that needs an activity. A
+   * [SignalLoginPurchaseStep.LaunchRequired] must be launched by the UI layer and its outcome handed to
+   * [completeSignalLoginPurchase].
+   *
+   * Important: It's possible that we find out during this process that a user has an unconsumed purchased, likely from a prior failure.
+   * If this is the case, we'll use it to register here.
+   */
+  suspend fun startOrCompleteSignalLoginPurchase(): SignalLoginPurchaseStep = withContext(Dispatchers.IO) {
+    val configuration = fetchSignalLoginConfiguration()
+    if (configuration == null) {
+      Log.w(TAG, "[startOrCompleteSignalLoginPurchase] No Signal Login configuration, so we do not know what to sell.")
+      return@withContext SignalLoginPurchaseStep.Finished(SignalLoginPurchaseResult.NetworkError)
+    }
+
+    when (val preparation = signalLoginPurchaseApi.preparePurchase(configuration.toProductId())) {
+      is OneTimePurchasePreparation.Ready -> {
+        SignalLoginPurchaseStep.LaunchRequired(preparation.launcher)
+      }
+      is OneTimePurchasePreparation.AlreadyOwned -> {
+        Log.i(TAG, "[startOrCompleteSignalLoginPurchase] The user already paid for a Signal Login. Redeeming it rather than charging again.")
+        SignalLoginPurchaseStep.Finished(redeemSignalLoginPurchaseAndRegister(preparation.purchase))
+      }
+      is OneTimePurchasePreparation.Unavailable -> {
+        Log.w(TAG, "[startOrCompleteSignalLoginPurchase] Google Play cannot sell a Signal Login here.")
+        SignalLoginPurchaseStep.Finished(SignalLoginPurchaseResult.PurchaseUnavailable)
+      }
+      is OneTimePurchasePreparation.NetworkError -> {
+        Log.w(TAG, "[startOrCompleteSignalLoginPurchase] Network error talking to Google Play.")
+        SignalLoginPurchaseStep.Finished(SignalLoginPurchaseResult.NetworkError)
+      }
+      is OneTimePurchasePreparation.GenericError -> {
+        Log.w(TAG, "[startOrCompleteSignalLoginPurchase] Google Play could not prepare the purchase.")
+        SignalLoginPurchaseStep.Finished(SignalLoginPurchaseResult.PurchaseFailed)
+      }
+    }
+  }
+
+  /**
+   * Redeems the outcome of a purchase sheet launched for [startOrCompleteSignalLoginPurchase] into a brand new account with no
+   * phone number.
+   *
+   * The purchase is persisted before it is redeemed, so a failure anywhere after payment leaves something to resume
+   * from: starting again picks the existing purchase back up instead of charging a second time.
+   */
+  suspend fun completeSignalLoginPurchase(purchaseResult: OneTimePurchaseResult): SignalLoginPurchaseResult = withContext(Dispatchers.IO) {
+    when (purchaseResult) {
+      is OneTimePurchaseResult.Success -> {
+        redeemSignalLoginPurchaseAndRegister(purchaseResult.purchase)
+      }
+      is OneTimePurchaseResult.UserCancelled -> {
+        Log.i(TAG, "[completeSignalLoginPurchase] The user cancelled the purchase.")
+        SignalLoginPurchaseResult.Cancelled
+      }
+      is OneTimePurchaseResult.Unavailable -> {
+        Log.w(TAG, "[completeSignalLoginPurchase] Google Play cannot sell a Signal Login here.")
+        SignalLoginPurchaseResult.PurchaseUnavailable
+      }
+      is OneTimePurchaseResult.NetworkError -> {
+        Log.w(TAG, "[completeSignalLoginPurchase] Network error talking to Google Play.")
+        SignalLoginPurchaseResult.NetworkError
+      }
+      is OneTimePurchaseResult.GenericError -> {
+        Log.w(TAG, "[completeSignalLoginPurchase] Google Play failed to complete the purchase.")
+        SignalLoginPurchaseResult.PurchaseFailed
+      }
+    }
+  }
+
+  /** Releases the Google Play billing connection and any in-flight configuration fetch. Call when the registration flow is done with it. */
+  fun close() {
+    signalLoginPurchaseApi.close()
+    signalLoginConfigurationScope.cancel()
+  }
+
+  /**
+   * Turns a paid-for [purchase] into a registered account.
+   */
+  private suspend fun redeemSignalLoginPurchaseAndRegister(purchase: OneTimePurchase): SignalLoginPurchaseResult {
+    if (purchase.state == BillingPurchaseState.PENDING) {
+      Log.i(TAG, "[redeemSignalLoginPurchaseAndRegister] The purchase has not settled with Google Play yet.")
+      loadOrCreateReceiptCredentialRequestContext(purchase.purchaseToken)
+      return SignalLoginPurchaseResult.PurchasePending
+    }
+
+    if (purchase.state != BillingPurchaseState.PURCHASED) {
+      Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] Unexpected purchase state: ${purchase.state}")
+      return SignalLoginPurchaseResult.PurchaseFailed
+    }
+
+    val requestContext = loadOrCreateReceiptCredentialRequestContext(purchase.purchaseToken)
+
+    val credentialResult = networkController.createLoginPurchaseReceiptCredential(
+      purchaseIdentifier = purchase.purchaseToken,
+      receiptCredentialRequest = requestContext.request,
+      paymentProvider = LoginPurchasePaymentProvider.GOOGLE_PLAY_BILLING
+    )
+
+    val credentialResponse = when (credentialResult) {
+      is RequestResult.Success -> when (val issued = credentialResult.result) {
+        is CreateLoginReceiptCredentialResult.Issued -> {
+          issued.receiptCredentialResponse
+        }
+        CreateLoginReceiptCredentialResult.PurchasePending -> {
+          Log.i(TAG, "[redeemSignalLoginPurchaseAndRegister] The service says the purchase is still pending.")
+          return SignalLoginPurchaseResult.PurchasePending
+        }
+      }
+      is RequestResult.NonSuccess -> {
+        Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] The service would not issue a receipt credential: ${credentialResult.error}")
+        return SignalLoginPurchaseResult.RedemptionFailed(credentialResult.error)
+      }
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] Network error requesting the receipt credential.", credentialResult.networkError)
+        return SignalLoginPurchaseResult.NetworkError
+      }
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] Application error requesting the receipt credential.", credentialResult.cause)
+        return SignalLoginPurchaseResult.UnknownError
+      }
+    }
+
+    val credential = when (val received = networkController.receiveReceiptCredential(requestContext, credentialResponse)) {
+      is ReceiptCredentialResult.Success -> received.value
+      ReceiptCredentialResult.VerificationFailed -> {
+        Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] The service issued a credential we could not verify.")
+        return SignalLoginPurchaseResult.UnknownError
+      }
+    }
+
+    val configuration = fetchSignalLoginConfiguration()
+    if (configuration == null) {
+      Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] No Signal Login configuration, so we cannot validate the issued credential.")
+      return SignalLoginPurchaseResult.NetworkError
+    }
+
+    if (!isSignalLoginReceiptCredentialValid(credential, configuration.level)) {
+      Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] The service issued a credential that failed validation.")
+      return SignalLoginPurchaseResult.UnknownError
+    }
+
+    val presentation = when (val built = networkController.createReceiptCredentialPresentation(credential)) {
+      is ReceiptCredentialResult.Success -> built.value
+      ReceiptCredentialResult.VerificationFailed -> {
+        Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] Could not build a presentation for the issued credential.")
+        return SignalLoginPurchaseResult.UnknownError
+      }
+    }
+
+    return when (val registration = registerAccountWithoutPhoneNumber(presentation)) {
+      is RequestResult.Success -> {
+        Log.i(TAG, "[redeemSignalLoginPurchaseAndRegister] Registered without a phone number. Consuming the purchase.")
+        consumeSignalLoginPurchase(purchase.purchaseToken)
+        SignalLoginPurchaseResult.Registered(registration.result)
+      }
+      is RequestResult.NonSuccess -> {
+        Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] Failed to register with the receipt credential: ${registration.error}")
+        SignalLoginPurchaseResult.RegistrationFailed(registration.error)
+      }
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] Network error registering.", registration.networkError)
+        SignalLoginPurchaseResult.NetworkError
+      }
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] Application error registering.", registration.cause)
+        SignalLoginPurchaseResult.UnknownError
+      }
+    }
+  }
+
+  /**
+   * Guards against the service tagging a credential with a distinctive level or expiration that would let it link the
+   * purchase to the account that redeems it.
+   */
+  private fun isSignalLoginReceiptCredentialValid(credential: ReceiptCredential, expectedLevel: Long): Boolean {
+    val now = System.currentTimeMillis().milliseconds
+    val maxExpirationTime = now + SIGNAL_LOGIN_RECEIPT_MAX_LIFESPAN
+    val isCorrectLevel = credential.receiptLevel == expectedLevel
+    val isExpiration86400 = credential.receiptExpirationTime % 86400 == 0L
+    val isExpirationInTheFuture = credential.receiptExpirationTime.seconds > now
+    val isExpirationWithinMax = credential.receiptExpirationTime.seconds <= maxExpirationTime
+
+    Log.i(
+      TAG,
+      "[isSignalLoginReceiptCredentialValid] isCorrectLevel: $isCorrectLevel (actual: ${credential.receiptLevel}, expected: $expectedLevel), " +
+        "isExpiration86400: $isExpiration86400, isExpirationInTheFuture: $isExpirationInTheFuture, isExpirationWithinMax: $isExpirationWithinMax"
+    )
+
+    return isCorrectLevel && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinMax
+  }
+
+  /**
+   * The service rejects a retry that redeems the same purchase with a different request, so we reuse the context we
+   * persisted for this purchase if there is one.
+   */
+  private suspend fun loadOrCreateReceiptCredentialRequestContext(purchaseToken: String): ReceiptCredentialRequestContext {
+    val persisted = storageController.readInProgressRegistrationData().signalLoginPurchase
+
+    if (persisted != null && persisted.purchaseToken == purchaseToken) {
+      val restored = try {
+        ReceiptCredentialRequestContext(persisted.receiptCredentialRequestContext.toByteArray())
+      } catch (e: InvalidInputException) {
+        Log.w(TAG, "[loadOrCreateReceiptCredentialRequestContext] The persisted request context was unreadable. Starting over.", e)
+        null
+      }
+
+      if (restored != null) {
+        Log.i(TAG, "[loadOrCreateReceiptCredentialRequestContext] Reusing the request context persisted for this purchase.")
+        return restored
+      }
+    }
+
+    val created = networkController.createReceiptCredentialRequestContext()
+    persistSignalLoginPurchase(purchaseToken, created)
+    return created
+  }
+
+  private suspend fun persistSignalLoginPurchase(purchaseToken: String, requestContext: ReceiptCredentialRequestContext) {
+    storageController.updateInProgressRegistrationData {
+      signalLoginPurchase = SignalLoginPurchase(
+        purchaseToken = purchaseToken,
+        receiptCredentialRequestContext = requestContext.serialize().toByteString()
+      )
+    }
+  }
+
+  /**
+   * Consuming makes the product purchasable again, which is what lets someone buy a second Signal Login for a second
+   * account. It must happen only after the purchase has been redeemed, because Google Play can no longer verify a
+   * consumed token.
+   */
+  private suspend fun consumeSignalLoginPurchase(purchaseToken: String) {
+    if (!signalLoginPurchaseApi.consumePurchase(purchaseToken)) {
+      // Google Play still reports the purchase as unconsumed, so we keep the persisted request context. Minting a new
+      // one for a purchase the service already redeemed would earn a permanent AlreadyRedeemed.
+      Log.w(TAG, "[consumeSignalLoginPurchase] Google Play would not consume the purchase. Keeping the persisted purchase so a later retry reuses its request context.")
+      return
+    }
+
+    storageController.updateInProgressRegistrationData {
+      signalLoginPurchase = null
+    }
+  }
+
+  /**
    * Logs back in to the account with no phone number identified by [aci], using the [recoveryPassword] and [aep]
    * behind it.
    */
@@ -398,7 +829,8 @@ class RegistrationRepository(
     aep: AccountEntropyPool,
     registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true,
-    totp: Int? = null
+    totp: Int? = null,
+    webAuthnResponse: String? = null
   ): RequestResult<RegisteredAccountData, RegisterAccountError> = withContext(Dispatchers.IO) {
     val result = registerAccount(
       e164 = null,
@@ -409,11 +841,16 @@ class RegistrationRepository(
       registrationLock = registrationLock,
       skipDeviceTransfer = skipDeviceTransfer,
       existingAccountEntropyPool = aep,
-      totp = totp
+      totp = totp,
+      webAuthnResponse = webAuthnResponse
     )
 
     if (result is RequestResult.Success && result.result.response.authCredentialSalt == null) {
       Log.w(TAG, "[reRegisterAccountWithoutPhoneNumber] The service did not return an authCredentialSalt!")
+    }
+
+    if (result is RequestResult.Success && (totp != null || webAuthnResponse != null)) {
+      storageController.markHasTwoFactorMethods()
     }
 
     result
@@ -465,6 +902,9 @@ class RegistrationRepository(
     if (phoneNumberData == null) {
       check(isPhoneNumberlessRegistrationAvailable) { "Primary sent no phone number data, but linking to an account with no phone number isn't supported!" }
       Log.i(TAG, "[registerAsLinkedDevice] Primary sent no phone number data. Linking to an account with no phone number.")
+      if (message.authCredentialSalt == null) {
+        Log.w(TAG, "[registerAsLinkedDevice] Primary did not send an authCredentialSalt!")
+      }
     }
 
     val e164 = phoneNumberData?.e164
@@ -516,7 +956,7 @@ class RegistrationRepository(
       registrationId = keyMaterial.aciRegistrationId,
       pniRegistrationId = keyMaterial.pni?.registrationId,
       name = Base64.encodeWithPadding(encryptedDeviceName),
-      capabilities = getAccountCapabilities()
+      capabilities = getAccountCapabilities().copy(optionalPhoneNumber = phoneNumberData == null)
     )
 
     val aciPreKeys = PreKeyCollection(
@@ -553,6 +993,10 @@ class RegistrationRepository(
 
         if (pni != null) {
           this.pni = pni.toString()
+        }
+
+        if (message.authCredentialSalt != null) {
+          this.authCredentialSalt = message.authCredentialSalt
         }
 
         this.linkedDeviceData = LinkedDeviceData(
@@ -670,6 +1114,7 @@ class RegistrationRepository(
       e164 = provisioningMessage.e164,
       sessionId = null,
       recoveryPassword = recoveryPassword,
+      aci = provisioningMessage.aci.takeIf { provisioningMessage.e164 == null },
       registrationLock = masterKey.deriveRegistrationLock().takeIf { provideRegistrationLock },
       skipDeviceTransfer = true,
       existingAccountEntropyPool = aep,
@@ -715,7 +1160,8 @@ class RegistrationRepository(
     existingAciIdentityKeyPair: IdentityKeyPair? = null,
     existingPniIdentityKeyPair: IdentityKeyPair? = null,
     unrestrictedUnidentifiedAccess: Boolean = false,
-    totp: Int? = null
+    totp: Int? = null,
+    webAuthnResponse: String? = null
   ): RequestResult<RegisteredAccountData, RegisterAccountError> = withContext(Dispatchers.IO) {
     val phoneNumberless = receiptCredentialPresentation != null || aci != null
 
@@ -727,7 +1173,7 @@ class RegistrationRepository(
       check(e164 != null) { "Must provide an e164 when registering with a phone number" }
     }
 
-    Log.i(TAG, "[registerAccount] Starting registration for $e164. sessionId: ${sessionId != null}, recoveryPassword: ${recoveryPassword != null}, receiptCredentialPresentation: ${receiptCredentialPresentation != null}, aci: ${aci != null}, phoneNumberless: $phoneNumberless, registrationLock: ${registrationLock != null}, skipDeviceTransfer: $skipDeviceTransfer, existingAep: ${existingAccountEntropyPool != null}, totp: ${totp != null}")
+    Log.i(TAG, "[registerAccount] Starting registration for $e164. sessionId: ${sessionId != null}, recoveryPassword: ${recoveryPassword != null}, receiptCredentialPresentation: ${receiptCredentialPresentation != null}, aci: ${aci != null}, phoneNumberless: $phoneNumberless, registrationLock: ${registrationLock != null}, skipDeviceTransfer: $skipDeviceTransfer, existingAep: ${existingAccountEntropyPool != null}, totp: ${totp != null}, webAuthn: ${webAuthnResponse != null}")
 
     val inProgressData = storageController.readInProgressRegistrationData()
     val resumedAciIdentityKeyPair = inProgressData.accountData?.aciIdentityKeyPair?.takeIf { it.size > 0 }?.let { IdentityKeyPair(it.toByteArray()) }
@@ -818,7 +1264,8 @@ class RegistrationRepository(
       fcmToken = fcmToken,
       skipDeviceTransfer = skipDeviceTransfer,
       aci = aci,
-      totp = totp
+      totp = totp,
+      webAuthnResponse = webAuthnResponse
     )
 
     when (result) {

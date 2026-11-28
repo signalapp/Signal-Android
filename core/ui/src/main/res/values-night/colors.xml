@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="signal_accent_primary">@color/core_ultramarine_light</color>
+    <color name="signal_inverse_primary">@color/core_white</color>
+
+</resources>

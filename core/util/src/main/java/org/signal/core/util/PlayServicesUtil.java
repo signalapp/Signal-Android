@@ -1,9 +1,15 @@
 package org.signal.core.util;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.provider.Settings;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -13,6 +19,8 @@ import org.signal.core.util.logging.Log;
 public class PlayServicesUtil {
 
   private static final String TAG = Log.tag(PlayServicesUtil.class);
+
+  public static final String PLAY_SERVICES_PACKAGE = "com.google.android.gms";
 
   public enum PlayServicesStatus {
     SUCCESS,
@@ -38,7 +46,7 @@ public class PlayServicesUtil {
         return PlayServicesStatus.SUCCESS;
       case ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED:
         try {
-          ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo("com.google.android.gms", 0);
+          ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(PLAY_SERVICES_PACKAGE, 0);
 
           if (applicationInfo != null && !applicationInfo.enabled) {
             return PlayServicesStatus.MISSING;
@@ -59,4 +67,12 @@ public class PlayServicesUtil {
     }
   }
 
+  /** Opens the system app info screen for Play Services, where the user can enable it. */
+  public static void openPlayServicesSettings(@NonNull Context context) {
+    try {
+      context.startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", PLAY_SERVICES_PACKAGE, null)));
+    } catch (ActivityNotFoundException | SecurityException e) {
+      Log.w(TAG, "Unable to open Play Services' app settings", e);
+    }
+  }
 }

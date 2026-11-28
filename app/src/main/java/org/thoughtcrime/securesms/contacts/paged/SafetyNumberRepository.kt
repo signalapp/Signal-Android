@@ -2,14 +2,15 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import androidx.annotation.VisibleForTesting
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit
  * Generic repository for interacting with safety numbers and fetch new ones.
  */
 class SafetyNumberRepository(
-  private val profileService: ProfileService = AppDependencies.profileService,
+  private val profileService: ProfileService = SignalNetwork.profileService,
   private val aciIdentityStore: SignalIdentityKeyStore = AppDependencies.protocolStore.aci().identities()
 ) {
 

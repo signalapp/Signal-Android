@@ -29,31 +29,38 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import java.util.UUID
 
 class InternalSearchFragment : ComposeFragment() {
 
-  val viewModel: InternalSearchViewModel by viewModels()
-
   @Composable
   override fun FragmentContent() {
-    val results: ImmutableList<InternalSearchResult> by viewModel.results
-    val query: String by viewModel.query
-
-    InternalSearchFragmentScreen(
-      query = query,
-      results = results,
-      onSearchUpdated = { viewModel.onQueryChanged(it) }
-    )
+    InternalSearchEntry()
   }
+}
+
+/**
+ * The recipient search, wired to its view model.
+ */
+@Composable
+fun InternalSearchEntry() {
+  val viewModel: InternalSearchViewModel = viewModel()
+  val results: ImmutableList<InternalSearchResult> by viewModel.results
+  val query: String by viewModel.query
+
+  InternalSearchFragmentScreen(
+    query = query,
+    results = results,
+    onSearchUpdated = { viewModel.onQueryChanged(it) }
+  )
 }
 
 @Composable

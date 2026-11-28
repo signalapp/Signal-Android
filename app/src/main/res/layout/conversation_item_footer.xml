@@ -148,7 +148,7 @@
 
     <org.thoughtcrime.securesms.components.DeliveryStatusView
         android:id="@+id/footer_delivery_status"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/message_bubble_delivery_status_width"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"

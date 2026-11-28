@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.gifts.Gifts.formatExpiry
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays a gift badge sent to or received from a user, and allows the user to
@@ -68,7 +69,7 @@ class GiftMessageView @JvmOverloads constructor(
         }
         GiftBadge.RedemptionState.STARTED -> actionView.icon = CircularProgressDrawable(context).apply {
           actionView.isEnabled = false
-          setColorSchemeColors(ContextCompat.getColor(context, R.color.core_ultramarine))
+          setColorSchemeColors(ContextCompat.getColor(context, CoreUiR.color.core_ultramarine))
           strokeWidth = DimensionUnit.DP.toPixels(2f)
           start()
         }

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.messages.protocol
 
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
@@ -44,8 +45,8 @@ class BufferedIdentityKeyStore(
   }
 
   override fun isTrustedIdentity(address: SignalProtocolAddress, identityKey: IdentityKey, direction: IdentityKeyStore.Direction): Boolean {
-    val isSelf = address.name == SignalStore.account.aci?.toString() ||
-      address.name == SignalStore.account.pni?.toString() ||
+    val serviceId = ServiceId.parseOrNull(address.name, logFailures = false)
+    val isSelf = (serviceId != null && (serviceId == SignalStore.account.aci || serviceId == SignalStore.account.pni)) ||
       address.name == SignalStore.account.e164
 
     if (isSelf) {

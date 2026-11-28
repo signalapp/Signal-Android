@@ -5,7 +5,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 import java.util.NavigableSet;
 import java.util.TreeSet;
@@ -24,26 +24,26 @@ public class RegistrationLockReminders {
   public static final long INITIAL_INTERVAL = INTERVALS.first();
 
   public static boolean needsReminder(@NonNull Context context) {
-    long lastReminderTime = TextSecurePreferences.getRegistrationLockLastReminderTime(context);
-    long nextIntervalTime = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
+    long lastReminderTime = SignalStore.pin().getLastSuccessfulEntryTime();
+    long nextIntervalTime = SignalStore.pin().getNextReminderInterval();
 
     return System.currentTimeMillis() > lastReminderTime + nextIntervalTime;
   }
 
   public static void scheduleReminder(@NonNull Context context, boolean success) {
     if (success) {
-      long timeSinceLastReminder = System.currentTimeMillis() - TextSecurePreferences.getRegistrationLockLastReminderTime(context);
+      long timeSinceLastReminder = System.currentTimeMillis() - SignalStore.pin().getLastSuccessfulEntryTime();
       Long nextReminderInterval = INTERVALS.higher(timeSinceLastReminder);
 
       if (nextReminderInterval == null) {
         nextReminderInterval = INTERVALS.last();
       }
 
-      TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
-      TextSecurePreferences.setRegistrationLockNextReminderInterval(context, nextReminderInterval);
+      SignalStore.pin().setLastSuccessfulEntryTime(System.currentTimeMillis());
+      SignalStore.pin().setNextReminderInterval(nextReminderInterval);
     } else {
-      long timeSinceLastReminder = TextSecurePreferences.getRegistrationLockLastReminderTime(context) + TimeUnit.MINUTES.toMillis(5);
-      TextSecurePreferences.setRegistrationLockLastReminderTime(context, timeSinceLastReminder);
+      long timeSinceLastReminder = SignalStore.pin().getLastSuccessfulEntryTime() + TimeUnit.MINUTES.toMillis(5);
+      SignalStore.pin().setLastSuccessfulEntryTime(timeSinceLastReminder);
     }
   }
 }

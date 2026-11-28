@@ -8,7 +8,8 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.signal.remoteconfig.RemoteConfig
+import org.thoughtcrime.securesms.dependencies.AppRemoteConfigDependencies
 
 class PaymentsValuesTest {
 
@@ -18,6 +19,7 @@ class PaymentsValuesTest {
   fun setup() {
     mockkObject(RemoteConfig)
     mockkObject(SignalStore)
+    RemoteConfig.initDependencies(AppRemoteConfigDependencies)
 
     paymentValues = mockk()
     every { paymentValues.paymentsAvailability } answers { callOriginal() }

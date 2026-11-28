@@ -8,10 +8,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.core.util.count
-import org.signal.core.util.delete
+import org.signal.core.database.count
+import org.signal.core.database.delete
+import org.signal.core.database.update
 import org.signal.core.util.readToSingleInt
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.testutil.SignalDatabaseRule

@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Collections;
 import java.util.Set;
@@ -41,8 +41,8 @@ public class AutoDownloadEmojiConstraint implements Constraint {
   @RequiresApi(26)
   @Override
   public void applyToJobInfo(@NonNull JobInfo.Builder jobInfoBuilder) {
-    boolean canDownloadWhileRoaming = TextSecurePreferences.getRoamingMediaDownloadAllowed(context).contains(IMAGE_TYPE);
-    boolean canDownloadWhileMobile  = TextSecurePreferences.getMobileMediaDownloadAllowed(context).contains(IMAGE_TYPE);
+    boolean canDownloadWhileRoaming = SignalStore.settings().getRoamingMediaDownloadAllowed().contains(IMAGE_TYPE);
+    boolean canDownloadWhileMobile  = SignalStore.settings().getMobileMediaDownloadAllowed().contains(IMAGE_TYPE);
 
     if (canDownloadWhileRoaming) {
       jobInfoBuilder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
@@ -62,9 +62,9 @@ public class AutoDownloadEmojiConstraint implements Constraint {
   }
 
   private static @NonNull Set<String> getAllowedAutoDownloadTypes(@NonNull Context context, boolean forceWifi) {
-    if      (NetworkUtil.isConnectedWifi(context))    return forceWifi ? Collections.singleton(IMAGE_TYPE) : TextSecurePreferences.getWifiMediaDownloadAllowed(context);
-    else if (NetworkUtil.isConnectedRoaming(context)) return TextSecurePreferences.getRoamingMediaDownloadAllowed(context);
-    else if (NetworkUtil.isConnectedMobile(context))  return TextSecurePreferences.getMobileMediaDownloadAllowed(context);
+    if      (NetworkUtil.isConnectedWifi(context))    return forceWifi ? Collections.singleton(IMAGE_TYPE) : SignalStore.settings().getWifiMediaDownloadAllowed();
+    else if (NetworkUtil.isConnectedRoaming(context)) return SignalStore.settings().getRoamingMediaDownloadAllowed();
+    else if (NetworkUtil.isConnectedMobile(context))  return SignalStore.settings().getMobileMediaDownloadAllowed();
     else                                              return Collections.emptySet();
   }
 

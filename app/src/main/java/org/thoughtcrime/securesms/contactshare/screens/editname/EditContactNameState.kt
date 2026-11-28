@@ -7,9 +7,11 @@ package org.thoughtcrime.securesms.contactshare.screens.editname
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 /** The structured name of a shared contact, matching the address book fields. */
 @Parcelize
+@Serializable
 data class ContactNameParts(
   val prefix: String = "",
   val givenName: String = "",
@@ -25,6 +27,9 @@ data class ContactNameParts(
   /** Whether anything outside the company is left, including the parts that cannot stand alone. */
   val hasPersonalName: Boolean
     get() = prefix.isNotBlank() || givenName.isNotBlank() || middleName.isNotBlank() || familyName.isNotBlank() || suffix.isNotBlank()
+
+  val isOrgOnly: Boolean
+    get() = !hasPersonalName && organization.isNotBlank()
 
   override fun toString(): String = "ContactNameParts(hasPrefix=${prefix.isNotBlank()}, hasGiven=${givenName.isNotBlank()}, hasMiddle=${middleName.isNotBlank()}, hasFamily=${familyName.isNotBlank()}, hasSuffix=${suffix.isNotBlank()}, hasOrg=${organization.isNotBlank()})"
 }

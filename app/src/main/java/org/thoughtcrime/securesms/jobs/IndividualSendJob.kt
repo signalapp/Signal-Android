@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.jobs
 
-import android.content.Context
-import androidx.annotation.WorkerThread
 import okio.utf8Size
 import org.signal.core.util.UuidUtil.parseOrThrow
 import org.signal.core.util.logging.Log
@@ -14,10 +12,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.ConversationShortcutRankingUpdateJob.Companion.enqueueForOutgoingIfNecessary
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob.Companion.enqueue
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -28,7 +23,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents
 import org.whispersystems.signalservice.api.crypto.ContentHint
@@ -48,7 +42,6 @@ import org.whispersystems.signalservice.internal.push.DataMessage
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.util.Optional
-import java.util.concurrent.TimeUnit
 
 class IndividualSendJob private constructor(parameters: Parameters, private val messageId: Long) : PushSendJob(parameters) {
 
@@ -60,74 +53,11 @@ class IndividualSendJob private constructor(parameters: Parameters, private val 
     private const val KEY_MESSAGE_ID = "message_id"
 
     @JvmStatic
-    fun create(messageId: Long, recipient: Recipient, hasMedia: Boolean, isScheduledSend: Boolean): Job {
-      if (!recipient.hasServiceId) {
-        throw AssertionError("No ServiceId!")
-      }
-
-      if (recipient.isGroup) {
-        throw AssertionError("This job does not send group messages!")
-      }
-
-      return if (RemoteConfig.useIndividualSendJobV2) {
-        IndividualSendJobV2.create(messageId, recipient, hasMedia, isScheduledSend)
-      } else {
-        IndividualSendJob(messageId, recipient, hasMedia, isScheduledSend)
-      }
-    }
-
-    @JvmStatic
-    @WorkerThread
-    fun enqueue(context: Context, jobManager: JobManager, messageId: Long, recipient: Recipient, isScheduledSend: Boolean) {
-      if (RemoteConfig.useIndividualSendJobV2) {
-        IndividualSendJobV2.enqueue(context, messageId, recipient, isScheduledSend)
-        return
-      }
-
-      try {
-        val message = SignalDatabase.messages.getOutgoingMessage(messageId)
-        if (message.scheduledDate != -1L) {
-          AppDependencies.scheduledMessageManager.scheduleIfNecessary()
-          return
-        }
-
-        val attachmentUploadIds: Set<String> = enqueueCompressingAndUploadAttachmentsChains(jobManager, message)
-        val hasMedia = attachmentUploadIds.isNotEmpty()
-        val addHardDependencies = hasMedia && !isScheduledSend
-
-        jobManager.add(
-          create(messageId, recipient, hasMedia, isScheduledSend),
-          attachmentUploadIds,
-          if (addHardDependencies) recipient.id.toQueueKey() else null
-        )
-      } catch (e: NoSuchMessageException) {
-        Log.w(TAG, "Failed to enqueue message.", e)
-        SignalDatabase.messages.markAsSentFailed(messageId)
-        notifyMediaMessageDeliveryFailed(context, messageId)
-      } catch (e: MmsException) {
-        Log.w(TAG, "Failed to enqueue message.", e)
-        SignalDatabase.messages.markAsSentFailed(messageId)
-        notifyMediaMessageDeliveryFailed(context, messageId)
-      }
-    }
-
-    @JvmStatic
     fun getMessageId(serializedData: ByteArray?): Long {
       val data = JsonJobData.deserialize(serializedData)
       return data.getLong(KEY_MESSAGE_ID)
     }
   }
-
-  constructor(messageId: Long, recipient: Recipient, hasMedia: Boolean, isScheduledSend: Boolean) : this(
-    parameters = Parameters.Builder()
-      .setQueue(if (isScheduledSend) recipient.id.toScheduledSendQueueKey() else recipient.id.toQueueKey(hasMedia))
-      .addConstraint(NetworkConstraint.KEY)
-      .addConstraint(SealedSenderConstraint.KEY)
-      .setLifespan(TimeUnit.DAYS.toMillis(1))
-      .setMaxAttempts(Parameters.UNLIMITED)
-      .build(),
-    messageId = messageId
-  )
 
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId).serialize()

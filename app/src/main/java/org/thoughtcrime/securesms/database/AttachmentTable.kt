@@ -24,30 +24,34 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.content.contentValuesOf
 import com.bumptech.glide.Glide
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.BackupDebugInfo
 import org.signal.blurhash.BlurHash
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.count
+import org.signal.core.database.delete
+import org.signal.core.database.deleteAll
+import org.signal.core.database.exists
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.backup.MediaId
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.Base64
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.bitmaps.BitmapDecodingException
 import org.signal.core.util.copyTo
-import org.signal.core.util.count
 import org.signal.core.util.crypto.AttachmentSecret
 import org.signal.core.util.crypto.ClassicDecryptingPartInputStream
 import org.signal.core.util.crypto.ModernDecryptingPartInputStream
 import org.signal.core.util.crypto.ModernEncryptingPartOutputStream
-import org.signal.core.util.delete
-import org.signal.core.util.deleteAll
 import org.signal.core.util.drain
-import org.signal.core.util.exists
 import org.signal.core.util.forEach
 import org.signal.core.util.groupBy
 import org.signal.core.util.isNull
@@ -69,12 +73,10 @@ import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.requireString
-import org.signal.core.util.select
 import org.signal.core.util.toInt
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.network.api.AttachmentUploadResult
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
@@ -85,9 +87,14 @@ import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_MEDIA_KEY_BATCH_SIZE
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_THUMBNAIL_TRANSFER_STATE
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_TRANSFER_STATE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_HASH_END
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.MESSAGE_ID
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.PREUPLOAD_MESSAGE_ID
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.QUOTE_PENDING_RECONSTRUCTION
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.REMOTE_KEY
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.TRANSFER_PROGRESS_DONE
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
@@ -108,7 +115,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
@@ -121,7 +127,6 @@ import java.security.DigestInputStream
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.UUID
-import kotlin.text.appendLine
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -288,10 +293,17 @@ class AttachmentTable(
       """
 
     private const val DATA_FILE_INDEX = "attachment_data_index"
-    private const val DATA_HASH_REMOTE_KEY_INDEX = "attachment_data_hash_end_remote_key_index"
+    private const val DATA_HASH_REMOTE_KEY_INDEX = "attachment_media_name_index"
+    private const val ARCHIVE_TRANSFER_STATE_INDEX = "attachment_archive_transfer_state"
+    const val MEDIA_OVERVIEW_SIZE_INDEX = "attachment_media_overview_size_index"
 
     /** How many media names fit in one statement. Each binds two args, so this has to stay under half of [SqlUtil.MAX_QUERY_ARGS]. */
     const val ARCHIVE_MEDIA_KEY_BATCH_SIZE = 400
+
+    /** Every state but FINISHED and PERMANENT_FAILURE, as a positive IN list so it can use [ARCHIVE_TRANSFER_STATE_INDEX]. */
+    private val PENDING_ARCHIVE_UPLOAD_FILTER = ArchiveTransferState.entries
+      .filter { it != ArchiveTransferState.FINISHED && it != ArchiveTransferState.PERMANENT_FAILURE }
+      .joinToString(prefix = "$ARCHIVE_TRANSFER_STATE IN (", postfix = ")") { it.value.toString() }
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
@@ -299,12 +311,12 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_transfer_state_index ON $TABLE_NAME ($TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_sticker_pack_id_index ON $TABLE_NAME ($STICKER_PACK_ID);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_start_index ON $TABLE_NAME ($DATA_HASH_START);",
-      "CREATE INDEX IF NOT EXISTS $DATA_HASH_REMOTE_KEY_INDEX ON $TABLE_NAME ($DATA_HASH_END, $REMOTE_KEY);",
+      "CREATE INDEX IF NOT EXISTS $DATA_HASH_REMOTE_KEY_INDEX ON $TABLE_NAME ($DATA_HASH_END, $REMOTE_KEY, $ARCHIVE_TRANSFER_STATE, $MESSAGE_ID);",
       "CREATE INDEX IF NOT EXISTS $DATA_FILE_INDEX ON $TABLE_NAME ($DATA_FILE);",
-      "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
+      "CREATE INDEX IF NOT EXISTS $ARCHIVE_TRANSFER_STATE_INDEX ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);",
       "CREATE INDEX IF NOT EXISTS attachment_metadata_id ON $TABLE_NAME ($METADATA_ID);",
-      "CREATE INDEX IF NOT EXISTS attachment_media_overview_size ON $TABLE_NAME ($DATA_SIZE DESC, $DISPLAY_ORDER DESC) WHERE $QUOTE = 0 AND $STICKER_PACK_ID IS NULL AND $DATA_FILE IS NOT NULL",
+      "CREATE INDEX IF NOT EXISTS $MEDIA_OVERVIEW_SIZE_INDEX ON $TABLE_NAME ($DATA_SIZE, $DISPLAY_ORDER, $ID, $CONTENT_TYPE) WHERE $QUOTE = 0 AND $STICKER_PACK_ID IS NULL",
       "CREATE INDEX IF NOT EXISTS attachment_archive_thumbnail_transfer_state ON $TABLE_NAME ($ARCHIVE_THUMBNAIL_TRANSFER_STATE)",
       "CREATE INDEX IF NOT EXISTS attachment_thumbnail_file_index ON $TABLE_NAME ($THUMBNAIL_FILE) WHERE $THUMBNAIL_FILE IS NOT NULL",
       "CREATE INDEX IF NOT EXISTS attachment_uuid_index ON $TABLE_NAME ($ATTACHMENT_UUID) WHERE $ATTACHMENT_UUID IS NOT NULL"
@@ -617,7 +629,7 @@ class AttachmentTable(
     return readableDatabase
       .select(*PROJECTION_WITH_METADATA)
       .from(TABLE_NAME_WITH_METADTA)
-      .where("$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL")
+      .where("$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND $DATA_RANDOM IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL")
       .orderBy("$TABLE_NAME.$ID DESC")
       .run()
       .readToList {
@@ -638,7 +650,7 @@ class AttachmentTable(
       .select(*PROJECTION_WITH_METADATA)
       .from("$TABLE_NAME_WITH_METADTA INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.${MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
       .where(
-        "$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL" +
+        "$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND $DATA_RANDOM IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL" +
           " AND ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0" +
           " AND ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} = 0"
       )
@@ -1497,15 +1509,14 @@ class AttachmentTable(
    * also match query in [areAnyAttachmentsPendingArchiveUpload].
    */
   fun getPendingArchiveUploadBytes(): Long {
-    val archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})"
     return readableDatabase
       .rawQuery(
         """
           SELECT SUM($DATA_SIZE)
           FROM (
             SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
-            FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-            WHERE ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter)}
+            FROM $TABLE_NAME INDEXED BY $ARCHIVE_TRANSFER_STATE_INDEX LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+            WHERE ${buildAttachmentsThatCanArchiveQuery(PENDING_ARCHIVE_UPLOAD_FILTER)}
           )
         """.trimIndent()
       )
@@ -1518,14 +1529,13 @@ class AttachmentTable(
    * Matches the rows summed by [getPendingArchiveUploadBytes], but stops at the first hit.
    */
   fun areAnyAttachmentsPendingArchiveUpload(): Boolean {
-    val archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})"
     return readableDatabase
       .rawQuery(
         """
           SELECT EXISTS (
             SELECT 1
-            FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-            WHERE ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter)}
+            FROM $TABLE_NAME INDEXED BY $ARCHIVE_TRANSFER_STATE_INDEX LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+            WHERE ${buildAttachmentsThatCanArchiveQuery(PENDING_ARCHIVE_UPLOAD_FILTER)}
           )
         """.trimIndent()
       )
@@ -2105,9 +2115,10 @@ class AttachmentTable(
           values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
           values.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
         } else {
-          // Clear archive cdn and transfer state so it can be re-archived with the new remote key/mediaName
+          // Clear archive cdn and transfer states so the data and thumbnail can be re-archived with the new remote key/mediaName
           values.putNull(ARCHIVE_CDN)
           values.put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.NONE.value)
+          values.put(ARCHIVE_THUMBNAIL_TRANSFER_STATE, ArchiveTransferState.NONE.value)
         }
       } else {
         values.put(DATA_FILE, fileWriteResult.file.absolutePath)
@@ -2159,13 +2170,29 @@ class AttachmentTable(
           .where("$ID = ? OR ($REMOTE_KEY = ? AND $DATA_HASH_END = ?)", attachmentId.id, existingPlaceholder.remoteKey, existingPlaceholder.dataHash!!)
           .run()
       } else {
-        // Update the current attachment, any attachments with the same data file (deduplication), and any attachments with the
-        // same UUID (e.g. edited messages)
+        // Update the current attachment, any attachments with the same data file (deduplication), and any other revisions of
+        // this message that share the attachment (e.g. edited messages)
         val whereClause: String
         val whereArgs: Array<String>
         if (existingPlaceholder.uuid != null) {
-          whereClause = "$ID = ? OR $DATA_FILE = ? OR ($ATTACHMENT_UUID = ? AND $REMOTE_LOCATION = ?)"
-          whereArgs = SqlUtil.buildArgs(attachmentId.id, dataFilePath, existingPlaceholder.uuid.toString(), existingPlaceholder.remoteLocation)
+          val originalMessageId = db
+            .select(MessageTable.ORIGINAL_MESSAGE_ID)
+            .from(MessageTable.TABLE_NAME)
+            .where("${MessageTable.ID} = ?", existingPlaceholder.mmsId)
+            .run()
+            .readToSingleLong(existingPlaceholder.mmsId)
+
+          whereClause = """
+            $ID = ? OR
+            $DATA_FILE = ? OR
+            (
+              $ATTACHMENT_UUID = ? AND
+              $REMOTE_LOCATION = ? AND
+              $DATA_FILE IS NULL AND
+              $MESSAGE_ID IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.ID} = ? OR ${MessageTable.ORIGINAL_MESSAGE_ID} = ?)
+            )
+          """
+          whereArgs = SqlUtil.buildArgs(attachmentId.id, dataFilePath, existingPlaceholder.uuid.toString(), existingPlaceholder.remoteLocation, originalMessageId, originalMessageId)
         } else {
           whereClause = "$ID = ? OR $DATA_FILE = ?"
           whereArgs = SqlUtil.buildArgs(attachmentId.id, dataFilePath)
@@ -2293,9 +2320,10 @@ class AttachmentTable(
       DATA_SIZE to uploadResult.dataSize,
       DATA_HASH_END to dataHashEnd,
       UPLOAD_TIMESTAMP to uploadResult.uploadTimestamp,
-      BLUR_HASH to uploadResult.blurHash,
+      BLUR_HASH to (uploadResult.blurHash ?: uploadResult.audioHash),
       ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
-      ARCHIVE_CDN to null
+      ARCHIVE_CDN to null,
+      ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.NONE.value
     )
 
     val dataFilePath = getDataFilePath(id) ?: throw IOException("No data file found for attachment!")
@@ -2752,6 +2780,26 @@ class AttachmentTable(
       .run()
   }
 
+  /**
+   * Returns the most recent fully downloaded attachment for the given sticker, if one exists.
+   */
+  fun getDownloadedStickerAttachment(stickerPackId: String, stickerId: Int): DatabaseAttachment? {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$STICKER_PACK_ID = ? AND $STICKER_ID = ? AND $QUOTE = 0 AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", stickerPackId, stickerId)
+      .orderBy("$ID DESC")
+      .limit(1)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToNext()) {
+          cursor.readAttachment()
+        } else {
+          null
+        }
+      }
+  }
+
   fun getUnavailableStickerPacks(): Cursor {
     val query = """
       SELECT DISTINCT $STICKER_PACK_ID, $STICKER_PACK_KEY
@@ -2829,7 +2877,7 @@ class AttachmentTable(
 
     readableDatabase
       .select(DATA_HASH_END, REMOTE_KEY)
-      .from(TABLE_NAME)
+      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
       .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL AND $ARCHIVE_TRANSFER_STATE != ?", ArchiveTransferState.FINISHED.value)
       .groupBy("$DATA_HASH_END, $REMOTE_KEY")
       .run()
@@ -3207,7 +3255,7 @@ class AttachmentTable(
         put(QUOTE_TARGET_CONTENT_TYPE, attachment.quoteTargetContentType)
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
         put(ATTACHMENT_UUID, attachment.uuid?.toString())
 
         attachment.stickerLocator?.let { sticker ->
@@ -3243,7 +3291,7 @@ class AttachmentTable(
   private fun insertQuoteAttachment(messageId: Long, attachment: Attachment): AttachmentId {
     Log.d(TAG, "[insertQuoteAttachment] Inserting quote attachment for messageId $messageId.")
 
-    val thumbnail = generateQuoteThumbnail(DecryptableUri(attachment.uri!!), attachment.contentType)
+    val thumbnail = generateQuoteThumbnail(DecryptableUri(attachment.uri!!, contentType = attachment.contentType), attachment.contentType)
     if (thumbnail != null) {
       Log.d(TAG, "[insertQuoteAttachment] Successfully generated quote thumbnail for messageId $messageId.")
 
@@ -3271,7 +3319,7 @@ class AttachmentTable(
         put(HEIGHT, attachment.height)
         put(QUOTE, 1)
         put(QUOTE_TARGET_CONTENT_TYPE, attachment.contentType)
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
         put(FILE_NAME, attachment.fileName)
 
         attachment.stickerLocator?.let { sticker ->
@@ -3309,20 +3357,15 @@ class AttachmentTable(
         }
 
         MediaUtil.isVideoType(contentType) -> {
-          val videoThumbnail = MediaUtil.getVideoThumbnail(context, uri.uri)
-          if (videoThumbnail != null) {
-            ImageCompressionUtil.compress(
-              context,
-              MediaUtil.IMAGE_JPEG,
-              MediaUtil.IMAGE_JPEG,
-              uri,
-              QUOTE_THUMBNAIL_DIMEN,
-              QUOTE_THUMBAIL_QUALITY
-            )
-          } else {
-            Log.w(TAG, "[generateQuoteThumbnail] Failed to extract video thumbnail")
-            null
-          }
+          // Loading the video uri through Glide extracts a frame from it.
+          ImageCompressionUtil.compress(
+            context,
+            MediaUtil.IMAGE_JPEG,
+            MediaUtil.IMAGE_JPEG,
+            uri,
+            QUOTE_THUMBNAIL_DIMEN,
+            QUOTE_THUMBAIL_QUALITY
+          )
         }
 
         else -> {
@@ -3383,7 +3426,7 @@ class AttachmentTable(
         put(ARCHIVE_TRANSFER_STATE, if (attachment.archiveCdn != null) ArchiveTransferState.FINISHED.value else ArchiveTransferState.NONE.value)
         put(THUMBNAIL_RESTORE_STATE, if (attachment.archiveCdn != null) ThumbnailRestoreState.NEEDS_RESTORE.value else ThumbnailRestoreState.NONE.value)
         put(ATTACHMENT_UUID, attachment.uuid?.toString())
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
 
         if (plaintextHash != null) {
           put(DATA_HASH_START, plaintextHash)
@@ -3950,18 +3993,18 @@ class AttachmentTable(
     val mediaIdByteStrings = mediaIds.map { it.value.toByteString() }.toSet()
     val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
-    val found: MutableList<ArchiveAttachmentMatch> = mutableListOf()
+    val matchedIds: MutableList<MediaIdMatch> = mutableListOf()
 
     readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
+      .select("MIN($ID) AS $ID", DATA_HASH_END, REMOTE_KEY)
+      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
       .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
       .groupBy("$DATA_HASH_END, $REMOTE_KEY")
       .run()
       .forEach { cursor ->
+        val attachmentId = AttachmentId(cursor.requireLong(ID))
         val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
         val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
-        val messageId = cursor.requireLong(MESSAGE_ID)
 
         val mediaId = MediaName
           .fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey)
@@ -3976,19 +4019,24 @@ class AttachmentTable(
           .toByteString()
 
         if (mediaId in mediaIdByteStrings) {
-          val attachment = getAttachment(cursor)
-          val messageRecord = messages.getMessageRecordOrNull(messageId)
-          found.add(ArchiveAttachmentMatch(attachment = attachment, mediaId = MediaId(mediaId.toByteArray()), isThumbnail = false, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
+          matchedIds += MediaIdMatch(attachmentId = attachmentId, mediaId = mediaId, isThumbnail = false)
         }
 
         if (mediaIdThumbnail in mediaIdByteStrings) {
-          val attachment = getAttachment(cursor)
-          val messageRecord = messages.getMessageRecordOrNull(messageId)
-          found.add(ArchiveAttachmentMatch(attachment = attachment, mediaId = MediaId(mediaIdThumbnail.toByteArray()), isThumbnail = true, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
+          matchedIds += MediaIdMatch(attachmentId = attachmentId, mediaId = mediaIdThumbnail, isThumbnail = true)
         }
       }
 
-    return found
+    return matchedIds.mapNotNull { (attachmentId, mediaId, isThumbnail) ->
+      val attachment = getAttachment(attachmentId) ?: return@mapNotNull null
+      ArchiveAttachmentMatch(
+        attachment = attachment,
+        mediaId = MediaId(mediaId.toByteArray()),
+        isThumbnail = isThumbnail,
+        isWallpaper = attachment.mmsId == WALLPAPER_MESSAGE_ID,
+        messageRecord = messages.getMessageRecordOrNull(attachment.mmsId)
+      )
+    }
   }
 
   /**
@@ -4099,8 +4147,8 @@ class AttachmentTable(
     val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
     readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
+      .select(DATA_HASH_END, REMOTE_KEY)
+      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
       .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL${buildMessageIncludedInBackupClause(messageInclusionCutoffTime)}")
       .groupBy("$DATA_HASH_END, $REMOTE_KEY")
       .run()
@@ -4564,7 +4612,7 @@ class AttachmentTable(
         appendLine("Media names with thumbnails count: $mediaNamesWithThumbnailsCount")
         appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
         appendLine("Last snapshot full-size count: $lastSnapshotFullSizeCount")
-        appendLine("Last snapshot thumbnail count : $lastSnapshotFullSizeCount")
+        appendLine("Last snapshot thumbnail count : $lastSnapshotThumbnailCount")
         appendLine("Uploaded attachment bytes: $uploadedAttachmentBytes")
         appendLine("Uploaded thumbnail bytes: $uploadedThumbnailBytes")
         appendLine("Total upload count: $totalUploadCount")
@@ -4592,7 +4640,7 @@ class AttachmentTable(
         appendLine("Total unique data files: $totalUniqueDataFiles")
         appendLine("Total unique media names: $totalUniqueMediaNames")
         appendLine("Last snapshot full-size count: $lastSnapshotFullSizeCount")
-        appendLine("Last snapshot thumbnail count : $lastSnapshotFullSizeCount")
+        appendLine("Last snapshot thumbnail count : $lastSnapshotThumbnailCount")
         appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
 
         if (archiveStatusMediaNameCounts.isNotEmpty()) {
@@ -4634,6 +4682,8 @@ class AttachmentTable(
       return "attachmentId=${attachment.attachmentId}, mediaId=$mediaId, messageId=${attachment.mmsId}, isThumbnail=$isThumbnail, contentType=${attachment.contentType}, quote=${attachment.quote}, wallpaper=$isWallpaper, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}, dateSent=${messageRecord?.dateSent}, messageType=${messageRecord?.type}, messageFrom=${messageRecord?.fromRecipient?.id}, messageTo=${messageRecord?.toRecipient?.id}, expiresIn=${messageRecord?.expiresIn}, expireStarted=${messageRecord?.expireStarted}"
     }
   }
+
+  private data class MediaIdMatch(val attachmentId: AttachmentId, val mediaId: ByteString, val isThumbnail: Boolean)
 
   /**
    * The base64 [DATA_HASH_END] and [REMOTE_KEY] that a [MediaName] is derived from.

@@ -7,13 +7,13 @@ package org.thoughtcrime.securesms.jobs
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
-import org.signal.network.exceptions.PushNetworkException
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallLinkUpdate
 import kotlin.time.Duration.Companion.days
 
@@ -24,7 +24,7 @@ import kotlin.time.Duration.Companion.days
 class MultiDeviceCallLinkSyncJob private constructor(
   parameters: Parameters,
   private val callLinkUpdate: CallLinkUpdate
-) : BaseJob(parameters) {
+) : CoroutineJob(parameters) {
 
   constructor(credentials: CallLinkCredentials) : this(
     Parameters.Builder()
@@ -54,22 +54,20 @@ class MultiDeviceCallLinkSyncJob private constructor(
 
   override fun onFailure() = Unit
 
-  override fun onRun() {
-    val syncMessage = SignalServiceSyncMessage.forCallLinkUpdate(callLinkUpdate)
+  override suspend fun doRun(): Result {
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncCallLinkUpdate(callLinkUpdate),
+      urgent = false,
+      onEncrypted = null
+    )
 
-    try {
-      AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessage)
-    } catch (e: Exception) {
-      Log.w(TAG, "Unable to send call link update message.", e)
-      throw e
-    }
-  }
-
-  override fun onShouldRetry(exception: Exception): Boolean {
-    return when (exception) {
-      is PushNetworkException -> true
-      else -> false
-    }
+    return result.fold(
+      ifRight = { Result.success() },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "call link creation sync", defaultBackoff())
+      }
+    )
   }
 
   class Factory : Job.Factory<MultiDeviceCallLinkSyncJob> {

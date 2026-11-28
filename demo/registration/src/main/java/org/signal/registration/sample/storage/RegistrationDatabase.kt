@@ -9,9 +9,9 @@ import android.content.Context
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteOpenHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
-import org.signal.core.util.deleteAll
-import org.signal.core.util.insertInto
-import org.signal.core.util.withinTransaction
+import org.signal.core.database.deleteAll
+import org.signal.core.database.insertInto
+import org.signal.core.database.withinTransaction
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 

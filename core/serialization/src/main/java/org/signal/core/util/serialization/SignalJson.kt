@@ -17,7 +17,18 @@ import kotlinx.serialization.json.Json
  */
 object SignalJson {
 
-  val json = Json { ignoreUnknownKeys = true }
+  /**
+   * The JSON instance to use by default.
+   */
+  val json = Json {
+    ignoreUnknownKeys = true // If the service adds a field we don't track in our data model, ignore it during parsing instead of throwing an exception. I have no idea why this isn't the default.
+    encodeDefaults = true // If we have a default value for an arg in the constructor, always include it in the JSON output, even if we don't set it explicitly.
+  }
+
+  /**
+   * [json], but null-valued properties are omitted entirely rather than written as `null`. Useful for specific endpoints.
+   */
+  val jsonOmitNulls = Json(json) { explicitNulls = false }
 
   inline fun <reified T> encode(input: T): Either<EncodeError, String> = either {
     try {

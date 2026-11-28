@@ -4,8 +4,8 @@ import android.content.Context
 import android.database.Cursor
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import java.math.BigDecimal

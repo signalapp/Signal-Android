@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.database.model
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsement
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Contains the individual group send endorsements for a specific group

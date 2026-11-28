@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.annotation.VisibleForTesting
+import org.signal.core.models.recipients.RecipientId
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * A write-through cache for [PendingRetryReceiptTable].

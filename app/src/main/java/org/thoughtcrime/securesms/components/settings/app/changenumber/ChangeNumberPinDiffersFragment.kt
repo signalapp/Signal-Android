@@ -14,6 +14,7 @@ import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
+import org.thoughtcrime.securesms.components.settings.insetForSafeAreaWithKeyboard
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 
 /**
@@ -36,6 +37,8 @@ class ChangeNumberPinDiffersFragment : LoggingFragment(R.layout.fragment_change_
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    insetForSafeAreaWithKeyboard(view)
+
     view.findViewById<View>(R.id.change_number_pin_differs_keep_old_pin).setOnClickListener {
       changeNumberSuccess()
     }

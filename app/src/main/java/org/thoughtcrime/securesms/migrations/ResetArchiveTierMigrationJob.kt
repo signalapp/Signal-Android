@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * There was an old bug that resulted in some users having their backup tier set to FREE.

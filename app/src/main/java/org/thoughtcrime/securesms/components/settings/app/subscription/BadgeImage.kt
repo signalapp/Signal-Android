@@ -13,8 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.viewinterop.AndroidView
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.badges.BadgeImageView
-import org.thoughtcrime.securesms.badges.models.Badge
 
 enum class BadgeImageSize(val sizeCode: Int) {
   SMALL(0),
@@ -50,6 +51,23 @@ fun BadgeImageLarge(
 }
 
 @Composable
+fun BadgeImageXLarge(
+  badge: Badge?,
+  modifier: Modifier = Modifier
+) {
+  BadgeImage(badge, BadgeImageSize.X_LARGE, modifier)
+}
+
+/** Skips Glide's disk cache, as the badge grid always has. */
+@Composable
+fun BadgeImage64(
+  badge: Badge?,
+  modifier: Modifier = Modifier
+) {
+  BadgeImage(badge, BadgeImageSize.BADGE_64, modifier, DiskCacheStrategy.NONE)
+}
+
+@Composable
 fun BadgeImage112(
   badge: Badge?,
   modifier: Modifier = Modifier
@@ -61,7 +79,8 @@ fun BadgeImage112(
 private fun BadgeImage(
   badge: Badge?,
   size: BadgeImageSize,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.AUTOMATIC
 ) {
   if (LocalInspectionMode.current) {
     Box(modifier = modifier.background(color = Color.Black, shape = CircleShape))
@@ -71,6 +90,7 @@ private fun BadgeImage(
         BadgeImageView(it, size)
       },
       update = {
+        it.diskCacheStrategy = diskCacheStrategy
         it.setBadge(badge)
         it.isClickable = false
       },

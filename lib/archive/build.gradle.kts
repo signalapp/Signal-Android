@@ -19,8 +19,6 @@ wire {
 
 dependencies {
   implementation(project(":core:util"))
-  implementation(project(":core:models-jvm"))
-  implementation(project(":lib:libsignal-service"))
 
   implementation(libs.libsignal.android)
   implementation(libs.google.guava.android)

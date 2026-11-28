@@ -13,6 +13,7 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.RetryLaterException
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
+import org.signal.libsignal.usernames.UsernameHash
 import org.signal.network.api.AccountApiV2
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.util.Usernames
@@ -50,11 +51,11 @@ class UsernameService(private val accountApi: AccountApiV2) {
       return RequestResult.NonSuccess(ReserveUsernameError.NicknameInvalid)
     }
 
-    val hashes: List<ByteArray> = candidates.map { it.hash }
+    val hashes: List<UsernameHash> = candidates.map { it.hash }
 
     return when (val result = accountApi.reserveUsername(hashes)) {
       is RequestResult.Success -> {
-        val reserved = candidates.firstOrNull { it.hash.contentEquals(result.result) }
+        val reserved = candidates.firstOrNull { it.hash == result.result }
         if (reserved == null) {
           Log.w(TAG, "[reserveUsername] The reserved hash was not one of our candidates.")
           RequestResult.NonSuccess(ReserveUsernameError.NicknameInvalid)

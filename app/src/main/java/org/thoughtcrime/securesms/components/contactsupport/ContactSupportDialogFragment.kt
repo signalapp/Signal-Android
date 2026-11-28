@@ -11,7 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.core.os.bundleOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.ComposeDialogFragment
-import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.viewModel
 
 /**
  * Three-option contact support dialog fragment.

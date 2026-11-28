@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.ImportResult
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -185,7 +186,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
     val self = Recipient.self()
     val aci = customCredentials?.aci ?: self.aci.get()
-    val selfData = BackupRepository.SelfData(aci, self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    val selfData = BackupRepository.SelfData(aci, self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
     val backupKey = customCredentials?.messageBackupKey ?: SignalStore.backup.messageBackupKey
 
     disposables += Single.fromCallable { BackupRepository.importForDebugging(length, inputStreamFactory, selfData, backupKey) }
@@ -194,6 +195,26 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       .subscribeBy {
         _state.value = _state.value.copy(statusMessage = "Encrypted backup import complete!")
       }
+  }
+
+  fun importPlaintextBackup(length: Long, inputStreamFactory: () -> InputStream) {
+    _state.value = _state.value.copy(statusMessage = "Importing plaintext backup...")
+
+    val self = Recipient.self()
+    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
+
+    disposables += Single.fromCallable { BackupRepository.importForDebugging(length, inputStreamFactory, selfData, backupKey = null) }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(
+        onSuccess = { result ->
+          _state.value = _state.value.copy(statusMessage = if (result is ImportResult.Success) "Plaintext backup import complete!" else "Plaintext backup import failed!")
+        },
+        onError = { e ->
+          Log.w(TAG, "Plaintext backup import failed", e)
+          _state.value = _state.value.copy(statusMessage = "Plaintext backup import failed: ${e.message}")
+        }
+      )
   }
 
   fun haltAllJobs() {
@@ -223,12 +244,12 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         throw IOException("Failed to read forward secrecy metadata!")
       }
 
-      val svrBAuth = when (val result = runBlocking { AppDependencies.archiveService.getSvrBAuth() }) {
+      val svrBAuth = when (val result = runBlocking { SignalNetwork.archiveService.getSvrBAuth() }) {
         is Either.Right -> result.value
         is Either.Left -> throw IOException("Failed to read forward secrecy metadata!")
       }
 
-      val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
+      val forwardSecrecyToken = when (val result = SignalNetwork.svrBApi.restore(svrBAuth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
         is SvrBApi.RestoreResult.Success -> result.data.forwardSecrecyToken
         else -> throw IOException("Failed to read forward secrecy metadata! $result")
       }
@@ -263,7 +284,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     disposables += Single
       .fromCallable {
         BackupRepository.restoreBackupFileTimestamp()
-        runBlocking { AppDependencies.archiveService.debugGetRemoteBackupState() }
+        runBlocking { SignalNetwork.archiveService.debugGetRemoteBackupState() }
       }
       .subscribeOn(Schedulers.io())
       .subscribe { result ->
@@ -369,7 +390,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     viewModelScope.launch(Dispatchers.IO) {
       launch {
         statsState.update { it.copy(loadingRemoteStats = true) }
-        val (remoteState: DebugBackupMetadata?, errorMsg: String?) = when (val result = AppDependencies.archiveService.debugGetRemoteBackupState()) {
+        val (remoteState: DebugBackupMetadata?, errorMsg: String?) = when (val result = SignalNetwork.archiveService.debugGetRemoteBackupState()) {
           is Either.Right -> result.value to null
           is Either.Left -> null to result.value.toString()
         }
@@ -387,7 +408,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
     }
 
-    when (val result = AppDependencies.archiveService.deleteMessageBackup()) {
+    when (val result = SignalNetwork.archiveService.deleteMessageBackup()) {
       is Either.Right -> {
         SignalStore.backup.messageBackupInitialized = false
         SignalStore.backup.mediaBackupInitialized = false

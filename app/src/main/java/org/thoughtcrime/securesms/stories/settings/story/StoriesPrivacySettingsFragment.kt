@@ -5,6 +5,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
@@ -15,10 +17,13 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchModels
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
+import org.thoughtcrime.securesms.database.model.DistributionListId
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseGroupStoryBottomSheet
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
@@ -47,7 +52,17 @@ class StoriesPrivacySettingsFragment :
   })
 
   private val lifecycleDisposable = LifecycleDisposable()
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
   private val progressDisplayManager = DialogFragmentDisplayManager { ProgressCardDialogFragment.create() }
+
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.StoriesRoute.MyStory -> findNavController().safeNavigate(StoriesPrivacySettingsFragmentDirections.actionStoryPrivacySettingsToMyStorySettings())
+      is AppSettingsRoute.StoriesRoute.GroupStory -> findNavController().safeNavigate(StoriesPrivacySettingsFragmentDirections.actionStoryPrivacySettingsToGroupStorySettings(GroupId.parseOrThrow(route.groupId)))
+      is AppSettingsRoute.StoriesRoute.PrivateStory -> findNavController().safeNavigate(StoriesPrivacySettingsFragmentDirections.actionStoryPrivacySettingsToPrivateStorySettings(DistributionListId.from(route.distributionListId)))
+      else -> error("Unexpected route: ${route.javaClass.name}")
+    }
+  }
 
   override fun createAdapters(): Array<MappingAdapter> {
     return arrayOf(DSLSettingsAdapter(), PagingMappingAdapter<ContactSearchKey>(), DSLSettingsAdapter())
@@ -66,9 +81,9 @@ class StoriesPrivacySettingsFragment :
       mappingAdapter = middle as PagingMappingAdapter<ContactSearchKey>,
       storyListener = { _, story, _ ->
         when {
-          story.recipient.isMyStory -> findNavController().safeNavigate(StoriesPrivacySettingsFragmentDirections.actionStoryPrivacySettingsToMyStorySettings())
-          story.recipient.isGroup -> findNavController().safeNavigate(StoriesPrivacySettingsFragmentDirections.actionStoryPrivacySettingsToGroupStorySettings(story.recipient.requireGroupId()))
-          else -> findNavController().safeNavigate(StoriesPrivacySettingsFragmentDirections.actionStoryPrivacySettingsToPrivateStorySettings(story.recipient.requireDistributionListId()))
+          story.recipient.isMyStory -> (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.StoriesRoute.MyStory)
+          story.recipient.isGroup -> (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.StoriesRoute.GroupStory(story.recipient.requireGroupId().serialize()))
+          else -> (appSettingsRouter::onEvent).navigateTo(AppSettingsRoute.StoriesRoute.PrivateStory(story.recipient.requireDistributionListId().toLong()))
         }
       }
     )

@@ -26,7 +26,7 @@ object AppUtil {
   @JvmStatic
   fun restart(context: Context) {
     val launchIntent = context.packageManager.getLaunchIntentForPackage(context.packageName)?.apply {
-      addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+      addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
     }
 
     if (launchIntent != null) {

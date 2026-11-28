@@ -35,7 +35,6 @@ import androidx.media3.exoplayer.source.LoadEventInfo;
 import androidx.media3.exoplayer.source.MediaLoadData;
 import androidx.media3.exoplayer.source.MediaSource;
 import androidx.media3.ui.AspectRatioFrameLayout;
-import androidx.media3.ui.LegacyPlayerControlView;
 import androidx.media3.ui.PlayerView;
 
 import org.signal.core.util.logging.Log;
@@ -57,7 +56,6 @@ public class VideoPlayer extends FrameLayout {
 
   private ExoPlayer                           exoPlayer;
   private ExoPlayerPool<ExoPlayer>            exoPlayerPool;
-  private LegacyPlayerControlView             exoControls;
   private Window                              window;
   private PlayerStateCallback                 playerStateCallback;
   private PlayerPositionDiscontinuityCallback playerPositionDiscontinuityCallback;
@@ -92,7 +90,6 @@ public class VideoPlayer extends FrameLayout {
 
     this.exoView     = findViewById(R.id.video_view);
     this.progressBar = findViewById(R.id.progress_bar);
-    this.exoControls = createPlayerControls(getContext());
 
     final AudioManager      audioManager = ContextCompat.getSystemService(context, AudioManager.class);
     if (Build.VERSION.SDK_INT >= 26) {
@@ -199,6 +196,13 @@ public class VideoPlayer extends FrameLayout {
       }
 
       @Override
+      public void onRenderedFirstFrame() {
+        if (playerCallback != null) {
+          playerCallback.onFirstFrameRendered();
+        }
+      }
+
+      @Override
       public void onPlayerError(@NonNull PlaybackException error) {
         Log.w(TAG, "A player error occurred", error);
         if (playerCallback != null) {
@@ -206,14 +210,6 @@ public class VideoPlayer extends FrameLayout {
         }
       }
     };
-  }
-
-  private LegacyPlayerControlView createPlayerControls(Context context) {
-    final LegacyPlayerControlView playerControlView = new LegacyPlayerControlView(context);
-    playerControlView.setShowTimeoutMs(-1);
-    playerControlView.setShowNextButton(false);
-    playerControlView.setShowPreviousButton(false);
-    return playerControlView;
   }
 
   private MediaItem mediaItem;
@@ -233,7 +229,6 @@ public class VideoPlayer extends FrameLayout {
       exoPlayer.addListener(playerListener);
       exoPlayer.addAnalyticsListener(analyticsListener);
       exoView.setPlayer(exoPlayer);
-      exoControls.setPlayer(exoPlayer);
       if (muted) {
         mute();
       }
@@ -279,6 +274,18 @@ public class VideoPlayer extends FrameLayout {
     exoView.setResizeMode(resizeMode);
   }
 
+  /**
+   * Pre-sizes the content frame before the player reports its video size. Without this, the first
+   * frames render into a full-bleed surface until onVideoSizeChanged lands, flashing a stretched
+   * image. The player's reported size still wins once it arrives.
+   */
+  public void setInitialAspectRatio(float aspectRatio) {
+    AspectRatioFrameLayout contentFrame = exoView.findViewById(androidx.media3.ui.R.id.exo_content_frame);
+    if (contentFrame != null && aspectRatio > 0) {
+      contentFrame.setAspectRatio(aspectRatio);
+    }
+  }
+
   public boolean isPlaying() {
     if (this.exoPlayer != null) {
       return this.exoPlayer.isPlaying();
@@ -314,15 +321,6 @@ public class VideoPlayer extends FrameLayout {
     super.setOnClickListener(l);
   }
 
-  public @Nullable LegacyPlayerControlView getControlView() {
-    return this.exoControls;
-  }
-
-  public void setControlView(LegacyPlayerControlView controller) {
-    exoControls = controller;
-    exoControls.setPlayer(exoPlayer);
-  }
-
   public void stop() {
     if (this.exoPlayer != null) {
       exoPlayer.stop();
@@ -336,12 +334,9 @@ public class VideoPlayer extends FrameLayout {
     if (this.exoPlayer != null) {
       exoView.setPlayer(null);
 
-      if (exoPlayer.equals(exoControls.getPlayer())) {
-        exoControls.setPlayer(null);
-      }
-
       exoPlayer.removeListener(playerListener);
       exoPlayer.removeListener(exoPlayerListener);
+      exoPlayer.setScrubbingModeEnabled(false);
 
       exoPlayerPool.pool(exoPlayer);
       this.exoPlayer = null;
@@ -385,6 +380,24 @@ public class VideoPlayer extends FrameLayout {
     if (this.exoPlayer != null) {
       this.exoPlayer.seekTo(positionMs);
     }
+  }
+
+  /**
+   * Optimizes the player for many rapid seeks, such as while dragging a seek bar. Disable it as soon as the
+   * interaction ends, which also performs the most recently requested seek.
+   */
+  public void setScrubbingModeEnabled(boolean enabled) {
+    if (this.exoPlayer != null) {
+      exoPlayer.setScrubbingModeEnabled(enabled);
+    }
+  }
+
+  /**
+   * Seeks to a position in the full video, the counterpart of {@link #getTruePlaybackPosition}: while clipped, the
+   * underlying {@link Player} measures from the clip's start, so the clip offset is taken off first.
+   */
+  public void setTruePlaybackPosition(long positionMs) {
+    setPlaybackPosition(Math.max(0, positionMs - Math.round(clippedStartUs / 1000.0)));
   }
 
   public void clip(long fromUs, long toUs, boolean playWhenReady) {
@@ -514,6 +527,8 @@ public class VideoPlayer extends FrameLayout {
   public interface PlayerCallback {
 
     default void onReady() {}
+
+    default void onFirstFrameRendered() {}
 
     void onPlaying();
 

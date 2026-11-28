@@ -39,6 +39,7 @@ abstract class SignalServiceAttachment protected constructor(val contentType: St
     private var height = 0
     private var caption: String? = null
     private var blurHash: String? = null
+    private var audioHash: String? = null
     private var uploadTimestamp: Long = 0
     private var resumableUploadSpec: ResumableUploadSpec? = null
     private var uuid: UUID? = null
@@ -113,6 +114,11 @@ abstract class SignalServiceAttachment protected constructor(val contentType: St
       return this
     }
 
+    fun withAudioHash(audioHash: String?): Builder {
+      this.audioHash = audioHash
+      return this
+    }
+
     fun withUploadTimestamp(uploadTimestamp: Long): Builder {
       this.uploadTimestamp = uploadTimestamp
       return this
@@ -147,6 +153,7 @@ abstract class SignalServiceAttachment protected constructor(val contentType: St
         uploadTimestamp = uploadTimestamp,
         caption = Optional.ofNullable(caption),
         blurHash = Optional.ofNullable(blurHash),
+        audioHash = Optional.ofNullable(audioHash),
         listener = listener,
         cancelationSignal = cancelationSignal,
         resumableUploadSpec = Optional.ofNullable(resumableUploadSpec),

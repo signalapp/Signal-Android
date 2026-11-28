@@ -1,0 +1,22 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.mediakeyboard
+
+import android.content.Context
+import org.signal.mediakeyboard.data.MediaKeyboardRepository
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiStore
+
+/**
+ * [MediaKeyboardRepository] backed by the app's real emoji, sticker, and gif data sources.
+ */
+class SignalMediaKeyboardRepository(context: Context, recentEmoji: RecentEmojiStore) : MediaKeyboardRepository {
+
+  private val appContext: Context = context.applicationContext
+
+  override val emoji: SignalEmojiKeyboardRepository = SignalEmojiKeyboardRepository(appContext, recentEmoji)
+  override val stickers: SignalStickerKeyboardRepository = SignalStickerKeyboardRepository(appContext)
+  override val gifs: SignalGifKeyboardRepository = SignalGifKeyboardRepository()
+}

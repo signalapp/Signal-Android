@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.api.crypto;
 
 import org.signal.libsignal.protocol.DuplicateMessageException;
+import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidMessageException;
+import org.signal.libsignal.protocol.InvalidVersionException;
 import org.signal.libsignal.protocol.LegacyMessageException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.groups.GroupCipher;
@@ -30,7 +32,7 @@ public class SignalGroupCipher {
   }
 
   public byte[] decrypt(byte[] senderKeyMessageBytes)
-      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException, NoSessionException
+      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException, NoSessionException, InvalidVersionException, InvalidKeyException
   {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
       return cipher.decrypt(senderKeyMessageBytes);

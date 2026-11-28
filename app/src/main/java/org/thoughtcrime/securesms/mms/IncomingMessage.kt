@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mms
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.MessageType
@@ -13,7 +14,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.polls.Poll
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class IncomingMessage(
   val type: MessageType,

@@ -85,11 +85,15 @@ sealed interface BackupState {
   ) : WithTypeAndRenewalTime
 
   /**
-   * Subscription mismatch detected.
+   * Subscription mismatch detected: we have a Signal subscription with no corresponding Google Play purchase.
+   *
+   * @param isBilledThroughOtherStore The subscription is billed through another platform's store, so Google Play will
+   *                                  never report a purchase for it.
    */
   data class SubscriptionMismatchMissingGooglePlay(
     override val messageBackupsType: MessageBackupsType,
-    override val renewalTime: Duration
+    override val renewalTime: Duration,
+    val isBilledThroughOtherStore: Boolean = false
   ) : WithTypeAndRenewalTime
 
   /**

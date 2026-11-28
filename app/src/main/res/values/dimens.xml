@@ -16,7 +16,6 @@
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
     <dimen name="contact_photo_target_size">64dp</dimen>
-    <dimen name="keyboard_toolbar_height">44dp</dimen>
 
     <dimen name="album_total_width">210dp</dimen>
     <dimen name="album_2_total_height">105dp</dimen>
@@ -35,6 +34,8 @@
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="message_bubble_horizontal_padding">12dp</dimen>
+    <dimen name="shared_contact_action_button_spacing">12dp</dimen>
+    <dimen name="shared_contact_action_button_stacked_spacing">8dp</dimen>
     <dimen name="message_bubble_top_padding">7dp</dimen>
     <dimen name="message_bubble_top_image_margin">4dp</dimen>
     <dimen name="message_bubble_text_only_top_margin">4dp</dimen>
@@ -43,6 +44,7 @@
     <dimen name="message_bubble_edge_margin">32dp</dimen>
     <dimen name="message_bubble_bottom_padding">7dp</dimen>
     <dimen name="message_bubble_footer_bottom_padding">5dp</dimen>
+    <dimen name="message_bubble_delivery_status_width">20dp</dimen>
     <dimen name="message_bubble_collapsed_bottom_padding">7dp</dimen>
     <dimen name="message_bubble_revealable_padding">12dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
@@ -101,7 +103,6 @@
     <integer name="media_overview_cols">4</integer>
     <dimen name="media_overview_detail_item_height">72dp</dimen>
 
-    <dimen name="sticker_page_item_padding">16dp</dimen>
     <dimen name="sticker_page_item_width">72dp</dimen>
 
     <dimen name="sticker_preview_sticker_size">96dp</dimen>
@@ -141,8 +142,6 @@
     <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_bottom">30dp</dimen>
     <dimen name="conversation_reaction_scrub_vertical_translation">25dp</dimen>
     <dimen name="conversation_reaction_scrub_horizontal_margin">16dp</dimen>
-
-    <dimen name="storage_legend_circle_size">8dp</dimen>
 
     <dimen name="debug_log_text_size">12sp</dimen>
 
@@ -215,14 +214,6 @@
     <dimen name="stories_landing_item_thumb_outline_height">76dp</dimen>
     <dimen name="stories_landing_item_text_horizontal_margin">20dp</dimen>
 
-    <dimen name="media_preview_video_timestamp_inset">20dp</dimen>
-    <dimen name="media_preview_bottom_bar_vertical_outer_margin">16dp</dimen>
-    <dimen name="exo_media_preview_button_width">48dp</dimen>
-    <dimen name="exo_media_preview_button_height">48dp</dimen>
-    <dimen name="media_preview_button_horizontal_margin">8dp</dimen>
-    <dimen name="media_preview_lottie_button_dimen">36dp</dimen>
-    <dimen name="media_rail_item_size">46dp</dimen>
-    <dimen name="media_rail_thumbnail_size">44dp</dimen>
     <dimen name="registrationactivity_text_view_padding">32dp</dimen>
 
     <dimen name="safety_number_qr_peek">24dp</dimen>
@@ -242,9 +233,6 @@
     <dimen name="CallScreenParticipantItem__margin_bottom">0dp</dimen>
 
     <dimen name="chat_folder_row_height">64dp</dimen>
-
-
-    <dimen name="donation_pill_max_width">180dp</dimen>
 
     <dimen name="call_screen_overflow_item_size">72dp</dimen>
 

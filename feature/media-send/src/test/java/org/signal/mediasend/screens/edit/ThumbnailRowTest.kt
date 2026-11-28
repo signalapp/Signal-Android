@@ -80,6 +80,30 @@ class ThumbnailRowTest {
     assertEquals(listOf(0 to 1), reorders)
   }
 
+  @Test
+  fun `Given the focused thumbnail is dragged past its neighbour, when the row has laid out again and the drag goes on, then it has only moved one slot`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(HOST).performTouchInput {
+      down(thumbnailCenter(0))
+      advanceEventTime(LONG_PRESS_MS)
+      moveTo(thumbnailCenter(1) + Offset(overshootPx, 0f))
+    }
+    composeTestRule.waitForIdle()
+
+    composeTestRule.onNodeWithTag(HOST).performTouchInput {
+      moveBy(Offset(1f, 0f))
+    }
+    composeTestRule.waitForIdle()
+
+    composeTestRule.onNodeWithTag(HOST).performTouchInput {
+      up()
+    }
+    composeTestRule.waitForIdle()
+
+    assertEquals(listOf(0 to 1), reorders)
+  }
+
   /**
    * Read off the laid-out thumbnails rather than derived from their size, so the gesture lands where they actually are
    * once the row's fish-eye padding has had its say.

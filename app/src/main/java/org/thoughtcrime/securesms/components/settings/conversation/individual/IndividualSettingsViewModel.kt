@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.shared.CallBa
 import org.thoughtcrime.securesms.components.settings.conversation.shared.SharedMediaLoader
 import org.thoughtcrime.securesms.components.settings.conversation.shared.toConversationSettingsAction
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * View model behind all three 1:1 settings screens: [IndividualSettingsScreen], [NoteToSelfSettingsScreen], and
@@ -43,7 +43,7 @@ class IndividualSettingsViewModel(
   private val kind: ConversationSettingsKind,
   private val callMessageIds: LongArray,
   private val repository: ConversationSettingsRepository
-) : EventDrivenViewModel<IndividualSettingsEvent>(TAG) {
+) : EventDrivenViewModel<IndividualSettingsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(IndividualSettingsViewModel::class)
@@ -181,7 +181,7 @@ class IndividualSettingsViewModel(
         _actions.send(ConversationSettingsAction.OpenStarredMessages(state.threadId))
       }
       IndividualSettingsEvent.ContactDetailsClicked -> {
-        _actions.send(ConversationSettingsAction.ViewContact(state.recipient))
+        _actions.send(ConversationSettingsAction.ViewContact(repository.getSystemContactUri(state.recipient)))
       }
       IndividualSettingsEvent.AddAsContactClicked -> {
         _actions.send(ConversationSettingsAction.AddContact(state.recipient))

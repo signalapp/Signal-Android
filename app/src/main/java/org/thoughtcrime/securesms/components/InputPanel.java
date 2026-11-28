@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.components;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.hardware.Camera;
 import android.text.SpannableString;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
@@ -39,19 +39,20 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.models.database.StickerRecord;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.view.Stub;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
 import org.signal.glide.decryptableuri.DecryptableUri;
+import org.signal.mediakeyboard.MediaKeyboardTab;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.animation.AnimationStartListener;
 import org.thoughtcrime.securesms.audio.AudioRecordingHandler;
 import org.signal.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
@@ -62,16 +63,14 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 
 import java.util.Arrays;
@@ -82,7 +81,6 @@ import java.util.concurrent.TimeUnit;
 
 public class InputPanel extends ConstraintLayout
     implements AudioRecordingHandler,
-               KeyboardAwareLinearLayout.OnKeyboardShownListener,
                EmojiEventListener,
                ConversationStickerSuggestionAdapter.EventListener
 {
@@ -102,6 +100,7 @@ public class InputPanel extends ConstraintLayout
   private AnimatingToggle       buttonToggle;
   private SendButton            sendButton;
   private View                  recordingContainer;
+  private final int[]           recordingContainerLocation = new int[2];
   private View                  recordLockCancel;
   private View                  composeContainer;
   private View                  editMessageCancel;
@@ -114,11 +113,18 @@ public class InputPanel extends ConstraintLayout
   private RecordTime               recordTime;
   private ValueAnimator            quoteAnimator;
   private ValueAnimator            editMessageAnimator;
+  private ValueAnimator            editModeRevealAnimator;
+  private float                    editModeReveal;
+  private int                      editMessageTitleTopMargin;
+  private int                      editMessageThumbnailHeight;
+  private int                      editMessageCancelStartMargin;
+  private int                      editMessageCancelHiddenStartMargin;
   private Stub<VoiceNoteDraftView> voiceNoteDraftViewStub;
 
   private @Nullable Listener listener;
   private           boolean  emojiVisible;
   private           boolean  wallpaperEnabled;
+  private           int      reservedTopSpace;
 
   private boolean hideForMessageRequestState;
   private boolean hideForGroupState;
@@ -188,7 +194,45 @@ public class InputPanel extends ConstraintLayout
 
     editMessageCancel.setOnClickListener(v -> exitEditMessageMode());
 
+    MarginLayoutParams cancelParams = (MarginLayoutParams) editMessageCancel.getLayoutParams();
+
+    editMessageTitleTopMargin          = ((MarginLayoutParams) editMessageTitle.getLayoutParams()).topMargin;
+    editMessageThumbnailHeight         = editMessageThumbnail.getLayoutParams().height;
+    editMessageCancelStartMargin       = cancelParams.getMarginStart();
+    editMessageCancelHiddenStartMargin = -cancelParams.width;
+
     quickCameraToggle.setVisibility(View.GONE);
+  }
+
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    if (!linkPreviewStub.resolved() || linkPreviewStub.getVisibility() != VISIBLE || MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.UNSPECIFIED) {
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      return;
+    }
+
+    LinkPreviewView linkPreview = linkPreviewStub.get();
+    linkPreview.setMaxDescriptionHeight(LinkPreviewView.NO_MAX_DESCRIPTION_HEIGHT);
+    super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+
+    int settledHeight     = getMeasuredHeight() - linkPreview.getMeasuredHeight() + linkPreview.getContentHeight();
+    int overflow          = settledHeight - (MeasureSpec.getSize(heightMeasureSpec) - reservedTopSpace);
+    int descriptionHeight = linkPreview.getDescriptionHeight();
+    if (overflow > 0 && descriptionHeight > 0) {
+      linkPreview.setMaxDescriptionHeight(descriptionHeight - overflow);
+    }
+
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+  }
+
+  /**
+   * Space at the top of the parent this panel shouldn't grow into, such as a toolbar it is laid out beneath.
+   */
+  public void setReservedTopSpace(int reservedTopSpace) {
+    if (this.reservedTopSpace != reservedTopSpace) {
+      this.reservedTopSpace = reservedTopSpace;
+      requestLayout();
+    }
   }
 
   public void setListener(final @NonNull Listener listener) {
@@ -196,7 +240,7 @@ public class InputPanel extends ConstraintLayout
 
     mediaKeyboard.setOnClickListener(v -> listener.onEmojiToggle());
 
-    if (Camera.getNumberOfCameras() > 0) {
+    if (getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
       quickCameraToggle.setOnClickListener(v -> listener.onQuickCameraToggleClicked());
       quickCameraToggle.setVisibility(View.VISIBLE);
     } else {
@@ -333,34 +377,48 @@ public class InputPanel extends ConstraintLayout
   }
 
   public boolean hasLinkPreview() {
-    return linkPreviewStub.getVisibility() == View.VISIBLE;
+    return linkPreviewStub.getVisibility() == View.VISIBLE && !linkPreviewStub.get().isAnimatingOut();
   }
 
   public void setLinkPreviewLoading() {
-    LinkPreviewView linkPreview = requireLinkPreview();
-    linkPreview.setVisibility(View.VISIBLE);
+    LinkPreviewView linkPreview = showLinkPreview();
     linkPreview.setLoading();
   }
 
   public void setLinkPreviewNoPreview(@Nullable LinkPreviewRepository.Error customError) {
-    LinkPreviewView linkPreview = requireLinkPreview();
-    linkPreview.setVisibility(View.VISIBLE);
+    LinkPreviewView linkPreview = showLinkPreview();
     linkPreview.setNoPreview(customError);
   }
 
   public void setLinkPreview(@NonNull RequestManager requestManager, @NonNull Optional<LinkPreview> preview) {
     if (preview.isPresent()) {
-      LinkPreviewView linkPreview = requireLinkPreview();
-      linkPreview.setVisibility(View.VISIBLE);
+      LinkPreviewView linkPreview = showLinkPreview();
       linkPreview.setLinkPreview(requestManager, preview.get(), true);
-    } else {
-      linkPreviewStub.setVisibility(View.GONE);
+    } else if (linkPreviewStub.resolved()) {
+      LinkPreviewView linkPreview = linkPreviewStub.get();
+      if (isLaidOut()) {
+        linkPreview.animateOut();
+      } else {
+        linkPreview.cancelSizeAnimation();
+        linkPreview.setVisibility(View.GONE);
+      }
     }
 
     if (linkPreviewStub.resolved()) {
       int cornerRadius = quoteViewStub.getVisibility() == VISIBLE ? readDimen(R.dimen.message_corner_collapse_radius) : readDimen(R.dimen.message_corner_radius);
       linkPreviewStub.get().setCorners(cornerRadius, cornerRadius);
     }
+  }
+
+  private @NonNull LinkPreviewView showLinkPreview() {
+    LinkPreviewView linkPreview = requireLinkPreview();
+    if (isLaidOut()) {
+      linkPreview.animateToContentHeight();
+    } else {
+      linkPreview.cancelSizeAnimation();
+    }
+    linkPreview.setVisibility(View.VISIBLE);
+    return linkPreview;
   }
 
   private @NonNull LinkPreviewView requireLinkPreview() {
@@ -390,19 +448,28 @@ public class InputPanel extends ConstraintLayout
     mediaKeyboard.setVisibility(show ? View.VISIBLE : GONE);
   }
 
-  public void setMediaKeyboardToggleMode(@NonNull KeyboardPage page) {
-    mediaKeyboard.setStickerMode(page);
+  public void setMediaKeyboardToggleMode(@NonNull MediaKeyboardTab tab) {
+    mediaKeyboard.setStickerMode(tab);
   }
 
   public boolean isStickerMode() {
     return mediaKeyboard.isStickerMode();
   }
 
+  /** True only while a keyboard of ours is the one on screen. */
+  public void setMediaKeyboardToggleOffersIme(boolean offersIme) {
+    if (offersIme) {
+      mediaKeyboard.setToIme();
+    } else {
+      mediaKeyboard.setToMedia();
+    }
+  }
+
   public View getMediaKeyboardToggleAnchorView() {
     return mediaKeyboard;
   }
 
-  public MediaKeyboard.MediaKeyboardListener getMediaKeyboardListener() {
+  public EmojiToggle getMediaKeyboardToggle() {
     return mediaKeyboard;
   }
 
@@ -479,11 +546,7 @@ public class InputPanel extends ConstraintLayout
 
     int maxWidth = composeContainer.getWidth() - mediaKeyboard.getWidth();
     if (!fromEditMessageMode) {
-      maxWidth -= editMessageCancel.getWidth();
-      if (editMessageCancel.getLayoutParams() instanceof MarginLayoutParams) {
-        MarginLayoutParams layoutParams = (MarginLayoutParams) editMessageCancel.getLayoutParams();
-        maxWidth -= layoutParams.leftMargin;
-      }
+      maxWidth -= editMessageCancelStartMargin - editMessageCancelHiddenStartMargin;
     }
     composeTextContainer.measure(MeasureSpec.makeMeasureSpec(maxWidth, MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
     int finalHeight = composeTextContainer.getMeasuredHeight();
@@ -553,20 +616,70 @@ public class InputPanel extends ConstraintLayout
   private void updateEditModeUi() {
     if (inEditMessageMode()) {
       ViewUtil.focusAndShowKeyboard(composeText);
-      editMessageTitle.setVisibility(View.VISIBLE);
-      editMessageThumbnail.setVisibility(View.VISIBLE);
-      editMessageCancel.setVisibility(View.VISIBLE);
       if (listener != null) {
         listener.onEnterEditMode();
       }
     } else {
-      editMessageTitle.setVisibility(View.GONE);
-      editMessageThumbnail.setVisibility(View.GONE);
-      editMessageCancel.setVisibility(View.GONE);
       if (listener != null) {
         listener.onExitEditMode();
       }
     }
+    animateEditModeReveal(inEditMessageMode());
+  }
+
+  private void animateEditModeReveal(boolean visible) {
+    if (editModeRevealAnimator != null) {
+      editModeRevealAnimator.cancel();
+    }
+
+    if (editModeReveal == (visible ? 1f : 0f)) {
+      return;
+    }
+
+    if (visible) {
+      editMessageTitle.setVisibility(View.VISIBLE);
+      editMessageThumbnail.setVisibility(View.VISIBLE);
+      editMessageCancel.setVisibility(View.VISIBLE);
+    }
+
+    editMessageTitle.measure(MeasureSpec.makeMeasureSpec(composeContainer.getWidth(), MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
+    int titleHeight = editMessageTitle.getMeasuredHeight();
+
+    editModeRevealAnimator = ValueAnimator.ofFloat(editModeReveal, visible ? 1f : 0f)
+                                          .setDuration(QUOTE_REVEAL_DURATION_MILLIS);
+    editModeRevealAnimator.addUpdateListener(animation -> {
+      editModeReveal = (float) animation.getAnimatedValue();
+      applyEditModeReveal(titleHeight);
+    });
+    editModeRevealAnimator.addListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        if (editModeReveal == 0f) {
+          editMessageTitle.setVisibility(View.GONE);
+          editMessageThumbnail.setVisibility(View.GONE);
+          editMessageCancel.setVisibility(View.GONE);
+        }
+      }
+    });
+    editModeRevealAnimator.start();
+  }
+
+  private void applyEditModeReveal(int titleHeight) {
+    MarginLayoutParams titleParams = (MarginLayoutParams) editMessageTitle.getLayoutParams();
+    titleParams.height    = editModeReveal == 1f ? ViewGroup.LayoutParams.WRAP_CONTENT : Math.round(titleHeight * editModeReveal);
+    titleParams.topMargin = Math.round(editMessageTitleTopMargin * editModeReveal);
+    editMessageTitle.setLayoutParams(titleParams);
+    editMessageTitle.setAlpha(editModeReveal);
+
+    ViewGroup.LayoutParams thumbnailParams = editMessageThumbnail.getLayoutParams();
+    thumbnailParams.height = Math.round(editMessageThumbnailHeight * editModeReveal);
+    editMessageThumbnail.setLayoutParams(thumbnailParams);
+    editMessageThumbnail.setAlpha(editModeReveal);
+
+    MarginLayoutParams cancelParams = (MarginLayoutParams) editMessageCancel.getLayoutParams();
+    cancelParams.setMarginStart(Math.round(editMessageCancelHiddenStartMargin + (editMessageCancelStartMargin - editMessageCancelHiddenStartMargin) * editModeReveal));
+    editMessageCancel.setLayoutParams(cancelParams);
+    editMessageCancel.setAlpha(editModeReveal);
   }
 
   public boolean inEditMessageMode() {
@@ -643,7 +756,9 @@ public class InputPanel extends ConstraintLayout
   public void onRecordMoved(float offsetX, float absoluteX) {
     slideToCancel.moveTo(offsetX);
 
-    float position  = absoluteX / recordingContainer.getWidth();
+    recordingContainer.getLocationOnScreen(recordingContainerLocation);
+
+    float position = (absoluteX - recordingContainerLocation[0]) / recordingContainer.getWidth();
 
     if (ViewUtil.isLtr(this) && position <= 0.5 ||
         ViewUtil.isRtl(this) && position >= 0.6)
@@ -712,11 +827,6 @@ public class InputPanel extends ConstraintLayout
   }
 
   @Override
-  public void onKeyboardShown() {
-    mediaKeyboard.setToMedia();
-  }
-
-  @Override
   public void onKeyEvent(KeyEvent keyEvent) {
     composeText.dispatchKeyEvent(keyEvent);
   }
@@ -739,6 +849,10 @@ public class InputPanel extends ConstraintLayout
 
   public boolean isRecordingInLockedMode() {
     return microphoneRecorderView.isRecordingLocked();
+  }
+
+  public boolean isRecordingInProgress() {
+    return microphoneRecorderView.isRecording();
   }
 
   public void releaseRecordingLockAndSend() {

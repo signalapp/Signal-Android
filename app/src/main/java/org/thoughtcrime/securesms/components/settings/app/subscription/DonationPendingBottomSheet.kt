@@ -26,19 +26,20 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import org.signal.core.models.badges.Badge
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Texts
+import org.signal.core.ui.util.SpanUtil
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutNavHostFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Displayed after the user completes the donation flow for a bank transfer.
@@ -68,6 +69,10 @@ class DonationPendingBottomSheet : ComposeBottomSheetDialogFragment() {
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
 
+    if (!isInCheckoutFlow()) {
+      return
+    }
+
     val iap = viewModel.inAppPayment.value
     if (iap != null && !iap.type.recurring) {
       findNavController().popBackStack()
@@ -75,6 +80,11 @@ class DonationPendingBottomSheet : ComposeBottomSheetDialogFragment() {
       requireActivity().finish()
       requireActivity().startActivity(AppSettingsActivity.manageSubscriptions(requireContext()))
     }
+  }
+
+  /** Whether this was opened by the checkout flow, which it leaves on dismissal, rather than over another screen that stays put. */
+  private fun isInCheckoutFlow(): Boolean {
+    return generateSequence(parentFragment) { it.parentFragment }.any { it is CheckoutNavHostFragment }
   }
 }
 

@@ -32,7 +32,6 @@ internal fun accountIdTextStyle(): TextStyle {
 @Composable
 internal fun AccountIdErrorText(error: AccountIdError) {
   when (error) {
-    is AccountIdError.TooLong -> Text(stringResource(R.string.AccountIdField__too_long, error.count, AccountIdFormat.ACCOUNT_ID_LENGTH))
     is AccountIdError.Invalid -> Text(stringResource(R.string.AccountIdField__invalid_account_id))
   }
 }

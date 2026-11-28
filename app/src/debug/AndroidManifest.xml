@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <application>
+    <!-- Debug-only entry point for driving the language picker without a registered account. -->
+    <activity
+      android:name=".testing.LanguageSplitTestActivity"
+      android:exported="true"
+      android:theme="@style/Signal.DayNight.NoActionBar" />
+  </application>
+
+</manifest>

@@ -5,7 +5,7 @@ import android.text.SpannableStringBuilder
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
-import org.thoughtcrime.securesms.util.SpanUtil
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.ui.R as CoreUiR
 
 sealed class DSLSettingsText {

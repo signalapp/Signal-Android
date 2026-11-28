@@ -67,10 +67,29 @@ class CallPermissionsDialogController {
     }
   }
 
+  /**
+   * Intentionally has no rationale or denial UI since this is optional and requested on every call until granted.
+   */
+  fun requestPhoneStatePermission(
+    activity: AppCompatActivity,
+    onGranted: Runnable
+  ) {
+    if (!isAskingForPermission) {
+      isAskingForPermission = true
+      Permissions.with(activity)
+        .request(Manifest.permission.READ_PHONE_STATE)
+        .ifNecessary()
+        .onAnyResult { isAskingForPermission = false }
+        .onAllGranted(onGranted)
+        .execute()
+    }
+  }
+
   fun requestCameraAndAudioPermission(
     activity: AppCompatActivity,
     onAllGranted: Runnable,
     onCameraGranted: Runnable,
+    onAudioGranted: Runnable,
     onAudioDenied: Runnable
   ) {
     if (!isAskingForPermission) {
@@ -96,6 +115,9 @@ class CallPermissionsDialogController {
         .onSomeGranted { permissions: List<String?> ->
           if (permissions.contains(Manifest.permission.CAMERA)) {
             onCameraGranted.run()
+          }
+          if (permissions.contains(Manifest.permission.RECORD_AUDIO)) {
+            onAudioGranted.run()
           }
         }
         .onSomeDenied { deniedPermissions: List<String?> ->

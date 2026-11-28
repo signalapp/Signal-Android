@@ -30,6 +30,8 @@ class RecoveryKeyPasteWarningFragment : ComposeBottomSheetDialogFragment() {
     const val REQUEST_KEY = "recovery_key_request"
   }
 
+  override val peekHeightPercentage: Float = 1f
+
   private var shouldPaste = false
 
   override fun onDismiss(dialog: DialogInterface) {

@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.recipients.ui.about
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.rx3.rxSingle
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelRepository
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.Optional
 
 class AboutSheetRepository {

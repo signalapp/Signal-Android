@@ -50,6 +50,11 @@ object MediaSendV3QrRepository : MediaSendQrRepository {
   }
 
   private fun handleReReg(qrData: String): MediaSendQrRepository.QrCheckResult {
-    return MediaSendQrRepository.QrCheckResult.ReRegistration(qrData)
+    return if (QuickRegistrationRepository.isNewDeviceCompatible(qrData)) {
+      MediaSendQrRepository.QrCheckResult.ReRegistration(qrData)
+    } else {
+      Log.w(TAG, "New device cannot accept a phone-numberless account")
+      MediaSendQrRepository.QrCheckResult.ReRegistrationOutdatedDevice
+    }
   }
 }

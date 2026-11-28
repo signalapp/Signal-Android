@@ -13,11 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.requireParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**
@@ -128,14 +128,12 @@ class VerifyDisplayFragment : ComposeFragment() {
     private const val RECIPIENT_ID = "recipient_id"
     private const val REMOTE_IDENTITY = "remote_identity"
     private const val LOCAL_IDENTITY = "local_identity"
-    private const val LOCAL_NUMBER = "local_number"
     private const val VERIFIED_STATE = "verified_state"
 
     fun create(
       recipientId: RecipientId,
       remoteIdentity: IdentityKeyParcelable,
       localIdentity: IdentityKeyParcelable,
-      localNumber: String,
       verifiedState: Boolean
     ): VerifyDisplayFragment {
       val fragment = VerifyDisplayFragment()
@@ -143,7 +141,6 @@ class VerifyDisplayFragment : ComposeFragment() {
         putParcelable(RECIPIENT_ID, recipientId)
         putParcelable(REMOTE_IDENTITY, remoteIdentity)
         putParcelable(LOCAL_IDENTITY, localIdentity)
-        putString(LOCAL_NUMBER, localNumber)
         putBoolean(VERIFIED_STATE, verifiedState)
       }
       return fragment

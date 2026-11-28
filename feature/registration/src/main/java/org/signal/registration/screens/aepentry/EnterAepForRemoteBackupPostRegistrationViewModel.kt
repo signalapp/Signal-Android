@@ -6,8 +6,6 @@
 package org.signal.registration.screens.aepentry
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +23,7 @@ class EnterAepForRemoteBackupPostRegistrationViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   isPasswordManagerAvailable: Boolean = false
-) : EventDrivenViewModel<EnterAepEvents>(TAG) {
+) : EventDrivenViewModel<EnterAepEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(EnterAepForRemoteBackupPostRegistrationViewModel::class)
@@ -56,6 +54,12 @@ class EnterAepForRemoteBackupPostRegistrationViewModel(
       is EnterAepEvents.ConfirmDifferentAccountRestore,
       is EnterAepEvents.DismissDifferentAccountDialog -> {
         error("Different-account handling only exists for local backup restores.")
+      }
+      is EnterAepEvents.TryAnotherWay,
+      is EnterAepEvents.RecoveryKeyHelp,
+      is EnterAepEvents.ConfirmVerifyWithSms,
+      is EnterAepEvents.DismissVerifyWithSmsDialog -> {
+        error("Verify-with-SMS handling only exists for pre-registration remote backup restores.")
       }
     }
   }
@@ -105,16 +109,6 @@ class EnterAepForRemoteBackupPostRegistrationViewModel(
         Log.w(TAG, "[Submit] Application error.", result.cause)
         stateEmitter(inputState.copy(isRegistering = false, registrationError = RegistrationError.UnknownError))
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val isPasswordManagerAvailable: Boolean = false
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return EnterAepForRemoteBackupPostRegistrationViewModel(repository, parentEventEmitter, isPasswordManagerAvailable) as T
     }
   }
 }

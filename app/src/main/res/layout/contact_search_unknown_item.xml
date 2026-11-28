@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/conversation_item_background"
+    android:foreground="?attr/selectableItemBackground"
     android:focusable="true"
     tools:viewBindingIgnore="true">
 

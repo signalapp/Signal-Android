@@ -8,11 +8,7 @@ package org.signal.registration
 import android.Manifest
 import android.os.Build
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -25,18 +21,17 @@ import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
 import org.signal.registration.screens.restoreselection.RegisteredState
-import kotlin.reflect.KClass
 
 /**
  * ViewModel shared across the registration flow.
  * Manages state and logic for registration screens.
  */
 class RegistrationViewModel(
-  private val repository: RegistrationRepository,
+  val repository: RegistrationRepository,
   private val savedStateHandle: SavedStateHandle,
   startDestination: RegistrationRoute? = null,
   private val startFresh: Boolean = false
-) : EventDrivenViewModel<RegistrationFlowEvent>(TAG) {
+) : EventDrivenViewModel<RegistrationFlowEvent>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(RegistrationViewModel::class)
@@ -89,6 +84,10 @@ class RegistrationViewModel(
         }
       }
     }
+  }
+
+  override fun onCleared() {
+    repository.close()
   }
 
   override suspend fun processEvent(event: RegistrationFlowEvent) {
@@ -260,12 +259,6 @@ class RegistrationViewModel(
       // No need to persist anything new, fields accounted for in proto already
       is RegistrationFlowEvent.Registered,
       is RegistrationFlowEvent.MasterKeyRestoredFromSvr -> { }
-    }
-  }
-
-  class Factory(private val repository: RegistrationRepository, private val startDestination: RegistrationRoute? = null, private val startFresh: Boolean = false) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: KClass<T>, extras: CreationExtras): T {
-      return RegistrationViewModel(repository, extras.createSavedStateHandle(), startDestination, startFresh) as T
     }
   }
 }

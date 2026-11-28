@@ -7,8 +7,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -50,7 +50,7 @@ public class ServiceOutageDetectionJob extends BaseJob {
   public void onRun() throws RetryLaterException {
     Log.i(TAG, "onRun()");
 
-    long timeSinceLastCheck = System.currentTimeMillis() - TextSecurePreferences.getLastOutageCheckTime(context);
+    long timeSinceLastCheck = System.currentTimeMillis() - SignalStore.misc().getLastOutageCheckTime();
     if (timeSinceLastCheck < CHECK_TIME) {
       Log.w(TAG, "Skipping service outage check. Too soon.");
       return;
@@ -62,16 +62,16 @@ public class ServiceOutageDetectionJob extends BaseJob {
 
       if (IP_SUCCESS.equals(address.getHostAddress())) {
         Log.i(TAG, "Service is available.");
-        TextSecurePreferences.setServiceOutage(context, false);
+        SignalStore.misc().setServiceOutage(false);
       } else if (IP_FAILURE.equals(address.getHostAddress())) {
         Log.w(TAG, "Service is down.");
-        TextSecurePreferences.setServiceOutage(context, true);
+        SignalStore.misc().setServiceOutage(true);
       } else {
         Log.w(TAG, "Service status check returned an unrecognized IP address. Could be a weird network state. Prompting retry.");
         throw new RetryLaterException(new Exception("Unrecognized service outage IP address."));
       }
 
-      TextSecurePreferences.setLastOutageCheckTime(context, System.currentTimeMillis());
+      SignalStore.misc().setLastOutageCheckTime(System.currentTimeMillis());
     } catch (UnknownHostException e) {
       throw new RetryLaterException(e);
     }
@@ -85,8 +85,8 @@ public class ServiceOutageDetectionJob extends BaseJob {
   @Override
   public void onFailure() {
     Log.i(TAG, "Service status check could not complete. Assuming success to avoid false positives due to bad network.");
-    TextSecurePreferences.setServiceOutage(context, false);
-    TextSecurePreferences.setLastOutageCheckTime(context, System.currentTimeMillis());
+    SignalStore.misc().setServiceOutage(false);
+    SignalStore.misc().setLastOutageCheckTime(System.currentTimeMillis());
   }
 
   public static final class Factory implements Job.Factory<ServiceOutageDetectionJob> {

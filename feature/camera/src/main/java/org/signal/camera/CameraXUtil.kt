@@ -77,8 +77,9 @@ object CameraXUtil {
 
         try {
           hwLevel = cameraManager.getCameraCharacteristics(cameraId).get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL)
-        } catch (_: NullPointerException) {
-          // redmi device crash, assume lowest
+        } catch (e: RuntimeException) {
+          // Some OEM camera implementations throw here, assume lowest
+          Log.w(TAG, "Failed to get camera characteristics for $cameraId", e)
         }
 
         if (hwLevel == null || hwLevel == CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY) {

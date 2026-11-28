@@ -10,14 +10,26 @@ data class TotpSetupState(
   val setupKey: String = "",
   /** True until the service has handed us a key, which is everything on this screen. */
   val loading: Boolean = true,
-  val dialog: Dialog = Dialog.None
+  val dialog: Dialog = Dialog.None,
+  val snackbar: Snackbar = Snackbar.None
 ) {
 
   /** Nothing on this screen works without a key, so the buttons wait for one. */
   val canContinue: Boolean
     get() = !loading && setupKey.isNotEmpty()
 
-  override fun toString(): String = "TotpSetupState(setupKey=${if (setupKey.isEmpty()) "empty" else "present"}, loading=$loading, dialog=$dialog)"
+  override fun toString(): String = "TotpSetupState(setupKey=${if (setupKey.isEmpty()) "empty" else "present"}, loading=$loading, dialog=$dialog, snackbar=$snackbar)"
+
+  /** Whichever snackbar the screen is showing, if any. */
+  sealed interface Snackbar {
+    data object None : Snackbar
+
+    /** The setup key is on the clipboard. */
+    data object KeyCopied : Snackbar
+
+    /** No installed app could take the setup link. */
+    data object NoTotpAppFound : Snackbar
+  }
 
   sealed interface Dialog {
     data object None : Dialog

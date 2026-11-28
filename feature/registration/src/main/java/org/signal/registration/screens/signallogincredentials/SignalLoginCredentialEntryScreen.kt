@@ -6,6 +6,7 @@
 package org.signal.registration.screens.signallogincredentials
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,6 +47,7 @@ import androidx.compose.ui.autofill.contentType
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -64,6 +66,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TextFields
 import org.signal.passwordmanager.SignalCredentialManager
 import org.signal.passwordmanager.compose.attachPasswordAutoFillHelper
 import org.signal.passwordmanager.compose.passwordAutoFillHelper
@@ -73,7 +76,6 @@ import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.aepentry.AepInput
-import org.signal.registration.screens.aepentry.AepValidationError
 import org.signal.registration.screens.aepentry.AepVisualTransformation
 import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.AccountIdErrorText
@@ -81,13 +83,18 @@ import org.signal.registration.screens.shared.AccountIdVisualTransformation
 import org.signal.registration.screens.shared.BackTopAppBar
 import org.signal.registration.screens.shared.accountIdTextStyle
 import org.signal.registration.test.TestTags
+import org.signal.signallogin.RecoveryKeyGroups
+import org.signal.signallogin.beta.SignalLoginBetaTag
 
-/** How the recovery key is grouped when it is spelled out rather than masked. */
-private const val RECOVERY_KEY_CHUNK_LENGTH = 4
+private val REVEAL_BUTTON_SIZE = 48.dp
+private val RECOVERY_KEY_LINE_HEIGHT = 36.sp
+private val TEXT_FIELD_TOP_PADDING = 8.dp
+private val MINIMIZED_LABEL_LINE_HEIGHT = 16.sp
 
 /**
- * Collects an existing Signal Login -- the account ID and the recovery key that pairs with it -- and logs the user
- * back in with the two together.
+ * Collects a Signal Login -- the account ID and the recovery key that pairs with it. What happens with the pair depends
+ * on [SignalLoginCredentialEntryState.mode] and the view model behind it: it either logs an existing user back in,
+ * checks a brand new login against the one the user was just shown, or checks a logged-in user still knows theirs.
  */
 @Composable
 fun SignalLoginCredentialEntryScreen(
@@ -151,7 +158,7 @@ private fun OnePaneLayout(
           .verticalScroll(scrollState)
           .padding(paddingValues)
       ) {
-        Header()
+        Header(mode = state.mode)
 
         Spacer(modifier = Modifier.height(32.dp))
 
@@ -186,7 +193,7 @@ private fun TwoPaneLayout(
           .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
-        Header(twoPane = true)
+        Header(mode = state.mode, twoPane = true)
       }
     },
     secondPane = { paddingValues ->
@@ -207,28 +214,42 @@ private fun TwoPaneLayout(
 }
 
 @Composable
-private fun Header(twoPane: Boolean = false) {
+private fun Header(mode: SignalLoginCredentialEntryState.Mode, twoPane: Boolean = false) {
+  val subtitle = when (mode) {
+    SignalLoginCredentialEntryState.Mode.Login -> stringResource(R.string.SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key)
+    SignalLoginCredentialEntryState.Mode.ConfirmSaved -> stringResource(R.string.SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly)
+    SignalLoginCredentialEntryState.Mode.Verify -> stringResource(R.string.SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it)
+  }
+
   Image(
     painter = painterResource(R.drawable.image_signal_login_ring),
     contentDescription = null,
-    modifier = Modifier.size(64.dp)
+    modifier = Modifier.size(72.dp)
   )
 
   Spacer(modifier = Modifier.height(20.dp))
 
-  Text(
-    text = stringResource(R.string.SignalLoginCredentialEntryScreen__signal_login),
-    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
-    textAlign = TextAlign.Center,
-    modifier = Modifier
-      .fillMaxWidth()
-      .attachDebugLogHelper()
-  )
+  Row(
+    horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier.fillMaxWidth()
+  ) {
+    Text(
+      text = stringResource(R.string.SignalLoginCredentialEntryScreen__signal_login),
+      style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
+      textAlign = TextAlign.Center,
+      modifier = Modifier
+        .weight(1f, fill = false)
+        .attachDebugLogHelper()
+    )
+
+    SignalLoginBetaTag()
+  }
 
   Spacer(modifier = Modifier.height(12.dp))
 
   Text(
-    text = stringResource(R.string.SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key),
+    text = subtitle,
     style = if (twoPane) MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal) else MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     textAlign = TextAlign.Center,
@@ -252,8 +273,8 @@ private fun CredentialTextFields(
 
 /**
  * Builds a modifier that prompts the password manager the first time either credential field is tapped, so a saved
- * login can fill both halves at once. Only fires while the fields are still empty, and only once per screen so a
- * dismissed prompt doesn't keep coming back.
+ * login can fill both halves at once. Only fires while the user hasn't filled anything in themselves, and only once
+ * per screen so a dismissed prompt doesn't keep coming back.
  */
 @Composable
 private fun passwordManagerPromptOnFocus(
@@ -265,8 +286,7 @@ private fun passwordManagerPromptOnFocus(
   var hasPrompted by rememberSaveable { mutableStateOf(false) }
 
   return Modifier.onFocusChanged { focusState ->
-    val fieldsAreEmpty = state.accountId.isEmpty() && state.recoveryKey.enteredText.isEmpty()
-    if (focusState.isFocused && !hasPrompted && fieldsAreEmpty && SignalCredentialManager.isSupported(context)) {
+    if (focusState.isFocused && !hasPrompted && state.canPromptPasswordManager && SignalCredentialManager.isSupported(context)) {
       hasPrompted = true
       coroutineScope.launch {
         val credential = SignalCredentialManager.getCredential(context)
@@ -284,10 +304,13 @@ private fun AccountIdTextField(
   onEvent: (SignalLoginCredentialEntryScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val interactionSource = remember { MutableInteractionSource() }
+
   TextField(
     value = state.accountId,
     onValueChange = { onEvent(SignalLoginCredentialEntryScreenEvents.AccountIdChanged(it)) },
-    label = { Text(stringResource(R.string.SignalLoginCredentialEntryScreen__account_id)) },
+    label = { TextFields.Label(stringResource(R.string.SignalLoginCredentialEntryScreen__account_id), state.accountId.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     singleLine = true,
     textStyle = accountIdTextStyle(),
     colors = TextFieldDefaults.colors(
@@ -323,71 +346,107 @@ private fun RecoveryKeyTextField(
   val autoFillHelper = passwordAutoFillHelper { onEvent(SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(it)) }
   val revealed = state.isRecoveryKeyRevealed
   val visualTransformation = remember(revealed) {
-    if (revealed) AepVisualTransformation(RECOVERY_KEY_CHUNK_LENGTH) else PasswordVisualTransformation()
+    if (revealed) AepVisualTransformation(RecoveryKeyGroups.GROUP_SIZE) else PasswordVisualTransformation()
+  }
+  val isError = state.recoveryKey.error != null || state.areCredentialsIncorrect
+  val interactionSource = remember { MutableInteractionSource() }
+  val minimizedLabelHeight = MaterialTheme.typography.bodySmall.lineHeight.takeIf { it.isSp } ?: MINIMIZED_LABEL_LINE_HEIGHT
+  val firstLineCenterY = with(LocalDensity.current) {
+    TEXT_FIELD_TOP_PADDING + minimizedLabelHeight.toDp() + RECOVERY_KEY_LINE_HEIGHT.toDp() / 2
   }
 
-  TextField(
-    value = state.recoveryKey.enteredText,
-    onValueChange = {
-      onEvent(SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(it))
-      autoFillHelper.onValueChanged(it)
-    },
-    label = { Text(stringResource(R.string.SignalLoginCredentialEntryScreen__recovery_key)) },
-    singleLine = !revealed,
-    minLines = if (revealed) 3 else 1,
-    textStyle = MaterialTheme.typography.bodyLarge.copy(
-      fontFamily = MonoTypeface.fontFamily(),
-      lineHeight = 36.sp
-    ),
-    colors = TextFieldDefaults.colors(
-      unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      errorContainerColor = MaterialTheme.colorScheme.surfaceVariant
-    ),
-    keyboardOptions = KeyboardOptions(
-      keyboardType = KeyboardType.Password,
-      capitalization = KeyboardCapitalization.None,
-      imeAction = ImeAction.Done,
-      autoCorrectEnabled = false
-    ),
-    keyboardActions = KeyboardActions(
-      onDone = {
-        if (state.isNextEnabled) {
-          keyboardController?.hide()
-          onEvent(SignalLoginCredentialEntryScreenEvents.NextClicked)
+  Box {
+    TextField(
+      value = state.recoveryKey.enteredText,
+      onValueChange = {
+        onEvent(SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(it))
+        autoFillHelper.onValueChanged(it)
+      },
+      label = { TextFields.Label(stringResource(R.string.SignalLoginCredentialEntryScreen__recovery_key), state.recoveryKey.enteredText.isNotEmpty(), interactionSource) },
+      interactionSource = interactionSource,
+      singleLine = !revealed,
+      minLines = if (revealed) 3 else 1,
+      textStyle = MaterialTheme.typography.bodyLarge.copy(
+        fontFamily = MonoTypeface.fontFamily(),
+        lineHeight = RECOVERY_KEY_LINE_HEIGHT
+      ),
+      colors = TextFieldDefaults.colors(
+        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        errorContainerColor = MaterialTheme.colorScheme.surfaceVariant
+      ),
+      keyboardOptions = KeyboardOptions(
+        keyboardType = KeyboardType.Password,
+        capitalization = KeyboardCapitalization.None,
+        imeAction = ImeAction.Done,
+        autoCorrectEnabled = false
+      ),
+      keyboardActions = KeyboardActions(
+        onDone = {
+          if (state.isNextEnabled) {
+            keyboardController?.hide()
+            onEvent(SignalLoginCredentialEntryScreenEvents.NextClicked)
+          }
         }
-      }
-    ),
-    trailingIcon = { RevealRecoveryKeyButton(revealed, onEvent) },
-    supportingText = {
-      val error = state.recoveryKey.error
-      when {
-        state.areCredentialsIncorrect -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key))
-        error is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
-        error != null -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
-      }
-    },
-    isError = state.recoveryKey.error != null || state.areCredentialsIncorrect,
-    visualTransformation = visualTransformation,
-    modifier = modifier
-      .fillMaxWidth()
-      .contentType(ContentType.Password)
-      .testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_RECOVERY_KEY_FIELD)
-      .attachPasswordAutoFillHelper(autoFillHelper)
-  )
+      ),
+      trailingIcon = {
+        if (revealed) {
+          Spacer(modifier = Modifier.size(REVEAL_BUTTON_SIZE))
+        } else {
+          RevealRecoveryKeyButton(revealed = revealed, isError = isError, onEvent = onEvent)
+        }
+      },
+      supportingText = {
+        when {
+          state.areCredentialsIncorrect && state.mode == SignalLoginCredentialEntryState.Mode.ConfirmSaved -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown))
+          state.areCredentialsIncorrect -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key))
+          state.recoveryKey.error != null -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
+        }
+      },
+      isError = isError,
+      visualTransformation = visualTransformation,
+      modifier = modifier
+        .fillMaxWidth()
+        .contentType(ContentType.Password)
+        .testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_RECOVERY_KEY_FIELD)
+        .attachPasswordAutoFillHelper(autoFillHelper)
+    )
+
+    if (revealed) {
+      RevealRecoveryKeyButton(
+        revealed = revealed,
+        isError = isError,
+        onEvent = onEvent,
+        modifier = Modifier
+          .align(Alignment.TopEnd)
+          .padding(top = firstLineCenterY - REVEAL_BUTTON_SIZE / 2)
+      )
+    }
+  }
 }
 
+/**
+ * Sits in the recovery key field's trailing slot while collapsed, where centering it vertically is correct. Once
+ * revealed, the field grows to three lines and the hard-coded centering puts this far too low, so it gets overlaid at
+ * the first line instead.
+ */
 @Composable
-private fun RevealRecoveryKeyButton(revealed: Boolean, onEvent: (SignalLoginCredentialEntryScreenEvents) -> Unit) {
+private fun RevealRecoveryKeyButton(
+  revealed: Boolean,
+  isError: Boolean,
+  onEvent: (SignalLoginCredentialEntryScreenEvents) -> Unit,
+  modifier: Modifier = Modifier
+) {
   IconButton(
     onClick = { onEvent(SignalLoginCredentialEntryScreenEvents.RecoveryKeyVisibilityToggled) },
-    modifier = Modifier.testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_REVEAL_RECOVERY_KEY_BUTTON)
+    modifier = modifier.testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_REVEAL_RECOVERY_KEY_BUTTON)
   ) {
     Icon(
       painter = if (revealed) SignalIcons.VisibleSlash.painter else SignalIcons.Visible.painter,
       contentDescription = stringResource(
         if (revealed) R.string.SignalLoginCredentialEntryScreen__hide_recovery_key else R.string.SignalLoginCredentialEntryScreen__show_recovery_key
-      )
+      ),
+      tint = if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
     )
   }
 }
@@ -410,7 +469,11 @@ private fun Footer(
         contentAlignment = Alignment.CenterStart,
         modifier = Modifier.weight(1f)
       ) {
-        NeedHelpButton(onEvent)
+        when (state.mode) {
+          SignalLoginCredentialEntryState.Mode.Login,
+          SignalLoginCredentialEntryState.Mode.Verify -> NeedHelpButton(onEvent)
+          SignalLoginCredentialEntryState.Mode.ConfirmSaved -> ShowLoginInfoAgainButton(onEvent)
+        }
       }
 
       Box(
@@ -431,6 +494,17 @@ private fun NeedHelpButton(onEvent: (SignalLoginCredentialEntryScreenEvents) -> 
     modifier = Modifier.testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_NEED_HELP_BUTTON)
   ) {
     Text(text = stringResource(R.string.SignalLoginCredentialEntryScreen__need_help))
+  }
+}
+
+@Composable
+private fun ShowLoginInfoAgainButton(onEvent: (SignalLoginCredentialEntryScreenEvents) -> Unit) {
+  TextButton(
+    shape = RoundedCornerShape(0.dp),
+    onClick = { onEvent(SignalLoginCredentialEntryScreenEvents.ShowLoginInfoAgainClicked) },
+    modifier = Modifier.testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_SHOW_LOGIN_INFO_AGAIN_BUTTON)
+  ) {
+    Text(text = stringResource(R.string.SignalLoginCredentialEntryScreen__show_login_info_again))
   }
 }
 
@@ -488,6 +562,28 @@ private fun SignalLoginCredentialEntryScreenRevealedPreview() {
         recoveryKey = AepInput.from("uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t"),
         isRecoveryKeyRevealed = true
       ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun SignalLoginCredentialEntryScreenConfirmSavedPreview() {
+  Previews.Preview {
+    SignalLoginCredentialEntryScreen(
+      state = SignalLoginCredentialEntryState(mode = SignalLoginCredentialEntryState.Mode.ConfirmSaved),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun SignalLoginCredentialEntryScreenVerifyPreview() {
+  Previews.Preview {
+    SignalLoginCredentialEntryScreen(
+      state = SignalLoginCredentialEntryState(mode = SignalLoginCredentialEntryState.Mode.Verify),
       onEvent = {}
     )
   }

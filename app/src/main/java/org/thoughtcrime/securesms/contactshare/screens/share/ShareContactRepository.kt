@@ -6,30 +6,37 @@
 package org.thoughtcrime.securesms.contactshare.screens.share
 
 import android.content.Context
-import android.net.Uri
 import androidx.core.net.toUri
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contactshare.ADDRESS_PREFIX
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactCardReader
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.contactshare.EMAIL_PREFIX
+import org.thoughtcrime.securesms.contactshare.NICKNAME_ID
+import org.thoughtcrime.securesms.contactshare.NOTE_ID
 import org.thoughtcrime.securesms.contactshare.ORGANIZATION_ID
 import org.thoughtcrime.securesms.contactshare.PHONE_PREFIX
 import org.thoughtcrime.securesms.contactshare.PHOTO_ID_ADDRESS_BOOK
+import org.thoughtcrime.securesms.contactshare.PHOTO_ID_NONE
 import org.thoughtcrime.securesms.contactshare.PHOTO_ID_SIGNAL_PROFILE
+import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.contactshare.displayLines
+import org.thoughtcrime.securesms.contactshare.displayText
 import org.thoughtcrime.securesms.contactshare.labelText
 import org.thoughtcrime.securesms.contactshare.resolveSignalRecipient
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.SignalE164Util
 import java.io.IOException
 import java.util.Locale
 
@@ -44,11 +51,83 @@ class ShareContactRepository(
     private val TAG = Log.tag(ShareContactRepository::class)
   }
 
-  suspend fun load(uris: List<Uri>, recipientId: RecipientId?): LoadedContact? = withContext(SignalDispatchers.IO) {
-    val contact = reader.read(uris).firstOrNull() ?: return@withContext null
+  suspend fun load(source: SharedContactSource, recipientId: RecipientId?): LoadedContact? = withContext(SignalDispatchers.IO) {
+    val contact = when (source) {
+      is SharedContactSource.AddressBook -> reader.readSystemContact(source.contactUri)
+      is SharedContactSource.SystemPhone -> reader.readSystemPhone(source.dataUri)
+      is SharedContactSource.SignalContact -> Recipient.resolved(source.recipientId).toSharedContact()
+      is SharedContactSource.VCard -> reader.readVCard(source.uri)
+    } ?: return@withContext null
+
     val sendingTo = recipientId?.let { Recipient.resolved(it).getDisplayName(context) } ?: ""
 
-    toLoadedContact(contact, sendingTo, recipientId)
+    toLoadedContact(contact, sendingTo, recipientId, (source as? SharedContactSource.AddressBook)?.recipientId)
+  }
+
+  /**
+   * Builds a shareable card for a Signal connection that has no address book entry.
+   *
+   * Everything comes from the recipient, so there are no emails, addresses, or organization to offer.
+   * A card with no name cannot be rendered by the receiver, so a recipient without one has nothing
+   * worth sharing and yields null.
+   */
+  private fun Recipient.toSharedContact(): Contact? {
+    val name = toSharedContactName()
+
+    if (name == null) {
+      Log.w(TAG, "Recipient has no name to share.")
+      return null
+    }
+
+    val phoneNumbers = e164
+      .map { listOf(Contact.Phone(it, Contact.Phone.Type.MOBILE, null)) }
+      .orElse(emptyList())
+
+    val avatar = profilePhotoBlobUri(id)?.let { Contact.Avatar(it.toUri(), true) }
+
+    return Contact(name, null, phoneNumbers, emptyList(), emptyList(), avatar).withSignalIdentity(this)
+  }
+
+  private fun Recipient.toSharedContactName(): Contact.Name? {
+    sharedContactName?.let { return Contact.Name(it.givenName.nullIfBlank(), it.familyName.nullIfBlank(), null, null, null, null) }
+
+    val fallback = username.orElse(null).nullIfBlank()
+      ?: e164.orElse(null)?.nullIfBlank()?.let { SignalE164Util.prettyPrint(it) }
+      ?: email.orElse(null).nullIfBlank()
+      ?: return null
+
+    return Contact.Name(fallback, null, null, null, null, null)
+  }
+
+  /**
+   * Stamps the Signal identity of the person on the card onto it, so the receiver can reach them
+   * without having to match on a phone number.
+   *
+   * The nickname and note are the sharer's own, private to them until they share the card. They are
+   * carried because the receiver has no other way to learn what the sharer calls this person; a
+   * recipient with neither leaves both absent.
+   */
+  private fun Contact.withSignalIdentity(recipient: Recipient): Contact {
+    if (!RemoteConfig.contactSharingV2) {
+      return this
+    }
+
+    val nickname = Contact.SignalNickname(
+      recipient.nickname.givenName.nullIfBlank(),
+      recipient.nickname.familyName.nullIfBlank()
+    ).takeUnless { it.isEmpty }
+
+    return Contact(
+      this.name,
+      this.organization,
+      this.phoneNumbers,
+      this.emails,
+      this.postalAddresses,
+      this.avatar,
+      recipient.aci.orElse(null)?.takeIf { it.isValid }?.toString(),
+      nickname,
+      recipient.note.nullIfBlank()
+    )
   }
 
   fun buildCard(contact: Contact, selection: ShareContactSelection): Contact {
@@ -60,7 +139,10 @@ class ShareContactRepository(
       contact.phoneNumbers.selectedByIndex(selection.detailIds, PHONE_PREFIX),
       contact.emails.selectedByIndex(selection.detailIds, EMAIL_PREFIX),
       contact.postalAddresses.selectedByIndex(selection.detailIds, ADDRESS_PREFIX),
-      selection.photo?.let { Contact.Avatar(it.uri.toUri(), it.isProfile) }
+      selection.photo?.let { Contact.Avatar(it.uri.toUri(), it.isProfile) },
+      contact.aci,
+      contact.nickname?.takeIf { NICKNAME_ID in selection.detailIds },
+      contact.note?.takeIf { NOTE_ID in selection.detailIds }
     )
   }
 
@@ -73,8 +155,17 @@ class ShareContactRepository(
     return if (!isOfferedAsRow || ORGANIZATION_ID in selection.detailIds) organization else null
   }
 
-  private fun toLoadedContact(contact: Contact, sendingTo: String, recipientId: RecipientId?): LoadedContact {
-    val signalRecipient = contact.resolveSignalRecipient()
+  private fun toLoadedContact(source: Contact, sendingTo: String, recipientId: RecipientId?, subject: RecipientId? = null): LoadedContact {
+    val signalRecipient = subject ?: source.resolveSignalRecipient()
+
+    // An address book card only learns who it is on Signal once its numbers have been looked up, so
+    // the identity is stamped here rather than by the reader that built it.
+    val contact = if (source.aci == null && signalRecipient != null) {
+      source.withSignalIdentity(Recipient.resolved(signalRecipient))
+    } else {
+      source
+    }
+
     val photoOptions = contact.resolvePhotoOptions(signalRecipient)
     val displayName = ContactUtil.getDisplayName(contact)
 
@@ -95,7 +186,8 @@ class ShareContactRepository(
           displayName = displayName,
           isSelected = true,
           isEditable = true,
-          isToggleable = false
+          isToggleable = false,
+          isOrgOnly = contact.isOrgOnly
         ),
         details = contact.buildDetails(displayName)
       )
@@ -141,36 +233,61 @@ class ShareContactRepository(
       )
     }
 
+    // Unselected by default. Both are the sharer's own private annotations about this person, so
+    // attaching one has to be a deliberate act rather than something that happens by not looking.
+    this.nickname?.takeUnless { it.isEmpty }?.let { nickname ->
+      details += ShareContactState.DetailSelection(
+        id = NICKNAME_ID,
+        lines = listOf(nickname.displayText()),
+        label = ShareContactState.DetailLabel.Nickname,
+        isSelected = false
+      )
+    }
+
+    this.note.nullIfBlank()?.let { note ->
+      details += ShareContactState.DetailSelection(
+        id = NOTE_ID,
+        lines = listOf(note),
+        label = ShareContactState.DetailLabel.Note,
+        isSelected = false
+      )
+    }
+
     return details
   }
 
-  /** Address book photo first per the design, Signal profile photo as the alternative. */
+  /** The first option is the default. Sharing no photo is only offered when there is a photo to decline. */
   private fun Contact.resolvePhotoOptions(signalRecipient: RecipientId?): List<ShareContactState.PhotoOption> {
-    val options = mutableListOf<ShareContactState.PhotoOption>()
     val sharedAvatar = this.avatar
 
-    if (sharedAvatar != null && !sharedAvatar.isProfile) {
-      sharedAvatar.attachment?.uri?.let { uri ->
-        options += ShareContactState.PhotoOption(
-          id = PHOTO_ID_ADDRESS_BOOK,
-          photo = ShareContactState.ContactPhoto(uri = uri.toString(), isProfile = false)
-        )
-      }
+    val addressBookOption = sharedAvatar?.takeUnless { it.isProfile }?.attachment?.uri?.let { uri ->
+      ShareContactState.PhotoOption(
+        id = PHOTO_ID_ADDRESS_BOOK,
+        photo = ShareContactState.ContactPhoto(uri = uri.toString(), isProfile = false)
+      )
     }
 
     // A card built from a Signal profile already blobbed that photo, so blobbing again would offer
     // the same image twice.
     val alreadyBlobbed = sharedAvatar?.takeIf { it.isProfile }?.attachment?.uri?.toString()
-    val profileUri = alreadyBlobbed ?: signalRecipient?.let { profilePhotoBlobUri(it) }
-
-    if (profileUri != null) {
-      options += ShareContactState.PhotoOption(
+    val profileOption = (alreadyBlobbed ?: signalRecipient?.let { profilePhotoBlobUri(it) })?.let { uri ->
+      ShareContactState.PhotoOption(
         id = PHOTO_ID_SIGNAL_PROFILE,
-        photo = ShareContactState.ContactPhoto(uri = profileUri, isProfile = true)
+        photo = ShareContactState.ContactPhoto(uri = uri, isProfile = true)
       )
     }
 
-    return options
+    val options = if (SignalStore.settings.isPreferSystemContactPhotos) {
+      listOfNotNull(addressBookOption, profileOption)
+    } else {
+      listOfNotNull(profileOption, addressBookOption)
+    }
+
+    return if (options.isNotEmpty()) {
+      options + ShareContactState.PhotoOption(id = PHOTO_ID_NONE, photo = null)
+    } else {
+      options
+    }
   }
 
   /** Blobs the stored profile avatar so it uploads as an ordinary attachment. */

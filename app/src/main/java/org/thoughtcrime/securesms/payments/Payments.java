@@ -47,7 +47,7 @@ public final class Payments {
   public synchronized @NonNull CurrencyExchange getCurrencyExchange(boolean refreshIfAble) throws IOException {
     if (currencyConversions == null || shouldRefresh(refreshIfAble, currencyConversions.getTimestamp())) {
       Log.i(TAG, "Currency conversion data is unavailable or a refresh was requested and available");
-      CurrencyConversions newCurrencyConversions = NetworkResultUtil.toBasicLegacy(SignalNetwork.payments().getCurrencyConversions());
+      CurrencyConversions newCurrencyConversions = NetworkResultUtil.toBasicLegacy(SignalNetwork.paymentsApi().getCurrencyConversions());
       if (currencyConversions == null || (newCurrencyConversions != null && newCurrencyConversions.getTimestamp() > currencyConversions.getTimestamp())) {
         currencyConversions = newCurrencyConversions;
       }

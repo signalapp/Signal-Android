@@ -10,7 +10,6 @@ package org.thoughtcrime.securesms.components.settings.app.notifications
  */
 enum class ReminderType {
   MESSAGES,
-  CALLS,
   MENTIONS,
   REPLIES
 }

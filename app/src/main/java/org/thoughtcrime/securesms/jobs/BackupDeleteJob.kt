@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.DeletionNotAwaitingMediaDownlo
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import kotlin.time.Duration.Companion.seconds
@@ -209,7 +210,7 @@ class BackupDeleteJob private constructor(
       return Result.success()
     }
 
-    when (val result = AppDependencies.archiveService.deleteMessageBackup()) {
+    when (val result = SignalNetwork.archiveService.deleteMessageBackup()) {
       is Either.Right -> Log.d(TAG, "Deleted message backup.")
       is Either.Left -> {
         Log.w(TAG, "Failed to delete message backup", result.value.cause)
@@ -228,7 +229,7 @@ class BackupDeleteJob private constructor(
     }
 
     if (backupDeleteJobData.tier == BackupDeleteJobData.Tier.PAID) {
-      when (val result = AppDependencies.archiveService.deleteMediaBackup()) {
+      when (val result = SignalNetwork.archiveService.deleteMediaBackup()) {
         is Either.Right -> Log.d(TAG, "Deleted media backup.")
         is Either.Left -> {
           Log.w(TAG, "Failed to delete media backup", result.value.cause)

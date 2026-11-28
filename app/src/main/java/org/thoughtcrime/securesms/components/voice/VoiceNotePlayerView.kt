@@ -18,9 +18,9 @@ import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.SimpleColorFilter
 import com.airbnb.lottie.model.KeyPath
 import com.airbnb.lottie.value.LottieValueCallback
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.PlaybackSpeedToggleTextView
-import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.concurrent.TimeUnit
 import org.signal.core.ui.R as CoreUiR
 

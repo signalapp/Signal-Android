@@ -5,7 +5,7 @@ import io.mockk.mockkStatic
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.signal.remoteconfig.RemoteConfig
 
 class GeographicalRestrictionsTest {
   @Test

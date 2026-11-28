@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.safety
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.model.MessageId
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Fragment argument for `SafetyNumberBottomSheetFragment`

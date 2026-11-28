@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.SqlUtil
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies

@@ -13,6 +13,6 @@
     app:contact_captionColor="@color/conversation_item_sent_text_secondary_color"
     app:contact_chevronColor="@color/signal_colorTransparent3"
     app:contact_footerIconColor="@color/conversation_item_sent_text_secondary_color"
-    app:contact_actionTextColor="@color/signal_colorOnPrimary"
+    app:contact_actionTextColor="@color/signal_colorOnCustom"
     app:contact_actionBackgroundColor="@color/signal_colorTransparent2"
     tools:background="@color/signal_colorPrimary"/>

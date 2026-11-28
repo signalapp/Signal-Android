@@ -9,8 +9,8 @@ import okio.ByteString.Companion.toByteString
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
-import org.thoughtcrime.securesms.database.model.databaseprotos.LinkedDeviceInfo
-import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
+import org.signal.storage.protos.LinkedDeviceInfo
+import org.signal.storage.protos.LocalRegistrationMetadata
 import org.whispersystems.signalservice.api.account.PreKeyCollection
 
 /**

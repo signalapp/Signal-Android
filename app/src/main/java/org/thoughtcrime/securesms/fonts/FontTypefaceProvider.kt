@@ -19,14 +19,14 @@ class FontTypefaceProvider : RendererContext.TypefaceProvider {
     return getTypeface()
     // TODO [cody] Need to rework Fonts.kt to not hit network on main, reverting to old typeface for now
 //    val typeface = cachedTypeface
-//    if (typeface != null && cachedLocale == LocaleUtil.getFirstLocale()) {
+//    if (typeface != null && cachedLocale == AppLocale.resolvedLocale) {
 //      return typeface
 //    }
 //
 //    return when (val fontResult = Fonts.resolveFont(context, TextFont.BOLD)) {
 //      is Fonts.FontResult.Immediate -> {
 //        cachedTypeface = fontResult.typeface
-//        cachedLocale = LocaleUtil.getFirstLocale()
+//        cachedLocale = AppLocale.resolvedLocale
 //        fontResult.typeface
 //      }
 //      is Fonts.FontResult.Async -> {

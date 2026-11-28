@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.AttributeSet
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -66,6 +67,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
         }
       )
       .placeholder(storyTextPostModel.getPlaceholder())
+      .priority(Priority.IMMEDIATE)
       .dontAnimate()
       .centerCrop()
       .into(sourceView)
@@ -88,6 +90,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
           isSourceReady = true
         }
       )
+      .priority(Priority.IMMEDIATE)
       .dontAnimate()
       .centerCrop()
       .into(sourceView)
@@ -103,6 +106,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
             isSourceBlurReady = true
           }
         )
+        .priority(Priority.IMMEDIATE)
         .dontAnimate()
         .centerCrop()
         .into(sourceBlurView)
@@ -135,6 +139,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
           isTargetReady = true
         }
       )
+      .priority(Priority.IMMEDIATE)
       .dontAnimate()
       .placeholder(storyTextPostModel.getPlaceholder())
       .centerCrop()
@@ -158,6 +163,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
           isTargetReady = true
         }
       )
+      .priority(Priority.IMMEDIATE)
       .dontAnimate()
       .fitCenter()
       .into(targetView)
@@ -173,6 +179,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
             isTargetBlurReady = true
           }
         )
+        .priority(Priority.IMMEDIATE)
         .dontAnimate()
         .centerCrop()
         .into(targetBlurView)
@@ -214,6 +221,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
   }
 
   override fun onCrossfadeStarted(reverse: Boolean) {
+    animate().cancel()
     alpha = 1f
 
     sourceView.alpha = if (reverse) 0f else 1f

@@ -38,6 +38,7 @@ import androidx.compose.ui.input.pointer.changedToDown
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextRange
@@ -49,6 +50,7 @@ import kotlinx.coroutines.launch
 import org.signal.imageeditor.core.ImageEditorTouchHandler
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
+import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.ChromeInsets
 import org.signal.mediasend.screens.edit.ImageController
 
@@ -76,6 +78,11 @@ internal fun ImageEditor(
 
   LaunchedEffect(state, contentInsets) {
     state.setContentInsets(contentInsets)
+  }
+
+  val thumbnailSizePx = with(LocalDensity.current) { MediaSendMetrics.SelectedMediaPreviewSize.width.roundToPx() }
+  LaunchedEffect(controller, thumbnailSizePx) {
+    controller.keepThumbnailCurrent(context.applicationContext, thumbnailSizePx)
   }
 
   LaunchedEffect(controller.isDraggedElementOverTrash) {

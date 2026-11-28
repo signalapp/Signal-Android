@@ -8,9 +8,10 @@ package org.thoughtcrime.securesms.backup.v2.processor
 import org.signal.archive.proto.Frame
 import org.signal.archive.proto.ReleaseNotes
 import org.signal.archive.stream.BackupFrameEmitter
+import org.signal.core.database.update
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.ExportOddities
 import org.thoughtcrime.securesms.backup.v2.ExportSkips
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Handles importing/exporting [ArchiveRecipient] frames for an archive.

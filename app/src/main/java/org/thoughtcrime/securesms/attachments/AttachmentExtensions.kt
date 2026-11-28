@@ -61,6 +61,8 @@ fun Attachment.toAttachmentPointer(context: Context): AttachmentPointer? {
       caption = attachment.caption
       blurHash = attachment.blurHash?.hash
       clientUuid = attachment.uuid?.toByteArray()?.toByteString()
+      audioWaveform = attachment.audioHash?.waveFormBytes?.toByteString()
+      audioDurationSeconds = attachment.audioHash?.durationSeconds
 
       if (remoteId is SignalServiceAttachmentRemoteId.V2) {
         cdnId = remoteId.cdnId

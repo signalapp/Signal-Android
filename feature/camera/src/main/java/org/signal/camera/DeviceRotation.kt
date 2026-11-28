@@ -5,6 +5,7 @@
 
 package org.signal.camera
 
+import android.content.res.Configuration
 import android.view.OrientationEventListener
 import android.view.Surface
 import androidx.compose.runtime.Composable
@@ -14,7 +15,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import kotlinx.coroutines.delay
 
 /** How long a new rotation must hold before we commit it, so a sweep past a diagonal doesn't flicker. */
@@ -31,6 +34,12 @@ fun isLandscapeRotation(rotation: Int): Boolean {
  */
 @Composable
 fun rememberDeviceRotation(): Int {
+  // window, so answering ROTATION_0 for a landscape spec renders a portrait camera in a landscape window.
+  if (LocalInspectionMode.current) {
+    val isLandscapeSpec = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+    return if (isLandscapeSpec) Surface.ROTATION_90 else Surface.ROTATION_0
+  }
+
   val context = LocalContext.current
   var rawRotation by remember { mutableStateOf<Int?>(null) }
   var committedRotation by remember { mutableStateOf(Surface.ROTATION_0) }

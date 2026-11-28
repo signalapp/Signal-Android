@@ -87,7 +87,8 @@ final class VideoTrackConverter {
             final int videoResolution,
             final int videoBitrate,
             final @NonNull String videoCodec,
-            final @NonNull Set<String> excludedDecoders) throws IOException, TranscodingException {
+            final @NonNull Set<String> excludedDecoders,
+            final boolean toneMappingDisabled) throws IOException, TranscodingException {
 
         final MediaExtractor videoExtractor = input.createExtractor();
         final int videoInputTrack = getAndSelectVideoTrackIndex(videoExtractor);
@@ -95,7 +96,7 @@ final class VideoTrackConverter {
             videoExtractor.release();
             return null;
         }
-        return new VideoTrackConverter(videoExtractor, videoInputTrack, timeFrom, timeTo, videoResolution, videoBitrate, videoCodec, excludedDecoders);
+        return new VideoTrackConverter(videoExtractor, videoInputTrack, timeFrom, timeTo, videoResolution, videoBitrate, videoCodec, excludedDecoders, toneMappingDisabled);
     }
 
 
@@ -107,7 +108,8 @@ final class VideoTrackConverter {
             final int videoResolution,
             final int videoBitrate,
             final @NonNull String videoCodec,
-            final @NonNull Set<String> excludedDecoders) throws IOException, TranscodingException {
+            final @NonNull Set<String> excludedDecoders,
+            final boolean toneMappingDisabled) throws IOException, TranscodingException {
 
         mTimeFrom = timeFrom;
         mTimeTo = timeTo;
@@ -182,7 +184,7 @@ final class VideoTrackConverter {
         mInputSurface.makeCurrent();
         mOutputSurface = new OutputSurface();
         mOutputSurface.changeFragmentShader(fragmentShader);
-        mVideoDecoder = createVideoDecoder(inputVideoFormat, mOutputSurface.getSurface(), excludedDecoders);
+        mVideoDecoder = createVideoDecoder(inputVideoFormat, mOutputSurface.getSurface(), excludedDecoders, toneMappingDisabled);
         startEncoderWithFallback(videoCodecCandidates, outputVideoFormat);
 
         mVideoDecoderInputBuffers = mVideoDecoder.getInputBuffers();
@@ -365,6 +367,24 @@ final class VideoTrackConverter {
         }
     }
 
+    /**
+     * Forces the release of the codecs, which can help if they ever get wedged.
+     */
+    void forceRelease() {
+        Log.w(TAG, "Forcibly releasing video codecs");
+        try {
+            mVideoEncoder.release();
+        } catch (Exception e) {
+            Log.w(TAG, "error while force releasing mVideoEncoder", e);
+        }
+        try {
+            mVideoDecoder.release();
+        } catch (Exception e) {
+            Log.w(TAG, "error while force releasing mVideoDecoder", e);
+        }
+        Log.w(TAG, "Force release complete");
+    }
+
     void release() throws Exception {
         Exception exception = null;
         try {
@@ -492,9 +512,14 @@ final class VideoTrackConverter {
     MediaCodec createVideoDecoder(
             final @NonNull MediaFormat inputFormat,
             final @NonNull Surface surface,
-            final @NonNull Set<String> excludedDecoders) throws IOException {
+            final @NonNull Set<String> excludedDecoders,
+            final boolean toneMappingDisabled) throws IOException {
         final boolean               isHdr              = MediaCodecCompat.isHdrVideo(inputFormat);
-        final boolean               requestToneMapping = Build.VERSION.SDK_INT >= 31 && isHdr;
+        final boolean               requestToneMapping = Build.VERSION.SDK_INT >= 31 && isHdr && !toneMappingDisabled;
+
+        if (isHdr && toneMappingDisabled) {
+            Log.w(TAG, "Video decoder: HDR input, but tone-mapping has been disabled for this attempt");
+        }
         final List<Pair<String, MediaFormat>> allCandidates = MediaCodecCompat.findDecoderCandidates(inputFormat);
         final List<Pair<String, MediaFormat>> candidates    = new ArrayList<>();
         for (Pair<String, MediaFormat> c : allCandidates) {
@@ -675,8 +700,7 @@ final class VideoTrackConverter {
      */
     private static boolean isToneMapEffective(final @NonNull MediaCodec decoder, final @NonNull String codecName) {
         // Software codecs never perform HDR→SDR tone-mapping.
-        String lower = codecName.toLowerCase(java.util.Locale.ROOT);
-        if (lower.startsWith("omx.google.") || lower.startsWith("c2.android.")) {
+        if (MediaCodecCompat.isSoftwareCodec(codecName)) {
             Log.w(TAG, "Video decoder: software codec " + codecName + " cannot perform HDR tone-mapping");
             return false;
         }

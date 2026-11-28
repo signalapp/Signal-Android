@@ -6,135 +6,131 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Process
 import androidx.navigation.NavDirections
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.UsernameEditMode
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
-import org.thoughtcrime.securesms.MainActivity
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
+import org.thoughtcrime.securesms.components.NavGraphHostActivity
+import org.thoughtcrime.securesms.components.settings.app.backups.local.usesOnDeviceBackupsScreen
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.help.HelpFragment
-import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.profiles.manage.UsernameEditMode
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.util.CachedInflater
-import org.thoughtcrime.securesms.util.DynamicTheme
-import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val START_ROUTE = "app.settings.args.START_ROUTE"
 private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_PREFERENCES"
-private const val STATE_WAS_CONFIGURATION_UPDATED = "app.settings.state.configuration.updated"
-private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
+internal const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
 
-class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
+class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
 
   private val TAG = Log.tag(AppSettingsActivity::class)
-
-  private var wasConfigurationUpdated = false
 
   override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    if (savedInstanceState == null && RemoteConfig.useAppSettingsNavigation) {
+      openInNavigationActivity()
+      return
+    }
+
     super.onCreate(savedInstanceState, ready)
 
-    val startingAction: NavDirections? = if (intent?.categories?.contains(NOTIFICATION_CATEGORY) == true) {
-      AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
-    } else if (Build.VERSION.SDK_INT >= 34 && getLaunchedFromUid() != Process.myUid()) {
-      Log.w(TAG, "Settings was launched by an external process. Ignoring starting route.")
-      null
-    } else {
-      when (val appSettingsRoute: AppSettingsRoute? = intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)) {
-        AppSettingsRoute.Empty -> null
-        is AppSettingsRoute.BackupsRoute.Local -> {
-          if (SignalStore.backup.newLocalBackupsEnabled || (Environment.Backups.isNewFormatSupportedForLocalBackup() && (!SignalStore.settings.isBackupEnabled || appSettingsRoute.triggerUpdateFlow))) {
-            AppSettingsFragmentDirections.actionDirectToLocalBackupsFragment()
-              .setTriggerUpdateFlow(appSettingsRoute.triggerUpdateFlow)
-          } else {
-            AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
-          }
-        }
-        is AppSettingsRoute.HelpRoute.Settings -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
-          .setStartCategoryIndex(appSettingsRoute.startCategoryIndex)
-        AppSettingsRoute.DataAndStorageRoute.Proxy -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
-        AppSettingsRoute.NotificationsRoute.Notifications -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
-        AppSettingsRoute.ChangeNumberRoute.Start -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
-        is AppSettingsRoute.DonationsRoute.Donations -> AppSettingsFragmentDirections.actionDirectToManageDonations().setDirectToCheckoutType(appSettingsRoute.directToCheckoutType)
-        AppSettingsRoute.NotificationsRoute.MutedNotifications -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
-        AppSettingsRoute.NotificationsRoute.NotificationProfiles -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
-        is AppSettingsRoute.NotificationsRoute.EditProfile -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()
-        is AppSettingsRoute.NotificationsRoute.ProfileDetails -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
-          appSettingsRoute.profileId
-        )
-
-        AppSettingsRoute.PrivacyRoute.Privacy -> AppSettingsFragmentDirections.actionDirectToPrivacy()
-        AppSettingsRoute.LinkDeviceRoute.LinkDevice -> AppSettingsFragmentDirections.actionDirectToDevices()
-        AppSettingsRoute.UsernameLinkRoute.UsernameLink -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
-        is AppSettingsRoute.AccountRoute.Username -> AppSettingsFragmentDirections.actionDirectToUsernameRecovery()
-        is AppSettingsRoute.BackupsRoute.Remote -> AppSettingsFragmentDirections.actionDirectToRemoteBackupsSettingsFragment().setForQuickRestore(appSettingsRoute.forQuickRestore)
-        AppSettingsRoute.ChatFoldersRoute.ChatFolders -> AppSettingsFragmentDirections.actionDirectToChatFoldersFragment()
-        is AppSettingsRoute.ChatFoldersRoute.CreateChatFolders -> AppSettingsFragmentDirections.actionDirectToCreateFoldersFragment(
-          appSettingsRoute.folderId,
-          appSettingsRoute.threadIds
-        )
-
-        AppSettingsRoute.ChatsRoute.Chats -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
-        is AppSettingsRoute.BackupsRoute.Backups -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment().setLaunchCheckoutFlow(appSettingsRoute.launchCheckoutFlow)
-        AppSettingsRoute.Invite -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
-        AppSettingsRoute.DataAndStorageRoute.DataAndStorage -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
-        AppSettingsRoute.AccountRoute.Account -> if (SignalStore.account.isPrimaryDevice) {
-          AppSettingsFragmentDirections.actionDirectToAccountSettingsFragment()
+    val startingAction: NavDirections? = when (val appSettingsRoute: AppSettingsRoute? = resolveStartRoute()) {
+      null, AppSettingsRoute.Empty -> null
+      is AppSettingsRoute.BackupsRoute.Local -> {
+        if (appSettingsRoute.usesOnDeviceBackupsScreen()) {
+          AppSettingsFragmentDirections.actionDirectToLocalBackupsFragment()
+            .setTriggerUpdateFlow(appSettingsRoute.triggerUpdateFlow)
         } else {
-          AppSettingsFragmentDirections.actionDirectToLinkedDeviceAccountSettingsFragment()
+          AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
         }
-        else -> error("Unsupported start location: ${appSettingsRoute?.javaClass?.name}")
       }
+      is AppSettingsRoute.HelpRoute.Help -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
+        .setStartCategoryIndex(appSettingsRoute.startCategoryIndex)
+      AppSettingsRoute.DataAndStorageRoute.Proxy -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
+      AppSettingsRoute.NotificationsRoute.Notifications -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
+      AppSettingsRoute.ChangeNumberRoute.Start -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
+      is AppSettingsRoute.DonationsRoute.Donations -> AppSettingsFragmentDirections.actionDirectToManageDonations().setDirectToCheckoutType(appSettingsRoute.directToCheckoutType)
+      AppSettingsRoute.NotificationsRoute.MutedNotifications -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
+      AppSettingsRoute.NotificationsRoute.NotificationProfiles -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
+      is AppSettingsRoute.NotificationsRoute.EditProfile -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()
+      is AppSettingsRoute.NotificationsRoute.ProfileDetails -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
+        appSettingsRoute.profileId
+      )
+
+      AppSettingsRoute.PrivacyRoute.Privacy -> AppSettingsFragmentDirections.actionDirectToPrivacy()
+      AppSettingsRoute.LinkDeviceRoute.LinkDevice -> AppSettingsFragmentDirections.actionDirectToDevices()
+      AppSettingsRoute.UsernameLinkRoute.UsernameLink -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
+      is AppSettingsRoute.AccountRoute.Username -> AppSettingsFragmentDirections.actionDirectToUsernameRecovery()
+      is AppSettingsRoute.BackupsRoute.Remote -> AppSettingsFragmentDirections.actionDirectToRemoteBackupsSettingsFragment().setForQuickRestore(appSettingsRoute.forQuickRestore)
+      AppSettingsRoute.ChatFoldersRoute.ChatFolders -> AppSettingsFragmentDirections.actionDirectToChatFoldersFragment()
+      is AppSettingsRoute.ChatFoldersRoute.CreateChatFolders -> AppSettingsFragmentDirections.actionDirectToCreateFoldersFragment(
+        appSettingsRoute.folderId,
+        appSettingsRoute.threadIds
+      )
+
+      AppSettingsRoute.ChatsRoute.Chats -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
+      is AppSettingsRoute.BackupsRoute.Backups -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment().setLaunchCheckoutFlow(appSettingsRoute.launchCheckoutFlow)
+      AppSettingsRoute.Invite -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
+      AppSettingsRoute.DataAndStorageRoute.DataAndStorage -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
+      AppSettingsRoute.AccountRoute.Account -> if (SignalStore.account.isPrimaryDevice) {
+        AppSettingsFragmentDirections.actionDirectToAccountSettingsFragment()
+      } else {
+        AppSettingsFragmentDirections.actionDirectToLinkedDeviceAccountSettingsFragment()
+      }
+      else -> error("Unsupported start location: ${appSettingsRoute.javaClass.name}")
     }
 
     intent = intent.putExtra(START_ROUTE, AppSettingsRoute.Empty)
-
-    if (startingAction == null && savedInstanceState != null) {
-      wasConfigurationUpdated = savedInstanceState.getBoolean(STATE_WAS_CONFIGURATION_UPDATED)
-    }
 
     startingAction?.let {
       navController.safeNavigate(it)
     }
 
-    SignalStore.settings.onConfigurationSettingChanged.observe(this) { key ->
-      if (key == SettingsValues.THEME) {
-        DynamicTheme.setDefaultDayNightMode(this)
-        recreate()
-      } else if (key == SettingsValues.LANGUAGE) {
-        CachedInflater.from(this).clear()
-        wasConfigurationUpdated = true
-        recreate()
-        val intent = Intent(this, KeyCachingService::class.java)
-        intent.action = KeyCachingService.LOCALE_CHANGE_EVENT
-        startService(intent)
-      }
+    recreateOnThemeChange()
+    performActionOnCreate(savedInstanceState)
+  }
+
+  /**
+   * Hands this launch to [AppSettingsNavigationActivity] before anything is drawn, for launches that still reach this
+   * activity directly, such as the system's notification settings for the app or a notification posted before the
+   * flag changed.
+   */
+  private fun openInNavigationActivity() {
+    val navigationIntent = AppSettingsNavigationActivity.createIntent(this, resolveStartRoute() ?: AppSettingsRoute.Empty)
+      .addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+
+    if (!isExternalLaunch()) {
+      intent.getStringExtra(EXTRA_PERFORM_ACTION_ON_CREATE)?.let { navigationIntent.putExtra(EXTRA_PERFORM_ACTION_ON_CREATE, it) }
     }
 
-    if (savedInstanceState == null) {
-      when (intent.getStringExtra(EXTRA_PERFORM_ACTION_ON_CREATE)) {
-        ACTION_CHANGE_NUMBER_SUCCESS -> {
-          MaterialAlertDialogBuilder(this)
-            .setMessage(getString(R.string.ChangeNumber__your_phone_number_has_changed_to_s, SignalE164Util.prettyPrint(Recipient.self().requireE164())))
-            .setPositiveButton(R.string.ChangeNumber__okay, null)
-            .show()
-        }
+    startActivity(navigationIntent)
+    finish()
+    @Suppress("DEPRECATION")
+    overridePendingTransition(0, 0)
+  }
+
+  /** The route this launch asked to open, or null to open on the settings home. */
+  private fun resolveStartRoute(): AppSettingsRoute? {
+    return when {
+      intent?.categories?.contains(NOTIFICATION_CATEGORY) == true -> AppSettingsRoute.NotificationsRoute.Notifications
+      isExternalLaunch() -> {
+        Log.w(TAG, "Settings was launched by an external process. Ignoring starting route.")
+        null
       }
+      else -> intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)
     }
   }
+
+  private fun isExternalLaunch(): Boolean = Build.VERSION.SDK_INT >= 34 && getLaunchedFromUid() != Process.myUid()
 
   override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
@@ -142,20 +138,14 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     startActivity(intent)
   }
 
-  override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    outState.putBoolean(STATE_WAS_CONFIGURATION_UPDATED, wasConfigurationUpdated)
-  }
-
-  override fun onWillFinish() {
-    if (wasConfigurationUpdated) {
-      setResult(MainActivity.RESULT_CONFIG_CHANGED)
-    }
-  }
-
   override fun resolveNavGraphId(): Int = R.navigation.app_settings_with_change_number
 
   override fun resolveStartBundle(): Bundle? = null
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
 
   @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -165,6 +155,8 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
 
   companion object {
     const val ACTION_CHANGE_NUMBER_SUCCESS = "action_change_number_success"
+
+    const val REQUEST_CODE_UPGRADE_LOCAL_BACKUPS = 1205
 
     @JvmStatic
     @JvmOverloads
@@ -178,7 +170,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
 
     @JvmStatic
     fun help(context: Context, startCategoryIndex: Int = 0): Intent {
-      return getIntentForStartLocation(context, AppSettingsRoute.HelpRoute.Settings(startCategoryIndex = startCategoryIndex))
+      return getIntentForStartLocation(context, AppSettingsRoute.HelpRoute.Help(startCategoryIndex = startCategoryIndex))
         .putExtra(HelpFragment.START_CATEGORY_INDEX, startCategoryIndex)
     }
 
@@ -260,6 +252,10 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     fun upgradeLocalBackups(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Local(triggerUpdateFlow = true))
 
     private fun getIntentForStartLocation(context: Context, startRoute: AppSettingsRoute): Intent {
+      if (RemoteConfig.useAppSettingsNavigation) {
+        return AppSettingsNavigationActivity.createIntent(context, startRoute)
+      }
+
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings_with_change_number)
         .putExtra(START_ROUTE, startRoute)

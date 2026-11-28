@@ -9,6 +9,8 @@ import kotlin.math.min
  * This holds UI state for [org.thoughtcrime.securesms.components.webrtc.v2.CallAudioToggleButton]
  */
 class ToggleButtonOutputState {
+  var usesTelecom: Boolean = false
+
   private val availableOutputs: LinkedHashSet<WebRtcAudioOutput> = linkedSetOf(WebRtcAudioOutput.SPEAKER)
   private var selectedDevice = 0
     set(value) {

@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.conversation.colors
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Class to assist managing the colors of author names in the UI in groups.

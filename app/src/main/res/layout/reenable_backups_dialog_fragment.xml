@@ -22,7 +22,7 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="48dp"
         android:gravity="center"
-        android:text="@string/BackupSchedulePermissionMegaphone__to_reenable_backups"
+        android:text="@string/BackupSchedulePermissionMegaphone__to_allow_permission"
         android:textAppearance="@style/Signal.Text.HeadlineMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

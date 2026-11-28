@@ -44,7 +44,7 @@ fun EditContactNameScreen(
     title = stringResource(R.string.EditContactNameScreen__edit_name),
     onNavigationClick = { onEvent(EditContactNameEvent.BackClicked) },
     navigationIconRes = CoreUiR.drawable.symbol_arrow_start_24,
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
+    navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description)
   ) { contentPadding ->
     Column(
       modifier = Modifier

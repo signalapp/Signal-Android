@@ -47,7 +47,7 @@
 
         <argument
             android:name="recipient_id"
-            app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+            app:argType="org.signal.core.models.recipients.RecipientId"
             app:nullable="true" />
     </fragment>
 
@@ -59,7 +59,7 @@
 
         <argument
             android:name="recipient_id"
-            app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+            app:argType="org.signal.core.models.recipients.RecipientId"
             app:nullable="true" />
 
         <argument

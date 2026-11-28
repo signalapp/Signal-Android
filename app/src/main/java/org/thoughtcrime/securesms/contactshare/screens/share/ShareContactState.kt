@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.contactshare.screens.share
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /** State for the "Share contact" screen. */
 data class ShareContactState(
@@ -23,7 +23,8 @@ data class ShareContactState(
 
   data class AvatarSelection(
     val isSelected: Boolean,
-    val photo: ContactPhoto,
+    /** Null renders the name's initials, and shares no photo. */
+    val photo: ContactPhoto?,
     val isEditable: Boolean
   )
 
@@ -32,7 +33,8 @@ data class ShareContactState(
     val isSelected: Boolean,
     val isEditable: Boolean,
     /** When false the user cannot deselect the name. */
-    val isToggleable: Boolean = true
+    val isToggleable: Boolean = true,
+    val isOrgOnly: Boolean = false
   )
 
   data class DetailSelection(
@@ -49,7 +51,8 @@ data class ShareContactState(
 
   data class PhotoOption(
     val id: String,
-    val photo: ContactPhoto
+    /** Null for the "no photo" choice, which the picker draws as the initials fallback. */
+    val photo: ContactPhoto?
   )
 
   /** Profile photos are blobbed first, so sharing one is no different from an address book photo. */

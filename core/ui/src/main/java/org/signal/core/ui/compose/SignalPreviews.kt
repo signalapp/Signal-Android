@@ -8,14 +8,31 @@ package org.signal.core.ui.compose
 import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview
 
-private const val PHONE_PORTRAIT = "spec:width=360dp,height=780dp,orientation=portrait"
-private const val PHONE_LANDSCAPE = "spec:width=780dp,height=360dp,orientation=landscape"
-private const val SMALL_FOLDABLE_PORTRAIT = "spec:width=620dp,height=720dp,orientation=portrait"
-private const val SMALL_FOLDABLE_LANDSCAPE = "spec:width=720dp,height=620dp,orientation=landscape"
-private const val FOLDABLE_PORTRAIT = "spec:width=850dp,height=881dp,orientation=portrait"
-private const val FOLDABLE_LANDSCAPE = "spec:width=881dp,height=850dp,orientation=landscape"
-private const val TABLET_PORTRAIT = "spec:width=800dp,height=1280dp,orientation=portrait"
-private const val TABLET_LANDSCAPE = "spec:width=1280dp,height=800dp,orientation=landscape"
+/**
+ * Window sizes, in dp, of the devices that previews and layout stress tests render at.
+ */
+object DeviceSizes {
+  const val PHONE_WIDTH = 360
+  const val PHONE_HEIGHT = 780
+  const val SMALL_FOLDABLE_WIDTH = 620
+  const val SMALL_FOLDABLE_HEIGHT = 720
+  const val FOLDABLE_WIDTH = 850
+  const val FOLDABLE_HEIGHT = 881
+  const val SMALL_TABLET_WIDTH = 960
+  const val SMALL_TABLET_HEIGHT = 600
+  const val TABLET_WIDTH = 800
+  const val TABLET_HEIGHT = 1280
+}
+
+private const val PHONE_PORTRAIT = "spec:width=${DeviceSizes.PHONE_WIDTH}dp,height=${DeviceSizes.PHONE_HEIGHT}dp,orientation=portrait"
+private const val PHONE_LANDSCAPE = "spec:width=${DeviceSizes.PHONE_HEIGHT}dp,height=${DeviceSizes.PHONE_WIDTH}dp,orientation=landscape"
+private const val SMALL_FOLDABLE_PORTRAIT = "spec:width=${DeviceSizes.SMALL_FOLDABLE_WIDTH}dp,height=${DeviceSizes.SMALL_FOLDABLE_HEIGHT}dp,orientation=portrait"
+private const val SMALL_FOLDABLE_LANDSCAPE = "spec:width=${DeviceSizes.SMALL_FOLDABLE_HEIGHT}dp,height=${DeviceSizes.SMALL_FOLDABLE_WIDTH}dp,orientation=landscape"
+private const val FOLDABLE_PORTRAIT = "spec:width=${DeviceSizes.FOLDABLE_WIDTH}dp,height=${DeviceSizes.FOLDABLE_HEIGHT}dp,orientation=portrait"
+private const val FOLDABLE_LANDSCAPE = "spec:width=${DeviceSizes.FOLDABLE_HEIGHT}dp,height=${DeviceSizes.FOLDABLE_WIDTH}dp,orientation=landscape"
+private const val SMALL_TABLET_LANDSCAPE = "spec:width=${DeviceSizes.SMALL_TABLET_WIDTH}dp,height=${DeviceSizes.SMALL_TABLET_HEIGHT}dp,orientation=landscape"
+private const val TABLET_PORTRAIT = "spec:width=${DeviceSizes.TABLET_WIDTH}dp,height=${DeviceSizes.TABLET_HEIGHT}dp,orientation=portrait"
+private const val TABLET_LANDSCAPE = "spec:width=${DeviceSizes.TABLET_HEIGHT}dp,height=${DeviceSizes.TABLET_WIDTH}dp,orientation=landscape"
 
 /**
  * Only generates a dark preview. Useful for screens that are only ever rendered in dark mode (like calling).
@@ -27,7 +44,11 @@ annotation class NightPreview()
 @NightPreview
 annotation class DayNightPreviews
 
-@Preview(name = "rtl", locale = "ar")
+/**
+ * Renders with English strings in a right-to-left layout. The Arab script forces RTL while the language stays
+ * English, so these screenshots don't churn when new translations land.
+ */
+@Preview(name = "rtl", locale = "b+en+Arab")
 annotation class RtlPreview
 
 @Preview(name = "phone portrait (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = PHONE_PORTRAIT)
@@ -56,6 +77,13 @@ annotation class FoldablePortraitNightPreview
 
 @Preview(name = "foldable landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = FOLDABLE_LANDSCAPE)
 annotation class FoldableLandscapeDayPreview
+
+/**
+ * A small tablet in landscape: expanded width, but the shortest height of any non-phone window, which is where
+ * fixed-height content runs out of room first.
+ */
+@Preview(name = "small tablet landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = SMALL_TABLET_LANDSCAPE)
+annotation class SmallTabletLandscapeDayPreview
 
 @Preview(name = "tablet portrait (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = TABLET_PORTRAIT)
 annotation class TabletPortraitDayPreview
@@ -113,7 +141,7 @@ annotation class BreakpointPreviews
 
 /**
  * The screenshot test matrix, sized to catch UI regressions rather than to enumerate configurations: each device
- * in both orientations, a dark-mode pass over one representative size per device, and an RTL locale.
+ * in both orientations, a dark-mode pass over one representative size per device, and a right-to-left pass.
  */
 @PhonePortraitDayPreview
 @PhoneLandscapeDayPreview

@@ -1,0 +1,114 @@
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.models.recipients
+
+import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
+import org.signal.core.models.database.DatabaseId
+import org.signal.core.util.LongSerializer
+import java.util.regex.Pattern
+
+@Parcelize
+@Serializable
+class RecipientId private constructor(private val id: Long) : Parcelable, Comparable<RecipientId>, DatabaseId {
+
+  companion object {
+
+    private const val UNKNOWN_ID = -1L
+    private const val DELIMITER = ','
+
+    @JvmField
+    val UNKNOWN = from(UNKNOWN_ID)
+
+    @JvmField
+    val SERIALIZER: LongSerializer<RecipientId> = Serializer()
+
+    @JvmStatic
+    fun from(id: Long): RecipientId {
+      if (id == 0L) {
+        throw InvalidLongRecipientIdError()
+      }
+
+      return RecipientId(id)
+    }
+
+    @JvmStatic
+    fun from(id: String): RecipientId {
+      try {
+        return from(id.toLong())
+      } catch (_: NumberFormatException) {
+        throw InvalidStringRecipientIdError()
+      }
+    }
+
+    @JvmStatic
+    fun fromNullable(id: String?): RecipientId? = id?.let { from(it) }
+
+    @JvmStatic
+    fun toSerializedList(ids: Collection<RecipientId>): String {
+      return ids.joinToString(DELIMITER.toString()) { it.serialize() }
+    }
+
+    @JvmStatic
+    fun fromSerializedList(serialized: String): List<RecipientId> {
+      return serialized.split(DELIMITER).filter { it.isNotEmpty() }.map { from(it) }
+    }
+
+    @JvmStatic
+    fun serializedListContains(serialized: String, recipientId: RecipientId): Boolean {
+      return Pattern.compile("\\b${recipientId.serialize()}\\b")
+        .matcher(serialized)
+        .find()
+    }
+  }
+
+  override fun serialize(): String = id.toString()
+
+  override fun toString(): String = "RecipientId::$id"
+
+  fun toLong(): Long = id
+
+  @Transient
+  @IgnoredOnParcel
+  val isUnknown: Boolean = id == UNKNOWN_ID
+
+  @JvmOverloads
+  fun toQueueKey(forMedia: Boolean = false): String {
+    return "RecipientId::$id${if (forMedia) "::MEDIA" else ""}"
+  }
+
+  fun toScheduledSendQueueKey(): String = "RecipientId::$id::SCHEDULED"
+
+  fun toReceiptQueueKey(): String = "RecipientId::$id::RECEIPT"
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as RecipientId
+
+    return id == other.id
+  }
+
+  override fun hashCode(): Int {
+    return id.hashCode()
+  }
+
+  override fun compareTo(other: RecipientId): Int {
+    return id.compareTo(other.id)
+  }
+
+  private class InvalidLongRecipientIdError : AssertionError()
+  private class InvalidStringRecipientIdError : AssertionError()
+
+  private class Serializer : LongSerializer<RecipientId> {
+    override fun serialize(data: RecipientId): Long = data.toLong()
+    override fun deserialize(input: Long): RecipientId = from(input)
+  }
+}

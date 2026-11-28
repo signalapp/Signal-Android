@@ -8,6 +8,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchRepository
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchViewModel
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.databinding.ViewAllSignalConnectionsFragmentBinding
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.search.SearchRepository
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 

@@ -23,6 +23,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.ContactAction
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDeta
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailAction
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailKind
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailRow
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Checks what the details screen renders for a given card and which events its controls emit.

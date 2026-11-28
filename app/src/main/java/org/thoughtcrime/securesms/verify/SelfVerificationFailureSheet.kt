@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Sheet to prompt for debug logs when self key transparency fails
@@ -119,7 +120,7 @@ fun VerifyFailureSheet(
   ) {
     BottomSheets.Handle()
     Icon(
-      imageVector = ImageVector.vectorResource(R.drawable.symbol_error_circle_24),
+      imageVector = ImageVector.vectorResource(CoreUiR.drawable.symbol_error_circle_24),
       contentDescription = null,
       tint = Color(0xFFC88600),
       modifier = Modifier

@@ -98,6 +98,7 @@ private fun RecentMediaRailItem(
       model = remember(media) { media.thumbnailUri?.let { DecryptableUri(it, media.thumbnailTimeUs) } },
       imageSize = DpSize(ITEM_SIZE, ITEM_SIZE),
       scaleType = GlideImageScaleType.CENTER_CROP,
+      fadeIn = true,
       modifier = Modifier.fillMaxSize()
     )
 

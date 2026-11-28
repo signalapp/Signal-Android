@@ -79,6 +79,14 @@ data class RegistrationFlowState(
   /** If true, the ViewModel is still deciding whether to restore a previous flow or start fresh. */
   val isRestoringNavigationState: Boolean = true
 ) : Parcelable {
+
+  /**
+   * Whether the user went through the archive restore selection process. This is separate from [pendingRestoreOption] because it's true even
+   * if they chose to skip. Basically just helps us make some strings nicer if we knew the path they took to get here.
+   */
+  val sawArchiveRestoreSelectionScreen: Boolean
+    get() = backStack.any { it is RegistrationRoute.ArchiveRestoreSelection }
+
   override fun toString(): String {
     return "RegistrationFlowState(backStack=${backStack.joinToString()}, sessionMetadata=$sessionMetadata, sessionE164=$sessionE164, submittedVerificationCode=${submittedVerificationCode?.censor()}, accountEntropyPool=${accountEntropyPool?.displayValue?.censor()}, aci=${aci?.logString()}, storageCapable=$storageCapable, isPhoneNumberlessAccount=$isPhoneNumberlessAccount, temporaryMasterKey=${temporaryMasterKey?.toString()?.censor()}, preExistingRegistrationData=$preExistingRegistrationData, doNotAttemptRecoveryPassword=$doNotAttemptRecoveryPassword, pendingRestoreOption=$pendingRestoreOption, unverifiedRestoredAep=${unverifiedRestoredAep?.displayValue?.censor()}, restoreMethodToken=${restoreMethodToken?.censor()}, lastSmsVerificationCodeRequest=$lastSmsVerificationCodeRequest, lastCallVerificationCodeRequest=$lastCallVerificationCodeRequest, isRestoringNavigation=$isRestoringNavigationState)"
   }

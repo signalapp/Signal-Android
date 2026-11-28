@@ -23,6 +23,7 @@ import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcon
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.util.toLocalDateTime
 import org.signal.mediasend.R
 import org.signal.mediasend.test.TestTags
 import java.time.DayOfWeek
@@ -106,8 +107,6 @@ sealed interface ScheduleSendOption {
       return times.map { PresetTime(it) } + PickTime
     }
 
-    private fun Long.toLocalDateTime(zoneId: ZoneId): LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(this), zoneId)
-
     private fun LocalDateTime.toEpochMillis(zoneId: ZoneId): Long = TimeUnit.SECONDS.toMillis(atZone(zoneId).toEpochSecond())
   }
 }
@@ -187,7 +186,7 @@ private fun ScheduleSendMenuItem(
 
 private val ScheduleSendOption.icon: SignalIcon
   get() = when (this) {
-    is ScheduleSendOption.PresetTime -> if (LocalDateTime.ofInstant(Instant.ofEpochMilli(timeMs), ZoneId.systemDefault()).hour >= 18) SignalIcons.Nighttime else SignalIcons.Daytime
+    is ScheduleSendOption.PresetTime -> if (timeMs.toLocalDateTime().hour >= 18) SignalIcons.Nighttime else SignalIcons.Daytime
     ScheduleSendOption.PickTime -> SignalIcons.Calendar
   }
 

@@ -48,11 +48,23 @@ class PermissionController(
 
   private var requestId: Int by mutableIntStateOf(0)
   private var granted: Boolean? by mutableStateOf(null)
+  private var permanentlyDenied: Boolean by mutableStateOf(false)
   private var launchedRequestId: Int = 0
+  private var couldShowRationaleBeforeRequest: Boolean = false
+
+  /** Whether the last [request] was refused for good, leaving app settings as the only way back. */
+  val isPermanentlyDenied: Boolean
+    get() = permanentlyDenied
+
+  /** Whether the last [request] was refused without the system ever prompting. Narrower than [isPermanentlyDenied]. */
+  val wasRefusedWithoutPrompting: Boolean
+    get() = permanentlyDenied && !couldShowRationaleBeforeRequest
 
   /** Prompts for the permission and suspends until the user resolves it. */
   suspend fun request(): Boolean {
     granted = null
+    permanentlyDenied = false
+    couldShowRationaleBeforeRequest = false
     requestId++
     return snapshotFlow { granted }
       .filterNotNull()
@@ -69,10 +81,13 @@ class PermissionController(
 
     val permissionState = rememberPermissionState(permission = permission) { isGranted ->
       // The system stops prompting once a permission is permanently denied, so app settings is the only way back.
-      if (!isGranted && activity != null && !ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
+      permanentlyDenied = !isGranted && activity != null && !ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)
+
+      if (permanentlyDenied) {
         showPermanentDenialDialog = permanentDenialMessage != null
       }
 
+      // Set last, since this is what releases the suspended request.
       granted = isGranted
     }
 
@@ -86,6 +101,7 @@ class PermissionController(
       if (permissionState.status.isGranted) {
         granted = true
       } else {
+        couldShowRationaleBeforeRequest = activity != null && ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)
         permissionState.launchPermissionRequest()
       }
     }

@@ -143,4 +143,27 @@ class LimitedInputStreamTest {
 
     assertEquals(75, data.size)
   }
+
+  @Test
+  fun `bytesRead counts reads and skips, and stops at maxBytes`() {
+    val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = 75)
+
+    inputStream.readNBytesOrThrow(10)
+    assertEquals(10L, inputStream.bytesRead)
+
+    inputStream.skip(5)
+    assertEquals(15L, inputStream.bytesRead)
+
+    inputStream.readFully()
+    assertEquals(75L, inputStream.bytesRead)
+  }
+
+  @Test
+  fun `bytesRead stays below maxBytes when the wrapped stream ends early`() {
+    val inputStream = LimitedInputStream(ByteArray(20).inputStream(), maxBytes = 75)
+
+    inputStream.readFully()
+
+    assertEquals(20L, inputStream.bytesRead)
+  }
 }

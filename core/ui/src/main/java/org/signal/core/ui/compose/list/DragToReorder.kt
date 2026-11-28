@@ -296,6 +296,19 @@ class ReorderableListState internal constructor(
       onEvent.invoke(ItemMoved(fromIndex = draggingItem.index, toIndex = targetItem.index))
     }
     draggingItemIndex = targetItem.index
+
+    keepSlotsInPlace(draggingItem, targetItem)
+  }
+
+  /**
+   * A lazy list anchors its scroll position to the key of its first visible item, so a swap involving that item would
+   * shift every other slot and immediately trigger the next swap. Pinning by index for the next measure prevents that.
+   */
+  private fun keepSlotsInPlace(draggingItem: LazyListItemInfo, targetItem: LazyListItemInfo) {
+    val firstVisibleItemIndex = state.firstVisibleItemIndex
+    if (firstVisibleItemIndex == draggingItem.index || firstVisibleItemIndex == targetItem.index) {
+      state.requestScrollToItem(firstVisibleItemIndex, state.firstVisibleItemScrollOffset)
+    }
   }
 
   private val LazyListItemInfo.offsetEnd: Int
@@ -355,6 +368,9 @@ fun Modifier.reorderableList(
   }
 }
 
+/**
+ * @param modifier Applied inside the drag translation, so clips and decorations move with the dragged item.
+ */
 @Composable
 fun LazyItemScope.ReorderableItem(
   reorderableListState: ReorderableListState,
@@ -377,9 +393,9 @@ fun LazyItemScope.ReorderableItem(
     }
 
   if (reorderableListState.orientation == Orientation.Horizontal) {
-    Row(modifier = modifier.then(draggingModifier)) { content(dragging) }
+    Row(modifier = draggingModifier.then(modifier)) { content(dragging) }
   } else {
-    Column(modifier = modifier.then(draggingModifier)) { content(dragging) }
+    Column(modifier = draggingModifier.then(modifier)) { content(dragging) }
   }
 }
 

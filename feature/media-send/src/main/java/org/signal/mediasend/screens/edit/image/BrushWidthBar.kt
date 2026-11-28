@@ -13,6 +13,7 @@ import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.drag
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +37,9 @@ import org.signal.core.ui.compose.Previews
  *
  * The touchable area extends past the track towards the center of the screen so that the on-screen portion stays a
  * full [BrushWidthMetrics.BarThickness] wide even while the track is half clipped.
+ *
+ * Drawn in the theme's on-surface color rather than white so it stays visible against a light surface, matching the
+ * editor's other decorations.
  */
 @Composable
 fun BrushWidthBar(
@@ -45,6 +49,7 @@ fun BrushWidthBar(
 ) {
   var isDragging by remember { mutableStateOf(false) }
   val trackPath = remember { Path() }
+  val barColor = MaterialTheme.colorScheme.onSurface
 
   val offsetX by animateDpAsState(
     targetValue = with(BrushWidthMetrics) { if (isDragging) RestingOffset + SlideInDistance else RestingOffset },
@@ -76,8 +81,8 @@ fun BrushWidthBar(
         }
       }
   ) {
-    drawTrack(trackPath)
-    drawThumb(fraction)
+    drawTrack(trackPath, barColor)
+    drawThumb(fraction, barColor)
   }
 }
 
@@ -90,7 +95,7 @@ private fun fractionAt(y: Float, height: Float, thumbRadius: Float): Float {
   return (1f - (y - thumbRadius) / travel).coerceIn(0f, 1f)
 }
 
-private fun DrawScope.drawTrack(path: Path) = with(BrushWidthMetrics) {
+private fun DrawScope.drawTrack(path: Path, color: Color) = with(BrushWidthMetrics) {
   val centerX = BarThickness.toPx() / 2f
   val topHalfThickness = TrackTopThickness.toPx() / 2f
   val bottomHalfThickness = TrackBottomThickness.toPx() / 2f
@@ -102,15 +107,15 @@ private fun DrawScope.drawTrack(path: Path) = with(BrushWidthMetrics) {
   path.lineTo(centerX - bottomHalfThickness, size.height)
   path.close()
 
-  drawPath(path = path, color = Color.White, alpha = TrackAlpha)
+  drawPath(path = path, color = color, alpha = TrackAlpha)
 }
 
-private fun DrawScope.drawThumb(fraction: Float) = with(BrushWidthMetrics) {
+private fun DrawScope.drawThumb(fraction: Float, color: Color) = with(BrushWidthMetrics) {
   val radius = ThumbDiameter.toPx() / 2f
   val travel = size.height - radius * 2f
 
   drawCircle(
-    color = Color.White,
+    color = color,
     radius = radius,
     center = Offset(BarThickness.toPx() / 2f, radius + (1f - fraction) * travel)
   )

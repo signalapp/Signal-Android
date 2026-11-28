@@ -90,6 +90,8 @@ object AttachmentUploadUtil {
       builder.withBlurHash(getImageBlurHash(context, attachment))
     } else if (MediaUtil.isVideoType(attachment.contentType)) {
       builder.withBlurHash(getVideoBlurHash(context, attachment))
+    } else if (MediaUtil.isAudioType(attachment.contentType)) {
+      builder.withAudioHash(attachment.audioHash?.hash)
     }
 
     return builder.build()

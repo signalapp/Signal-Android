@@ -1,9 +1,9 @@
 package org.whispersystems.signalservice.api.crypto;
 
+import org.signal.core.util.StreamUtil;
 import org.signal.libsignal.crypto.Aes256GcmDecryption;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -24,8 +24,8 @@ public class ProfileCipherInputStream extends FilterInputStream {
 
     try {
       byte[] nonce = new byte[12];
-      Util.readFully(in, nonce);
-      Util.readFully(in, buffer);
+      StreamUtil.readFully(in, nonce);
+      StreamUtil.readFully(in, buffer);
 
       this.aes = new Aes256GcmDecryption(key.serialize(), nonce, new byte[] {});
     } catch (InvalidKeyException e) {

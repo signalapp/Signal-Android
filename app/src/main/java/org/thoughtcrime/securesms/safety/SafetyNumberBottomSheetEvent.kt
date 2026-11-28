@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.safety
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /** User-driven events emitted by the safety number bottom sheet UI. */
 sealed interface SafetyNumberBottomSheetEvent {

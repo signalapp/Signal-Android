@@ -14,7 +14,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.util.WeakHashMap
 
 /**
@@ -58,7 +58,7 @@ object TemporaryScreenshotSecurity {
     val window = activity.window
     val previous = activeHolds[window] ?: 0
     activeHolds[window] = previous + 1
-    if (previous == 0 && !TextSecurePreferences.isScreenSecurityEnabled(activity)) {
+    if (previous == 0 && !SignalStore.settings.isScreenSecurityEnabled) {
       window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
   }
@@ -68,7 +68,7 @@ object TemporaryScreenshotSecurity {
     val next = ((activeHolds[window] ?: 0) - 1).coerceAtLeast(0)
     if (next == 0) {
       activeHolds.remove(window)
-      if (!TextSecurePreferences.isScreenSecurityEnabled(activity)) {
+      if (!SignalStore.settings.isScreenSecurityEnabled) {
         window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
       }
     } else {

@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -14,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.bumptech.glide.RequestManager;
 
@@ -23,13 +27,15 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,10 +51,14 @@ public class LinkPreviewView extends FrameLayout {
   private static final int TYPE_CONVERSATION = 0;
   private static final int TYPE_COMPOSE      = 1;
 
+  public static final int NO_MAX_DESCRIPTION_HEIGHT = -1;
+
+  private static final long SIZE_ANIMATION_DURATION_MILLIS = 150;
+
   private ViewGroup                   container;
   private Stub<OutlinedThumbnailView> thumbnail;
   private TextView                    title;
-  private TextView                    description;
+  private EmojiTextView               description;
   private TextView                    site;
   private View                        divider;
   private View                        closeButton;
@@ -60,6 +70,12 @@ public class LinkPreviewView extends FrameLayout {
   private CornerMask                    cornerMask;
   private CloseClickedListener          closeClickedListener;
   private LinkPreviewViewThumbnailState thumbnailState = new LinkPreviewViewThumbnailState();
+
+  private @Nullable ValueAnimator sizeAnimator;
+  private           float         sizeAnimationFraction;
+  private           int           sizeAnimationStartHeight;
+  private           boolean       animatingOut;
+  private           int           contentHeight;
 
   public LinkPreviewView(Context context) {
     super(context);
@@ -98,7 +114,7 @@ public class LinkPreviewView extends FrameLayout {
       divider.setVisibility(VISIBLE);
       closeButton.setVisibility(VISIBLE);
       title.setMaxLines(2);
-      description.setMaxLines(2);
+      description.bindGestureListener();
 
       closeButton.setOnClickListener(v -> {
         if (closeClickedListener != null) {
@@ -111,11 +127,119 @@ public class LinkPreviewView extends FrameLayout {
   }
 
   @Override
-  protected void dispatchDraw(Canvas canvas) {
-    super.dispatchDraw(canvas);
-    if (type == TYPE_COMPOSE) return;
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    if (sizeAnimator == null) {
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      contentHeight = getMeasuredHeight();
+      return;
+    }
 
+    int contentHeightSpec = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED) : heightMeasureSpec;
+    super.onMeasure(widthMeasureSpec, contentHeightSpec);
+    contentHeight = getMeasuredHeight();
+
+    int targetHeight = animatingOut ? 0 : contentHeight;
+    int height       = Math.round(sizeAnimationStartHeight + (targetHeight - sizeAnimationStartHeight) * sizeAnimationFraction);
+    setMeasuredDimension(getMeasuredWidth(), height);
+  }
+
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
+    if (type == TYPE_COMPOSE) {
+      int save = canvas.save();
+      canvas.clipRect(0, 0, getWidth(), getHeight());
+      super.dispatchDraw(canvas);
+      canvas.restoreToCount(save);
+      return;
+    }
+
+    super.dispatchDraw(canvas);
     cornerMask.mask(canvas);
+  }
+
+  /**
+   * Animates from the currently displayed height to the height of whatever content is set next. Call before making the
+   * view visible and before changing its content.
+   */
+  public void animateToContentHeight() {
+    startSizeAnimation(false);
+  }
+
+  /**
+   * Animates the view down to nothing and then hides it.
+   */
+  public void animateOut() {
+    if (getVisibility() != VISIBLE || animatingOut) {
+      return;
+    }
+
+    startSizeAnimation(true);
+  }
+
+  /**
+   * True while {@link #animateOut()} is running, when the view is still visible but on its way to being hidden.
+   */
+  public boolean isAnimatingOut() {
+    return animatingOut;
+  }
+
+  /**
+   * The height the view will settle at once any size animation finishes.
+   */
+  public int getContentHeight() {
+    return contentHeight;
+  }
+
+  public void cancelSizeAnimation() {
+    if (sizeAnimator != null) {
+      sizeAnimator.cancel();
+    }
+  }
+
+  private void startSizeAnimation(boolean out) {
+    int startHeight = getVisibility() == VISIBLE && isLaidOut() ? getHeight() : 0;
+
+    cancelSizeAnimation();
+
+    sizeAnimationStartHeight = startHeight;
+    sizeAnimationFraction    = 0f;
+    animatingOut             = out;
+
+    ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+    animator.setDuration(SIZE_ANIMATION_DURATION_MILLIS);
+    animator.setInterpolator(new FastOutSlowInInterpolator());
+    animator.addUpdateListener(animation -> {
+      sizeAnimationFraction = (float) animation.getAnimatedValue();
+      requestLayout();
+    });
+    animator.addListener(new AnimatorListenerAdapter() {
+      private boolean canceled;
+
+      @Override
+      public void onAnimationCancel(Animator animation) {
+        canceled = true;
+      }
+
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        if (sizeAnimator != animation) {
+          return;
+        }
+
+        sizeAnimator = null;
+        animatingOut = false;
+
+        if (out && !canceled) {
+          setVisibility(GONE);
+        }
+
+        requestLayout();
+      }
+    });
+
+    sizeAnimator = animator;
+    animator.start();
+    requestLayout();
   }
 
   public void setLoading() {
@@ -158,6 +282,7 @@ public class LinkPreviewView extends FrameLayout {
     if (showDescription && !Util.isEmpty(linkPreview.getDescription())) {
       description.setText(linkPreview.getDescription());
       description.setVisibility(VISIBLE);
+      description.scrollTo(0, 0);
     } else if (callLinkRootKey != null) {
       description.setText(R.string.LinkPreviewView__use_this_link_to_join_a_signal_call);
       description.setVisibility(VISIBLE);
@@ -209,26 +334,101 @@ public class LinkPreviewView extends FrameLayout {
       thumbnail.setVisibility(GONE);
     }
 
-    boolean thumbnailVisible = (showThumbnail && linkPreview.getThumbnail().isPresent()) || callLinkRootKey != null;
-    alignTitleWithThumbnail(thumbnailVisible);
+    boolean thumbnailVisible     = (showThumbnail && linkPreview.getThumbnail().isPresent()) || callLinkRootKey != null;
+    boolean stackBesideThumbnail = thumbnailVisible && StickerUrl.isValidShareLink(linkPreview.getUrl());
+    alignTitleWithThumbnail(thumbnailVisible, stackBesideThumbnail);
+    alignDetailsWithThumbnail(stackBesideThumbnail);
   }
 
-  private void alignTitleWithThumbnail(boolean thumbnailVisible) {
+  private void alignTitleWithThumbnail(boolean thumbnailVisible, boolean stackBesideThumbnail) {
     ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) title.getLayoutParams();
-    if (thumbnailVisible) {
+    if (stackBesideThumbnail) {
+      params.topToTop           = R.id.linkpreview_thumbnail;
+      params.bottomToBottom     = ConstraintLayout.LayoutParams.UNSET;
+      params.bottomToTop        = R.id.linkpreview_description;
+      params.startToEnd         = R.id.linkpreview_thumbnail;
+      params.startToStart       = ConstraintLayout.LayoutParams.UNSET;
+      params.verticalChainStyle = ConstraintLayout.LayoutParams.CHAIN_PACKED;
+      params.setMarginStart(ViewUtil.dpToPx(8));
+    } else if (thumbnailVisible) {
       params.topToTop       = R.id.linkpreview_thumbnail;
       params.bottomToBottom = R.id.linkpreview_thumbnail;
+      params.bottomToTop    = ConstraintLayout.LayoutParams.UNSET;
       params.startToEnd     = R.id.linkpreview_thumbnail;
       params.startToStart   = ConstraintLayout.LayoutParams.UNSET;
       params.setMarginStart(ViewUtil.dpToPx(8));
     } else {
       params.topToTop       = ConstraintLayout.LayoutParams.PARENT_ID;
       params.bottomToBottom = ConstraintLayout.LayoutParams.UNSET;
+      params.bottomToTop    = ConstraintLayout.LayoutParams.UNSET;
       params.startToEnd     = ConstraintLayout.LayoutParams.UNSET;
       params.startToStart   = ConstraintLayout.LayoutParams.PARENT_ID;
       params.setMarginStart(0);
     }
     title.setLayoutParams(params);
+    title.setMaxLines(stackBesideThumbnail ? 1 : 2);
+  }
+
+  private void alignDetailsWithThumbnail(boolean stackBesideThumbnail) {
+    ConstraintLayout.LayoutParams descriptionParams = (ConstraintLayout.LayoutParams) description.getLayoutParams();
+    ConstraintLayout.LayoutParams siteParams        = (ConstraintLayout.LayoutParams) site.getLayoutParams();
+
+    if (stackBesideThumbnail) {
+      descriptionParams.topToBottom  = R.id.linkpreview_title;
+      descriptionParams.bottomToTop  = R.id.linkpreview_site;
+      descriptionParams.startToEnd   = R.id.linkpreview_thumbnail;
+      descriptionParams.startToStart = ConstraintLayout.LayoutParams.UNSET;
+      descriptionParams.topMargin    = 0;
+      descriptionParams.setMarginStart(ViewUtil.dpToPx(8));
+
+      siteParams.topToBottom    = R.id.linkpreview_description;
+      siteParams.bottomToBottom = R.id.linkpreview_thumbnail;
+      siteParams.startToEnd     = R.id.linkpreview_thumbnail;
+      siteParams.startToStart   = ConstraintLayout.LayoutParams.UNSET;
+      siteParams.setMarginStart(ViewUtil.dpToPx(8));
+    } else {
+      descriptionParams.topToBottom  = R.id.linkpreview_header_barrier;
+      descriptionParams.bottomToTop  = ConstraintLayout.LayoutParams.UNSET;
+      descriptionParams.startToEnd   = ConstraintLayout.LayoutParams.UNSET;
+      descriptionParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+      descriptionParams.topMargin    = ViewUtil.dpToPx(8);
+      descriptionParams.setMarginStart(0);
+
+      siteParams.topToBottom    = R.id.linkpreview_description;
+      siteParams.bottomToBottom = ConstraintLayout.LayoutParams.UNSET;
+      siteParams.startToEnd     = ConstraintLayout.LayoutParams.UNSET;
+      siteParams.startToStart   = ConstraintLayout.LayoutParams.PARENT_ID;
+      siteParams.setMarginStart(0);
+    }
+
+    description.setLayoutParams(descriptionParams);
+    description.setMaxLines(stackBesideThumbnail ? 1 : 15);
+    site.setLayoutParams(siteParams);
+    site.setMaxLines(stackBesideThumbnail ? 1 : 2);
+  }
+
+  public int getDescriptionHeight() {
+    return description.getVisibility() == VISIBLE ? description.getMeasuredHeight() : 0;
+  }
+
+  /**
+   * Limits the description to the given height, scrolling within it, without requesting a layout so it can be called
+   * while the parent is measuring.
+   */
+  public void setMaxDescriptionHeight(int maxHeight) {
+    ViewGroup.LayoutParams params = description.getLayoutParams();
+    int                    height = maxHeight == NO_MAX_DESCRIPTION_HEIGHT ? ViewGroup.LayoutParams.WRAP_CONTENT : Math.max(maxHeight, getMinDescriptionHeight());
+
+    if (params.height != height) {
+      params.height = height;
+      description.forceLayout();
+      container.forceLayout();
+      forceLayout();
+    }
+  }
+
+  private int getMinDescriptionHeight() {
+    return description.getLineHeight() + description.getCompoundPaddingTop() + description.getCompoundPaddingBottom();
   }
 
   public void setCorners(int topStart, int topEnd) {

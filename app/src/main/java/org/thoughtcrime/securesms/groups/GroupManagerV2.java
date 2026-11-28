@@ -10,7 +10,15 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.models.ServiceId.PNI;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.groups.GroupAlreadyExistsException;
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.GroupInsufficientRightsException;
+import org.signal.core.util.groups.GroupJoinAlreadyAMemberException;
+import org.signal.core.util.groups.GroupNotAMemberException;
+import org.signal.core.util.groups.MembershipNotSuitableForV2Exception;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
@@ -44,6 +52,7 @@ import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
+import org.thoughtcrime.securesms.groups.v2.processing.TriggeringMessage;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
@@ -52,7 +61,7 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.ProfileUtil;
@@ -199,12 +208,12 @@ final class GroupManagerV2 {
 
   @WorkerThread
   GroupCreator create() throws GroupChangeBusyException {
-    return new GroupCreator(GroupsV2ProcessingLock.acquireGroupProcessingLock());
+    return new GroupCreator(GroupsV2ProcessingLock.acquireGroupCreationProcessingLock());
   }
 
   @WorkerThread
   GroupEditor edit(@NonNull GroupId.V2 groupId) throws GroupChangeBusyException, GroupChangeFailedException {
-    Closeable lock = GroupsV2ProcessingLock.acquireGroupProcessingLock();
+    Closeable lock = GroupsV2ProcessingLock.acquireSingleGroupProcessingLock(groupId);
 
     GroupRecord groupRecord = groupDatabase.getGroup(groupId).orElse(null);
     if (groupRecord == null || !groupRecord.getHasV2GroupProperties()) {
@@ -217,12 +226,12 @@ final class GroupManagerV2 {
 
   @WorkerThread
   GroupJoiner join(@NonNull GroupMasterKey groupMasterKey, @NonNull GroupLinkPassword password) throws GroupChangeBusyException {
-    return new GroupJoiner(groupMasterKey, password, GroupsV2ProcessingLock.acquireGroupProcessingLock());
+    return new GroupJoiner(groupMasterKey, password, GroupsV2ProcessingLock.acquireSingleGroupProcessingLock(GroupId.v2(groupMasterKey)));
   }
 
   @WorkerThread
   GroupJoiner cancelRequest(@NonNull GroupId.V2 groupId) throws GroupChangeBusyException, GroupChangeFailedException {
-    Closeable lock = GroupsV2ProcessingLock.acquireGroupProcessingLock();
+    Closeable lock = GroupsV2ProcessingLock.acquireSingleGroupProcessingLock(groupId);
 
     GroupRecord groupRecord = groupDatabase.getGroup(groupId).orElse(null);
     if (groupRecord == null || !groupRecord.getHasV2GroupProperties()) {
@@ -237,7 +246,7 @@ final class GroupManagerV2 {
 
   @WorkerThread
   GroupUpdater updater(@NonNull GroupMasterKey groupId) throws GroupChangeBusyException {
-    return new GroupUpdater(groupId, GroupsV2ProcessingLock.acquireGroupProcessingLock());
+    return new GroupUpdater(groupId, GroupsV2ProcessingLock.acquireSingleGroupProcessingLock(GroupId.v2(groupId)));
   }
 
   final class GroupCreator extends LockOwner {
@@ -739,7 +748,7 @@ final class GroupManagerV2 {
       try {
         List<RecipientId> ids = groupOperations.decryptAddMembers(change.addMembers)
                                                .stream()
-                                               .map(RecipientId::from)
+                                               .map(RecipientIds::from)
                                                .collect(Collectors.toList());
 
         for (RecipientId id : ids) {
@@ -847,12 +856,11 @@ final class GroupManagerV2 {
                                                   @NonNull Optional<GroupRecord> localRecord,
                                                   @Nullable GroupSecretParams groupSecretParams,
                                                   @Nullable byte[] signedGroupChange,
-                                                  @Nullable String serverGuid,
-                                                  @Nullable Long receivedTime)
+                                                  @Nullable TriggeringMessage triggeringMessage)
         throws IOException, GroupNotAMemberException
     {
       return GroupsV2StateProcessor.forGroup(serviceIds, groupMasterKey, groupSecretParams)
-                                   .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange), localRecord, serverGuid, receivedTime);
+                                   .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange), localRecord, triggeringMessage);
     }
 
     @WorkerThread
@@ -1025,8 +1033,8 @@ final class GroupManagerV2 {
         decryptedChange = decryptChange(Objects.requireNonNull(signedGroupChange));
       } catch (GroupJoinAlreadyAMemberException e) {
         Log.i(TAG, "Server reports that we are already a member of " + groupId);
-        alreadyAFullMember       = e.isFullMember();
-        isAlreadyPendingApproval = e.isPending();
+        alreadyAFullMember       = e.isFullMember;
+        isAlreadyPendingApproval = e.isPending;
       }
 
       DecryptedGroup decryptedGroup = createPlaceholderGroup(joinInfo, requestToJoin);
@@ -1447,7 +1455,7 @@ final class GroupManagerV2 {
   private static @NonNull List<RecipientId> getPendingMemberRecipientIds(@NonNull List<DecryptedPendingMember> newPendingMembersList) {
     return DecryptedGroupUtil.pendingToServiceIdList(newPendingMembersList)
                              .stream()
-                             .map(RecipientId::from)
+                             .map(RecipientIds::from)
                              .collect(Collectors.toList());
   }
 

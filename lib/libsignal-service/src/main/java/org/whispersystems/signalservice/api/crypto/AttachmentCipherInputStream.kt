@@ -7,6 +7,7 @@ package org.whispersystems.signalservice.api.crypto
 
 import org.signal.core.models.backup.MediaRootBackupKey.MediaKeyMaterial
 import org.signal.core.util.Base64
+import org.signal.core.util.StreamUtil
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.stream.TrimmingInputStream
@@ -340,7 +341,7 @@ object AttachmentCipherInputStream {
 
       val ourMac = mac.doFinal()
       val theirMac = ByteArray(mac.macLength)
-      Util.readFully(inputStream, theirMac)
+      StreamUtil.readFully(inputStream, theirMac)
 
       if (!MessageDigest.isEqual(ourMac, theirMac)) {
         throw InvalidMessageException("MAC doesn't match!")

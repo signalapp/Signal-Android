@@ -14,6 +14,7 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -56,7 +57,9 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -67,6 +70,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.google.android.gms.auth.api.identity.GetPhoneNumberHintIntentRequest
@@ -80,6 +84,7 @@ import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.registration.R
@@ -89,9 +94,12 @@ import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.AccountIdErrorText
+import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.screens.shared.AccountIdVisualTransformation
+import org.signal.registration.screens.shared.ContactSupportDialog
 import org.signal.registration.screens.shared.accountIdTextStyle
 import org.signal.registration.test.TestTags
+import kotlin.math.max
 import org.signal.core.ui.R as CoreR
 
 private const val TAG = "PhoneNumberScreen"
@@ -219,6 +227,26 @@ fun PhoneNumberScreen(
     )
   }
 
+  if (state.dialogs.captchaNotAccepted) {
+    Dialogs.SimpleAlertDialog(
+      title = "",
+      body = stringResource(R.string.PhoneNumberEntryScreen__captcha_not_accepted),
+      confirm = stringResource(android.R.string.ok),
+      dismiss = stringResource(R.string.PhoneNumberEntryScreen__contact_support),
+      onConfirm = { onEvent(PhoneNumberEntryScreenEvents.CaptchaNotAcceptedDialogDismissed) },
+      onDeny = { onEvent(PhoneNumberEntryScreenEvents.CaptchaNotAcceptedContactSupport) },
+      onDismissRequest = { onEvent(PhoneNumberEntryScreenEvents.CaptchaNotAcceptedDialogDismissed) }
+    )
+  }
+
+  if (state.dialogs.contactSupport) {
+    ContactSupportDialog(
+      subject = R.string.PhoneNumberEntryScreen__contact_support_email_subject,
+      filter = R.string.PhoneNumberEntryScreen__contact_support_email_filter,
+      onDismiss = { onEvent(PhoneNumberEntryScreenEvents.ContactSupportDialogDismissed) }
+    )
+  }
+
   Box(
     modifier = modifier
       .fillMaxSize()
@@ -267,7 +295,7 @@ private fun OnePaneLayout(
       RegistrationScaffold.FooterSurface(
         isElevated = scrollState.canScrollForward
       ) {
-        NextButton(state, onEvent)
+        NextButton(params, state, onEvent)
       }
     }
   )
@@ -317,7 +345,7 @@ private fun TwoPaneLayout(
       RegistrationScaffold.FooterSurface(
         isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
-        NextButton(state, onEvent)
+        NextButton(params, state, onEvent)
       }
     }
   )
@@ -397,26 +425,43 @@ private fun Description(twoPane: Boolean = false) {
 
 @Composable
 private fun NextButton(
+  params: RegistrationScaffold.Params,
   state: PhoneNumberEntryState,
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit
 ) {
+  val arrangement = if (state.isPhoneNumberlessRegistrationAvailable) {
+    Arrangement.SpaceBetween
+  } else {
+    Arrangement.End
+  }
+
   Row(
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = 32.dp, vertical = 16.dp),
-    horizontalArrangement = Arrangement.End,
+      .padding(params.footerPadding),
+    horizontalArrangement = arrangement,
     verticalAlignment = Alignment.CenterVertically
   ) {
     if (state.isPhoneNumberlessRegistrationAvailable) {
       TextButton(
         onClick = { onEvent(PhoneNumberEntryScreenEvents.RegisterWithoutNumber) },
         enabled = !state.showSpinner,
-        modifier = Modifier.testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
+        modifier = Modifier
+          .weight(1f, fill = false)
+          .testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
       ) {
-        Text(stringResource(R.string.RegistrationActivity_register_without_number))
+        Text(
+          stringResource(
+            if (state.sawArchiveRestoreSelectionScreen) {
+              R.string.RegistrationActivity_use_account_id
+            } else {
+              R.string.RegistrationActivity_register_without_number
+            }
+          )
+        )
       }
 
-      Spacer(modifier = Modifier.weight(1f))
+      Spacer(modifier = Modifier.width(8.dp))
     }
 
     Buttons.LargeTonal(
@@ -506,6 +551,7 @@ private fun PhoneNumberInputFields(
 ) {
   var phoneNumberTextFieldValue by remember { mutableStateOf(TextFieldValue(state.formattedNumber)) }
   val focusRequester = remember { FocusRequester() }
+  val interactionSource = remember { MutableInteractionSource() }
   val hasValidCountry = state.countryName.isNotEmpty()
   val isAccountId = state.enteredAccountId != null
   val label = if (isAccountId) R.string.RegistrationActivity_account_id else R.string.RegistrationActivity_phone_number_description
@@ -561,11 +607,7 @@ private fun PhoneNumberInputFields(
     }
   }
 
-  Row(
-    modifier = modifier,
-    horizontalArrangement = Arrangement.Start,
-    verticalAlignment = Alignment.Top
-  ) {
+  CountryCodeAndNumberLayout(modifier = modifier) {
     CountryCodeButton(
       countryCode = state.countryCode,
       isAccountId = isAccountId,
@@ -573,19 +615,20 @@ private fun PhoneNumberInputFields(
       modifier = Modifier.testTag(TestTags.PHONE_NUMBER_COUNTRY_CODE_FIELD)
     )
 
-    Spacer(modifier = Modifier.width(20.dp))
-
     TextField(
       value = phoneNumberTextFieldValue,
       onValueChange = { newValue ->
-        onEvent(PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = phoneNumberTextFieldValue.text, newValue = newValue.text))
-        phoneNumberTextFieldValue = newValue
+        // An account ID that is already complete leaves the state untouched, so there is no re-sync to lean on: the
+        // field has to turn away the extra characters itself.
+        val accepted = if (isAccountId) newValue.copy(text = AccountIdFormat.normalizeAndTruncate(newValue.text)) else newValue
+        onEvent(PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = phoneNumberTextFieldValue.text, newValue = accepted.text))
+        phoneNumberTextFieldValue = accepted
       },
       modifier = Modifier
-        .weight(1f)
         .focusRequester(focusRequester)
         .testTag(TestTags.PHONE_NUMBER_PHONE_FIELD),
-      label = { Text(stringResource(label)) },
+      label = { TextFields.Label(stringResource(label), phoneNumberTextFieldValue.text.isNotEmpty(), interactionSource) },
+      interactionSource = interactionSource,
       isError = state.isNumberInvalid || state.accountIdError != null,
       supportingText = supportingText,
       keyboardOptions = if (isAccountId) {
@@ -624,6 +667,41 @@ private fun PhoneNumberInputFields(
   }
 }
 
+/**
+ * Places the number field beside the country code when it gets at least [fieldMinWidth], scaled with the font, and
+ * below it otherwise. A FlowRow can't make this call because TextField reports a 280dp intrinsic width.
+ */
+@Composable
+private fun CountryCodeAndNumberLayout(
+  modifier: Modifier = Modifier,
+  fieldMinWidth: Dp = 140.dp,
+  content: @Composable () -> Unit
+) {
+  val fontScale = LocalDensity.current.fontScale
+
+  Layout(content = content, modifier = modifier) { measurables, constraints ->
+    val (buttonMeasurable, fieldMeasurable) = measurables
+    val button = buttonMeasurable.measure(constraints.copy(minWidth = 0, minHeight = 0))
+    val spacing = 20.dp.roundToPx()
+    val inlineWidth = constraints.maxWidth - button.width - spacing
+
+    if (inlineWidth >= (fieldMinWidth * fontScale).roundToPx()) {
+      val field = fieldMeasurable.measure(constraints.copy(minWidth = inlineWidth, maxWidth = inlineWidth, minHeight = 0))
+      layout(constraints.maxWidth, max(button.height, field.height)) {
+        button.placeRelative(0, 0)
+        field.placeRelative(button.width + spacing, 0)
+      }
+    } else {
+      val field = fieldMeasurable.measure(constraints.copy(minWidth = constraints.maxWidth, minHeight = 0))
+      val gap = 8.dp.roundToPx()
+      layout(constraints.maxWidth, button.height + gap + field.height) {
+        button.placeRelative(0, 0)
+        field.placeRelative(0, button.height + gap)
+      }
+    }
+  }
+}
+
 @AllDevicePreviews
 @Composable
 private fun PhoneNumberScreenPreview() {
@@ -641,6 +719,20 @@ private fun PhoneNumberScreenRegisterWithoutNumberPreview() {
   Previews.Preview {
     PhoneNumberScreen(
       state = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun PhoneNumberScreenUseAccountIdPreview() {
+  Previews.Preview {
+    PhoneNumberScreen(
+      state = PhoneNumberEntryState(
+        isPhoneNumberlessRegistrationAvailable = true,
+        sawArchiveRestoreSelectionScreen = true
+      ),
       onEvent = {}
     )
   }

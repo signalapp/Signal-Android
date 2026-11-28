@@ -8,12 +8,15 @@ import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StringUtil
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -24,11 +27,9 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import java.util.Calendar
@@ -47,7 +48,7 @@ object ContactDiscovery {
   @Throws(IOException::class)
   @WorkerThread
   fun refreshAll(context: Context, notifyOfNewUsers: Boolean) {
-    if (TextUtils.isEmpty(SignalStore.account.e164)) {
+    if (TextUtils.isEmpty(SignalStore.account.e164) && !SignalStore.account.isPhoneNumberless) {
       Log.w(TAG, "Have not yet set our own local number. Skipping.")
       return
     }
@@ -178,11 +179,12 @@ object ContactDiscovery {
         contactsProvider = {
           if (useFullSync) {
             Log.d(TAG, "Doing a full system contact sync. There are ${result.registeredIds.size} contacts to get info for.")
-            SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter())
+            SystemContactsRepository.getAllSystemContacts(context, BuildConfig.APPLICATION_ID, phoneNumberFormatter())
           } else {
             Log.d(TAG, "Doing a partial system contact sync. There are ${result.registeredIds.size} contacts to get info for.")
             SystemContactsRepository.getContactDetailsByQueries(
               context = context,
+              ownAccountType = BuildConfig.APPLICATION_ID,
               queries = Recipient.resolvedList(result.registeredIds).mapNotNull { it.e164.orElse(null) },
               e164Formatter = phoneNumberFormatter()
             )
@@ -192,13 +194,13 @@ object ContactDiscovery {
       )
       stopwatch.split("contact-sync")
 
-      if (TextSecurePreferences.hasSuccessfullyRetrievedDirectory(context) && notifyOfNewUsers) {
+      if (SignalStore.misc.hasSuccessfullyRetrievedDirectory && notifyOfNewUsers) {
         val systemContacts: Set<RecipientId> = SignalDatabase.recipients.getSystemContacts().toSet()
         val newlyRegisteredSystemContacts: Set<RecipientId> = (result.registeredIds - preExistingRegisteredIds).intersect(systemContacts)
 
         notifyNewUsers(context, newlyRegisteredSystemContacts)
       } else {
-        TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true)
+        SignalStore.misc.hasSuccessfullyRetrievedDirectory = true
       }
       stopwatch.split("notify")
     } else {
@@ -242,12 +244,14 @@ object ContactDiscovery {
   private fun syncRecipientsWithSystemContacts(
     context: Context,
     rewrites: Map<String, String>,
-    contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter()) },
+    contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, BuildConfig.APPLICATION_ID, phoneNumberFormatter()) },
     clearInfoForMissingContacts: Boolean
   ) {
     val localNumber: String = SignalStore.account.e164 ?: ""
 
     val contactInfos = LinkedList<ContactInfo>()
+    var readIncomplete = false
+    var foundAnySystemContacts = false
     try {
       contactsProvider().use { iterator ->
         while (iterator.hasNext()) {
@@ -267,11 +271,14 @@ object ContactDiscovery {
               ProfileName.EMPTY
             }
 
-            val recipient: Recipient = Recipient.externalContact(realNumber) ?: continue
+            val e164: String = SignalE164Util.formatNonShortCodeAsE164(realNumber) ?: continue
+            foundAnySystemContacts = true
+
+            val recipientId: RecipientId = SignalDatabase.recipients.getByE164(e164).orNull() ?: continue
 
             contactInfos.add(
               ContactInfo(
-                recipientId = recipient.id,
+                recipientId = recipientId,
                 profileName = profileName,
                 displayName = phoneDetails.displayName,
                 photoUri = phoneDetails.photoUri,
@@ -282,13 +289,20 @@ object ContactDiscovery {
             )
           }
         }
+
+        readIncomplete = iterator.stoppedEarly
       }
     } catch (e: IllegalStateException) {
       Log.w(TAG, "Hit an issue with the cursor while reading!", e)
+      readIncomplete = true
     }
 
-    if (contactInfos.isNotEmpty()) {
-      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts)
+    if (readIncomplete && clearInfoForMissingContacts) {
+      Log.w(TAG, "Contact read stopped early. Not clearing info for contacts that weren't read.")
+    }
+
+    if (foundAnySystemContacts) {
+      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts && !readIncomplete)
       try {
         for (contactInfo in contactInfos) {
           handle.setSystemContactInfo(

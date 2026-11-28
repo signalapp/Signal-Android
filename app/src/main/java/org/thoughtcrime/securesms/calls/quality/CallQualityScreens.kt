@@ -778,7 +778,7 @@ enum class CallQualityIssueCategory(
   AUDIO(icon = CoreUiR.drawable.symbol_speaker_24),
   VIDEO(icon = R.drawable.symbol_video_24),
   CALL_DROPPED(icon = R.drawable.symbol_x_circle_24),
-  SOMETHING_ELSE(icon = R.drawable.symbol_error_circle_24)
+  SOMETHING_ELSE(icon = CoreUiR.drawable.symbol_error_circle_24)
 }
 
 enum class CallQualityIssue(

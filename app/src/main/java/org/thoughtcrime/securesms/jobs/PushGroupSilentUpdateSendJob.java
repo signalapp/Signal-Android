@@ -8,6 +8,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.NoSessionException;
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;

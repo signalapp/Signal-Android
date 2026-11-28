@@ -1,27 +1,48 @@
 package org.thoughtcrime.securesms.avatar.vector
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.avatar.Avatar
-import org.thoughtcrime.securesms.avatar.Avatars
-import org.thoughtcrime.securesms.util.livedata.Store
 
-class VectorAvatarCreationViewModel(initialAvatar: Avatar.Vector) : ViewModel() {
+/**
+ * Drives [VectorAvatarCreationScreen], recoloring [initialAvatar].
+ */
+class VectorAvatarCreationViewModel(initialAvatar: Avatar.Vector) : EventDrivenViewModel<VectorAvatarCreationEvent>(TAG) {
 
-  private val store = Store(VectorAvatarCreationState(initialAvatar))
-
-  val state: LiveData<VectorAvatarCreationState> = store.stateLiveData
-
-  fun setColor(colorPair: Avatars.ColorPair) {
-    store.update { it.copy(currentAvatar = it.currentAvatar.copy(color = colorPair)) }
+  companion object {
+    private val TAG = Log.tag(VectorAvatarCreationViewModel::class)
   }
 
-  fun getCurrentAvatar() = store.state.currentAvatar
+  private val _state = MutableStateFlow(VectorAvatarCreationState(initialAvatar))
+  val state: StateFlow<VectorAvatarCreationState> = _state.asStateFlow()
 
-  class Factory(private val initialAvatar: Avatar.Vector) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(VectorAvatarCreationViewModel(initialAvatar)))
+  private val _actions = Channel<VectorAvatarCreationAction>(Channel.BUFFERED)
+  val actions: Flow<VectorAvatarCreationAction> = _actions.receiveAsFlow()
+
+  /** Set once the editor exits, so a second tap before it leaves the screen doesn't navigate back again. */
+  private var exited = false
+
+  override suspend fun processEvent(event: VectorAvatarCreationEvent) {
+    when (event) {
+      is VectorAvatarCreationEvent.ColorSelected -> _state.update { it.copy(currentAvatar = it.currentAvatar.copy(color = event.color)) }
+      VectorAvatarCreationEvent.DoneClicked -> exit(VectorAvatarCreationAction.Finish(_state.value.currentAvatar))
+      VectorAvatarCreationEvent.NavigateBackClicked -> exit(VectorAvatarCreationAction.Close)
     }
+  }
+
+  private suspend fun exit(action: VectorAvatarCreationAction) {
+    if (exited) {
+      return
+    }
+
+    exited = true
+    _actions.send(action)
   }
 }

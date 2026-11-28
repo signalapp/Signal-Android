@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.dependencies
 
 import org.signal.core.ui.CoreUiDependencies
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 object CoreUiDependenciesProvider : CoreUiDependencies.Provider {
   override fun providePackageId(): String {
@@ -15,10 +15,10 @@ object CoreUiDependenciesProvider : CoreUiDependencies.Provider {
   }
 
   override fun provideIsIncognitoKeyboardEnabled(): Boolean {
-    return TextSecurePreferences.isIncognitoKeyboardEnabled(AppDependencies.application)
+    return SignalStore.settings.isIncognitoKeyboardEnabled
   }
 
   override fun provideIsScreenSecurityEnabled(): Boolean {
-    return TextSecurePreferences.isScreenSecurityEnabled(AppDependencies.application)
+    return SignalStore.settings.isScreenSecurityEnabled
   }
 }

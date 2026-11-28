@@ -9,6 +9,7 @@ import androidx.core.text.HtmlCompat;
 import java.util.stream.Collectors;
 
 import org.signal.core.util.Linkifier;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.signal.core.util.Util;
@@ -17,6 +18,7 @@ import org.whispersystems.signalservice.api.util.OptionalUtil;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -28,12 +30,15 @@ import okhttp3.HttpUrl;
 
 public final class LinkPreviewUtil {
 
+  private static final String TAG = Log.tag(LinkPreviewUtil.class);
+
   private static final Pattern OPEN_GRAPH_TAG_PATTERN     = Pattern.compile("<\\s*meta[^>]*property\\s*=\\s*\"\\s*og:([^\"]+)\"[^>]*/?\\s*>");
   private static final Pattern ARTICLE_TAG_PATTERN        = Pattern.compile("<\\s*meta[^>]*property\\s*=\\s*\"\\s*article:([^\"]+)\"[^>]*/?\\s*>");
   private static final Pattern OPEN_GRAPH_CONTENT_PATTERN = Pattern.compile("content\\s*=\\s*\"([^\"]*)\"");
   private static final Pattern TITLE_PATTERN              = Pattern.compile("<\\s*title[^>]*>(.*)<\\s*/title[^>]*>");
   private static final Pattern FAVICON_PATTERN            = Pattern.compile("<\\s*link[^>]*rel\\s*=\\s*\".*icon.*\"[^>]*>");
   private static final Pattern FAVICON_HREF_PATTERN       = Pattern.compile("href\\s*=\\s*\"([^\"]*)\"");
+  private static final Pattern HTML_TAG_PATTERN           = Pattern.compile("<[/!?a-zA-Z][^<>]*>");
 
   public static @Nullable String getTopLevelDomain(@Nullable String urlString) {
     if (!Util.isEmpty(urlString)) {
@@ -77,7 +82,7 @@ public final class LinkPreviewUtil {
         Matcher contentMatcher = OPEN_GRAPH_CONTENT_PATTERN.matcher(tag);
         if (contentMatcher.find() && contentMatcher.groupCount() > 0) {
           String content = fromDoubleEncoded(contentMatcher.group(1));
-          openGraphTags.put(property.toLowerCase(), content);
+          openGraphTags.put(property.toLowerCase(Locale.ROOT), content);
         }
       }
     }
@@ -92,7 +97,7 @@ public final class LinkPreviewUtil {
         Matcher contentMatcher = OPEN_GRAPH_CONTENT_PATTERN.matcher(tag);
         if (contentMatcher.find() && contentMatcher.groupCount() > 0) {
           String content = fromDoubleEncoded(contentMatcher.group(1));
-          openGraphTags.put(property.toLowerCase(), content);
+          openGraphTags.put(property.toLowerCase(Locale.ROOT), content);
         }
       }
     }
@@ -117,7 +122,21 @@ public final class LinkPreviewUtil {
   }
 
   private static @NonNull String fromDoubleEncoded(@NonNull String html) {
-    return HtmlCompat.fromHtml(HtmlCompat.fromHtml(html, 0).toString(), 0).toString();
+    return stripHtml(stripHtml(html));
+  }
+
+  /**
+   * Removes HTML tags and decodes entities. Tags are removed and any remaining '<' is escaped first, so the HTML parser
+   * never sees markup.
+   */
+  static @NonNull String stripHtml(@NonNull String html) {
+    String withoutTags = HTML_TAG_PATTERN.matcher(html).replaceAll("");
+    try {
+      return HtmlCompat.fromHtml(withoutTags.replace("<", "&lt;"), 0).toString();
+    } catch (RuntimeException e) {
+      Log.w(TAG, "Failed to decode HTML entities. " + e.getClass().getSimpleName());
+      return withoutTags;
+    }
   }
 
   public static final class OpenGraph {

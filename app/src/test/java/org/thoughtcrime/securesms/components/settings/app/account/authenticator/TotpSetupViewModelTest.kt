@@ -26,17 +26,20 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.totpsetup.TotpSetupAction
 import org.signal.appsettings.totpsetup.TotpSetupEvent
+import org.signal.appsettings.totpsetup.TotpSetupState
 import org.signal.appsettings.totpsetup.TotpSetupState.Dialog
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
-import java.util.UUID
+import java.time.LocalDateTime
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class TotpSetupViewModelTest {
 
   companion object {
-    private const val ACCOUNT_NAME = "8B4A1F0C"
+    private const val ACCOUNT_NAME = "2026-09-15"
     private const val SETUP_URI = "otpauth://totp/Signal:%2B15551234567?secret=MZXW6YTBOI"
     private const val DISPLAY_KEY = "MZXW 6YTB OI"
     private const val CLIPBOARD_KEY = "MZXW6YTBOI"
@@ -50,6 +53,7 @@ class TotpSetupViewModelTest {
 
   private val testDispatcher = UnconfinedTestDispatcher()
   private val repository: TotpRepository = mockk(relaxed = true)
+  private val parentEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
@@ -93,38 +97,45 @@ class TotpSetupViewModelTest {
 
     viewModel.onEvent(TotpSetupEvent.CopyKeyClicked)
 
-    assertThat(actions.first()).isEqualTo(TotpSetupAction.CopyKeyToClipboard(CLIPBOARD_KEY))
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.ShowKeyCopied)
+    assertThat(actions).isEqualTo(listOf(TotpSetupAction.CopyKeyToClipboard(CLIPBOARD_KEY)))
+    assertThat(viewModel.state.value.snackbar).isEqualTo(TotpSetupState.Snackbar.KeyCopied)
+  }
+
+  @Test
+  fun `SnackbarDismissed clears the snackbar`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(TotpSetupEvent.CopyKeyClicked)
+    viewModel.onEvent(TotpSetupEvent.SnackbarDismissed)
+
+    assertThat(viewModel.state.value.snackbar).isEqualTo(TotpSetupState.Snackbar.None)
   }
 
   @Test
   fun `ContinueClicked moves on to code entry`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpSetupEvent.ContinueClicked)
 
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.NavigateToCodeEntry)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.AccountRoute.TotpCodeEntry)))
   }
 
   @Test
   fun `NoTotpAppFound reports the failure`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpSetupEvent.NoTotpAppFound)
 
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.ShowNoTotpAppFound)
+    assertThat(viewModel.state.value.snackbar).isEqualTo(TotpSetupState.Snackbar.NoTotpAppFound)
   }
 
   @Test
   fun `backing out leaves the screen`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpSetupEvent.NavigateBackClicked)
 
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.NavigateBack)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateBack()))
   }
 
   @Test
@@ -152,27 +163,28 @@ class TotpSetupViewModelTest {
     coEvery { repository.beginSetup(any()) } returns TotpRepository.BeginSetupResult.NetworkFailure
 
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpSetupEvent.DialogDismissed)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.NavigateBack)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateBack()))
   }
 
   @Test
-  fun `accountNameFor - takes the first hunk of the ACI, uppercased`() {
-    val aci = UUID.fromString("8b4a1f0c-2d3e-4a5b-9c7d-1e2f3a4b5c6d")
+  fun `accountNameFor - names the app after the day it was set up, without the time of day`() {
+    val time = LocalDateTime.of(2026, 9, 15, 13, 45, 30)
 
-    assertThat(TotpSetupViewModel.accountNameFor(aci)).isEqualTo("8B4A1F0C")
+    assertThat(TotpSetupViewModel.accountNameFor(time)).isEqualTo("2026-09-15")
   }
 
   @Test
-  fun `accountNameFor - has nothing to say without an ACI, which leaves the issuer as the whole label`() {
-    assertThat(TotpSetupViewModel.accountNameFor(null)).isEqualTo("")
+  fun `accountNameFor - pads single-digit months and days so the names sort`() {
+    val time = LocalDateTime.of(2026, 1, 2, 0, 0)
+
+    assertThat(TotpSetupViewModel.accountNameFor(time)).isEqualTo("2026-01-02")
   }
 
-  private fun createViewModel() = TotpSetupViewModel(repository = repository, accountName = ACCOUNT_NAME)
+  private fun createViewModel() = TotpSetupViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, accountName = ACCOUNT_NAME)
 
   private fun TestScope.collectActions(actions: Flow<TotpSetupAction>): List<TotpSetupAction> {
     val collected = mutableListOf<TotpSetupAction>()

@@ -2,8 +2,10 @@ package org.signal.paging;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.SignalExecutors;
+
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 /**
  * We have a bit of a threading problem -- we want our controller to have a fixed size so that it
@@ -35,7 +37,7 @@ class BufferedPagingController<Key, Data> implements PagingController<Key> {
     this.dataSource            = dataSource;
     this.config                = config;
     this.dataStream            = dataStream;
-    this.serializationExecutor = Executors.newSingleThreadExecutor();
+    this.serializationExecutor = SignalExecutors.newCachedSingleThreadExecutor("signal-BufferedPagingController", ThreadUtil.PRIORITY_UI_BLOCKING_THREAD);
 
     this.activeController   = null;
     this.lastRequestedIndex = config.startIndex();

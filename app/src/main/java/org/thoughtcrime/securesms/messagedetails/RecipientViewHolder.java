@@ -13,9 +13,9 @@ import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;
 import java.util.Locale;
@@ -45,7 +45,7 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
   }
 
   void bind(RecipientDeliveryStatus data) {
-    unidentifiedDeliveryIcon.setVisibility(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(itemView.getContext()) && data.isUnidentified() ? View.VISIBLE : View.GONE);
+    unidentifiedDeliveryIcon.setVisibility(SignalStore.settings().isShowUnidentifiedDeliveryIndicatorsEnabled() && data.isUnidentified() ? View.VISIBLE : View.GONE);
     fromView.setText(data.getRecipient(), data.getRecipient().getDisplayName(itemView.getContext()), null, true, true);
     avatar.setRecipient(data.getRecipient());
     badge.setBadgeFromRecipient(data.getRecipient());

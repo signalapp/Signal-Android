@@ -216,10 +216,11 @@ class DemoStorageController(private val context: Context) : StorageController {
       RegistrationPreferences.saveProvisioningData(
         NetworkController.ProvisioningMessage(
           accountEntropyPool = data.accountEntropyPool,
-          e164 = accountData.e164.orEmpty(),
+          aci = ACI.parseOrThrow(accountData.aci),
+          e164 = accountData.e164?.takeIf { it.isNotEmpty() },
           pin = data.pin.ifEmpty { null },
           aciIdentityKeyPair = IdentityKeyPair(accountData.aciIdentityKeyPair.toByteArray()),
-          pniIdentityKeyPair = IdentityKeyPair(accountData.pniIdentityKeyPair.toByteArray()),
+          pniIdentityKeyPair = accountData.pniIdentityKeyPair.takeIf { it.size > 0 }?.let { IdentityKeyPair(it.toByteArray()) },
           platform = when (prov.platform) {
             ProvisioningData.Platform.ANDROID -> NetworkController.ProvisioningMessage.Platform.ANDROID
             ProvisioningData.Platform.IOS -> NetworkController.ProvisioningMessage.Platform.IOS
@@ -242,6 +243,8 @@ class DemoStorageController(private val context: Context) : StorageController {
   }
 
   override suspend fun onRegistrationFlowFinished() = Unit
+
+  override suspend fun markHasTwoFactorMethods() = Unit
 
   override suspend fun setRestoreDecision(decision: RestoreDecision) = withContext(Dispatchers.IO) {
     Log.i(TAG, "[setRestoreDecision] Recording restore decision: $decision")

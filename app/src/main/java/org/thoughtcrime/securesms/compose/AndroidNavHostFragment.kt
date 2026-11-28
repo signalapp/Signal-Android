@@ -73,7 +73,8 @@ class NavHostWrapperFragment : Fragment(), FragmentBackPressedInfoProvider {
     }
   }
 
-  private val navHostFragment: NavHostFragment?
+  /** The hosted nav host, once [onCreate] has added it. */
+  val navHostFragment: NavHostFragment?
     get() = childFragmentManager.findFragmentById(R.id.nav_host_wrapper_container) as? NavHostFragment
 
   override fun onCreate(savedInstanceState: Bundle?) {

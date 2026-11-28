@@ -34,6 +34,7 @@ import org.signal.archive.proto.GroupChangeChatUpdate;
 import org.signal.archive.proto.GroupCreationUpdate;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.fonts.SignalSymbols.Glyph;
 import org.signal.core.util.Base64;
 import org.signal.core.util.BidiUtil;
@@ -65,9 +66,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.signal.core.ui.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
@@ -230,9 +230,9 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isOutgoingVideoCall()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_outgoing_video_call), getCallDateString(context)), Glyph.VIDEO_CAMERA);
     } else if (isMissedAudioCall()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_missed_voice_call), getCallDateString(context)), Glyph.PHONE, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_missed_voice_call), getCallDateString(context)), Glyph.PHONE, ContextCompat.getColor(context, org.signal.core.ui.R.color.core_red_shade), ContextCompat.getColor(context, org.signal.core.ui.R.color.core_red));
     } else if (isMissedVideoCall()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_missed_video_call), getCallDateString(context)), Glyph.VIDEO_CAMERA, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_missed_video_call), getCallDateString(context)), Glyph.VIDEO_CAMERA, ContextCompat.getColor(context, org.signal.core.ui.R.color.core_red_shade), ContextCompat.getColor(context, org.signal.core.ui.R.color.core_red));
     } else if (isGroupCall()) {
       return getGroupCallUpdateDescription(context, getBody(), true);
     } else if (isJoined()) {
@@ -305,8 +305,8 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isReportedSpam()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_reported_as_spam), Glyph.SPAM);
     } else if (isMessageRequestAccepted()) {
-      return isGroupV2() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_accepted_the_group_request), Glyph.THREAD)
-                         : fromRecipient(getToRecipient(), r -> context.getString(R.string.MessageRecord_you_accepted_s_message_request, r.getDisplayName(context)), Glyph.THREAD);
+      return getToRecipient().isGroup() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_accepted_the_group_request), Glyph.THREAD)
+                                        : fromRecipient(getToRecipient(), r -> context.getString(R.string.MessageRecord_you_accepted_s_message_request, r.getDisplayName(context)), Glyph.THREAD);
     } else if (isBlocked()) {
       return staticUpdateDescription(context.getString(isGroupV2() ? R.string.MessageRecord_you_blocked_this_group : R.string.MessageRecord_you_blocked_this_person), Glyph.BLOCK);
     } else if (isUnblocked()) {
@@ -553,8 +553,10 @@ public abstract class MessageRecord extends DisplayRecord {
         String previouslyKnownAs;
         if (!Util.isEmpty(profileChangeDetails.learnedProfileName.e164)) {
           previouslyKnownAs = SignalE164Util.prettyPrint(profileChangeDetails.learnedProfileName.e164);
-        } else {
+        } else if (!Util.isEmpty(profileChangeDetails.learnedProfileName.username)) {
           previouslyKnownAs = profileChangeDetails.learnedProfileName.username;
+        } else {
+          previouslyKnownAs = profileChangeDetails.learnedProfileName.sharedName;
         }
 
         if (!Util.isEmpty(previouslyKnownAs)) {

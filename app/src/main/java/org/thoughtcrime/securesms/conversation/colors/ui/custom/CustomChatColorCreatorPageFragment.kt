@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.Util
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -35,7 +36,6 @@ import org.thoughtcrime.securesms.conversation.colors.ui.ChatColorPreviewView
 import org.thoughtcrime.securesms.conversation.colors.ui.ChatColorSelectionViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.customizeOnDraw
 
 private const val MAX_SEEK_DIVISIONS = 1023

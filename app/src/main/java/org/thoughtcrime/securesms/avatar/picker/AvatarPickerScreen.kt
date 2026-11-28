@@ -53,6 +53,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import kotlinx.coroutines.flow.first
@@ -77,7 +79,8 @@ import org.signal.core.ui.R as CoreUiR
 private val AVATAR_SIZE = 72.dp
 private val SELECTED_AVATAR_SIZE = 56.dp
 private val AVATAR_SPACING = 24.dp
-private val AVATAR_GRID_INSET_LARGE = 112.dp
+private const val MAX_COLUMNS = 4
+private const val MAX_COLUMNS_LARGE = 6
 
 private const val HEADER_ITEM_COUNT = 1
 
@@ -110,9 +113,9 @@ fun AvatarPickerScreen(
       }
     }
   ) { contentPadding ->
-    val gridInset = when (rememberWindowBreakpoint()) {
-      is WindowBreakpoint.Small -> 0.dp
-      else -> AVATAR_GRID_INSET_LARGE
+    val maxColumns = when (rememberWindowBreakpoint()) {
+      is WindowBreakpoint.Large -> MAX_COLUMNS_LARGE
+      is WindowBreakpoint.Small, is WindowBreakpoint.Medium -> MAX_COLUMNS
     }
 
     val gridState = rememberLazyGridState()
@@ -131,12 +134,12 @@ fun AvatarPickerScreen(
 
       LazyVerticalGrid(
         state = gridState,
-        columns = GridCells.FixedSize(AVATAR_SIZE),
+        columns = remember(maxColumns) { CappedFixedSize(AVATAR_SIZE, maxColumns) },
         horizontalArrangement = spacedBy(AVATAR_SPACING, Alignment.CenterHorizontally),
         verticalArrangement = spacedBy(AVATAR_SPACING),
         contentPadding = PaddingValues(
-          start = dimensionResource(CoreUiR.dimen.gutter) + gridInset,
-          end = dimensionResource(CoreUiR.dimen.gutter) + gridInset,
+          start = dimensionResource(CoreUiR.dimen.gutter),
+          end = dimensionResource(CoreUiR.dimen.gutter),
           bottom = AVATAR_SPACING
         ),
         modifier = Modifier.testTag(AvatarPickerTestTags.AVATAR_GRID)
@@ -247,9 +250,11 @@ private fun CurrentAvatar(
         if (canClear) {
           IconButtons.IconButton(
             onClick = onClearClick,
+            size = 32.dp,
             modifier = Modifier
-              .testTag(AvatarPickerTestTags.CLEAR_AVATAR_BUTTON)
-              .padding(4.dp)
+              .padding(8.dp)
+              .size(32.dp)
+              .testTag(AvatarPickerTestTags.CLEAR_AVATAR_BUTTON).padding(4.dp)
               .background(
                 color = MaterialTheme.colorScheme.secondaryContainer,
                 shape = CircleShape
@@ -345,6 +350,18 @@ private fun SelectableAvatar(
         }
       )
     }
+  }
+}
+
+/**
+ * As many [size] cells as fit, up to [maxCount]. Whatever width is left over is placed by the grid's horizontal
+ * arrangement.
+ */
+private class CappedFixedSize(private val size: Dp, private val maxCount: Int) : GridCells {
+  override fun Density.calculateCrossAxisCellSizes(availableSize: Int, spacing: Int): List<Int> {
+    val cellSize = size.roundToPx()
+    val fitting = ((availableSize + spacing) / (cellSize + spacing)).coerceAtLeast(1)
+    return List(minOf(fitting, maxCount)) { cellSize }
   }
 }
 

@@ -19,11 +19,6 @@
         android:layout_marginTop="8dp"
         android:layout_weight="1">
 
-        <FrameLayout
-            android:id="@+id/video_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/edit_history_list"
             android:layout_width="match_parent"

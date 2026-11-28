@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.GroupChange
@@ -16,7 +17,6 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer
 import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
@@ -139,9 +139,10 @@ class GroupStateTestData(private val masterKey: GroupMasterKey, private val grou
     inviteLinkPassword: ByteArray = ByteArray(0),
     disappearingMessageTimer: DecryptedTimer = DecryptedTimer(),
     isPlaceholderGroup: Boolean = false,
-    terminated: Boolean = false
+    terminated: Boolean = false,
+    needsServerSnapshot: Boolean = false
   ) {
-    localState = decryptedGroup(revision, title, avatar, description, accessControl, members, pendingMembers, requestingMembers, inviteLinkPassword, disappearingMessageTimer, isPlaceholderGroup, terminated)
+    localState = decryptedGroup(revision, title, avatar, description, accessControl, members, pendingMembers, requestingMembers, inviteLinkPassword, disappearingMessageTimer, isPlaceholderGroup, terminated, needsServerSnapshot)
     groupRecord = groupRecord(masterKey, localState!!, active = active)
   }
 
@@ -231,7 +232,8 @@ fun decryptedGroup(
   inviteLinkPassword: ByteArray = ByteArray(0),
   disappearingMessageTimer: DecryptedTimer = DecryptedTimer(),
   isPlaceholderGroup: Boolean = false,
-  terminated: Boolean = false
+  terminated: Boolean = false,
+  needsServerSnapshot: Boolean = false
 ): DecryptedGroup {
   return DecryptedGroup(
     accessControl = accessControl,
@@ -246,6 +248,7 @@ fun decryptedGroup(
     pendingMembers = pendingMembers,
     requestingMembers = requestingMembers,
     isPlaceholderGroup = isPlaceholderGroup,
-    terminated = terminated
+    terminated = terminated,
+    needsServerSnapshot = needsServerSnapshot
   )
 }

@@ -73,6 +73,19 @@ class LinkPreviewViewModelV2(
     return currentState.linkPreview.map { listOf(it) }.orElse(emptyList())
   }
 
+  /**
+   * Adopt a link preview that has already been resolved elsewhere (e.g. the text story link entry
+   * dialog) so that a subsequent [onTextChanged] for the same URL short-circuits instead of kicking
+   * off a redundant fetch.
+   */
+  fun onLinkPreviewResolved(resolvedState: LinkPreviewState) {
+    activeRequest.dispose()
+    debouncer.clear()
+    userCancelled = false
+    activeUrl = resolvedState.url
+    setLinkPreviewState(resolvedState)
+  }
+
   fun onTextChanged(text: String, cursorStart: Int, cursorEnd: Int) {
     if (!enabled && !enablePlaceholder) {
       return

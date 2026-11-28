@@ -9,6 +9,8 @@ import android.app.Application
 import android.content.Context
 import android.media.AudioDeviceInfo
 import android.media.AudioManager
+import android.media.AudioRecordingConfiguration
+import android.media.MediaRecorder
 import android.media.SoundPool
 import assertk.assertThat
 import assertk.assertions.isTrue
@@ -92,6 +94,40 @@ class FullSignalAudioManagerApi31Test {
         )
       }
       verify(exactly = 0) { eventListener.onAudioDeviceChangeFailed() }
+    } finally {
+      shutdownManager(manager)
+    }
+  }
+
+  @Test
+  fun `Given the recording becomes silenced and then unsilenced, when the recording config changes, then I expect one notification per change`() {
+    val manager = FullSignalAudioManagerApi31(AppDependencies.application, eventListener)
+
+    try {
+      setState(manager, SignalAudioManager.State.RUNNING)
+
+      triggerRecordingConfigChanged(manager, listOf(createRecordingConfiguration(silenced = true)))
+      triggerRecordingConfigChanged(manager, listOf(createRecordingConfiguration(silenced = true)))
+      triggerRecordingConfigChanged(manager, listOf(createRecordingConfiguration(silenced = false)))
+
+      verify(exactly = 1) { eventListener.onMicrophoneSilencedChanged(true) }
+      verify(exactly = 1) { eventListener.onMicrophoneSilencedChanged(false) }
+    } finally {
+      shutdownManager(manager)
+    }
+  }
+
+  @Test
+  fun `Given the recording was never silenced, when the recording config changes, then I expect no notification`() {
+    val manager = FullSignalAudioManagerApi31(AppDependencies.application, eventListener)
+
+    try {
+      setState(manager, SignalAudioManager.State.RUNNING)
+
+      triggerRecordingConfigChanged(manager, listOf(createRecordingConfiguration(silenced = false)))
+      triggerRecordingConfigChanged(manager, emptyList())
+
+      verify(exactly = 0) { eventListener.onMicrophoneSilencedChanged(any()) }
     } finally {
       shutdownManager(manager)
     }
@@ -223,6 +259,22 @@ class FullSignalAudioManagerApi31Test {
 
     assertThat(posted).isTrue()
     assertThat(latch.await(2, TimeUnit.SECONDS)).isTrue()
+  }
+
+  private fun createRecordingConfiguration(silenced: Boolean): AudioRecordingConfiguration {
+    return mockk(relaxed = true) {
+      every { isClientSilenced } returns silenced
+      every { audioDevice } returns null
+      every { audioSource } returns MediaRecorder.AudioSource.VOICE_COMMUNICATION
+    }
+  }
+
+  private fun triggerRecordingConfigChanged(manager: FullSignalAudioManagerApi31, configs: List<AudioRecordingConfiguration>) {
+    val callbackField = FullSignalAudioManagerApi31::class.java.getDeclaredField("audioRecordingCallback")
+    callbackField.isAccessible = true
+    val callback = callbackField.get(manager) as AudioManager.AudioRecordingCallback
+
+    callback.onRecordingConfigChanged(configs)
   }
 
   private fun setState(manager: FullSignalAudioManagerApi31, state: SignalAudioManager.State) {

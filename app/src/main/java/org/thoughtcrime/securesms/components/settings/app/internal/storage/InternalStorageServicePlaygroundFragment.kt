@@ -36,8 +36,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.viewmodel.compose.viewModel
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.models.MasterKey
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
@@ -49,12 +50,14 @@ import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundViewModel.OneOffEvent
 import org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundViewModel.StorageInsights
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.manifest
 import org.whispersystems.signalservice.api.storage.RecordIkm
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
@@ -64,24 +67,33 @@ import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 
 class InternalStorageServicePlaygroundFragment : ComposeFragment() {
 
-  val viewModel: InternalStorageServicePlaygroundViewModel by viewModels()
+  private val appSettingsRouter by appSettingsRouter()
 
   @Composable
   override fun FragmentContent() {
-    val manifest by viewModel.manifest
-    val storageRecords by viewModel.storageRecords
-    val storageInsights by viewModel.storageInsights
-    val oneOffEvent by viewModel.oneOffEvents
-
-    Screen(
-      manifest = manifest,
-      storageRecords = storageRecords,
-      storageInsights = storageInsights,
-      oneOffEvent = oneOffEvent,
-      onViewTabSelected = { viewModel.onViewTabSelected() },
-      onBackPressed = { findNavController().popBackStack() }
-    )
+    InternalStorageServicePlaygroundEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
+}
+
+/**
+ * The storage service playground, wired to its view model, leaving through [parentEventEmitter].
+ */
+@Composable
+fun InternalStorageServicePlaygroundEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  val viewModel: InternalStorageServicePlaygroundViewModel = viewModel()
+  val manifest by viewModel.manifest
+  val storageRecords by viewModel.storageRecords
+  val storageInsights by viewModel.storageInsights
+  val oneOffEvent by viewModel.oneOffEvents
+
+  Screen(
+    manifest = manifest,
+    storageRecords = storageRecords,
+    storageInsights = storageInsights,
+    oneOffEvent = oneOffEvent,
+    onViewTabSelected = { viewModel.onViewTabSelected() },
+    onBackPressed = { parentEventEmitter.navigateBack() }
+  )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -324,9 +336,21 @@ private fun StorageRecordRow(record: SignalStorageRecord) {
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }
-      record.proto.stickerPack != null -> {
+      record.proto.installedStickerPack != null -> {
         Column {
-          Text("Sticker Pack", fontWeight = FontWeight.Bold)
+          Text("Installed Sticker Pack", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
+      record.proto.hiddenStickerPack != null -> {
+        Column {
+          Text("Hidden Sticker Pack", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
+      record.proto.favoriteSticker != null -> {
+        Column {
+          Text("Favorite Sticker", fontWeight = FontWeight.Bold)
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }

@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.service.webrtc
 
 import android.os.Build
+import org.signal.core.util.asListContains
 import org.signal.core.util.isNotNullOrBlank
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.AudioConfig
 import org.signal.ringrtc.SvcConfig
 import org.signal.ringrtc.VideoConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceConfig
 import java.io.File
 
@@ -17,7 +18,8 @@ object RingRtcDynamicConfiguration {
   private var lastFetchTime: Long = 0
 
   fun isTelecomAllowedForDevice(): Boolean {
-    return RemoteConfig.useJetPackTelecom
+    return RemoteConfig.useJetPackTelecom &&
+      RemoteConfig.telecomManufacturerAllowlist.lowercase().asListContains(Build.MANUFACTURER.lowercase())
   }
 
   @JvmStatic
@@ -51,16 +53,21 @@ object RingRtcDynamicConfiguration {
       videoConfig.enableHardwareVp9Decode = SignalStore.internal.callingUseHardwareVp9Decode
       videoConfig.enableSoftwareVp9Encode = SignalStore.internal.callingUseSoftwareVp9Encode
       videoConfig.enableSoftwareVp9Decode = SignalStore.internal.callingUseSoftwareVp9Decode
+      videoConfig.enableHardwareH265Encode = SignalStore.internal.callingUseHardwareH265Encode
+      videoConfig.enableHardwareH265Decode = SignalStore.internal.callingUseHardwareH265Decode
       return videoConfig
     }
 
-    val (manufacturer, model) = getSoCInfo()
-    val soc = "${manufacturer.lowercase()}-${model.lowercase()}"
+    val (socManufacturer, socModel) = getSoCInfo()
+    val model = socModel.lowercase()
+    val soc = "${socManufacturer.lowercase()}-$model"
     val videoConfig = VideoConfig()
     videoConfig.enableHardwareVp9Encode = !RemoteConfig.disableHardwareVp9EncodeSocList.contains(soc) && !RemoteConfig.disableHardwareVp9EncodeSocList.contains(model)
     videoConfig.enableHardwareVp9Decode = !RemoteConfig.disableHardwareVp9DecodeSocList.contains(soc) && !RemoteConfig.disableHardwareVp9DecodeSocList.contains(model)
     videoConfig.enableSoftwareVp9Encode = RemoteConfig.enableSoftwareVp9EncodeSoCList.contains(soc) || RemoteConfig.enableSoftwareVp9EncodeSoCList.contains(model)
     videoConfig.enableSoftwareVp9Decode = RemoteConfig.enableSoftwareVp9Decode || RemoteConfig.enableSoftwareVp9DecodeSoCList.contains(soc) || RemoteConfig.enableSoftwareVp9DecodeSoCList.contains(model)
+    videoConfig.enableHardwareH265Encode = RemoteConfig.enableHardwareH265Encode && !RemoteConfig.disableHardwareH265EncodeSocList.contains(soc) && !RemoteConfig.disableHardwareH265EncodeSocList.contains(model)
+    videoConfig.enableHardwareH265Decode = !RemoteConfig.disableHardwareH265DecodeSocList.contains(soc) && !RemoteConfig.disableHardwareH265DecodeSocList.contains(model)
 
     return videoConfig
   }
@@ -80,6 +87,11 @@ object RingRtcDynamicConfiguration {
   fun getStatsIntervalSecs(): Int? {
     val secs = SignalStore.internal.callingStatsIntervalSecs
     return if (secs != 0) secs else null
+  }
+
+  @JvmStatic
+  fun getMinimumCaptureFps(): Int {
+    return SignalStore.internal.callingMinimumCaptureFps.coerceAtLeast(0)
   }
 
   private fun getSoCInfo(): Pair<String, String> {

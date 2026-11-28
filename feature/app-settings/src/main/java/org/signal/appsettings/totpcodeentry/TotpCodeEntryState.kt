@@ -5,17 +5,22 @@
 
 package org.signal.appsettings.totpcodeentry
 
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldState
+
 data class TotpCodeEntryState(
-  val code: String = "",
+  val codeEntry: CodeEntryFieldState = CodeEntryFieldState(),
   val submitting: Boolean = false,
   /** Why the last submission didn't work, shown under the code field and cleared as soon as the user types. */
   val error: Error = Error.None
 ) {
 
-  val canSubmit: Boolean
-    get() = code.length == CODE_LENGTH && !submitting
+  val code: String
+    get() = codeEntry.code
 
-  override fun toString(): String = "TotpCodeEntryState(codeLength=${code.length}, submitting=$submitting, error=$error)"
+  val canSubmit: Boolean
+    get() = codeEntry.isComplete && !submitting
+
+  override fun toString(): String = "TotpCodeEntryState(codeEntry=$codeEntry, submitting=$submitting, error=$error)"
 
   sealed interface Error {
     data object None : Error
@@ -24,9 +29,5 @@ data class TotpCodeEntryState(
     data object IncorrectCode : Error
 
     data object NetworkFailure : Error
-  }
-
-  companion object {
-    const val CODE_LENGTH = 6
   }
 }

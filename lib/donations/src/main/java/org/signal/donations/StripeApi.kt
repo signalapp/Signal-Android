@@ -20,6 +20,10 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.json.StripePaymentIntent
 import org.signal.donations.json.StripeSetupIntent
+import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.ServerSideErrorException
+import org.signal.network.rest.RestStatusCodeError
+import java.io.IOException
 import java.math.BigDecimal
 import java.util.Locale
 
@@ -37,10 +41,10 @@ class StripeApi(
   companion object {
     private val TAG = Log.tag(StripeApi::class.java)
 
-    private val CARD_NUMBER_KEY = "card[number]"
-    private val CARD_MONTH_KEY = "card[exp_month]"
-    private val CARD_YEAR_KEY = "card[exp_year]"
-    private val CARD_CVC_KEY = "card[cvc]"
+    private const val CARD_NUMBER_KEY = "card[number]"
+    private const val CARD_MONTH_KEY = "card[exp_month]"
+    private const val CARD_YEAR_KEY = "card[exp_year]"
+    private const val CARD_CVC_KEY = "card[cvc]"
 
     const val RETURN_URL_SCHEME = "sgnlpay"
     private const val RETURN_URL_3DS = "$RETURN_URL_SCHEME://3DS"
@@ -93,7 +97,6 @@ class StripeApi(
 
   @WorkerThread
   fun createPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): CreatePaymentIntentResult {
-    @Suppress("CascadeIf")
     return if (Validation.isAmountTooSmall(price)) {
       CreatePaymentIntentResult.AmountIsTooSmall(price)
     } else if (Validation.isAmountTooLarge(price)) {
@@ -142,12 +145,11 @@ class StripeApi(
   /**
    * Retrieve the setup intent pointed to by the given accessor.
    */
-  fun getSetupIntent(stripeIntentAccessor: StripeIntentAccessor): StripeSetupIntent {
+  fun getSetupIntent(stripeIntentAccessor: StripeIntentAccessor): RequestResult<StripeSetupIntent, RestStatusCodeError> {
     return when (stripeIntentAccessor.objectType) {
-      StripeIntentAccessor.ObjectType.SETUP_INTENT -> get(StripePaths.getSetupIntentPath(stripeIntentAccessor.intentId, stripeIntentAccessor.intentClientSecret)).use {
-        val body = it.body?.string()
+      StripeIntentAccessor.ObjectType.SETUP_INTENT -> getIntent(StripePaths.getSetupIntentPath(stripeIntentAccessor.intentId, stripeIntentAccessor.intentClientSecret)) { body ->
         try {
-          objectMapper.readValue(body!!)
+          objectMapper.readValue<StripeSetupIntent>(body)
         } catch (e: InvalidDefinitionException) {
           Log.w(TAG, "Failed to parse JSON for StripeSetupIntent.")
           ResponseFieldLogger.logFields(objectMapper, body)
@@ -165,13 +167,12 @@ class StripeApi(
   /**
    * Retrieve the payment intent pointed to by the given accessor.
    */
-  fun getPaymentIntent(stripeIntentAccessor: StripeIntentAccessor): StripePaymentIntent {
+  fun getPaymentIntent(stripeIntentAccessor: StripeIntentAccessor): RequestResult<StripePaymentIntent, RestStatusCodeError> {
     return when (stripeIntentAccessor.objectType) {
-      StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> get(StripePaths.getPaymentIntentPath(stripeIntentAccessor.intentId, stripeIntentAccessor.intentClientSecret)).use {
-        val body = it.body?.string()
+      StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> getIntent(StripePaths.getPaymentIntentPath(stripeIntentAccessor.intentId, stripeIntentAccessor.intentClientSecret)) { body ->
         try {
           Log.d(TAG, "Reading StripePaymentIntent from JSON")
-          objectMapper.readValue(body!!)
+          objectMapper.readValue<StripePaymentIntent>(body)
         } catch (e: InvalidDefinitionException) {
           Log.w(TAG, "Failed to parse JSON for StripePaymentIntent.")
           ResponseFieldLogger.logFields(objectMapper, body)
@@ -186,10 +187,28 @@ class StripeApi(
     }
   }
 
+  private inline fun <T> getIntent(endpoint: String, parse: (String) -> T): RequestResult<T, RestStatusCodeError> {
+    return try {
+      val request = getRequestBuilder(endpoint).get().build()
+      okHttpClient.newCall(request).execute().use { response ->
+        val code = response.code
+        when {
+          response.isSuccessful -> RequestResult.Success(parse(response.body.string()))
+          code in 500..599 -> RequestResult.RetryableNetworkError(ServerSideErrorException("Server error: $code"))
+          else -> RequestResult.NonSuccess(RestStatusCodeError(code, response.headers.associate { (name, value) -> name.lowercase() to value }, response.body.bytes()))
+        }
+      }
+    } catch (e: IOException) {
+      RequestResult.RetryableNetworkError(e)
+    } catch (e: Exception) {
+      RequestResult.ApplicationError(e)
+    }
+  }
+
   private fun getNextAction(response: Response): Pair<Uri, Uri> {
-    val responseBody = response.body?.string()
-    val bodyJson = responseBody?.let { JSONObject(it) }
-    return if (bodyJson?.has("next_action") == true && !bodyJson.isNull("next_action")) {
+    val responseBody = response.body.string()
+    val bodyJson = JSONObject(responseBody)
+    return if (bodyJson.has("next_action") && !bodyJson.isNull("next_action")) {
       val nextAction = bodyJson.getJSONObject("next_action")
       if (BuildConfig.DEBUG) {
         Log.d(TAG, "[getNextAction] Next Action found:\n$nextAction")
@@ -231,7 +250,7 @@ class StripeApi(
     )
 
     postForm(StripePaths.getTokensPath(), parameters).use { response ->
-      val body = response.body ?: throw StripeError.FailedToCreatePaymentSourceFromCardData
+      val body = response.body
       return CreditCardPaymentSource(JSONObject(body.string()))
     }
   }
@@ -245,7 +264,7 @@ class StripeApi(
     }
 
     return paymentMethodResponse.use { response ->
-      val body = response.body ?: throw StripeError.FailedToParsePaymentMethodResponseError
+      val body = response.body
       val paymentMethodObject = body.string().replace("\n", "").let { JSONObject(it) }
       paymentMethodObject.getString("id")
     }
@@ -282,12 +301,6 @@ class StripeApi(
     return postForm(StripePaths.getPaymentMethodsPath(), parameters)
   }
 
-  private fun get(endpoint: String): Response {
-    val request = getRequestBuilder(endpoint).get().build()
-    val response = okHttpClient.newCall(request).execute()
-    return checkResponseForErrors(response)
-  }
-
   private fun postForm(endpoint: String, parameters: Map<String, String>): Response {
     val formBodyBuilder = FormBody.Builder()
     parameters.forEach { (k, v) ->
@@ -313,7 +326,7 @@ class StripeApi(
     if (response.isSuccessful) {
       return response
     } else {
-      val body = response.body?.string()
+      val body = response.body.string()
 
       val errorCode = parseErrorCode(body)
       val declineCode = parseDeclineCode(body) ?: StripeDeclineCode.getFromCode(errorCode)
@@ -351,7 +364,7 @@ class StripeApi(
 
     return try {
       StripeDeclineCode.getFromCode(JSONObject(body).getJSONObject("error").getString("decline_code"))
-    } catch (e: Exception) {
+    } catch (_: Exception) {
       Log.d(TAG, "parseDeclineCode: Failed to parse decline code.", null, true)
       null
     }
@@ -365,7 +378,7 @@ class StripeApi(
 
     return try {
       StripeFailureCode.getFromCode(JSONObject(body).getJSONObject("error").getString("failure_code"))
-    } catch (e: Exception) {
+    } catch (_: Exception) {
       Log.d(TAG, "parseFailureCode: Failed to parse failure code.", null, true)
       null
     }

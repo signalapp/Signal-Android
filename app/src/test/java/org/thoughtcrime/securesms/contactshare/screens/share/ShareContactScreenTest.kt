@@ -61,8 +61,18 @@ class ShareContactScreenTest {
   }
 
   @Test
-  fun `the name row does not toggle while the name is required`() {
+  fun `the name row opens the editor while the name is required`() {
     val events = setContent(createState(nameToggleable = false))
+
+    scrollTo(ShareContactTestTags.NAME_ROW)
+    composeTestRule.onNodeWithTag(ShareContactTestTags.NAME_ROW).performClick()
+
+    assertThat(events).containsExactly(ShareContactEvent.EditNameClicked)
+  }
+
+  @Test
+  fun `the name row does nothing when it is required and not editable`() {
+    val events = setContent(createState(nameToggleable = false, nameEditable = false))
 
     scrollTo(ShareContactTestTags.NAME_ROW)
     composeTestRule.onNodeWithTag(ShareContactTestTags.NAME_ROW).performClick()
@@ -130,6 +140,7 @@ class ShareContactScreenTest {
   private fun createState(
     nameSelected: Boolean = true,
     nameToggleable: Boolean = false,
+    nameEditable: Boolean = true,
     photoEditable: Boolean = true
   ): ShareContactState {
     return ShareContactState(
@@ -142,7 +153,7 @@ class ShareContactScreenTest {
       name = ShareContactState.NameSelection(
         displayName = "Paige Hall",
         isSelected = nameSelected,
-        isEditable = true,
+        isEditable = nameEditable,
         isToggleable = nameToggleable
       ),
       details = listOf(

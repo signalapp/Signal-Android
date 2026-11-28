@@ -2,37 +2,27 @@ package org.thoughtcrime.securesms.stories.viewer.reply.direct
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.models.recipients.RecipientId
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
-import org.signal.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
-import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
-import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * Dialog displayed when the user decides to send a private reply to a story.
  */
 class StoryDirectReplyDialogFragment :
   KeyboardEntryDialogFragment(R.layout.stories_reply_to_story_fragment),
-  EmojiKeyboardPageFragment.Callback,
-  EmojiEventListener,
-  EmojiSearchFragment.Callback,
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
   private val lifecycleDisposable = LifecycleDisposable()
@@ -45,10 +35,6 @@ class StoryDirectReplyDialogFragment :
     factoryProducer = {
       StoryDirectReplyViewModel.Factory(storyId, recipientId, StoryDirectReplyRepository(requireContext()))
     }
-  )
-
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by viewModels(
-    ownerProducer = { requireActivity() }
   )
 
   private val storyViewerPageViewModel: StoryViewerPageViewModel by viewModels(
@@ -93,11 +79,6 @@ class StoryDirectReplyDialogFragment :
         isRequestingReactWithAny = true
         ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
       }
-
-      override fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard) {
-        keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
-        mediaKeyboard.setFragmentManager(childFragmentManager)
-      }
     }
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -119,10 +100,6 @@ class StoryDirectReplyDialogFragment :
     super.onPause()
 
     ViewUtil.hideKeyboard(requireContext(), composer.input)
-  }
-
-  override fun openEmojiSearch() {
-    composer.openEmojiSearch()
   }
 
   override fun onKeyboardHidden() {
@@ -151,16 +128,6 @@ class StoryDirectReplyDialogFragment :
       }
     }
   }
-
-  override fun onEmojiSelected(emoji: String?) {
-    composer.onEmojiSelected(emoji)
-  }
-
-  override fun closeEmojiSearch() {
-    composer.closeEmojiSearch()
-  }
-
-  override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
 
   override fun onReactWithAnyEmojiDialogDismissed() {
     isRequestingReactWithAny = false

@@ -6,11 +6,12 @@ import android.text.SpannableString;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
@@ -129,7 +130,7 @@ public class GroupCallUpdateMessageFactory implements UpdateDescription.Spannabl
       return context.getString(R.string.MessageRecord_unknown);
     }
 
-    Recipient recipient = Recipient.resolved(RecipientId.from(serviceId));
+    Recipient recipient = Recipient.resolved(RecipientIds.from(serviceId));
 
     if (recipient.isSelf()) {
       return context.getString(R.string.MessageRecord_you);

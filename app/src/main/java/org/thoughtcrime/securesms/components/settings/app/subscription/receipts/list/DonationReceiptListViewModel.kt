@@ -1,56 +1,61 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import org.thoughtcrime.securesms.util.InternetConnectionObserver
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 
-class DonationReceiptListViewModel(private val repository: DonationReceiptListRepository) : ViewModel() {
+/**
+ * Drives [DonationReceiptListScreen]. Fetches the badges on start, then again each time the device comes back online
+ * until a fetch succeeds.
+ */
+class DonationReceiptListViewModel : EventDrivenViewModel<DonationReceiptListEvent>(TAG) {
 
-  private val disposables = CompositeDisposable()
-  private val internalState = MutableLiveData<List<DonationReceiptBadge>>(emptyList())
-  private var networkDisposable: Disposable
+  companion object {
+    private val TAG = Log.tag(DonationReceiptListViewModel::class)
+  }
 
-  val state: LiveData<List<DonationReceiptBadge>> = internalState
+  private val _state = MutableStateFlow(DonationReceiptListState())
+  private val _actions = Channel<DonationReceiptListAction>(Channel.BUFFERED)
+
+  val state: StateFlow<DonationReceiptListState> = _state.asStateFlow()
+  val actions: Flow<DonationReceiptListAction> = _actions.receiveAsFlow()
 
   init {
-    networkDisposable = InternetConnectionObserver
-      .observe()
-      .distinctUntilChanged()
-      .subscribe { isConnected ->
-        if (isConnected) {
-          retry()
+    viewModelScope.launch {
+      val receipts = DonationReceiptListRepository.getReceipts()
+      _state.update { it.copy(receipts = receipts) }
+    }
+
+    viewModelScope.launch {
+      DonationReceiptListRepository.observeIsConnected()
+        .onStart { emit(true) }
+        .filter { isConnected -> isConnected && _state.value.badges.isEmpty() }
+        .collect {
+          val badges = DonationReceiptListRepository.getBadges()
+          _state.update { it.copy(badges = badges) }
         }
-      }
-
-    refresh()
-  }
-
-  private fun retry() {
-    if (internalState.value?.isEmpty() == true) {
-      refresh()
     }
   }
 
-  private fun refresh() {
-    disposables.clear()
-    disposables += repository.getBadges().subscribe { badges ->
-      internalState.postValue(badges)
-    }
-  }
-
-  override fun onCleared() {
-    disposables.clear()
-    networkDisposable.dispose()
-  }
-
-  class Factory(private val repository: DonationReceiptListRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(DonationReceiptListViewModel(repository)) as T
+  override suspend fun processEvent(event: DonationReceiptListEvent) {
+    when (event) {
+      DonationReceiptListEvent.NavigateBackClicked -> _actions.send(DonationReceiptListAction.NavigateBack)
+      is DonationReceiptListEvent.ReceiptClicked -> _actions.send(DonationReceiptListAction.NavigateToReceipt(event.receiptId))
     }
   }
 }

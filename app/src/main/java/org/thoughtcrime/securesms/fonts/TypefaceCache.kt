@@ -5,7 +5,7 @@ import android.graphics.Typeface
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.FutureTaskListener
-import org.thoughtcrime.securesms.util.LocaleUtil
+import org.signal.locale.AppLocale
 import java.util.Collections
 import java.util.concurrent.ExecutionException
 
@@ -30,7 +30,7 @@ object TypefaceCache {
    * Grabs the font and caches it on the fly.
    */
   fun get(context: Context, font: TextFont, guessedScript: SupportedScript = SupportedScript.UNKNOWN): Single<Typeface> {
-    val supportedScript = Fonts.getSupportedScript(LocaleUtil.getLocaleDefaults(), guessedScript)
+    val supportedScript = Fonts.getSupportedScript(AppLocale.preferredLocales, guessedScript)
     val cacheKey = CacheKey(supportedScript, font)
     val cachedValue = cache[cacheKey]
     val appContext = context.applicationContext

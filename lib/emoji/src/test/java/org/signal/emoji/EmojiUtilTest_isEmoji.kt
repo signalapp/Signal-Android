@@ -1,6 +1,7 @@
 package org.signal.emoji
 
 import android.app.Application
+import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import org.junit.Assert
@@ -15,7 +16,7 @@ import org.robolectric.annotation.Config
 class EmojiUtilTest_isEmoji(private val input: String?, private val output: Boolean) {
 
   @get:Rule
-  val emojiDependencies = MockEmojiDependenciesRule()
+  val emojiDependencies = EmojiDependenciesRule(ApplicationProvider.getApplicationContext())
 
   @Throws(Exception::class)
   @Test
@@ -50,7 +51,9 @@ class EmojiUtilTest_isEmoji(private val input: String?, private val output: Bool
         arrayOf("\uD83D\uDE0Dhi", false), // Smiling face with heart-shaped eyes, text afterwards
         arrayOf("\uD83D\uDE0D ", false), // Smiling face with heart-shaped eyes, space afterwards
         arrayOf("\uD83D\uDE0D\uD83D\uDE0D", false), // Smiling face with heart-shaped eyes, twice
-        arrayOf("\uFE0F".repeat(64) + "\u0301", false) // Long run of combining marks ending in an invalid mark to test perf
+        arrayOf("\uFE0F".repeat(64) + "\u0301", false), // Long run of combining marks ending in an invalid mark to test perf
+        arrayOf("a\uFE0F" + "\uDB40\uDC20\uFE0F\uFE0F".repeat(26) + "\u0301", false), // Tag/variation-selector blocks that backtrack exponentially on ICU
+        arrayOf("\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F", true) // Flag: England
       )
     }
   }

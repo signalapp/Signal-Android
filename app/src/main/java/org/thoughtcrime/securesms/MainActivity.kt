@@ -22,6 +22,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -36,18 +41,14 @@ import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -79,9 +80,11 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.appsettings.twofactorverify.TwoFactorVerifyMethod
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.NavigationType
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.navigationBarsCompat
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.ListDetailNavDisplay
 import org.signal.core.ui.compose.split.ListDetailPaneLayout
@@ -90,13 +93,14 @@ import org.signal.core.ui.compose.split.ListPaneChrome
 import org.signal.core.ui.compose.split.PaneAnchor
 import org.signal.core.ui.compose.split.rememberListDetailPaneLayout
 import org.signal.core.ui.compose.split.rememberListDetailPaneMetrics
+import org.signal.core.ui.compose.systemBarsCompat
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.rememberIsSplitPane
+import org.signal.core.ui.viewModel
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
-import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
@@ -110,13 +114,15 @@ import org.thoughtcrime.securesms.calls.log.CallLogFragment
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.calls.quality.CallQuality
 import org.thoughtcrime.securesms.calls.quality.CallQualityBottomSheetFragment
-import org.thoughtcrime.securesms.chats.ConversationTransitionState
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
 import org.thoughtcrime.securesms.components.compose.ConnectivityWarningBottomSheet
 import org.thoughtcrime.securesms.components.compose.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Companion.manageSubscriptions
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsRepository
+import org.thoughtcrime.securesms.components.settings.app.account.signallogin.verify.SignalLoginVerifyActivity
+import org.thoughtcrime.securesms.components.settings.app.account.twofactor.verify.TwoFactorVerifyActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
@@ -128,6 +134,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.NewConversationActivity
+import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment
@@ -167,7 +174,7 @@ import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.notifications.VitalsViewModel
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
-import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment
+import org.thoughtcrime.securesms.profiles.manage.username.UsernameEditFragment
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.starred.StarredMessagesActivity
@@ -179,9 +186,9 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SplashScreenUtil
 import org.thoughtcrime.securesms.util.TopToastPopup
-import org.thoughtcrime.securesms.util.viewModel
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
 
 class MainActivity :
@@ -192,18 +199,20 @@ class MainActivity :
   ConversationListFragment.Callback,
   MainNavigationEventSink,
   CallLogFragment.Callback,
+  ConversationFragment.MediaEditorHandoffListener,
   GooglePayComponent {
 
   companion object {
     private val TAG = Log.tag(MainActivity::class)
 
     private const val KEY_STARTING_TAB = "STARTING_TAB"
-    private const val KEY_DETAIL_LOCATION = "DETAIL_LOCATION"
     private const val KEY_EXIT_DETAIL = "EXIT_DETAIL"
-    const val RESULT_CONFIG_CHANGED = RESULT_FIRST_USER + 901
 
     /** Width the navigation rail occupies inside the list pane. */
     private val RAIL_WIDTH = 80.dp
+
+    /** Longest [holdDrawingUntilCovered] waits for another activity to be launched. */
+    private val COVER_LAUNCH_TIMEOUT = 1.seconds
 
     @JvmStatic
     fun clearTop(context: Context): Intent {
@@ -214,11 +223,6 @@ class MainActivity :
     @JvmStatic
     fun clearTopAndOpenTab(context: Context, startingTab: MainListRoute): Intent {
       return clearTop(context).putExtra(KEY_STARTING_TAB, startingTab)
-    }
-
-    @JvmStatic
-    fun clearTopAndOpenDetail(context: Context, location: MainDetailRoute): Intent {
-      return clearTop(context).putExtra(KEY_DETAIL_LOCATION, location)
     }
 
     /**
@@ -241,7 +245,7 @@ class MainActivity :
     get() = mediaController
 
   private val mainNavigationViewModel: MainNavigationViewModel by viewModel {
-    val startingTab = intent.extras?.getSerializableCompat(KEY_STARTING_TAB, MainListRoute::class.java)
+    val startingTab = if (isTrustedIntent(intent)) intent.extras?.getSerializableCompat(KEY_STARTING_TAB, MainListRoute::class.java) else null
     MainNavigationViewModel(it.createSavedStateHandle(), startingTab ?: MainListRoute.Chats)
   }
 
@@ -249,11 +253,7 @@ class MainActivity :
     VitalsViewModel(application)
   }
 
-  private val openSettings: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-    if (result.resultCode == RESULT_CONFIG_CHANGED) {
-      recreate()
-    }
-  }
+  private val openSettings: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { }
 
   private val toolbarViewModel: MainToolbarViewModel by viewModels()
   private val toolbarCallback = ToolbarCallback()
@@ -261,6 +261,15 @@ class MainActivity :
   private val motionEventRelay: MotionEventRelay by viewModels()
 
   private var onFirstRender = false
+
+  /**
+   * True from creation or [onStop] until the next [onResume]. A conversation opened while this is set is shown without
+   * its enter animation, and the window holds off drawing until it renders.
+   */
+  private var hasBeenOffScreen = true
+
+  private var coverHold = CoverHold.NONE
+  private val coverLaunchTimeout = Runnable { coverHold = CoverHold.NONE }
   private var previousTopToastPopup: TopToastPopup? = null
 
   private val mainBottomChromeCallback = BottomChromeCallback()
@@ -446,17 +455,11 @@ class MainActivity :
           }
         }
 
-        val convoTransitionState = ConversationTransitionState.remember(isSplitPane)
-
-        DisposableEffect(convoTransitionState) {
-          mainNavigationViewModel.setChatListSnapshotCaptureProvider { convoTransitionState.writeGraphicsLayerToBitmap() }
-          onDispose { mainNavigationViewModel.setChatListSnapshotCaptureProvider(null) }
-        }
-
         val paneAnchor by mainNavigationViewModel.paneAnchor.collectAsStateWithLifecycle()
         val hasDetailContent by mainNavigationViewModel.hasDetailContent.collectAsStateWithLifecycle()
+        val isHoldingEnter by mainNavigationViewModel.navigator.isHoldingEnter.collectAsStateWithLifecycle()
 
-        val tabEntries = rememberDecoratedDetailEntries(mainNavigationViewModel, convoTransitionState, isSplitPane)
+        val tabEntries = rememberDecoratedDetailEntries(mainNavigationViewModel, isSplitPane)
 
         val paneLayout = rememberMainPaneLayout(
           contentLayoutData = contentLayoutData,
@@ -483,11 +486,10 @@ class MainActivity :
               MainSnackbar(
                 hostKey = SnackbarHostKey.Global,
                 onDismissed = mainBottomChromeCallback::onSnackbarDismissed,
-                modifier = Modifier.navigationBarsPadding()
+                modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat)
               )
             }
-          },
-          modifier = convoTransitionState.writeContentToGraphicsLayer()
+          }
         ) { paddingValues ->
           ListDetailNavDisplay(
             entries = tabEntries,
@@ -498,6 +500,8 @@ class MainActivity :
             layout = paneLayout,
             listPaneChrome = listPaneChrome,
             emptyDetailContent = emptyDetailContent,
+            isHoldingEnter = isHoldingEnter,
+            onTopEntryReady = { mainNavigationViewModel.navigator.processEvent(ListDetailEvents.TopEntryReady) },
             modifier = Modifier.padding(paddingValues)
           )
         }
@@ -592,12 +596,18 @@ class MainActivity :
     }
 
     Row(modifier = modifier.fillMaxSize()) {
-      if (navigationType == NavigationType.RAIL && mainToolbarState.mode != MainToolbarMode.SEARCH) {
-        MainNavigationRail(
-          state = mainNavigationState,
-          mainFloatingActionButtonsCallback = mainBottomChromeCallback,
-          onDestinationSelected = mainNavigationCallback
-        )
+      if (navigationType == NavigationType.RAIL) {
+        AnimatedVisibility(
+          visible = mainToolbarState.mode != MainToolbarMode.SEARCH,
+          enter = expandHorizontally(expandFrom = Alignment.Start) + fadeIn(),
+          exit = shrinkHorizontally(shrinkTowards = Alignment.Start) + fadeOut()
+        ) {
+          MainNavigationRail(
+            state = mainNavigationState,
+            mainFloatingActionButtonsCallback = mainBottomChromeCallback,
+            onDestinationSelected = mainNavigationCallback
+          )
+        }
       }
 
       Column(
@@ -635,7 +645,7 @@ class MainActivity :
             )
 
             if (!isSplitPane) {
-              Spacer(Modifier.navigationBarsPadding())
+              Spacer(Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat))
             }
           }
         }
@@ -658,14 +668,14 @@ class MainActivity :
         val modifier = when {
           isSplitPane -> {
             Modifier
-              .systemBarsPadding()
+              .windowInsetsPadding(WindowInsets.systemBarsCompat)
               .displayCutoutPadding()
           }
 
           else ->
             Modifier
               .windowInsetsPadding(
-                WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal)
+                WindowInsets.navigationBarsCompat.only(WindowInsetsSides.Horizontal)
                   .add(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))
               )
         }
@@ -691,14 +701,13 @@ class MainActivity :
 
     val extras = intent.extras ?: return
 
-    if (extras.getBoolean(KEY_EXIT_DETAIL, false)) {
-      mainNavigationViewModel.onEvent(MainNavigationEvents.ExitDetail)
+    if (!isTrustedIntent(intent)) {
+      Log.w(TAG, "Received navigation extras through an exported entry point. Ignoring them.")
       return
     }
 
-    val detailLocation = extras.getParcelableCompat(KEY_DETAIL_LOCATION, MainDetailRoute::class.java)
-    if (detailLocation != null) {
-      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(detailLocation))
+    if (extras.getBoolean(KEY_EXIT_DETAIL, false)) {
+      mainNavigationViewModel.onEvent(MainNavigationEvents.ExitDetail)
       return
     }
 
@@ -716,6 +725,10 @@ class MainActivity :
 
   override fun onResume() {
     super.onResume()
+    if (coverHold == CoverHold.AWAITING_STOP) {
+      coverHold = CoverHold.NONE
+    }
+    hasBeenOffScreen = false
     dynamicTheme.onResume(this)
 
     toolbarViewModel.refresh()
@@ -749,8 +762,18 @@ class MainActivity :
     }
   }
 
+  override fun onPause() {
+    super.onPause()
+    if (coverHold == CoverHold.AWAITING_LAUNCH) {
+      findViewById<View>(android.R.id.content).removeCallbacks(coverLaunchTimeout)
+      coverHold = CoverHold.AWAITING_STOP
+    }
+  }
+
   override fun onStop() {
     super.onStop()
+    hasBeenOffScreen = true
+    coverHold = CoverHold.NONE
     SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings.theme)
   }
 
@@ -762,10 +785,6 @@ class MainActivity :
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    if (requestCode == MainNavigator.REQUEST_CONFIG_CHANGES && resultCode == RESULT_CONFIG_CHANGED) {
-      recreate()
-    }
-
     if (resultCode == RESULT_OK && requestCode == CreateSvrPinActivity.REQUEST_NEW_PIN) {
       mainNavigationViewModel.snackbarRegistry.emit(SnackbarState(message = getString(R.string.ConfirmKbsPinFragment__pin_created), hostKey = MainSnackbarHostKey.MainChrome))
       mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL))
@@ -790,6 +809,42 @@ class MainActivity :
         )
       )
       mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.VERIFY_BACKUP_KEY))
+    }
+
+    if (requestCode == AppSettingsActivity.REQUEST_CODE_UPGRADE_LOCAL_BACKUPS) {
+      mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.USE_NEW_ON_DEVICE_BACKUPS))
+    }
+
+    if (resultCode == RESULT_OK && requestCode == TwoFactorVerifyActivity.REQUEST_CODE) {
+      val message = when (TwoFactorVerifyActivity.getVerifiedMethod(data)) {
+        TwoFactorVerifyMethod.AUTHENTICATOR_APP -> getString(R.string.TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app)
+        TwoFactorVerifyMethod.PASSKEY -> getString(R.string.TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey)
+        null -> null
+      }
+
+      if (message != null) {
+        mainNavigationViewModel.snackbarRegistry.emit(
+          SnackbarState(
+            message = message,
+            duration = Snackbars.Duration.SHORT,
+            hostKey = MainSnackbarHostKey.MainChrome
+          )
+        )
+      }
+
+      mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.TWO_FACTOR_REMINDER))
+    }
+
+    if (resultCode == RESULT_OK && requestCode == SignalLoginVerifyActivity.REQUEST_CODE) {
+      mainNavigationViewModel.snackbarRegistry.emit(
+        SnackbarState(
+          message = getString(R.string.SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login),
+          duration = Snackbars.Duration.SHORT,
+          hostKey = MainSnackbarHostKey.MainChrome
+        )
+      )
+
+      mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.SIGNAL_LOGIN_REMINDER))
     }
   }
 
@@ -874,7 +929,7 @@ class MainActivity :
 
   private fun handleConversationIntent(intent: Intent) {
     if (ConversationIntents.isConversationIntent(intent)) {
-      if (!isTrustedConversationIntent(intent)) {
+      if (!isTrustedIntent(intent)) {
         Log.w(TAG, "Received a conversation intent through an exported entry point. Ignoring its extras.")
         intent.action = null
         setIntent(intent)
@@ -889,18 +944,88 @@ class MainActivity :
         return
       }
 
-      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToList(MainListRoute.Chats))
-      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Conversation(ConversationIntents.readArgsFromBundle(extras))))
+      val conversationArgs = ConversationIntents.readArgsFromBundle(extras)
+
+      if (hasBeenOffScreen) {
+        holdDrawingUntilConversationRenders()
+
+        if (conversationArgs.mayOpenMediaEditor()) {
+          holdDrawingUntilCovered()
+        } else if (AppForegroundObserver.isForegrounded()) {
+          overridePendingTransition(R.anim.pane_shift_enter, R.anim.stationary)
+        }
+      }
+
+      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Conversation(conversationArgs)))
       intent.action = null
       setIntent(intent)
     }
   }
 
   /**
-   * While MainActivity isn't exporting, we have launcher aliases that are, so we verify that someone isn't launching us through those befre
-   * respecting various intent attributes.
+   * Keeps the window from drawing until the conversation about to be opened has rendered, so that opening it from off
+   * screen reveals the finished conversation rather than whatever was beneath it.
    */
-  private fun isTrustedConversationIntent(intent: Intent): Boolean {
+  private fun holdDrawingUntilConversationRenders() {
+    val navigator = mainNavigationViewModel.navigator
+    val wasHolding = navigator.isHoldingEnter.value
+    navigator.processEvent(ListDetailEvents.HoldNextEnter)
+
+    if (wasHolding) {
+      return
+    }
+
+    holdDrawingWhile { navigator.isHoldingEnter.value }
+  }
+
+  /**
+   * Keeps the window from drawing until another activity covers it, so that a conversation which immediately hands off to
+   * the media editor isn't flashed on screen first. Ends early if the conversation reports it isn't opening one, and gives
+   * up after [COVER_LAUNCH_TIMEOUT] if nothing is launched.
+   */
+  private fun holdDrawingUntilCovered() {
+    if (coverHold != CoverHold.NONE) {
+      return
+    }
+
+    coverHold = CoverHold.AWAITING_LAUNCH
+    holdDrawingWhile { coverHold != CoverHold.NONE }
+
+    val content: View = findViewById(android.R.id.content)
+    content.removeCallbacks(coverLaunchTimeout)
+    content.postDelayed(coverLaunchTimeout, COVER_LAUNCH_TIMEOUT.inWholeMilliseconds)
+  }
+
+  override fun onMediaEditorNotOpened() {
+    if (coverHold == CoverHold.AWAITING_LAUNCH) {
+      findViewById<View>(android.R.id.content).removeCallbacks(coverLaunchTimeout)
+      coverHold = CoverHold.NONE
+    }
+  }
+
+  /**
+   * Cancels every window draw while [isHolding] returns true.
+   */
+  private fun holdDrawingWhile(isHolding: () -> Boolean) {
+    val content: View = findViewById(android.R.id.content)
+    content.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+      override fun onPreDraw(): Boolean {
+        if (isHolding()) {
+          return false
+        }
+
+        content.viewTreeObserver.removeOnPreDrawListener(this)
+        return true
+      }
+    })
+  }
+
+  /**
+   * While MainActivity isn't exported, we have launcher aliases that are, so we verify that someone isn't launching us through those before
+   * respecting various intent attributes. Only intents addressed directly to MainActivity can come from our own code, since other apps are
+   * unable to target a non-exported component.
+   */
+  private fun isTrustedIntent(intent: Intent): Boolean {
     return intent.component?.className == MainActivity::class.java.name
   }
 
@@ -1037,6 +1162,14 @@ class MainActivity :
       openSettings.launch(AppSettingsActivity.home(this@MainActivity))
     }
 
+    override fun onDonateClick() {
+      if (AppSettingsRepository.likelyCanManageDonations()) {
+        openSettings.launch(AppSettingsActivity.manageSubscriptions(this@MainActivity))
+      } else {
+        CommunicationActions.openBrowserLink(this@MainActivity, getString(R.string.donate_url))
+      }
+    }
+
     override fun onNotificationProfileClick() {
       NotificationProfileSelectionFragment.show(supportFragmentManager)
     }
@@ -1160,4 +1293,14 @@ class MainActivity :
   }
 
   override fun onEvent(event: MainNavigationEvents) = mainNavigationViewModel.onEvent(event)
+}
+
+/**
+ * Progress of [MainActivity.holdDrawingUntilCovered]. Once another activity has been launched the hold lasts until it
+ * covers this one, or until this one resumes again if it never does.
+ */
+private enum class CoverHold {
+  NONE,
+  AWAITING_LAUNCH,
+  AWAITING_STOP
 }

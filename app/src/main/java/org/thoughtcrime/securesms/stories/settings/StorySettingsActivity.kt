@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.os.bundleOf
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
+import org.thoughtcrime.securesms.components.NavGraphHostActivity
 
-class StorySettingsActivity : DSLSettingsActivity() {
+class StorySettingsActivity : NavGraphHostActivity() {
   companion object {
     fun getIntent(context: Context): Intent {
       return Intent(context, StorySettingsActivity::class.java)

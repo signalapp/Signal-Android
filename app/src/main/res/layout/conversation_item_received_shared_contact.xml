@@ -15,5 +15,5 @@
     app:contact_footerIconColor="@color/conversation_item_recv_icon_color"
     app:contact_footerAlpha="0.7"
     app:contact_actionTextColor="@color/signal_colorOnSurface"
-    app:contact_actionBackgroundColor="@color/signal_colorTransparent5"
+    app:contact_actionBackgroundColor="@color/signal_colorSurfaceVariantFill"
     tools:background="@color/signal_colorPrimary"/>

@@ -1,21 +1,16 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.signal.network.exceptions.PushNetworkException
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
-import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
-import java.io.IOException
+import org.thoughtcrime.securesms.util.OutgoingContent
 
-class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : BaseJob(parameters) {
+class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY: String = "MultiDeviceKeysUpdateJob"
@@ -37,40 +32,41 @@ class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : Bas
 
   override fun getFactoryKey(): String = KEY
 
-  @Throws(IOException::class, UntrustedIdentityException::class)
-  public override fun onRun() {
+  override suspend fun doRun(): Result {
     if (!Recipient.self().isRegistered) {
-      throw NotPushRegisteredException()
+      Log.w(TAG, "Not registered, aborting...")
+      return Result.failure()
     }
 
     if (!SignalStore.account.isMultiDevice) {
       Log.i(TAG, "Not multi device, aborting...")
-      return
+      return Result.success()
     }
 
     if (SignalStore.account.isLinkedDevice) {
       Log.i(TAG, "Not primary device, aborting...")
-      return
+      return Result.success()
     }
 
-    val syncMessage = SignalServiceSyncMessage.forKeys(
-      KeysMessage(
-        storageService = SignalStore.storageService.storageKey,
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncKeys(
         accountEntropyPool = SignalStore.account.accountEntropyPool,
         mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-      )
+      ),
+      urgent = false,
+      onEncrypted = null
     )
 
-    AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessage)
+    return result.fold(
+      ifRight = { Result.success() },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "keys sync", defaultBackoff())
+      }
+    )
   }
 
-  public override fun onShouldRetry(e: Exception): Boolean {
-    if (e is ServerRejectedException) return false
-    return e is PushNetworkException
-  }
-
-  override fun onFailure() {
-  }
+  override fun onFailure() = Unit
 
   class Factory : Job.Factory<MultiDeviceKeysUpdateJob?> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): MultiDeviceKeysUpdateJob {

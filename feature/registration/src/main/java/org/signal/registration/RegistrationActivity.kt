@@ -13,7 +13,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.content.IntentCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.android.play.core.splitcompat.SplitCompat
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.locale.AppLocale
 
 /**
  * Activity entry point for the registration flow.
@@ -53,14 +55,12 @@ class RegistrationActivity : ComponentActivity() {
     }
   }
 
-  private val repository: RegistrationRepository by lazy {
-    RegistrationRepository(
-      context = this.application,
-      networkController = RegistrationDependencies.get().networkController,
-      storageController = RegistrationDependencies.get().storageController,
-      isLinkAndSyncAvailable = RegistrationDependencies.get().isLinkAndSyncAvailable,
-      isPhoneNumberlessRegistrationAvailable = RegistrationDependencies.get().isPhoneNumberlessRegistrationAvailable
-    )
+  override fun attachBaseContext(newBase: Context) {
+    super.attachBaseContext(newBase)
+    applyOverrideConfiguration(AppLocale.createOverrideConfiguration())
+    if (AppLocale.isSplitInstall) {
+      SplitCompat.installActivity(this)
+    }
   }
 
   @OptIn(ExperimentalPermissionsApi::class)
@@ -75,7 +75,6 @@ class RegistrationActivity : ComponentActivity() {
       SignalTheme(incognitoKeyboardEnabled = false) {
         Surface(modifier = Modifier.fillMaxSize()) {
           RegistrationNavHost(
-            registrationRepository = repository,
             startDestination = startDestination,
             startFresh = startFresh,
             modifier = Modifier

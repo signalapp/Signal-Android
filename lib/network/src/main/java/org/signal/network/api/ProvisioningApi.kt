@@ -7,7 +7,8 @@ package org.signal.network.api
 
 import org.signal.core.util.Base64
 import org.signal.core.util.urlEncode
-import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.protocol.InvalidKeyException
+import org.signal.libsignal.provisioning.ProvisioningPublicKey
 import org.signal.network.NetworkResult
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.get
@@ -34,13 +35,17 @@ class ProvisioningApi(private val authWebSocket: SignalWebSocket.AuthenticatedWe
    * - 204: Success
    * - 400: Message was too large
    * - 404: No provisioning socket for [deviceIdentifier]
+   *
+   * @param deviceKey The new device's public key from its provisioning QR code.
+   * @throws InvalidKeyException if [deviceKey] is invalid
    */
+  @Throws(InvalidKeyException::class)
   fun sendReRegisterDeviceProvisioningMessage(
     deviceIdentifier: String,
-    deviceKey: ECPublicKey,
+    deviceKey: ProvisioningPublicKey,
     registrationProvisionMessage: RegistrationProvisionMessage
   ): NetworkResult<Unit> {
-    val cipherText = PrimaryProvisioningCipher(deviceKey).encrypt(registrationProvisionMessage)
+    val cipherText = PrimaryProvisioningCipher.encrypt(deviceKey, registrationProvisionMessage)
 
     val request = WebSocketRequestMessage.put("/v1/provisioning/${deviceIdentifier.urlEncode()}", ProvisioningMessage(Base64.encodeWithPadding(cipherText)))
     return NetworkResult.fromWebSocketRequest(authWebSocket, request)

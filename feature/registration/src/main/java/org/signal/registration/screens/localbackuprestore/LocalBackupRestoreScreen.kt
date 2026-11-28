@@ -6,7 +6,7 @@
 package org.signal.registration.screens.localbackuprestore
 
 import android.net.Uri
-import android.text.format.Formatter
+import android.text.format.DateFormat
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -54,13 +54,15 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.KeepScreenOnEffect
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.util.bytes
 import org.signal.core.util.mebiBytes
 import org.signal.registration.R
 import org.signal.registration.screens.shared.RestoreProgress
 import org.signal.registration.screens.shared.RestoreProgressDialog
 import org.signal.registration.test.TestTags
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.time.ZoneId
+import java.util.Date
 
 @Composable
 fun LocalBackupRestoreScreen(
@@ -250,12 +252,9 @@ private fun BackupInfoCard(
   backupInfo: LocalBackupInfo,
   modifier: Modifier = Modifier
 ) {
-  val context = LocalContext.current
-  val formattedDate = remember(backupInfo.date) {
-    backupInfo.date.format(DateTimeFormatter.ofPattern("MMM d, yyyy · h:mm a"))
-  }
+  val formattedDate = rememberFormattedBackupDate(backupInfo.date)
   val formattedSize = remember(backupInfo.sizeBytes) {
-    backupInfo.sizeBytes?.let { Formatter.formatShortFileSize(context, it) }
+    backupInfo.sizeBytes?.bytes?.toUnitString()
   }
 
   Card(
@@ -348,8 +347,6 @@ private fun BackupPickerSheetContent(
   onSelect: (LocalBackupInfo) -> Unit,
   onConfirm: () -> Unit
 ) {
-  val context = LocalContext.current
-
   Spacer(modifier = Modifier.height(24.dp))
 
   Column(
@@ -385,11 +382,9 @@ private fun BackupPickerSheetContent(
       ) {
         allBackups.forEach { backup ->
           val isSelected = backup == selected
-          val formattedDate = remember(backup.date) {
-            backup.date.format(DateTimeFormatter.ofPattern("MMM d, yyyy · h:mm a"))
-          }
+          val formattedDate = rememberFormattedBackupDate(backup.date)
           val formattedSize = remember(backup.sizeBytes) {
-            backup.sizeBytes?.let { Formatter.formatShortFileSize(context, it) }
+            backup.sizeBytes?.bytes?.toUnitString()
           }
 
           Row(
@@ -632,6 +627,17 @@ private fun ErrorContent(
       CancelButton(onEvent, buttonModifier)
     }
   )
+}
+
+@Composable
+private fun rememberFormattedBackupDate(date: LocalDateTime): String {
+  val context = LocalContext.current
+  return remember(context, date) {
+    val instant = Date.from(date.atZone(ZoneId.systemDefault()).toInstant())
+    val formattedDate = DateFormat.getMediumDateFormat(context).format(instant)
+    val formattedTime = DateFormat.getTimeFormat(context).format(instant)
+    "$formattedDate · $formattedTime"
+  }
 }
 
 @AllDevicePreviews

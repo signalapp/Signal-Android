@@ -17,7 +17,8 @@ import org.signal.core.util.logging.Log
  */
 abstract class EventDrivenPresenter<E : Any>(
   private val tag: String,
-  coroutineScope: CoroutineScope
+  coroutineScope: CoroutineScope,
+  private val shouldLogEvents: Boolean = false
 ) {
 
   private val eventChannel = Channel<E>(Channel.UNLIMITED)
@@ -25,7 +26,9 @@ abstract class EventDrivenPresenter<E : Any>(
   init {
     coroutineScope.launch {
       for (event in eventChannel) {
-        Log.d(tag, "[Event] $event")
+        if (shouldLogEvents) {
+          Log.d(tag, "[Event] $event")
+        }
         processEvent(event)
       }
     }

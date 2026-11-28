@@ -10,14 +10,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
 import org.signal.core.models.media.Media
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendRecipient
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3Activity
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Single entry point for launching the media send flow.
@@ -169,7 +168,7 @@ object MediaSendLauncher {
 
   private fun v3Intent(context: Context, args: MediaSendFlowActivityContract.Args): Intent {
     return Intent(context, MediaSendV3Activity::class.java)
-      .putExtra(MediaSendFlowActivityContract.EXTRA_ARGS, args.copy(maxSelection = RemoteConfig.maxAttachmentCount))
+      .putExtra(MediaSendFlowActivityContract.EXTRA_ARGS, args)
   }
 
   private fun RecipientId.toMediaRecipientId(): MediaRecipientId = MediaRecipientId(toLong())

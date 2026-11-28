@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.Person
 import androidx.core.content.ContextCompat
 import androidx.core.content.LocusIdCompat
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.Stopwatch
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.notifications.v2.getContactDrawable
 import org.thoughtcrime.securesms.notifications.v2.makeUniqueToPreventMerging
 import org.thoughtcrime.securesms.notifications.v2.toLargeBitmap
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 
@@ -98,9 +98,8 @@ class UnreadReminderJob(private val threadId: Long, private val lastReminderTime
     }
 
     val hasNewMessages = SignalDatabase.messages.hasUnreadMessagesSince(threadId, lastReminderTime)
-    val hasNewCalls = SignalDatabase.calls.hasUnreadCallsSince(threadId, lastReminderTime)
-    if (!hasNewMessages && !hasNewCalls) {
-      Log.i(TAG, "No new unread messages or calls for thread $threadId since last reminder. Skipping.")
+    if (!hasNewMessages) {
+      Log.i(TAG, "No new unread messages for thread $threadId since last reminder. Skipping.")
       return Result.success()
     }
 
@@ -109,8 +108,6 @@ class UnreadReminderJob(private val threadId: Long, private val lastReminderTime
     // Get the unread counts/authors
     val (messages, unreadAuthorIds) = getUnreadForReminder(ReminderType.MESSAGES, isEligible = true)
     stopwatch.split("fetch-messages")
-    val (calls, callsAuthorIds) = getUnreadForReminder(ReminderType.CALLS, isEligible = recipient.callNotificationSetting == RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
-    stopwatch.split("fetch-calls")
     val (mentions, mentionsAuthorIds) = getUnreadForReminder(ReminderType.MENTIONS, isEligible = !hideAuthors && recipient.isPushV2Group && recipient.mentionSetting == RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
     stopwatch.split("fetch-mentions")
     val (replies, repliesAuthorIds) = getUnreadForReminder(ReminderType.REPLIES, isEligible = !hideAuthors && recipient.isPushV2Group && recipient.replyNotificationSetting == RecipientTable.NotificationSetting.ALWAYS_NOTIFY)
@@ -119,10 +116,9 @@ class UnreadReminderJob(private val threadId: Long, private val lastReminderTime
     val summary = buildSummary(
       context = context,
       messages = messages,
-      calls = calls,
       mentions = mentions,
       replies = replies,
-      messageAndCallAuthors = (unreadAuthorIds + callsAuthorIds).distinct().map { Recipient.resolved(it).getShortDisplayName(context) },
+      messageAuthors = unreadAuthorIds.map { Recipient.resolved(it).getShortDisplayName(context) },
       mentionAuthors = mentionsAuthorIds.map { Recipient.resolved(it).getShortDisplayName(context) },
       replyAuthors = repliesAuthorIds.map { Recipient.resolved(it).getShortDisplayName(context) },
       hideAuthors = hideAuthors
@@ -169,48 +165,31 @@ class UnreadReminderJob(private val threadId: Long, private val lastReminderTime
   internal fun buildSummary(
     context: Context,
     messages: Int = 0,
-    calls: Int = 0,
     mentions: Int = 0,
     replies: Int = 0,
-    messageAndCallAuthors: List<String> = emptyList(),
+    messageAuthors: List<String> = emptyList(),
     mentionAuthors: List<String> = emptyList(),
     replyAuthors: List<String> = emptyList(),
     hideAuthors: Boolean = false
   ): String {
     val showUnread = messages > 0
-    val showCalls = calls > 0
-    val showAuthors = (showUnread || showCalls) && !hideAuthors
+    val showAuthors = showUnread && !hideAuthors
     val showMentions = mentions > 0 && !hideAuthors
     val showReplies = replies > 0 && !hideAuthors
 
     val messagesString = if (showUnread) context.resources.getQuantityString(R.plurals.UnreadReminderJob__messages, messages, messages) else ""
-    val callsString = if (showCalls) context.resources.getQuantityString(R.plurals.UnreadReminderJob__calls, calls, calls) else ""
-    val authorsString = if (showAuthors) buildAuthorSummary(context, ReminderType.MESSAGES, messages + calls, messageAndCallAuthors) else ""
+    val authorsString = if (showAuthors) buildAuthorSummary(context, ReminderType.MESSAGES, messages, messageAuthors) else ""
     val mentionsString = if (showMentions) buildAuthorSummary(context, ReminderType.MENTIONS, mentions, mentionAuthors) else ""
     val repliesString = if (showReplies) buildAuthorSummary(context, ReminderType.REPLIES, replies, replyAuthors) else ""
 
-    return if (showUnread && showCalls && showMentions && showReplies) {
-      context.getString(R.string.UnreadReminderJob__calls_and_unread_full_summary, callsString, messagesString, mentionsString, repliesString)
-    } else if (showUnread && showCalls && showMentions) {
-      context.getString(R.string.UnreadReminderJob__calls_and_unread_summary, callsString, messagesString, mentionsString)
-    } else if (showUnread && showCalls && showReplies) {
-      context.getString(R.string.UnreadReminderJob__calls_and_unread_summary, callsString, messagesString, repliesString)
-    } else if (showUnread && showCalls && hideAuthors) {
-      context.getString(R.string.UnreadReminderJob__calls_and_unread, callsString, messagesString)
-    } else if (showUnread && showCalls) {
-      context.getString(R.string.UnreadReminderJob__calls_and_unread_author, callsString, messagesString, authorsString)
-    } else if (showUnread && showMentions && showReplies) {
+    return if (showUnread && showMentions && showReplies) {
       context.getString(R.string.UnreadReminderJob__unread_both_summary, messagesString, mentionsString, repliesString)
     } else if (showUnread && showMentions) {
       context.getString(R.string.UnreadReminderJob__unread_one_summary, messagesString, mentionsString)
     } else if (showUnread && showReplies) {
       context.getString(R.string.UnreadReminderJob__unread_one_summary, messagesString, repliesString)
-    } else if (hideAuthors && showCalls) {
-      context.getString(R.string.UnreadReminderJob__calls_or_unread, callsString)
     } else if (hideAuthors && showUnread) {
       context.getString(R.string.UnreadReminderJob__calls_or_unread, messagesString)
-    } else if (showCalls) {
-      context.getString(R.string.UnreadReminderJob__calls_or_unread_author, callsString, authorsString)
     } else if (showUnread) {
       context.getString(R.string.UnreadReminderJob__calls_or_unread_author, messagesString, authorsString)
     } else {
@@ -225,8 +204,7 @@ class UnreadReminderJob(private val threadId: Long, private val lastReminderTime
   @VisibleForTesting
   internal fun buildAuthorSummary(context: Context, reminderType: ReminderType, count: Int, authors: List<String>): String {
     val (oneRes, twoRes, manyRes) = when (reminderType) {
-      ReminderType.MESSAGES,
-      ReminderType.CALLS -> Triple(R.string.UnreadReminderJob__authors_one, R.string.UnreadReminderJob__authors_two, R.string.UnreadReminderJob__authors_many)
+      ReminderType.MESSAGES -> Triple(R.string.UnreadReminderJob__authors_one, R.string.UnreadReminderJob__authors_two, R.string.UnreadReminderJob__authors_many)
       ReminderType.MENTIONS -> Triple(R.string.UnreadReminderJob__mentions_one, R.plurals.UnreadReminderJob__mentions_two, R.plurals.UnreadReminderJob__mentions_many)
       ReminderType.REPLIES -> Triple(R.string.UnreadReminderJob__replies_one, R.plurals.UnreadReminderJob__replies_two, R.plurals.UnreadReminderJob__replies_many)
     }
@@ -250,8 +228,6 @@ class UnreadReminderJob(private val threadId: Long, private val lastReminderTime
   private fun getUnreadForReminder(reminderType: ReminderType, isEligible: Boolean): Pair<Int, List<RecipientId>> {
     return if (!isEligible) {
       0 to emptyList()
-    } else if (reminderType == ReminderType.CALLS) {
-      SignalDatabase.calls.getUnreadCallsForReminderNotification(threadId)
     } else {
       SignalDatabase.messages.getUnreadContentForReminderNotification(threadId, reminderType)
     }

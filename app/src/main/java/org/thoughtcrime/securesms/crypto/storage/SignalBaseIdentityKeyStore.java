@@ -5,8 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
-
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
@@ -15,6 +14,7 @@ import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore.SaveResult;
 import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus;
+import org.thoughtcrime.securesms.database.SQLiteDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.model.IdentityStoreRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.signal.core.util.LRUCache;
 import org.whispersystems.signalservice.api.SignalSessionLock;
@@ -74,7 +74,7 @@ public class SignalBaseIdentityKeyStore {
   public @NonNull SaveResult saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       IdentityStoreRecord identityRecord   = cache.get(address.getName());
-      RecipientId         recipientId      = RecipientId.from(ServiceId.fromLibSignal(address.getServiceId()));
+      RecipientId         recipientId      = RecipientIds.from(ServiceId.fromLibSignal(address.getServiceId()));
 
       if (identityRecord == null) {
         Log.i(TAG, "Saving new identity for " + address);
@@ -127,9 +127,9 @@ public class SignalBaseIdentityKeyStore {
   }
 
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, IdentityKeyStore.Direction direction) {
-    boolean isSelf = address.getName().equals(SignalStore.account().requireAci().toString()) ||
-                     (SignalStore.account().getPni() != null && address.getName().equals(SignalStore.account().requirePni().toString())) ||
-                     (SignalStore.account().getE164() != null && address.getName().equals(SignalStore.account().getE164()));
+    ServiceId serviceId = ServiceId.parseOrNull(address.getName(), false);
+    boolean   isSelf    = (serviceId != null && (serviceId.equals(SignalStore.account().requireAci()) || serviceId.equals(SignalStore.account().getPni()))) ||
+                          (SignalStore.account().getE164() != null && address.getName().equals(SignalStore.account().getE164()));
 
     if (isSelf) {
       return identityKey.equals(SignalStore.account().getAciIdentityKey().getPublicKey());
@@ -357,7 +357,7 @@ public class SignalBaseIdentityKeyStore {
      * To prevent this, writes should first acquire the DB lock before getting the cache lock to ensure we always acquire locks in the same order.
      */
     private void withWriteLock(Runnable runnable) {
-      SQLiteDatabase db = SignalDatabase.getRawDatabase();
+      SQLiteDatabase db = SignalDatabase.identities().getWritableDatabase();
       db.beginTransaction();
       try {
         synchronized (this) {

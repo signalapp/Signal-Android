@@ -61,9 +61,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.BottomSheetUtil;
 import org.signal.core.ui.WindowSizeClassExtensionsKt;
 import org.signal.core.ui.compose.Snackbars;
@@ -73,9 +71,14 @@ import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.ServiceUtil;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.LifecycleDisposable;
+import org.signal.core.util.concurrent.RxExtensions;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
+import org.signal.remoteconfig.SelectionLimits;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
@@ -87,7 +90,7 @@ import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertDelegate;
-import org.thoughtcrime.securesms.badges.models.Badge;
+import org.signal.core.models.badges.Badge;
 import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.banner.Banner;
@@ -99,6 +102,7 @@ import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedSdkBanner;
 import org.thoughtcrime.securesms.banner.banners.DozeBanner;
+import org.thoughtcrime.securesms.banner.banners.LanguagePackReadyBanner;
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner;
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
@@ -139,7 +143,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -152,10 +155,9 @@ import org.thoughtcrime.securesms.main.MainToolbarViewModel;
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
-import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment;
+import org.thoughtcrime.securesms.profiles.manage.username.UsernameEditFragment;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.search.SearchFilter;
 import org.thoughtcrime.securesms.search.SearchFilterBottomSheet;
@@ -164,12 +166,10 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.verify.SelfVerificationFailureSheet;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
@@ -444,7 +444,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
     initializeVoiceNotePlayer();
     initializeBanners();
     maybeScheduleRefreshProfileJob();
-    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel.getDetailLocation());
+    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(
+        this,
+        mainNavigationViewModel.getDetailLocation(),
+        () -> EventBus.getDefault().subscribeSticky(MessageSender.MessageSentEvent.class, ThreadMode.MAIN, this::onMessageSent)
+    );
 
     String query = contactSearchViewModel.getQuery().getValue();
     if (query != null) {
@@ -453,7 +457,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     if (SignalStore.account().isRegistered() &&
         SignalStore.registration().isRegistrationComplete() &&
-        !TextSecurePreferences.isUnauthorizedReceived(requireContext()) &&
+        !SignalStore.account().isUnauthorizedReceived() &&
         SignalStore.settings().getAutomaticVerificationEnabled() &&
         SignalStore.misc().getHasKeyTransparencyFailure() &&
         !SignalStore.misc().getHasSeenKeyTransparencyFailure()) {
@@ -588,12 +592,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       SignalStore.inAppPayments().setExpiredBadge(null);
 
       Log.w(TAG, "Displaying bottom sheet for an expired badge", true);
-      ExpiredOneTimeBadgeBottomSheetDialogFragment.show(
-          expiredBadge,
-          unexpectedSubscriptionCancellation,
-          SignalStore.inAppPayments().getUnexpectedSubscriptionCancelationChargeFailure(),
-          getParentFragmentManager()
-      );
+      ExpiredOneTimeBadgeBottomSheetDialogFragment.show(expiredBadge, getParentFragmentManager());
     }
 
     if (this.bannerManager != null) {
@@ -889,7 +888,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
                 })
                 .show();
           }
-        })
+        }),
+        new LanguagePackReadyBanner(requireContext())
     );
 
     this.bannerManager = new BannerManager(bannerRepositories);
@@ -1001,8 +1001,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
     Class<? extends ConversationListViewModel> viewModelClass = isArchived() ? ConversationListViewModel.ArchivedConversationListViewModel.class : ConversationListViewModel.UnarchivedConversationListViewModel.class;
     viewModel = new ViewModelProvider(requireActivity(), new ConversationListViewModel.Factory(isArchived())).get(viewModelClass);
 
-    lifecycleDisposable.add(viewModel.getConversationsState().subscribe(this::onConversationListChanged));
-    lifecycleDisposable.add(viewModel.getHasNoConversations().subscribe(this::updateEmptyState));
+    RxExtensions.subscribeWhileStarted(viewModel.getConversationsState(), getViewLifecycleOwner(), this::onConversationListChanged);
+    RxExtensions.subscribeWhileStarted(viewModel.getHasNoConversations(), getViewLifecycleOwner(), this::updateEmptyState);
     lifecycleDisposable.add(viewModel.getWebSocketState().subscribe(pipeState -> requireCallback().updateProxyStatus(pipeState)));
     lifecycleDisposable.add(viewModel.getChatFolderState().subscribe(this::onChatFoldersChanged));
 
@@ -1048,8 +1048,14 @@ public class ConversationListFragment extends MainFragment implements Conversati
       CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_outgoing, parent, 25);
       CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_multimedia, parent, 10);
       CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_multimedia, parent, 10);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_thumbnail, parent, 5);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_thumbnail, parent, 5);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_thumbnail_thumbnail_view_stub, parent, 10);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_audio, parent, 3);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_audio, parent, 3);
       CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_update, parent, 5);
       CachedInflater.from(context).cacheUntilLimit(R.layout.cursor_adapter_header_footer_view, parent, 2);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_fragment, parent, 1);
     }
   }
 
@@ -1303,7 +1309,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                                     .filter(r -> r.getMuteUntil() != until)
                                                     .map(Recipient::getId)
                                                     .collect(Collectors.toList());
-      SignalDatabase.recipients().setMuted(recipientIds, until);
+      if (recipientIds.isEmpty()) {
+        Log.i(TAG, "All " + conversations.size() + " conversation(s) already muted until " + until + ", skipping.");
+      } else {
+        SignalDatabase.recipients().setMuted(recipientIds, until);
+      }
       return null;
     }, unused -> {
       endActionModeIfActive();
@@ -1402,7 +1412,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       if (conversation.getThreadRecord().isRead()) {
         items.add(new ActionItem(R.drawable.symbol_chat_badge_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, 1), () -> handleMarkAsUnread(id)));
       } else {
-        items.add(new ActionItem(R.drawable.symbol_chat_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, 1), () -> handleMarkAsRead(id)));
+        items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_chat_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, 1), () -> handleMarkAsRead(id)));
       }
 
       if (conversation.getThreadRecord().isPinned()) {
@@ -1466,8 +1476,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     return true;
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-  public void onEvent(MessageSender.MessageSentEvent event) {
+  private void onMessageSent(MessageSender.MessageSentEvent event) {
     EventBus.getDefault().removeStickyEvent(event);
     closeSearchIfOpen();
   }
@@ -1538,7 +1547,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                       .collect(Collectors.toSet());
 
     if (hasUnread) {
-      items.add(new ActionItem(R.drawable.symbol_chat_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(selectionIds)));
+      items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_chat_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(selectionIds)));
     } else {
       items.add(new ActionItem(R.drawable.symbol_chat_badge_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, count), () -> handleMarkAsUnread(selectionIds)));
     }
@@ -1663,7 +1672,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }
 
     if (oldIndex < newIndex) {
-      smoothScroller.setTargetPosition(Math.min(newIndex + 1, viewModel.getFolders().size()));
+      smoothScroller.setTargetPosition(Math.min(newIndex + 1, viewModel.getFolders().size() - 1));
     } else {
       smoothScroller.setTargetPosition(Math.max(newIndex - 1, 0));
     }
@@ -1873,8 +1882,15 @@ public class ConversationListFragment extends MainFragment implements Conversati
       float absoluteDx = Math.abs(dX);
 
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+        View itemView = viewHolder.itemView;
+
+        if (!itemView.isAttachedToWindow()) {
+          itemView.setTranslationX(0);
+          ViewCompat.setElevation(itemView, 0);
+          return;
+        }
+
         Resources resources       = getResources();
-        View      itemView        = viewHolder.itemView;
         float     percentDx       = absoluteDx / viewHolder.itemView.getWidth();
         int       color           = ArgbEvaluatorCompat.getInstance().evaluate(Math.min(1f, percentDx * (1 / 0.25f)), archiveColorStart, archiveColorEnd);
         float     scaleStartPoint = DimensionUnit.DP.toPixels(48f);

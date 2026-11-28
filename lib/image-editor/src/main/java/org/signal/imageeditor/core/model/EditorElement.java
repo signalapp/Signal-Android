@@ -38,6 +38,14 @@ public final class EditorElement implements Parcelable {
 
   private static final Comparator<EditorElement> Z_ORDER_COMPARATOR = (e1, e2) -> Integer.compare(e1.zOrder, e2.zOrder);
 
+  /**
+   * Writes an undo snapshot, which leaves out the children and position of elements marked with
+   * {@link #excludeFromSnapshots()}, so that they neither tell otherwise identical states apart nor animate on undo.
+   */
+  static final int PARCELABLE_WRITE_SNAPSHOT = 1 << 16;
+
+  private static final Matrix IDENTITY = new Matrix();
+
   private final UUID        id;
   private final EditorFlags flags;
   private final Matrix      localMatrix  = new Matrix();
@@ -59,6 +67,8 @@ public final class EditorElement implements Parcelable {
 
   @NonNull
   private AlphaAnimation alphaAnimation = AlphaAnimation.NULL_1;
+
+  private boolean excludedFromSnapshots;
 
   public EditorElement(@Nullable Renderer renderer) {
     this(renderer, 0);
@@ -82,6 +92,11 @@ public final class EditorElement implements Parcelable {
 
   UUID getId() {
     return id;
+  }
+
+  /** For UI-only state, such as the selection guides, that is not part of the edit. */
+  void excludeFromSnapshots() {
+    excludedFromSnapshots = true;
   }
 
   public @Nullable Renderer getRenderer() {
@@ -331,6 +346,8 @@ public final class EditorElement implements Parcelable {
 
   void buildMap(Map<UUID, EditorElement> map) {
     map.put(id, this);
+    if (excludedFromSnapshots) return;
+
     for (EditorElement child : children) {
       child.buildMap(map);
     }
@@ -393,11 +410,22 @@ public final class EditorElement implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
+    boolean omitState = excludedFromSnapshots && (flags & PARCELABLE_WRITE_SNAPSHOT) != 0;
+
     ParcelUtils.writeUUID(dest, id);
     dest.writeInt(this.flags.asInt());
-    ParcelUtils.writeMatrix(dest, localMatrix);
+    ParcelUtils.writeMatrix(dest, omitState ? IDENTITY : localMatrix);
     dest.writeParcelable(renderer, flags);
     dest.writeInt(zOrder);
-    dest.writeTypedList(children);
+    writeChildren(dest, omitState ? Collections.emptyList() : children, flags);
+  }
+
+  /** As {@link Parcel#writeTypedList}, which reads back the same, but passing {@code flags} down to the children. */
+  private static void writeChildren(@NonNull Parcel dest, @NonNull List<EditorElement> children, int flags) {
+    dest.writeInt(children.size());
+    for (EditorElement child : children) {
+      dest.writeInt(1);
+      child.writeToParcel(dest, flags);
+    }
   }
 }

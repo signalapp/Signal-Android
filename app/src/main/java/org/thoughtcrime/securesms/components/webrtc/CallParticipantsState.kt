@@ -44,7 +44,8 @@ data class CallParticipantsState(
   val ringGroup: Boolean = false,
   val ringerRecipient: Recipient = Recipient.UNKNOWN,
   val groupMembers: List<GroupMemberEntry.FullMember> = emptyList(),
-  val isCallLink: Boolean = false
+  val isCallLink: Boolean = false,
+  val usesTelecom: Boolean = false
 ) {
 
   val allRemoteParticipants: List<CallParticipant> = remoteParticipants.allParticipants
@@ -250,7 +251,8 @@ data class CallParticipantsState(
         ringGroup = webRtcViewModel.ringGroup,
         isInOutgoingRingingMode = isInOutgoingRingingMode,
         ringerRecipient = webRtcViewModel.ringerRecipient,
-        isCallLink = webRtcViewModel.isCallLink
+        isCallLink = webRtcViewModel.isCallLink,
+        usesTelecom = webRtcViewModel.usesTelecom
       )
     }
 

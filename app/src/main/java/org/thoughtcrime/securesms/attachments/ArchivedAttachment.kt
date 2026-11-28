@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Parcel
 import org.signal.blurhash.BlurHash
 import org.signal.core.util.Base64
+import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import java.util.UUID
@@ -51,7 +52,8 @@ class ArchivedAttachment : Attachment {
     quoteTargetContentType: String?,
     uuid: UUID?,
     fileName: String?,
-    localBackupKey: ByteArray?
+    localBackupKey: ByteArray?,
+    audioHash: AudioHash? = null
   ) : super(
     contentType = contentType ?: "",
     quote = quote,
@@ -75,7 +77,7 @@ class ArchivedAttachment : Attachment {
     caption = caption,
     stickerLocator = stickerLocator,
     blurHash = BlurHash.parseOrNull(blurHash),
-    audioHash = null,
+    audioHash = audioHash,
     transformProperties = null,
     uuid = uuid
   ) {

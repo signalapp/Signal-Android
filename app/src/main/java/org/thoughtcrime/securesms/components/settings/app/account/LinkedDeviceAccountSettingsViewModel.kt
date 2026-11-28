@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository
 class LinkedDeviceAccountSettingsViewModel(
   private val selfDeviceId: () -> Int = { SignalStore.account.deviceId },
   private val removeDevice: suspend (Int) -> Boolean = LinkDeviceRepository::removeDevice
-) : EventDrivenViewModel<LinkedDeviceAccountSettingsEvent>(TAG) {
+) : EventDrivenViewModel<LinkedDeviceAccountSettingsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(LinkedDeviceAccountSettingsViewModel::class)

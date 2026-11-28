@@ -112,6 +112,23 @@ class StoryDistributionListRecordProcessorTest {
   }
 
   @Test
+  fun `Given a proto that is MyStory without a name, when I isInvalid, then I expect false`() {
+    // GIVEN
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*UuidUtil.toByteArray(DistributionId.MY_STORY.asUuid())))
+      .build()
+
+    val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
+
+    // WHEN
+    val result = testSubject.isInvalid(record)
+
+    // THEN
+    assertFalse(result)
+  }
+
+  @Test
   fun `Given a validated proto that is MyStory, when I isInvalid with another MyStory, then I expect true`() {
     // GIVEN
     val proto = StoryDistributionListRecord()

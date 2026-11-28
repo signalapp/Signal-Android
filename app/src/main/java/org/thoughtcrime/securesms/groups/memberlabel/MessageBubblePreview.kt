@@ -138,15 +138,14 @@ private class MessageBubblePreviewView(context: Context) : FrameLayout(context) 
     avatarView.visible = true
     avatarView.setAvatarUsingProfile(sender)
 
-    groupSenderView.visible = true
-    groupSenderView.setSender(sender.getDisplayName(context), senderNameColor)
-
     val memberLabel = if (labelEmoji.isNullOrBlank() && labelText.isNullOrBlank()) {
       null
     } else {
       MemberLabel(emoji = labelEmoji, text = labelText.orEmpty())
     }
-    groupSenderView.setLabel(memberLabel)
+
+    groupSenderView.visible = true
+    groupSenderView.bind(sender.getDisplayName(context), senderNameColor, memberLabel)
 
     bodyText.text = messageText
     bodyText.setTextColor(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface))

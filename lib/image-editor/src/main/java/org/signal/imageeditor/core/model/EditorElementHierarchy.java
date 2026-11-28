@@ -99,6 +99,8 @@ final class EditorElementHierarchy {
     this.thumbs            = this.cropEditorElement.getChild(1);
     this.fade              = this.cropEditorElement.getChild(2);
     this.trash             = this.cropEditorElement.getChild(3);
+
+    selection.excludeFromSnapshots();
   }
 
   private enum CropStyle {

@@ -4,7 +4,7 @@ import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import org.signal.blurhash.BlurHash
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /**
  * Arguments for launching the story viewer, prefilled with sensible defaults.

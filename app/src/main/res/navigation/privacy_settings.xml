@@ -22,6 +22,13 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
+            android:id="@+id/action_privacySettingsFragment_to_hiddenContactsFragment"
+            app:destination="@id/hiddenContactsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
             android:id="@+id/action_privacySettingsFragment_to_advancedPrivacySettingsFragment"
             app:destination="@id/advancedPrivacySettingsFragment"
             app:enterAnim="@anim/fragment_open_enter"
@@ -58,6 +65,11 @@
         android:label="blocked_users_activity" />
 
     <fragment
+        android:id="@+id/hiddenContactsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.hidden.HiddenContactsFragment"
+        android:label="hidden_contacts_fragment" />
+
+    <fragment
         android:id="@+id/advancedPrivacySettingsFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsFragment"
         android:label="advanced_privacy_settings_fragment" />
@@ -70,15 +82,7 @@
     <fragment
         android:id="@+id/screenLockSettingsFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.privacy.screenlock.ScreenLockSettingsFragment"
-        android:label="screen_lock_settings_fragment">
-        <action
-            android:id="@+id/action_screenLockSettingsFragment_to_customScreenLockTimerSelectDialog"
-            app:destination="@id/customScreenLockTimerSelectDialog" />
-    </fragment>
-
-    <dialog
-        android:id="@+id/customScreenLockTimerSelectDialog"
-        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.screenlock.CustomScreenLockTimerSelectDialog" />
+        android:label="screen_lock_settings_fragment" />
 
     <include app:graph="@navigation/app_settings_expire_timer" />
 

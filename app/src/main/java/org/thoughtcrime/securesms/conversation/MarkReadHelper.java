@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
+import java.util.function.BooleanSupplier;
 
 public class MarkReadHelper {
   private static final String TAG = Log.tag(MarkReadHelper.class);
@@ -38,27 +39,37 @@ public class MarkReadHelper {
   private static final long     DEBOUNCE_TIMEOUT = 100;
   private static final Executor EXECUTOR         = new SerialMonoLifoExecutor(SignalExecutors.BOUNDED);
 
-  private final ConversationId conversationId;
-  private final Context        context;
-  private final LifecycleOwner lifecycleOwner;
-  private final boolean        incognito;
-  private final Debouncer      debouncer         = new Debouncer(DEBOUNCE_TIMEOUT);
-  private       long           latestTimestamp;
-  private       boolean        ignoreViewReveals = false;
+  private final ConversationId  conversationId;
+  private final Context         context;
+  private final LifecycleOwner  lifecycleOwner;
+  private final boolean         incognito;
+  private final BooleanSupplier isDisplayed;
+  private final Debouncer       debouncer         = new Debouncer(DEBOUNCE_TIMEOUT);
+  private       long            latestTimestamp;
+  private       boolean         ignoreViewReveals = false;
 
   public MarkReadHelper(@NonNull ConversationId conversationId, @NonNull Context context, @NonNull LifecycleOwner lifecycleOwner) {
-    this(conversationId, context, lifecycleOwner, false);
+    this(conversationId, context, lifecycleOwner, false, () -> true);
   }
 
-  public MarkReadHelper(@NonNull ConversationId conversationId, @NonNull Context context, @NonNull LifecycleOwner lifecycleOwner, boolean incognito) {
+  /**
+   * @param isDisplayed Whether the host is displaying the conversation, since a resumed chat may be about to be replaced.
+   */
+  public MarkReadHelper(@NonNull ConversationId conversationId,
+                        @NonNull Context context,
+                        @NonNull LifecycleOwner lifecycleOwner,
+                        boolean incognito,
+                        @NonNull BooleanSupplier isDisplayed)
+  {
     this.conversationId = conversationId;
     this.context        = context.getApplicationContext();
     this.lifecycleOwner = lifecycleOwner;
     this.incognito      = incognito;
+    this.isDisplayed    = isDisplayed;
   }
 
   public void onViewsRevealed(long timestamp) {
-    if (incognito || timestamp <= latestTimestamp || lifecycleOwner.getLifecycle().getCurrentState() != Lifecycle.State.RESUMED || ignoreViewReveals) {
+    if (incognito || timestamp <= latestTimestamp || lifecycleOwner.getLifecycle().getCurrentState() != Lifecycle.State.RESUMED || ignoreViewReveals || !isDisplayed.getAsBoolean()) {
       return;
     }
 

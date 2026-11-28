@@ -5,7 +5,7 @@
 
 package org.signal.network.pin
 
-import org.whispersystems.signalservice.api.kbs.PinString
+import org.signal.core.util.PinString
 
 /**
  * Rejects PINs that are trivially guessable. A numeric PIN must not be empty, sequential in either

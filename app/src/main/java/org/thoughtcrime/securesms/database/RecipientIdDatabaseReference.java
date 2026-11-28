@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.signal.core.models.recipients.RecipientId;
 
 /**
  * Indicates that this table references a RecipientId. RecipientIds can be remapped at runtime if recipients merge, and therefore this table needs to be able to

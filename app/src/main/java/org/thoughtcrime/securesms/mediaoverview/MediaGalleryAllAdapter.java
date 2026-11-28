@@ -36,9 +36,6 @@ import java.util.stream.Collectors;
 import com.bumptech.glide.RequestManager;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.signal.core.util.ByteSize;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -50,6 +47,7 @@ import org.thoughtcrime.securesms.database.MediaTable.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader.GroupedThreadMedia;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -757,20 +755,9 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     private void parseLinkPreview(@NonNull MediaTable.MediaRecord mediaRecord) {
-      linkUrl   = "";
-      linkTitle = "";
-      if (mediaRecord.getLinkPreviewJson() != null) {
-        try {
-          JSONArray json = new JSONArray(mediaRecord.getLinkPreviewJson());
-          if (json.length() > 0) {
-            JSONObject preview = json.getJSONObject(0);
-            linkUrl   = preview.optString("url", "");
-            linkTitle = preview.optString("title", "");
-          }
-        } catch (JSONException e) {
-          // ignore
-        }
-      }
+      LinkPreview preview = mediaRecord.getLinkPreview();
+      linkUrl   = preview != null ? preview.getUrl() : "";
+      linkTitle = preview != null ? preview.getTitle() : "";
     }
   }
 

@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.components.snackbars
 
 import androidx.annotation.ColorRes
 import org.signal.core.ui.compose.Snackbars
-import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Represents the state of a snackbar to be displayed.
@@ -34,7 +34,7 @@ data class SnackbarState(
    */
   data class ActionState(
     val action: String,
-    @ColorRes val color: Int = R.color.core_white,
+    @ColorRes val color: Int = CoreUiR.color.core_white,
     val onActionClick: () -> Unit
   )
 }

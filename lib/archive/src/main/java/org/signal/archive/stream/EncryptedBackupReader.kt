@@ -16,6 +16,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
+import org.signal.core.util.skipNBytesOrThrow
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.stream.MacInputStream
 import org.signal.core.util.writeVarInt32
@@ -61,7 +62,7 @@ class EncryptedBackupReader private constructor(
     private const val MAX_FRAME_LENGTH = 25 * 1024 * 1024
 
     /**
-     * The number of times we'll retry a read after an [IOException] before giving up.
+     * The number of consecutive frames we'll skip after failing to decode them before giving up.
      */
     private const val MAX_READ_RETRIES = 3
 
@@ -247,17 +248,22 @@ class EncryptedBackupReader private constructor(
   private fun read(): Frame? {
     var attempts = 0
     while (attempts < MAX_READ_RETRIES) {
-      try {
+      val frameBytes: ByteArray = try {
         val length = stream.readVarInt32().takeIf { it >= 0 } ?: return null
         if (length > MAX_FRAME_LENGTH) {
-          throw IOException("Frame length exceeds maximum allowed size: $length")
+          Log.w(TAG, "Frame length exceeds maximum allowed size: $length. Skipping it.")
+          stream.skipNBytesOrThrow(length.toLong())
+          continue
         }
-        val frameBytes: ByteArray = stream.readNBytesOrThrow(length)
-        return Frame.ADAPTER.decode(frameBytes)
+        stream.readNBytesOrThrow(length)
       } catch (e: EOFException) {
         return null
+      }
+
+      try {
+        return Frame.ADAPTER.decode(frameBytes)
       } catch (e: IOException) {
-        Log.w(TAG, "Error while reading frame.", e)
+        Log.w(TAG, "Error while decoding frame.", e)
         attempts++
       }
     }

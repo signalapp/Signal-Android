@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.contactshare.screens.share
 
-import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
@@ -16,11 +15,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contactshare.Contact
+import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /** A loaded contact alongside the state derived from it. */
 data class LoadedContact(
@@ -38,11 +38,11 @@ data class ShareContactSelection(
 )
 
 class ShareContactViewModel(
-  private val uris: List<Uri>,
+  private val contactSource: SharedContactSource?,
   private val recipientId: RecipientId?,
   private val repository: ShareContactRepository,
   private val savedState: SavedStateHandle
-) : EventDrivenViewModel<ShareContactEvent>(TAG) {
+) : EventDrivenViewModel<ShareContactEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(ShareContactViewModel::class)
@@ -81,7 +81,7 @@ class ShareContactViewModel(
   override suspend fun processEvent(event: ShareContactEvent) {
     when (event) {
       ShareContactEvent.Initialize -> {
-        val loaded = repository.load(uris, recipientId)
+        val loaded = contactSource?.let { repository.load(it, recipientId) }
 
         if (loaded == null) {
           Log.w(TAG, "Could not read a contact to share.")
@@ -127,7 +127,7 @@ class ShareContactViewModel(
       is ShareContactEvent.NameEdited -> {
         nameParts = event.parts
         _state.update { current ->
-          current.copy(name = current.name?.copy(displayName = event.parts.toDisplayName()))
+          current.copy(name = current.name?.copy(displayName = event.parts.toDisplayName(), isOrgOnly = event.parts.isOrgOnly))
         }
       }
 
@@ -203,16 +203,18 @@ class ShareContactViewModel(
   /** Returns the state untouched when nothing was saved, which is the normal first load. */
   private fun ShareContactState.withSavedSelection(): ShareContactState {
     val detailIds: List<String> = savedState.get<ArrayList<String>>(KEY_DETAIL_IDS) ?: return this
-    val savedPhoto = savedState.get<String>(KEY_PHOTO_ID)?.let { id -> photoOptions.firstOrNull { it.id == id }?.photo }
+    // Resolved to an option rather than to a photo, so that a saved "no photo" is not mistaken for nothing saved.
+    val savedOption = savedState.get<String>(KEY_PHOTO_ID)?.let { id -> photoOptions.firstOrNull { it.id == id } }
 
     return copy(
       avatar = avatar?.copy(
         isSelected = savedState.get<Boolean>(KEY_AVATAR_SELECTED) ?: avatar.isSelected,
-        photo = savedPhoto ?: avatar.photo
+        photo = if (savedOption != null) savedOption.photo else avatar.photo
       ),
       name = name?.copy(
         isSelected = savedState.get<Boolean>(KEY_NAME_SELECTED) ?: name.isSelected,
-        displayName = nameParts.toDisplayName().ifBlank { name.displayName }
+        displayName = nameParts.toDisplayName().ifBlank { name.displayName },
+        isOrgOnly = nameParts.isOrgOnly
       ),
       details = details.map { it.copy(isSelected = it.id in detailIds) }
     )

@@ -14,12 +14,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 
+import com.google.android.play.core.splitcompat.SplitCompat;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.signal.core.util.ConfigurationUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
-import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.signal.locale.AppLocale;
 
 import java.util.Objects;
 
@@ -84,11 +85,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     configuration.orientation = Configuration.ORIENTATION_UNDEFINED;
 
     applyOverrideConfiguration(configuration);
+    if (AppLocale.isSplitInstall()) {
+      SplitCompat.installActivity(this);
+    }
   }
 
   @Override
   public void applyOverrideConfiguration(@NonNull Configuration overrideConfiguration) {
-    DynamicLanguageContextWrapper.prepareOverrideConfiguration(this, overrideConfiguration);
+    AppLocale.prepareOverrideConfiguration(overrideConfiguration);
     super.applyOverrideConfiguration(overrideConfiguration);
   }
 

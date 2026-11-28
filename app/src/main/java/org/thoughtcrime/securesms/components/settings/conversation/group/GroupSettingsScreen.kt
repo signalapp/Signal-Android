@@ -282,7 +282,7 @@ private fun LazyListScope.managementSection(
     item {
       Rows.TextRow(
         text = stringResource(R.string.ConversationSettingsFragment__group_link),
-        label = stringResource(if (state.groupLinkEnabled) R.string.preferences_on else R.string.preferences_off),
+        label = stringResource(if (state.groupLinkEnabled) CoreUiR.string.preferences_on else CoreUiR.string.preferences_off),
         icon = SignalIcons.Link.painter,
         enabled = state.isActive && !state.isDeprecatedOrUnregistered,
         onClick = { onEvent(GroupSettingsEvent.GroupLinkClicked) }
@@ -479,7 +479,7 @@ private fun LegacyGroupNotice(
   when (legacyGroupState) {
     LegacyGroupState.LEARN_MORE -> {
       body = stringResource(R.string.ManageGroupActivity_legacy_group_learn_more)
-      linkLabel = stringResource(R.string.LearnMoreTextView_learn_more)
+      linkLabel = stringResource(CoreUiR.string.LearnMoreTextView_learn_more)
       onClick = onLearnMoreClick
     }
 

@@ -9,6 +9,7 @@ import android.database.Cursor
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.DistributionList
 import org.signal.archive.proto.DistributionListItem
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.Closeable
 
@@ -62,17 +62,29 @@ class DistributionListArchiveExporter(
       privacyMode = privacyMode
     )
 
-    val distributionListItem = if (record.deletedAtTimestamp != 0L) {
+    val distributionListItem = if (record.distributionId == DistributionId.MY_STORY && record.deletedAtTimestamp != 0L) {
+      Log.w(TAG, ExportOddities.myStoryMarkedDeleted())
+      DistributionListItem(
+        distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
+        distributionList = DistributionList(
+          name = "",
+          allowReplies = true,
+          privacyMode = DistributionList.PrivacyMode.ALL,
+          memberRecipientIds = emptyList()
+        )
+      )
+    } else if (record.deletedAtTimestamp != 0L) {
       DistributionListItem(
         distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
         deletionTimestamp = record.deletedAtTimestamp
       )
     } else {
       val members = record.members.toRemoteMemberList(selfRecipientId, exportState)
+      val name = if (record.distributionId == DistributionId.MY_STORY) "" else record.name
       DistributionListItem(
         distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
         distributionList = DistributionList(
-          name = record.name,
+          name = name,
           allowReplies = record.allowsReplies,
           privacyMode = record.privacyMode.toBackupPrivacyMode(members.size),
           memberRecipientIds = members

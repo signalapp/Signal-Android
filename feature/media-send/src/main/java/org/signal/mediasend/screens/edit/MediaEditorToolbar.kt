@@ -26,13 +26,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.copied.androidx.compose.material3.IconButtonColors
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.mediasend.EditorState
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.test.TestTags
 
 @Composable

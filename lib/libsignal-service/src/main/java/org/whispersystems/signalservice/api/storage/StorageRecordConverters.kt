@@ -9,10 +9,12 @@ import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.CallLinkRecord
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
+import org.whispersystems.signalservice.internal.storage.protos.FavoriteStickerRecord
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
+import org.whispersystems.signalservice.internal.storage.protos.HiddenStickerPackRecord
+import org.whispersystems.signalservice.internal.storage.protos.InstalledStickerPackRecord
 import org.whispersystems.signalservice.internal.storage.protos.NotificationProfile
-import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord
 import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 import org.whispersystems.signalservice.internal.storage.protos.StoryDistributionListRecord
 
@@ -52,8 +54,16 @@ fun NotificationProfile.toSignalNotificationProfileRecord(storageId: StorageId):
   return SignalNotificationProfileRecord(storageId, this)
 }
 
-fun StickerPackRecord.toSignalStickerPackRecord(storageId: StorageId): SignalStickerPackRecord {
-  return SignalStickerPackRecord(storageId, this)
+fun InstalledStickerPackRecord.toSignalInstalledStickerPackRecord(storageId: StorageId): SignalInstalledStickerPackRecord {
+  return SignalInstalledStickerPackRecord(storageId, this)
+}
+
+fun HiddenStickerPackRecord.toSignalHiddenStickerPackRecord(storageId: StorageId): SignalHiddenStickerPackRecord {
+  return SignalHiddenStickerPackRecord(storageId, this)
+}
+
+fun FavoriteStickerRecord.toSignalFavoriteStickerRecord(storageId: StorageId): SignalFavoriteStickerRecord {
+  return SignalFavoriteStickerRecord(storageId, this)
 }
 
 fun SignalContactRecord.toSignalStorageRecord(): SignalStorageRecord {
@@ -88,6 +98,14 @@ fun SignalNotificationProfileRecord.toSignalStorageRecord(): SignalStorageRecord
   return SignalStorageRecord(id, StorageRecord(notificationProfile = this.proto))
 }
 
-fun SignalStickerPackRecord.toSignalStorageRecord(): SignalStorageRecord {
-  return SignalStorageRecord(id, StorageRecord(stickerPack = this.proto))
+fun SignalInstalledStickerPackRecord.toSignalStorageRecord(): SignalStorageRecord {
+  return SignalStorageRecord(id, StorageRecord(installedStickerPack = this.proto))
+}
+
+fun SignalFavoriteStickerRecord.toSignalStorageRecord(): SignalStorageRecord {
+  return SignalStorageRecord(id, StorageRecord(favoriteSticker = this.proto))
+}
+
+fun SignalHiddenStickerPackRecord.toSignalStorageRecord(): SignalStorageRecord {
+  return SignalStorageRecord(id, StorageRecord(hiddenStickerPack = this.proto))
 }

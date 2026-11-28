@@ -6,8 +6,8 @@ import android.view.View
 import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.conversation.MessageSendType
-import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * The send button you see in a conversation.

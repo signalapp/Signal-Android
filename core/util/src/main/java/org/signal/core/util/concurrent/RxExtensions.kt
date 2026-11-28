@@ -7,12 +7,15 @@
 
 package org.signal.core.util.concurrent
 
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.Subject
@@ -21,6 +24,28 @@ fun <T : Any> Flowable<T>.observe(viewLifecycleOwner: LifecycleOwner, onNext: (T
   val lifecycleDisposable = LifecycleDisposable()
   lifecycleDisposable.bindTo(viewLifecycleOwner)
   lifecycleDisposable += subscribeBy(onNext = onNext)
+}
+
+/**
+ * Resubscribes on every start, so the source must replay its latest value to new subscribers.
+ */
+fun <T : Any> Flowable<T>.subscribeWhileStarted(lifecycleOwner: LifecycleOwner, onNext: Consumer<T>) {
+  lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+    private var disposable: Disposable? = null
+
+    override fun onStart(owner: LifecycleOwner) {
+      disposable = subscribe(onNext)
+    }
+
+    override fun onStop(owner: LifecycleOwner) {
+      disposable?.dispose()
+      disposable = null
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+      owner.lifecycle.removeObserver(this)
+    }
+  })
 }
 
 fun Completable.observe(viewLifecycleOwner: LifecycleOwner, onComplete: () -> Unit) {

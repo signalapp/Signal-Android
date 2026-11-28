@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
@@ -18,7 +19,6 @@ import org.signal.core.util.money.PlatformCurrencyUtil
 import org.signal.core.util.orNull
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository
@@ -244,10 +244,10 @@ class DonateToSignalViewModel(
       when (it) {
         is DonationRedemptionJobStatus.PendingExternalVerification -> Optional.ofNullable(it.pendingOneTimeDonation)
 
-        DonationRedemptionJobStatus.PendingKeepAlive -> error("Invalid state for one time donation")
+        is DonationRedemptionJobStatus.PendingKeepAlive -> error("Invalid state for one time donation")
 
-        DonationRedemptionJobStatus.PendingReceiptRedemption,
-        DonationRedemptionJobStatus.PendingReceiptRequest,
+        is DonationRedemptionJobStatus.PendingReceiptRedemption,
+        is DonationRedemptionJobStatus.PendingReceiptRequest,
         DonationRedemptionJobStatus.FailedSubscription,
         DonationRedemptionJobStatus.None -> Optional.empty()
       }
@@ -384,7 +384,7 @@ class DonateToSignalViewModel(
 
   private fun resolveSelectedSubscription(activeSubscription: ActiveSubscription, subscriptions: List<Subscription>): Subscription? {
     return if (activeSubscription.isActive) {
-      subscriptions.firstOrNull { it.level == activeSubscription.activeSubscription.level }
+      subscriptions.firstOrNull { it.level == activeSubscription.activeSubscription!!.level }
     } else {
       subscriptions.firstOrNull()
     }

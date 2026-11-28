@@ -16,15 +16,18 @@ import java.io.InputStream
  */
 class DecryptableStreamFactory(
   private val uri: Uri,
-  private val thumbnailTimeUs: Long = 0
+  private val thumbnailTimeUs: Long = 0,
+  private val contentType: String? = null
 ) : InputStreamFactory {
   companion object {
     private val TAG = Log.tag(DecryptableStreamFactory::class)
   }
 
+  private val fetcher by lazy { DecryptableStreamLocalUriFetcher(AppDependencies.application, uri, thumbnailTimeUs, contentType) }
+
   override fun create(): InputStream {
     return try {
-      DecryptableStreamLocalUriFetcher(AppDependencies.application, uri, thumbnailTimeUs).loadResource(uri, AppDependencies.application.contentResolver)
+      fetcher.loadResource(uri, AppDependencies.application.contentResolver)
     } catch (e: Exception) {
       Log.w(TAG, "Error creating input stream for URI.", e)
       throw e

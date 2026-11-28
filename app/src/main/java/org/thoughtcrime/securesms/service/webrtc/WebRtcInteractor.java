@@ -6,13 +6,13 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
@@ -75,6 +75,9 @@ public class WebRtcInteractor {
   }
 
   void updatePhoneState(@NonNull LockManager.PhoneState phoneState) {
+    if (phoneState == LockManager.PhoneState.IDLE) {
+      WebRtcUtil.resetLoggedPhoneState();
+    }
     lockManager.updatePhoneState(phoneState);
   }
 
@@ -94,12 +97,12 @@ public class WebRtcInteractor {
     signalCallManager.updateGroupCallUpdateMessage(groupId, groupCallEraId, joinedMembers, isCallFull);
   }
 
-  void setCallInProgressNotification(int type, @NonNull RemotePeer remotePeer, boolean isVideoCall) {
-    ActiveCallManager.update(context, type, remotePeer.getRecipient().getId(), isVideoCall);
+  void setCallInProgressNotification(int type, @NonNull RemotePeer remotePeer, boolean isVideoCall, boolean usesTelecom) {
+    ActiveCallManager.update(context, type, remotePeer.getRecipient().getId(), isVideoCall, usesTelecom);
   }
 
   void setCallInProgressNotification(int type, @NonNull Recipient recipient, boolean isVideoCall) {
-    ActiveCallManager.update(context, type, recipient.getId(), isVideoCall);
+    ActiveCallManager.update(context, type, recipient.getId(), isVideoCall, false);
   }
 
   void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
@@ -138,8 +141,12 @@ public class WebRtcInteractor {
     ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.SilenceIncomingRinger());
   }
 
-  void initializeAudioForCall(boolean isGroupCall) {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Initialize(isGroupCall));
+  void initializeAudioForCall(boolean usesTelecom) {
+    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Initialize(usesTelecom));
+  }
+
+  void setMicrophoneMute(boolean muted) {
+    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.SetMicrophoneMute(muted));
   }
 
   void startIncomingRinger(@Nullable Uri ringtoneUri, boolean vibrate) {
@@ -154,8 +161,8 @@ public class WebRtcInteractor {
     ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Stop(playDisconnect));
   }
 
-  void prepareAudioForAccept() {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.PrepareForAccept());
+  void prepareAudioForAccept(boolean waitForBluetooth) {
+    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.PrepareForAccept(waitForBluetooth));
   }
 
   void startAudioCommunication() {
@@ -182,28 +189,32 @@ public class WebRtcInteractor {
     signalCallManager.peekGroupCallForRingingCheck(groupCallRingCheckInfo);
   }
 
-  public void activateCall(RecipientId recipientId) {
-    AndroidTelecomUtil.activateCall(recipientId);
+  boolean shouldUseTelecom() {
+    return AndroidTelecomUtil.getTelecomSupported();
   }
 
-  public void terminateCall(RecipientId recipientId) {
-    AndroidTelecomUtil.terminateCall(recipientId);
+  public void activateCall(RecipientId recipientId, long callId, boolean acceptWithVideo) {
+    AndroidTelecomUtil.activateCall(recipientId, callId, acceptWithVideo);
   }
 
-  public void terminateCall(RecipientId recipientId, int disconnectCause) {
-    AndroidTelecomUtil.terminateCall(recipientId, disconnectCause);
+  public void terminateCall(RecipientId recipientId, long callId) {
+    AndroidTelecomUtil.terminateCall(recipientId, callId);
   }
 
-  public boolean addNewIncomingCall(RecipientId recipientId, long callId, boolean remoteVideoOffer) {
-    return AndroidTelecomUtil.addIncomingCall(recipientId, callId, remoteVideoOffer);
+  public void terminateCall(RecipientId recipientId, long callId, int disconnectCause) {
+    AndroidTelecomUtil.terminateCall(recipientId, callId, disconnectCause);
   }
 
-  public void rejectIncomingCall(RecipientId recipientId) {
-    AndroidTelecomUtil.reject(recipientId);
+  public void addNewIncomingCall(RecipientId recipientId, long callId, boolean remoteVideoOffer) {
+    AndroidTelecomUtil.addIncomingCall(recipientId, callId, remoteVideoOffer);
   }
 
-  public boolean addNewOutgoingCall(RecipientId recipientId, long callId, boolean isVideoCall) {
-    return AndroidTelecomUtil.addOutgoingCall(recipientId, callId, isVideoCall);
+  public void rejectIncomingCall(RecipientId recipientId, long callId) {
+    AndroidTelecomUtil.reject(recipientId, callId);
+  }
+
+  public void addNewOutgoingCall(RecipientId recipientId, long callId, boolean isVideoCall, @Nullable SignalAudioManager.AudioDevice preferredEndpoint) {
+    AndroidTelecomUtil.addOutgoingCall(recipientId, callId, isVideoCall, preferredEndpoint);
   }
 
   public void requestGroupMembershipProof(GroupId.V2 groupId, int groupCallHashCode) {

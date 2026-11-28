@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.processor
 import org.signal.archive.proto.ChatItem
 import org.signal.archive.proto.Frame
 import org.signal.archive.stream.BackupFrameEmitter
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.backup.v2.database.createChatItemInserter
 import org.thoughtcrime.securesms.backup.v2.database.getMessagesForBackup
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Handles importing/exporting [ChatItem] frames for an archive.

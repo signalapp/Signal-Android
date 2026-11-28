@@ -10,6 +10,7 @@ import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.network.service.ArchiveError
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollecti
 import org.thoughtcrime.securesms.jobs.protos.CopyAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.concurrent.TimeUnit
 
 /**
@@ -187,13 +187,15 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
             Log.w(TAG, "[$attachmentId]$mediaIdLog Something is invalid about our request. Possibly the length. Scheduling a re-upload.")
             setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
             AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
-            Result.success()
+            // Returning immediately to avoid marking the attachment as finished.
+            return Result.success()
           }
           is ArchiveError.CopyMediaError.SourceNotFound -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog The attachment no longer exists on the transit tier. Scheduling a re-upload.")
             setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
             AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
-            Result.success()
+            // Returning immediately to avoid marking the attachment as finished.
+            return Result.success()
           }
           is ArchiveError.CopyMediaError.OutOfRemoteSpace -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog Insufficient storage space! Can't upload!")

@@ -7,6 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeException;
+import org.signal.core.util.groups.GroupChangeFailedException;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -16,10 +19,8 @@ import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
@@ -342,6 +343,7 @@ public class RecipientUtil {
   /**
    * @return True if this recipient should already have your profile key, otherwise false.
    */
+  @WorkerThread
   public static boolean shouldHaveProfileKey(@NonNull Recipient recipient) {
     if (recipient.isBlocked()) {
       return false;
@@ -354,9 +356,19 @@ public class RecipientUtil {
       return groupDatabase.getPushGroupsContainingMember(recipient.getId())
                           .stream()
                           .filter(GroupRecord::getHasV2GroupProperties)
+                          .filter(RecipientUtil::isSharingProfileWithGroup)
                           .anyMatch(group -> group.memberLevel(Recipient.self()).isInGroup());
-
     }
+  }
+
+  /**
+   * We only publish our current profile key to groups we share our profile with (see {@link GroupV2UpdateSelfProfileKeyJob}),
+   * so membership in a group we have not accepted or have blocked says nothing about whether its members have our profile key.
+   */
+  @WorkerThread
+  private static boolean isSharingProfileWithGroup(@NonNull GroupRecord group) {
+    Recipient groupRecipient = Recipient.resolved(group.getRecipientId());
+    return !groupRecipient.isBlocked() && groupRecipient.isProfileSharing();
   }
 
   /**
@@ -398,7 +410,7 @@ public class RecipientUtil {
   private static boolean isCallRequestAccepted(@Nullable Long threadId, @NonNull Recipient threadRecipient) {
     return threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact() ||
-           hasSentMessageInThread(threadId);
+           (!threadRecipient.isHidden() && hasSentMessageInThread(threadId));
   }
 
   @WorkerThread

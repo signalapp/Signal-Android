@@ -34,8 +34,8 @@ inline fun <reified T> ResultEffect(
   resultKey: String = T::class.toString(),
   crossinline onResult: suspend (T) -> Unit
 ) {
-  LaunchedEffect(resultKey, resultEventBus.channelMap[resultKey]) {
-    resultEventBus.getResultFlow<T>(resultKey)?.collect { result ->
+  LaunchedEffect(resultKey, resultEventBus) {
+    resultEventBus.getResultFlow<T>(resultKey).collect { result ->
       onResult.invoke(result as T)
     }
   }

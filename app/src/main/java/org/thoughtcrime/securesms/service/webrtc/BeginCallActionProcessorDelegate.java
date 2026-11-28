@@ -115,26 +115,23 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleStartIncomingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer, @NonNull OfferMessage.Type offerType) {
     remotePeer.answering();
 
-    Log.i(tag, "assign activePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode() + " offerType: " + offerType + " telecomSupported: " + AndroidTelecomUtil.getTelecomSupported());
-
     boolean    isRemoteVideoOffer = currentState.getCallSetupState(remotePeer).isRemoteVideoOffer();
     Recipient  recipient          = remotePeer.getRecipient();
+    boolean    shouldDisturb      = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient);
+    boolean    usesTelecom        = shouldDisturb && webRtcInteractor.shouldUseTelecom();
 
-    if (DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient)) {
-      webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, remotePeer, isRemoteVideoOffer);
+    Log.i(tag, "assign activePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode() + " offerType: " + offerType + " shouldDisturb: " + shouldDisturb + " usesTelecom: " + usesTelecom);
+
+    if (shouldDisturb) {
+      webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, remotePeer, isRemoteVideoOffer, usesTelecom);
     }
     webRtcInteractor.retrieveTurnServers(remotePeer);
-    webRtcInteractor.initializeAudioForCall(false);
-
-    if (!webRtcInteractor.addNewIncomingCall(remotePeer.getId(), remotePeer.getCallId().longValue(), offerType == OfferMessage.Type.VIDEO_CALL)) {
-      Log.i(tag, "Unable to add new incoming call");
-      return handleDropCall(currentState, remotePeer.getCallId().longValue());
-    }
+    webRtcInteractor.initializeAudioForCall(usesTelecom);
 
     return currentState.builder()
                        .actionProcessor(new IncomingCallActionProcessor(webRtcInteractor))
                        .changeCallSetupState(remotePeer.getCallId())
-                       .waitForTelecom(AndroidTelecomUtil.getTelecomSupported())
+                       .usesTelecom(usesTelecom)
                        .telecomApproved(false)
                        .commit()
                        .changeCallInfoState()

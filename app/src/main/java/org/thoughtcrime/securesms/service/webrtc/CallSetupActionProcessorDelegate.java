@@ -8,6 +8,7 @@ import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.OutgoingVideoSourceRouter;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
+import org.thoughtcrime.securesms.service.webrtc.state.CallSetupState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -45,7 +46,9 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
 
     AppForegroundObserver.removeListener(webRtcInteractor.getForegroundListener());
     webRtcInteractor.startAudioCommunication();
-    webRtcInteractor.activateCall(activePeer.getId());
+    if (currentState.getCallSetupState(activePeer).usesTelecom()) {
+      webRtcInteractor.activateCall(activePeer.getId(), activePeer.getCallId().longValue(), currentState.getCallSetupState(activePeer).isAcceptWithVideo());
+    }
 
     activePeer.connected();
 
@@ -67,9 +70,9 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
                                .changeLocalDeviceState()
                                .build();
 
-    boolean isRemoteVideoOffer = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
+    CallSetupState callSetupState = currentState.getCallSetupState(activePeer);
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, activePeer, isRemoteVideoOffer);
+    webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, activePeer, callSetupState.isRemoteVideoOffer(), callSetupState.usesTelecom());
     webRtcInteractor.unregisterPowerButtonReceiver();
 
     try {

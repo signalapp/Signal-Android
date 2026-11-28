@@ -5,13 +5,19 @@ import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.logging.Log
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.network.util.JsonUtil
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.SignalStoreValues
+import org.signal.storage.keyvalue.booleanValue
+import org.signal.storage.keyvalue.longValue
+import org.signal.storage.keyvalue.protoValue
+import org.signal.storage.keyvalue.stringValue
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
@@ -107,17 +113,18 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
-    KEY_CURRENCY_CODE_ONE_TIME,
-    KEY_LAST_KEEP_ALIVE_LAUNCH,
-    KEY_LAST_END_OF_PERIOD_SECONDS,
-    SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT,
-    SUBSCRIPTION_CANCELATION_REASON,
-    SUBSCRIPTION_CANCELATION_TIMESTAMP,
-    SUBSCRIPTION_CANCELATION_WATERMARK,
-    SHOW_CANT_PROCESS_DIALOG,
-    SUBSCRIPTION_PAYMENT_SOURCE_TYPE
-  )
+  override val keysToIncludeInBackup: List<String>
+    get() = listOf(
+      KEY_CURRENCY_CODE_ONE_TIME,
+      KEY_LAST_KEEP_ALIVE_LAUNCH,
+      KEY_LAST_END_OF_PERIOD_SECONDS,
+      SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT,
+      SUBSCRIPTION_CANCELATION_REASON,
+      SUBSCRIPTION_CANCELATION_TIMESTAMP,
+      SUBSCRIPTION_CANCELATION_WATERMARK,
+      SHOW_CANT_PROCESS_DIALOG,
+      SUBSCRIPTION_PAYMENT_SOURCE_TYPE
+    )
 
   private val recurringDonationCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getRecurringDonationCurrency()) }
   val observableRecurringDonationCurrency: Observable<Currency> by lazy { recurringDonationCurrencyPublisher }
@@ -228,7 +235,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
   }
 
   private fun getLevelHistory(): Set<String> {
-    return getString(KEY_LEVEL_HISTORY, "").split(",").toSet()
+    return getNonNullString(KEY_LEVEL_HISTORY, "").split(",").toSet()
   }
 
   private fun addLevelToHistory(level: String) {

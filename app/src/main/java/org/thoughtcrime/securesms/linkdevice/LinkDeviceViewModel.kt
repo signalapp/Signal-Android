@@ -5,15 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 import org.thoughtcrime.securesms.jobs.NewLinkedDeviceNotificationJob
@@ -25,7 +28,6 @@ import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.OneTimeEven
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.QrCodeState
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
 import kotlin.jvm.optionals.getOrNull
@@ -257,7 +259,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  private fun addDeviceWithSync(linkUri: Uri) {
+  private suspend fun addDeviceWithSync(linkUri: Uri) {
     Log.d(TAG, "[addDeviceWithSync] Beginning device adding process.")
 
     val ephemeralMessageBackupKey = MessageBackupKey(Util.getSecretBytes(32))
@@ -306,12 +308,14 @@ class LinkDeviceViewModel : ViewModel() {
     }
 
     Log.d(TAG, "[addDeviceWithSync] Beginning the archive generation process...")
-    val uploadResult = LinkDeviceRepository.createAndUploadArchive(
-      ephemeralMessageBackupKey = ephemeralMessageBackupKey,
-      deviceId = waitResult.id,
-      deviceRegistrationId = waitResult.registrationId,
-      cancellationSignal = { _state.value.shouldCancelArchiveUpload }
-    )
+    val uploadResult = withContext(NonCancellable) {
+      LinkDeviceRepository.createAndUploadArchive(
+        ephemeralMessageBackupKey = ephemeralMessageBackupKey,
+        deviceId = waitResult.id,
+        deviceRegistrationId = waitResult.registrationId,
+        cancellationSignal = { _state.value.shouldCancelArchiveUpload }
+      )
+    }
 
     Log.d(TAG, "[addDeviceWithSync] Archive finished with result: $uploadResult")
     when (uploadResult) {
@@ -373,7 +377,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  private fun addDeviceWithoutSync(linkUri: Uri) {
+  private suspend fun addDeviceWithoutSync(linkUri: Uri) {
     val result = LinkDeviceRepository.addDevice(linkUri, ephemeralMessageBackupKey = null)
 
     _state.update {
@@ -429,7 +433,7 @@ class LinkDeviceViewModel : ViewModel() {
 
   private enum class Capability(val value: String) {
     LinkAndSync("backup5"),
-    Numberless("nopni")
+    Numberless("nopni2")
   }
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {

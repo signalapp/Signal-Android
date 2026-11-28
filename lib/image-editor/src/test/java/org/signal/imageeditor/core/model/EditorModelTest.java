@@ -18,8 +18,10 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.GraphicsMode;
 import org.signal.imageeditor.core.Renderer;
 import org.signal.imageeditor.core.RendererContext;
+import org.signal.imageeditor.core.stickers.AnalogClockStickerRenderer;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -99,6 +101,37 @@ public final class EditorModelTest {
     model.setVisibleViewPort(SMALLER_VIEW_PORT);
 
     assertTrue(model.isChanged());
+  }
+
+  @Test
+  public void selectingAnElementDoesNotAddAnUndoStep() {
+    EditorModel model = modelWithMainImage();
+    model.setVisibleViewPort(VIEW_PORT);
+    ready(model);
+
+    EditorElement sticker = new EditorElement(new AnalogClockStickerRenderer(0L), EditorModel.Z_STICKERS);
+    model.addElementCentered(sticker, 0.4f);
+    model.setSelected(sticker);
+    model.pushUndoPoint();
+
+    model.undo();
+
+    assertNull("A single undo should remove the sticker, as selecting it was not an edit", model.findById(sticker.getId()));
+  }
+
+  @Test
+  public void undoingAwayASelectedElementLeavesNothingSelected() {
+    EditorModel model = modelWithMainImage();
+    model.setVisibleViewPort(VIEW_PORT);
+    ready(model);
+
+    EditorElement sticker = new EditorElement(new AnalogClockStickerRenderer(0L), EditorModel.Z_STICKERS);
+    model.addElementCentered(sticker, 0.4f);
+    model.setSelected(sticker);
+
+    model.undo();
+
+    assertFalse(model.isChanged());
   }
 
   private @NonNull EditorModel modelWithMainImage() {

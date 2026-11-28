@@ -96,10 +96,10 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
           setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), lastKeyboardVisible ? lastKeyboardHeight : 0);
           break;
         case KEYBOARD_AND_NAVIGATION_BAR:
-          setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), Math.max(nav.bottom, ime.bottom));
+          setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), Math.max(onOfferNavigationBar(nav.bottom) ? 0 : nav.bottom, ime.bottom));
           break;
         case SAFE_AREA:
-          setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, ime.bottom));
+          setPadding(bars.left, bars.top, bars.right, Math.max(onOfferNavigationBar(bars.bottom) ? 0 : bars.bottom, ime.bottom));
           break;
       }
 
@@ -107,6 +107,14 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
       return insets;
     });
+  }
+
+  /**
+   * Offers the navigation bar, {@code inset} tall, to a child that would rather paint behind it than sit above it. Returns
+   * whether one took it, in which case this leaves the bar unpadded.
+   */
+  protected boolean onOfferNavigationBar(int inset) {
+    return false;
   }
 
   public void setIsBubble(boolean isBubble) {

@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.registration.R
@@ -66,7 +67,24 @@ fun TwoFactorSelectionScreen(
         onEvent = onEvent
       )
     }
+
+    if (state.showPasskeyError) {
+      PasskeyErrorDialog(onEvent)
+    }
   }
+}
+
+/**
+ * Generic passkey failure dialog.
+ */
+@Composable
+private fun PasskeyErrorDialog(onEvent: (TwoFactorSelectionScreenEvents) -> Unit) {
+  Dialogs.SimpleMessageDialog(
+    message = stringResource(R.string.TwoFactorSelectionScreen__something_went_wrong_with_your_passkey),
+    dismiss = stringResource(android.R.string.ok),
+    onDismiss = { onEvent(TwoFactorSelectionScreenEvents.PasskeyErrorDismissed) },
+    modifier = Modifier.testTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_ERROR_DIALOG)
+  )
 }
 
 @Composable
@@ -201,9 +219,9 @@ private fun MethodCard(
   modifier: Modifier = Modifier
 ) {
   when (method) {
-    TwoFactorMethod.Passkey -> {
+    is TwoFactorMethod.Passkey -> {
       SelectionCard(
-        imageVector = SignalIcons.Key.imageVector,
+        imageVector = SignalIcons.PersonKeyLight.imageVector,
         title = stringResource(R.string.TwoFactorSelectionScreen__passkey),
         subtitle = stringResource(R.string.TwoFactorSelectionScreen__tap_to_use_your_device_biometrics),
         onClick = onClick,
@@ -275,13 +293,15 @@ private fun CancelButton(onEvent: (TwoFactorSelectionScreenEvents) -> Unit) {
   }
 }
 
+private val PREVIEW_WEB_AUTHN_PARAMETERS = WebAuthnParameters(challenge = byteArrayOf(1, 2, 3), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(4, 5, 6)))
+
 @AllDevicePreviews
 @Composable
 private fun TwoFactorSelectionScreenPreview() {
   Previews.Preview {
     TwoFactorSelectionScreen(
       state = TwoFactorSelectionState(
-        methods = listOf(TwoFactorMethod.Passkey, TwoFactorMethod.AuthenticatorApp)
+        methods = listOf(TwoFactorMethod.Passkey(PREVIEW_WEB_AUTHN_PARAMETERS), TwoFactorMethod.AuthenticatorApp)
       ),
       onEvent = {}
     )

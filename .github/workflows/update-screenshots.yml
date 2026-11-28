@@ -1,0 +1,170 @@
+name: Update Screenshots
+
+# Regenerates Compose screenshot reference images on Linux (matching the renderer used by Android CI)
+# and commits them to the branch. Trigger it by commenting `!screenshots` on a pull request, or with
+# `gh workflow run update-screenshots.yml --ref <branch>`.
+
+on:
+  workflow_dispatch:
+  issue_comment:
+    types: [created]
+
+permissions: {}
+
+jobs:
+  resolve:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       github.event.comment.body == '!screenshots' &&
+       contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association))
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write # to react to the comment
+
+    outputs:
+      branch: ${{ steps.branch.outputs.name }}
+      sha: ${{ steps.branch.outputs.sha }}
+
+    steps:
+    - name: Acknowledge comment
+      if: ${{ github.event_name == 'issue_comment' }}
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: gh api "repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions" -f content=rocket
+
+    - name: Resolve branch
+      id: branch
+      env:
+        GH_TOKEN: ${{ github.token }}
+        EVENT_NAME: ${{ github.event_name }}
+        REF_NAME: ${{ github.ref_name }}
+        REF_TYPE: ${{ github.ref_type }}
+        SHA: ${{ github.sha }}
+        PR_NUMBER: ${{ github.event.issue.number }}
+      run: |
+        case "$EVENT_NAME" in
+          workflow_dispatch)
+            if [ "$REF_TYPE" != "branch" ]; then
+              echo "Refusing to update screenshots for non-branch ref $REF_NAME."
+              exit 1
+            fi
+            BRANCH="$REF_NAME"
+            ;;
+          issue_comment)
+            PR="$(gh pr view "$PR_NUMBER" --repo "${{ github.repository }}" --json isCrossRepository,headRefName,headRefOid,state)"
+            if [ "$(jq -r .isCrossRepository <<< "$PR")" = "true" ]; then
+              echo "Refusing to update screenshots for a pull request from a fork."
+              exit 1
+            fi
+            if [ "$(jq -r .state <<< "$PR")" != "OPEN" ]; then
+              echo "Refusing to update screenshots for a pull request that is not open."
+              exit 1
+            fi
+            BRANCH="$(jq -r .headRefName <<< "$PR")"
+            SHA="$(jq -r .headRefOid <<< "$PR")"
+            ;;
+        esac
+
+        if [ "$BRANCH" = "main" ] || [[ "$BRANCH" == 8.* ]]; then
+          echo "Refusing to push screenshots directly to $BRANCH."
+          exit 1
+        fi
+
+        echo "name=$BRANCH" >> "$GITHUB_OUTPUT"
+        echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+
+  update:
+    needs: resolve
+
+    runs-on: ubuntu-latest-8-cores
+
+    permissions:
+      contents: write # to push the updated reference images
+
+    concurrency:
+      group: update-screenshots-${{ needs.resolve.outputs.branch }}
+      cancel-in-progress: true
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # gh api repos/actions/checkout/commits/v7.0.1 --jq '.sha'
+      with:
+        ref: ${{ needs.resolve.outputs.sha }}
+        submodules: true
+        lfs: true
+        persist-credentials: false
+
+    - name: set up JDK 21
+      uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5
+      # gh api repos/actions/setup-java/commits/v5 --jq '.sha'
+      with:
+        distribution: temurin
+        java-version: 21
+
+    - name: Validate Gradle Wrapper
+      uses: gradle/actions/wrapper-validation@3f131e8634966bd73d06cc69884922b02e6faf92 # v6
+      # gh api repos/gradle/actions/commits/v6 --jq '.sha'
+
+    - name: Set up Gradle
+      uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6
+      # gh api repos/gradle/actions/commits/v6 --jq '.sha'
+      with:
+        cache-read-only: true
+        cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
+
+    - name: Update screenshots
+      env:
+        SIGNAL_BUILD_CACHE_URL: ${{ secrets.SIGNAL_BUILD_CACHE_URL }}
+        SIGNAL_BUILD_CACHE_USER: ${{ secrets.SIGNAL_BUILD_CACHE_USER }}
+        SIGNAL_BUILD_CACHE_PASSWORD: ${{ secrets.SIGNAL_BUILD_CACHE_PASSWORD }}
+        SIGNAL_BUILD_CACHE_PUSH: false
+      run: ./gradlew updateScreenshots
+
+    - name: Commit and push
+      env:
+        BRANCH: ${{ needs.resolve.outputs.branch }}
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        git add -A -- ':(glob)**/src/screenshotTest*/reference/**'
+        if git diff --cached --quiet; then
+          echo "Screenshots are already up to date."
+          exit 0
+        fi
+        git diff --cached --stat
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git commit -m "Update screenshot reference images."
+
+        AUTH_HEADER="http.${{ github.server_url }}/.extraheader=AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+        git -c "$AUTH_HEADER" push origin "HEAD:refs/heads/$BRANCH"
+
+    - name: Archive reports for failed build
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+      # gh api repos/actions/upload-artifact/commits/v7 --jq '.sha'
+      with:
+        name: reports
+        path: |
+          **/build/reports
+          **/build/test-results
+        if-no-files-found: ignore
+
+  report-failure:
+    needs: [resolve, update]
+    if: ${{ failure() && github.event_name == 'issue_comment' }}
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write # to reply on the pull request
+
+    steps:
+    - name: Report failure
+      env:
+        GH_TOKEN: ${{ github.token }}
+        PR_NUMBER: ${{ github.event.issue.number }}
+      run: gh pr comment "$PR_NUMBER" --repo "${{ github.repository }}" --body "Updating screenshots failed. See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

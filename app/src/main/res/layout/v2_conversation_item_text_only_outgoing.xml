@@ -35,6 +35,7 @@
         android:id="@+id/conversation_item_body_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clipChildren="false"
         android:layout_marginStart="48dp"
         app:cardElevation="0dp"
         app:layout_constrainedWidth="true"
@@ -158,7 +159,7 @@
 
     <org.thoughtcrime.securesms.components.DeliveryStatusView
         android:id="@+id/conversation_item_delivery_status"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/message_bubble_delivery_status_width"
         android:layout_height="0dp"
         android:layout_gravity="center_vertical"
         android:paddingBottom="@dimen/message_bubble_footer_bottom_padding"

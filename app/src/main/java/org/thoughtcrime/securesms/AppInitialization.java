@@ -4,7 +4,9 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
+import org.signal.storage.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -15,10 +17,9 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.migrations.QuoteThumbnailBackfillMigrationJob;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.signal.core.util.Util;
 
 /**
  * Rule of thumb: if there's something you want to do on the first app launch that involves
@@ -34,13 +35,13 @@ public final class AppInitialization {
   public static void onFirstEverAppLaunch(@NonNull Context context) {
     Log.i(TAG, "onFirstEverAppLaunch()");
 
-    TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
-    TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
-    TextSecurePreferences.setLastVersionCode(context, BuildConfig.VERSION_CODE);
-    TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
+    PlainTextKeyValueStore.setAppMigrationVersion(ApplicationMigrations.CURRENT_VERSION);
+    SignalStore.misc().setJobManagerVersion(JobManager.CURRENT_VERSION);
+    PlainTextKeyValueStore.setLastVersionCode(BuildConfig.VERSION_CODE);
+    SignalStore.tooltips().markStickerIntroTooltipSeen();
     SignalStore.settings().setPassphraseDisabled(true);
-    TextSecurePreferences.setReadReceiptsEnabled(context, true);
-    TextSecurePreferences.setTypingIndicatorsEnabled(context, true);
+    SignalStore.settings().setReadReceiptsEnabled(true);
+    SignalStore.settings().setTypingIndicatorsEnabled(true);
     AppDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
     SignalStore.onFirstEverAppLaunch();
     AppDependencies.getJobManager().addAll(BlessedPacks.getFirstInstallJobs());
@@ -55,13 +56,15 @@ public final class AppInitialization {
     SignalStore.onboarding().clearAll();
     SignalStore.settings().setPassphraseDisabled(true);
     SignalStore.notificationProfile().setHasSeenTooltip(true);
-    TextSecurePreferences.onPostBackupRestore(context);
+    if (NotificationChannels.supported()) {
+      NotificationChannels.getInstance().updateMessageVibrate(SignalStore.settings().isMessageVibrateEnabled());
+    }
     SignalStore.settings().setPassphraseDisabled(true);
     AppDependencies.getJobManager().addAll(BlessedPacks.getFirstInstallJobs());
     EmojiSearchIndexDownloadJob.scheduleImmediately();
     DeleteAbandonedAttachmentsJob.enqueue();
 
-    RecipientId.clearCache();
+    RecipientIds.clearCache();
     SignalDatabase.remappedRecords().clearCache();
     SignalDatabase.threads().clearCache();
     AppDependencies.getRecipientCache().clear();
@@ -80,10 +83,10 @@ public final class AppInitialization {
   public static void onRepairFirstEverAppLaunch(@NonNull Context context) {
     Log.w(TAG, "onRepairFirstEverAppLaunch()");
 
-    TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
-    TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
-    TextSecurePreferences.setLastVersionCode(context, BuildConfig.VERSION_CODE);
-    TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
+    PlainTextKeyValueStore.setAppMigrationVersion(ApplicationMigrations.CURRENT_VERSION);
+    SignalStore.misc().setJobManagerVersion(JobManager.CURRENT_VERSION);
+    PlainTextKeyValueStore.setLastVersionCode(BuildConfig.VERSION_CODE);
+    SignalStore.tooltips().markStickerIntroTooltipSeen();
     SignalStore.settings().setPassphraseDisabled(true);
     AppDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
     SignalStore.onFirstEverAppLaunch();

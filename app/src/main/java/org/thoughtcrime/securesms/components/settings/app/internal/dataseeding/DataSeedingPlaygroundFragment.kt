@@ -48,17 +48,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.SignalIcons
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.database.model.ThreadWithRecipient
 
 class DataSeedingPlaygroundFragment : ComposeFragment() {
 
   private val viewModel: DataSeedingPlaygroundViewModel by viewModels()
+  private val appSettingsRouter by appSettingsRouter()
   private lateinit var selectFolderLauncher: ActivityResultLauncher<Intent>
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,7 +86,7 @@ class DataSeedingPlaygroundFragment : ComposeFragment() {
 
     Screen(
       state = state,
-      onBack = { findNavController().popBackStack() },
+      onBack = { (appSettingsRouter::onEvent).navigateBack() },
       onSelectFolderClicked = {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
         selectFolderLauncher.launch(intent)

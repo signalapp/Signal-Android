@@ -5,11 +5,15 @@ import android.app.Application
 import android.content.ContentValues
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
+import org.signal.core.util.readToList
+import org.signal.storage.database.DatabaseSecret
+import org.signal.storage.database.DatabaseSecretProvider
+import org.signal.storage.database.SignalDatabaseOpenHelper
+import org.signal.storage.database.SqlCipherDatabaseHook
+import org.signal.storage.database.SqlCipherLibraryLoader
 import org.thoughtcrime.securesms.database.model.LocalMetricsEvent
 import java.util.concurrent.TimeUnit
 
@@ -30,7 +34,7 @@ class LocalMetricsDatabase private constructor(
   SQLiteOpenHelper(
     application,
     DATABASE_NAME,
-    databaseSecret.asString(),
+    databaseSecret.asHex(),
     null,
     DATABASE_VERSION,
     0,
@@ -118,9 +122,8 @@ class LocalMetricsDatabase private constructor(
     db.setForeignKeyConstraintsEnabled(true)
   }
 
-  override fun getSqlCipherDatabase(): SQLiteDatabase {
-    return writableDatabase
-  }
+  override val sqlCipherDatabase: SQLiteDatabase
+    get() = writableDatabase
 
   fun insert(currentTime: Long, event: LocalMetricsEvent) {
     val db = writableDatabase
@@ -161,6 +164,11 @@ class LocalMetricsDatabase private constructor(
         0
       }
     }
+  }
+
+  /** When the most recent [limit] events named [eventName] were recorded, newest first. */
+  fun getEventTimes(eventName: String, limit: Int): List<Long> {
+    return readableDatabase.rawQuery("SELECT $CREATED_AT FROM $TABLE_NAME WHERE $EVENT_NAME = ? ORDER BY $CREATED_AT DESC LIMIT $limit", SqlUtil.buildArgs(eventName)).readToList { it.getLong(0) }
   }
 
   fun getMetrics(): List<EventMetrics> {

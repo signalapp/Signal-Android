@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.compose.ActionModeTopBarView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/action_mode_top_bar"
+    android:layout_width="0dp"
+    android:layout_height="@dimen/signal_m3_toolbar_height" />

@@ -5,17 +5,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.GroupInsufficientRightsException;
+import org.signal.core.util.groups.GroupNotAMemberException;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
@@ -34,7 +34,8 @@ import okio.ByteString;
 /**
  * When your profile key changes, this job can be used to update it on a single given group.
  * <p>
- * Your membership is confirmed first, so safe to run against any known {@link GroupId.V2}
+ * Your membership is confirmed first, so safe to run against any known {@link GroupId.V2}. The update is only
+ * performed for groups we share our profile with, so that groups we have not accepted never learn our current key.
  */
 public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
 
@@ -123,7 +124,8 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
           continue;
         }
 
-        if (Recipient.externalGroupExact(id).isBlocked()) {
+        Recipient groupRecipient = Recipient.externalGroupExact(id);
+        if (groupRecipient.isBlocked() || !groupRecipient.isProfileSharing()) {
           continue;
         }
 
@@ -180,8 +182,15 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
       return;
     }
 
-    if (Recipient.externalGroupExact(groupId).isBlocked()) {
+    Recipient groupRecipient = Recipient.externalGroupExact(groupId);
+
+    if (groupRecipient.isBlocked()) {
       Log.i(TAG, "Not updating blocked group " + groupId);
+      return;
+    }
+
+    if (!groupRecipient.isProfileSharing()) {
+      Log.i(TAG, "Not updating group " + groupId + " with disabled profile sharing.");
       return;
     }
 

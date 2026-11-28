@@ -1,0 +1,110 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.ui.compose.split
+
+import android.app.Application
+import androidx.compose.material3.Text
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.snapshots.Snapshot
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.unit.dp
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberDecoratedNavEntries
+import org.junit.Assert.assertEquals
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+
+@RunWith(RobolectricTestRunner::class)
+@Config(application = Application::class, qualifiers = "w1000dp-h800dp")
+class DetailPaneRootTest {
+
+  @get:Rule
+  val composeTestRule = createComposeRule()
+
+  private val backStack = mutableStateListOf<NavKey>(TestListKey.ROOT, TestDetailKey(1))
+  private val observedRoots = mutableListOf<Pair<Int, Boolean>>()
+
+  @Test
+  fun `the only entry in the detail stack is its root`() {
+    setContent(isSplitPane = true)
+
+    composeTestRule.onNodeWithText("detail 1 root=true").assertExists()
+  }
+
+  @Test
+  fun `an entry pushed onto the detail stack is not its root`() {
+    setContent(isSplitPane = true)
+
+    composeTestRule.runOnIdle { backStack += TestSubScreenKey(2) }
+
+    composeTestRule.onNodeWithText("sub 2 root=false").assertExists()
+  }
+
+  @Test
+  fun `popping back to the bottom of the detail stack makes it the root again`() {
+    backStack += TestSubScreenKey(2)
+    setContent(isSplitPane = true)
+
+    composeTestRule.runOnIdle { backStack.removeAt(backStack.lastIndex) }
+
+    composeTestRule.onNodeWithText("detail 1 root=true").assertExists()
+  }
+
+  @Test
+  fun `a detail entry filling a single pane is not a detail pane root`() {
+    setContent(isSplitPane = false)
+
+    composeTestRule.onNodeWithText("detail 1 root=false").assertExists()
+  }
+
+  @Test
+  fun `an entry swapped out of the detail stack stays its root while it leaves`() {
+    setContent(isSplitPane = true)
+
+    composeTestRule.runOnIdle {
+      Snapshot.withMutableSnapshot {
+        backStack.removeAt(backStack.lastIndex)
+        backStack += TestDetailKey(2)
+      }
+    }
+
+    composeTestRule.onNodeWithText("detail 2 root=true").assertExists()
+    assertEquals(listOf(1 to true, 2 to true), observedRoots.distinct())
+  }
+
+  private fun setContent(isSplitPane: Boolean) {
+    composeTestRule.setContent {
+      val layout = rememberListDetailPaneLayout(paneAnchor = PaneAnchor.SPLIT, maxWidth = 1000.dp, onAnchorSelected = {})
+      val entries = rememberDecoratedNavEntries(
+        backStack = backStack,
+        entryProvider = entryProvider {
+          listEntry<TestListKey> { Text("list") }
+          detailEntry<TestDetailKey> {
+            val isRoot = LocalIsDetailPaneRoot.current
+            SideEffect { observedRoots += it.id to isRoot }
+            Text("detail ${it.id} root=$isRoot")
+          }
+          detailEntry<TestSubScreenKey> { Text("sub ${it.id} root=${LocalIsDetailPaneRoot.current}") }
+        }
+      )
+
+      ListDetailNavDisplay(
+        entries = entries,
+        isSplitPane = isSplitPane,
+        paneAnchor = PaneAnchor.SPLIT,
+        onBack = {},
+        onExitDetail = {},
+        layout = layout
+      )
+    }
+  }
+}

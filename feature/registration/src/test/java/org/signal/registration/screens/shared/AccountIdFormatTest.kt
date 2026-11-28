@@ -23,6 +23,13 @@ class AccountIdFormatTest {
   }
 
   @Test
+  fun `normalizeAndTruncate cuts off anything past a complete ID`() {
+    assertThat(AccountIdFormat.normalizeAndTruncate(FULL_ID + "ff")).isEqualTo(FULL_ID)
+    assertThat(AccountIdFormat.normalizeAndTruncate("A6B28482-2E32-83D0-7F23-91360A4C2B91-FF")).isEqualTo(FULL_ID)
+    assertThat(AccountIdFormat.normalizeAndTruncate("a6b28482")).isEqualTo("a6b28482")
+  }
+
+  @Test
   fun `text containing a letter reads as an account ID at any length`() {
     assertThat(AccountIdFormat.asAccountIdOrNull("a")).isEqualTo("a")
     assertThat(AccountIdFormat.asAccountIdOrNull("A6B28482-2E32-83D0-7F23-91360A4C2B91")).isEqualTo(FULL_ID)
@@ -32,6 +39,11 @@ class AccountIdFormatTest {
   fun `all-digit text only reads as an account ID once it is longer than any phone number`() {
     assertThat(AccountIdFormat.asAccountIdOrNull("1".repeat(15))).isNull()
     assertThat(AccountIdFormat.asAccountIdOrNull("1".repeat(16))).isEqualTo("1".repeat(16))
+  }
+
+  @Test
+  fun `text longer than a complete account ID reads as one, cut off at the maximum length`() {
+    assertThat(AccountIdFormat.asAccountIdOrNull(FULL_ID + "ff")).isEqualTo(FULL_ID)
   }
 
   @Test
@@ -54,10 +66,9 @@ class AccountIdFormatTest {
   }
 
   @Test
-  fun `validate only complains about length and alphabet, never about being mid-entry`() {
+  fun `validate only complains about the alphabet, never about being mid-entry`() {
     assertThat(AccountIdFormat.validate("a6b28482")).isNull()
     assertThat(AccountIdFormat.validate(FULL_ID)).isNull()
-    assertThat(AccountIdFormat.validate(FULL_ID + "ff")).isEqualTo(AccountIdError.TooLong(34))
     assertThat(AccountIdFormat.validate("a6b28482g")).isEqualTo(AccountIdError.Invalid)
   }
 

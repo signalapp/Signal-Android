@@ -109,6 +109,7 @@ class CallScreenController private constructor(
 
       val audioOutputPickerOutputState = remember {
         ToggleButtonOutputState().apply {
+          usesTelecom = callControlsState.usesTelecom
           isEarpieceAvailable = callControlsState.isEarpieceAvailable
           isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
           isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
@@ -116,8 +117,9 @@ class CallScreenController private constructor(
         }
       }
 
-      LaunchedEffect(callControlsState.isEarpieceAvailable, callControlsState.isWiredHeadsetAvailable, callControlsState.isBluetoothHeadsetAvailable, callControlsState.audioOutput) {
+      LaunchedEffect(callControlsState.usesTelecom, callControlsState.isEarpieceAvailable, callControlsState.isWiredHeadsetAvailable, callControlsState.isBluetoothHeadsetAvailable, callControlsState.audioOutput) {
         audioOutputPickerOutputState.apply {
+          usesTelecom = callControlsState.usesTelecom
           isEarpieceAvailable = callControlsState.isEarpieceAvailable
           isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
           isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable

@@ -14,7 +14,7 @@ internal sealed interface MediaCaptureScreenEvents {
   data class ParentStateChanged(val parentState: MediaSendFlowState) : MediaCaptureScreenEvents {
     // The parent's state carries the message the user is typing and every item they have picked. Only the size of the
     // selection is worth logging, and it is the only part safe to.
-    override fun toString(): String = "ParentStateChanged(selectedMedia=${parentState.selectedMedia.size})"
+    override fun toString(): String = "ParentStateChanged(selectedMedia=${parentState.selectedMedia.size}, isMultiCaptureEnabled=${parentState.isMultiCaptureEnabled})"
   }
 
   /** Navigation moved between the camera and the text story editor. */

@@ -6,8 +6,6 @@
 package org.signal.registration.screens.remotebackuprestore
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,7 +39,7 @@ class RemoteBackupRestoreViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val ioDispatcher: CoroutineContext = Dispatchers.IO
-) : EventDrivenViewModel<RemoteBackupRestoreScreenEvents>(TAG) {
+) : EventDrivenViewModel<RemoteBackupRestoreScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(RemoteBackupRestoreViewModel::class)
@@ -49,6 +47,9 @@ class RemoteBackupRestoreViewModel(
 
   private val _state = MutableStateFlow(RemoteBackupRestoreState(aep))
   val state: StateFlow<RemoteBackupRestoreState> = _state.asStateFlow()
+
+  /** Logging only. Each attempt costs an SVRB guess, so it's useful to know how many were spent. */
+  private var restoreAttempts = 0
 
   init {
     _state
@@ -129,6 +130,8 @@ class RemoteBackupRestoreViewModel(
 
   private fun restoreBackup() {
     viewModelScope.launch {
+      restoreAttempts++
+      Log.i(TAG, "[restoreBackup] Starting restore attempt #$restoreAttempts.")
       repository.restoreRemoteBackup(_state.value.aep).collect { progress ->
         when (progress) {
           is RemoteBackupRestoreProgress.Downloading -> {
@@ -189,7 +192,7 @@ class RemoteBackupRestoreViewModel(
             )
           }
           is RemoteBackupRestoreProgress.PermanentSvrBFailure -> {
-            Log.w(TAG, "[restoreBackup] Remote restore failed: permanent SVRB failure.")
+            Log.w(TAG, "[restoreBackup] Remote restore failed: permanent SVRB failure. (attempt #$restoreAttempts)")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.PermanentSvrBFailure,
               restoreProgress = null
@@ -284,18 +287,6 @@ class RemoteBackupRestoreViewModel(
           _state.value = _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
         }
       }
-    }
-  }
-
-  class Factory(
-    private val aep: AccountEntropyPool,
-    private val canNavigateBackwards: Boolean,
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return RemoteBackupRestoreViewModel(aep, canNavigateBackwards, repository, parentState, parentEventEmitter) as T
     }
   }
 }

@@ -9,12 +9,13 @@ import androidx.annotation.PluralsRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
+import org.signal.core.ui.util.SpanUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinViewModel.NavigationEvent
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinViewModel.PinErrorEvent
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 
 class CreateSvrPinFragment : BaseSvrPinFragment<CreateSvrPinViewModel?>() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,7 +54,7 @@ class CreateSvrPinFragment : BaseSvrPinFragment<CreateSvrPinViewModel?>() {
     viewModel.errorEvents.observe(viewLifecycleOwner) { e: PinErrorEvent ->
       if (e == PinErrorEvent.WEAK_PIN) {
         label.text = SpanUtil.color(
-          ContextCompat.getColor(requireContext(), R.color.red_500),
+          ContextCompat.getColor(requireContext(), CoreUiR.color.red_500),
           getString(R.string.CreateKbsPinFragment__choose_a_stronger_pin)
         )
         shake(input) { input.text.clear() }

@@ -6,8 +6,6 @@
 package org.signal.registration.screens.phonenumber
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.google.i18n.phonenumbers.AsYouTypeFormatter
 import com.google.i18n.phonenumbers.NumberParseException
@@ -49,7 +47,7 @@ class PhoneNumberEntryViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val clock: () -> Long = { System.currentTimeMillis() }
-) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PhoneNumberEntryViewModel::class)
@@ -153,7 +151,11 @@ class PhoneNumberEntryViewModel(
         parentEventEmitter.navigateTo(RegistrationRoute.LinkAccount())
       }
       is PhoneNumberEntryScreenEvents.RegisterWithoutNumber -> {
-        parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginPayment)
+        if (state.sawArchiveRestoreSelectionScreen) {
+          parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginCredentialEntry())
+        } else {
+          parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginPayment)
+        }
       }
       is PhoneNumberEntryScreenEvents.CaptchaCompleted -> {
         stateEmitter(applyCaptchaCompleted(state, event.token, parentEventEmitter))
@@ -168,15 +170,16 @@ class PhoneNumberEntryViewModel(
           }
           is LocalBackupRestoreResult.DeferredToSms -> {
             Log.i(TAG, "[LocalRestore] Backup belongs to a different account. Verifying the number over SMS before restoring.")
-            var localState = state.copy(showSpinner = true)
-            stateEmitter(localState)
-            localState = applySessionBasedRegistration(localState, localState.sessionE164 ?: "+${localState.countryCode}${localState.nationalNumber}", parentEventEmitter)
-            stateEmitter(localState.copy(showSpinner = false))
+            applyVerifyOverSms(state, parentEventEmitter, stateEmitter)
           }
           is LocalBackupRestoreResult.Canceled -> {
             parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(null))
           }
         }
+      }
+      is PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms -> {
+        Log.i(TAG, "[RemoteRestore] User chose to verify the number over SMS instead of entering their recovery key.")
+        applyVerifyOverSms(state, parentEventEmitter, stateEmitter)
       }
       is PhoneNumberEntryScreenEvents.NetworkErrorDialogDismissed -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(networkError = false)))
@@ -195,6 +198,15 @@ class PhoneNumberEntryViewModel(
       }
       is PhoneNumberEntryScreenEvents.InvalidPhoneNumberDialogDismissed -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(invalidPhoneNumber = false)))
+      }
+      is PhoneNumberEntryScreenEvents.CaptchaNotAcceptedDialogDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(captchaNotAccepted = false)))
+      }
+      is PhoneNumberEntryScreenEvents.CaptchaNotAcceptedContactSupport -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(captchaNotAccepted = false, contactSupport = true)))
+      }
+      is PhoneNumberEntryScreenEvents.ContactSupportDialogDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(contactSupport = false)))
       }
     }
   }
@@ -218,7 +230,8 @@ class PhoneNumberEntryViewModel(
       smsVerificationCodeRequest = parentState.lastSmsVerificationCodeRequest,
       preExistingRegistrationData = parentState.preExistingRegistrationData,
       restoredSvrCredentials = state.restoredSvrCredentials.takeUnless { parentState.doNotAttemptRecoveryPassword } ?: emptyList(),
-      pendingRestoreOption = parentState.pendingRestoreOption
+      pendingRestoreOption = parentState.pendingRestoreOption,
+      sawArchiveRestoreSelectionScreen = parentState.sawArchiveRestoreSelectionScreen
     )
   }
 
@@ -377,7 +390,7 @@ class PhoneNumberEntryViewModel(
               state = state.copy(preExistingRegistrationData = null)
             }
             is RegisterAccountError.InvalidReceiptCredentialPresentation,
-            RegisterAccountError.TotpMissingOrIncorrect,
+            is RegisterAccountError.TwoFactorRequired,
             RegisterAccountError.PostQuantumRatchetRequired -> {
               Log.w(TAG, "[Register] Unexpected registration error: $error")
               return state.copy(dialogs = state.dialogs.copy(unknownError = true))
@@ -396,6 +409,20 @@ class PhoneNumberEntryViewModel(
     }
 
     return applySessionBasedRegistration(state, e164, parentEventEmitter)
+  }
+
+  /**
+   * Skips restore-based registration and verifies the entered number over SMS, showing a spinner while the session is created.
+   */
+  private suspend fun applyVerifyOverSms(
+    inputState: PhoneNumberEntryState,
+    parentEventEmitter: (RegistrationFlowEvent) -> Unit,
+    stateEmitter: (PhoneNumberEntryState) -> Unit
+  ) {
+    var state = inputState.copy(showSpinner = true)
+    stateEmitter(state)
+    state = applySessionBasedRegistration(state, state.sessionE164 ?: "+${state.countryCode}${state.nationalNumber}", parentEventEmitter)
+    stateEmitter(state.copy(showSpinner = false))
   }
 
   /**
@@ -488,7 +515,7 @@ class PhoneNumberEntryViewModel(
             applySessionBasedRegistration(state, e164, parentEventEmitter)
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[LocalRestore] Unexpected registration error: $error")
             state.copy(dialogs = state.dialogs.copy(unknownError = true))
@@ -728,6 +755,10 @@ class PhoneNumberEntryViewModel(
           }
           is UpdateSessionError.RejectedUpdate -> {
             state.copy(dialogs = state.dialogs.copy(unknownError = true))
+          }
+          is UpdateSessionError.TokenNotAccepted -> {
+            Log.w(TAG, "[SubmitCaptcha] Captcha token was not accepted.")
+            state.copy(dialogs = state.dialogs.copy(captchaNotAccepted = true))
           }
           is UpdateSessionError.SessionNotFound -> {
             Log.w(TAG, "[SubmitCaptcha] Session not found when submitting captcha token.")
@@ -994,16 +1025,6 @@ class PhoneNumberEntryViewModel(
       copy(isNumberPossible = isNumberPossible, isNumberInvalid = isNumberInvalid)
     } else {
       this
-    }
-  }
-
-  class Factory(
-    val repository: RegistrationRepository,
-    val parentState: StateFlow<RegistrationFlowState>,
-    val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return PhoneNumberEntryViewModel(repository, parentState, parentEventEmitter) as T
     }
   }
 }

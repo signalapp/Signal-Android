@@ -20,7 +20,7 @@ class AdaptiveSleepTimer(context: Context) : SleepTimer {
   private val uptimeTimer = UptimeSleepTimer()
 
   override fun sleep(millis: Long) {
-    val needsAlarm = !SignalStore.account.fcmEnabled || SignalStore.settings.forceWebsocketMode.isEnabled
+    val needsAlarm = SignalStore.settings.shouldStayConnectedInBackground()
 
     if (needsAlarm) {
       alarmTimer.sleep(millis)

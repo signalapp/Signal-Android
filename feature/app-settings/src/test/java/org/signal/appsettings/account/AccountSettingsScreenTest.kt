@@ -6,16 +6,23 @@
 package org.signal.appsettings.account
 
 import android.app.Application
+import android.text.format.DateUtils
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onChildren
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.performSemanticsAction
 import assertk.assertThat
 import assertk.assertions.contains
 import org.junit.Rule
@@ -26,11 +33,30 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import org.signal.appsettings.R
 import org.signal.appsettings.account.AccountSettingsState.Dialog
+import org.signal.appsettings.account.AccountSettingsState.LoadState
 import org.signal.core.ui.compose.Dialogs
+import org.signal.signallogin.SignalLoginTestTags
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class AccountSettingsScreenTest {
+
+  companion object {
+    /** Fixed so the "Added ..." subtitle a row renders is something the test can predict. */
+    private const val CREATED_AT = 1_700_000_000_000L
+    private val ADDED_TIME: String = DateUtils.getRelativeDateTimeString(
+      RuntimeEnvironment.getApplication(),
+      CREATED_AT,
+      DateUtils.DAY_IN_MILLIS,
+      DateUtils.WEEK_IN_MILLIS,
+      0
+    ).toString()
+
+    private val METHODS = listOf(
+      TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = "Bitwarden Authenticator", createdAt = CREATED_AT),
+      TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.PASSKEY, name = "Pixel Phone", createdAt = CREATED_AT)
+    )
+  }
 
   private val context: Application = RuntimeEnvironment.getApplication()
 
@@ -38,6 +64,8 @@ class AccountSettingsScreenTest {
   val composeTestRule = createComposeRule()
 
   private val events = mutableListOf<AccountSettingsEvent>()
+  private val interactionEvents: List<AccountSettingsEvent>
+    get() = events.filterNot { it == AccountSettingsEvent.ScreenResumed }
 
   @Test
   fun givenANormalRegisteredUserWithAPin_whenIClickModifyPin_thenIExpectModifyPinEvent() {
@@ -45,7 +73,7 @@ class AccountSettingsScreenTest {
 
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_MODIFY_PIN).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.ModifyPinClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.ModifyPinClicked)
   }
 
   @Test
@@ -57,7 +85,7 @@ class AccountSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.PinRemindersToggled(false))
+    assertThat(interactionEvents).contains(AccountSettingsEvent.PinRemindersToggled(false))
   }
 
   @Test
@@ -78,7 +106,7 @@ class AccountSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.RegistrationLockToggled(false))
+    assertThat(interactionEvents).contains(AccountSettingsEvent.RegistrationLockToggled(false))
   }
 
   @Test
@@ -99,7 +127,7 @@ class AccountSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.AdvancedPinSettingsClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.AdvancedPinSettingsClicked)
   }
 
   @Test
@@ -113,7 +141,7 @@ class AccountSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.ChangePhoneNumberClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.ChangePhoneNumberClicked)
   }
 
   @Test(expected = AssertionError::class)
@@ -134,7 +162,7 @@ class AccountSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.TransferAccountClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.TransferAccountClicked)
   }
 
   @Test
@@ -148,7 +176,7 @@ class AccountSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.RequestAccountDataClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.RequestAccountDataClicked)
   }
 
   @Test
@@ -162,7 +190,7 @@ class AccountSettingsScreenTest {
       .assertHasClickAction()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.UpdateSignalClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.UpdateSignalClicked)
   }
 
   @Test
@@ -176,7 +204,7 @@ class AccountSettingsScreenTest {
       .assertHasClickAction()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.ReRegisterClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.ReRegisterClicked)
   }
 
   @Test
@@ -189,7 +217,7 @@ class AccountSettingsScreenTest {
       .assertIsDisplayed()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.DeleteAllDataClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.DeleteAllDataClicked)
   }
 
   @Test
@@ -224,7 +252,7 @@ class AccountSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.DisablePinRemindersConfirmed)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.DisablePinRemindersConfirmed)
   }
 
   @Test
@@ -233,7 +261,7 @@ class AccountSettingsScreenTest {
 
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.PIN_KEYBOARD_TOGGLE).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.PinKeyboardToggled)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.PinKeyboardToggled)
   }
 
   @Test
@@ -247,7 +275,7 @@ class AccountSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.DeleteAccountClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.DeleteAccountClicked)
   }
 
   @Test
@@ -299,53 +327,195 @@ class AccountSettingsScreenTest {
     setContent(createState())
 
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.CARD_SIGNAL_LOGIN).assertDoesNotExist()
-    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_TOTP_APP).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR).assertDoesNotExist()
+  }
+
+  @Test
+  fun givenASignalLogin_whenScreenDisplayed_thenTheSectionIsLabelledBeta() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_TAG).assertIsDisplayed()
   }
 
   @Test
   fun givenASignalLogin_whenIClickTheSignalLoginCard_thenIExpectAccountAndRecoveryEvent() {
-    setContent(createState(signalLogin = AccountSettingsState.SignalLogin(totpAppCount = 0, passkeyCount = 0)))
+    setContent(createState(signalLogin = signalLogin()))
 
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.CARD_SIGNAL_LOGIN).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.AccountAndRecoveryClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.AccountAndRecoveryClicked)
   }
 
   @Test
-  fun givenASignalLogin_whenIClickTotpApp_thenIExpectTotpAppEvent() {
-    setContent(createState(signalLogin = AccountSettingsState.SignalLogin(totpAppCount = 0, passkeyCount = 0)))
+  fun givenASignalLogin_whenIPickAuthenticatorAppFromTheSetUpMenu_thenIExpectAddTotpAppEvent() {
+    setContent(createState(signalLogin = signalLogin()))
 
-    composeTestRule.onNodeWithTag(AccountSettingsTestTags.CARD_SIGNAL_LOGIN).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR).performClick()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_AUTHENTICATOR_APP).performClick()
 
-    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_TOTP_APP).performClick()
-
-    assertThat(events).contains(AccountSettingsEvent.TotpAppClicked)
-  }
-
-  /** A count we couldn't fetch has to read the same as no count at all, rather than as "0 configured". */
-  @Test
-  fun givenAnUnknownTotpAppCount_whenScreenDisplayed_thenTheRowDoesNotClaimACount() {
-    setContent(createState(signalLogin = AccountSettingsState.SignalLogin(totpAppCount = null, passkeyCount = 0)))
-
-    composeTestRule.onNodeWithText(context.getString(R.string.AccountSettingsFragment__one_time_verification_codes)).assertIsDisplayed()
+    assertThat(interactionEvents).contains(AccountSettingsEvent.AddTotpAppClicked)
   }
 
   @Test
-  fun givenConfiguredTotpApps_whenScreenDisplayed_thenTheRowShowsTheCount() {
-    setContent(createState(signalLogin = AccountSettingsState.SignalLogin(totpAppCount = 2, passkeyCount = 0)))
+  fun givenTwoFactorMethods_whenScreenDisplayed_thenIExpectARowPerMethod() {
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS)))
 
-    composeTestRule.onNodeWithText(context.resources.getQuantityString(R.plurals.AccountSettingsFragment__d_configured, 2, 2)).assertIsDisplayed()
+    for (method in METHODS) {
+      val name = method.name!!
+      composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(name))
+      composeTestRule.onNodeWithText(name).assertIsDisplayed()
+    }
   }
 
   @Test
-  fun givenASignalLogin_whenIClickPasskeys_thenIExpectPasskeysEvent() {
-    setContent(createState(signalLogin = AccountSettingsState.SignalLogin(totpAppCount = 0, passkeyCount = 0)))
+  fun givenAMethodWhoseMetadataCouldntBeRead_whenScreenDisplayed_thenIExpectAnUnknownRowThatCanStillBeRemoved() {
+    val method = TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = null, createdAt = null)
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = listOf(method))))
 
-    scrollTo(AccountSettingsTestTags.ROW_PASSKEYS)
+    val unknown = context.getString(R.string.AccountSettingsFragment__unknown)
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(unknown))
+    composeTestRule.onNodeWithText(unknown).assertIsDisplayed()
+    composeTestRule.onNodeWithText(context.getString(R.string.AccountSettingsFragment__authenticator_app)).assertIsDisplayed()
 
-    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_PASSKEYS).performClick()
+    composeTestRule.onAllNodesWithTag(AccountSettingsTestTags.BUTTON_METHOD_MENU)[0].performClick()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_REMOVE).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.PasskeysClicked)
+    assertThat(interactionEvents).contains(AccountSettingsEvent.RemoveMethodClicked(method))
+  }
+
+  /** Authenticator apps and passkeys share one list, so a row's subtitle is what says which kind it is. */
+  @Test
+  fun givenTwoFactorMethods_whenScreenDisplayed_thenEachRowSaysWhatKindItIs() {
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS)))
+
+    for (kind in listOf(R.string.AccountSettingsFragment__authenticator_app, R.string.AccountSettingsFragment__passkey)) {
+      val label = context.getString(R.string.AccountSettingsFragment__s_added_s, context.getString(kind), ADDED_TIME)
+      composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(label))
+      composeTestRule.onNodeWithText(label).assertIsDisplayed()
+    }
+  }
+
+  @Test
+  fun givenTwoFactorMethods_whenIClickRenameInTheMenu_thenIExpectRenameMethodEvent() {
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS)))
+
+    scrollTo(AccountSettingsTestTags.ROW_TWO_FACTOR_METHOD)
+    composeTestRule.onAllNodesWithTag(AccountSettingsTestTags.BUTTON_METHOD_MENU)[0].performClick()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_RENAME).performClick()
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.RenameMethodClicked(METHODS[0]))
+  }
+
+  @Test
+  fun givenTwoFactorMethods_whenIClickRemoveInTheMenu_thenIExpectRemoveMethodEvent() {
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS)))
+
+    scrollTo(AccountSettingsTestTags.ROW_TWO_FACTOR_METHOD)
+    composeTestRule.onAllNodesWithTag(AccountSettingsTestTags.BUTTON_METHOD_MENU)[0].performClick()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_REMOVE).performClick()
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.RemoveMethodClicked(METHODS[0]))
+  }
+
+  @Test
+  fun givenTheConfirmRemoveDialog_whenIConfirm_thenIExpectRemoveMethodConfirmedForThatMethod() {
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS), dialog = Dialog.ConfirmRemoveMethod(METHODS[0])))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_METHOD).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.RemoveMethodConfirmed(METHODS[0]))
+  }
+
+  @Test
+  fun givenTheConfirmRemoveDialogForAPasskey_whenIConfirm_thenIExpectRemoveMethodConfirmedForThatPasskey() {
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS), dialog = Dialog.ConfirmRemoveMethod(METHODS[1])))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_METHOD).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.RemoveMethodConfirmed(METHODS[1]))
+  }
+
+  @Test
+  fun givenTheSetUpMenu_whenITapPasskey_thenIExpectAddPasskeyClicked() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR).performClick()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_PASSKEY).performClick()
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.AddPasskeyClicked)
+  }
+
+  /** A device with no way to run a passkey ceremony shouldn't be offered one. */
+  @Test
+  fun givenPasskeysAreUnsupported_whenIOpenTheSetUpMenu_thenIExpectNoPasskeyOption() {
+    setContent(createState(signalLogin = signalLogin(), arePasskeysSupported = false))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR).performClick()
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_PASSKEY).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_AUTHENTICATOR_APP).assertIsDisplayed()
+  }
+
+  @Test
+  fun givenTheMaxAppsDialog_whenIClickLearnMore_thenIExpectLearnMoreAndDismissEvents() {
+    setContent(createState(signalLogin = signalLogin(), dialog = Dialog.MaxTotpAppsReached))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_MAX_TOTP_APPS_REACHED).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
+    assertThat(interactionEvents).contains(AccountSettingsEvent.DialogDismissed)
+  }
+
+  @Test
+  fun givenTheMaxTwoFactorMethodsDialog_whenIClickLearnMore_thenIExpectLearnMoreAndDismissEvents() {
+    setContent(createState(signalLogin = signalLogin(), dialog = Dialog.MaxTwoFactorMethodsReached))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_MAX_TWO_FACTOR_METHODS_REACHED).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
+    assertThat(interactionEvents).contains(AccountSettingsEvent.DialogDismissed)
+  }
+
+  @Test
+  fun whenIClickTheSignalLoginLearnMore_thenIExpectLearnMoreForTheSignalLoginArticle() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    scrollTo(AccountSettingsTestTags.LINK_SIGNAL_LOGIN_LEARN_MORE)
+    clickLink(AccountSettingsTestTags.LINK_SIGNAL_LOGIN_LEARN_MORE)
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11197884108826"))
+  }
+
+  @Test
+  fun whenIClickTheTwoFactorLearnMore_thenIExpectLearnMoreForTheTwoFactorArticle() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    scrollTo(AccountSettingsTestTags.LINK_TWO_FACTOR_LEARN_MORE)
+    clickLink(AccountSettingsTestTags.LINK_TWO_FACTOR_LEARN_MORE)
+
+    assertThat(interactionEvents).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
+  }
+
+  @Test
+  fun whenTheTwoFactorListHasntArrived_thenIExpectASpinnerRatherThanAnEmptyList() {
+    setContent(createState(signalLogin = signalLogin(loadState = LoadState.LOADING)))
+
+    scrollTo(AccountSettingsTestTags.TWO_FACTOR_LOADING)
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.TWO_FACTOR_LOADING).assertIsDisplayed()
+  }
+
+  /** An account we couldn't ask about is not an account with no second factors. */
+  @Test
+  fun givenTheTwoFactorListCouldntBeLoaded_whenScreenDisplayed_thenIExpectTheFailureMessage() {
+    setContent(createState(signalLogin = signalLogin(loadState = LoadState.NETWORK_FAILURE)))
+
+    scrollTo(AccountSettingsTestTags.TWO_FACTOR_LOAD_FAILED_MESSAGE)
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.TWO_FACTOR_LOAD_FAILED_MESSAGE).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.TWO_FACTOR_LOADING).assertDoesNotExist()
   }
 
   @Test
@@ -374,6 +544,23 @@ class AccountSettingsScreenTest {
     }
   }
 
+  private fun signalLogin(
+    twoFactorMethods: List<TwoFactorMethod> = emptyList(),
+    loadState: LoadState = LoadState.LOADED,
+    maxTotpApps: Int = 2,
+    maxTwoFactorMethods: Int = 10
+  ): AccountSettingsState.SignalLogin {
+    return AccountSettingsState.SignalLogin(twoFactorMethods = twoFactorMethods, loadState = loadState, maxTotpApps = maxTotpApps, maxTwoFactorMethods = maxTwoFactorMethods)
+  }
+
+  /** Links inside an [androidx.compose.ui.text.AnnotatedString] have no bounds to tap, so their click action is invoked directly. */
+  private fun clickLink(testTag: String) {
+    composeTestRule.onNodeWithTag(testTag)
+      .onChildren()
+      .onFirst()
+      .performSemanticsAction(SemanticsActions.OnClick)
+  }
+
   private fun scrollTo(testTag: String) {
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER)
       .performScrollToNode(hasTestTag(testTag))
@@ -388,6 +575,7 @@ class AccountSettingsScreenTest {
     clientDeprecated: Boolean = false,
     canTransferWhileUnregistered: Boolean = true,
     isPhoneNumberless: Boolean = false,
+    arePasskeysSupported: Boolean = true,
     signalLogin: AccountSettingsState.SignalLogin? = null,
     dialog: Dialog = Dialog.None
   ): AccountSettingsState {
@@ -400,6 +588,7 @@ class AccountSettingsScreenTest {
       clientDeprecated = clientDeprecated,
       canTransferWhileUnregistered = canTransferWhileUnregistered,
       isPhoneNumberless = isPhoneNumberless,
+      arePasskeysSupported = arePasskeysSupported,
       signalLogin = signalLogin,
       dialog = dialog
     )

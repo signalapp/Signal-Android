@@ -6,8 +6,6 @@
 package org.signal.registration.screens.signallogincredentials
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -32,6 +30,8 @@ import org.signal.registration.screens.aepentry.AepInput
 import org.signal.registration.screens.shared.AccountIdError
 import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.screens.twofactorselection.TwoFactorMethod
+import org.signal.registration.screens.twofactorselection.WebAuthnParameters
+import org.signal.registration.screens.twofactorselection.toAuthenticationRoute
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 
@@ -42,14 +42,20 @@ import org.signal.registration.screens.util.navigateTo
 class SignalLoginCredentialEntryViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
+  private val arePasskeysSupported: Boolean,
   prefilledAccountId: String? = null
-) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginCredentialEntryViewModel::class)
   }
 
-  private val _state = MutableStateFlow(SignalLoginCredentialEntryState(accountId = prefilledAccountId ?: ""))
+  private val _state = MutableStateFlow(
+    SignalLoginCredentialEntryState(
+      accountId = prefilledAccountId ?: "",
+      isAccountIdPrefilled = !prefilledAccountId.isNullOrEmpty()
+    )
+  )
   val state: StateFlow<SignalLoginCredentialEntryState> = _state.asStateFlow()
 
   private val _actions = Channel<SignalLoginCredentialEntryScreenActions>(Channel.BUFFERED)
@@ -77,37 +83,43 @@ class SignalLoginCredentialEntryViewModel(
         parentEventEmitter.navigateBack()
       }
 
-      is SignalLoginCredentialEntryScreenEvents.AccountIdChanged -> {
-        val accountId = AccountIdFormat.normalize(event.value)
-        stateEmitter(state.copy(accountId = accountId, accountIdError = AccountIdFormat.validate(accountId), areCredentialsIncorrect = false))
-      }
-
-      is SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged -> {
-        stateEmitter(state.copy(recoveryKey = AepInput.from(event.value, state.recoveryKey.error), areCredentialsIncorrect = false))
+      is SignalLoginCredentialEntryScreenEvents.AccountIdChanged,
+      is SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged,
+      is SignalLoginCredentialEntryScreenEvents.RecoveryKeyVisibilityToggled,
+      is SignalLoginCredentialEntryScreenEvents.DismissError -> {
+        stateEmitter(SignalLoginCredentialEntryScreenEventHandler.applyEvent(state, event))
       }
 
       is SignalLoginCredentialEntryScreenEvents.PasswordManagerCredentialSelected -> {
         applyPasswordManagerCredentialSelected(state, event, parentEventEmitter, stateEmitter)
       }
 
-      is SignalLoginCredentialEntryScreenEvents.RecoveryKeyVisibilityToggled -> {
-        stateEmitter(state.copy(isRecoveryKeyRevealed = !state.isRecoveryKeyRevealed))
-      }
-
       is SignalLoginCredentialEntryScreenEvents.NeedHelpClicked -> {
         _actions.trySend(SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle)
       }
 
-      is SignalLoginCredentialEntryScreenEvents.DismissError -> {
-        stateEmitter(state.copy(loginError = null))
+      is SignalLoginCredentialEntryScreenEvents.ShowLoginInfoAgainClicked -> {
+        error("There is no 'show login info again' button in ${SignalLoginCredentialEntryState.Mode.Login} mode, so this event can't happen.")
       }
 
       is SignalLoginCredentialEntryScreenEvents.NextClicked -> {
-        applyNextClicked(state, totp = null, parentEventEmitter, stateEmitter)
+        applyNextClicked(state, parentEventEmitter, stateEmitter)
       }
 
       is SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered -> {
-        applyNextClicked(state, totp = event.code.toIntOrNull(), parentEventEmitter, stateEmitter)
+        if (state.isNextEnabled) {
+          applyNextClicked(state, parentEventEmitter, stateEmitter, totp = event.code.toIntOrNull())
+        } else {
+          Log.w(TAG, "[TwoFactorCodeEntered] Got a two-factor code, but the login on screen is no longer submittable. Leaving the user on the credential screen to re-enter it.")
+        }
+      }
+
+      is SignalLoginCredentialEntryScreenEvents.PasskeyAssertionReceived -> {
+        if (state.isNextEnabled) {
+          applyNextClicked(state, parentEventEmitter, stateEmitter, webAuthnResponse = event.responseJson)
+        } else {
+          Log.w(TAG, "[PasskeyAssertionReceived] Got a passkey assertion, but the login on screen is no longer submittable. Leaving the user on the credential screen to re-enter it.")
+        }
       }
     }
   }
@@ -122,10 +134,11 @@ class SignalLoginCredentialEntryViewModel(
     parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     stateEmitter: (SignalLoginCredentialEntryState) -> Unit
   ) {
-    val accountId = AccountIdFormat.normalize(event.accountId)
+    val accountId = AccountIdFormat.normalizeAndTruncate(event.accountId).ifEmpty { state.accountId }
     val filledState = state.copy(
       accountId = accountId,
       accountIdError = AccountIdFormat.validate(accountId),
+      isAccountIdPrefilled = false,
       recoveryKey = AepInput.from(event.recoveryKey),
       areCredentialsIncorrect = false
     )
@@ -134,17 +147,24 @@ class SignalLoginCredentialEntryViewModel(
 
     if (filledState.isNextEnabled) {
       Log.i(TAG, "[CredentialSelected] The password manager supplied a complete login. Submitting it.")
-      applyNextClicked(filledState, totp = null, parentEventEmitter, stateEmitter)
+      applyNextClicked(filledState, parentEventEmitter, stateEmitter)
     } else {
       Log.w(TAG, "[CredentialSelected] The password manager supplied a login we can't submit as-is. Leaving it in the fields for the user to fix.")
     }
   }
 
+  /**
+   * Submits the login currently on screen. Callers are expected to have checked [SignalLoginCredentialEntryState.isNextEnabled]
+   * first, but the incomplete cases are handled rather than asserted: a two-factor code can arrive from the TOTP screen
+   * long after this view model was recreated with empty fields (e.g. after process death), so an incomplete login here is
+   * something to log and drop, not a crash.
+   */
   private suspend fun applyNextClicked(
     state: SignalLoginCredentialEntryState,
-    totp: Int?,
     parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    stateEmitter: (SignalLoginCredentialEntryState) -> Unit
+    stateEmitter: (SignalLoginCredentialEntryState) -> Unit,
+    totp: Int? = null,
+    webAuthnResponse: String? = null
   ) {
     val aci = AccountIdFormat.toAciOrNull(state.accountId)
     if (aci == null) {
@@ -153,16 +173,19 @@ class SignalLoginCredentialEntryViewModel(
       return
     }
 
-    check(state.recoveryKey.isValid) { "Recovery key is not valid, should not have gotten here." }
+    if (!state.recoveryKey.isValid) {
+      Log.w(TAG, "[Next] The recovery key on screen isn't complete, so there is nothing to submit.")
+      return
+    }
 
     val aep = AccountEntropyPool(state.recoveryKey.normalized)
 
     stateEmitter(state.copy(isLoggingIn = true))
     parentEventEmitter(RegistrationFlowEvent.UserSuppliedAepSubmitted(aep))
 
-    Log.i(TAG, "[Next] Attempting to log in to ${aci.logString()} with the RRP derived from the entered recovery key. totp: ${totp != null}")
+    Log.i(TAG, "[Next] Attempting to log in to ${aci.logString()} with the RRP derived from the entered recovery key. totp: ${totp != null}, passkey: ${webAuthnResponse != null}")
 
-    attemptToLogIn(state, aci, aep, totp, provideRegistrationLock = false, parentEventEmitter, stateEmitter)
+    attemptToLogIn(state, aci, aep, totp, webAuthnResponse, provideRegistrationLock = false, parentEventEmitter, stateEmitter)
   }
 
   private suspend fun attemptToLogIn(
@@ -170,6 +193,7 @@ class SignalLoginCredentialEntryViewModel(
     aci: ACI,
     aep: AccountEntropyPool,
     totp: Int?,
+    webAuthnResponse: String?,
     provideRegistrationLock: Boolean,
     parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     stateEmitter: (SignalLoginCredentialEntryState) -> Unit
@@ -183,7 +207,8 @@ class SignalLoginCredentialEntryViewModel(
       recoveryPassword = recoveryPassword,
       aep = aep,
       registrationLock = registrationLock,
-      totp = totp
+      totp = totp,
+      webAuthnResponse = webAuthnResponse
     )
 
     when (result) {
@@ -214,19 +239,12 @@ class SignalLoginCredentialEntryViewModel(
             stateEmitter(inputState.copy(isLoggingIn = false, areCredentialsIncorrect = true))
           }
           is RegisterAccountError.RegistrationLock -> {
-            if (provideRegistrationLock) {
-              Log.w(TAG, "[Next] Still registration locked after providing the reglock token derived from the recovery key. Falling back to PIN entry.")
-              stateEmitter(inputState.copy(isLoggingIn = false))
-              parentEventEmitter.navigateTo(
-                RegistrationRoute.PinEntryForRegistrationLock(
-                  timeRemaining = error.data.timeRemaining,
-                  svrCredentials = error.data.svr2Credentials
-                )
-              )
-            } else {
-              Log.w(TAG, "[Next] Registration locked. Retrying with the reglock token derived from the recovery key.")
-              attemptToLogIn(inputState, aci, aep, totp, provideRegistrationLock = true, parentEventEmitter, stateEmitter)
-            }
+            // An account with no phone number can't have a registration lock enabled in the first place, and the only
+            // PIN that could clear one is behind a phone number we don't have. There is nothing to fall back to.
+            check(!provideRegistrationLock) { "[Next] Still registration locked after providing the reglock derived from the recovery key. A phone-numberless account cannot be registration locked!" }
+
+            Log.w(TAG, "[Next] Registration locked. Retrying with the reglock token derived from the recovery key.")
+            attemptToLogIn(inputState, aci, aep, totp, webAuthnResponse, provideRegistrationLock = true, parentEventEmitter, stateEmitter)
           }
           is RegisterAccountError.RateLimited -> {
             Log.w(TAG, "[Next] Rate limited (retryAfter: ${error.retryAfter}).")
@@ -238,12 +256,29 @@ class SignalLoginCredentialEntryViewModel(
           is RegisterAccountError.DeviceTransferPossible -> {
             error("[Next] Device transfer possible. This should not happen with RRP-based registration.")
           }
-          RegisterAccountError.TotpMissingOrIncorrect -> {
-            // For now this error only means TOTP, but in the future it will indicate that some two-factor method is
-            // required, so we treat it generically and route through the method selection screen.
-            Log.w(TAG, "[Next] A two-factor code is required. Sending the user to two-factor method selection.")
+          is RegisterAccountError.TwoFactorRequired -> {
+            val passkeyParameters = if (arePasskeysSupported) {
+              error.data.webAuthnParameters?.let { WebAuthnParameters.from(it) }
+            } else {
+              null
+            }
+
+            val methods = buildList {
+              if (passkeyParameters != null) add(TwoFactorMethod.Passkey(passkeyParameters))
+              if (error.data.hasTotpKey) add(TwoFactorMethod.AuthenticatorApp)
+            }
+
+            if (methods.isEmpty()) {
+              Log.w(TAG, "[Next] A second factor is required, but the service named none this device can offer. passkeysSupported: $arePasskeysSupported, hasTotpKey: ${error.data.hasTotpKey}")
+              stateEmitter(inputState.copy(isLoggingIn = false, loginError = SignalLoginError.UnknownError))
+              return
+            }
+
+            val route = methods.toAuthenticationRoute()
+
+            Log.w(TAG, "[Next] A second factor is required. Sending the user to $route.")
             stateEmitter(inputState.copy(isLoggingIn = false))
-            parentEventEmitter.navigateTo(RegistrationRoute.TwoFactorSelection(methods = listOf(TwoFactorMethod.AuthenticatorApp)))
+            parentEventEmitter.navigateTo(route)
           }
           is RegisterAccountError.InvalidRequest,
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
@@ -274,17 +309,6 @@ class SignalLoginCredentialEntryViewModel(
         Log.w(TAG, "[hasRemoteBackup] Could not determine whether a remote backup exists ($result). Offering it anyway.")
         true
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val prefilledAccountId: String? = null
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return SignalLoginCredentialEntryViewModel(repository, parentEventEmitter, prefilledAccountId) as T
     }
   }
 }

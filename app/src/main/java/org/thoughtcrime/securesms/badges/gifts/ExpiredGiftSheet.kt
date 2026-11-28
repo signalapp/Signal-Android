@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.badges.gifts
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import org.signal.core.models.badges.Badge
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.badges.gifts.ExpiredGiftSheetConfiguration.forExpiredBadge
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.configure

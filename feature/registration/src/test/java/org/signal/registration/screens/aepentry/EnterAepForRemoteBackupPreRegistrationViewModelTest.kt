@@ -7,18 +7,23 @@ package org.signal.registration.screens.aepentry
 
 import assertk.assertThat
 import assertk.assertions.hasSize
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isNull
+import assertk.assertions.isTrue
 import assertk.assertions.prop
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
@@ -38,6 +43,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
 
   private lateinit var viewModel: EnterAepForRemoteBackupPreRegistrationViewModel
   private lateinit var mockRepository: RegistrationRepository
+  private lateinit var resultBus: ResultEventBus
   private lateinit var emittedParentEvents: MutableList<RegistrationFlowEvent>
   private lateinit var parentEventEmitter: (RegistrationFlowEvent) -> Unit
   private lateinit var emittedStates: MutableList<EnterAepState>
@@ -46,6 +52,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
   @Before
   fun setup() {
     mockRepository = mockk(relaxed = true)
+    resultBus = ResultEventBus()
     emittedParentEvents = mutableListOf()
     parentEventEmitter = { event -> emittedParentEvents.add(event) }
     emittedStates = mutableListOf()
@@ -53,8 +60,14 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
     viewModel = EnterAepForRemoteBackupPreRegistrationViewModel(
       e164 = E164,
       repository = mockRepository,
-      parentEventEmitter = parentEventEmitter
+      parentEventEmitter = parentEventEmitter,
+      resultBus = resultBus,
+      resultKey = RESULT_KEY
     )
+  }
+
+  private fun latestResult(): EnterAepForRemoteBackupResult? {
+    return resultBus.channelMap[RESULT_KEY]?.tryReceive()?.getOrNull() as EnterAepForRemoteBackupResult?
   }
 
   // ==================== BackupKeyChanged Tests ====================
@@ -293,10 +306,62 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
     assertThat(emittedStates.last().registrationError).isNull()
   }
 
+  // ==================== Try Another Way Tests ====================
+
+  @Test
+  fun `TryAnotherWay clears the incorrect key error and shows the verify with SMS dialog`() = runTest {
+    val initialState = EnterAepState(
+      recoveryKey = AepInput.from(VALID_AEP).copy(error = AepValidationError.Incorrect),
+      registrationError = RegistrationError.IncorrectRecoveryPassword
+    )
+
+    viewModel.applyEvent(initialState, EnterAepEvents.TryAnotherWay, stateEmitter)
+
+    assertThat(emittedStates).hasSize(1)
+    assertThat(emittedStates.last().registrationError).isNull()
+    assertThat(emittedStates.last().showVerifyWithSmsDialog).isTrue()
+    assertThat(emittedParentEvents).isEmpty()
+  }
+
+  @Test
+  fun `RecoveryKeyHelp emits the open help article action`() = runTest {
+    val initialState = EnterAepState(registrationError = RegistrationError.IncorrectRecoveryPassword)
+
+    viewModel.applyEvent(initialState, EnterAepEvents.RecoveryKeyHelp, stateEmitter)
+
+    assertThat(viewModel.actions.first()).isEqualTo(EnterAepScreenActions.OpenRecoveryKeyHelpArticle)
+    assertThat(emittedStates).isEmpty()
+  }
+
+  @Test
+  fun `ConfirmVerifyWithSms forces the session path and hands control back to phone number entry`() = runTest {
+    val initialState = EnterAepState(recoveryKey = AepInput.from(VALID_AEP), showVerifyWithSmsDialog = true)
+
+    viewModel.applyEvent(initialState, EnterAepEvents.ConfirmVerifyWithSms, stateEmitter)
+
+    assertThat(emittedStates.last().showVerifyWithSmsDialog).isFalse()
+    assertThat(emittedParentEvents).hasSize(2)
+    assertThat(emittedParentEvents[0]).isEqualTo(RegistrationFlowEvent.RecoveryPasswordInvalid)
+    assertThat(emittedParentEvents[1]).isEqualTo(RegistrationFlowEvent.NavigateBack)
+    assertThat(latestResult()).isEqualTo(EnterAepForRemoteBackupResult.VerifyWithSms)
+  }
+
+  @Test
+  fun `DismissVerifyWithSmsDialog clears the dialog`() = runTest {
+    val initialState = EnterAepState(recoveryKey = AepInput.from(VALID_AEP), showVerifyWithSmsDialog = true)
+
+    viewModel.applyEvent(initialState, EnterAepEvents.DismissVerifyWithSmsDialog, stateEmitter)
+
+    assertThat(emittedStates.last().showVerifyWithSmsDialog).isFalse()
+    assertThat(emittedParentEvents).isEmpty()
+    assertThat(latestResult()).isNull()
+  }
+
   // ==================== Constants ====================
 
   companion object {
     private const val VALID_AEP = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t"
     private const val E164 = "+15551234567"
+    private const val RESULT_KEY = "test_result_key"
   }
 }

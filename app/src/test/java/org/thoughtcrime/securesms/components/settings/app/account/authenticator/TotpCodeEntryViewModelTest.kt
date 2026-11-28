@@ -13,10 +13,6 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -25,9 +21,13 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.signal.appsettings.totpcodeentry.TotpCodeEntryAction
+import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryEvent
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryState.Error
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldEvents
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -36,10 +36,12 @@ class TotpCodeEntryViewModelTest {
   companion object {
     private const val FULL_CODE = "123456"
     private const val APP_ID = 3L
+    private const val CREATED_AT = 1_700_000_000_000L
   }
 
   private val testDispatcher = UnconfinedTestDispatcher()
   private val repository: TotpRepository = mockk(relaxed = true)
+  private val parentEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
@@ -48,8 +50,7 @@ class TotpCodeEntryViewModelTest {
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
 
-    coEvery { repository.confirmPendingApp(any()) } returns TotpRepository.ConfirmResult.Success(APP_ID)
-    coEvery { repository.removeTotpApp(any()) } returns TotpRepository.UpdateResult.Success
+    coEvery { repository.confirmPendingApp(any()) } returns TotpRepository.ConfirmResult.Success(appId = APP_ID, createdAt = CREATED_AT)
   }
 
   @After
@@ -58,36 +59,31 @@ class TotpCodeEntryViewModelTest {
   }
 
   @Test
-  fun `non-digits are dropped and the code is capped at six digits`() = runTest(testDispatcher) {
-    val viewModel = createViewModel()
-
-    viewModel.onEvent(TotpCodeEntryEvent.CodeChanged("12a34 5678"))
-
-    assertThat(viewModel.state.value.code).isEqualTo(FULL_CODE)
-  }
-
-  @Test
   fun `a partial code can't be submitted`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(TotpCodeEntryEvent.CodeChanged("123"))
+    enterCode(viewModel, "123")
 
     assertThat(viewModel.state.value.canSubmit).isFalse()
 
-    viewModel.onEvent(TotpCodeEntryEvent.DoneClicked)
+    viewModel.onEvent(TotpCodeEntryEvent.NextClicked)
 
-    assertThat(actions).isEmpty()
+    assertThat(parentEvents).isEmpty()
   }
 
   @Test
   fun `a confirmed code sends the user on to name the app the service just created`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     submit(viewModel)
 
-    assertThat(actions.last()).isEqualTo(TotpCodeEntryAction.NavigateToNaming(APP_ID))
+    assertThat(parentEvents).isEqualTo(
+      listOf(
+        AppSettingsNavigationEvent.NavigateToScreen(
+          AppSettingsRoute.AccountRoute.NameNewTwoFactorMethod(methodId = APP_ID, methodKind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, methodCreatedAt = CREATED_AT)
+        )
+      )
+    )
   }
 
   @Test
@@ -95,13 +91,12 @@ class TotpCodeEntryViewModelTest {
     coEvery { repository.confirmPendingApp(any()) } returns TotpRepository.ConfirmResult.IncorrectCode
 
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     submit(viewModel)
 
     assertThat(viewModel.state.value.error).isEqualTo(Error.IncorrectCode)
     assertThat(viewModel.state.value.submitting).isFalse()
-    assertThat(actions).isEmpty()
+    assertThat(parentEvents).isEmpty()
   }
 
   @Test
@@ -109,12 +104,11 @@ class TotpCodeEntryViewModelTest {
     coEvery { repository.confirmPendingApp(any()) } returns TotpRepository.ConfirmResult.TooManyApps
 
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     submit(viewModel)
 
     assertThat(viewModel.state.value.submitting).isFalse()
-    assertThat(actions.last()).isEqualTo(TotpCodeEntryAction.NavigateToSetup)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateBack(popUpTo = PopUpTo(AppSettingsRoute.AccountRoute.TotpSetup::class))))
   }
 
   @Test
@@ -124,7 +118,7 @@ class TotpCodeEntryViewModelTest {
     val viewModel = createViewModel()
     submit(viewModel)
 
-    viewModel.onEvent(TotpCodeEntryEvent.CodeChanged("1"))
+    enterCode(viewModel, "1")
 
     assertThat(viewModel.state.value.error).isEqualTo(Error.None)
   }
@@ -132,23 +126,20 @@ class TotpCodeEntryViewModelTest {
   @Test
   fun `NavigateBackClicked leaves the screen`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpCodeEntryEvent.NavigateBackClicked)
 
-    assertThat(actions.last()).isEqualTo(TotpCodeEntryAction.NavigateBack)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateBack()))
   }
 
   private fun submit(viewModel: TotpCodeEntryViewModel) {
-    viewModel.onEvent(TotpCodeEntryEvent.CodeChanged(FULL_CODE))
-    viewModel.onEvent(TotpCodeEntryEvent.DoneClicked)
+    enterCode(viewModel, FULL_CODE)
+    viewModel.onEvent(TotpCodeEntryEvent.NextClicked)
   }
 
-  private fun createViewModel() = TotpCodeEntryViewModel(repository = repository)
-
-  private fun TestScope.collectActions(actions: Flow<TotpCodeEntryAction>): List<TotpCodeEntryAction> {
-    val collected = mutableListOf<TotpCodeEntryAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
+  private fun enterCode(viewModel: TotpCodeEntryViewModel, code: String) {
+    viewModel.onEvent(TotpCodeEntryEvent.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged(code)))
   }
+
+  private fun createViewModel() = TotpCodeEntryViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
 }

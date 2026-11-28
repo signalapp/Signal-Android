@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import androidx.core.content.contentValuesOf
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.delete
-import org.signal.core.util.deleteAll
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.delete
+import org.signal.core.database.deleteAll
+import org.signal.core.database.select
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
-import org.signal.core.util.withinTransaction
 
 /**
  * Keeps track of the numbers we've previously queried CDS for.

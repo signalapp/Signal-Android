@@ -4,27 +4,28 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.SqlUtil.buildArgs
+import org.signal.core.database.delete
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.SqlUtil.buildArgs
 import org.signal.core.util.UuidUtil
-import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.requireString
-import org.signal.core.util.select
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyData
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.push.DistributionId
@@ -565,23 +566,35 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     Log.d(TAG, "Deleted recipient: $deleted")
   }
 
-  fun deleteList(distributionListId: DistributionListId, deletionTimestamp: Long = System.currentTimeMillis()) {
-    writableDatabase.update(
-      ListTable.TABLE_NAME,
-      contentValuesOf(
-        ListTable.NAME to createUniqueNameForDeletedStory(),
-        ListTable.ALLOWS_REPLIES to false,
-        ListTable.DELETION_TIMESTAMP to deletionTimestamp
-      ),
-      ID_WHERE,
-      SqlUtil.buildArgs(distributionListId)
-    )
+  /**
+   * Marks the list as deleted. Refuses to delete My Story.
+   *
+   * @return true if the list was deleted, otherwise false.
+   */
+  fun deleteList(distributionListId: DistributionListId, deletionTimestamp: Long = System.currentTimeMillis()): Boolean {
+    return writableDatabase.withinTransaction { db ->
+      val updated = db
+        .update(ListTable.TABLE_NAME)
+        .values(
+          ListTable.NAME to createUniqueNameForDeletedStory(),
+          ListTable.ALLOWS_REPLIES to false,
+          ListTable.DELETION_TIMESTAMP to deletionTimestamp
+        )
+        .where("${ListTable.ID} = ? AND ${ListTable.DISTRIBUTION_ID} != ?", distributionListId, DistributionId.MY_STORY)
+        .run()
 
-    writableDatabase.delete(
-      MembershipTable.TABLE_NAME,
-      "${MembershipTable.LIST_ID} = ?",
-      SqlUtil.buildArgs(distributionListId)
-    )
+      if (updated == 0) {
+        Log.w(TAG, "Did not delete $distributionListId. It is either My Story or does not exist.")
+        return@withinTransaction false
+      }
+
+      db
+        .delete(MembershipTable.TABLE_NAME)
+        .where("${MembershipTable.LIST_ID} = ?", distributionListId)
+        .run()
+
+      true
+    }
   }
 
   /**
@@ -685,7 +698,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
 
     createList(
       name = insert.proto.name,
-      members = insert.proto.recipientServiceAddresses.map(RecipientId::from),
+      members = insert.proto.recipientServiceAddresses.map(RecipientIds::from),
       distributionId = distributionId,
       allowsReplies = insert.proto.allowsReplies,
       deletionTimestamp = insert.proto.deletedAtTimestamp,
@@ -737,6 +750,10 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
         ListTable.PRIVACY_MODE to privacyMode.serialize()
       )
 
+      if (distributionId == DistributionId.MY_STORY) {
+        listTableValues.put(ListTable.DELETION_TIMESTAMP, 0L)
+      }
+
       writableDatabase.update(
         ListTable.TABLE_NAME,
         listTableValues,
@@ -745,7 +762,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
       )
 
       val currentlyInDistributionList = getRawMembers(distributionListId, privacyMode).toSet()
-      val shouldBeInDistributionList = update.new.proto.recipientServiceAddresses.map(RecipientId::from).toSet()
+      val shouldBeInDistributionList = update.new.proto.recipientServiceAddresses.map(RecipientIds::from).toSet()
       val toRemove = currentlyInDistributionList - shouldBeInDistributionList
       val toAdd = shouldBeInDistributionList - currentlyInDistributionList
 

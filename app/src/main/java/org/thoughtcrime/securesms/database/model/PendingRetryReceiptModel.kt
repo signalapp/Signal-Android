@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.database.model
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /** A model for [org.thoughtcrime.securesms.database.PendingRetryReceiptTable] */
 data class PendingRetryReceiptModel(

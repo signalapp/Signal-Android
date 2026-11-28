@@ -6,7 +6,9 @@
 package org.signal.network
 
 import io.reactivex.rxjava3.core.Single
+import kotlinx.serialization.DeserializationStrategy
 import org.signal.core.util.concurrent.safeBlockingGet
+import org.signal.core.util.serialization.SignalJson
 import org.signal.network.NetworkResult.ApplicationError
 import org.signal.network.NetworkResult.StatusCodeError
 import org.signal.network.exceptions.MalformedRequestException
@@ -66,6 +68,16 @@ sealed class NetworkResult<T>(
      */
     inline fun <reified T : Any> fromWebSocket(fetcher: Fetcher<Single<WebsocketResponse>>): NetworkResult<T> {
       return fromWebSocket(DefaultWebSocketConverter(T::class), fetcher)
+    }
+
+    /**
+     * A convenience method to convert a websocket request into a network result, parsing the body into type [T] with
+     * the provided kotlinx.serialization [deserializer].
+     *
+     * Common HTTP errors will be translated to [StatusCodeError]s.
+     */
+    fun <T : Any> fromWebSocket(deserializer: DeserializationStrategy<T>, fetcher: Fetcher<Single<WebsocketResponse>>): NetworkResult<T> {
+      return fromWebSocket(DefaultWebSocketConverter(deserializer), fetcher)
     }
 
     /**
@@ -189,6 +201,15 @@ sealed class NetworkResult<T>(
       } catch (_: MalformedRequestException) {
         null
       }
+    }
+
+    /**
+     * Parses the error body with the provided kotlinx.serialization [deserializer], returning null if there's no body
+     * or it can't be parsed.
+     */
+    fun <T> parseJsonBody(deserializer: DeserializationStrategy<T>): T? {
+      val body = stringBody ?: binaryBody?.decodeToString() ?: return null
+      return runCatching { SignalJson.json.decodeFromString(deserializer, body) }.getOrNull()
     }
 
     fun header(key: String): String? {
@@ -391,7 +412,7 @@ sealed class NetworkResult<T>(
   }
 
   /**
-   * Specify an action to be run when a application error occurs. When a result is a [ApplicationErrorAction] or is transformed into one further down the chain via
+   * Specify an action to be run when an application error occurs. When a result is a [ApplicationErrorAction] or is transformed into one further down the chain via
    * a future [map] or [then], this code will be run. There can only ever be a single application error in a chain, and therefore this lambda will only ever
    * be run a single time.
    *
@@ -445,24 +466,50 @@ sealed class NetworkResult<T>(
         else -> Success(JsonUtil.fromJson(this.body, responseJsonClass.java))
       }
     }
+
+    fun <T : Any> WebsocketResponse.toSuccess(deserializer: DeserializationStrategy<T>): NetworkResult<T> {
+      return Success(SignalJson.json.decodeFromString(deserializer, this.body))
+    }
   }
 
-  class DefaultWebSocketConverter<T : Any>(private val responseJsonClass: KClass<T>) : WebSocketResponseConverter<T> {
+  /**
+   * Converts any 2xx response body into [T].
+   */
+  class DefaultWebSocketConverter<T : Any> private constructor(
+    private val responseJsonClass: KClass<T>?,
+    private val deserializer: DeserializationStrategy<T>?
+  ) : WebSocketResponseConverter<T> {
+    constructor(responseJsonClass: KClass<T>) : this(responseJsonClass, null)
+    constructor(deserializer: DeserializationStrategy<T>) : this(null, deserializer)
+
     override fun convert(response: WebsocketResponse): NetworkResult<T> {
       return if (response.status < 200 || response.status > 299) {
         response.toStatusCodeError()
+      } else if (deserializer != null) {
+        response.toSuccess(deserializer)
       } else {
-        response.toSuccess(responseJsonClass)
+        response.toSuccess(responseJsonClass!!)
       }
     }
   }
 
-  class LongPollingWebSocketConverter<T : Any>(private val responseJsonClass: KClass<T>) : WebSocketResponseConverter<T> {
+  /**
+   * Like [DefaultWebSocketConverter], but treats a 204 as an error rather than an empty success.
+   */
+  class LongPollingWebSocketConverter<T : Any> private constructor(
+    private val responseJsonClass: KClass<T>?,
+    private val deserializer: DeserializationStrategy<T>?
+  ) : WebSocketResponseConverter<T> {
+    constructor(responseJsonClass: KClass<T>) : this(responseJsonClass, null)
+    constructor(deserializer: DeserializationStrategy<T>) : this(null, deserializer)
+
     override fun convert(response: WebsocketResponse): NetworkResult<T> {
       return if (response.status == 204 || response.status < 200 || response.status > 299) {
         response.toStatusCodeError()
+      } else if (deserializer != null) {
+        response.toSuccess(deserializer)
       } else {
-        response.toSuccess(responseJsonClass)
+        response.toSuccess(responseJsonClass!!)
       }
     }
   }

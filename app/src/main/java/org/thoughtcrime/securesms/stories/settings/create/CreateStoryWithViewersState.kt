@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.stories.settings.create
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 data class CreateStoryWithViewersState(
   val label: CharSequence = "",

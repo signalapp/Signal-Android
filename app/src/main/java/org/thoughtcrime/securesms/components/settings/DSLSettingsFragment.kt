@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EdgeEffect
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
@@ -13,15 +12,12 @@ import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.ui.logging.LoggingFragment
-import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -36,6 +32,14 @@ abstract class DSLSettingsFragment(
   @LayoutRes layoutId: Int = R.layout.dsl_settings_fragment,
   protected var layoutManagerProducer: (Context) -> RecyclerView.LayoutManager = { context -> LinearLayoutManager(context) }
 ) : LoggingFragment(layoutId) {
+
+  companion object {
+    /**
+     * False for hosts that close this screen some other way, like a split-pane detail root that is closed by picking
+     * something else from the list. Read when the view is created, so the icon never shows.
+     */
+    const val ARG_SHOWS_NAVIGATION_ICON = "dsl_settings_shows_navigation_icon"
+  }
 
   protected var recyclerView: RecyclerView? = null
     private set
@@ -64,6 +68,9 @@ abstract class DSLSettingsFragment(
   @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     toolbar = view.findViewById(R.id.toolbar)
+    if (arguments?.getBoolean(ARG_SHOWS_NAVIGATION_ICON, true) == false) {
+      toolbar?.navigationIcon = null
+    }
 
     if (titleId != -1) {
       toolbar?.setTitle(titleId)
@@ -106,46 +113,33 @@ abstract class DSLSettingsFragment(
   }
 
   /**
-   * All host windows are edge-to-edge — activities centrally via [org.thoughtcrime.securesms.BaseActivity],
-   * and the full-screen dialog hosts ([org.thoughtcrime.securesms.components.WrapperDialogFragment],
-   * [org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment]) via their own
-   * `enableEdgeToEdge` calls — so the toolbar tint must extend behind the (transparent) status bar and the
-   * list must scroll clear of the navigation bar. Skipped only for fragments embedded directly in
-   * [MainActivity]'s Compose scaffolding, which insets those containers itself — except the
-   * conversation-settings detail entry ([ConversationSettingsNavHostFragment]), which leaves insets to these
-   * fragments so the toolbar scroll tint can reach behind the status bar.
+   * The toolbar tint extends behind the status bar and the list scrolls clear of the navigation bar, unless the host
+   * already insets this fragment ([isInsetByHost]).
    */
   private fun applyEdgeToEdgeInsets() {
-    if (isInsetByMainActivityHost()) {
+    if (listScrollsBehindToolbar) {
+      recyclerView?.let { recycler ->
+        recycler.clipToPadding = false
+        recycler.updatePadding(top = recycler.paddingTop + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height))
+      }
+    }
+
+    if (isInsetByHost()) {
       return
     }
 
-    toolbar?.let { toolbar ->
-      toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
-      SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
-    }
+    toolbar?.let { insetToolbarForStatusBar(it, viewLifecycleOwner) }
 
     recyclerView?.let { recycler ->
       val insetTypes = (if (listClearsNavigationBar) WindowInsetsCompat.Type.navigationBars() else 0) or
         (if (listScrollsBehindToolbar) WindowInsetsCompat.Type.statusBars() else 0) or
         (if (listAvoidsKeyboard) WindowInsetsCompat.Type.ime() else 0)
 
-      if (listScrollsBehindToolbar) {
-        recycler.updatePadding(top = recycler.paddingTop + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height))
-      }
-
       if (insetTypes != 0) {
         recycler.clipToPadding = false
         SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, insetTypes)
       }
     }
-  }
-
-  private fun isInsetByMainActivityHost(): Boolean {
-    if (activity !is MainActivity) {
-      return false
-    }
-    return generateSequence(parentFragment) { it.parentFragment }.none { it is ConversationSettingsNavHostFragment }
   }
 
   open fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper? {

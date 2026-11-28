@@ -18,7 +18,7 @@ import org.signal.core.util.logging.Log
  * Owns the navigation. Every event here is answered by a one-liner into [ListDetailNavigator], which is
  * the point: you keep your screens' rules, and it keeps the stacks, the pane anchor, and the saved state.
  */
-class DemoViewModel(savedStateHandle: SavedStateHandle) : EventDrivenViewModel<DemoEvents>(TAG) {
+class DemoViewModel(savedStateHandle: SavedStateHandle) : EventDrivenViewModel<DemoEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DemoViewModel::class)

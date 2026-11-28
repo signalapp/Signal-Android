@@ -10,6 +10,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -100,6 +101,29 @@ class TotpSetupScreenTest {
     composeTestRule.onNodeWithText("OK").performClick()
 
     assertThat(events).contains(TotpSetupEvent.DialogDismissed)
+  }
+
+  @Test
+  fun whenITapClose_thenIExpectNavigateBackClickedEvent() {
+    setContent()
+
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
+
+    assertThat(events).contains(TotpSetupEvent.NavigateBackClicked)
+  }
+
+  @Test
+  fun givenAKeyCopiedSnackbar_whenIDisplayScreen_thenIExpectTheMessage() {
+    setContent(TotpSetupState(setupKey = SETUP_KEY, loading = false, snackbar = TotpSetupState.Snackbar.KeyCopied))
+
+    composeTestRule.onNodeWithText("Copied to clipboard").assertIsDisplayed()
+  }
+
+  @Test
+  fun givenANoTotpAppSnackbar_whenIDisplayScreen_thenIExpectTheMessage() {
+    setContent(TotpSetupState(setupKey = SETUP_KEY, loading = false, snackbar = TotpSetupState.Snackbar.NoTotpAppFound))
+
+    composeTestRule.onNodeWithText("No authenticator app found").assertIsDisplayed()
   }
 
   private fun setContent(state: TotpSetupState = TotpSetupState(setupKey = SETUP_KEY, loading = false)) {

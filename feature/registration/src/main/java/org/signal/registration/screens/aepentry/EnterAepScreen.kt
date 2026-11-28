@@ -5,6 +5,7 @@
 
 package org.signal.registration.screens.aepentry
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -53,11 +54,13 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.DialogProperties
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TextFields
 import org.signal.passwordmanager.SignalCredentialManager
 import org.signal.passwordmanager.compose.attachPasswordAutoFillHelper
 import org.signal.passwordmanager.compose.passwordAutoFillHelper
@@ -79,6 +82,10 @@ fun EnterAepScreen(
 
   if (state.showDifferentAccountDialog) {
     DifferentAccountDialog(onEvent)
+  }
+
+  if (state.showVerifyWithSmsDialog) {
+    VerifyWithSmsDialog(onEvent)
   }
 
   when (val layoutParams = RegistrationScaffold.rememberLayoutParams()) {
@@ -104,10 +111,40 @@ private fun DifferentAccountDialog(onEvent: (EnterAepEvents) -> Unit) {
 }
 
 /**
- * Shows a dismissable dialog for registration errors the text field can't express: the generic ones
- * (network/rate-limit/unknown), plus [RegistrationError.NoRemoteBackup], which gets its own title and body so it does
- * not read as a rejected key. Incorrect-key errors are surfaced inline on the text field instead.
+ * Offers to register by verifying the phone number over SMS instead of with the recovery key.
  */
+@Composable
+private fun VerifyWithSmsDialog(onEvent: (EnterAepEvents) -> Unit) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.EnterAepScreen__verify_with_sms_code),
+    body = stringResource(R.string.EnterAepScreen__verify_with_sms_code_body),
+    confirm = stringResource(R.string.EnterAepScreen__send_code),
+    dismiss = stringResource(android.R.string.cancel),
+    onConfirm = { onEvent(EnterAepEvents.ConfirmVerifyWithSms) },
+    onDeny = { onEvent(EnterAepEvents.DismissVerifyWithSmsDialog) },
+    onDismissRequest = { onEvent(EnterAepEvents.DismissVerifyWithSmsDialog) }
+  )
+}
+
+/**
+ * Shown when the server rejects the recovery password derived from the entered key. Not dismissable by tapping outside
+ * or pressing back, since the dialog's dismiss callback is wired to the help button.
+ */
+@Composable
+private fun IncorrectRecoveryKeyDialog(onEvent: (EnterAepEvents) -> Unit) {
+  Dialogs.AdvancedAlertDialog(
+    title = stringResource(R.string.EnterAepScreen__incorrect_recovery_key_dialog_title),
+    body = stringResource(R.string.EnterAepScreen__incorrect_recovery_key_dialog_body),
+    positive = stringResource(R.string.EnterAepScreen__try_again),
+    neutral = stringResource(R.string.EnterAepScreen__try_another_way),
+    negative = stringResource(R.string.EnterAepScreen__recovery_key_help),
+    onPositive = { onEvent(EnterAepEvents.DismissError) },
+    onNeutral = { onEvent(EnterAepEvents.TryAnotherWay) },
+    onNegative = { onEvent(EnterAepEvents.RecoveryKeyHelp) },
+    properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+  )
+}
+
 @Composable
 private fun RegistrationErrorDialog(error: RegistrationError?, onEvent: (EnterAepEvents) -> Unit) {
   val (title, message) = when (error) {
@@ -115,7 +152,11 @@ private fun RegistrationErrorDialog(error: RegistrationError?, onEvent: (EnterAe
     RegistrationError.RateLimited -> null to stringResource(R.string.VerificationCodeScreen__too_many_attempts)
     RegistrationError.UnknownError -> null to stringResource(R.string.VerificationCodeScreen__an_unexpected_error_occurred)
     RegistrationError.NoRemoteBackup -> stringResource(R.string.EnterAepScreen__no_backup_found) to stringResource(R.string.EnterAepScreen__no_backup_found_body)
-    RegistrationError.IncorrectRecoveryPassword, null -> return
+    RegistrationError.IncorrectRecoveryPassword -> {
+      IncorrectRecoveryKeyDialog(onEvent)
+      return
+    }
+    null -> return
   }
 
   Dialogs.SimpleMessageDialog(
@@ -275,6 +316,7 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
   var requestFocus by remember { mutableStateOf(true) }
   val keyboardController = LocalSoftwareKeyboardController.current
   val autoFillHelper = passwordAutoFillHelper { onEvent(EnterAepEvents.BackupKeyChanged(it)) }
+  val interactionSource = remember { MutableInteractionSource() }
 
   TextField(
     value = state.recoveryKey.enteredText,
@@ -282,7 +324,8 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
       onEvent(EnterAepEvents.BackupKeyChanged(it))
       autoFillHelper.onValueChanged(it)
     },
-    label = { Text(stringResource(R.string.EnterAepScreen__recovery_key)) },
+    label = { TextFields.Label(stringResource(R.string.EnterAepScreen__recovery_key), state.recoveryKey.enteredText.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     textStyle = MaterialTheme.typography.bodyLarge.copy(
       fontFamily = MonoTypeface.fontFamily(),
       lineHeight = 36.sp
@@ -307,8 +350,7 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
       }
     ),
     supportingText = {
-      when (val error = state.recoveryKey.error) {
-        is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
+      when (state.recoveryKey.error) {
         is AepValidationError.Invalid -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
         is AepValidationError.Incorrect -> Text(stringResource(R.string.EnterAepScreen__incorrect_recovery_key))
         null -> {}
@@ -472,6 +514,34 @@ private fun EnterAepScreenErrorPreview() {
           error = AepValidationError.Invalid
         ),
         isPasswordManagerAvailable = true
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun EnterAepScreenIncorrectKeyDialogPreview() {
+  Previews.Preview {
+    EnterAepScreen(
+      state = EnterAepState(
+        recoveryKey = AepInput.from("uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t").copy(error = AepValidationError.Incorrect),
+        registrationError = RegistrationError.IncorrectRecoveryPassword
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun EnterAepScreenVerifyWithSmsDialogPreview() {
+  Previews.Preview {
+    EnterAepScreen(
+      state = EnterAepState(
+        recoveryKey = AepInput.from("uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t").copy(error = AepValidationError.Incorrect),
+        showVerifyWithSmsDialog = true
       ),
       onEvent = {}
     )

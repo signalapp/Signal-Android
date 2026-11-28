@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import org.signal.camera.hud.CaptureButtonMode
+import org.signal.camera.hud.MultiCaptureMode
 import org.signal.core.ui.compose.Previews
 
 /**
@@ -25,12 +26,13 @@ internal fun MediaCameraCaptureScreen(
   val permissions = rememberCameraPermissionController(isVideoEnabled)
 
   CameraXScreen(
-    state = remember(state.selectedMedia, state.selectedCameraMode) {
+    state = remember(state.selectedMedia, state.selectedCameraMode, state.isMultiCaptureEnabled) {
       CameraXScreenState(
         isVideoEnabled = isVideoEnabled,
         isQrScanEnabled = true,
         selectedMediaCount = state.selectedMedia.size,
-        captureButtonMode = if (state.selectedCameraMode == MediaCaptureMode.VIDEO) CaptureButtonMode.VIDEO else CaptureButtonMode.PHOTO
+        captureButtonMode = if (state.selectedCameraMode == MediaCaptureMode.VIDEO) CaptureButtonMode.VIDEO else CaptureButtonMode.PHOTO,
+        multiCaptureMode = if (state.isMultiCaptureEnabled) MultiCaptureMode.ON else MultiCaptureMode.OFF
       )
     },
     onEvent = { event -> onEvent(MediaCaptureScreenEvents.Camera(event)) },

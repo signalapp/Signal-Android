@@ -47,7 +47,7 @@ public class ChatWallpaperSelectionFragment extends Fragment {
       startActivityForResult(WallpaperImageSelectionActivity.getIntent(requireContext(), viewModel.getRecipientId()), CHOOSE_WALLPAPER);
     });
 
-    toolbar.setTitle(R.string.preferences__chat_color_and_wallpaper);
+    toolbar.setTitle(org.signal.appsettings.R.string.preferences__chat_color_and_wallpaper);
     toolbar.setNavigationOnClickListener(nav -> Navigation.findNavController(nav).popBackStack());
 
     @SuppressWarnings("CodeBlock2Expr")

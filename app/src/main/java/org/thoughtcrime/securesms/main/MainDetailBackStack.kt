@@ -5,11 +5,12 @@
 
 package org.thoughtcrime.securesms.main
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.split.ListDetailBackStack
+import org.signal.core.ui.compose.split.ListNavKey
 import org.signal.core.ui.compose.split.detailLocation
 import org.signal.core.ui.compose.split.listLocation
 import org.thoughtcrime.securesms.calls.log.CallLogRow
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * The list currently being displayed.
@@ -24,16 +25,24 @@ val ListDetailBackStack.detailLocation: MainDetailRoute?
   get() = detailLocation<MainDetailRoute>()
 
 /**
- * The recipient whose content is displayed by the topmost entry that has one.
+ * The recipient that keys the displayed detail stack: the bottom-most detail entry that has one. Screens
+ * stacked above it, such as another recipient's settings, belong to that stack rather than starting their own.
  */
 val ListDetailBackStack.activeRecipientId: RecipientId?
-  get() = asReversed().firstNotNullOfOrNull {
+  get() = takeLastWhile { it !is ListNavKey }.firstNotNullOfOrNull {
     when (it) {
       is MainDetailRoute.Conversation -> it.conversationArgs.recipientId
       is MainDetailRoute.Chats -> it.controllerKey
       else -> null
     }
   }
+
+/**
+ * The chat displayed by the detail stack, beneath any sub-screens stacked above it, or null when the detail stack
+ * shows no chat. Pushing a chat drops the detail above the list first, so there is never more than one.
+ */
+val ListDetailBackStack.activeConversation: MainDetailRoute.Conversation?
+  get() = takeLastWhile { it !is ListNavKey }.firstNotNullOfOrNull { it as? MainDetailRoute.Conversation }
 
 /**
  * The call whose content is displayed by the topmost entry that has one.

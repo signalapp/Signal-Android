@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.signal.core.util.concurrent.SimpleTask;
+import org.signal.remoteconfig.RemoteConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +80,10 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
   private long                   threadId;
 
   public static Intent forThread(@NonNull Context context, long threadId) {
+    if (RemoteConfig.useNewMediaOverview()) {
+      return org.thoughtcrime.securesms.mediaoverview.v2.MediaOverviewActivity.forThread(context, threadId);
+    }
+
     Intent intent = new Intent(context, MediaOverviewActivity.class);
     intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
     return intent;

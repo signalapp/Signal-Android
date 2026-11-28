@@ -11,15 +11,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.PowerManager;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 
 import java.util.Objects;
@@ -29,7 +28,7 @@ import java.util.concurrent.TimeUnit;
  * Foreground service to help manage interactions with the {@link DeviceTransferClient} and
  * {@link DeviceTransferServer}.
  */
-public class DeviceToDeviceTransferService extends Service implements ShutdownCallback {
+public class DeviceToDeviceTransferService extends Service {
 
   private static final String TAG = Log.tag(DeviceToDeviceTransferService.class);
 
@@ -49,6 +48,13 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   private DeviceTransferClient     client;
   private PowerManager.WakeLock    wakeLock;
   private WifiManager.WifiLock     wifiLock;
+  private int                      lastStartId;
+  private int                      instanceGeneration;
+  private int                      pendingTeardowns;
+  private State                    state = State.ACTIVE;
+  private Intent                   pendingStart;
+  private boolean                  destroyed;
+  private EventBus.Subscription    transferStatusSubscription;
 
   public static void startServer(@NonNull Context context,
                                  @NonNull ServerTask serverTask,
@@ -95,29 +101,17 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
     super.onCreate();
     Log.v(TAG, "onCreate");
 
-    EventBus.getDefault().register(this);
-  }
-
-  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-  public void onEventMainThread(@NonNull TransferStatus event) {
-    updateNotification(event);
+    transferStatusSubscription = EventBus.getDefault().subscribeSticky(TransferStatus.class, ThreadMode.MAIN, this::updateNotification);
   }
 
   @Override
   public void onDestroy() {
     Log.v(TAG, "onDestroy");
 
-    EventBus.getDefault().unregister(this);
+    destroyed = true;
+    transferStatusSubscription.unsubscribe();
 
-    if (client != null) {
-      client.stop();
-      client = null;
-    }
-
-    if (server != null) {
-      server.stop();
-      server = null;
-    }
+    stopClientAndServer();
 
     if (wakeLock != null) {
       wakeLock.release();
@@ -132,6 +126,8 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
 
   @Override
   public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+    lastStartId = startId;
+
     if (intent == null) {
       return START_NOT_STICKY;
     }
@@ -149,34 +145,20 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
 
     Log.d(TAG, "Action: " + action);
     switch (action) {
-      case ACTION_START_SERVER: {
-        if (server == null) {
-          notificationData = intent.getParcelableExtra(EXTRA_NOTIFICATION);
-          pendingIntent    = intent.getParcelableExtra(EXTRA_PENDING_INTENT);
-          server           = new DeviceTransferServer(getApplicationContext(),
-                                                      (ServerTask) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_TASK)),
-                                                      this);
-          acquireWakeLock();
-          server.start();
+      case ACTION_START_SERVER:
+        if (state != State.ACTIVE) {
+          enqueueRestart(intent);
         } else {
-          Log.i(TAG, "Can't start server, already started.");
+          startServer(intent);
         }
         break;
-      }
-      case ACTION_START_CLIENT: {
-        if (client == null) {
-          notificationData = intent.getParcelableExtra(EXTRA_NOTIFICATION);
-          pendingIntent    = intent.getParcelableExtra(EXTRA_PENDING_INTENT);
-          client           = new DeviceTransferClient(getApplicationContext(),
-                                                      (ClientTask) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_TASK)),
-                                                      this);
-          acquireWakeLock();
-          client.start();
+      case ACTION_START_CLIENT:
+        if (state != State.ACTIVE) {
+          enqueueRestart(intent);
         } else {
-          Log.i(TAG, "Can't start client, client already started.");
+          startClient(intent);
         }
         break;
-      }
       case ACTION_SET_VERIFIED:
         boolean isVerified = intent.getBooleanExtra(EXTRA_IS_VERIFIED, false);
         if (server != null) {
@@ -186,6 +168,11 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
         }
         break;
       case ACTION_STOP:
+        if (state == State.NEEDS_RESTART) {
+          Log.i(TAG, "Clearing pending restart.");
+          state        = State.STOPPING;
+          pendingStart = null;
+        }
         shutdown();
         break;
     }
@@ -193,13 +180,106 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
     return START_STICKY;
   }
 
-  @Override
-  public void shutdown() {
+  private void startServer(@NonNull Intent intent) {
+    if (server == null) {
+      notificationData = intent.getParcelableExtra(EXTRA_NOTIFICATION);
+      pendingIntent    = intent.getParcelableExtra(EXTRA_PENDING_INTENT);
+      server           = new DeviceTransferServer(getApplicationContext(),
+                                                  (ServerTask) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_TASK)),
+                                                  newShutdownCallback());
+      acquireWakeLock();
+      server.start();
+    } else {
+      Log.i(TAG, "Can't start server, already started.");
+    }
+  }
+
+  private void startClient(@NonNull Intent intent) {
+    if (client == null) {
+      notificationData = intent.getParcelableExtra(EXTRA_NOTIFICATION);
+      pendingIntent    = intent.getParcelableExtra(EXTRA_PENDING_INTENT);
+      client           = new DeviceTransferClient(getApplicationContext(),
+                                                  (ClientTask) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_TASK)),
+                                                  newShutdownCallback());
+      acquireWakeLock();
+      client.start();
+    } else {
+      Log.i(TAG, "Can't start client, client already started.");
+    }
+  }
+
+  private void enqueueRestart(@NonNull Intent intent) {
+    Log.i(TAG, "Attempted to start while the previous transfer is stopping. Enqueueing a restart.");
+    state        = State.NEEDS_RESTART;
+    pendingStart = intent;
+  }
+
+  private @NonNull ShutdownCallback newShutdownCallback() {
+    final int generation = ++instanceGeneration;
+    return () -> {
+      if (generation == instanceGeneration) {
+        shutdown();
+      } else {
+        Log.i(TAG, "Ignoring shutdown from a previous transfer.");
+      }
+    };
+  }
+
+  @MainThread
+  private void shutdown() {
     Log.i(TAG, "Shutdown");
-    ThreadUtil.runOnMain(() -> {
-      stopForeground(true);
-      stopSelf();
-    });
+    stopClientAndServer();
+    stopForeground(true);
+    if (state == State.ACTIVE) {
+      stopSelf(lastStartId);
+    }
+  }
+
+  private void stopClientAndServer() {
+    instanceGeneration++;
+
+    if (client != null) {
+      pendingTeardowns++;
+      client.stop(this::onInstanceStopped);
+      client = null;
+    }
+
+    if (server != null) {
+      pendingTeardowns++;
+      server.stop(this::onInstanceStopped);
+      server = null;
+    }
+
+    if (pendingTeardowns > 0 && state == State.ACTIVE) {
+      state = State.STOPPING;
+    }
+  }
+
+  private void onInstanceStopped() {
+    if (destroyed) {
+      return;
+    }
+
+    pendingTeardowns--;
+    if (pendingTeardowns > 0) {
+      return;
+    }
+
+    State previous = state;
+    state = State.ACTIVE;
+
+    if (previous == State.NEEDS_RESTART) {
+      Log.i(TAG, "Previous transfer stopped, restarting.");
+      Intent start = pendingStart;
+      pendingStart = null;
+      if (ACTION_START_SERVER.equals(start.getAction())) {
+        startServer(start);
+      } else {
+        startClient(start);
+      }
+    } else {
+      stopSelf(lastStartId);
+    }
   }
 
   private void acquireWakeLock() {
@@ -277,6 +357,12 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   @Override
   public @Nullable IBinder onBind(@NonNull Intent intent) {
     throw new UnsupportedOperationException();
+  }
+
+  private enum State {
+    ACTIVE,
+    STOPPING,
+    NEEDS_RESTART
   }
 
   public static class TransferNotificationData implements Parcelable {

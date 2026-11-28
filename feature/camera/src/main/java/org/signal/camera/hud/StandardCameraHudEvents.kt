@@ -47,6 +47,11 @@ sealed interface StandardCameraHudEvents {
   data object ToggleFlash : StandardCameraHudEvents
 
   /**
+   * Emitted when the multi capture button is clicked.
+   */
+  data object ToggleMultiCapture : StandardCameraHudEvents
+
+  /**
    * Emitted when a capture error should be cleared (after displaying to user).
    */
   data object ClearCaptureError : StandardCameraHudEvents

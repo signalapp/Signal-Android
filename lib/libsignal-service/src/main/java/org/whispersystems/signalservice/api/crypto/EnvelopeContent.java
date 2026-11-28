@@ -50,8 +50,12 @@ public interface EnvelopeContent {
    * Wrap {@link Content} you plan on sending as an encrypted message.
    * This is the default. Consider anything else exceptional.
    */
-  static EnvelopeContent encrypted(Content content, ContentHint contentHint, Optional<byte[]> groupId) {
+  static Encrypted encrypted(Content content, ContentHint contentHint, Optional<byte[]> groupId) {
     return new Encrypted(content, contentHint, groupId);
+  }
+
+  static Encrypted encrypted(Content content, ContentHint contentHint) {
+    return new Encrypted(content, contentHint, Optional.empty());
   }
 
   /**
@@ -120,6 +124,14 @@ public interface EnvelopeContent {
     @Override
     public Optional<Content> getContent() {
       return Optional.of(content);
+    }
+
+    public ContentHint getContentHint() {
+      return contentHint;
+    }
+
+    public Optional<byte[]> getGroupId() {
+      return groupId;
     }
   }
 

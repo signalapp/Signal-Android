@@ -13,6 +13,7 @@ import com.squareup.wire.internal.toUnmodifiableList
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.LRUCache
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.UuidUtil
@@ -40,6 +41,7 @@ import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
@@ -58,8 +60,7 @@ import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
@@ -122,7 +123,7 @@ object MessageDecryptor {
       val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
 
       if (sourceServiceId != null) {
-        val sender = RecipientId.from(sourceServiceId)
+        val sender = RecipientIds.from(sourceServiceId)
         SignalDatabase.recipients.markNeedsPniSignature(sender)
       } else {
         Log.w(TAG, "${logPrefix(envelope)} Could not mark sender as needing a PNI signature because the sender serviceId was invalid!")
@@ -237,7 +238,7 @@ object MessageDecryptor {
 
     // TODO We can move this to the "message processing" stage once we give it access to the envelope. But for now it'll stay here.
     if (envelope.report_spam_token != null && envelope.report_spam_token!!.size > 0) {
-      val sender = RecipientId.from(cipherResult.metadata.sourceServiceId)
+      val sender = RecipientIds.from(cipherResult.metadata.sourceServiceId)
       SignalDatabase.recipients.setReportingToken(sender, envelope.report_spam_token!!.toByteArray())
     }
 
@@ -269,7 +270,7 @@ object MessageDecryptor {
           Log.w(TAG, "${logPrefix(envelope, e)} Retry receipts disabled! Enqueuing a session reset job, which will also insert an error message.", e, true)
 
           followUpOperations += FollowUpOperation {
-            Recipient.external(e.sender)?.let {
+            Recipient.external(e.sender)?.takeUnless { it.isUnknown }?.let {
               AutomaticSessionResetJob(it.id, e.senderDevice, envelope.clientTimestamp!!).asChain()
             } ?: null.logW(TAG, "${logPrefix(envelope, e)} Failed to create a recipient with the provided identifier!")
           }
@@ -326,13 +327,21 @@ object MessageDecryptor {
   ): Result {
     if (ServiceId.parseOrNull(envelope.destinationServiceId, envelope.destinationServiceIdBinary) == SignalStore.account.pni) {
       Log.w(TAG, "${logPrefix(envelope)} Decryption error for message sent to our PNI! Ignoring.")
-      return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
+
+      if (envelope.type == Envelope.Type.PREKEY_MESSAGE) {
+        Log.w(TAG, "${logPrefix(envelope)} Decryption error was on a prekey message. Forcing a prekey rotation.", true)
+        followUpOperations += FollowUpOperation {
+          PreKeysSyncJob.create(forceRotationRequested = true).asChain()
+        }
+      }
+
+      return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
     }
 
     val contentHint: ContentHint = ContentHint.fromType(protocolException.contentHint)
     val senderDevice: Int = protocolException.senderDevice
     val receivedTimestamp: Long = System.currentTimeMillis()
-    val sender: Recipient = Recipient.external(protocolException.sender) ?: return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
+    val sender: Recipient = Recipient.external(protocolException.sender)?.takeUnless { it.isUnknown } ?: return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
     val senderServiceId: ServiceId? = ServiceId.parseOrNull(protocolException.sender)
 
     if (sender.isSelf) {

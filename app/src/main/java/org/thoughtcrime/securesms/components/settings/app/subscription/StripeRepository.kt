@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
@@ -10,6 +11,8 @@ import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.signal.donations.json.StripeIntentStatus
+import org.signal.libsignal.net.RequestResult
+import org.signal.network.rest.RestStatusCodeError
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
@@ -19,7 +22,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret
 
@@ -162,17 +164,17 @@ object StripeRepository : StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentH
   fun getStatusAndPaymentMethodId(
     stripeIntentAccessor: StripeIntentAccessor,
     paymentMethodId: String?
-  ): StatusAndPaymentMethodId {
+  ): RequestResult<StatusAndPaymentMethodId, RestStatusCodeError> {
     return when (stripeIntentAccessor.objectType) {
-      StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(stripeIntentAccessor.intentId, StripeIntentStatus.SUCCEEDED, paymentMethodId)
-      StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> stripeApi.getPaymentIntent(stripeIntentAccessor).let {
+      StripeIntentAccessor.ObjectType.NONE -> RequestResult.Success(StatusAndPaymentMethodId(stripeIntentAccessor.intentId, StripeIntentStatus.SUCCEEDED, paymentMethodId))
+      StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> stripeApi.getPaymentIntent(stripeIntentAccessor).map {
         if (it.status == null) {
           Log.d(TAG, "Returned payment intent had a null status.", true)
         }
         StatusAndPaymentMethodId(stripeIntentAccessor.intentId, it.status ?: StripeIntentStatus.SUCCEEDED, it.paymentMethod)
       }
 
-      StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).let {
+      StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).map {
         StatusAndPaymentMethodId(stripeIntentAccessor.intentId, it.status, it.paymentMethodId)
       }
     }

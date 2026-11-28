@@ -7,6 +7,7 @@ package org.signal.registration.screens.quickrestore
 
 import assertk.assertThat
 import assertk.assertions.hasSize
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
@@ -217,6 +218,28 @@ class QuickRestoreQrViewModelTest {
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.PinEntryForRegistrationLock>()
+  }
+
+  @Test
+  fun `MessageReceived without an e164 registers without emitting E164Chosen`() = runTest(testDispatcher) {
+    val aep = AccountEntropyPool.generate()
+    val message = FakeNetworkController().provisioningMessage(aep = aep, e164 = null)
+    val keyMaterial = mockk<KeyMaterial>(relaxed = true) {
+      every { accountEntropyPool } returns aep
+    }
+    val response = mockk<RegisterAccountResponse>(relaxed = true)
+    val flow = MutableSharedFlow<NetworkController.ProvisioningEvent>(replay = 1)
+    every { mockRepository.startProvisioning() } returns flow
+
+    coEvery { mockRepository.registerAccountWithProvisioningData(any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(response, keyMaterial, testAci))
+
+    createViewModel()
+    flow.emit(NetworkController.ProvisioningEvent.MessageReceived(message))
+
+    assertThat(emittedParentEvents.filterIsInstance<RegistrationFlowEvent.E164Chosen>()).isEmpty()
+    assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.RestoreMethodTokenReceived>()
+    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.Registered>()
   }
 
   private fun registrationLockResponse(): RegistrationLockResponse {

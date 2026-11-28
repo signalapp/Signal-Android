@@ -24,15 +24,19 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.withContext
 import org.signal.core.models.database.StickerRecord
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.DrawableUtil
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.MaybeCompat
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.dp
+import org.signal.core.util.groups.GroupNotAMemberException
+import org.signal.core.util.logTime
 import org.signal.core.util.logging.Log
-import org.signal.emoji.EmojiStrings
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.thoughtcrime.securesms.R
@@ -40,7 +44,8 @@ import org.thoughtcrime.securesms.ShortcutLauncherActivity
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.contactshare.Contact
-import org.thoughtcrime.securesms.contactshare.ContactUtil
+import org.thoughtcrime.securesms.contactshare.quoteText
+import org.thoughtcrime.securesms.contactshare.resolveOrCreateSignalRecipient
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.RequestReviewState.GroupReviewState
@@ -70,7 +75,9 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.AppDependencies.databaseObserver
 import org.thoughtcrime.securesms.dependencies.AppDependencies.expiringMessageManager
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
+import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
+import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
 import org.thoughtcrime.securesms.jobs.GroupSendJobHelper
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.UnpinMessageJob
@@ -87,7 +94,6 @@ import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
@@ -95,18 +101,20 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.thoughtcrime.securesms.util.AdaptiveBitmapMetrics
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
-import org.thoughtcrime.securesms.util.hasLinkPreview
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasTextSlide
 import org.thoughtcrime.securesms.util.isViewOnceMessage
 import org.thoughtcrime.securesms.util.requireTextSlide
+import org.thoughtcrime.securesms.util.shouldDisplayLinkPreview
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.messages.SendMessageResult
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Companion.newBuilder
 import java.io.IOException
+import java.time.ZoneId
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 import kotlin.time.Duration
@@ -161,7 +169,8 @@ class ConversationRepository(
 
       ConversationThreadState(
         items = PagedData.createForObservable(dataSource, config),
-        meta = metadata
+        meta = metadata,
+        sharedContactMessages = dataSource.sharedContactMessages
       )
     }.subscribeOn(Schedulers.io())
   }
@@ -448,6 +457,40 @@ class ConversationRepository(
     }.subscribeOn(Schedulers.io())
   }
 
+  /**
+   * Restores a minimal placeholder for each already-deleted outgoing message and sends a remote delete for it.
+   */
+  suspend fun deleteLocallyDeletedMessagesForEveryone(messages: List<LocallyDeletedMessage>) {
+    withContext(SignalDispatchers.Default) {
+      val currentTime = System.currentTimeMillis()
+
+      for (message in messages) {
+        if (!MessageConstraintsUtil.isValidRemoteDeleteSend(message.dateSent, currentTime)) {
+          Log.w(TAG, "Message ${message.messageId} is no longer eligible for a remote delete. Skipping.")
+          continue
+        }
+
+        val restored = SignalDatabase.messages.restoreDeletedOutgoingMessage(
+          messageId = message.messageId,
+          threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(message.threadRecipientId)),
+          toRecipientId = message.threadRecipientId,
+          dateSent = message.dateSent,
+          dateReceived = message.dateReceived,
+          type = message.type,
+          expiresIn = message.expiresIn,
+          expireStarted = message.expireStarted,
+          expireTimerVersion = message.expireTimerVersion
+        )
+
+        if (restored) {
+          MessageSender.sendRemoteDelete(message.messageId)
+        } else {
+          Log.w(TAG, "Failed to restore message ${message.messageId} for a remote delete.")
+        }
+      }
+    }
+  }
+
   private fun applyUniversalExpireTimerIfNecessary(context: Context, recipient: Recipient, outgoingMessage: OutgoingMessage, threadId: Long): OutgoingMessage {
     if (!outgoingMessage.isExpirationUpdate && outgoingMessage.expiresIn == 0L) {
       val expireTimerVersion = RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)
@@ -542,6 +585,20 @@ class ConversationRepository(
 
   fun markGiftBadgeRevealed(messageId: Long) {
     oldConversationRepository.markGiftBadgeRevealed(messageId)
+  }
+
+  /** Without a profile key for the subject this invites rather than adds, see [GroupAddMembersResult.Success.newMembersInvited]. */
+  fun addSharedContactToGroup(contact: Contact, groupRecipient: Recipient): Single<GroupAddMembersResult> {
+    return Single.create { emitter ->
+      val recipientId = contact.resolveOrCreateSignalRecipient()
+
+      if (recipientId == null) {
+        Log.w(TAG, "Shared contact does not resolve to a Signal account.")
+        emitter.onSuccess(GroupAddMembersResult.Failure(GroupChangeFailureReason.OTHER))
+      } else {
+        GroupManagementRepository().addMembers(groupRecipient, listOf(recipientId)) { emitter.onSuccess(it) }
+      }
+    }.subscribeOn(Schedulers.io())
   }
 
   fun getQuotedMessagePosition(threadId: Long, quoteId: Long, authorId: RecipientId): Single<Int> {
@@ -782,16 +839,9 @@ class ConversationRepository(
 
     return if (messageRecord.isMms && messageRecord.hasSharedContact()) {
       val contact: Contact = (messageRecord as MmsMessageRecord).sharedContacts.first()
-      val displayName: String = ContactUtil.getDisplayName(contact)
-      val body: String = context.getString(R.string.ConversationActivity_quoted_contact_message, EmojiStrings.BUST_IN_SILHOUETTE, displayName)
-      val slideDeck = SlideDeck()
 
-      if (contact.avatarAttachment != null) {
-        slideDeck.addSlide(MediaUtil.getSlideForAttachment(contact.avatarAttachment))
-      }
-
-      slideDeck to body
-    } else if (messageRecord.isMms && messageRecord.hasLinkPreview()) {
+      SlideDeck() to contact.quoteText(context)
+    } else if (messageRecord.isMms && messageRecord.shouldDisplayLinkPreview()) {
       val linkPreview = (messageRecord as MmsMessageRecord).linkPreviews.first()
       val slideDeck = SlideDeck()
 
@@ -843,9 +893,13 @@ class ConversationRepository(
     AppDependencies.expiringMessageManager.scheduleDeletion(expirationInfos)
   }
 
-  fun getEarliestMessageSentDate(threadId: Long): Single<Long> {
+  fun getDaysWithMessages(threadId: Long): Single<Set<Long>> {
     return Single
-      .fromCallable { SignalDatabase.messages.getEarliestMessageSentDate(threadId) }
+      .fromCallable {
+        logTime(TAG, "days-with-messages", decimalPlaces = 1) {
+          SignalDatabase.messages.getDaysWithMessages(threadId, ZoneId.systemDefault())
+        }
+      }
       .subscribeOn(Schedulers.io())
   }
 

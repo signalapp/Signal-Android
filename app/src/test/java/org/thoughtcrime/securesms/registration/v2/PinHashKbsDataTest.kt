@@ -7,13 +7,12 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.signal.core.models.MasterKey
+import org.signal.core.util.PinHashUtil
 import org.signal.core.util.StreamUtil
 import org.signal.libsignal.svr2.PinHash
 import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.registration.v2.testdata.KbsTestVector
 import org.thoughtcrime.securesms.testutil.SecureRandomTestUtil
-import org.whispersystems.signalservice.api.kbs.PinHashUtil.createNewKbsData
-import org.whispersystems.signalservice.api.kbs.PinHashUtil.decryptSvrDataIVCipherText
 
 class PinHashKbsDataTest {
   @Test
@@ -21,7 +20,7 @@ class PinHashKbsDataTest {
     for (vector in kbsTestVectorList) {
       val pinHash = fromArgon2Hash(vector.argon2Hash)
 
-      val kbsData = createNewKbsData(pinHash, MasterKey.createNew(SecureRandomTestUtil.mockRandom(vector.masterKey)))
+      val kbsData = PinHashUtil.createNewKbsData(pinHash, MasterKey.createNew(SecureRandomTestUtil.mockRandom(vector.masterKey)))
 
       assertArrayEquals(vector.masterKey, kbsData.masterKey.serialize())
       assertArrayEquals(vector.ivAndCipher, kbsData.cipherText)
@@ -35,7 +34,7 @@ class PinHashKbsDataTest {
     for (vector in kbsTestVectorList) {
       val hashedPin = fromArgon2Hash(vector.argon2Hash)
 
-      val kbsData = decryptSvrDataIVCipherText(hashedPin, vector.ivAndCipher)
+      val kbsData = PinHashUtil.decryptSvrDataIVCipherText(hashedPin, vector.ivAndCipher)
 
       assertArrayEquals(vector.masterKey, kbsData.masterKey.serialize())
       assertArrayEquals(vector.ivAndCipher, kbsData.cipherText)

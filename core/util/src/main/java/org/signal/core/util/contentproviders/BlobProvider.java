@@ -355,7 +355,7 @@ public class BlobProvider {
   }
 
   @WorkerThread
-  private synchronized @NonNull Uri writeBlobSpecToDisk(@NonNull Context context, @NonNull BlobSpec blobSpec)
+  private @NonNull Uri writeBlobSpecToDisk(@NonNull Context context, @NonNull BlobSpec blobSpec)
       throws IOException
   {
     waitUntilInitialized();

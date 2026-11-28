@@ -31,11 +31,13 @@ import com.bumptech.glide.Glide;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
 import org.signal.core.ui.compose.SignalIcons;
+import org.signal.core.ui.logging.LoggingFragment;
+import org.signal.core.ui.permissions.Permissions;
+import org.signal.core.ui.util.ViewUtil;
 import org.signal.core.util.ByteSize;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.logging.Log;
-import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
@@ -48,26 +50,22 @@ import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
-import org.thoughtcrime.securesms.mediapreview.MediaPreviewActivity;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
+import org.thoughtcrime.securesms.mediaviewer.MediaViewerActivity;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
-import org.thoughtcrime.securesms.util.ViewUtil;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
@@ -323,9 +321,9 @@ public final class MediaOverviewPageFragment extends LoggingFragment
     }
 
     if (mediaRecord.getLinkPreviewJson() != null) {
-      String url = parseLinkUrl(mediaRecord.getLinkPreviewJson());
-      if (url != null && !url.isEmpty()) {
-        CommunicationActions.openBrowserLink(context, url);
+      LinkPreview preview = mediaRecord.getLinkPreview();
+      if (preview != null && !preview.getUrl().isEmpty()) {
+        CommunicationActions.openBrowserLink(context, preview.getUrl());
       }
       return;
     }
@@ -362,7 +360,6 @@ public final class MediaOverviewPageFragment extends LoggingFragment
           mediaRecord.getAttachment().caption,
           null,
           true,
-          true,
           threadId == MediaTable.ALL_THREADS,
           true,
           sorting,
@@ -376,8 +373,8 @@ public final class MediaOverviewPageFragment extends LoggingFragment
               DimensionUnit.DP.toDp(12)
           ),
           false);
-      view.setTransitionName(MediaPreviewActivity.SHARED_ELEMENT_TRANSITION_NAME);
-      ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, MediaPreviewActivity.SHARED_ELEMENT_TRANSITION_NAME);
+      view.setTransitionName(MediaViewerActivity.SHARED_ELEMENT_TRANSITION_NAME);
+      ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, MediaViewerActivity.SHARED_ELEMENT_TRANSITION_NAME);
       context.startActivity(MediaIntentFactory.create(context, args), options.toBundle());
     } else {
       if (!MediaUtil.isAudio(attachment)) {
@@ -399,18 +396,6 @@ public final class MediaOverviewPageFragment extends LoggingFragment
         Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
       }
     }
-
-  private static @Nullable String parseLinkUrl(@NonNull String linkPreviewJson) {
-    try {
-      JSONArray json = new JSONArray(linkPreviewJson);
-      if (json.length() > 0) {
-        return json.getJSONObject(0).optString("url", "");
-      }
-    } catch (JSONException e) {
-      // ignore
-    }
-    return null;
-  }
 
   @Override
   public void onMediaLongClicked(@NonNull View view, MediaTable.MediaRecord mediaRecord) {

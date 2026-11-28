@@ -1,13 +1,14 @@
 package org.thoughtcrime.securesms.migrations
 
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.MultiDeviceStorageSyncRequestJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.manifest
 
 /**
  * Remove local unknown storage ids not in local storage service manifest.
@@ -37,7 +38,7 @@ internal class StorageFixLocalUnknownMigrationJob(
 
     Log.w(TAG, "Removing ${danglingLocalUnknownIds.size} dangling unknown ids")
 
-    SignalDatabase.rawDatabase.withinTransaction {
+    SignalDatabase.writableDatabase.withinTransaction {
       SignalDatabase.unknownStorageIds.delete(danglingLocalUnknownIds)
     }
 

@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.lang.annotation.Retention;
 import java.util.LinkedList;
@@ -105,6 +105,14 @@ public abstract class Job {
   /** Should only be invoked by {@link JobController} */
   final void cancel() {
     this.canceled = true;
+    onCanceled();
+  }
+
+  /**
+   * Called when the job is canceled, possibly while it is running on another thread and while the {@link JobController} holds its lock.
+   * Must not block.
+   */
+  protected void onCanceled() {
   }
 
   /** Indicates that this job is failing because a job earlier in the chain failed. */
@@ -370,7 +378,7 @@ public abstract class Job {
       return memoryOnly;
     }
 
-    int getGlobalPriority() {
+    public int getGlobalPriority() {
       return globalPriority;
     }
 

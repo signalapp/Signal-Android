@@ -22,6 +22,7 @@ import androidx.compose.runtime.compositionLocalOf
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 
 /**
@@ -60,18 +61,21 @@ class ResultEventBus {
   val channelMap: MutableMap<String, Channel<Any?>> = mutableMapOf()
 
   /**
-   * Provides a flow for the given resultKey.
+   * Provides a flow for the given resultKey. The channel is created here if no result has been sent yet, so a receiver
+   * that starts listening before the first [sendResult] shares the channel the sender later uses.
    */
-  inline fun <reified T> getResultFlow(resultKey: String = T::class.toString()) = channelMap[resultKey]?.receiveAsFlow()
+  inline fun <reified T> getResultFlow(resultKey: String = T::class.toString()): Flow<Any?> = channel(resultKey).receiveAsFlow()
 
   /**
    * Sends a result into the channel associated with the given resultKey.
    */
   inline fun <reified T> sendResult(resultKey: String = T::class.toString(), result: T) {
-    if (!channelMap.contains(resultKey)) {
-      channelMap[resultKey] = Channel(capacity = BUFFERED, onBufferOverflow = BufferOverflow.SUSPEND)
-    }
-    channelMap[resultKey]?.trySend(result)
+    channel(resultKey).trySend(result)
+  }
+
+  @PublishedApi
+  internal fun channel(resultKey: String): Channel<Any?> {
+    return channelMap.getOrPut(resultKey) { Channel(capacity = BUFFERED, onBufferOverflow = BufferOverflow.SUSPEND) }
   }
 
   /**

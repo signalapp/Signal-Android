@@ -4,6 +4,11 @@
     tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <org.thoughtcrime.securesms.video.inline.InlineVideoHost
+        android:id="@+id/conversation_thumbnail_surface_host"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ViewStub
         android:id="@+id/thumbnail_view_stub"
         android:layout_width="@dimen/media_bubble_default_dimens"

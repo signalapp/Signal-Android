@@ -64,7 +64,8 @@ class CallIntent(
     ANSWER_AUDIO("ANSWER_ACTION"),
     ANSWER_VIDEO("ANSWER_VIDEO_ACTION"),
     DENY("DENY_ACTION"),
-    END_CALL("END_CALL_ACTION");
+    END_CALL("END_CALL_ACTION"),
+    SHOW_ANSWERING("SHOW_ANSWERING_ACTION");
 
     companion object {
       fun fromIntent(intent: Intent): Action {

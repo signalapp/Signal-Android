@@ -32,15 +32,6 @@
         android:layout_marginTop="18dp"
         android:text="@string/ScheduledMessagesBottomSheet__schedules_messages"/>
 
-    <FrameLayout
-        android:id="@+id/video_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/scheduled_list"
-        app:layout_constraintEnd_toEndOf="@id/scheduled_list"
-        app:layout_constraintStart_toStartOf="@id/scheduled_list"
-        app:layout_constraintTop_toTopOf="@id/scheduled_list" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scheduled_list"
         android:layout_width="match_parent"

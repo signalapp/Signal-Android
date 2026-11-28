@@ -81,6 +81,7 @@ message DecryptedGroup {
   repeated DecryptedBannedMember     bannedMembers             = 13;
            bool                      terminated                = 14;
            bool                      isPlaceholderGroup        = 64;
+           bool                      needsServerSnapshot       = 65;
 }
 
 // Decrypted version of message GroupChange.Actions

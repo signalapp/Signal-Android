@@ -15,9 +15,10 @@ data class CallSetupState(
   @get:JvmName("shouldRingGroup") var ringGroup: Boolean = true,
   var ringId: Long = NO_RING,
   var ringerRecipient: Recipient = Recipient.UNKNOWN,
-  @get:JvmName("shouldWaitForTelecomApproval") var waitForTelecom: Boolean = false,
+  @get:JvmName("usesTelecom") var usesTelecom: Boolean = false,
   @get:JvmName("isTelecomApproved") var telecomApproved: Boolean = false,
   @get:JvmName("shouldWaitForAudio") var waitForAudio: Boolean = false,
+  @get:JvmName("isDenyPending") var denyPending: Boolean = false,
   var iceServers: MutableList<PeerConnection.IceServer> = mutableListOf(),
   @get:JvmName("isAlwaysTurnServers") var alwaysTurnServers: Boolean = false
 ) {

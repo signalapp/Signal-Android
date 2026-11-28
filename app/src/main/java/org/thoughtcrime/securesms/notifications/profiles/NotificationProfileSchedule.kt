@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.notifications.profiles
 
-import org.thoughtcrime.securesms.util.isBetween
-import org.thoughtcrime.securesms.util.toLocalDateTime
+import org.signal.core.util.isBetween
+import org.signal.core.util.toLocalDateTime
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.LocalTime

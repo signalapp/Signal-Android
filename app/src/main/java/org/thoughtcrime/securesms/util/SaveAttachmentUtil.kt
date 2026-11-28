@@ -321,6 +321,12 @@ object SaveAttachmentUtil {
       }
     }
 
+    data object NoLongerAvailable : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        return context.getString(R.string.AttachmentSaver__media_no_longer_available)
+      }
+    }
+
     data object WriteStoragePermissionDenied : SaveAttachmentsResult {
       override fun getMessage(context: Context): CharSequence {
         return context.getString(R.string.AttachmentSaver__unable_to_write_to_external_storage_without_permission)

@@ -6,6 +6,7 @@
 package org.signal.core.util
 
 import android.app.Application
+import android.os.Build
 
 object CoreUtilDependencies {
 
@@ -21,6 +22,8 @@ object CoreUtilDependencies {
     _application = application
     _provider = provider
     _buildInfo = buildInfo
+
+    ByteSize.UnitSystem.default = if (Build.VERSION.SDK_INT >= 26) ByteSize.UnitSystem.SI else ByteSize.UnitSystem.IEC
   }
 
   @JvmStatic

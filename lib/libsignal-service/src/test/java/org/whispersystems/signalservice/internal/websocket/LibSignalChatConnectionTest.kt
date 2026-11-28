@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.internal.websocket
 
 import io.mockk.Runs
 import io.mockk.clearAllMocks
-import io.mockk.clearMocks
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
@@ -10,6 +9,7 @@ import io.mockk.verify
 import io.reactivex.rxjava3.observers.TestObserver
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
@@ -41,6 +41,7 @@ class LibSignalChatConnectionTest {
   private val network = mockk<Network>()
   private val connection = LibSignalChatConnection("test", network, null, false, healthMonitor)
   private val chatConnection = mockk<UnauthenticatedChatConnection>()
+  private val connectionInfo = mockk<ChatConnection.ConnectionInfo>()
   private var chatListener: ChatConnectionListener? = null
 
   // Used by default-success mocks for ChatConnection behavior.
@@ -58,7 +59,6 @@ class LibSignalChatConnectionTest {
   fun before() {
     clearAllMocks()
     every { healthMonitor.onMessageError(any(), any()) }
-    every { healthMonitor.onKeepAliveResponse(any(), any()) }
     every { healthMonitor.onReceivedAlerts(any(), any()) }
     every { healthMonitor.onServerTimestamp(any(), any()) } just Runs
 
@@ -97,6 +97,8 @@ class LibSignalChatConnectionTest {
     }
 
     every { chatConnection.start() } returns Unit
+    every { chatConnection.info() } returns connectionInfo
+    every { connectionInfo.isDirect() } returns true
   }
 
   // Test that the LibSignalChatConnection transitions through DISCONNECTED -> CONNECTING -> CONNECTED
@@ -217,100 +219,6 @@ class LibSignalChatConnectionTest {
     observer.assertNoConsecutiveDuplicates()
   }
 
-  // Test a successful keepAlive, i.e. we get a 200 OK in response to the keepAlive request,
-  // which triggers healthMonitor.onKeepAliveResponse(...) and not onMessageError.
-  @Test
-  fun keepAliveSuccess() {
-    setupConnectedConnection()
-
-    sendLatch = CountDownLatch(1)
-
-    connection.sendKeepAlive()
-    sendLatch!!.await(100, TimeUnit.MILLISECONDS)
-
-    verify(exactly = 1) {
-      healthMonitor.onKeepAliveResponse(any(), false)
-    }
-    verify(exactly = 0) {
-      healthMonitor.onMessageError(any(), any())
-    }
-  }
-
-  // Test keepAlive failures: we get 4xx or 5xx, which triggers healthMonitor.onMessageError(...) but not onKeepAliveResponse.
-  @Test
-  fun keepAliveFailure() {
-    for (response in listOf(RESPONSE_ERROR, RESPONSE_SERVER_ERROR)) {
-      clearMocks(healthMonitor)
-
-      every { chatConnection.send(any()) } answers {
-        delay {
-          it.complete(response)
-          sendLatch?.countDown()
-        }
-      }
-
-      setupConnectedConnection()
-
-      sendLatch = CountDownLatch(1)
-
-      connection.sendKeepAlive()
-      sendLatch!!.await(100, TimeUnit.MILLISECONDS)
-
-      verify(exactly = 1) {
-        healthMonitor.onMessageError(response.status, false)
-      }
-      verify(exactly = 0) {
-        healthMonitor.onKeepAliveResponse(any(), any())
-      }
-    }
-  }
-
-  // Test keepAlive that fails at the transport layer (send() throws),
-  // which disconnects the underlying chat connection before transitioning to DISCONNECTED.
-  @Test
-  fun keepAliveConnectionFailure() {
-    val connectionFailure = RuntimeException("Sending keep-alive failed")
-
-    val keepAliveFailureLatch = CountDownLatch(1)
-    disconnectLatch = CountDownLatch(1)
-
-    every { chatConnection.send(any()) } answers {
-      delay {
-        it.completeExceptionally(connectionFailure)
-        keepAliveFailureLatch.countDown()
-      }
-    }
-
-    setupConnectedConnection()
-
-    val observer = TestObserver<WebSocketConnectionState>()
-    connection.state.subscribe(observer)
-
-    connection.sendKeepAlive()
-
-    keepAliveFailureLatch.await(100, TimeUnit.MILLISECONDS)
-    disconnectLatch!!.await(100, TimeUnit.MILLISECONDS)
-    observer.awaitCount(3)
-
-    observer.assertNotComplete()
-    observer.assertValues(
-      // We start in the connected state
-      WebSocketConnectionState.CONNECTED,
-      // Starts an underlying disconnect as a result of keep-alive failure
-      WebSocketConnectionState.DISCONNECTING,
-      // Disconnects once libsignal confirms the connection was interrupted
-      WebSocketConnectionState.DISCONNECTED
-    )
-    observer.assertNoConsecutiveDuplicates()
-    verify(exactly = 1) {
-      chatConnection.disconnect()
-    }
-    verify(exactly = 0) {
-      healthMonitor.onKeepAliveResponse(any(), any())
-      healthMonitor.onMessageError(any(), any())
-    }
-  }
-
   // Test that an incoming "connection interrupted" event from ChatConnection sets our state to DISCONNECTED.
   @Test
   fun connectionInterruptedTest() {
@@ -332,9 +240,29 @@ class LibSignalChatConnectionTest {
     )
     observer.assertNoConsecutiveDuplicates()
     verify(exactly = 0) {
-      healthMonitor.onKeepAliveResponse(any(), any())
       healthMonitor.onMessageError(any(), any())
     }
+  }
+
+  // Test that isConnectedDirectly() reflects libsignal's ConnectionInfo while connected, and is false otherwise.
+  @Test
+  fun isConnectedDirectlyReflectsConnectionInfo() {
+    assertFalse(connection.isConnectedDirectly())
+
+    setupConnectedConnection()
+    assertTrue(connection.isConnectedDirectly())
+
+    chatListener!!.onConnectionInterrupted(chatConnection, ChatServiceException("simulated interrupt"))
+    assertFalse(connection.isConnectedDirectly())
+  }
+
+  // Test that isConnectedDirectly() is false when libsignal reports a non-direct (proxied) route.
+  @Test
+  fun isConnectedDirectlyFalseForProxiedRoute() {
+    every { connectionInfo.isDirect() } returns false
+
+    setupConnectedConnection()
+    assertFalse(connection.isConnectedDirectly())
   }
 
   @Test
@@ -620,9 +548,6 @@ class LibSignalChatConnectionTest {
   }
 
   companion object {
-    // For verifying success / error scenarios in keepAlive tests, etc.
     private val RESPONSE_SUCCESS = ChatConnection.Response(200, "", emptyMap(), byteArrayOf())
-    private val RESPONSE_ERROR = ChatConnection.Response(400, "", emptyMap(), byteArrayOf())
-    private val RESPONSE_SERVER_ERROR = ChatConnection.Response(500, "", emptyMap(), byteArrayOf())
   }
 }

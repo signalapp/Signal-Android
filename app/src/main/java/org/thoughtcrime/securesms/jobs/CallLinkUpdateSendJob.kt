@@ -7,16 +7,15 @@ package org.thoughtcrime.securesms.jobs
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
-import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallLinkUpdateSendJobData
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallLinkUpdate
 import java.util.concurrent.TimeUnit
 
@@ -27,7 +26,7 @@ class CallLinkUpdateSendJob private constructor(
   parameters: Parameters,
   private val callLinkRoomId: CallLinkRoomId,
   private val callLinkUpdateType: CallLinkUpdate.Type
-) : BaseJob(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY = "CallLinkUpdateSendJob"
@@ -63,11 +62,11 @@ class CallLinkUpdateSendJob private constructor(
 
   override fun onFailure() = Unit
 
-  override fun onRun() {
+  override suspend fun doRun(): Result {
     val callLink = SignalDatabase.callLinks.getCallLinkByRoomId(callLinkRoomId)
     if (callLink?.credentials == null) {
       Log.i(TAG, "Call link not found or missing credentials. Exiting.")
-      return
+      return Result.success()
     }
 
     val callLinkUpdate = CallLinkUpdate(
@@ -76,16 +75,19 @@ class CallLinkUpdateSendJob private constructor(
       type = callLinkUpdateType
     )
 
-    AppDependencies.signalServiceMessageSender
-      .sendSyncMessage(SignalServiceSyncMessage.forCallLinkUpdate(callLinkUpdate))
-  }
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncCallLinkUpdate(callLinkUpdate),
+      urgent = false,
+      onEncrypted = null
+    )
 
-  override fun onShouldRetry(e: Exception): Boolean {
-    return when (e) {
-      is ServerRejectedException -> false
-      is PushNetworkException -> true
-      else -> false
-    }
+    return result.fold(
+      ifRight = { Result.success() },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "call link update sync", defaultBackoff())
+      }
+    )
   }
 
   class Factory : Job.Factory<CallLinkUpdateSendJob> {

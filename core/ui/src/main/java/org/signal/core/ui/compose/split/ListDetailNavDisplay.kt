@@ -8,13 +8,17 @@ package org.signal.core.ui.compose.split
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.movableContentOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavEntryDecorator
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberDecoratedNavEntries
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
@@ -76,6 +80,9 @@ fun rememberCurrentDecoratedNavEntries(
  * @param layout the split geometry, from [rememberListDetailPaneLayout]. Null shows the list on its own.
  * @param listPaneChrome extra content around the list that is static, it will not animate as the list changes.
  * @param emptyDetailContent empty content when there's no detail specified.
+ * @param isHoldingEnter from [ListDetailNavigator.isHoldingEnter]. While true, a pushed entry is shown without an enter
+ *   transition or a deferred enter.
+ * @param onTopEntryReady called when the top entry calls [DeferredEnter.start], for [ListDetailEvents.TopEntryReady].
  */
 @Composable
 fun ListDetailNavDisplay(
@@ -87,7 +94,9 @@ fun ListDetailNavDisplay(
   modifier: Modifier = Modifier,
   layout: ListDetailPaneLayout? = null,
   listPaneChrome: ListPaneChrome? = null,
-  emptyDetailContent: @Composable () -> Unit = {}
+  emptyDetailContent: @Composable () -> Unit = {},
+  isHoldingEnter: Boolean = false,
+  onTopEntryReady: () -> Unit = {}
 ) {
   // A full-screen entry is above the detail pane rather than in it, so back pops it and leaves the anchor
   // beneath alone.
@@ -99,22 +108,107 @@ fun ListDetailNavDisplay(
 
   val sceneStrategy = remember(isSplitPane) { ListDetailSceneStrategy(isSplitPane) }
 
+  val pendingDeferredEnter = rememberPendingDeferredEnter(entries, isHoldingEnter)
+
+  // Movable so that the chrome follows the list from one scene or tab to the next instead of being rebuilt.
+  val movableListPaneChrome: ListPaneChrome? = remember(listPaneChrome) {
+    listPaneChrome?.let { chrome -> movableContentOf { content: @Composable () -> Unit -> chrome(content) } }
+  }
+
+  val movableOwner = remember { ListPaneChromeOwner() }
+  sceneStrategy.listPaneEntry(entries)?.let { movableOwner.contentKey = it.contentKey }
+  val movableOwnerKey = movableOwner.contentKey
+
+  val listPaneChromeHost = remember(listPaneChrome, movableListPaneChrome, movableOwnerKey) {
+    if (listPaneChrome != null && movableListPaneChrome != null) {
+      ListPaneChromeHost(chrome = listPaneChrome, movable = movableListPaneChrome, movableOwnerKey = movableOwnerKey)
+    } else {
+      null
+    }
+  }
+
+  // Applied as a decorator so the chrome sits inside the entry's own movable slot, and is only ever placed by the
+  // scene that nav3 hands the list entry to.
+  val listPaneChromeDecorator = remember {
+    NavEntryDecorator<NavKey> { entry ->
+      if (entry.isListPane) {
+        ListPaneContent(contentKey = entry.contentKey) { entry.Content() }
+      } else {
+        entry.Content()
+      }
+    }
+  }
+
+  val detailPaneRootDecorator = remember {
+    NavEntryDecorator<NavKey> { entry ->
+      val detailContentKeys = LocalDetailPaneContentKeys.current
+      val lastKnownRoot = remember(entry.contentKey) { DetailPaneRootHolder() }
+
+      // An entry leaving the pane is no longer in the stack, and keeps what it was while it is still on screen.
+      val isRoot = if (detailContentKeys == null || entry.contentKey in detailContentKeys) {
+        detailContentKeys?.firstOrNull() == entry.contentKey
+      } else {
+        lastKnownRoot.isRoot
+      }
+
+      SideEffect {
+        lastKnownRoot.isRoot = isRoot
+      }
+
+      CompositionLocalProvider(LocalIsDetailPaneRoot provides isRoot) {
+        entry.Content()
+      }
+    }
+  }
+
+  val topContentKey by rememberUpdatedState(entries.lastOrNull()?.contentKey)
+  val currentOnTopEntryReady by rememberUpdatedState(onTopEntryReady)
+  val topEntryReadyDecorator = remember {
+    NavEntryDecorator<NavKey> { entry ->
+      val outer = LocalDeferredEnter.current
+      val deferredEnter = remember(outer, entry.contentKey) {
+        DeferredEnter {
+          outer.start()
+          if (entry.contentKey == topContentKey) {
+            currentOnTopEntryReady()
+          }
+        }
+      }
+
+      CompositionLocalProvider(LocalDeferredEnter provides deferredEnter) {
+        entry.Content()
+      }
+    }
+  }
+
+  val chromeDecoratedEntries = rememberDecoratedNavEntries(entries, listOf(listPaneChromeDecorator, detailPaneRootDecorator, topEntryReadyDecorator))
+
   val paneShift = TransitionSpecs.paneShift()
   val paneShiftPop = TransitionSpecs.paneShift(pop = true)
 
   CompositionLocalProvider(
+    LocalDetailPaneBack provides onBack,
     LocalListDetailPaneLayout provides layout,
-    LocalListPaneChrome provides listPaneChrome,
-    LocalEmptyDetailContent provides emptyDetailContent
+    LocalListPaneChrome provides listPaneChromeHost,
+    LocalEmptyDetailContent provides emptyDetailContent,
+    LocalPendingDeferredEnter provides pendingDeferredEnter
   ) {
     NavDisplay(
-      entries = entries,
+      entries = chromeDecoratedEntries,
       sceneStrategies = listOf(sceneStrategy),
-      transitionSpec = { paneShift },
+      transitionSpec = { if (isHoldingEnter) TransitionSpecs.Transition.NONE else paneShift },
       popTransitionSpec = { paneShiftPop },
       predictivePopTransitionSpec = { paneShiftPop },
       onBack = { onBack() },
       modifier = modifier
     )
   }
+}
+
+private class DetailPaneRootHolder {
+  var isRoot: Boolean = false
+}
+
+private class ListPaneChromeOwner {
+  var contentKey: Any? = null
 }

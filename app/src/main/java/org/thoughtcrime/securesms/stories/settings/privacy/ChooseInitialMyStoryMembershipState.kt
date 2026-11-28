@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.stories.settings.privacy
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.my.MyStoryPrivacyState
 
 data class ChooseInitialMyStoryMembershipState(

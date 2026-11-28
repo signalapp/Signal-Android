@@ -40,17 +40,21 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
-import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object TotpSetupTestTags {
@@ -68,12 +72,21 @@ object TotpSetupTestTags {
 @Composable
 fun TotpSetupScreen(
   state: TotpSetupState,
-  onEvent: (TotpSetupEvent) -> Unit
+  onEvent: (TotpSetupEvent) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Scaffolds.Settings(
     title = stringResource(R.string.TotpSetupScreen__set_up_your_authenticator_app),
     onNavigationClick = { onEvent(TotpSetupEvent.NavigateBackClicked) },
-    navigationIcon = SignalIcons.ArrowStart.imageVector
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    snackbarHost = {
+      Snackbars.Host(
+        message = state.snackbar.message(),
+        onDismissed = { onEvent(TotpSetupEvent.SnackbarDismissed) }
+      )
+    },
+    modifier = modifier
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -84,6 +97,7 @@ fun TotpSetupScreen(
         modifier = Modifier
           .weight(1f)
           .verticalScroll(rememberScrollState())
+          .appSettingsScreen()
           .testTag(TotpSetupTestTags.SCROLLER)
       ) {
         TextWithLearnMore(
@@ -97,8 +111,8 @@ fun TotpSetupScreen(
           illustration = {
             StepImage(
               image = R.drawable.image_authenticator_install_app,
-              width = 48.dp,
-              height = 52.dp
+              width = 64.dp,
+              height = 64.dp
             )
           }
         )
@@ -109,8 +123,8 @@ fun TotpSetupScreen(
           illustration = {
             StepImage(
               image = R.drawable.image_authenticator_open_app,
-              width = 45.dp,
-              height = 86.dp
+              width = 64.dp,
+              height = 96.dp
             )
           }
         ) {
@@ -177,8 +191,8 @@ fun TotpSetupScreen(
           illustration = {
             StepImage(
               image = R.drawable.image_authenticator_copy_code,
-              width = 62.dp,
-              height = 38.dp
+              width = 64.dp,
+              height = 64.dp
             )
           }
         )
@@ -194,7 +208,7 @@ fun TotpSetupScreen(
           contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
         modifier = Modifier
-          .fillMaxWidth()
+          .appSettingsScreen()
           .padding(horizontal = 40.dp, vertical = 16.dp)
           .testTag(TotpSetupTestTags.BUTTON_CONTINUE)
       ) {
@@ -203,6 +217,15 @@ fun TotpSetupScreen(
     }
 
     SetupDialog(dialog = state.dialog, onEvent = onEvent)
+  }
+}
+
+@Composable
+private fun TotpSetupState.Snackbar.message(): String? {
+  return when (this) {
+    TotpSetupState.Snackbar.None -> null
+    TotpSetupState.Snackbar.KeyCopied -> stringResource(R.string.TotpSetupScreen__copied_to_clipboard)
+    TotpSetupState.Snackbar.NoTotpAppFound -> stringResource(R.string.TotpSetupScreen__no_authenticator_app_found)
   }
 }
 
@@ -216,7 +239,7 @@ private fun SetupDialog(
 ) {
   val message = when (dialog) {
     TotpSetupState.Dialog.None -> return
-    is TotpSetupState.Dialog.MaxAppsReached -> stringResource(R.string.TotpAppListScreen__you_cant_add_more_than_d, dialog.maxApps)
+    is TotpSetupState.Dialog.MaxAppsReached -> stringResource(R.string.TotpSetupScreen__you_cant_add_more_than_d, dialog.maxApps)
     TotpSetupState.Dialog.NetworkFailure -> stringResource(R.string.TotpSetupScreen__couldnt_reach_signal)
   }
 
@@ -347,12 +370,11 @@ private fun SurfaceButton(
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TotpSetupScreenPreview() {
-  Previews.Preview {
-    TotpSetupScreen(
-      state = TotpSetupState(setupKey = "KVZ7 WL3F DDWJ ZMTO B7PL ZPKV RFD4 LYSX", loading = false),
-      onEvent = {}
-    )
-  }
+  TotpSetupScreen(
+    state = TotpSetupState(setupKey = "KVZ7 WL3F DDWJ ZMTO B7PL ZPKV RFD4 LYSX", loading = false),
+    onEvent = {}
+  )
 }

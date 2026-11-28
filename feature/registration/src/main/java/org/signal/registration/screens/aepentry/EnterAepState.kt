@@ -12,14 +12,13 @@ data class EnterAepState(
   val registrationError: RegistrationError? = null,
   /** The entered key decrypts the backup, but the backup belongs to a different account. Asks whether to restore it anyway after SMS verification. */
   val showDifferentAccountDialog: Boolean = false,
+  /** The user chose to try another way after entering an incorrect key. Offers to verify the number over SMS instead. */
+  val showVerifyWithSmsDialog: Boolean = false,
   /** Whether a password manager / credential provider is available to fill the recovery key. */
   val isPasswordManagerAvailable: Boolean = false
-) {
-  override fun toString(): String = "EnterAepState(recoveryKey=$recoveryKey, chunkLength=$chunkLength, isRegistering=$isRegistering, registrationError=$registrationError, showDifferentAccountDialog=$showDifferentAccountDialog, isPasswordManagerAvailable=$isPasswordManagerAvailable)"
-}
+)
 
 sealed interface AepValidationError {
-  data class TooLong(val count: Int, val max: Int) : AepValidationError
   data object Invalid : AepValidationError
   data object Incorrect : AepValidationError
 }

@@ -5,8 +5,8 @@ import androidx.annotation.Nullable;
 
 import java.util.stream.Collectors;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.List;
 

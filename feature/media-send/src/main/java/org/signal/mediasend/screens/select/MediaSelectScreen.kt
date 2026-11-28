@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.screens.select
 
+import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.animation.AnimatedVisibility
@@ -61,6 +62,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -107,6 +109,7 @@ import org.signal.mediasend.R
 import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.rememberPreviewMedia
 import org.signal.mediasend.screens.shared.NextButton
+import org.signal.mediasend.screens.shared.SelectedMediaThumbnailImage
 import org.signal.mediasend.screens.shared.chatColorFor
 import org.signal.mediasend.test.TestTags
 import org.signal.mediasend.util.formatAsClock
@@ -124,7 +127,8 @@ private const val PLACEHOLDER_COUNT = 100
 internal fun MediaSelectScreen(
   state: MediaSelectState,
   onEvent: (MediaSelectScreenEvents) -> Unit,
-  selectionAdditions: Flow<Media> = emptyFlow()
+  selectionAdditions: Flow<Media> = emptyFlow(),
+  thumbnailOverride: (Uri) -> ImageBitmap? = { null }
 ) {
   // Without read access there is nothing to browse, and with selected-photos access and nothing selected there is
   // nothing yet. Both show the placeholder grid behind a call to action, so both use the denser file grid.
@@ -260,6 +264,7 @@ internal fun MediaSelectScreen(
           SelectedMediaRow(
             selectedMedia = state.selectedMedia,
             selectionAdditions = selectionAdditions,
+            thumbnailOverride = thumbnailOverride,
             alignment = gridConfiguration.bottomBarAlignment,
             onEvent = onEvent,
             modifier = Modifier
@@ -543,7 +548,7 @@ private fun MediaFolderTile(
         modifier = Modifier
           .fillMaxWidth()
           .aspectRatio(1f)
-          .background(color = Previews.rememberRandomColor(), shape = RoundedCornerShape(26.dp))
+          .background(color = Previews.rememberRandomColor(seed = mediaFolder.thumbnailUri), shape = RoundedCornerShape(26.dp))
       )
     } else {
       BoxWithConstraints(
@@ -620,8 +625,8 @@ private fun MediaTile(
       if (LocalInspectionMode.current) {
         Box(
           modifier = Modifier
-            .background(color = Previews.rememberRandomColor())
-            .fillMaxWidth()
+            .size(width = width, height = height)
+            .background(color = Previews.rememberRandomColor(seed = media.uri))
         )
       } else {
         GlideImage(
@@ -690,6 +695,7 @@ private fun MediaTileVideoOverlay(
 private fun SelectedMediaRow(
   selectedMedia: List<Media>,
   selectionAdditions: Flow<Media>,
+  thumbnailOverride: (Uri) -> ImageBitmap?,
   alignment: Alignment.Horizontal,
   onEvent: (MediaSelectScreenEvents) -> Unit,
   modifier: Modifier = Modifier
@@ -735,6 +741,7 @@ private fun SelectedMediaRow(
       ReorderableItem(reorderableListState, index) {
         MediaThumbnail(
           media = media,
+          thumbnailOverride = thumbnailOverride(media.uri),
           modifier = Modifier.testTag(TestTags.selectedMediaThumbnail(media.uri.toString()))
         ) {
           onEvent(MediaSelectScreenEvents.SetFocusedMedia(media))
@@ -748,6 +755,7 @@ private fun SelectedMediaRow(
 @Composable
 private fun MediaThumbnail(
   media: Media,
+  thumbnailOverride: ImageBitmap?,
   modifier: Modifier = Modifier,
   onClick: () -> Unit
 ) {
@@ -760,19 +768,11 @@ private fun MediaThumbnail(
       .background(color = MaterialTheme.colorScheme.surfaceVariant)
       .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
   ) {
-    if (LocalInspectionMode.current) {
-      Box(
-        modifier = Modifier
-          .fillMaxSize()
-          .background(color = Previews.rememberRandomColor())
-      )
-    } else {
-      GlideImage(
-        model = media.uri,
-        imageSize = MediaSendMetrics.SelectedMediaPreviewSize,
-        modifier = Modifier.fillMaxSize()
-      )
-    }
+    SelectedMediaThumbnailImage(
+      media = media,
+      thumbnailOverride = thumbnailOverride,
+      modifier = Modifier.fillMaxSize()
+    )
   }
 }
 
@@ -919,7 +919,7 @@ private fun MediaTileSelectedChatColorPreview() {
 }
 
 @Composable
-private fun rememberPreviewMediaFolders(count: Int): List<MediaFolder> {
+internal fun rememberPreviewMediaFolders(count: Int): List<MediaFolder> {
   return remember(count) {
     (0 until count).map { index ->
       MediaFolder(

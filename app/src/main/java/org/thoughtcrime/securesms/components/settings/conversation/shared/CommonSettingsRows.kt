@@ -21,10 +21,11 @@ import androidx.compose.ui.res.stringResource
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.util.ExpirationUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ExpirationUtil
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
+import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
 
 @Composable
@@ -53,8 +54,8 @@ fun ChatColorAndWallpaperRow(
   modifier: Modifier = Modifier
 ) {
   Rows.TextRow(
-    text = stringResource(R.string.preferences__chat_color_and_wallpaper),
-    icon = painterResource(R.drawable.symbol_color_24),
+    text = stringResource(AppSettingsR.string.preferences__chat_color_and_wallpaper),
+    icon = painterResource(CoreUiR.drawable.symbol_color_24),
     onClick = onClick,
     modifier = modifier
   )
@@ -105,7 +106,7 @@ fun BlockRow(
 
   Rows.TextRow(
     text = stringResource(titleRes),
-    icon = painterResource(R.drawable.symbol_block_24),
+    icon = painterResource(CoreUiR.drawable.symbol_block_24),
     foregroundTint = if (isBlocked) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.error,
     enabled = enabled,
     onClick = onClick,
@@ -159,7 +160,7 @@ fun DeleteChatRow(
 
 private fun formatDisappearingMessagesLifespan(context: Context, lifespanSeconds: Int): String {
   return if (lifespanSeconds <= 0) {
-    context.getString(R.string.preferences_off)
+    context.getString(CoreUiR.string.preferences_off)
   } else {
     ExpirationUtil.getExpirationDisplayValue(context, lifespanSeconds)
   }

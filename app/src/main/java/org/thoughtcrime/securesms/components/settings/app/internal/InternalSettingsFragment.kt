@@ -23,6 +23,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.permissions.PermissionDeniedBottomSheet
 import org.signal.core.ui.permissions.RationaleDialog
@@ -42,7 +46,7 @@ import org.thoughtcrime.securesms.calls.quality.CallQualityBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.notifications.ReminderType
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.configure
@@ -64,6 +68,7 @@ import org.thoughtcrime.securesms.jobs.CheckKeyTransparencyJob
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
+import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -76,11 +81,10 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.data.QuickstartCredentialExporter
+import org.thoughtcrime.securesms.ringrtc.CameraFpsRanges
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
@@ -98,8 +102,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
     private val TAG = Log.tag(InternalSettingsFragment::class.java)
   }
 
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit = { appSettingsRouter.onEvent(it) }
+
   private lateinit var viewModel: InternalSettingsViewModel
   private var searchMenuItem: MenuItem? = null
+
+  private val cameraFpsRangeDescription: String? by lazy { CameraFpsRanges.captureCameraRangesDescription(requireContext()) }
 
   private var scrollToPosition: Int = 0
   private val layoutManager: LinearLayoutManager?
@@ -151,8 +160,29 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
     if (searchMenuItem?.isActionViewExpanded == true) {
       searchMenuItem?.collapseActionView()
     } else {
-      super.onToolbarNavigationClicked()
+      parentEventEmitter.navigateBack()
     }
+  }
+
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    val directions = when (route) {
+      AppSettingsRoute.InternalRoute.RemoteConfig -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalRemoteConfigFragment()
+      AppSettingsRoute.InternalRoute.Issues -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalIssuesFragment()
+      AppSettingsRoute.InternalRoute.SqlitePlayground -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSqlitePlaygroundFragment()
+      AppSettingsRoute.InternalRoute.BackupPlayground -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalBackupPlaygroundFragment()
+      AppSettingsRoute.InternalRoute.StorageServicePlayground -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalStorageServicePlaygroundFragment()
+      AppSettingsRoute.InternalRoute.SvrPlayground -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment()
+      AppSettingsRoute.InternalRoute.DataSeedingPlayground -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDataSeedingPlaygroundFragment()
+      AppSettingsRoute.InternalRoute.Search -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSearchFragment()
+      AppSettingsRoute.InternalRoute.DonorErrorConfiguration -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDonorErrorConfigurationFragment()
+      AppSettingsRoute.InternalRoute.OneTimeDonationConfiguration -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToOneTimeDonationConfigurationFragment()
+      AppSettingsRoute.InternalRoute.TerminalDonationConfiguration -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToTerminalDonationConfigurationFragment()
+      AppSettingsRoute.InternalRoute.StoryDialogs -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToStoryDialogsLauncherFragment()
+      AppSettingsRoute.InternalRoute.ChatSpringboard -> InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalConversationSpringboardFragment()
+      else -> error("Unexpected route: ${route.javaClass.name}")
+    }
+
+    findNavController().safeNavigate(directions)
   }
 
   private fun initializeSearch(view: View) {
@@ -178,7 +208,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
     searchMenuItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
       override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-        searchView.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+        searchView.setIncognitoKeyboardEnabled(SignalStore.settings.isIncognitoKeyboardEnabled)
         searchView.setOnQueryTextListener(queryListener)
         return true
       }
@@ -226,6 +256,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Override remote config"),
+        summary = DSLSettingsText.from("View every remote config flag and locally override any of them."),
+        onClick = {
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.RemoteConfig)
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from("Refresh remote config"),
         summary = DSLSettingsText.from("Forces a refresh of the remote config locally instead of waiting for the elapsed time."),
         onClick = {
@@ -242,6 +280,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           }
         )
       }
+
+      clickPref(
+        title = DSLSettingsText.from("Copy service password"),
+        summary = DSLSettingsText.from("Copy the password used to authenticate with the service."),
+        onClick = {
+          onCopyServicePasswordClicked()
+        }
+      )
 
       clickPref(
         title = DSLSettingsText.from("Unregister"),
@@ -263,7 +309,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("App Issues"),
         summary = DSLSettingsText.from("View recorded app issues, like slow reads and writes."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalIssuesFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.Issues)
         }
       )
 
@@ -284,7 +330,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("SQLite Playground"),
         summary = DSLSettingsText.from("Run raw SQLite queries."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSqlitePlaygroundFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.SqlitePlayground)
         }
       )
 
@@ -292,7 +338,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Backup Playground"),
         summary = DSLSettingsText.from("Test backup import/export."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalBackupPlaygroundFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.BackupPlayground)
         }
       )
 
@@ -300,7 +346,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Storage Service Playground"),
         summary = DSLSettingsText.from("Test and view storage service stuff."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalStorageServicePlaygroundFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.StorageServicePlayground)
         }
       )
 
@@ -308,7 +354,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("SVR Playground"),
         summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.SvrPlayground)
         }
       )
 
@@ -316,7 +362,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Data Seeding Playground"),
         summary = DSLSettingsText.from("Seed conversations with media files from a folder."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDataSeedingPlaygroundFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.DataSeedingPlayground)
         }
       )
 
@@ -351,6 +397,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Reset assistant screen security prompt"),
+        summary = DSLSettingsText.from("Clears the 90-day cooldown after choosing to re-enable screenshots. Screen security must also be off for the prompt to show."),
+        onClick = {
+          SignalStore.settings.assistantScreenSecurityDeclinedAt = 0
+          Toast.makeText(requireContext(), "Prompt reset", Toast.LENGTH_SHORT).show()
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))
@@ -359,7 +414,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Search for a recipient"),
         summary = DSLSettingsText.from("Search by ID, ACI, or PNI."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSearchFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.Search)
         }
       )
 
@@ -394,6 +449,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
         onClick = {
           logPreKeyIds()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Force prekey rotation"),
+        summary = DSLSettingsText.from("Clears the last forced refresh time and enqueues a forced PreKeysSyncJob, rotating all ACI and PNI prekeys."),
+        onClick = {
+          SignalStore.misc.lastForcedPreKeyRefresh = 0
+          AppDependencies.jobManager.add(PreKeysSyncJob.create(forceRotationRequested = true))
+          Toast.makeText(requireContext(), "Enqueued forced prekey rotation", Toast.LENGTH_SHORT).show()
         }
       )
 
@@ -440,8 +505,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Run unread reminder job"),
         summary = DSLSettingsText.from("Generates an unread reminder notification based on unreads and muted preferences. Skips the three day cooldown."),
         onClick = {
-          val threadIds = (SignalDatabase.threads.getMutedThreadIds(ReminderType.MESSAGES, 0) + SignalDatabase.threads.getMutedThreadIds(ReminderType.CALLS, 0)).distinct()
-          threadIds.forEach { threadId -> UnreadReminderJob.enqueue(threadId, 0) }
+          SignalDatabase.threads.getMutedThreadIds(0).forEach { threadId -> UnreadReminderJob.enqueue(threadId, 0) }
         }
       )
 
@@ -817,6 +881,24 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
+        title = DSLSettingsText.from("    Use Hardware H265 Encode"),
+        isChecked = state.callingUseHardwareH265Encode,
+        isEnabled = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingUseHardwareH265Encode(!state.callingUseHardwareH265Encode)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Hardware H265 Decode"),
+        isChecked = state.callingUseHardwareH265Decode,
+        isEnabled = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingUseHardwareH265Decode(!state.callingUseHardwareH265Decode)
+        }
+      )
+
+      switchPref(
         title = DSLSettingsText.from("Enable SVC"),
         isChecked = state.callingEnableSvc,
         onClick = {
@@ -834,6 +916,25 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             initialValue = state.callingStatsIntervalSecs.takeIf { it > 0 }
           ) { intervalSecs ->
             viewModel.setInternalCallingStatsIntervalSecs(intervalSecs ?: 0)
+          }
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Minimum Capture FPS"),
+        summary = DSLSettingsText.from(
+          buildString {
+            append(if (state.callingMinimumCaptureFps > 0) "${state.callingMinimumCaptureFps} fps" else "Default")
+            cameraFpsRangeDescription?.let { append("\n$it") }
+          }
+        ),
+        onClick = {
+          promptUserForInt(
+            title = "Minimum Capture FPS",
+            message = "Floor for the camera's capture framerate range. 0 for default logic. Applies on next call start.",
+            initialValue = state.callingMinimumCaptureFps.takeIf { it > 0 }
+          ) { minimumFps ->
+            viewModel.setInternalCallingMinimumCaptureFps(minimumFps ?: 0)
           }
         }
       )
@@ -861,7 +962,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Set error state."),
           onClick = {
-            findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDonorErrorConfigurationFragment())
+            parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.DonorErrorConfiguration)
           }
         )
 
@@ -886,7 +987,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Set pending one-time donation."),
           onClick = {
-            findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToOneTimeDonationConfigurationFragment())
+            parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.OneTimeDonationConfiguration)
           }
         )
       }
@@ -894,7 +995,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Enqueue terminal donation"),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToTerminalDonationConfigurationFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.TerminalDonationConfiguration)
         }
       )
 
@@ -1018,7 +1119,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Stories dialog launcher"),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToStoryDialogsLauncherFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.StoryDialogs)
         }
       )
 
@@ -1089,7 +1190,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Launch Conversation Test Springboard "),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalConversationSpringboardFragment())
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.ChatSpringboard)
         }
       )
 
@@ -1109,7 +1210,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setMessage("Are you sure? You'll have to re-register to use Signal again -- no promises that the process will go smoothly.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
         lifecycleScope.launch {
-          when (AdvancedPrivacySettingsRepository(requireContext()).disablePushMessages()) {
+          when (AdvancedPrivacySettingsRepository.disablePushMessages()) {
             AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
               SignalStore.account.setRegistered(false)
               SignalStore.registration.clearRegistrationComplete()
@@ -1122,6 +1223,24 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             }
           }
         }
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
+  }
+
+  private fun onCopyServicePasswordClicked() {
+    val servicePassword = SignalStore.account.servicePassword
+    if (servicePassword == null) {
+      Toast.makeText(requireContext(), "No service password set!", Toast.LENGTH_SHORT).show()
+      return
+    }
+
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle("Copy service password?")
+      .setMessage("Your service password lets anyone who has it send messages as you on the service. Treat it like a password: don't paste it anywhere you don't fully trust. It will be cleared from the clipboard after ${Util.SENSITIVE_CLIPBOARD_TIMEOUT_SECONDS} seconds.")
+      .setPositiveButton("Copy") { _, _ ->
+        Util.copyToClipboardSensitive(requireContext(), servicePassword)
+        Toast.makeText(requireContext(), "Copied service password", Toast.LENGTH_SHORT).show()
       }
       .setNegativeButton(android.R.string.cancel, null)
       .show()
@@ -1390,8 +1509,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       val message: MessageRecord = messages[0]
       val startingPosition = SignalDatabase.messages.getMessagePositionInConversation(message.threadId, message.dateReceived)
+      val threadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId) ?: return@promptUserForString
       val intent = ConversationIntents
-        .createBuilderSync(requireContext(), RecipientId.UNKNOWN, message.threadId)
+        .createBuilderSync(requireContext(), threadRecipientId, message.threadId)
         .withStartingPosition(startingPosition)
         .build()
 

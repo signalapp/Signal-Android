@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import android.content.Context
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
@@ -85,7 +85,7 @@ object EditMessageProcessor {
       return
     }
 
-    DataMessageProcessor.notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
+    DataMessageProcessor.notifyTypingStoppedFromIncomingMessage(senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
 
     targetMessage = targetMessage.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id))
 
@@ -152,7 +152,6 @@ object EditMessageProcessor {
       serverTimeMillis = envelope.serverTimestamp!!,
       receivedTimeMillis = targetMessage.dateReceived,
       expiresIn = targetMessage.expiresIn,
-      isViewOnce = message.isViewOnce == true,
       isUnidentified = metadata.sealedSender,
       body = message.body,
       groupId = groupId,

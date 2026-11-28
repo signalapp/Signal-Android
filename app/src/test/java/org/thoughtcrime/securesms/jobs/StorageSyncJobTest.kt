@@ -10,8 +10,10 @@ import androidx.test.core.app.ApplicationProvider
 import io.mockk.CapturingSlot
 import io.mockk.every
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import io.mockk.slot
 import io.mockk.unmockkObject
+import io.mockk.unmockkStatic
 import io.mockk.verify
 import okio.ByteString.Companion.toByteString
 import org.junit.After
@@ -28,13 +30,16 @@ import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
+import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.IssueReporter
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -45,22 +50,22 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.StorageSyncJobTest.Companion.BASE_MANIFEST_VERSION
+import org.thoughtcrime.securesms.keyvalue.manifest
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.FakeStorageServiceRule
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
-import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord
+import org.whispersystems.signalservice.internal.storage.protos.InstalledStickerPackRecord
 import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 import java.util.UUID
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 
 /**
@@ -89,8 +94,10 @@ class StorageSyncJobTest {
     Log.initialize(SystemOutLogger())
     remoteStorage.stubDefaults(recipients.signalStore)
 
-    mockkObject()
     every { RemoteConfig.defaultMaxBackoff } returns 1.minutes.inWholeMilliseconds
+
+    mockkStatic(AppForegroundObserver::class)
+    every { AppForegroundObserver.isForegrounded() } returns true
 
     // We need to run an initial sync so that every test starts with local and remote already agreeing at  [BASE_MANIFEST_VERSION].
     // Without that, the default "All chats" chat folder shows up as a local-only ID in every test and muddies the assertions.
@@ -101,6 +108,7 @@ class StorageSyncJobTest {
   fun tearDown() {
     unmockkObject(RemoteConfig)
     unmockkObject(IssueReporter)
+    unmockkStatic(AppForegroundObserver::class)
   }
 
   @Test
@@ -135,6 +143,102 @@ class StorageSyncJobTest {
     assertTrue(result.isSuccess)
     assertEquals(0, remoteStorage.writeCount)
     assertEquals(BASE_MANIFEST_VERSION, remoteStorage.manifest!!.version)
+  }
+
+  @Test
+  fun `given I am backgrounded and recently synced in the background, when I run, then I touch nothing`() {
+    every { AppForegroundObserver.isForegrounded() } returns false
+    recipients.signalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis() - 1.minutes.inWholeMilliseconds
+    SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Local Contact"))
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(0, remoteStorage.writeCount)
+    assertEquals(BASE_MANIFEST_VERSION, remoteStorage.manifest!!.version)
+  }
+
+  @Test
+  fun `given I am backgrounded and recently synced in the background, when I run, then I mark that I need a sync on foreground`() {
+    every { AppForegroundObserver.isForegrounded() } returns false
+    recipients.signalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis() - 1.minutes.inWholeMilliseconds
+
+    runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(recipients.signalStore.storageService.needsSyncOnForeground)
+  }
+
+  @Test
+  fun `given I am backgrounded and last synced in the background long ago, when I run, then I sync`() {
+    every { AppForegroundObserver.isForegrounded() } returns false
+    recipients.signalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis() - (RemoteConfig.storageServiceBackgroundSyncInterval + 1.minutes).inWholeMilliseconds
+    SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Local Contact"))
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(1, remoteStorage.writeCount)
+    assertFalse(recipients.signalStore.storageService.needsSyncOnForeground)
+  }
+
+  @Test
+  fun `given I am backgrounded and last synced in the background long ago, when I run, then I record the background sync time`() {
+    every { AppForegroundObserver.isForegrounded() } returns false
+    recipients.signalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis() - (RemoteConfig.storageServiceBackgroundSyncInterval + 1.minutes).inWholeMilliseconds
+
+    val before = System.currentTimeMillis()
+    runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(recipients.signalStore.storageService.lastBackgroundSyncTime >= before)
+  }
+
+  @Test
+  fun `given I am backgrounded and my last background sync time is in the future, when I run, then I sync`() {
+    every { AppForegroundObserver.isForegrounded() } returns false
+    recipients.signalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis() + 1.hours.inWholeMilliseconds
+    SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Local Contact"))
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(1, remoteStorage.writeCount)
+  }
+
+  @Test
+  fun `given I am backgrounded and recently synced in the background, when I run a high priority sync, then I sync`() {
+    every { AppForegroundObserver.isForegrounded() } returns false
+    recipients.signalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis() - 1.minutes.inWholeMilliseconds
+    SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Local Contact"))
+
+    val result = runJob(StorageSyncJob.forAccountRestore())
+
+    assertTrue(result.isSuccess)
+    assertEquals(1, remoteStorage.writeCount)
+  }
+
+  @Test
+  fun `given I am foregrounded and recently synced in the background, when I run, then I sync`() {
+    recipients.signalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis() - 1.minutes.inWholeMilliseconds
+    SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Local Contact"))
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(1, remoteStorage.writeCount)
+  }
+
+  @Test
+  fun `given a background sync was skipped, when I run in the foreground, then I clear the need to sync on foreground`() {
+    every { AppForegroundObserver.isForegrounded() } returns false
+    recipients.signalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis() - 1.minutes.inWholeMilliseconds
+    check(runJob(StorageSyncJob.forLocalChange()).isSuccess)
+    check(recipients.signalStore.storageService.needsSyncOnForeground)
+
+    every { AppForegroundObserver.isForegrounded() } returns true
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    assertFalse(recipients.signalStore.storageService.needsSyncOnForeground)
   }
 
   @Test
@@ -248,7 +352,7 @@ class StorageSyncJobTest {
     assertTrue(result.isSuccess)
     assertTrue(SignalDatabase.unknownStorageIds.allUnknownIds.isEmpty())
 
-    val pack = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(Hex.toStringCondensed(packId)))
+    val pack = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(Hex.toStringCondensed(packId)))
     assertNotNull(pack)
     assertArrayEquals(record.id.raw, pack!!.storageServiceId!!.raw)
   }
@@ -638,7 +742,7 @@ class StorageSyncJobTest {
     SignalDatabase.recipients.updateStorageId(recipients.self, StorageSyncHelper.generateKey())
     Recipient.self().live().refresh()
 
-    val accountRecord = StorageSyncHelper.buildAccountRecord(ApplicationProvider.getApplicationContext(), Recipient.self())
+    val accountRecord = StorageSyncHelper.buildAccountRecord(Recipient.self())
     remoteStorage.setRemoteState(listOf(accountRecord))
 
     val result = runJob(StorageSyncJob.forLocalChange())
@@ -697,7 +801,7 @@ class StorageSyncJobTest {
     return SignalStorageRecord(
       id = StorageId.forStickerPack(Util.getSecretBytes(16)),
       proto = StorageRecord(
-        stickerPack = StickerPackRecord(
+        installedStickerPack = InstalledStickerPackRecord(
           packId = packId.toByteString(),
           packKey = Util.getSecretBytes(32).toByteString(),
           position = 1
@@ -764,7 +868,7 @@ class StorageSyncJobTest {
 
   /** Our account record as another device would have rewritten it: same contents, [backupTier] swapped in, under a fresh storage id so that we see it as remote-only. */
   private fun accountRecordWithBackupTier(backupTier: Long?): SignalStorageRecord {
-    val record = StorageSyncHelper.buildAccountRecord(ApplicationProvider.getApplicationContext(), Recipient.self())
+    val record = StorageSyncHelper.buildAccountRecord(Recipient.self())
 
     return record.copy(
       id = StorageId.forAccount(StorageSyncHelper.generateKey()),

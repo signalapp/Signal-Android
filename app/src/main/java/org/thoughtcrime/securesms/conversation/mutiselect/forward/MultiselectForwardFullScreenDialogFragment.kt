@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,9 +20,9 @@ class MultiselectForwardFullScreenDialogFragment : DialogFragment(), Multiselect
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
   }
 
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    return super.onCreateDialog(savedInstanceState).apply {
-      window?.enableEdgeToEdge()
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return super.onGetLayoutInflater(savedInstanceState).also {
+      dialog?.window?.enableEdgeToEdge()
     }
   }
 
@@ -52,10 +51,6 @@ class MultiselectForwardFullScreenDialogFragment : DialogFragment(), Multiselect
 
   override fun getStorySendRequirements(): Stories.MediaTransform.SendRequirements? {
     return findListener<Callback>()?.getStorySendRequirements()
-  }
-
-  override fun getContainer(): ViewGroup {
-    return requireView().findViewById(R.id.fragment_container_wrapper)!!
   }
 
   override fun setResult(bundle: Bundle) {

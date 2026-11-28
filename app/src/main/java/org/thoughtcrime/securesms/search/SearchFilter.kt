@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.search
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 data class SearchFilter(
   val startDate: Long? = null,

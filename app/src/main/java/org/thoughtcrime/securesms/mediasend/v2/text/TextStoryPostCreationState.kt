@@ -7,10 +7,10 @@ import androidx.annotation.IntRange
 import androidx.core.graphics.ColorUtils
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 @Parcelize
 data class TextStoryPostCreationState(

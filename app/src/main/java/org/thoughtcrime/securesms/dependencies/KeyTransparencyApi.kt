@@ -7,6 +7,7 @@ import org.signal.libsignal.net.KeyTransparency.CheckMode
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.ServiceId
+import org.signal.libsignal.usernames.UsernameHash
 import org.thoughtcrime.securesms.database.model.KeyTransparencyStore
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 
@@ -27,7 +28,7 @@ class KeyTransparencyApi(private val unauthWebSocket: SignalWebSocket.Unauthenti
     }
   }
 
-  suspend fun check(checkMode: CheckMode, aci: ServiceId.Aci, aciIdentityKey: IdentityKey, e164: String?, unidentifiedAccessKey: ByteArray?, usernameHash: ByteArray?, keyTransparencyStore: KeyTransparencyStore): RequestResult<Unit, KeyTransparencyException> {
+  suspend fun check(checkMode: CheckMode, aci: ServiceId.Aci, aciIdentityKey: IdentityKey, e164: String?, unidentifiedAccessKey: ByteArray?, usernameHash: UsernameHash?, keyTransparencyStore: KeyTransparencyStore): RequestResult<Unit, KeyTransparencyException> {
     return unauthWebSocket.runCatchingWithChatConnection { chatConnection ->
       chatConnection.keyTransparencyClient().check(checkMode, aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash, keyTransparencyStore)
     }

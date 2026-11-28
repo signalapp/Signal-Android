@@ -7,13 +7,14 @@ package org.thoughtcrime.securesms.backup.v2.importer
 
 import androidx.core.content.contentValuesOf
 import org.signal.archive.proto.Contact
+import org.signal.core.database.insertInto
+import org.signal.core.database.update
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
-import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.database.IdentityTable
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.SignalE164Util
 
 /**
@@ -48,6 +48,11 @@ object ContactArchiveImporter {
       e164 = e164
     )
 
+    if (id == Recipient.self().id) {
+      Log.w(TAG, ImportSkips.contactMatchesSelf())
+      return id
+    }
+
     val profileKey = contact.profileKey?.toByteArray()
     val values = contentValuesOf(
       RecipientTable.BLOCKED to contact.blocked,
@@ -64,6 +69,8 @@ object ContactArchiveImporter {
       RecipientTable.NOTE to contact.note,
       RecipientTable.NICKNAME_GIVEN_NAME to contact.nickname?.given,
       RecipientTable.NICKNAME_FAMILY_NAME to contact.nickname?.family,
+      RecipientTable.SHARED_GIVEN_NAME to contact.sharedName?.given,
+      RecipientTable.SHARED_FAMILY_NAME to contact.sharedName?.family,
       RecipientTable.SYSTEM_GIVEN_NAME to contact.systemGivenName,
       RecipientTable.SYSTEM_FAMILY_NAME to contact.systemFamilyName,
       RecipientTable.SYSTEM_NICKNAME to contact.systemNickname,

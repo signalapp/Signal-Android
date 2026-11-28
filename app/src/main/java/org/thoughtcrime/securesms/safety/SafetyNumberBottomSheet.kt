@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.safety
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.getParcelableCompat
 import org.signal.network.util.Preconditions
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Object responsible for the construction of SafetyNumberBottomSheetFragment and Arg objects.

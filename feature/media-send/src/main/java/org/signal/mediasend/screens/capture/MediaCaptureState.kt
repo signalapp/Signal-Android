@@ -30,7 +30,9 @@ internal data class MediaCaptureState(
   val selectedCameraMode: MediaCaptureMode = MediaCaptureMode.PHOTO,
   val isVideoCaptureSupported: Boolean = true,
   /** As the camera reports it, so only ever true of the camera screen. */
-  val isRecording: Boolean = false
+  val isRecording: Boolean = false,
+  /** Mirrors the flow, which keeps the user on the camera after each capture while this is on. */
+  val isMultiCaptureEnabled: Boolean = false
 ) {
 
   /**
