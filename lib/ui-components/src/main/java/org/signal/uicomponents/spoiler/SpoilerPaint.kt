@@ -79,13 +79,14 @@ object SpoilerPaint {
 
   /**
    * Invoke every time before you need to use the [shader].
+   * Returns true if particles were updated, false if skipped due to frame rate throttling.
    */
   @MainThread
-  fun update() {
+  fun update(): Boolean {
     val now = System.currentTimeMillis()
     var dt = now - lastDrawTime
     if (dt < 48) {
-      return
+      return false
     } else if (dt > 64) {
       dt = 48
     }
@@ -103,6 +104,7 @@ object SpoilerPaint {
     bufferBitmap = swap
 
     shader = BitmapShader(shaderBitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT)
+    return true
   }
 
   /**
